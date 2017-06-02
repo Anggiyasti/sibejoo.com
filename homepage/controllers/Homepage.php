@@ -38,7 +38,7 @@ class Homepage extends MX_Controller {
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();
 
-        $this->parser->parse('v-index-homepage', $data);
+        $this->parser->parse('r-index-homepage', $data);
         // echo "string";
     }
     
