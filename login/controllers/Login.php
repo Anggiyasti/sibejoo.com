@@ -49,7 +49,7 @@ class Login extends MX_Controller {
 
 
 
-    $this->parser->parse('templating/index', $data);
+    $this->parser->parse('templating/r-index', $data);
 
 }
 
