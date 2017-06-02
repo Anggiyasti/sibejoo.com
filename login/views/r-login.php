@@ -29,11 +29,33 @@
               <li class="active"><a href="#login-tab" data-toggle="tab">Login</a></li>
               <li><a href="#register-tab" data-toggle="tab">Register</a></li>
             </ul>
+            
             <div class="tab-content">
               <div class="tab-pane fade in active p-15" id="login-tab">
                 <h4 class="text-gray mt-0 pt-5"> Silahkan Login</h4>
+                <?php if ($this->session->flashdata('notif') != '') {
+
+                    ?>
+
+                    <div class="alert alert-warning">
+
+                        <span class="semibold">Note :</span><?php echo $this->session->flashdata('notif'); ?>
+
+                    </div>
+
+                <?php } else { ?>
+
+                    <div class="alert alert-warning">
+
+                        Siap berpetualang? Isi form, tekan Login!
+
+                    </div>
+
+                <?php }; ?>
+
                 <hr>
-                <p> Siap berpetualang? Isi form, tekan Login!</p>
+
+                <br>
                 <form action = "<?= base_url('index.php/login/validasiLogin'); ?>" name="login-form" class="clearfix">
                   <div class="row">
                     <div class="form-group col-md-12">
