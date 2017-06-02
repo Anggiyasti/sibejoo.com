@@ -10,7 +10,7 @@
   <meta name="author" content="ThemeMascot" />
 
   <!-- Page Title -->
-  <title>StudyPress | Education & Courses HTML Template</title>
+  <title>SIBEJOO</title>
 
   <!-- Favicon and Touch Icons -->
   <link href="<?=base_url('assets/retemplate/images/favicon.png')?>" rel="shortcut icon" type="image/png">
@@ -67,6 +67,10 @@
 </head>
 <body class="dark">
   <div id="wrapper" class="clearfix">
+
+    <?php include 'r-header.php' ?>
+    <?php include 'r-container.php' ?>
+    <?php include 'r-footer.php' ?>
 
   </div>
   <!-- end wrapper -->

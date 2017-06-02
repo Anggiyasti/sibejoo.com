@@ -33,7 +33,7 @@ class Homepage extends MX_Controller {
 
 
         );
-        $data['file'] = 'v-container.php';
+        $data['file'] = 'r-container.php';
         $data['teachers'] = $this->mguru->get_guru_random();
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();
