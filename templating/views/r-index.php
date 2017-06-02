@@ -38,6 +38,7 @@
   <link href="<?=base_url('assets/retemplate/css/style-main-dark.css')?>" rel="stylesheet" type="text/css">
   <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
   <!-- <link href="<?=base_url('assets/retemplate/css/style.css')?>" rel="stylesheet" type="text/css"> -->
+  <script src="<?= base_url('assets/back/js/jquery.min.js') ?>"></script>
 
   <!-- Revolution Slider 5.x CSS settings -->
   <link  href="<?=base_url('assets/retemplate/js/revolution-slider/css/settings.css')?>" rel="stylesheet" type="text/css"/>
@@ -68,7 +69,6 @@
 <body class="dark">
   <div id="wrapper" class="clearfix">
     <script type="text/javascript">var base_url = "<?= base_url() ?>"</script>
-    <script src="<?= base_url('assets/back/js/jquery.min.js') ?>"></script>
     <?php
     
     foreach ($files as $key) {
@@ -94,5 +94,11 @@
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.video.min.js')?>"></script>
+
+<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/tabletools/js/tabletools.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables-custom.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/javascript/tables/datatable.js') ?>"></script>
+
 </body>
 </html>
