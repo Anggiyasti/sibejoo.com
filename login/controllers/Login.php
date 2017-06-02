@@ -39,17 +39,17 @@ class Login extends MX_Controller {
 
     $data['files'] = array(
 
-        APPPATH . 'modules/templating/views/v-navbarlogin.php',
+        APPPATH . 'modules/templating/views/r-navbar-login.php',
 
-        APPPATH . 'modules/login/views/vLogin.php',
+        APPPATH . 'modules/login/views/r-login.php',
 
-        APPPATH . 'modules/homepage/views/v-footer.php',
+        // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
 
 
-    $this->parser->parse('templating/r-index', $data);
+    $this->parser->parse('templating/r-index-login', $data);
 
 }
 
