@@ -40,7 +40,7 @@ class Welcome extends MX_Controller {
         );
 
     $data['files'] = array( 
-        APPPATH.'modules/homepage/views/v-header-login.php',
+        APPPATH.'modules/homepage/views/r-header-login.php',
         APPPATH.'modules/welcome/views/v-container-graph.php',
         APPPATH.'modules/testimoni/views/v-footer.php',
         );
@@ -62,7 +62,7 @@ class Welcome extends MX_Controller {
     $data['latihan'] = $this->msiswa->get_limit_persentase_latihan(3);
     $data['pesan'] = $this->msiswa->get_pesan();
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index', $data );
 
 
 }
