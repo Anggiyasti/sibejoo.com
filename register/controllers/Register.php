@@ -22,7 +22,7 @@ class Register extends MX_Controller {
 
         $this->load->model('Templating/mtemplating');
                 $this->load->library('sessionchecker');
-        $this->sessionchecker->checkloggedin();
+        // $this->sessionchecker->checkloggedin();
 
     }
 
@@ -82,18 +82,18 @@ class Register extends MX_Controller {
 
         $data['files'] = array(
 
-            APPPATH . 'modules/templating/views/v-navbarregister.php',
+            APPPATH . 'modules/templating/views/r-navbar-login.php',
 
-            APPPATH . 'modules/register/views/vRegisterSiswa.php',
+            APPPATH . 'modules/register/views/r-register-siswa.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
     $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
         $data['cabang'] = $this->mcabang->get_all_cabang();
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
 
     }
