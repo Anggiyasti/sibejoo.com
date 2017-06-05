@@ -628,7 +628,7 @@
               <div class="team maxwidth400">
                 <div class="thumb"><img class="img-fullwidth" src="http://placehold.it/262x300" alt=""></div>
                 <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                  <h4 class="name text-theme-color-2 mt-0"><?=$teacher['namaDepan']." ".$teacher['namaBelakang'] ?> - <small class="text-white">Pengajar</small></h4>
+                  <h4 class="name text-theme-color-2 mt-0"><?=$teacher['namaDepan']." ".$teacher['namaBelakang'] ?> - <small class="text-black">Pengajar</small></h4>
                   <p class="mb-20"><?=$teacher['biografi']?></p>
                 </div>
               </div>
