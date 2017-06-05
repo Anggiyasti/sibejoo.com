@@ -41,8 +41,8 @@ class Welcome extends MX_Controller {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/welcome/views/v-container-graph.php',
-        APPPATH.'modules/testimoni/views/v-footer.php',
+        APPPATH.'modules/welcome/views/r-container-graph.php',
+        // APPPATH.'modules/testimoni/views/v-footer.php',
         );
 
     if ($this->session->userdata('HAKAKSES')=='ortu') {
@@ -51,7 +51,7 @@ class Welcome extends MX_Controller {
         $namaBelakang=$this->mOrtu->get_siswa($id_pengguna)[0]['namaBelakang'];
         $data['siswa'] =$namaDepan.' '. $namaBelakang ;
         // ini buat ortu
-        $data['datLapor'] = $this->Ortuback_model->get_daftar_pesan($id_pengguna);
+        $data['datLapor'] = $this->Ortuback_model->get_daftar_pesan ($id_pengguna);
         $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
 
     }
