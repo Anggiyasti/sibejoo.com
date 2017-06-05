@@ -144,26 +144,58 @@
 <!-- TITLE -->
 
 <section>
-      <div class="container">
-        <div class="section-content">
-          <div class="row">
+  <div class="container">
+    <div class="section-content">
+      <div class="row">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 ">
-              <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0"><span class="text-theme-color-1"> Pesan</span></h2>
-              <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
-              <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mt10">
-              <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0"><span class="text-theme-color-1"> Topik Yang Sudah Dipelajari</span></h2>
-              <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
-              <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a>
-            </div>
-
+        <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+          <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
+            <span class="text-theme-color-1"> Pesan</span></h2>
+            <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
+            <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a>
+            <br>
+            <br>
+            <br>
+            <br>
           </div>
-        </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+            <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
+            <h3>Topik yang baru saja dipelajari <?=$siswa?>..</h3> 
+            Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah progress learning line dari <?=$siswa?>! <br><br>
+          <?php else: ?>
+          <h3>Topik yang baru saja dipelajari..</h3> 
+          Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah progress learning line kamu, silahkan lanjutkan untuk bisa menyelesaikan topik-topik yang disediakan. Tetap semangat!<br><br>
+        <?php endif ?>
+        <a onclick="show_modal_learning()" class="cws-button bt-color-3 alt small">Selengkapnya</a> <br><br>    
+        <div class="grid-col-row clear-fix">
+          <?php foreach ($topik  as $item): ?>
+          <?php $persentasi = (int)$item['stepDone'] / (int)$item['jumlah_step'] * 100; ?>
+          <div class="grid-col grid-col-4" title="<?=(int)$persentasi ?>%">
+            <div class="portfolio-item">
+              <div class="picture">
+                <div class="course-item">
+                  <div class="course-date bg-color-3 clear-fix skill-bar">
+                    <h3 style="margin:0;"><a href="<?=base_url("linetopik/learningline/".$item['babID']) ?>"><?=$item['namaTopik'] ?></a></h3>
+                    <hr style="margin-bottom: 5px">  
+                    <div class="day"><?=(int)$persentasi ?>% Progress</div><br>
+                    <div class="day"><?=$item['stepDone'] ?> / <?=$item['jumlah_step'] ?> Step Line Dikerjakan</div>
+                    <div class="bar">
+                      <span class="bg-color-4 skill-bar-progress" processed="true" style="width: <?=$persentasi ?>%;"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach ?>
       </div>
-    </section>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
 
 
 

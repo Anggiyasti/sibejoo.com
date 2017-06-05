@@ -34,8 +34,6 @@
   <link href="<?=base_url('assets/retemplate/css/custom-bootstrap-margin-padding.css')?>" rel="stylesheet" type="text/css">
   <!-- CSS | Responsive media queries -->
   <link href="<?=base_url('assets/retemplate/css/responsive.css')?>" rel="stylesheet" type="text/css">
-  <!-- CSS | For Dark Layout -->
-  <link href="<?=base_url('assets/retemplate/css/style-main-dark.css')?>" rel="stylesheet" type="text/css">
   <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
   <!-- <link href="<?=base_url('assets/retemplate/css/style.css')?>" rel="stylesheet" type="text/css"> -->
   <script src="<?= base_url('assets/back/js/jquery.min.js') ?>"></script>
