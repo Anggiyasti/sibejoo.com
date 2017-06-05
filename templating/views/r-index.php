@@ -10,7 +10,7 @@
   <meta name="author" content="ThemeMascot" />
 
   <!-- Page Title -->
-  <title>StudyPress | Education & Courses HTML Template</title>
+  <title>Sibejoo</title>
 
   <!-- Favicon and Touch Icons -->
   <link href="<?=base_url('assets/retemplate/images/favicon.png')?>" rel="shortcut icon" type="image/png">

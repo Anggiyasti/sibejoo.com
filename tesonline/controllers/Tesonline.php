@@ -29,14 +29,11 @@ public function index() {
         );
 
     $data['files'] = array(
-        APPPATH . 'modules/homepage/views/v-header-login.php',
-        APPPATH . 'modules/templating/views/t-f-pagetitle.php',
-        APPPATH . 'modules/tesonline/views/v-test-show-tingkat.php',
-//        APPPATH . 'modules/homepage/views/v-footer.php',
-        APPPATH . 'modules/testimoni/views/v-footer.php',
+        APPPATH . 'modules/homepage/views/r-header-login.php',
+        APPPATH . 'modules/tesonline/views/r-test-show-tingkat.php',
         );
     $data['tingkat'] = $this->load->mtingkat->gettingkat();
-    $this->parser->parse('templating/index', $data);
+    $this->parser->parse('templating/r-index', $data);
 }
 
     #memilih matapelajaran yang akan dilakukan tesonline.
@@ -46,11 +43,9 @@ public function pilihmapel($idtingkat) {
         'judul_header' => 'Latihan Online'
         );
     $data['files'] = array(
-        APPPATH . 'modules/homepage/views/v-header-login.php',
-        APPPATH . 'modules/templating/views/t-f-pagetitle.php',
-        APPPATH . 'modules/tesonline/views/v-test-show-mapel.php',
+        APPPATH . 'modules/homepage/views/r-header-login.php',
+        APPPATH . 'modules/tesonline/views/v-test-show-mapel.php'
         // APPPATH . 'modules/homepage/views/v-footer.php',
-        APPPATH . 'modules/testimoni/views/v-footer.php',
         );
     if($idtingkat==3){
         $data['mapel'] = $this->load->mtingkat->getmapelipa();
@@ -61,7 +56,7 @@ public function pilihmapel($idtingkat) {
 
     
 
-    $this->parser->parse('templating/index', $data);
+    $this->parser->parse('templating/r-index', $data);
 }
 
 public function mulai() {
@@ -100,21 +95,17 @@ public function mulai() {
 }
 
 public function daftarlatihan() {
-        // $tingkatID = $this->load->mlatihan->get_latihan($this->session->userdata['USERNAME'])[0]->tingkatID;
     $data = array(
         'judul_halaman' => 'Neon - Daftar Latihan',
         'judul_header' => 'History Latihan',
         'judul_tingkat' => '',
         );
 
-    $konten = 'modules/tesonline/views/v-mulai-test.php';
+    $konten = 'modules/tesonline/views/r-mulai-test.php';
 
     $data['files'] = array(
-        APPPATH . 'modules/homepage/views/v-header-login.php',
-        APPPATH . 'modules/templating/views/t-f-pagetitle.php',
-        APPPATH . $konten,
-        // APPPATH . 'modules/homepage/views/v-footer.php',
-        APPPATH . 'modules/testimoni/views/v-footer.php',
+        APPPATH.'modules/homepage/views/r-header-login.php',
+        APPPATH . $konten
         );
 
     if ($this->session->userdata['HAKAKSES']=='ortu') {
@@ -131,7 +122,7 @@ public function daftarlatihan() {
     $data['latihan'] = $this->load->mlatihan->get_latihan($this->session->userdata['USERNAME']);
 
     $this->session->unset_userdata('id_pembahasan');
-    $this->parser->parse('templating/index', $data);
+    $this->parser->parse('templating/r-index', $data);
 }
 
 public function test() {
@@ -244,3 +235,4 @@ public function pembahasanlatihan() {
 }
 
 }
+?>

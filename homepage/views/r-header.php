@@ -15,7 +15,7 @@
                 </li>
                 <li class="text-white">|</li>
                 <li>
-                  <a class="text-white" href="#">Login</a>
+                  <a class="text-white" href="<?=base_url('index.php/login')?>">Login</a>
                 </li>
               </ul>
             </div>
@@ -163,7 +163,7 @@
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
                 <!-- Modal: Book Now Starts -->
-                <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="ajax-load/reservation-form.html">Masuk</a>
+                <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="<?=base_url('index.php/login')?>">Masuk</a>
                 <!-- Modal: Book Now End -->
               </li>
             </ul>

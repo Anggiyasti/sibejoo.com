@@ -76,7 +76,7 @@
       <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
       <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
       <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
-      <li><a href="<?=base_url('daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
+      <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
       <li><a href="<?=base_url('ortu_back/pesan') ?>">Pesan<span class="indicator"></a></li>
       <li><a href="<?=base_url('modulonline/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
 

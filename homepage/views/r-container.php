@@ -1,7 +1,7 @@
 <!-- Start main-content -->
   <div class="main-content"> 
 
-  	 <!-- Section: slider -->
+     <!-- Section: slider -->
     <section id="">
       <div class="container-fluid p-0">
         
@@ -436,16 +436,44 @@
           <div class="row">
             <div class="col-md-6">
               <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">About Us</h6>
-              <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">Kenapa Harus Sibejoo</h2>
+              <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">Kenapa <span class="text-theme-color-2">Harus Sibejoo?</span></h2>
               <h4 class="text-theme-colored">Dibawah ini adalah kenggulan dari neon. Yuk cek dulu</h4>
-              <h5>Video Pembelajaran Lengkap, Asyik dan Mudah dimengerti : </h5>
-              <p>Puluhan ribu video bisa kalian akses. Ada 2 jenis video, video screen recording untuk kebutuhan akses low bandwith dan file kecil dan video teacher recording untuk akses dengan bandwith besar dan ukuran file yang besar, jenis ini kalian bisa lihat guru yang mengajar.</p>
-              <h5>Terdapat puluhan ribu latihan soal yang bisa di akses kapanpun</h5>
-              <p>Soal-soal tahun terlama dan terbaru, dari soal latihan, UN sampai dengan SBMPTN terbaru Neon hadirkan untuk kalian. Kalian bisa latihan sesuka dan sepuasnya.</p>
-              <h5>Bisa Konsultasi 24 jam?</h5>
-              <p>Neon menyediakan guru-guru piket yang khusus akan menjawab pertanyaan dan curhatan kalian dalam proses belajar. Rasanya kalian seperti punya mentor pribadi bersama Neon. Bisa kalian akses lewat website atau smartphone.</p>
-              <h5>Belajar Toefl Full Free</h5>
-              <p>Kapan lagi bisa belajar online dan dapat gratis belajar TOEFL, ya Cuma di NEON... Temen-temen bisa merasakan belajar TOEFL secara asyik dan mudah disini.</p>
+              <div id="accordion1" class="panel-group accordion">
+                <div class="panel">
+                  <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span>Video Pembelajaran Lengkap, Asyik dan Mudah dimengerti</a> </div>
+                  <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
+                    <div class="panel-content">
+                      <p>Puluhan ribu video bisa kalian akses. Ada 2 jenis video, video screen recording untuk kebutuhan akses low bandwith dan file kecil dan video teacher recording untuk akses dengan bandwith besar dan ukuran file yang besar, jenis ini kalian bisa lihat guru yang mengajar.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span>Terdapat puluhan ribu latihan soal yang bisa di akses kapanpun</a> </div>
+                  <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                    <div class="panel-content">
+                      <p>Soal-soal tahun terlama dan terbaru, dari soal latihan, UN sampai dengan SBMPTN terbaru Neon hadirkan untuk kalian. Kalian bisa latihan sesuka dan sepuasnya.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span>Bisa Konsultasi 24 jam</a> </div>
+                  <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                    <div class="panel-content">
+                      <p>Neon menyediakan guru-guru piket yang khusus akan menjawab pertanyaan dan curhatan kalian dalam proses belajar. Rasanya kalian seperti punya mentor pribadi bersama Neon. Bisa kalian akses lewat website atau smartphone.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel">
+                  <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion14" class="" aria-expanded="true"> <span class="open-sub"></span>Belajar Toefl Full Free</a> </div>
+                  <div id="accordion14" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                    <div class="panel-content">
+                      <p>Kapan lagi bisa belajar online dan dapat gratis belajar TOEFL, ya Cuma di NEON... Temen-temen bisa merasakan belajar TOEFL secara asyik dan mudah disini.</p>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
             </div>
             <div class="col-md-6">
               <div class="video-popup">                
@@ -623,7 +651,7 @@
         </div>
         <div class="section-content">
           <div class="row multi-row-clearfix">
-          	<?php foreach ($teachers as $teacher): ?>
+            <?php foreach ($teachers as $teacher): ?>
             <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
               <div class="team maxwidth400">
                 <div class="thumb"><img class="img-fullwidth" src="http://placehold.it/262x300" alt=""></div>
@@ -683,11 +711,11 @@
             <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
               <label for="mce-EMAIL"></label>
               <div class="input-group">
-              	<!-- untuk menampilkan pesan kesalahan penginputan email -->
+                <!-- untuk menampilkan pesan kesalahan penginputan email -->
                 <input type="email" id="mce-EMAIL" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
                 <span class="input-group-btn">
-                	<input type="submit" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px"> 
-                  	<!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
+                  <input type="submit" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px"> 
+                    <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
                     <span class="text-danger"><?php echo form_error('email'); ?></span>
                 </span>
               </div>
