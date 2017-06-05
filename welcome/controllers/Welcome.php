@@ -41,13 +41,8 @@ class Welcome extends MX_Controller {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-<<<<<<< HEAD
         APPPATH.'modules/welcome/views/r-container-graph.php',
         // APPPATH.'modules/testimoni/views/v-footer.php',
-=======
-        APPPATH.'modules/welcome/views/v-container-graph.php',
-        APPPATH.'modules/testimoni/views/v-footer.php',
->>>>>>> 65897fc8bd36412bd01705c5a343501b4acbbe2d
         );
 
     if ($this->session->userdata('HAKAKSES')=='ortu') {
