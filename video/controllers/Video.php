@@ -242,12 +242,12 @@ if ($this->session->userdata('HAKAKSES')=='ortu') {
             //ambil komen
             $data['comments'] = $this->mkomen->get_komen_byvideo($idvideo);
             $data['files'] = array(
-                APPPATH . 'modules/homepage/views/v-header-login.php',
+                APPPATH . 'modules/homepage/views/r-header-login.php',
                 APPPATH.'modules/templating/views/t-f-pagetitle.php',
                 APPPATH . 'modules/video/views/f-single-video.php',
                 APPPATH . 'modules/testimoni/views/v-footer.php'
             );
-            $this->parser->parse('templating/index', $data);
+            $this->parser->parse('templating/r-index', $data);
         }
     }
 

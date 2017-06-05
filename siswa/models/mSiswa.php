@@ -412,7 +412,7 @@ class Msiswa extends CI_Model {
         }else{
             $id = $this->session->userdata('USERNAME');  
         } 
-        $query = "SELECT  bab.`judulBab` ,
+        $query = "SELECT  bab.`judulBab` ,bab.`keterangan`,
         SUM(latihan.jmlh_benar + latihan.jmlh_salah + latihan.jmlh_kosong) AS total_soal,
         SUM(latihan.jmlh_benar) AS total_benar,
         SUM(latihan.jmlh_salah) AS total_salah,

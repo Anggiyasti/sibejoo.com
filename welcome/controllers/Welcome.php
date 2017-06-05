@@ -34,7 +34,7 @@ class Welcome extends MX_Controller {
    public function index() {
     
     $data = array(
-        'judul_halaman' => 'Neon - Welcome',
+        'judul_halaman' => 'Sibejoo - Welcome',
         'judul_header' =>'Video',
         'judul_header2' =>'Video Belajar'
         );
@@ -70,7 +70,7 @@ class Welcome extends MX_Controller {
 
 public function faq(){
  $data = array(
-    'judul_halaman' => 'Neon - FAQ',
+    'judul_halaman' => 'Sibejoo - FAQ',
     'judul_header' =>'FAQ HASIL DETECTION',
     'judul_header2' =>'Video Belajar'
     );
@@ -100,9 +100,16 @@ public function get_data_latihan(){
         $row[] = $item['total_salah'];
         $row[] = $item['total_kosong'];
         $row[] = (int)$item['total_benar'] / (int)$item['total_soal'] * 100;
-        $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100;   
-        $row[] = "<span class='skill-bar' title=".$persentasi."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".$persentasi."%;'></span></span></span>";
-        $persentasi;
+       
+        $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100; 
+        $row[] = '<div class="progress-item"><div class="progress">
+         <div class="progress-bar appeared" data-percent="'.$persentasi.'" style="width: '.$persentasi.'%;">
+          <span class="percent">'.$persentasi.'%</span>
+         </div>
+        </div></div>';
+
+        // $row[] = "<span class='skill-bar' title=".$persentasi."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".$persentasi."%;'></span></span></span>";
+        // $persentasi;
 
 
 
