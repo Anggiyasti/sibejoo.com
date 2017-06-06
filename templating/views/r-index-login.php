@@ -24,6 +24,8 @@
   <link href="<?=base_url('assets/retemplate/css/jquery-ui.min.css')?>" rel="stylesheet" type="text/css">
   <link href="<?=base_url('assets/retemplate/css/animate.css')?>" rel="stylesheet" type="text/css">
   <link href="<?=base_url('assets/retemplate/css/css-plugin-collections.css')?>" rel="stylesheet"/>
+  <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
   <!-- CSS | menuzord megamenu skins -->
   <link id="menuzord-menu-skins" href="<?=base_url('assets/retemplate/css/menuzord-skins/menuzord-rounded-boxed.css')?>" rel="stylesheet"/>
   <!-- CSS | Main style file -->

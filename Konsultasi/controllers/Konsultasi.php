@@ -44,11 +44,10 @@ class Konsultasi extends MX_Controller{
     );
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-daftar-konsultasi.php',
-    APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-daftar-konsultasi.php',
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
 
   // jika gada yang di search, key di set kosong
@@ -87,7 +86,7 @@ class Konsultasi extends MX_Controller{
   $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page, $keyword);
   $data["links"] = $this->pagination->create_links();
   $data['jumlah_postingan'] = $config['total_rows'];
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
 public function pertanyaan_mentor(){
@@ -97,11 +96,10 @@ public function pertanyaan_mentor(){
     );
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_mentor.php',
-    APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_mentor.php',
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
 
     // jika gada yang di search, key di set kosong
@@ -137,7 +135,7 @@ public function pertanyaan_mentor(){
   $data["links"] = $this->pagination->create_links();
   $data['jumlah_postingan'] = $config["total_rows"];
 
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
 public function pertanyaan_all() {
@@ -157,7 +155,8 @@ public function pertanyaan_all() {
   $data['files'] = array(
     APPPATH.'modules/homepage/views/r-header-login.php',
     APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_all.php',
-    APPPATH.'modules/konsultasi/views/r-show-tingkat.php'
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+    APPPATH.'modules/templating/views/r-footer.php',
     );
 
   ##KONFIGURASI UNTUUK PAGINATION
@@ -208,11 +207,10 @@ public function pertanyaan_grade() {
     );
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_grade.php',
-    APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_grade.php',
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
 
   ##KONFIGURASI UNTUUK PAGINATION
@@ -239,7 +237,7 @@ public function pertanyaan_grade() {
   $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page,$key);
   $data["links"] = $this->pagination->create_links();
 
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
 function get_tingkat_siswa(){
@@ -331,12 +329,11 @@ public function bertanya($bab){
   $data['mentornya'] = $this->mkonsultasi->get_mentor($param);
   
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-create-konsultasi.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-create-konsultasi.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
 public function editpost($id){
@@ -359,7 +356,7 @@ public function editpost($id){
       );
     $data['edit'] = $data_edit['0'];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index', $data );
   }else{
     echo "Gagal!";
   }
@@ -651,7 +648,7 @@ function singlekonsultasi($id_pertanyaan){
   $config = array();
   $config["base_url"] = base_url() . "konsultasi/singlekonsultasi/".$id_pertanyaan;
   $config["total_rows"] = $this->mkonsultasi->get_postingan_pagination_number($id_pertanyaan);
-  $config["per_page"] = 2;
+  $config["per_page"] = 10;
   $config["uri_segment"] = 4;
 
   $config['cur_tag_open'] = "<a style='background:#f27c66;color:white'>";
@@ -696,12 +693,11 @@ function singlekonsultasi($id_pertanyaan){
 
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-single-konsultasi.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-single-konsultasi.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index-login', $data );
 }
 
 public function pertanyaan_ku_search($kunci=''){
@@ -712,11 +708,10 @@ public function pertanyaan_ku_search($kunci=''){
       );
     $kunci = str_replace(' ', '_', $kunci);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
 
   // jika gada yang di search, key di set kosong
@@ -749,7 +744,7 @@ public function pertanyaan_ku_search($kunci=''){
     $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page, $kunci);
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index-login', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_ku'));
@@ -765,11 +760,10 @@ public function filter($matapelajaran='',$bab=''){
     $matapelajaran = str_replace(' ', '_', $matapelajaran);
     $bab = str_replace(' ', '_', $bab);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_all.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_all.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
   // jika gada yang di search, key di set kosong
   ##KONFIGURASI UNTUUK PAGINATION
@@ -807,7 +801,7 @@ public function filter($matapelajaran='',$bab=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index-login', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_all'));
@@ -981,11 +975,10 @@ public function pertanyaan_all_search($kunci=''){
       );
     $kunci = str_replace(' ', '_', $kunci);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_all.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_all.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
 
   // jika gada yang di search, key di set kosong
@@ -1024,7 +1017,7 @@ public function pertanyaan_all_search($kunci=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index-login', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_ku'));
@@ -1039,11 +1032,10 @@ public function pertanyaan_grade_search($kunci=''){
       );
     $kunci = str_replace(' ', '_', $kunci);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_grade.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_grade.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
 
   // jika gada yang di search, key di set kosong
@@ -1076,7 +1068,7 @@ public function pertanyaan_grade_search($kunci=''){
     $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page, $kunci);
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index-login', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_grade'));
@@ -1091,11 +1083,10 @@ public function pertanyaan_mentor_search($kunci=''){
       );
     $kunci = str_replace(' ', '_', $kunci);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_mentor.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_mentor.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
 
   // jika gada yang di search, key di set kosong
@@ -1128,7 +1119,7 @@ public function pertanyaan_mentor_search($kunci=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config["total_rows"];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index-login', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_grade'));

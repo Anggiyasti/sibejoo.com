@@ -50,8 +50,8 @@
 						<div class="row">
 		                    <div class="form-group col-md-4">
 		                     	<select class="form-control" style="height: 35px;" name="" id="" onchange="location = this.value";>
-									<option value="<?=base_url('konsultasi/pertanyaan_ku') ?>"  class="center-text">Pertanyaan Saya</option>
-									<option selected value="<?=base_url('konsultasi/pertanyaan_all')?>">Semua Pertanyaan</option>
+									<option selected value="<?=base_url('konsultasi/pertanyaan_ku') ?>"  class="center-text">Pertanyaan Saya</option>
+									<option value="<?=base_url('konsultasi/pertanyaan_all')?>">Semua Pertanyaan</option>
 									<option value="<?=base_url('konsultasi/pertanyaan_grade')?>">Pertanyaan Setingkat</option>
 									<option value="<?=base_url('konsultasi/pertanyaan_mento')?>r">Pertanyaan Sementor</option>
 								</select>
@@ -71,7 +71,7 @@
 				              </div>
 		                    </div>
 		                    <div class="form-group col-md-4">
-		                    	<a href="<?=base_url('konsultasi/pertanyaan_all') ?>" class="btn btn-default"><i class="fa fa-times"></i> Reset</a>
+		                    	<a href="<?=base_url('konsultasi/pertanyaan_ku') ?>" class="btn btn-default"><i class="fa fa-times"></i> Reset</a>
 		                    </div>
 	                  	</div>
 					</form>
@@ -93,12 +93,11 @@
 				                <div class="post-right">
 				                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5>
 				                  <div class="comment-date">(<?=$question['date_created'] ?>)</div>
-
 				                  <div class="col-md-10">
 				                  	<a href="<?=base_url('konsultasi/singlekonsultasi/') ?><?=$question['pertanyaanID'] ?>">
 					                  <blockquote class="gray pt-20 pb-20" >
 						                <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
-						                <footer><?=$question['isiPertanyaan'] ?></footer>
+						                <footer><?=$question['isiPertanyaan'] ?> </footer>
 
 						              </blockquote>
 						            </a>
@@ -157,40 +156,30 @@
 	function showmodal(){
 		$('#myModal').modal('show');
 	}
-
 </script>
+
 <!-- on keypres cari soal -->
 <script type="text/javascript">
+$("#search1").on('keyup', function (e) {
+    if (e.keyCode == 13) {
+       keyword = $('#search1').val().replace(/ /g,"-");		;
+       document.location = base_url+"konsultasi/pertanyaan_ku_search/"+keyword;
+    }
+});
 
-	var hakAkses = "<?=$this->session->userdata('HAKAKSES') ?>";
+$('.cari-btn').click(function(){
+ 		var mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
+ 		var bab= $('#babSelect').find(":selected").text().replace(/ /g,"_");
 
-	$("#search1").on('keyup', function (e) {
-		if (e.keyCode == 13) {
-			keyword = $('#search1').val().replace(/ /g,"-");		;
-			document.location = base_url+"konsultasi/pertanyaan_all_search/"+keyword;
-		}
-	});
+ 		if (mapel == 'Pilih_Mata_Pelajaran') {
+ 			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
+ 		}else{
+ 			if (bab=='Bab_Pelajaran') {
+ 				document.location = base_url+"konsultasi/filter_pertanyaanku/"+mapel+"/all";
+ 			}else if(bab!='Bab_Pelajaran'){
+ 				document.location = base_url+"konsultasi/filter_pertanyaanku/"+mapel+"/"+bab;
+ 			}
+ 		}
 
-	$('.cari-btn').click(function(){
-		var mapel;
-		var bab;
-
-		if (hakAkses=='guru') {
-			mapel= $('#mapel_select_guru').find(":selected").text().replace(/ /g,"_");
-			bab= $('#bab_select_guru').find(":selected").text().replace(/ /g,"_");
-		}else{
-			mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
-			bab= $('#babSelect').find(":selected").text().replace(/ /g,"_");
-
-		}
-		if (mapel == 'Pilih Mata Pelajaran') {
-			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
-		}else{
-			if (bab=='Bab_Pelajaran') {
-				document.location = base_url+"konsultasi/filter/"+mapel+"/all";
-			}else if(bab!='Bab_Pelajaran'){
-				document.location = base_url+"konsultasi/filter/"+mapel+"/"+bab;
-			}
-		}
-	});
+ 	});
 </script>

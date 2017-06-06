@@ -1,7 +1,7 @@
-<main class="container">
-	<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
-	<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/adapters/jquery.js') ?>"></script>
-	<!-- modal preview -->
+<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/adapters/jquery.js') ?>"></script>
+
+<!-- modal preview -->
 	<div class="modal fade" id="preview" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -27,9 +27,9 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	<!-- modal preview -->
+<!-- modal preview -->
 
-	<!-- modal preview -->
+<!-- modal preview -->
 	<div class="modal fade" id="show_gambar" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document" style="width: 90%">
 			<div class="modal-content">
@@ -62,76 +62,90 @@
 	<!-- modal preview -->
 
 
-	<div class="page-content">
-		<section>
-			<input type="hidden" name="babid" value="{bab}">
+<!-- TITLE -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
+  <div class="container pt-70 pb-20">
+    <!-- Section Content -->
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center text-white">{judul_header}</h1>
+    </div>
+  </div>
+</div>
+</div>      
+</section>
+<!-- TITLE -->
 
-			<div class="form-group">
-				<div class="container">
-					<div class="col-sm-12">		
-						<div class="alert alert-dismissable alert-danger" id="info" hidden="true" >
-							<button type="button" class="close" onclick="hideme()" >×</button>
-							<strong>Terjadi Kesalahan</strong> <br>Isi nama pertanyaan dan pertanyaan di editor yang sudah disediakan.
-						</div>
-					</div>
-					<!-- Start Editor Soal -->
-					<div id="editor-soal">
-						<div class="col-sm-12" style="padding:0">
+<section>
+  <div class="container">
+    <div class="section-content">
+      <div class="row">
+      	<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+      		<input type="hidden" name="babid" value="{bab}">
 
-							<div class="col-sm-10">
-
-								<label >Kepada Mentor ? :
-									<?php if (empty($mentornya)): ?> <span class="text-danger">Anda belum memiliki mentor</small><?php endif ?></label>
-									<select class="form-control" name="mentor">
-										<option value="NULL">- Tidak -</option>
-										<?php if (!empty($mentornya)): ?>
-											<option value="<?=$mentornya['guruID'] ?>"><?=$mentornya['namaDepan']." ".$mentornya['namaBelakang'] ?></option>
-										<?php endif ?>
-									</select>
-									<br>
-									Judul Pertanyaan
-									<input name="namaPertanyaan" type="text" value="" size="30" aria-required="true" class="form-control search-input"> 
-									<input type="hidden" name="idsub" value="{idsub}">
-								</div>
-								<div class="col-sm-4"><br><br><br><br>
-									<a onclick="show_image()" class="cws-button bt-color-3 alt smalls" style="margin-top: 10px">Lihat Gambar</a>
-								</div>
-							</div>
-							<div class="col-sm-12">
-
-
-
-								<br>
-								Isi Pertanyaan :
-								<textarea  name="editor1" class="form-control" id="isi"></textarea>
-								<br>
-								<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
-									Upload Gambar : 
-									<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline">
-
-									<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload"><i class="fa fa-cloud-download"></i></a> 
-									<div id="output" style="display: inline">
-										<a style="border: 2px solid grey; padding: 2px;display: inline" title="Sisipkan" disabled><i class="fa fa-cloud-upload"></i></a> 
-									</div>
-
-
-									<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">							
-								</a>
-							</form>
-							<br>
-							<a class="cws-button bt-color-3 alt smalls" onclick="preview()">Preview</a> 
-							<a onclick="save()" class="cws-button bt-color-3 alt smalls post">Post</a>
-							<br>
-							<br>
-							<hr>
-						</div>
-
-					</div>
+      		<div class="col-sm-12">		
+				<div class="alert alert-dismissable alert-danger" id="info" hidden="true" >
+					<button type="button" class="close" onclick="hideme()" >×</button>
+					<strong>Terjadi Kesalahan</strong> <br>Isi nama pertanyaan dan pertanyaan di editor yang sudah disediakan.
 				</div>
 			</div>
-		</section>
-	</div>
-</main>
+
+			<!-- Start Editor Soal -->
+			<div class="col-sm-12">
+				<div class="col-sm-8">	
+					<label >Kepada Mentor ? :
+						<?php if (empty($mentornya)): ?> <span class="text-danger">Anda belum memiliki mentor</span><?php endif ?>
+					</label><br>
+				
+					<select class="form-control" name="mentor" style="height: 35px;">
+						<option value="NULL">- Tidak -</option>
+						<?php if (!empty($mentornya)): ?>
+						<option value="<?=$mentornya['guruID'] ?>"><?=$mentornya['namaDepan']." ".$mentornya['namaBelakang'] ?></option>
+						<?php endif ?>
+					</select>
+					<br>
+					Judul Pertanyaan <br>
+					<input name="namaPertanyaan" type="text" value="" size="50" aria-required="true" class="form-control search-input col-sm-10" style="height: 35px;"> 
+					<input type="hidden" name="idsub" value="{idsub}">
+				</div>
+				<div class="col-sm-4"><br><br><br><br>
+					<a onclick="show_image()" class="btn btn-default" style="margin-top: 16px; height: 40px;">Lihat Gambar</a>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="col-sm-12">
+				<br>
+				Isi Pertanyaan :
+				<textarea  name="editor1" class="form-control" id="isi"></textarea>
+				<br>
+				<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
+					Upload Gambar : 
+					<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline">
+
+					<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload"><i class="fa fa-cloud-download"></i></a> 
+					<div id="output" style="display: inline">
+						<a style="border: 2px solid grey; padding: 2px;display: inline" title="Sisipkan" disabled><i class="fa fa-cloud-upload"></i></a> 
+					</div>
+					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">				
+					</a>
+				</form>
+				<br>
+				<a class="btn btn-default" onclick="preview()">Preview</a> 
+				<a onclick="save()" class="btn btn-default post">Post</a>
+				<br>
+				<br>
+				<hr>
+				</div>
+			</div>
+			<!-- END Start Editor Soal -->
+      	</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- UPLOAD -->
 <script type="text/javascript"> 
 
