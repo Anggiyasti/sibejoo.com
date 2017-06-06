@@ -31,7 +31,7 @@ class Ortuback extends MX_Controller {
 		if ($this->hakakses=='ortu') {
 			$this->parser->parse('templating/index', $data);
 		}elseif ($this->hakakses=='siswa'){
-			$this->parser->parse('templating/index', $data); 		
+			$this->parser->parse('templating/r-index', $data); 		
 		}else {
 			echo "forbidden access";   
 		}
@@ -141,16 +141,14 @@ class Ortuback extends MX_Controller {
 
 		$hakAkses = $this->session->userdata['HAKAKSES'];
 		$data = array(
-        'judul_halaman' => 'Neon - Daftar Latihan',
+        'judul_halaman' => 'Neon - Daftar Pesan',
         'judul_header' => 'History Pesan',
         'judul_tingkat' => '',
         );
 
 		$data['files'] = array(
-			APPPATH.'modules/homepage/views/v-header-login.php',
-			APPPATH . 'modules/templating/views/t-f-pagetitle.php',
-			APPPATH . 'modules/ortuback/views/v-daftar-report.php',
-			APPPATH.'modules/testimoni/views/v-footer.php',
+			APPPATH.'modules/homepage/views/r-header-login.php',
+			APPPATH . 'modules/ortuback/views/r-daftar-report.php'		
 		);
 		
 		// get report berdasarkan nilai

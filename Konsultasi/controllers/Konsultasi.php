@@ -155,11 +155,9 @@ public function pertanyaan_all() {
     );
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/templating/views/t-f-pagetitle.php',
-    APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_all.php',
-    APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_all.php',
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php'
     );
 
   ##KONFIGURASI UNTUUK PAGINATION
@@ -192,7 +190,7 @@ public function pertanyaan_all() {
     $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
   }
 
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
 public function pertanyaan_grade() {

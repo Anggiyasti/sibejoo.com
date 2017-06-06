@@ -62,8 +62,25 @@
 </section>
             
 <script type="text/javascript">
-    function show_mapel(id) {
-        window.location.href = base_url+"index.php/tesonline/pilihmapel/"+id;
+    function show_mapel(id_tingkat) {
+        url_ajax = base_url+"tesonline/ambilmapel";
+
+        var global_properties = {
+          id_tingkat: id_tingkat
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "tesonline/pilihmapel";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
     }
     
 </script>

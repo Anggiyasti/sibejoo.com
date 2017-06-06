@@ -37,26 +37,35 @@ public function index() {
 }
 
     #memilih matapelajaran yang akan dilakukan tesonline.
-public function pilihmapel($idtingkat) {
-    $data = array(
-        'judul_halaman' => 'Neon - Pilih Mata Pelajaran',
-        'judul_header' => 'Latihan Online'
-        );
-    $data['files'] = array(
-        APPPATH . 'modules/homepage/views/r-header-login.php',
-        APPPATH . 'modules/tesonline/views/v-test-show-mapel.php'
-        // APPPATH . 'modules/homepage/views/v-footer.php',
-        );
-    if($idtingkat==3){
-        $data['mapel'] = $this->load->mtingkat->getmapelipa();
-    }else{
-        $data['mapel'] = $this->load->mtingkat->getmapelbytingkatid($idtingkat);
+public function pilihmapel() {
+    $idtingkat = $this->session->userdata['id_tingkat']; 
+    if ($idtingkat) {
+       
+        $data = array(
+            'judul_halaman' => 'Neon - Pilih Mata Pelajaran',
+            'judul_header' => 'Latihan Online'
+            );
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . 'modules/tesonline/views/r-test-show-mapel.php'
+            );
+
+        
+
+        if($idtingkat==3){
+            $data['mapel'] = $this->load->mtingkat->getmapelipa();
+        }else{
+            $data['mapel'] = $this->load->mtingkat->getmapelbytingkatid($idtingkat);
+        }
+        
+        $data['pel']= $idtingkat;
+
+        
+
+        $this->parser->parse('templating/r-index', $data);
+    } else {
+        redirect('login');
     }
-    
-
-    
-
-    $this->parser->parse('templating/r-index', $data);
 }
 
 public function mulai() {
@@ -233,6 +242,15 @@ public function pembahasanlatihan() {
         $this->errorTest();
     }
 }
+
+// tampung id tingkar
+    public function ambilmapel()
+    {   
+            $id = $this->input->post('id_tingkat');
+            $this->session->set_userdata('id_tingkat', $id);
+            echo json_encode($id);
+        
+    }
 
 }
 ?>

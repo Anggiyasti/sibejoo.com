@@ -124,7 +124,7 @@
               </table>
             <?php endif; ?>
           <?php else: ?>
-            <h3>Daftar Latihan <a href="<?=base_url()?>index.php/tesonline" class="btn btn-gray btn-theme-colored btn-xl"><i class="fa fa-plus"></i>Buat Latihan</a></h3>
+            <h3>Daftar Latihan <a href="<?=base_url()?>index.php/tesonline" class="btn btn-gray btn-theme-colored btn-xl hvr-icon-float-away">Buat Latihan&nbsp</a></h3>
 
             <?php if ($latihan == array()): ?>
               <h4>Tidak ada latihan.</h4>

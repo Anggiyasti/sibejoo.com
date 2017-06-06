@@ -77,7 +77,7 @@
       <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
       <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
       <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
-      <li><a href="<?=base_url('ortu_back/pesan') ?>">Pesan<span class="indicator"></a></li>
+      <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
       <li><a href="<?=base_url('modulonline/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
 
     <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
@@ -191,7 +191,6 @@ function post_bug(){
         var obMapel ='';
         var penggunaID = ('<?=$this->session->userdata['id']?>');
         var url = "<?= base_url() ?>index.php/ortuback/ajax_ortuID";
-        console.log('penggunaID', penggunaID);
 
     // SOCKET CREATE LAPORAN
     socket.on('pesan_baru', function(data){
@@ -203,7 +202,6 @@ function post_bug(){
      var isi = data.isi;
       // substring dulu isi nya dari 0 sampe 10
       var isi_sub = isi.substring(0,10);
-      var namaPengguna = data.namaPengguna;
 
       $.ajax({
        url:url,
