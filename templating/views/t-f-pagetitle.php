@@ -1,5 +1,5 @@
-<div class="page-title" style="background:#2b3036">
-	<div class="grid-row">
-		<h1>{judul_header}</h1>
-	</div>
+<div class="row">
+	<div class="col-md-12 text-center">
+		<h3 class="font-28 text-black"{judul_header}</h3>
+	</div>
 </div>

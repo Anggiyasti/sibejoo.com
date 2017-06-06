@@ -18,6 +18,9 @@
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-72x72.png')?>" rel="apple-touch-icon" sizes="72x72">
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-114x114.png')?>" rel="apple-touch-icon" sizes="114x114">
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-144x144.png')?>" rel="apple-touch-icon" sizes="144x144">
+  <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
+  <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+
 
   <!-- Stylesheet -->
   <link href="<?=base_url('assets/retemplate/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css">
@@ -73,33 +76,33 @@
     <?php
     
     foreach ($files as $key) {
-        include ($key);
+      include ($key);
     }
     ?>
-</div>
-<!-- end wrapper -->
+  </div>
+  <!-- end wrapper -->
 
-<!-- Footer Scripts -->
-<!-- JS | Custom script for all pages -->
-<script src="<?=base_url('assets/retemplate/js/custom.js')?>"></script>
+  <!-- Footer Scripts -->
+  <!-- JS | Custom script for all pages -->
+  <script src="<?=base_url('assets/retemplate/js/custom.js')?>"></script>
 
       <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
       (Load Extensions only on Local File Systems ! 
       The following part can be removed on Server for On Demand Loading) -->
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.actions.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.migration.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.video.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.actions.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.migration.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js')?>"></script>
+      <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.video.min.js')?>"></script>
 
-<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/tabletools/js/tabletools.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables-custom.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/javascript/tables/datatable.js') ?>"></script>
+      <script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables.min.js') ?>"></script>
+      <script type="text/javascript" src="<?= base_url('assets/plugins/datatables/tabletools/js/tabletools.min.js') ?>"></script>
+      <script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables-custom.min.js') ?>"></script>
+      <script type="text/javascript" src="<?= base_url('assets/javascript/tables/datatable.js') ?>"></script>
 
-</body>
-</html>
+    </body>
+    </html>
