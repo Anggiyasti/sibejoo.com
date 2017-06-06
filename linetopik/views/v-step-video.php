@@ -1,138 +1,129 @@
-<?php 
-//============================================================+
-// File name   : v-step-materi.php
-// Begin       : 2017-
-// Last Update : 2017-03-15
-//
-// Description : List pagination siswa
-//               Untuk menggantikan v-daftar-siswa yg berupa datatable
-//
-// Author: MrBebek
-//
-// (c) Copyright:
-//               MrBebek
-//               neonjogja.com
-
-//============================================================+
-
-/**
- * @author MrBebek
- * @since  2017-
- */
-?>
-<!-- Automplate -->
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-<!-- /Automplate -->
-<!-- Custom timeline -->
-<link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
-<!-- /Custom timeline -->
-<div class="page-title" style="background:#2b3036">
-
-    <div class="grid-row">
-
-        <h1>{judul_header2}</h1>
-
-    </div>
-
-</div>
-
-			   <!-- content -->
-    <div class="page-content grid-row">
-        <div class=" grid-col-row clear-fix">
-        	<div class="grid-col grid-col-3 sidebar ">
-             <!-- Pencarian -->
-             <aside class="widget-search">
-                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
-                    <label>
-                        <span class="screen-reader-text">Search for:</span>
-                        <input type="search" class="ui-autocomplete-input" placeholder="Search"  name="keycari" title="Search for:" id="caritopik">
-                    </label>
-                    <input type="submit" class="search-submit" value="GO">
-                </form>
-            </aside>
-            <!-- /Pencarian -->
-               <h2 ><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datVideo['namaTopik']; ?></a></h2> 
-                <hr class="divider-big">
-                            <!-- Start Time Line -->
-                            <ul class="media-list media-list-feed grid-col-3" >
-                            <?php $i=0; ?>
-                            <?php foreach ($datline as $key ): ?>
-                                <li class="media" id="bg-<?=$i;?>">
-                                     <div class="media-object pull-left ">
-                                        <a href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></a>
-                                    </div>
-                                    <div class="media-body">
-                                    <!-- Untuk menampung staus step disable or enable -->
-                                     <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
-                                     <!-- // Untuk menampung staus step disable or enable  -->
-                                        <a href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
-                                    </div>
-                                </li>
-                            <?php $i++; ?>
-                            <?php endforeach ?>
-                            </ul>
-                            <!-- menampung nilai panjang array -->
-                            <input id="n" type="text"  value="<?=$i;?>" hidden="true">
-                            <!-- END Tieme line -->
+  <!-- Start main-content -->
+  <div class="main-content" >
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+      <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="title text-white">{judul_header2}</h2>
+              <ol class="breadcrumb text-left text-black mt-10">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pages</a></li>
+                <li class="active text-gray-silver">Page Title</li>
+              </ol>
             </div>
-            <div class="grid-col grid-col-9">
-                <main>
-		 <!-- post item -->
-                    <div class="blog-post">
-                        <article>
-                        <div class="post-info">
-							<div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
-							<div class="post-info-main">
-								<div class="post"><?=$datVideo['judulVideo']?></div>
-							</div>
-							<div class="comments-post">Logo</div>
-						</div>
-                        <?php if ($datVideo['link']=='' || $datVideo['link']==' '): ?>
-                            <div class="container-video color-palette bg-color-6alt">
-                                <video class="" width="100%" height="100%"  controls>
-                              <source src="<?=base_url();?>assets/video/<?=$datVideo['namaFile'];?>" >
-                                  Your browser does not support the video tag.
-                              </video>
-                            </div>
-                        <?php endif ?>
-                        <?php if ($datVideo['namaFile']=='' || $datVideo['namaFile']==' '): ?>
-                            <div class="video-player" style="background:grey;">
-                                 <iframe src="<?=$datVideo['link']?>"></iframe> 
-                            </div>
-                        <?php endif ?>
-						
-
-
-
-                                
-
-                         
-
-						<h3>Deskripsi</h3>
-						<p><?=$datVideo['deskripsiVideo']?></p>
-				<div class="tags-post">
-                            <a href="#" rel="tag"><?=$tingkat;?></a><!-- 
-                         --><a href="#" rel="tag"><?=$mapel;?></a>
-                            <a href="#" rel="tag"><?=$bab;?></a>
-                            <a href="#" rel="tag">Topik : <?=$topik;?> </a>
-                        </div>
-						
-                           
-                        </article>
-                        
-                    </div>
-                    <!-- / post item -->
-                    <hr class="divider-color" />
-                  
-
-                </main>
-            </div>
-            
+          </div>
         </div>
-    </div>
-    <!-- / content -->
-<!-- JQ UNTUK RUBAH STYLE CSS STEPLINE BY MrBebek-->
+      </div>
+    </section>
+
+    <!-- Section: Blog -->
+    <section>
+      <div class="container" >
+        <div class="row">
+          <div class="col-sm-12 col-md-3">
+            <div class="sidebar sidebar-left mt-sm-30">
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Search box</h5>
+                <div class="search-form">
+                  <form>
+                    <div class="input-group">
+                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <span class="input-group-btn">
+                      <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom"><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datVideo['namaTopik']; ?></h5>
+                <!-- <div class="categories">
+                  <ul class="list list-border angle-double-right">
+                    <li><a href="#">Creative<span>(19)</span></a></li>
+                    <li><a href="#">Portfolio<span>(21)</span></a></li>
+                    <li><a href="#">Fitness<span>(15)</span></a></li>
+                    <li><a href="#">Gym<span>(35)</span></a></li>
+                    <li><a href="#">Personal<span>(16)</span></a></li>
+                  </ul>
+                </div> -->
+                <!-- Step line side bar -->
+                <ul class="media-list media-list-feed  grid-col-3" >
+                  <?php 
+                  $i=0;
+                  foreach ($datline as $key ):           
+                    ?>
+                  <li  class="media" id="bg-<?=$i;?>">
+                   <div class="media-object pull-left ">
+                    <i href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
+                  </div>
+                  <div class="media-body" >
+                    <!-- Untuk menampung staus step disable or enable -->
+                    <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
+                    <!-- // Untuk menampung staus step disable or enable  -->
+                    <a href="<?=$key['link'];?>" class="media-heading headline"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
+                  </div>
+                  <!-- <hr> -->
+                </li>
+                <?php 
+                $i ++;
+                endforeach ?>
+              </ul>
+                <!--Step line side bar  -->
+              </div>
+            </div>
+          </div>
+          <!-- div isi materi -->
+                    <div class="col-md-9 blog-pull-right">
+            <div class="blog-posts single-post">
+              <article class="post clearfix mb-0">
+                <div class="entry-header">
+             
+                </div>  
+                <div class="entry-title pt-10 pl-15">
+                  <h4><a class="text-uppercase" href="#"> <?=$datVideo['judulVideo']?> </a></h4>
+                </div>
+                <div class="entry-meta pl-15">
+                  <ul class="list-inline">
+                    <li>Posted: <span class="text-theme-color-2"> <?= $datVideo['date_created']; ?></span></li>
+                    <li>By: <span class="text-theme-color-2">Admin</span></li>
+                    <li><i class="fa fa-comments-o ml-5 mr-5"></i> Step Video</li>
+                  </ul>
+                </div>
+                <div class="entry-content mt-10"  style="background:red;">
+                  <!-- video -->
+                  <div class="post-thumb thumb">
+                    <div class="video-player">
+                    <iframe  width="600" height="360" src="<?=$datVideo['link']?>"></iframe> 
+                    </div>
+
+
+                  </div>
+
+                  <div class="mt-30 mb-0">
+                    <h5 class="pull-left mt-10 mr-20 text-theme-color-2">Share:</h5>
+                    <ul class="styled-icons icon-circled m-0">
+                      <li><a href="#" data-bg-color="#3A5795"><i class="fa fa-facebook text-white"></i></a></li>
+                      <li><a href="#" data-bg-color="#55ACEE"><i class="fa fa-twitter text-white"></i></a></li>
+                      <li><a href="#" data-bg-color="#A11312"><i class="fa fa-google-plus text-white"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+
+            </div>
+          </div>
+          <!-- / div isi materi -->
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- end main-content -->
+
+  <!-- JQ UNTUK RUBAH STYLE CSS STEPLINE BY MrBebek-->
 <script type="text/javascript">
     $(document).ready(function() { 
         var n = $("#n").val();

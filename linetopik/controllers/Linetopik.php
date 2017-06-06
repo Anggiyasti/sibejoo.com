@@ -22,21 +22,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  		echo "string";
  	}
 
+    // tampung id tingkar
+    public function ambiltingkat()
+    {   
+            $id = $this->input->post('id_tingkat');
+            $this->session->set_userdata('id_tingkat', $id);
+            echo json_encode($id);
+        
+    }
+
     //list mapel untuk memilih step line
-    public function lineMapel($tingkatID)
+    public function lineMapel()
     {
+        $tingkatID = $this->session->userdata['id_tingkat']; 
         $data = array(
             'judul_halaman' => 'Netjoo - Welcome',
             'judul_header' => 'Mata Pelajaran',
              'judul_header2' =>'mapel'
         );
+
+
         $data['datMapel'] = $this->Mlinetopik->get_mapel($tingkatID);
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/v-header-login.php',
-            APPPATH . 'modules/linetopik/views/v-line-mapel.php',
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . 'modules/linetopik/views/r-line-mapel.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
     }
 
  	public function learningLine($babID)
@@ -115,11 +127,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $step = $log;
  		}
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/v-header-login.php',
-            APPPATH . 'modules/linetopik/views/v-line-topik.php',
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . 'modules/linetopik/views/r-line-topik.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
  	}
 
  	// view step video
@@ -219,7 +231,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           // END get data time untuk side bar
  		  $data['files'] = array(
 
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
 
             APPPATH . 'modules/linetopik/views/v-step-video.php',
 
@@ -228,7 +240,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         );
 
      
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
 
  	}
 
@@ -345,16 +357,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
          
  		  $data['files'] = array(
 
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+          APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH . 'modules/linetopik/views/v-step-materi.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
 
  	}
 

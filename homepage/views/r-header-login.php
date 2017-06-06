@@ -83,11 +83,11 @@
     <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
       <li><a href="#home"> Learning Line<span class="indicator"></a>
        <ul class="dropdown" style="right: auto; display: none;">
-        <li><a href="<?=base_url()?>linetopik/lineMapel/1/">SD<span class="indicator"></span></a></li>
-        <li><a href="<?=base_url()?>linetopik/lineMapel/2/">SMP<span class="indicator"></span></a></li>
-        <li><a href="<?=base_url()?>linetopik/lineMapel/3/">SMA<span class="indicator"></span></a></li>
-        <li><a href="<?=base_url()?>linetopik/lineMapel/4/">SMA IPA<span class="indicator"></span></a></li>
-        <li><a href="<?=base_url()?>linetopik/lineMapel/5/">SMA IPS<span class="indicator"></span></a></li>
+        <li><a href="javascript:void(0);" onclick="lineMapel(1)">SD<span class="indicator"></span></a></li>
+        <li><a href="javascript:void(0);" onclick="lineMapel(2)">SMP<span class="indicator"></span></a></li>
+        <li><a href="javascript:void(0);" onclick="lineMapel(3)">SMA<span class="indicator"></span></a></li>
+        <li><a href="javascript:void(0);" onclick="lineMapel(4)">SMA IPA<span class="indicator"></span></a></li>
+        <li><a href="javascript:void(0);" onclick="lineMapel(5)">SMA IPS<span class="indicator"></span></a></li>
       </ul>
      </li>
       
@@ -240,4 +240,27 @@ function post_bug(){
    });
 
 
+</script>
+<script type="text/javascript">
+    function lineMapel(id_tingkat) {
+        url_ajax = base_url+"linetopik/ambiltingkat";
+
+        var global_properties = {
+          id_tingkat: id_tingkat
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/lineMapel";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+    
 </script>

@@ -794,17 +794,17 @@ class Register extends MX_Controller {
 
         $data['files'] = array(
 
-            APPPATH . 'modules/templating/views/v-navbarregister.php',
+            APPPATH . 'modules/templating/views/r-navbar-login.php',
 
-            APPPATH . 'modules/register/views/vVerifikasi.php',
+            APPPATH . 'modules/register/views/r-verifikasi.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
     }
 
@@ -886,18 +886,18 @@ class Register extends MX_Controller {
 
         $data['files'] = array(
 
-            APPPATH . 'modules/templating/views/v-navbarlogin.php',
+            APPPATH . 'modules/templating/views/r-navbar-login.php',
             // APPPATH . 'modules/homepage/views/v-header.php',
 
-            APPPATH . 'modules/register/views/vLupapassword.php',
+            APPPATH . 'modules/register/views/r-lupapassword.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
     }
 

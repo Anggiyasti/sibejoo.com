@@ -1,59 +1,48 @@
-<?php 
-//============================================================+
-// File name   : v-step-materi.php
-// Begin       : 2017-
-// Last Update : 2017-03-15
-//
-// Description : List pagination siswa
-//               Untuk menggantikan v-daftar-siswa yg berupa datatable
-//
-// Author: MrBebek
-//
-// (c) Copyright:
-//               MrBebek
-//               neonjogja.com
 
-//============================================================+
 
-/**
- * @author MrBebek
- * @since  2017-
- */
-?>
-<!-- Automplate -->
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-<!-- /Automplate -->
 
-<div class="page-title" style="background:#2b3036">
+  <!-- Start main-content -->
+  <div class="main-content" >
+    <!-- Section: inner-header -->
+ <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+      <div class="container pt-60 pb-60">
+        <!-- Section Content -->
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3 class="font-28 text-white">{judul_header2}</h2>
+              
+            </div>
+          </div>
+        </div>
+      </div>      
+    </section>
 
-    <div class="grid-row">
 
-        <h1>{judul_header2}</h1>
-
-    </div>
-
-</div>
- <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
-    <div class="page-content grid-row">
-        <div class=" grid-col-row clear-fix" >
-            <div class="grid-col grid-col-3 sidebar" >
-                         <!-- Pencarian -->
-                            <aside class="widget-search">
-                                <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
-                                    <label>
-                                        <span class="screen-reader-text">Search for:</span>
-                                        <input type="search" class="ui-autocomplete-input" placeholder="Search"  name="keycari" title="Search for:" id="caritopik">
-                                    </label>
-                                    <input type="submit" class="search-submit" value="GO">
-                                </form>
-                            </aside>
-                       <!-- /Pencarian -->
-
-                          <h2><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datMateri['namaTopik']; ?></a></h2>
-                          <hr class="divider-big">
-                            <!-- Start Time Line -->
-                            <ul class="media-list media-list-feed  grid-col-3" >
+    <!-- Section: Blog -->
+    <section>
+      <div class="container" >
+        <div class="row">
+          <div class="col-sm-12 col-md-3">
+            <div class="sidebar sidebar-left mt-sm-30">
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Search box</h5>
+                <div class="search-form">
+                  <form>
+                    <div class="input-group">
+                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <span class="input-group-btn">
+                      <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom"><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datMateri['namaTopik']; ?></a></h5>
+             
+                <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
+               <ul class="media-list media-list-feed  grid-col-3" >
                             <?php 
                             $i=0;
                             foreach ($datline as $key ):           
@@ -66,7 +55,7 @@
                                         <!-- Untuk menampung staus step disable or enable -->
                                         <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
                                         <!-- // Untuk menampung staus step disable or enable  -->
-                                        <a href="<?=$key['link'];?>" class="media-heading headline"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
+                                        <a href="<?=$key['link'];?>" class="media-heading headline" style="padding-left:  20px;"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
                                     </div>
                                  <!-- <hr> -->
                                 </li>
@@ -74,46 +63,59 @@
                             $i ++;
                             endforeach ?>
                             </ul>
-                            <!-- menampung nilai panjang array -->
                             <input id="n" type="text"  value="<?=$i;?>" hidden="true">
-                            <!-- END Tieme line -->  
+
             </div>
-            <div class="grid-col grid-col-9">
-                <main>
-                    <!-- post item -->
-                    <div class="blog-post">
-                        <article>
-                        <div class="post-info">
-                            <div class="date-post"><div class="day"><?=$tgl?></div><div class="month"><?=$bulan?></div></div>
-                            <div class="post-info-main">
-                                <div class="-post">nama Materi:' <?= $datMateri['judulMateri']; ?> '</div>
-                            </div>
-                            <div class="comments-post">Materi</div>
-                        </div>
-                         <p><?= $datMateri['isiMateri']; ?></p>
-                            <div class="tags-post">
-                            <a href="#" rel="tag"><?=$tingkat;?></a>
-                            <a href="#" rel="tag"><?=$mapel;?></a>
-                            <a href="#" rel="tag"><?=$bab;?></a>
-                            <a href="#" rel="tag">Topik : <?=$topik;?> </a>
-                        </div>
-                        </article>
-                       
+          </div>
+          </div>
+
+         
+          <!-- div isi materi -->
+                    <div class="col-md-9 blog-pull-right">
+            <div class="blog-posts single-post">
+              <article class="post clearfix mb-0">
+                <div class="entry-header">
+               <!--    <div class="post-thumb thumb"> <img src="http://placehold.it/1920x1280" alt="" class="img-responsive img-fullwidth"> </div> -->
+                </div>  
+                <div class="entry-title pt-10 pl-15">
+                  <h4><a class="text-uppercase" href="#"> <?= $datMateri['judulMateri']; ?> </a></h4>
+                </div>
+                <div class="entry-meta pl-15">
+                  <ul class="list-inline">
+                    <li>Posted: <span class="text-theme-color-2"> <?= $datMateri['date_created']; ?></span></li>
+                    <li>By: <span class="text-theme-color-2">Admin</span></li>
+                    <li><i class="fa fa-comments-o ml-5 mr-5"></i> Step Materi</li>
+                  </ul>
+                </div>
+                <div class="entry-content mt-10">
+                  <!-- isi materi -->
+                  <p class="text-theme-color-2"><?= $datMateri['isiMateri']; ?></p>
+
+                  <div class="mt-30 mb-0">
+                    <h5 class="pull-left mt-10 mr-20 text-theme-color-2"></h5>
+                    <div class="tags">
+                      <p class="mb-0"> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i>Topik : <?=$topik;?></a>  
+                      </p>
                     </div>
-                    <!-- / post item -->
-                    <hr class="divider-color" />
-                  
+                  </div>
+                </div>
+              </article>
 
-                </main>
+
             </div>
-
+          </div>
+          <!-- / div isi materi -->
         </div>
-    </div>
-    <!-- / content -->
+      </div>
+    </section>
 
-	<!-- END Page Content -->
+  <!-- end main-content -->
 
-<!-- JQ UNTUK RUBAH STYLE CSS STEPLINE BY MrBebek-->
+  <!-- JQ UNTUK RUBAH STYLE CSS STEPLINE BY MrBebek-->
 <script type="text/javascript">
   $(document).ready(function() { 
       var n = $("#n").val();

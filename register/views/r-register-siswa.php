@@ -26,7 +26,7 @@
             <div class="tab-content">
               
               <div class="tab-pane fade in active p-15" id="register-tab">
-                <form name="reg-form" class="register-form" method="post">
+                <form name="form-register" action="<?= base_url() ?>index.php/register/savesiswa" class="register-form" method="post">
                   <div class="icon-box mb-0 p-0">
                     <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                       <i class="pe-7s-users"></i>
@@ -44,23 +44,27 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label for="form_name">Nama Depan</label>
-                      <input name="form_name" class="form-control" type="text">
+                      <input name="namadepan" class="form-control" type="text" value="<?php echo set_value('namadepan'); ?>" required>
+                      <span class="text-danger"> <?php echo form_error('namadepan'); ?></span>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Nama Belakang </label>
-                      <input name="form_email" class="form-control" type="email">
+                      <input name="namabelakang" value="<?php echo set_value('namabelakang'); ?>" class="form-control" type="text" required>
+                      <span class="text-danger"> <?php echo form_error('namabelakang'); ?></span>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-12">
                       <label for="form_choose_username">Alamat</label>
-                      <input id="form_choose_username" name="form_choose_username" class="form-control" type="text">
+                      <input name="alamat" value="<?php echo set_value('alamat'); ?>" class="form-control" type="text" required>
+                      <span class="text-danger"> <?php echo form_error('alamat'); ?></span> 
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-12">
                       <label for="form_choose_username">No Kontak</label>
-                      <input id="form_choose_username" name="form_choose_username" class="form-control" type="text">
+                      <input name="nokontak" value="<?php echo set_value('nokontak'); ?>"  class="form-control" type="text" required>
+                       <span class="text-danger"> <?php echo form_error('nokontak'); ?></span>
                     </div>
                   </div>
                   <hr>
@@ -101,7 +105,7 @@
 
                                 <option value="19">Kelas 11 - SMA IPS</option>
 
-                                <option value="20">Kelas 12 - SMA IPS</option>  
+                                <option value="21">Kelas 12 - SMA IPS</option>  
 
                             </select>
                   </div>
@@ -109,11 +113,11 @@
                   <div class="row">
                     <div class="form-group col-md-12">
                       <label for="form_choose_password">Nama Sekolah</label>
-                      <input id="form_choose_password" name="form_choose_password" class="form-control" type="text">
+                      <input name="namasekolah" value="<?php echo set_value('namasekolah'); ?>" class="form-control" type="text" required>
                     </div>
                     <div class="form-group col-md-12">
                       <label>Alamat Sekolah</label>
-                      <input id="form_re_enter_password" name="form_re_enter_password"  class="form-control" type="text">
+                      <input name="alamatsekolah" value="<?php echo set_value('alamatsekolah'); ?>" class="form-control" type="text" required>
                     </div>
                   </div>
 
@@ -124,15 +128,17 @@
                     <div class="row">
                     <div class="form-group col-md-12">
                       <label for="form_choose_password">Username</label>
-                      <input id="form_choose_password" name="form_choose_password" class="form-control" type="text">
+                      <input name="namapengguna" value="<?php echo set_value('namapengguna'); ?>" class="form-control" type="text">
                     </div>
                     <div class="form-group col-md-12">
                       <label>Password</label>
-                      <input id="form_re_enter_password" name="form_re_enter_password"  class="form-control" type="text">
+                      <input name="katasandi" maxlength="20" class="form-control" type="password" required>
+                      <span class="text-danger"><?php echo form_error('katasandi'); ?></span>
                     </div>
                     <div class="form-group col-md-12">
                       <label>Confirm Password</label>
-                      <input id="form_re_enter_password" name="form_re_enter_password"  class="form-control" type="text">
+                      <input name="passconf" data-parsley-equalto="input[name=password]" maxlength="20"  class="form-control" type="password" required>
+                      <span class="text-danger"><?php echo form_error('katasandi'); ?></span>
                     </div>
 
                   </div>
@@ -149,6 +155,7 @@
                                 <option value="GO">GO</option>
                                 <option value="1bimbel lainya">Bimbel lainya</option>
                             </select>
+                            <span class="text-danger"><?php echo form_error('bimbel'); ?></span>
                     </div>
                   </div>
                   <hr>
@@ -170,7 +177,7 @@
                         </div> 
 
                     <div class="form-group col-md-12">
-
+                        <div class="row">
                         <div class="form-group">
 
                             <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control login-input input-sm" name="noinduk" value="<?php echo set_value('noinduk'); ?>" data-parsley-required>
@@ -183,6 +190,7 @@
 
                         </div>
 
+                    </div>
                     </div>
                     </div>
 
@@ -221,3 +229,15 @@
     </section>
   </div>
   <!-- end main-content -->
+
+  <script type="text/javascript">
+$('select[name=bimbel]').change(function(){
+    var bimbel = $('select[name=bimbel]').val();
+    if (bimbel=='Neutron') {
+        $('.Keaktivan').removeClass('hide');
+    }else{
+        $('.Keaktivan').addClass('hide animate');
+
+    }
+});
+</script>

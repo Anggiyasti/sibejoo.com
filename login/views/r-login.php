@@ -61,16 +61,17 @@
                       <input name="password" type="password" class="form-control"  required>
                     </div>
                   </div>
-                  <div class="checkbox pull-left mt-15">
+                  <div class="clear pull-left mt-15">
                     <label for="form_checkbox">
-                      <a class="text-theme-colored font-weight-600 font-12" href="#">Lupa Password?</a>
+                      <a class="text-theme-colored font-weight-600 font-12" href="<?= base_url('index.php/register/lupapassword'); ?>">Lupa Password?</a>
                   </div>
                   <div class="form-group pull-right mt-10">
 
                     <button type="submit" class="btn btn-dark btn-theme-colored">Login</button>
                   </div>
-                  <div class="clear text-center mt-20">
-                    <a class="text-theme-colored font-weight-600 font-12" href="#">Belum Punya Akun?</a>
+                  <div class="clear text-center mt-15">
+                  <label for="form_checkbox">
+                    <a class="text-theme-colored font-weight-600 font-12" href="<?= base_url('index.php/register'); ?>">Belum Punya Akun?</a>
                   </div>
                   
                 </form>
