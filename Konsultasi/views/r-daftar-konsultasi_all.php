@@ -1,6 +1,7 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
 
+
 <!-- TITLE -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
   <div class="container pt-70 pb-20">
@@ -115,7 +116,7 @@
 												<i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?></a> |
 												<span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
 												<?php if (!empty($question['namaGuru'])): ?>
-													<span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></a>
+													<span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
 												<?php else: ?>
 													<span>Tanpa Mentor</span>
 												<?php endif ?>
