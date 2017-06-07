@@ -294,9 +294,202 @@ a, button {
 <script type="text/javascript">
 			
 
-			
+			function append_new(datas){
+				if (datas.hakAkses=='guru') {
+					photo = base_url+"assets/image/photo/"+datas.hakAkses+"/"+datas.guru_photo;
+				}else{
+					photo = base_url+"assets/image/photo/"+datas.hakAkses+"/"+datas.siswa_photo;
+				}
+				konten = '<div class="blog-post">'+
+				'<article>'+
+				'<div class="row bg-color-2">'+
+				'<div class="container">'+datas.date_created+'|'+
+				'<a title="view single post" href=""> New Post</a></div>'+
+				'</div></div><br>'+
+				'<div class="quotes clear-fix" >'+
+				'<div class="quote-avatar-author clear-fix">'+
+				'<img src="'+photo+'" width="60px">'+
+				'<div class="author-info">'+datas.namaPengguna+'<br><span>'+datas.hakAkses+'</span></div></div>'+
+				'<div>'+
+				'<span style="font-style:italic">'+
+				// '<a title="view single post" href=""><i class="fa fa-arrow-circle-o-right">  </i></a>'+
+				'<div class="komen">'+datas.isiJawaban+'<input type="hidden" name="'+datas.jawabID+'" value="">'+
+				'</div>'+
+				'</div>'+
+				'</div><br>'+
+				'</article>'+
+				'</div>';
+				$('.add-pertanyaan').prepend(konten);
+			}
+
+			function insert(){
+				nama_file = $('.insert').data('nama');
+				url = base_url+"assets/image/konsultasi/"+nama_file;
+
+				CKEDITOR.instances.isi.insertHtml('<img src='+url+' ' + CKEDITOR.instances.isi.getSelection().getNative()+'>');
+			}
+
+			function submit_upload(){
+				$('.submit-upload').click();
+			}
+
+			jQuery(document).ready(function() { 
+				jQuery('#form-gambar').on('submit', function(e) {
+					e.preventDefault();
+					jQuery('#submit-button').attr('disabled', ''); 
+					jQuery("#output").html('<div style="padding:10px"><img src="<?php echo base_url('assets/image/loading/spinner11.gif'); ?>" alt="Please Wait"/> <span>Mengunggah...</span></div>');
+					jQuery(this).ajaxSubmit({
+						target: '#output',
+						success:  sukses 
+					});
+				});
+			}); 
+
+			function sukses(){ 
+				jQuery('#form-upload').resetForm();
+				jQuery('#submit-button').removeAttr('disabled');
+			}
+
+			var ckeditor;
 
 
+
+			$(document).ready(function(){
+				CKEDITOR.replace( 'respon', {
+					height: 260,
+					/* Default CKEditor styles are included as well to avoid copying default styles. */
+				} );
+
+				/*ckeditor = CKEDITOR.replace('respon');	*/
+			});
+
+			var ckeditor;
+			var string;
+			var txt = 1;
+			function quote(data){
+				if (data==0) {						
+					// balas
+					$('html, body').animate({
+						scrollTop: $("#jawaban").offset().top
+					}, 2000);
+				}else{
+					//quote
+					$('html, body').animate({
+						scrollTop: $("#jawaban").offset().top
+					}, 2000);
+
+					string = $('input[name='+data+']').val();
+
+					CKEDITOR.instances.isi.setData("<blockquote>"+string+"</blockquote><br>");
+				}
+
+			}
+			function simpan_jawaban(){
+				hak_akses = ("<?=$this->session->userdata('HAKAKSES') ?>");
+
+				var socket = io.connect( 'http://'+window.location.hostname+':3000' );
+
+				// get text from ck editor
+				txt = CKEDITOR.instances.isi.getData();
+				
+				var datas = {
+					isiJawaban : txt,
+					penggunaID : $('input[name=idpengguna]').val(),
+					pertanyaanID : $('input[name=idpertanyaan]').val(),
+					statusRespon : $('input[name=statusRespon]').val()
+				};
+
+				url = base_url+"konsultasi/ajax_add_jawaban/";
+				$.ajax({
+					url : url,
+					type: "POST",
+					data: datas,
+					dataType: "TEXT",
+					success: function(data){
+						if (hak_akses=='guru') {
+							if (datas.statusRespon!=1) {
+								socket.emit('remove_notifikasi', {
+									datas
+								});	
+							}
+						// add ke konten yang di insert
+					}
+					$.getJSON( base_url+"konsultasi/get_last_jawaban/", function( datas ) {
+						swal('Posting berhasil...');
+						append_new(datas);
+					});
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error adding / update data');
+					
+				}
+			});
+
+			}
+
+			function point(data){
+				elemen = "<textarea class='form-control' name='komentar'></textarea>";
+				$('.modal-body').html(elemen);
+				$('.modal-header .modal-title').html("Berikan Komentar");
+				$('#myModal').modal('show');
+				button = "<button type='button' class='cws-button bt-color-1 alt small' data-dismiss='modal'>Batal</button><button type='button' class='cws-button bt-color-2 alt small mulai-btn post'onclick='komen("+data+")'>Berikan</button>";
+
+				$('.modal-footer').html(button);
+
+
+			}
+
+			function komen(data){
+				var isikomentar = $('textarea[name=komentar]').val();
+				url = base_url+"konsultasi/check_point/"+data;
+
+				datas = {
+					isiKomentar : isikomentar,
+					idJawaban : data
+				}
+				var stat;
+				$.ajax({
+					url : url,
+					type: "POST",
+					data: datas,
+					dataType: "json",
+					success: function(data, status, jqXHR)
+					{
+						stat = get_data(data, datas);
+					},
+					error: function (jqXHR, textStatus, errorThrown)
+					{
+						swal('Error adding / update data');
+					}
+				});
+
+			}
+
+			function get_data(data, datas){
+				status = data;
+				postingan = datas;
+				if (status==1) {
+					swal("Tidak Dapat Memberikan Point")
+				}else{
+					console.log(postingan.idJawaban);
+					url = base_url+"konsultasi/ajax_add_point/"+postingan.idJawaban;
+					$.ajax({
+						url : url,
+						type: "POST",
+						data: datas,
+						dataType: "text",
+						success: function()
+						{
+							swal("sudah ditambahkan");
+						},
+						error: function (jqXHR, textStatus, errorThrown)
+						{
+							swal('Error adding / update data');
+						}
+					});
+				}
+			}
 		</script>
 
 
