@@ -10,7 +10,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h3 class="font-28 text-white">{judul_header2}</h2>
+              <h1 class="text-center text-white">{judul_header2}</h1>
               
             </div>
           </div>
@@ -28,9 +28,9 @@
               <div class="widget">
                 <h5 class="widget-title line-bottom">Search box</h5>
                 <div class="search-form">
-                  <form>
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
-                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <input type="search" placeholder="Search" name="keycari" id="caritopik" class="form-control search-input">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>

@@ -4,7 +4,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h3 class="font-28 text-white">{judul_header2}</h2>
+              <h1 class="text-center text-white">{judul_header2}</h1>
               
             </div>
           </div>

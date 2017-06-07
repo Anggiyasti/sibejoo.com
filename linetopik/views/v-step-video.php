@@ -1,3 +1,4 @@
+  <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>"/>
   <!-- Start main-content -->
   <div class="main-content" >
     <!-- Section: inner-header -->
@@ -7,12 +8,8 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h2 class="title text-white">{judul_header2}</h2>
-              <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
-              </ol>
+              <h1 class="text-center text-white">{judul_header2}</h1>
+            
             </div>
           </div>
         </div>
@@ -28,9 +25,9 @@
               <div class="widget">
                 <h5 class="widget-title line-bottom">Search box</h5>
                 <div class="search-form">
-                  <form>
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/linetopik/cariTopik"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
-                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <input type="search" name="keycari" placeholder="Search" class="form-control search-input" id="caritopik">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>
@@ -39,38 +36,28 @@
                 </div>
               </div>
               <div class="widget">
-                <h5 class="widget-title line-bottom"><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datVideo['namaTopik']; ?></h5>
-                <!-- <div class="categories">
-                  <ul class="list list-border angle-double-right">
-                    <li><a href="#">Creative<span>(19)</span></a></li>
-                    <li><a href="#">Portfolio<span>(21)</span></a></li>
-                    <li><a href="#">Fitness<span>(15)</span></a></li>
-                    <li><a href="#">Gym<span>(35)</span></a></li>
-                    <li><a href="#">Personal<span>(16)</span></a></li>
-                  </ul>
-                </div> -->
-                <!-- Step line side bar -->
-                <ul class="media-list media-list-feed  grid-col-3" >
-                  <?php 
-                  $i=0;
-                  foreach ($datline as $key ):           
-                    ?>
-                  <li  class="media" id="bg-<?=$i;?>">
-                   <div class="media-object pull-left ">
-                    <i href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
-                  </div>
-                  <div class="media-body" >
-                    <!-- Untuk menampung staus step disable or enable -->
-                    <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
-                    <!-- // Untuk menampung staus step disable or enable  -->
-                    <a href="<?=$key['link'];?>" class="media-heading headline"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>
-                  </div>
-                  <!-- <hr> -->
-                </li>
-                <?php 
-                $i ++;
-                endforeach ?>
-              </ul>
+                <h2 ><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datVideo['namaTopik']; ?></a></h2> 
+                <hr class="divider-big">
+                            <!-- Start Time Line -->
+                            <ul class="media-list media-list-feed grid-col-3" >
+                            <?php $i=0; ?>
+                            <?php foreach ($datline as $key ): ?>
+                                <li class="media" id="bg-<?=$i;?>">
+                                     <div class="media-object pull-left ">
+                                        <a href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></a>
+                                    </div>
+                                    <div class="media-body">
+                                    <!-- Untuk menampung staus step disable or enable -->
+                                     <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
+                                     <!-- // Untuk menampung staus step disable or enable  -->
+                                        <a href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:20px;"><?=$key['namaStep']?></a>
+                                    </div>
+                                </li>
+                            <?php $i++; ?>
+                            <?php endforeach ?>
+                            </ul>
+                            <!-- menampung nilai panjang array -->
+                            <input id="n" type="text"  value="<?=$i;?>" hidden="true">
                 <!--Step line side bar  -->
               </div>
             </div>
@@ -92,7 +79,7 @@
                     <li><i class="fa fa-comments-o ml-5 mr-5"></i> Step Video</li>
                   </ul>
                 </div>
-                <div class="entry-content mt-10"  style="background:red;">
+                <div class="entry-content mt-10">
                   <!-- video -->
                   <div class="post-thumb thumb">
                     <div class="video-player">
@@ -101,14 +88,19 @@
 
 
                   </div>
+                  <h3>Deskripsi</h3>
+            <p><?=$datVideo['deskripsiVideo']?></p>
 
                   <div class="mt-30 mb-0">
-                    <h5 class="pull-left mt-10 mr-20 text-theme-color-2">Share:</h5>
-                    <ul class="styled-icons icon-circled m-0">
-                      <li><a href="#" data-bg-color="#3A5795"><i class="fa fa-facebook text-white"></i></a></li>
-                      <li><a href="#" data-bg-color="#55ACEE"><i class="fa fa-twitter text-white"></i></a></li>
-                      <li><a href="#" data-bg-color="#A11312"><i class="fa fa-google-plus text-white"></i></a></li>
-                    </ul>
+                    
+                    <div class="tags">
+                      <p class="mb-0"> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
+                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i>Topik : <?=$topik;?></a>  
+                      </p>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -125,37 +117,22 @@
 
   <!-- JQ UNTUK RUBAH STYLE CSS STEPLINE BY MrBebek-->
 <script type="text/javascript">
-    $(document).ready(function() { 
-        var n = $("#n").val();
-        for (i = 0; i < n; i++) {
-        var status = $("#status-"+i).val();
-            // cek status disable
-        if (status=="disable") {
-          // jika status disable
-          $("#ico-"+i).css("background","#b0b0b0");
-          $("#font-"+i).css("color","#b0b0b0");
-        }else if(status =="current"){
-          // jika step line yg sedang di buka
-          $("#ico-"+i).css("background","#D26161");
-          $("#font-"+i).css("color","#D26161");
-          $("#bg-"+i).css({ "background-color":"","box-shadow": "inset 0 0 0 1px #E4E4E4,inset 0 1px 6px #E6E6E6"});
-        }
-           
-        }
-    });
-</script>
-
-<!-- JQ untuk autocomplate search topik -->
-<script type="text/javascript">
-
   $(document).ready(function() { 
-    var site = "<?php echo site_url();?>";
-    $( "#caritopik" ).autocomplete({
-        source:  site+"/linetopik/autocompleteTopik",
-        select: function (event, ui) {
-                window.location = ui.item.url;
-                }
-    });
-
-});
+      var n = $("#n").val();
+      for (i = 0; i < n; i++) {
+      var status = $("#status-"+i).val();
+          // cek status disable
+      if (status=="disable") {
+        // jika status disable
+        $("#ico-"+i).css("background","#b0b0b0");
+        $("#font-"+i).css("color","#b0b0b0");
+      }else if(status =="current"){
+        // jika step line yg sedang di buka
+        $("#ico-"+i).css("background","#D26161");
+        $("#font-"+i).css("color","#D26161");
+        $("#bg-"+i).css({ "background-color":"","box-shadow": "inset 0 0 0 1px #E4E4E4,inset 0 1px 6px #E6E6E6"});
+      }
+         
+      }
+  });
 </script>

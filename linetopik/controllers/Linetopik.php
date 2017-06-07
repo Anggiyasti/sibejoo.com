@@ -16,7 +16,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->sessionchecker->cek_token();
         
  	}
-
  	public function index()
  	{
  		echo "string";
@@ -235,12 +234,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             APPPATH . 'modules/linetopik/views/v-step-video.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
      
-        $this->parser->parse('templating/r-index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
  	}
 
@@ -632,16 +631,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $data['files'] = array(
 
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
 
-            APPPATH . 'modules/linetopik/views/v-hasil-quiz.php',
+            APPPATH . 'modules/linetopik/views/r-hasil-quiz.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
     }
 
     //PENCARIAN TOPIK
@@ -725,15 +724,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
         $data['files'] = array(
 
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
 
-            APPPATH . 'modules/linetopik/views/v-line-topik.php',
+            APPPATH . 'modules/linetopik/views/r-line-topik.php',
 
-            APPPATH . 'modules/homepage/views/v-footer.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
         // END step line
     }
 
