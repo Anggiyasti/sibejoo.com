@@ -487,7 +487,7 @@ class Msiswa extends CI_Model {
             $penggunaID  = $this->session->userdata('USERNAME');
         } 
         
-        $query = "SELECT l.isi, j.nama, j.id_ortu, l.jenis 
+        $query = "SELECT l.isi, j.nama, j.id_ortu, l.jenis , l.date_created
                     FROM (SELECT s.id AS id_siswa, s.`namaBelakang` AS nama, o.id AS id_ortu 
                     FROM tb_siswa s 
                     JOIN `tb_orang_tua` o ON s.`id` = o.`siswaID` 

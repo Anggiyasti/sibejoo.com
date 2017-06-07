@@ -32,6 +32,11 @@ public function index() {
         APPPATH . 'modules/homepage/views/r-header-login.php',
         APPPATH . 'modules/tesonline/views/r-test-show-tingkat.php',
         );
+
+    $data['sd'] = $this->load->mtingkat->getmapelbytingkatid(1);
+    $data['smp'] = $this->load->mtingkat->getmapelbytingkatid(2);
+    $data['sma'] = $this->load->mtingkat->getmapelipa();
+    // print_r($data);
     $data['tingkat'] = $this->load->mtingkat->gettingkat();
     $this->parser->parse('templating/r-index', $data);
 }
