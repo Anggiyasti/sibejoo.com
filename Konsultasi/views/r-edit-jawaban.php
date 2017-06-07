@@ -97,7 +97,7 @@
 					</div>
 					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">
 				</form>
-				<a onclick="save()" class="btn btn-default post">Post</a>
+				<a onclick="save()" class="btn btn-default btn-theme-colored post">Post</a>
 				<br>
 				<br>
 				<hr>

@@ -692,11 +692,11 @@ function singlekonsultasi($id_pertanyaan){
 
 
   $data['files'] = array(
-    // APPPATH.'modules/homepage/views/r-header-coba.php',
+    APPPATH.'modules/homepage/views/r-header-login.php',
     APPPATH.'modules/konsultasi/views/r-single-konsultasi.php',
-    // APPPATH.'modules/templating/views/r-footer.php'
+    APPPATH.'modules/templating/views/r-footer.php'
     );
-  $this->parser->parse( 'templating/r-index-coba', $data );
+  $this->parser->parse( 'templating/r-index-login', $data );
 }
 
 public function pertanyaan_ku_search($kunci=''){

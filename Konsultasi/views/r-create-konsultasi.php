@@ -110,7 +110,7 @@
 					<input type="hidden" name="idsub" value="{idsub}">
 				</div>
 				<div class="col-sm-4"><br><br><br><br>
-					<a onclick="show_image()" class="btn btn-default" style="margin-top: 16px; height: 40px;">Lihat Gambar</a>
+					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 16px; height: 40px;">Lihat Gambar</a>
 				</div>
 			</div>
 
@@ -132,8 +132,7 @@
 					</a>
 				</form>
 				<br>
-				<a class="btn btn-default" onclick="preview()">Preview</a> 
-				<a onclick="save()" class="btn btn-default post">Post</a>
+				<a onclick="save()" class="btn btn-default btn-theme-colored post">Post</a>
 				<br>
 				<br>
 				<hr>
@@ -268,8 +267,8 @@
                 }
                 );
                 // throw value to server
-
-                // window.location = base_url+"konsultasi/pertanyaan_all";
+                swal('Posting berhasil...');
+                window.location = base_url+"konsultasi/pertanyaan_all";
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
