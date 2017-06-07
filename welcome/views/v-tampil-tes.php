@@ -1,18 +1,14 @@
-<div class="page-title" style="background:#2b3036">
-
-    <div class="grid-row">
-
-        <h1>Tryout Dan Latihan Online </h1>
-
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="font-28 text-black">Tryout Dan Latihan Online</h1>
     </div>
-
 </div>
 
 <section class="padding-section">
     <div class="grid-row clear-fix">
         <!-- <h2 class="center-text">Community Life</h2> -->
         <div class="grid-col-row">
-            <div class="grid-col grid-col-6">
+            <div class="grid-col col-md-6">
                 <div class="community">
                    <a href="<?=base_url() ?>index.php/tryout"><h3>Tryout Online</h3>
                     <div class="community-logo">
@@ -23,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-col grid-col-6">
+            <div class="grid-col col-md-6">
                 <div class="community color-2">
                     <a href="<?=base_url() ?>index.php/tesonline"><h3>Latihan Online</h3>
                     <div class="community-logo">

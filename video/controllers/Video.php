@@ -13,10 +13,10 @@ class Video extends MX_Controller {
             );
         
         $data['files'] = array( 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
             APPPATH.'modules/welcome/views/v-welcome.php',
-            APPPATH.'modules/welcome/views/v-tampil-tes.php',
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            // APPPATH.'modules/welcome/views/v-tampil-tes.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
             );
 
         $data['tingkat'] = $this->load->MTingkat->gettingkat();
@@ -27,7 +27,7 @@ class Video extends MX_Controller {
         $data['pelajaran_sd'] = $this->mmatapelajaran->daftarMapelSD();
         $data['pelajaran_sma_ipa'] = $this->mmatapelajaran->daftarMapelSMAIPA();
 
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
     }
     //put your code here
     public function __construct() {
@@ -129,13 +129,13 @@ class Video extends MX_Controller {
         //
         $data['bab_video'] = $this->load->Mvideos->get_video_as_bab($tingpelID);
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . 'modules/templating/views/t-f-pagetitle.php',
             APPPATH . 'modules/video/views/f-daftar-video.php',
-            APPPATH . 'modules/testimoni/views/v-footer.php'
+            APPPATH . 'modules/testimoni/views/r-footer.php'
             );
         // print_r($data);
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
     }
 
     public function daftarallvideo($tingpelID) {
@@ -161,16 +161,16 @@ class Video extends MX_Controller {
         //
         $data['bab_video'] = $this->load->Mvideos->get_video_as_sub($tingpelID);
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/v-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . 'modules/templating/views/t-f-pagetitle.php',
             APPPATH . 'modules/video/views/f-daftar-video-bybab.php',
-            APPPATH . 'modules/testimoni/views/v-footer.php'
+            APPPATH . 'modules/testimoni/views/r-footer.php'
             
             );
 
 
 
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
     }
 
     public function seevideo($idvideo) {

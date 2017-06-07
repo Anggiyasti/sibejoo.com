@@ -38,7 +38,7 @@ class Modulonline extends MX_Controller {
         // $data['posts'] = $this->Mmodulonline->getRows(array('limit'=>$this->perPage));
         
         // //load the view
-        // $this->load->view('modulonline/index', $data);
+        // $this->load->view('modulonline/r-index', $data);
 
         $this->allmodul();
     }
@@ -880,28 +880,19 @@ class Modulonline extends MX_Controller {
     public function allmodul() {
 
         $data = array(
-
-            'judul_halaman' => 'Neon - Edu Drive',
-
+            'judul_halaman' => 'Sibejoo - Edu Drive',
             'judul_header' =>'Welcome',
-
             'judul_header2' =>'Modul Belajar'
-
-
-
         );
 
 
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
-
+            APPPATH.'modules/homepage/views/r-header-login.php',
             APPPATH.'modules/modulonline/views/v-edudrive.php',
-
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
-
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -924,7 +915,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRows(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
@@ -932,7 +923,7 @@ class Modulonline extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Neon - Edu Drive',
+            'judul_halaman' => 'Sibejoo - Edu Drive',
 
             'judul_header' =>'Welcome',
 
@@ -944,13 +935,13 @@ class Modulonline extends MX_Controller {
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH.'modules/modulonline/views/v-edusd.php',
 
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
 
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -973,7 +964,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRowssd(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
@@ -981,7 +972,7 @@ class Modulonline extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Neon - Edu Drive',
+            'judul_halaman' => 'Sibejoo - Edu Drive SMP',
 
             'judul_header' =>'Welcome',
 
@@ -993,13 +984,13 @@ class Modulonline extends MX_Controller {
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH.'modules/modulonline/views/v-edusmp.php',
 
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
 
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -1022,7 +1013,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRowssmp(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
@@ -1030,7 +1021,7 @@ class Modulonline extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Neon - Edu Drive',
+            'judul_halaman' => 'Sibejoo - Edu Drive SMA',
 
             'judul_header' =>'Welcome',
 
@@ -1042,13 +1033,13 @@ class Modulonline extends MX_Controller {
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH.'modules/modulonline/views/v-edusma.php',
 
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
 
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -1071,7 +1062,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRowssma(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
@@ -1079,7 +1070,7 @@ class Modulonline extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Neon - Edu Drive',
+            'judul_halaman' => 'Sibejoo - Edu Drive SMA IPA',
 
             'judul_header' =>'Welcome',
 
@@ -1091,13 +1082,13 @@ class Modulonline extends MX_Controller {
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH.'modules/modulonline/views/v-edusmaipa.php',
 
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
 
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -1120,7 +1111,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRowssmaipa(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
@@ -1128,7 +1119,7 @@ class Modulonline extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Neon - Edu Drive',
+            'judul_halaman' => 'Sibejoo - Edu Drive SMA IPS',
 
             'judul_header' =>'Welcome',
 
@@ -1140,13 +1131,13 @@ class Modulonline extends MX_Controller {
 
         $data['files'] = array( 
 
-            APPPATH.'modules/homepage/views/v-header-login.php',
+            APPPATH.'modules/homepage/views/r-header-login.php',
 
             APPPATH.'modules/modulonline/views/v-edusmaips.php',
 
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
 
-            APPPATH.'modules/testimoni/views/v-footer.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
 
         );
 
@@ -1169,7 +1160,7 @@ class Modulonline extends MX_Controller {
         //get the posts data
         $data['posts'] = $this->Mmodulonline->getRowssmaips(array('limit'=>$this->perPage));
   
-        $this->parser->parse( 'templating/index', $data );
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
