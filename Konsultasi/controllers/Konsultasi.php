@@ -349,10 +349,9 @@ public function editpost($id){
       );
 
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-edit-jawaban.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-edit-jawaban.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
     $data['edit'] = $data_edit['0'];
 
@@ -632,12 +631,12 @@ function show_post($id){
   $data['data_postingan'] = $this->mkonsultasi->show_post($id)[0];
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/v-header-login.php',
-    APPPATH.'modules/konsultasi/views/v-single-jawab.php',
-    APPPATH.'modules/homepage/views/v-footer.php'
+    APPPATH.'modules/homepage/views/r-header-login.php',
+    APPPATH.'modules/konsultasi/views/r-single-jawab.php',
+    APPPATH.'modules/templating/views/r-footer.php'
     );
 
-  $this->parser->parse( 'templating/index', $data );
+  $this->parser->parse( 'templating/r-index-login', $data );
 
 }
 
@@ -693,11 +692,11 @@ function singlekonsultasi($id_pertanyaan){
 
 
   $data['files'] = array(
-    APPPATH.'modules/homepage/views/r-header-login.php',
+    // APPPATH.'modules/homepage/views/r-header-coba.php',
     APPPATH.'modules/konsultasi/views/r-single-konsultasi.php',
-    APPPATH.'modules/templating/views/r-footer.php'
+    // APPPATH.'modules/templating/views/r-footer.php'
     );
-  $this->parser->parse( 'templating/r-index-login', $data );
+  $this->parser->parse( 'templating/r-index-coba', $data );
 }
 
 public function pertanyaan_ku_search($kunci=''){

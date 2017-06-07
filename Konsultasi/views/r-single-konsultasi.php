@@ -23,7 +23,24 @@
 		background: rgba(0,0,0,.1);
 		font-style: italic;
 	}
-	
+	blockquote {
+		background: #f9f9f9;
+		border-left: 10px solid #ccc;
+		margin: 1.5em 10px;
+		padding: 0.5em 10px;
+		quotes: "\201C""\201D""\2018""\2019";
+	}
+	blockquote:before {
+		color: #ccc;
+		content: open-quote;
+		font-size: 4em;
+		line-height: 0.1em;
+		margin-right: 0.25em;
+		vertical-align: -0.4em;
+	}
+	blockquote p {
+		display: inline;
+	}
 
 	.blog-post {
     margin-bottom: 40px;
@@ -44,7 +61,7 @@
     -webkit-align-content: center;
     -ms-flex-line-pack: center;
     align-content: center;
-    background-color: #f27c66;
+    background-color: #555555;
     text-align: center;
     color: #ffffff;
     overflow: hidden;
@@ -53,7 +70,7 @@
 .post-info .date-post {
     width: 53px;
     height: 53px;
-    background-color: #b0b0b0;
+    background-color: #202C45;
 }
 .post-info .date-post .day {
     font-size: 25px;
@@ -72,7 +89,7 @@
     width: 53px;
     line-height: 53px;
     height: 53px;
-    background-color: #f9cb8f;
+    background-color: #202C45;
 }
 .post-info + .quotes {
     margin-top: 20px;
@@ -82,7 +99,12 @@
     margin: 5px 40px 0 0;
 }
 .bg-color-2 {
-    background-color: #f9cb8f;
+    background-color: #555555;
+    color: #ffffff;
+}
+.bg-color-2 a{
+    background-color: #555555;
+    color: #ffffff;
 }
 a, button {
     cursor: pointer;
@@ -113,19 +135,7 @@ a, button {
         <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
         	<div class="blog-post">
         		<article>
-      
-        			<nav class="navbar navbar-default mb-15" style="background-color: #fff;">
-		              <div class="container-fluid">
-		                <div class="navbar-header">
-		                  <button aria-expanded="false" data-target="#bs-example-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-		                  <a href="#" class="navbar-brand">{tanggal} {bulan}</a> </div>
-		                <div id="bs-example-navbar-collapse-5" class="collapse navbar-collapse">
-		                  <p class="navbar-text navbar-right"><i class="fa fa-comment"></i> {jumlah}</p>
-		                </div>
-		              </div>
-		            </nav>
-
-        			<!-- <div class="post-info">
+        			<div class="post-info">
 						<div class="date-post"><div class="day">{tanggal}</div><div class="month">{bulan}</div></div>
 						<div class="post-info-main">
 							<input type="hidden" value="{id_pertanyaan}" name="idpertanyaan">
@@ -136,7 +146,7 @@ a, button {
 							<div class="author-post"><i class="fa fa-user" aria-hidden="true"></i> by {author}</div>
 						</div>
 						<div class="comments-post"><i class="fa fa-comment"></i> {jumlah}</div>
-					</div> -->
+					</div>
 
 					<div class="quotes clear-fix" >
 						<div class="quote-avatar-author clear-fix">
