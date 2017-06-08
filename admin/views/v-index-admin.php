@@ -463,6 +463,52 @@ JS aoutocomplate
       </li>
 
       <li>
+        <a href="javascript:void(0);" data-target="#artikel" data-toggle="submenu" data-parent=".topmenu">
+          <span class="figure"><i class="ico-bubble-user"></i></span>
+          <span class="text">Artikel</span>
+          <span class="arrow"></span>
+        </a>
+
+        <ul id="artikel" class="submenu collapse ">
+          <li class="submenu-header ellipsis">Artikel</li>
+          <li >
+            <a href="<?=base_url('index.php/artikel/index/1')?>">
+              <span class="text">Daftar Artikel</span>
+            </a>
+          </li>
+          <li >
+            <a href="<?=base_url('index.php/artikel/tambahartikel/1') ?>">
+              <span class="text">Tambah Artikel</span>
+            </a>
+          </li>
+        </ul>
+
+      </li>
+
+      <li>
+        <a href="javascript:void(0);" data-target="#artikelkat" data-toggle="submenu" data-parent=".topmenu">
+          <span class="figure"><i class="ico-bubble-user"></i></span>
+          <span class="text">Artikel Kategori</span>
+          <span class="arrow"></span>
+        </a>
+
+        <ul id="artikelkat" class="submenu collapse ">
+          <li class="submenu-header ellipsis">Artikel Kategori</li>
+          <li >
+            <a href="<?=base_url('index.php/artikel/index/2')?>">
+              <span class="text">Daftar Artikel Kategori</span>
+            </a>
+          </li>
+          <li >
+            <a href="<?=base_url('index.php/artikel/tambahartikel/2') ?>">
+              <span class="text">Tambah Artikel Kategoris</span>
+            </a>
+          </li>
+        </ul>
+
+      </li>
+
+      <li>
         <a href="javascript:void(0);" data-target="#msiswa" data-toggle="submenu" data-parent=".topmenu">
           <span class="figure"><i class="ico-users3"></i></span>
           <span class="text">Siswa</span>
