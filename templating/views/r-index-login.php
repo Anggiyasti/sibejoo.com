@@ -19,6 +19,8 @@
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-114x114.png')?>" rel="apple-touch-icon" sizes="114x114">
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-144x144.png')?>" rel="apple-touch-icon" sizes="144x144">
 
+
+
   <!-- Stylesheet -->
   <link href="<?=base_url('assets/retemplate/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css">
   <link href="<?=base_url('assets/retemplate/css/jquery-ui.min.css')?>" rel="stylesheet" type="text/css">
@@ -39,7 +41,7 @@
   <!-- CSS | For Dark Layout -->
  
   <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
-  <!-- <link href="<?=base_url('assets/retemplate/css/style.css')?>" rel="stylesheet" type="text/css"> -->
+<link href="<?=base_url('assets/retemplate/css/style.css')?>" rel="stylesheet" type="text/css"> 
 
   <!-- Revolution Slider 5.x CSS settings -->
   <link  href="<?=base_url('assets/retemplate/js/revolution-slider/css/settings.css')?>" rel="stylesheet" type="text/css"/>
@@ -96,5 +98,7 @@
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/retemplate/js/revolution-slider/js/extensions/revolution.extension.video.min.js')?>"></script>
+
+
 </body>
 </html>

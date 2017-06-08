@@ -5,7 +5,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h3 class="font-28 text-white">{judul_header2}</h2>
+              <h1 class="text-center text-white">{judul_header2}</h1>
               
             </div>
           </div>
@@ -142,6 +142,8 @@
                             
                             </ul>
                             <br>
+                            <input id="n" type="text"  value="<?=$i;?>" hidden="true">
+                            <?php if ($datline!= array()): ?>
                             
                             <div class="tags" style="margin-left: 20px;">
                             <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['tingkat']?></a></i>
@@ -151,16 +153,17 @@
                               
 
                 </div>
-                <input id="n" type="text"  value="<?=$i;?>" hidden="true">
-                            <?php if ($datline!= array()): ?>
+                
 
               </article>
               
               <hr class="divider-color" />
                             <?php else: ?>
                                 <div class="container-404">
-                                <div class="number">U<span>P</span>S</div>
-                                    <p><span>Maaf:(</span><br>Step Line Belum Tersedia.</p>
+                                <div class="font-200 line-height-1em mt-0 mb-0 text-theme-color-2 text-center">U<span>P</span>S!</div>
+                                    <h2 class="mt-0 text-center" ><span>Maaf:(</span>
+                                    </h2>
+                                    <h2 class="mt-0 text-center" >Step Line Belum Tersedia.</h2>
                                    
                                 </div>
                             <?php endif ?>
