@@ -21,25 +21,6 @@ class Modulonline extends MX_Controller {
     }
 
     public function index(){
-        // $data = array();
-        
-        // //total rows count
-        // $totalRec = count($this->Mmodulonline->getRows());
-        
-        // //pagination configuration
-        // $config['target']      = '#postList';
-        // $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationData';
-        // $config['total_rows']  = $totalRec;
-        // $config['per_page']    = $this->perPage;
-        // $config['link_func']   = 'searchFilter';
-        // $this->ajax_pagination->initialize($config);
-        
-        // //get the posts data
-        // $data['posts'] = $this->Mmodulonline->getRows(array('limit'=>$this->perPage));
-        
-        // //load the view
-        // $this->load->view('modulonline/r-index', $data);
-
         $this->allmodul();
     }
     
@@ -617,8 +598,8 @@ class Modulonline extends MX_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $mapelID = htmlspecialchars($this->input->post('mataPelajaran'));
-        // $gambarSoal = $this->input->post('gambarSoal');
-        //syarat pengisian form upload soal
+
+
         $this->form_validation->set_rules('judul', 'Judul Modul', 'trim|required|is_unique[tb_modul.judul]');
            $UUID = uniqid();
            $judul = htmlspecialchars($this->input->post('judul'));
@@ -626,27 +607,20 @@ class Modulonline extends MX_Controller {
            $deskripsi = $this->input->post('deskripsi');
            $create_by = $this->session->userdata['id'];
            //kesulitan indks 1-3
-           $dataSoal = array(
+           $data_modul = array(
                'judul' => $judul,
                'deskripsi' => $deskripsi,
-               // 'url_file' => $gambarSoal,
                'publish' => $publish,
                'UUID' => $UUID,
                'create_by' => $create_by,
-               'id_tingkatpelajaran' => $mapelID
+               'id_tingkatpelajaran' => $mapelID,
+               'statusAksesFile'=>$this->input->post('statusAksesFile')
            );
 
-           // var_dump($dataSoal);
-           //call fungsi insert soal
-            $this->Mmodulonline->insert_soal($dataSoal);
+            $this->Mmodulonline->insert_modul($data_modul);
             $this->up_img_soal($UUID);
-           // // mengambil id soal untuk fk di tb_piljawaban
-           // $data['tb_banksoal'] = $this->Mmodulonline->get_soalID($UUID)[0];
-           // $soalID = $data['tb_banksoal']['id_soal'];        
 
            redirect(site_url('modulonline/allsoal'));
-           // var_dump($dataSoal);
-         // END SINTX UPLOAD SOAL  
     }
 
     //function upload gambar soal

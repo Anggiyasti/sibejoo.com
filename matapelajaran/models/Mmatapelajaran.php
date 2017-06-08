@@ -1,41 +1,23 @@
 <?php
-
-
-
 class Mmatapelajaran extends CI_Model {
 
-
-
     public function __construct() {
-
         parent::__construct();
 
     }
 
-
-
     public function daftarMapel() {
-
         $this->db->select('*');
-
         $this->db->from('tb_mata-pelajaran');
-
         $this->db->where('status', 1);
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
-
-
 
     public function daftarMapelSD() {
         $this->db->distinct();
         $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
-
         $this->db->from('tb_mata-pelajaran mp');
-
         $this->db->from('tb_tingkat-pelajaran tp');
 
         $this->db->join('tb_bab bab', 'bab.tingkatPelajaranID=tp.id');
@@ -43,44 +25,27 @@ class Mmatapelajaran extends CI_Model {
         $this->db->join('tb_video video','video.subBabID=sub.id');
 
         $this->db->where('mp.id = tp.mataPelajaranID');
-
         $this->db->where('tingkatID', '1');
-
         $this->db->where('mp.status', '1');
-
         $this->db->where('tp.status', '1');
 
-
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
-
-
 
     public function daftarMapelSMP() {
         $this->db->distinct();
         $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
-
         $this->db->from('tb_mata-pelajaran mp');
-
         $this->db->from('tb_tingkat-pelajaran tp');
-
         $this->db->join('tb_bab bab', 'bab.tingkatPelajaranID=tp.id');
         $this->db->join('tb_subbab sub','sub.babID=bab.id');
         $this->db->join('tb_video video','video.subBabID=sub.id');
 
         $this->db->where('mp.id = tp.mataPelajaranID');
-
         $this->db->where('tingkatID', '2');
-
         $this->db->where('mp.status', '1');
-
         $this->db->where('tp.status', '1');
-
-
 
         $query = $this->db->get();
 
@@ -93,11 +58,8 @@ class Mmatapelajaran extends CI_Model {
     public function daftarMapelSMA() {
         $this->db->distinct();
         $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
-
         $this->db->from('tb_mata-pelajaran mp');
-
         $this->db->from('tb_tingkat-pelajaran tp');
-
 
         $this->db->join('tb_bab bab', 'bab.tingkatPelajaranID=tp.id');
         $this->db->join('tb_subbab sub','sub.babID=bab.id');
@@ -105,17 +67,10 @@ class Mmatapelajaran extends CI_Model {
         $this->db->where('mp.id = tp.mataPelajaranID');
 
         $this->db->where('tingkatID', '3');
-
         $this->db->where('mp.status', '1');
-
         $this->db->where('tp.status', '1');
-
-
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
 
 
@@ -153,35 +108,22 @@ class Mmatapelajaran extends CI_Model {
     public function daftarMapelSMAIPS() {
         $this->db->distinct();
         $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
-
         $this->db->from('tb_mata-pelajaran mp');
-
         $this->db->from('tb_tingkat-pelajaran tp');
-
         $this->db->join('tb_bab bab', 'bab.tingkatPelajaranID=tp.id');
         $this->db->join('tb_subbab sub','sub.babID=bab.id');
         $this->db->join('tb_video video','video.subBabID=sub.id');
-
         $this->db->where('mp.id = tp.mataPelajaranID');
-
         $this->db->where('tingkatID', '5');
-
         $this->db->where('mp.status', '1');
-
         $this->db->where('tp.status', '1');
-
-
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
 
 
 
     public function tambahMP($data) {
-
         $this->db->insert('tb_mata-pelajaran', $data);
 
     }
@@ -189,75 +131,50 @@ class Mmatapelajaran extends CI_Model {
 
 
     function hapusMP($id) {
-
         $this->db->set('status', 0);
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_mata-pelajaran');
-
     }
 
 
 
     function rubahMP($id, $data) {
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_mata-pelajaran', $data);
-
     }
 
 
 
     public function tambahtingkatMP($data) {
-
         $this->db->insert('tb_tingkat-pelajaran', $data);
-
     }
 
 
 
     function hapustingkatMP($id) {
-
         $this->db->set('status', 0);
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_tingkat-pelajaran');
-
     }
 
 
 
     function rubahtingkatMP($id, $data) {
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_tingkat-pelajaran', $data);
-
     }
 
 
 
     public function daftarBab($id) {
-
         $this->session->set_userdata('id_mp', $id);
-
         $this->db->select('*, tbbab.id as idbab');
-
         $this->db->from('tb_bab as tbbab');
         $this->db->join('tb_tingkat-pelajaran as tbtipe','tbbab.tingkatPelajaranID = tbtipe.id');
-//        $this->db->join('tb_mata-pelajaran as tbmapel','tbtipe.mataPelajaranID = tbmapel.id');
-
         $this->db->where('tingkatPelajaranID', $id);
-
         $this->db->where('tbbab.status', 1);
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
 
 
@@ -268,24 +185,15 @@ class Mmatapelajaran extends CI_Model {
 
     }
 
-
-
     function rubahbabMP($id, $data) {
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_bab', $data);
-
     }
 
 
-
     function hapusbabMP($id, $data) {
-
         $this->db->set('status', 0);
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_bab');
 
     }
@@ -293,79 +201,62 @@ class Mmatapelajaran extends CI_Model {
 
 
     public function daftarsubBab($id) {
-
         $this->db->select('*,tb_subbab.id as subID');
-
         $this->db->from('tb_subbab');
-
         $this->db->where('babID', $id);
-
         $this->db->where('status', 1);
-
         $query = $this->db->get();
-
         return $query->result();
-
     }
 
 
 
     public function tambahsubbabMP($data) {
-
         $this->db->insert('tb_subbab', $data);
-
     }
 
 
 
     function rubahsubbabMP($id, $data) {
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_subbab', $data);
-
     }
 
 
 
     function hapussubbabMP($id, $data) {
-
         $this->db->set('status', 0);
-
         $this->db->where('id', $id);
-
         $this->db->update('tb_subbab');
-
     }
 
 
 
-    public function sc_bab_by_tingpel_id($tingpelID)
-
-    {
-
+    public function sc_bab_by_tingpel_id($tingpelID){
         $this->db->where('tingkatPelajaranID', $tingpelID);
-
         $this->db->select('id, keterangan, judulBab')->from('tb_bab');
-
         $query = $this->db->get();
-
         return $query->result_array();
+    }
 
+    public function member_sc_bab_by_tingpel_id($tingpelID){
+        $member = $this->session->userdata('member');
+        if ($member==0) {
+            $this->db->where('statusAksesLatihan',  0);
+        }
+        $this->db->where('tingkatPelajaranID', $tingpelID);
+        $this->db->select('id, keterangan, judulBab')->from('tb_bab');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 
 
     public function sc_sub_by_subid($subid){
-
         $this->db->where('id', $subid);
-
         $this->db->select('judulSubBab')->from('tb_subbab');
-
         $query = $this->db->get();
-
         return $query->result_array();
-
     }
 
 
@@ -373,15 +264,10 @@ class Mmatapelajaran extends CI_Model {
     #Menghitung jumlah pelajaran secara keseluruhan
 
     function get_courses_number(){
-
         $this->db->select('id');
-
         $this->db->from('tb_tingkat-pelajaran');
-
         $query = $this->db->get();
-
         return $query->num_rows();
-
     }
 
     function get_mapel_by_tingkatID($id_tingkat){

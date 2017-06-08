@@ -25,6 +25,17 @@ class Matapelajaran extends MX_Controller {
 		->set_output( json_encode( $this->Mmatapelajaran->get_bab_by_mapel( $mapel_id ) ) ) ;
 	}
 
+
+
+
+
+
+	public function memberzone_get_bab_by_tingpel_id( $tingpelID ) {
+		$data = $this->output
+		->set_content_type( "application/json" )
+		->set_output( json_encode( $this->Mmatapelajaran->member_sc_bab_by_tingpel_id( $tingpelID ) ) ) ;
+	}
+
 }
 
 

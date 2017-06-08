@@ -92,7 +92,9 @@
      </li>
       
       <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
-       <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"></a>
+       <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
+          <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
+        <?php endif ?></a>
         <ul class="dropdown" style="right: auto; display: none;">
          <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a>
          <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a>
@@ -107,7 +109,11 @@
       <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
       <li><a href="<?=base_url('welcome') ?>">Latihan<span class="indicator"></a></li>
       <li><a href="<?=base_url('welcome') ?>">Pesan<span class="indicator"></a></li>
-      <li><a href="<?=base_url('welcome') ?>">Halo, <?=$this->session->userdata('USERNAME') ?>!<span class="indicator"></a></li>     
+      <li><a href="<?=base_url('welcome') ?>">Halo, <?=$this->session->userdata('USERNAME') ?>! 
+        <?php if ($this->session->userdata('member')==1): ?>
+          <span class="label label-info">Member</span>
+        <?php endif ?>
+      <span class="indicator"></a></li>     
      <?php endif ?>
 
 

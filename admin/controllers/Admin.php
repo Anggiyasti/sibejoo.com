@@ -172,6 +172,11 @@ function rubahtingkatMP() {
     $data['keterangan'] = htmlspecialchars($this->input->post('keterangan'));
     $data['tingkatID'] = htmlspecialchars($this->input->post('tingkatMP'));
     $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
+    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
+    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
+    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
+
+
     $this->mmatapelajaran->rubahtingkatMP($id, $data);
 
     redirect(base_url('index.php/admin/daftartingkatpelajaran'));
@@ -199,7 +204,9 @@ function tambahbabMP() {
     $data['tingkatPelajaranID'] = htmlspecialchars($this->input->post('idtmp'));
     $data['judulBab'] = htmlspecialchars($this->input->post('judulBab'));
     $data['keterangan'] = htmlspecialchars($this->input->post('deskbab'));
-
+    $data['statusAksesKonsultasi']=htmlspecialchars($this->input->post('statusAksesKonsultasi'));
+    $data['statusAksesLearningLine']=htmlspecialchars($this->input->post('statusAksesLearningLine'));
+    $data['statusAksesLatihan']=htmlspecialchars($this->input->post('statusAksesLatihan'));
     $this->mmatapelajaran->tambahbabMP($data);
     redirect(base_url('index.php/admin/daftarbab/' . $nmmp . '/' . $data['tingkatPelajaranID']));
 }

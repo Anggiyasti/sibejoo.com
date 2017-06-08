@@ -225,7 +225,7 @@
       var babID;
       $.ajax({
         type: "POST",
-        url: "<?php echo base_url() ?>index.php/matapelajaran/get_bab_by_tingpel_id/" + tingPel,
+        url: "<?php echo base_url() ?>index.php/matapelajaran/memberzone_get_bab_by_tingpel_id/" + tingPel,
         success: function (data) {
 
           $.each(data, function (i, data) {

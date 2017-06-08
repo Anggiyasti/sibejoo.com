@@ -6,7 +6,7 @@
 class Mmodulonline extends CI_Model {
     # Start Function untuk form soal#	
 
-    public function insert_soal($dataSoal) {
+    public function insert_modul($dataSoal) {
         $this->db->insert('tb_modul', $dataSoal);
     }
 

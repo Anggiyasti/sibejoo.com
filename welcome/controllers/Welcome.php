@@ -32,7 +32,6 @@ class Welcome extends MX_Controller {
 
 
    public function index() {
-    
     $data = array(
         'judul_halaman' => 'Sibejoo - Welcome',
         'judul_header' =>'Video',
