@@ -50,11 +50,11 @@
                   <h4 class="line-bottom mb-10"><?=$paketitem['nm_paket'] ?></h4>
                   <p>Status : Belum Dikerjakan</p>
                   <?php if ($status_to=='doing'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-pencil"></i> Kerjakan</a>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
                   <?php elseif ($status_to=='done'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-times"></i></a>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-times"></i></a>
                   <?php else: ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-times"></i></a>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-timess"></i></a>
                   <?php endif; ?>
                 </div>
                </div>
@@ -71,25 +71,17 @@
           </div>
         <?php else: ?>
           <?php foreach ($paket_dikerjakan as $paketitem): ?>
-            <div class="col-sm-6 col-md-3">
-              <div class="service-block bg-white">
-                <div class="thumb"> <img alt="featured project" src="http://placehold.it/125x55" class="img-fullwidth">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
+                  <div class="media-body">
+                    <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
+                    <?php if ($status_to=="done"): ?>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
+                    <?php endif; ?>
+                  </div>
                 </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <!-- <h6 class="line-bottom mb-10"><?=$paketitem['nm_paket'] ?></h6> -->
-                  <!-- <p> </p> -->
-                  <h5><?=$paketitem['nm_paket'] ?></h5>
-                  <p>Status : Belum Dikerjakan</p>
-                  <?php if ($status_to=='doing'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-pencil"></i> Kerjakan</a>
-                  <?php elseif ($status_to=='done'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-times"></i></a>
-                  <?php else: ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="glyphicon glyphicon-times"></i></a>
-                  <?php endif; ?>
-                </div>
-               </div>
-            </div>
+              </div>
           <?php endforeach ?>
         <?php endif; ?>
         

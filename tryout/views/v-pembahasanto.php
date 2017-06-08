@@ -85,7 +85,7 @@
             <div class="container pt15 pb15">
                 <div class="">
                     <div class="page-header-section text-center">
-                        <img src="<?= base_url('assets/back/img/logo.png') ?>" width="70px"  alt>
+                        <img src="https://sibejoo.com/img/logo-sibejoo.png" width=""  alt>
                         <p class="title font-alt">Pembahasan Tryout Online 
                         </p>
                         <?php foreach ($topaket as $key): ?>

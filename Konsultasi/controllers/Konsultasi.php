@@ -39,7 +39,7 @@ class Konsultasi extends MX_Controller{
 
  public function pertanyaan_ku($key='') {
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> 'Daftar Pertanyaan Saya'
     );
 
@@ -91,7 +91,7 @@ class Konsultasi extends MX_Controller{
 
 public function pertanyaan_mentor(){
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> 'Daftar Pertanyaan Mentor Saya'
     );
 
@@ -148,7 +148,7 @@ public function pertanyaan_all() {
   ## kalo gak ada yang di cari
 
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> 'Daftar Semua Pertanyaan'
     );
 
@@ -202,7 +202,7 @@ public function pertanyaan_grade() {
   ## kalo gak ada yang di cari
 
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> 'Daftar Pertanyaan Setingkat'
     );
 
@@ -320,7 +320,7 @@ function list_image_uploaded(){
 public function bertanya($bab){
 
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> 'Buat Pertanyaan',
     'bab' => $bab
     );
@@ -344,7 +344,7 @@ public function editpost($id){
   // cek apakah data yang editnya benar yang dia buat?
   if ($data_edit) {
     $data = array(
-      'judul_halaman' => 'Neon - Edit Jawaban',
+      'judul_halaman' => 'Sibejoo - Edit Jawaban',
       'judul_header'=> 'Edit Jawaban',
       );
 
@@ -554,7 +554,7 @@ function search_tingkat(){
 
 function upload(){
   $data = array(
-    'judul_halaman' => 'Neon - Konsultasi',
+    'judul_halaman' => 'Sibejoo - Konsultasi',
     'judul_header'=> "Upload untuk forum",
     );
 
@@ -631,7 +631,7 @@ function ajax_update_jawaban(){
 function show_post(){
   $id = $this->session->userdata['idjawab'];
   $data = array(
-    'judul_halaman' => 'Neon - Single Post',
+    'judul_halaman' => 'Sibejoo - Single Post',
     );
   $data['data_postingan'] = $this->mkonsultasi->show_post($id)[0];
 
@@ -675,7 +675,7 @@ function singlekonsultasi(){
 
 
   $data = array(
-    'judul_halaman' => 'Neon - '.$single_pertanyaan['judulPertanyaan'],
+    'judul_halaman' => 'Sibejoo - '.$single_pertanyaan['judulPertanyaan'],
     'judul_header'=> $single_pertanyaan['judulPertanyaan'],
     'isi'=> $single_pertanyaan['isiPertanyaan'],
     'author'=> $single_pertanyaan['namaDepan']." ".$single_pertanyaan['namaBelakang'],
@@ -708,7 +708,7 @@ public function pertanyaan_ku_search(){
   $kunci = $this->session->userdata['keyword']; 
   if (!empty($kunci)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi',
+      'judul_halaman' => 'Sibejoo - Konsultasi',
       'judul_header'=> 'Daftar Pertanyaan Saya'
       );
     $kunci = str_replace(' ', '_', $kunci);
@@ -761,7 +761,7 @@ public function filter(){
   $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi Filter Semua Pertanyaanku',
+      'judul_halaman' => 'Sibejoo - Konsultasi Filter Semua Pertanyaanku',
       'judul_header'=> 'Hasil Pencarian : '.$matapelajaran."-".$bab
       );
     $matapelajaran = str_replace(' ', '_', $matapelajaran);
@@ -820,7 +820,7 @@ public function filter_grade(){
   $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi Filter Tingkat',
+      'judul_halaman' => 'Sibejoo - Konsultasi Filter Tingkat',
       'judul_header'=> 'Hasil Pencarian : '.$matapelajaran."-".$bab
       );
     $matapelajaran = str_replace(' ', '_', $matapelajaran);
@@ -877,7 +877,7 @@ public function filter_pertanyaanku(){
     $bab = str_replace(' ', '_', $bab);
 
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi Filter pertanyaan_ku',
+      'judul_halaman' => 'Sibejoo - Konsultasi Filter pertanyaan_ku',
       'judul_header'=> 'Hasil Pencarian : '.$matapelajaran."-".$bab
       );
     
@@ -930,7 +930,7 @@ public function filter_mentor($matapelajaran='',$bab=''){
   $bab = str_replace('_', ' ', $bab);
   if (!empty($matapelajaran)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi',
+      'judul_halaman' => 'Sibejoo - Konsultasi',
       'judul_header'=> 'Hasil Pencarian : '.$matapelajaran."-".$bab
       );
     $data['files'] = array(
@@ -980,7 +980,7 @@ public function pertanyaan_all_search(){
   $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi',
+      'judul_halaman' => 'Sibejoo - Konsultasi',
       'judul_header'=> 'Hasil Pencarian Semua Daftar Pertanyaan'
       );
     $kunci = str_replace(' ', '_', $kunci);
@@ -1038,7 +1038,7 @@ public function pertanyaan_grade_search(){
   $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi',
+      'judul_halaman' => 'Sibejoo - Konsultasi',
       'judul_header'=> 'Hasil Pencarian Daftar Pertanyaan Tingkat'
       );
     $kunci = str_replace(' ', '_', $kunci);
@@ -1090,7 +1090,7 @@ public function pertanyaan_mentor_search(){
   $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
-      'judul_halaman' => 'Neon - Konsultasi',
+      'judul_halaman' => 'Sibejoo - Konsultasi',
       'judul_header'=> 'Hasil Pencarian Daftar Pertanyaan Mentor'
       );
     $kunci = str_replace(' ', '_', $kunci);
