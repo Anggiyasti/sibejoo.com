@@ -184,7 +184,7 @@ a, button {
 						<article>
 							<div class="row bg-color-2">
 								<div class="container"><?=$item_postingan['date_created'] ?> |
-								<a title="view single post" href="<?=$link ?>">#<?=$number ?></a></div>
+								<a title="view single post" onclick="tamp_idjawab(<?=$item_postingan['jawabID']?>)">#<?=$number ?></a></div>
 							</div><br>
 
 							<div class="quotes clear-fix" >
@@ -490,6 +490,26 @@ a, button {
 					});
 				}
 			}
+
+	// redirect show post
+  function tamp_idjawab(idjawab) {
+    url_ajax = base_url+"konsultasi/tamp_idjawab";
+
+    var global_properties = {
+      idjawab: idjawab
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/show_post";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
 		</script>
-
-

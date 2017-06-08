@@ -1,6 +1,12 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
 
+<style type="text/css">
+	a, button {
+    	cursor: pointer;
+	}
+</style>
+
 <!-- TITLE -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
   <div class="container pt-70 pb-20">
@@ -94,7 +100,7 @@
 				                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5>
 				                  <div class="comment-date">(<?=$question['date_created'] ?>)</div>
 				                  <div class="col-md-10">
-				                  	<a href="<?=base_url('konsultasi/singlekonsultasi/') ?><?=$question['pertanyaanID'] ?>">
+				                  	<a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)">
 					                  <blockquote class="gray pt-20 pb-20" >
 						                <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
 						                <footer><?=$question['isiPertanyaan'] ?></footer>
@@ -161,12 +167,31 @@
  <script type="text/javascript">
  	$("#search1").on('keyup', function (e) {
  		if (e.keyCode == 13) {
- 			keyword = $('#search1').val().replace(/ /g,"-");		;
- 			document.location = base_url+"konsultasi/pertanyaan_grade_search/"+keyword;
+ 			keyword = $('#search1').val().replace(/ /g,"-");		
+ 			
+ 			url_ajax = base_url+"konsultasi/tamp_search";
+	    
+		   var global_properties = {
+		      keyword: keyword
+		   };
+
+		   $.ajax({
+		      type: "POST",
+		      dataType: "JSON",
+		      url: url_ajax,
+		      data: global_properties,
+		      success: function(data){
+		        document.location = base_url+"konsultasi/pertanyaan_grade_search";
+		      },error:function(data){
+		        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+		      }
+
+		    });
  		}
  	});
 
  	$('.cari-btn').click(function(){
+ 		url_ajax = base_url+"konsultasi/tamp_cari";
  		var mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
  		var bab= $('#babSelect').find(":selected").text().replace(/ /g,"_");
 
@@ -175,10 +200,64 @@
  			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
  		}else{
  			if (mapel!='Pilih Mata Pelajaran' && bab=='Bab Pelajaran') {
- 				document.location = base_url+"konsultasi/filter_grade/"+mapel+"all";
+ 				var global_properties = {
+			      mapel: mapel,
+			      bab: 'all'
+			    };
+
+				$.ajax({
+			      type: "POST",
+			      dataType: "JSON",
+			      url: url_ajax,
+			      data: global_properties,
+			      success: function(data){
+			        document.location = base_url+"konsultasi/filter_grade"; 
+			      },error:function(data){
+			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+			      }
+
+			    });
  			}else if(bab!='Bab Pelajaran'){
- 				document.location = base_url+"konsultasi/filter_grade/"+mapel+"/"+bab;
+ 				var global_properties2 = {
+			      mapel: mapel,
+			      bab: bab
+			    };
+
+			    $.ajax({
+			      type: "POST",
+			      dataType: "JSON",
+			      url: url_ajax,
+			      data: global_properties2,
+			      success: function(data){
+			        document.location = base_url+"konsultasi/filter_grade"; 
+			      },error:function(data){
+			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+			      }
+
+			    });
  			}
  		}
  	});
+
+ 	// redirect ke single konsultasi
+  function single_konsul(pertanyaanID) {
+    url_ajax = base_url+"konsultasi/tamp_single";
+
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
  </script>

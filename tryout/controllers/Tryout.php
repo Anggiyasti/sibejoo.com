@@ -34,18 +34,17 @@ class Tryout extends MX_Controller {
     public function index() {
         $this->session->unset_userdata('id_tryout');
         $data = array(
-            'judul_halaman' => 'Neon - Tryout',
+            'judul_halaman' => 'Sibejoo - Tryout',
             'judul_header' => 'Daftar Tryout',
             'judul_tingkat' => '',
             );
 
-        $konten = 'modules/tryout/views/v-daftar-to.php';
+        $konten = 'modules/tryout/views/r-daftar-to.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/v-header-login.php',
-            APPPATH . 'modules/templating/views/t-f-pagetitle.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . $konten,
-            APPPATH . 'modules/testimoni/views/v-footer.php',
+            APPPATH . 'modules/templating/views/r-footer.php',
             
             );
         if ($this->session->userdata('HAKAKSES')=='ortu') {
@@ -59,7 +58,7 @@ class Tryout extends MX_Controller {
         $datas['id_siswa'] = $this->Mtryout->get_id_siswa();
     }
         $data['tryout'] = $this->Mtryout->get_tryout_akses($datas);
-        $this->parser->parse('templating/index', $data);
+        $this->parser->parse('templating/r-index', $data);
     }
 
     public function create_seassoin_idto($id_to) {
@@ -110,19 +109,18 @@ class Tryout extends MX_Controller {
 
         if (isset($id_to)) {
             $data = array(
-                'judul_halaman' => 'Neon - Daftar Paket',
+                'judul_halaman' => 'Sibejoo - Daftar Paket',
                 'judul_header' => 'Tryout : ' . $data['nama_to'],
                 'judul_tingkat' => '',
                 'nama_to' => $data_to['nm_tryout'],
                 );
 
             // FILES
-            $konten = 'modules/tryout/views/v-daftar-paket.php';
+            $konten = 'modules/tryout/views/r-daftar-paket.php';
             $data['files'] = array(
-                APPPATH . 'modules/homepage/views/v-header-login.php',
-                APPPATH . 'modules/templating/views/t-f-pagetitle.php',
+                APPPATH . 'modules/homepage/views/r-header-login.php',
                 APPPATH . $konten,
-                APPPATH . 'modules/testimoni/views/v-footer.php',
+                APPPATH . 'modules/templating/views/r-footer.php',
                 );
             // DAFTAR PAKET
             $data['paket_dikerjakan'] = $this->Mtryout->get_paket_reported($datas);
@@ -134,7 +132,7 @@ class Tryout extends MX_Controller {
             $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
 
 
-            $this->parser->parse('templating/index', $data);
+            $this->parser->parse('templating/r-index', $data);
             //unset session
             $this->session->unset_userdata('id_paketpembahasan');
             $this->session->unset_userdata('id_tryoutpembahasan');

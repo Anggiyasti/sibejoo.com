@@ -618,13 +618,18 @@ function ajax_update_jawaban(){
     'penggunaID' => $this->session->userdata('id'),
     'id' =>$this->input->post( 'id' ),
     );
-  var_dump($data);
+
+  $id = $this->input->post('pertanyaanID');
+  $this->session->set_userdata('pertanyaanID', $id);
+  echo json_encode($id);
+
   $this->mkonsultasi->edit_jawaban($data);
 }
 
 
 # function show single konsultasi
-function show_post($id){
+function show_post(){
+  $id = $this->session->userdata['idjawab'];
   $data = array(
     'judul_halaman' => 'Neon - Single Post',
     );
@@ -636,13 +641,14 @@ function show_post($id){
     APPPATH.'modules/templating/views/r-footer.php'
     );
 
-  $this->parser->parse( 'templating/r-index-login', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 
 }
 
 
 # function show single konsultasi
-function singlekonsultasi($id_pertanyaan){
+function singlekonsultasi(){
+  $id_pertanyaan = $this->session->userdata['pertanyaanID']; 
   ##KONFIGURASI UNTUUK PAGINATION
   $config = array();
   $config["base_url"] = base_url() . "konsultasi/singlekonsultasi/".$id_pertanyaan;
@@ -690,16 +696,16 @@ function singlekonsultasi($id_pertanyaan){
   $data["data_postingan"] = $this->mkonsultasi->get_postingan_pagination($id_pertanyaan,$config["per_page"], $page);
   $data["links"] = $this->pagination->create_links();
 
-
   $data['files'] = array(
     APPPATH.'modules/homepage/views/r-header-login.php',
     APPPATH.'modules/konsultasi/views/r-single-konsultasi.php',
     APPPATH.'modules/templating/views/r-footer.php'
     );
-  $this->parser->parse( 'templating/r-index-login', $data );
+  $this->parser->parse( 'templating/r-index', $data );
 }
 
-public function pertanyaan_ku_search($kunci=''){
+public function pertanyaan_ku_search(){
+  $kunci = $this->session->userdata['keyword']; 
   if (!empty($kunci)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi',
@@ -743,14 +749,16 @@ public function pertanyaan_ku_search($kunci=''){
     $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page, $kunci);
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
-    $this->parser->parse( 'templating/r-index-login', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_ku'));
   }
 }
 
-public function filter($matapelajaran='',$bab=''){
+public function filter(){
+  $matapelajaran = $this->session->userdata['mapel'];
+  $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi Filter Semua Pertanyaanku',
@@ -800,14 +808,16 @@ public function filter($matapelajaran='',$bab=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/r-index-login', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_all'));
   }
 }
 
-public function filter_grade($matapelajaran='',$bab=''){
+public function filter_grade(){
+  $matapelajaran = $this->session->userdata['mapel'];
+  $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi Filter Tingkat',
@@ -816,11 +826,10 @@ public function filter_grade($matapelajaran='',$bab=''){
     $matapelajaran = str_replace(' ', '_', $matapelajaran);
     $bab = str_replace(' ', '_', $bab);
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi_grade.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_grade.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
   // jika gada yang di search, key di set kosong
   ##KONFIGURASI UNTUUK PAGINATION
@@ -853,14 +862,16 @@ public function filter_grade($matapelajaran='',$bab=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_all'));
   }
 }
 
-public function filter_pertanyaanku($matapelajaran='',$bab=''){
+public function filter_pertanyaanku(){
+  $matapelajaran = $this->session->userdata['mapel'];
+  $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $matapelajaran = str_replace(' ', '_', $matapelajaran);
     $bab = str_replace(' ', '_', $bab);
@@ -871,11 +882,10 @@ public function filter_pertanyaanku($matapelajaran='',$bab=''){
       );
     
     $data['files'] = array(
-      APPPATH.'modules/homepage/views/v-header-login.php',
-      APPPATH.'modules/templating/views/t-f-pagetitle.php',
-      APPPATH.'modules/konsultasi/views/v-daftar-konsultasi.php',
-      APPPATH.'modules/konsultasi/views/v-show-tingkat.php',
-      APPPATH.'modules/homepage/views/v-footer.php'
+      APPPATH.'modules/homepage/views/r-header-login.php',
+      APPPATH.'modules/konsultasi/views/r-daftar-konsultasi.php',
+      APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
+      APPPATH.'modules/templating/views/r-footer.php'
       );
 
     
@@ -908,7 +918,7 @@ public function filter_pertanyaanku($matapelajaran='',$bab=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/index', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_all'));
@@ -966,7 +976,8 @@ public function filter_mentor($matapelajaran='',$bab=''){
   }
 }
 
-public function pertanyaan_all_search($kunci=''){
+public function pertanyaan_all_search(){
+  $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi',
@@ -1016,14 +1027,15 @@ public function pertanyaan_all_search($kunci=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
 
-    $this->parser->parse( 'templating/r-index-login', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_ku'));
   }
 }
 
-public function pertanyaan_grade_search($kunci=''){
+public function pertanyaan_grade_search(){
+  $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi',
@@ -1067,14 +1079,15 @@ public function pertanyaan_grade_search($kunci=''){
     $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page, $kunci);
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config['total_rows'];
-    $this->parser->parse( 'templating/r-index-login', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_grade'));
   }
 }
 
-public function pertanyaan_mentor_search($kunci=''){
+public function pertanyaan_mentor_search(){
+  $kunci = $this->session->userdata['keyword'];
   if (!empty($kunci)) {
     $data = array(
       'judul_halaman' => 'Neon - Konsultasi',
@@ -1118,7 +1131,7 @@ public function pertanyaan_mentor_search($kunci=''){
     $data["links"] = $this->pagination->create_links();
     $data['jumlah_postingan'] = $config["total_rows"];
 
-    $this->parser->parse( 'templating/r-index-login', $data );
+    $this->parser->parse( 'templating/r-index', $data );
  # code...
   }else{
     redirect(base_url('konsultasi/pertanyaan_grade'));
@@ -1379,4 +1392,39 @@ function get_last_jawaban(){
   $data = $this->mkonsultasi->get_last_jawaban();
   echo json_encode($data);
 }
+
+// tampung id pertanyaan
+  public function tamp_single() {   
+    $id = $this->input->post('pertanyaanID');
+    $this->session->set_userdata('pertanyaanID', $id);
+    echo json_encode($id);
+        
+  }
+
+  // tampung keyword search
+  public function tamp_search() {   
+    $keyword = $this->input->post('keyword');
+    $this->session->set_userdata('keyword', $keyword);
+    echo json_encode($keyword);
+        
+  }
+
+  // tampung isi cari
+  public function tamp_cari() {   
+    $mapel = $this->input->post('mapel');
+    $bab = $this->input->post('bab');
+    $this->session->set_userdata('mapel', $mapel);
+    $this->session->set_userdata('bab', $bab);
+    echo json_encode($mapel);
+        
+  }
+
+  // tampung id jawab
+  public function tamp_idjawab() {   
+    $idjawab = $this->input->post('idjawab');
+    $this->session->set_userdata('idjawab', $idjawab);
+    echo json_encode($idjawab);
+        
+  }
 }
+?>

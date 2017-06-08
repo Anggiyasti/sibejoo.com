@@ -204,13 +204,11 @@
 
 	function save(){
 		var desc = ckeditor.getData();
-		console.log(desc);
 		var data = {
 			isi : desc+"<br>",
-			id:"<?=$edit['id'] ?>"
+			id:"<?=$edit['id'] ?>",
+			pertanyaanID: <?=$edit['pertanyaanID'] ?>
 		}
-
-		console.log(data);
 
 		if (data.isi == "") {
 			$('#info').show();
@@ -220,18 +218,16 @@
 				url : url,
 				type: "POST",
 				data: data,
-				dataType: "TEXT",
+				dataType: "JSON",
 				success: function(data)
 				{
-					console.log(data);
                 $('.post').text('Posting..'); //change 
                 $('.post').attr('disabled',false); //set 
-                window.location = base_url+"konsultasi/singlekonsultasi/"+<?=$edit['pertanyaanID'] ?>;
+                window.location = base_url+"konsultasi/singlekonsultasi";
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
             	swal('Error adding / update data');
-            	console.log(data);
             }
         });
 		}

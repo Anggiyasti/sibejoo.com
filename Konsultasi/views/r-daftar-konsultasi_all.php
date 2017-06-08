@@ -1,5 +1,11 @@
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+
+<style type="text/css">
+	a, button {
+    	cursor: pointer;
+	}
+</style>
 
 
 <!-- TITLE -->
@@ -96,40 +102,39 @@
 				                  <div class="comment-date">(<?=$question['date_created'] ?>)</div>
 
 				                  <div class="col-md-10">
-				                  	<a href="<?=base_url('konsultasi/singlekonsultasi/') ?><?=$question['pertanyaanID'] ?>">
+				                  	<a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)">
 					                  <blockquote class="gray pt-20 pb-20" >
 						                <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
 						                <footer><?=$question['isiPertanyaan'] ?></footer>
 
 						              </blockquote>
 						            </a>
-					              
-				                  <div class="tagline p-0 pt-20 mt-5">
-					                <div class="row">
-					                  <div class="col-md-4">
+					                  <div class="tagline p-0 pt-20 mt-5">
+						                <div class="row">
+						                  <div class="col-md-4">
+						                  </div>
+						                  <div class="col-md-8">
+						                    <div class="share text-right">
+						                     	<p>
+						                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/all') ?>"><i class="fa fa-tags text-theme-color-2"></i> <?=$question['namaMataPelajaran'] ?></a> | 
+						                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/'.str_replace(' ', '_', $question['judulBab'])) ?>	">
+													<i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?></a> |
+													<span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
+													<?php if (!empty($question['namaGuru'])): ?>
+														<a ><span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
+													<?php else: ?>
+														<span>Tanpa Mentor</span>
+													<?php endif ?>
+												</p>
+						                    </div>
+						                  </div>
+						                </div>
 					                  </div>
-					                  <div class="col-md-8">
-					                    <div class="share text-right">
-					                     	<p>
-					                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/all') ?>"><i class="fa fa-tags text-theme-color-2"></i> <?=$question['namaMataPelajaran'] ?></a> | 
-					                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/'.str_replace(' ', '_', $question['judulBab'])) ?>">
-												<i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?></a> |
-												<span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
-												<?php if (!empty($question['namaGuru'])): ?>
-													<span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
-												<?php else: ?>
-													<span>Tanpa Mentor</span>
-												<?php endif ?>
-											</p>
-					                    </div>
-					                  </div>
-					                </div>
-				                  </div>
-
-				                </div>
+				                	</div>
 				                <div class="clearfix"></div>
 				             </div>
 
+      						</div>
       					</div>
       				<?php endforeach ?>
       			<?php else: ?>
@@ -167,14 +172,33 @@
 
 	$("#search1").on('keyup', function (e) {
 		if (e.keyCode == 13) {
-			keyword = $('#search1').val().replace(/ /g,"-");		;
-			document.location = base_url+"konsultasi/pertanyaan_all_search/"+keyword;
+			keyword = $('#search1').val().replace(/ /g,"-");		
+			
+			url_ajax = base_url+"konsultasi/tamp_search";
+	    
+		   var global_properties = {
+		      keyword: keyword
+		   };
+
+		   $.ajax({
+		      type: "POST",
+		      dataType: "JSON",
+		      url: url_ajax,
+		      data: global_properties,
+		      success: function(data){
+		        document.location = base_url+"konsultasi/pertanyaan_all_search";
+		      },error:function(data){
+		        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+		      }
+
+		    });
 		}
 	});
 
 	$('.cari-btn').click(function(){
 		var mapel;
 		var bab;
+		url_ajax = base_url+"konsultasi/tamp_cari";
 
 		if (hakAkses=='guru') {
 			mapel= $('#mapel_select_guru').find(":selected").text().replace(/ /g,"_");
@@ -188,10 +212,64 @@
 			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
 		}else{
 			if (bab=='Bab_Pelajaran') {
-				document.location = base_url+"konsultasi/filter/"+mapel+"/all";
+				var global_properties = {
+			      mapel: mapel,
+			      bab: 'all'
+			    };
+
+				$.ajax({
+			      type: "POST",
+			      dataType: "JSON",
+			      url: url_ajax,
+			      data: global_properties,
+			      success: function(data){
+			        document.location = base_url+"konsultasi/filter"; 
+			      },error:function(data){
+			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+			      }
+
+			    });
 			}else if(bab!='Bab_Pelajaran'){
-				document.location = base_url+"konsultasi/filter/"+mapel+"/"+bab;
+				var global_properties2 = {
+			      mapel: mapel,
+			      bab: bab
+			    };
+
+			    $.ajax({
+			      type: "POST",
+			      dataType: "JSON",
+			      url: url_ajax,
+			      data: global_properties2,
+			      success: function(data){
+			        document.location = base_url+"konsultasi/filter"; 
+			      },error:function(data){
+			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+			      }
+
+			    });
 			}
 		}
 	});
+
+	// redirect ke single konsultasi
+  function single_konsul(pertanyaanID) {
+    url_ajax = base_url+"konsultasi/tamp_single";
+
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
 </script>

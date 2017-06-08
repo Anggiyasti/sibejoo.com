@@ -137,7 +137,7 @@ a, button {
       				<article>
       					<div class="row bg-color-2">
 							<div class="container"><?=$data_postingan['date_created'] ?> |
-							 <a href="<?=$link ?>"><?=$data_postingan['judulPertanyaan'] ?></a></div>
+							 <a onclick="single_konsul(<?=$data_postingan['pertanyaanID'] ?>)"><?=$data_postingan['judulPertanyaan'] ?></a></div>
 						</div><br>
 
 						<div class="quotes clear-fix" >
@@ -387,12 +387,26 @@ function get_data(data, datas){
 		});
 	}
 }
-</script>
 
-<!-- FUNGSI EDIT -->
-<script>
-	function edit(){
+// redirect ke single konsultasi
+  function single_konsul(pertanyaanID) {
+    url_ajax = base_url+"konsultasi/tamp_single";
 
-	}	
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
 </script>
-<!-- FUNGSI EDIT -->
