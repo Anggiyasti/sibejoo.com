@@ -433,6 +433,12 @@ class Token extends MX_Controller {
 	      	$type = '-';
 	      	$masa_aktif = $token_item->masaAktif.' Hari';
 	    }
+	    // hitung sisa aktif 
+	    if ($date1 > $date2) {
+			$sisa_aktif = '0';
+		} else {
+			$sisa_aktif =$date2->diff($date1)->days;
+		}
 
       	$tb_token.='
 	        <tr>
@@ -444,7 +450,7 @@ class Token extends MX_Controller {
 	          <td>'.$masa_aktif.'</td>
 	          <td>'.$date_diaktifkan.'</td>
 	          <td>'.$date_kadaluarsa.'</td>
-	          <td>'.$sisa_aktif->days.' Hari</td>
+	          <td>'.$sisa_aktif.' Hari</td>
 	          <td>'.$tokenStatus.'</td>
 	          <td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
 	      	</tr>
