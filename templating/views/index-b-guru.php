@@ -430,7 +430,7 @@
       </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
     <?php endforeach ?>
 
-     <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
+    <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
       <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
       <a href="<?= base_url('konsultasi/singlekonsultasi/'.$value['id'])?>" class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
         <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
@@ -686,15 +686,10 @@
 <ul id="modulonline" class="submenu collapse ">
   <li class="submenu-header ellipsis">Modul Online</li>
 
-  <li >
-   <a href="javascript:void(0);" onclick="add_modul()">
-    <span class="text">Tambahkan Modul</span> 
+  <li>
+   <a href="<?=base_url('index.php/modulonline/daftar_modul')?>" data-target="#submodul" data-toggle="submenu"  >
+    <span class="text">Daftar Modul</span>
   </a>
-</li>
-<li >
- <a href="<?=base_url('index.php/modulonline/allsoal')?>" data-target="#submodul" data-toggle="submenu"  >
-  <span class="text">Daftar Modul</span>
-</a>
 </li>
 
 </ul>
@@ -846,7 +841,7 @@
         $( "#message-tbody" ).prepend(konten);
       }
 
-  });
+    });
     // SOCKET CREATE PERTANYAAN
     
     // SOCKET REMOVE NOTIFIKASI
@@ -863,7 +858,7 @@
     // SOCKET REMOVE NOTIFIKASI
 
 
-  
+    
   });
 
 </script>
