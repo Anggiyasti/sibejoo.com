@@ -603,6 +603,83 @@
       </div>
     </section>
 
+    <!-- Section: Pricing Table -->
+    <section class="bg-lighter" id="pricing">
+      <div class="container">
+         <div class="section-title mb-10">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Price List</span></h2>
+         </div>
+        </div>
+        </div>
+        <div class="section-content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+              <div class="pricing-table maxwidth400">
+                <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
+                </div>
+                <img src="http://placehold.it/359x120" alt="">
+                <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                  <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
+                  <ul class="table-list list-icon theme-colored pb-0">
+                    <li><i class="fa fa-check"></i>Video Belajar</li>
+                    <li><i class="fa fa-times"></i>Latihan</li>
+                    <li><i class="fa fa-times"></i>Try Out</li>
+                    <li><i class="fa fa-times"></i>Konsultasi</li>
+                    <li><i class="fa fa-times"></i>Edu Drive</li>
+                    <li><i class="fa fa-times"></i>Learning Line</li>
+                    <li><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
+                  </ul>
+                </div>
+                <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+              <div class="pricing-table maxwidth400">
+                <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
+                </div>
+                <img src="http://placehold.it/359x120" alt="">
+                <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                  <h3 class="package-type font-28 m-0 text-black">Hero Member</h3>
+                  <ul class="table-list list-icon theme-colored pb-0">
+                    <li><i class="fa fa-check"></i>Video Belajar</li>
+                    <li><i class="fa fa-check"></i>Latihan</li>
+                    <li><i class="fa fa-check"></i>Try Out</li>
+                    <li><i class="fa fa-check"></i>Konsultasi</li>
+                    <li><i class="fa fa-check"></i>Edu Drive</li>
+                    <li><i class="fa fa-check"></i>Learning Line</li>
+                    <li><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
+                  </ul>
+                </div>
+                <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+              <div class="pricing-table maxwidth400">
+                <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
+                </div>
+                <img src="http://placehold.it/359x120" alt="">
+                <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                  <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
+                  <ul class="table-list list-icon theme-colored pb-0">
+                    <li><i class="fa fa-check"></i>Video Belajar</li>
+                    <li><i class="fa fa-check"></i>Latihan</li>
+                    <li><i class="fa fa-check"></i>Try Out</li>
+                    <li><i class="fa fa-check"></i>Konsultasi</li>
+                    <li><i class="fa fa-check"></i>Edu Drive</li>
+                    <li><i class="fa fa-check"></i>Learning Line</li>
+                    <li><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
+                  </ul>
+                </div>
+                <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+    </section>
+
     <!-- Divider: Fun Facts -->
     <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1920x1280" data-parallax-ratio="0.7">
       <div class="container">
@@ -745,3 +822,4 @@
         </div>
       </div>
     </section>
+

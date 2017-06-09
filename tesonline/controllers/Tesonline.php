@@ -24,7 +24,7 @@ class Tesonline extends MX_Controller {
 
 public function index() {
     $data = array(
-        'judul_halaman' => 'Neon - Latihan Online',
+        'judul_halaman' => 'Sibejoo - Latihan Online',
         'judul_header' => 'Latihan Online'
         );
 
@@ -47,7 +47,7 @@ public function pilihmapel() {
     if ($idtingkat) {
        
         $data = array(
-            'judul_halaman' => 'Neon - Pilih Mata Pelajaran',
+            'judul_halaman' => 'Sibejoo - Pilih Mata Pelajaran',
             'judul_header' => 'Latihan Online'
             );
         $data['files'] = array(
@@ -77,7 +77,7 @@ public function mulai() {
         //kalo gada yang dikirimkan nilainya
     if (!isset($_POST['id'])) {
         $data = array(
-            'judul_halaman' => 'Neon - Pilih Mata Pelajaran',
+            'judul_halaman' => 'Sibejoo - Pilih Mata Pelajaran',
             'judul_header' => 'Sepertinya anda tersesat',
             'judul_tingkat' => '',
             );
@@ -88,7 +88,7 @@ public function mulai() {
         $data['paket'] = $this->load->mtesonline->getpaketbytingkatmapel($id);
         $tingkatID = $this->load->mtesonline->getpaketbytingkatmapel($id)[0]->tingkatID;
         $data = array(
-            'judul_halaman' => 'Neon - Pilih Mata Pelajaran',
+            'judul_halaman' => 'Sibejoo - Pilih Mata Pelajaran',
             'judul_header' => 'Latihan Online',
             'judul_tingkat' => '',
             );
@@ -110,7 +110,7 @@ public function mulai() {
 
 public function daftarlatihan() {
     $data = array(
-        'judul_halaman' => 'Neon - Daftar Latihan',
+        'judul_halaman' => 'Sibejoo - Daftar Latihan',
         'judul_header' => 'History Latihan',
         'judul_tingkat' => '',
         );

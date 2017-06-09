@@ -4,7 +4,7 @@
       <div class="row border-bottom">
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <img class="mt-5 mb-20" alt="" src="<?=base_url('assets/back/img/logo.png')?>">
+            <img class="mt-5 mb-20" alt="" src="http://sibejoo.com/img/logo-sibejoo.png">
             <p>2017, Sibejoo, Melbourne, Australia.</p>
             <ul class="list-inline mt-5">
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
