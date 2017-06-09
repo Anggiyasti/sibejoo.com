@@ -603,6 +603,40 @@
       </div>
     </section>
 
+     <!-- Section: SERVICE -->
+    <section id="service" class="bg-lighter">
+      <div class="container pb-60">
+        <div class="section-title mb-10">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Artikel</span></h2>
+         </div>
+        </div>
+        </div>
+        <div class="section-content" >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="owl-carousel-4col" data-dots="true" >
+              <?php foreach ($artikel as $key): ?>
+                <div class="item " >
+                  <div class="service-block bg-light" >
+                    <div class="thumb"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
+                    <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_artikel'] ?></span></h4>
+                    </div>
+                    <div class="content text-left flip p-25 pt-0" style="height: 250px;">
+                      <h4 class="line-bottom mb-10"><?=$key['judul_artikel'] ?></h4>
+                      <p ><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
+                    </div>
+                  </div>
+                </div>
+                <?php endforeach ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Section: Pricing Table -->
     <section class="bg-lighter" id="pricing">
       <div class="container">
@@ -823,3 +857,27 @@
       </div>
     </section>
 
+
+  <script type="text/javascript">
+    function detailArtikel(id_artikel) {
+        url_ajax = base_url+"homepage/ambilid";
+
+        var global_properties = {
+          id_artikel: id_artikel
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "homepage/detail_artikel";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+    
+</script>

@@ -37,6 +37,7 @@ class Homepage extends MX_Controller {
         $data['teachers'] = $this->mguru->get_guru_random();
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();
+        $data['artikel'] = $this->Mhomepage->get_artikel();
 
         $this->parser->parse('r-index-homepage', $data);
         // echo "string";
@@ -71,6 +72,36 @@ class Homepage extends MX_Controller {
              // echo FALSE;
         }
     }
+
+    // tampung id 
+    public function ambilid()
+    {   
+            $id = $this->input->post('id_artikel');
+            $this->session->set_userdata('id_artikel', $id);
+            echo json_encode($id);
+        
+    }
+    // menampilkan detail artikel
+    public function detail_artikel()
+    {
+        $id_artikel = $this->session->userdata['id_artikel']; 
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+             'judul_header2' =>'Detail Artikel'
+        );
+
+
+        $data['detartikel'] = $this->Mhomepage->get_artikel_detail($id_artikel);
+        $data['listart'] = $this->Mhomepage->list_artikel();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-detail-artikel.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
+        );
+        $this->parser->parse('templating/r-index', $data);
+    }
+
+
 
     
 }

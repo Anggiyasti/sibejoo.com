@@ -66,6 +66,7 @@
   <![endif]-->
 </head>
 <body class="">
+    <script type="text/javascript">var base_url = "<?= base_url() ?>"</script>
   <div id="wrapper" class="clearfix">
 
     <?php include 'r-header.php' ?>

@@ -24,6 +24,31 @@ class Mhomepage extends CI_Model {
         return $query->result_array();
     }
 
+      public function get_artikel(){
+        $this->db->select('*');
+        $this->db->from('tb_artikel');
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+
+      public function get_artikel_detail($id){
+        $this->db->select('*');
+        $this->db->from('tb_artikel');
+        $this->db->where('id_artikel',$id);
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+
+     public function list_artikel(){
+        $this->db->select('*');
+        $this->db->from('tb_artikel');
+        $this->db->limit(3);
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+
+     
+
     function mail_exists($key)
     {
         $this->db->select("*");
@@ -38,6 +63,8 @@ class Mhomepage extends CI_Model {
             return false;
         }
     }
+
+  
 }
 
 ?>
