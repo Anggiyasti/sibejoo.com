@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         $tingkatID = $this->session->userdata['id_tingkat']; 
         $data = array(
-            'judul_halaman' => 'Netjoo - Welcome',
+            'judul_halaman' => 'Sibejoo - Welcome',
             'judul_header' => 'Mata Pelajaran',
              'judul_header2' =>'mapel'
         );
@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  	public function learningLine($babID)
  	{
  		$data = array(
-      'judul_halaman' => 'Netjoo - Welcome',
+      'judul_halaman' => 'Sibejoo - Welcome',
       'judul_header' => 'Welcome',
       'judul_header2' =>'Time Line'
     );
@@ -146,7 +146,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // save log step line
         $this->logLine($stepID);
  		 $data = array(
-            'judul_halaman' => 'Netjoo - Step Video',
+            'judul_halaman' => 'Sibejoo - Step Video',
             'judul_header' => 'Step Video',
             'judul_header2' =>'Video Belajar'
         );
@@ -273,7 +273,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $this->logLine($stepID);
  		 $data = array(
 
-            'judul_halaman' => 'Netjoo - Step Materi',
+            'judul_halaman' => 'Sibejoo - Step Materi',
 
             'judul_header' => 'Step Materi',
              'judul_header2' =>'Modul Belajar'
@@ -456,7 +456,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
         $data = array(
 
-            'judul_halaman' => 'Netjoo - Timeline',
+            'judul_halaman' => 'Sibejoo - Timeline',
 
             'judul_header' => 'Timeline',
              'judul_header2' =>'Timeline'
@@ -547,7 +547,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     {
       $data = array(
 
-            'judul_halaman' => 'Netjoo - Step Materi',
+            'judul_halaman' => 'Sibejoo - Step Materi',
 
             'judul_header' => 'Step Quiz',
              'judul_header2' =>'Step Quiz'
@@ -647,7 +647,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function cariTopik()
     {   
         $data = array(
-            'judul_halaman' => 'Netjoo - Step Line',
+            'judul_halaman' => 'Sibejoo - Step Line',
             'judul_header' => 'Hasil Pencarian',
              'judul_header2' =>'Hasil Pencarian Topik'
         );

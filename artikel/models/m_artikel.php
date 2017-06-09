@@ -20,10 +20,10 @@ class m_artikel extends CI_Model
     }
 
     // get daftar artikel
-    public function getDaftarartikel_kategori(){
+    public function getDaftarreport_heroo(){
         $this->db->distinct();
         $this->db->select('*');
-        $this->db->from('tb_artikel_kategori art');
+        $this->db->from('tb_report_heroo art');
         $this->db->join('tb_kategori kat', '`kat`.`id_kategori` = `art`.`kategori`');
         $tampil=$this->db->get();
         return $tampil->result_array();
@@ -49,7 +49,7 @@ class m_artikel extends CI_Model
 	}
 
     // get gambar artikel
-    public function get_gambarartikel_kategori($id)
+    public function get_gambarreport_heroo($id)
 
     {
 
@@ -57,7 +57,7 @@ class m_artikel extends CI_Model
 
         $this->db->select('*');
 
-        $this->db->from('tb_artikel_kategori art');
+        $this->db->from('tb_report_heroo art');
         $this->db->join('tb_kategori kat','kat.id_kategori = art.kategori');
 
         $this->db->where('id_art',$id); 
@@ -104,7 +104,7 @@ class m_artikel extends CI_Model
 
 
     // update artikel dan gambar
-    public function gambar_artikel_kategori($id, $photo) {
+    public function gambar_report_heroo($id, $photo) {
 
         $a  =  $this->input->post('judul_artikel');
         $b  =  $this->input->post('editor1');
@@ -118,13 +118,13 @@ class m_artikel extends CI_Model
 
         );
         $this->db->where('id_art', $id);
-        $this->db->update('tb_artikel_kategori', $data);
+        $this->db->update('tb_report_heroo', $data);
         // var_dump($data);
         redirect(site_url('artikel/index/2'));
     }
 
     // update artikel tanpa gambar
-    public function gambar_artikel1_kategori($id) {
+    public function gambar_report1_heroo($id) {
 
         $a  =  $this->input->post('judul_artikel');
         $b  =  $this->input->post('editor1');
@@ -137,7 +137,7 @@ class m_artikel extends CI_Model
 
         );
         $this->db->where('id_art', $id);
-        $this->db->update('tb_artikel_kategori', $data);
+        $this->db->update('tb_report_heroo', $data);
         redirect(site_url('artikel/index/2'));
     }
 
@@ -154,14 +154,14 @@ class m_artikel extends CI_Model
     }
 
     // insert artikel
-    function insert_artikel_kategori($judul_artikel,$isi_artikel,$kategori,$filename){
+    function insert_report_heroo($judul_artikel,$isi_artikel,$kategori,$filename){
         $data = array(
                         'judul_art_katagori'  =>     $judul_artikel,
                         'isi_art_kategori' => $isi_artikel,
                         'kategori' => $kategori,
                         'gambar' =>      $filename
                         );
-        $this->db->insert('tb_artikel_kategori',$data);
+        $this->db->insert('tb_report_heroo',$data);
         return $data;
 
     }
@@ -174,9 +174,9 @@ class m_artikel extends CI_Model
     }
 
       // DELETE MATA PELAJARAN
-    public function delete_artikel_kategori($id_artikel) {
+    public function delete_report_heroo($id_artikel) {
         $this->db->where('id_art', $id_artikel);
-        $this->db->delete('tb_artikel_kategori');
+        $this->db->delete('tb_report_heroo');
     }
 
     // data pagination news

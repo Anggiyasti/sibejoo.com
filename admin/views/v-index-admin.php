@@ -488,20 +488,20 @@ JS aoutocomplate
       <li>
         <a href="javascript:void(0);" data-target="#artikelkat" data-toggle="submenu" data-parent=".topmenu">
           <span class="figure"><i class="ico-bubble-user"></i></span>
-          <span class="text">Artikel Kategori</span>
+          <span class="text">Report Heroo</span>
           <span class="arrow"></span>
         </a>
 
         <ul id="artikelkat" class="submenu collapse ">
-          <li class="submenu-header ellipsis">Artikel Kategori</li>
+          <li class="submenu-header ellipsis">Report Heroo</li>
           <li >
             <a href="<?=base_url('index.php/artikel/index/2')?>">
-              <span class="text">Daftar Artikel Kategori</span>
+              <span class="text">Daftar Report Heroo</span>
             </a>
           </li>
           <li >
             <a href="<?=base_url('index.php/artikel/tambahartikel/2') ?>">
-              <span class="text">Tambah Artikel Kategoris</span>
+              <span class="text">Tambah Report Heroo</span>
             </a>
           </li>
         </ul>

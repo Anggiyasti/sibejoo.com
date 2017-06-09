@@ -27,7 +27,7 @@ class Login extends MX_Controller {
 
    public function index() {
     $data = array(
-        'judul_halaman' => 'Login - Neon',
+        'judul_halaman' => 'Login - Sibejoo',
         'judul_header' => 'Welcome'
         );
 

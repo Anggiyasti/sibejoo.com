@@ -72,7 +72,7 @@ class Register extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Registrasi - Neon',
+            'judul_halaman' => 'Registrasi - Sibejoo',
 
             'judul_header' => 'Welcome'
 
@@ -108,7 +108,7 @@ class Register extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Registrasi - Neon',
+            'judul_halaman' => 'Registrasi - Sibejoo',
 
             'judul_header' => 'Welcome'
 
@@ -784,7 +784,7 @@ class Register extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Verifikasi Email - Neon',
+            'judul_halaman' => 'Verifikasi Email - Sibejoo',
 
             'judul_header' => 'Welcome'
 
@@ -878,7 +878,7 @@ class Register extends MX_Controller {
 
         $data = array(
 
-            'judul_halaman' => 'Lupa Password - Neon'
+            'judul_halaman' => 'Lupa Password - Sibejoo'
 
         );
 
@@ -911,7 +911,7 @@ class Register extends MX_Controller {
 
             $data = array(
 
-                'judul_halaman' => 'Reset Password - Neon'
+                'judul_halaman' => 'Reset Password - Sibejoo'
 
             );
 

@@ -202,7 +202,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
             <form name="form-account" action="<?=base_url()?>index.php/artikel/insertartikel/2"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
       
              <div class="form-group">
-                                        <label class="col-sm-2">Judul Artikel Kategori</label>
+                                        <label class="col-sm-2">Judul Report Heroo</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" placeholder="judul" name="judul_artikel" >
                                             <br>
@@ -211,7 +211,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
                                     </div>
                                       
                                     <div class="form-group">
-                                        <label class="col-sm-2">Isi Artikel Kategori</label>
+                                        <label class="col-sm-2">Isi Report Heroo</label>
                                         <div class="col-sm-10">
                                            <textarea  name="editor1" class="form-control" >
                                 </textarea>

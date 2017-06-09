@@ -44,8 +44,8 @@
                                     <thead>
                                         <tr>
                                             <!-- <th width="5%"></th> -->
-                                            <th>ID ARTIKEL </th>
-                                            <th>JUDUL ARTIKEL</th>
+                                            <th>ID REPORT </th>
+                                            <th>JUDUL REPORT</th>
                                             <th>KATEGORI</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -62,7 +62,7 @@
                                                 <div class="toolbar">
                                                     <div class="btn-group">
                                             
-                                    <a href="<?=base_url()?>index.php/artikel/view_artikel_kategori/<?=$ds['id_art']?>" class="btn btn-outline btn-info">Ubah</a> 
+                                    <a href="<?=base_url()?>index.php/artikel/view_report_heroo/<?=$ds['id_art']?>" class="btn btn-outline btn-info">Ubah</a> 
                                     <a class="btn btn-outline btn-info" href="#deleteartikel" data-toggle="modal" data-target="#deleteartikel<?php echo $ds['id_art']?>">Hapus</a>
 
                                      <div class="modal fade" id="deleteartikel<?php echo $ds['id_art']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -76,7 +76,7 @@
                                                 Are you sure?
                                             </div>
                                         <div class="modal-footer">
-                                            <a href="<?=base_url()?>index.php/artikel/hapus_artikel_kategori/<?=$ds['id_art']?>" class="btn btn-default" >Yes</a>
+                                            <a href="<?=base_url()?>index.php/artikel/hapus_report_heroo/<?=$ds['id_art']?>" class="btn btn-default" >Yes</a>
                                             <a href="#"class="btn btn-default" data-dismiss="modal">No</a>
                                         </div>
                                     </div>

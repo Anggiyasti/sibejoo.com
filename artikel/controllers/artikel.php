@@ -24,23 +24,22 @@
   }
 
  	function index($index_artikel)
- 	{     
+ 	{    //untuk daftar artikel
         $data['judul_halaman'] = "Dashboard Admin";
         if ($index_artikel == 1) {
 
             $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_daftar_artikel.php',
             );
-        // pengecekan hak akses
             $slidefront = $this->m_artikel->getDaftarslide();
             $data['data']= $slidefront;  
         }
+        //untuk daftar report heroo
         else{
             $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_daftar_artikelkategori.php',
+            APPPATH . 'modules/artikel/views/v_daftar_reportheroo.php',
             );
-        // pengecekan hak akses
-            $slidefront = $this->m_artikel->getDaftarartikel_kategori();
+            $slidefront = $this->m_artikel->getDaftarreport_heroo();
             $data['data']= $slidefront;  
 
         }
@@ -49,7 +48,7 @@
     }
 
 
-  // fungsi view artikel untuk backend
+  // fungsi view artikel masuk ke update
     public function view_artikel($id){
         $data['artikel'] = $this->m_artikel->get_gambarartikel($id);
         $data['judul_halaman'] = "Dashboard Admin";
@@ -61,19 +60,19 @@
         
     }  
 
-    // fungsi view artikel untuk backend
-    public function view_artikel_kategori($id){
-        $data['artikel'] = $this->m_artikel->get_gambarartikel_kategori($id);
+    // fungsi view report heroo masuk ke update
+    public function view_report_heroo($id){
+        $data['artikel'] = $this->m_artikel->get_gambarreport_heroo($id);
         $data['judul_halaman'] = "Dashboard Admin";
         $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_update_artikel_kategori.php',
+            APPPATH . 'modules/artikel/views/v_update_reportheroo.php',
             );
         $this->parser->parse('admin/v-index-admin', $data);
         
         
     }  
 
-    // FUNGSI UPLOAD GAMBAR ARTIKEL BACKEND
+    // FUNGSI update artikel
     public function gambar_artikel($id) {
 
         $config['upload_path'] = './assets/image/artikel';
@@ -93,8 +92,8 @@
     }
 
 
-    // FUNGSI UPLOAD GAMBAR ARTIKEL BACKEND
-    public function gambar_artikel_kategori($id) {
+    // FUNGSI update report heroo
+    public function gambar_report_heroo($id) {
 
         $config['upload_path'] = './assets/image/artikel';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
@@ -104,11 +103,11 @@
         $this->load->library('upload', $config);
         // PENGECEKAN KETIKA UPDATE APAKAH ADA FOTO ATAU TIDAK
         if (!$this->upload->do_upload('photo')) {
-            $this->m_artikel->gambar_artikel1_kategori($id);            
+            $this->m_artikel->gambar_report1_heroo($id);            
         } else {
             $file_data = $this->upload->data();
             $photo = $file_data['file_name'];
-            $this->m_artikel->gambar_artikel_kategori($id,$photo);
+            $this->m_artikel->gambar_report_heroo($id,$photo);
         }
     }
 
@@ -123,7 +122,7 @@
             );
     }else{
         $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_tambahartikel_kategori.php',
+            APPPATH . 'modules/artikel/views/v_tambah_reportheroo.php',
             );
 
     }
@@ -168,7 +167,7 @@
 
 
                 $data= $this->upload->data();
-                $file_id = $this->m_artikel->insert_artikel_kategori($_POST['judul_artikel'],
+                $file_id = $this->m_artikel->insert_report_heroo($_POST['judul_artikel'],
                                                             $_POST['editor1'],
                                                             $_POST['kategori'],
                                                             $data['file_name']);
@@ -202,8 +201,8 @@
     }
 
     // FUNGSI HAPUS ARTIKEL
-    public function hapus_artikel_kategori($id_art) {
-      $this->m_artikel->delete_artikel_kategori($id_art);
+    public function hapus_report_heroo($id_art) {
+      $this->m_artikel->delete_report_heroo($id_art);
         // PENGECCEKAN JIKA BERHASIL DIHAPUS ATAU TIDAK
         if ($this->db->affected_rows()) {
             $this->session->set_flashdata('info', '<div class="alert alert-success text-center">Berhasil Dihapus</div>');
