@@ -13,7 +13,7 @@
                 <a href="mailto:contact@sibejoo.com  " class="text-white"><i class="fa fa-envelope-o"></i> info@sibejoo.com </a>
                 </li>
                 <li>
-                <a class="text-white" href="<?=base_url('logout') ?>">Logout</a>
+                <a class="text-white" href="<?=base_url('index.php/login')?>">Login</a>
               </li>
               </ul>
             </div>
@@ -35,7 +35,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
-              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
+              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="<?=base_url()?>"><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4">

@@ -32,7 +32,7 @@ class Token_model extends CI_Model{
 	function get_jumlah_token_stok($param=""){
 		$this->db->select( 'id' )->from( 'tb_token' ); 
 		$this->db->where('siswaID is NULL');
-		if ($param==30 || $param==100 || $param==365) {
+		if ($param==365 || $param==1095) {
 			$this->db->where('masaAktif',$param);
 		}
 		$query = $this->db->get(); 

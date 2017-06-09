@@ -15,9 +15,8 @@
              <!-- stkt = soal tingkat -->
              <select class="form-control" name="masa_aktif_set">
               <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="30">30 Hari</option>
-              <option value="100">100 Hari</option>
-              <option value="365">365 Hari</option>
+              <option value="365">1 Tahun</option>
+              <option value="1095">3 Tahun</option>
             </select>
           </div>
         </div>
@@ -83,9 +82,8 @@
             <li>
               <div class="section">
                 <input type="hidden" name="jumlah_semua_stok">
-                <input type="hidden" name="jumlah_30_stok">
-                <input type="hidden" name="jumlah_100_stok">
-                <input type="hidden" name="jumlah_365_stok">  
+                <input type="hidden" name="jumlah_365_stok"> 
+                <input type="hidden" name="jumlah_1095_stok"> 
                 <h5 class="nm jumlah_semua_stok"></h5>
                 <span>Semua</span>
               </div>
@@ -93,22 +91,15 @@
 
             <li>
               <div class="section">
-                <h5 class="nm jumlah_30_stok"></h5>
-                <span>30 Hari</span>
-              </div>
-            </li>
-
-            <li>
-              <div class="section">
-                <h5 class="nm jumlah_100_stok"></h5>
-                <span>100 Hari</span>
-              </div>
-            </li>
-
-            <li>
-              <div class="section">
                 <h5 class="nm jumlah_365_stok"></h5>
-                <span>365 Hari</span>
+                <span>1 Tahun</span>
+              </div>
+            </li>
+
+            <li>
+              <div class="section">
+                <h5 class="nm jumlah_1095_stok"></h5>
+                <span>3 Tahun</span>
               </div>
             </li>
           </ul>
@@ -164,7 +155,7 @@
             <th>No</th>
             <th>Nama Siswa</th>
             <th>Nama Pengguna</th>
-
+            <th>Type</th>
             <th>Nomor Token</th>
             <th>Masa Aktif</th>
             <th>Mulai</th>

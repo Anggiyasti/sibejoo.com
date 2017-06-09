@@ -109,15 +109,13 @@ class Token extends MX_Controller {
 
 	function ajax_get_stock(){
 		$jumlah_semua_stok = $this->token_model->get_jumlah_token_stok();
-		$jumlah_30_stok = $this->token_model->get_jumlah_token_stok(30);
-		$jumlah_100_stok = $this->token_model->get_jumlah_token_stok(100);
 		$jumlah_365_stok = $this->token_model->get_jumlah_token_stok(365);
+		$jumlah_1095_stok = $this->token_model->get_jumlah_token_stok(1095);
 
 		$data = array(
 			'jumlah_semua_stok' => $jumlah_semua_stok,
-			'jumlah_30_stok'  => $jumlah_30_stok, 
-			'jumlah_100_stok'  => $jumlah_100_stok,
 			'jumlah_365_stok'  => $jumlah_365_stok,
+			'jumlah_1095_stok' => $jumlah_1095_stok
 			);
 
 		echo json_encode($data);
@@ -176,7 +174,6 @@ class Token extends MX_Controller {
 		$data['files'] = array(
 			APPPATH . 'modules/token/views/v-daftar-token.php',
 			);
-		// var_dump($data['dataToken']);
 		$this->loadparser($data);
 	}
 
@@ -202,6 +199,7 @@ class Token extends MX_Controller {
       }else{
       	$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
       }
+
       $no=$page+1;
       //cacah data 
       foreach ( $list as $token_item ) {
@@ -213,17 +211,27 @@ class Token extends MX_Controller {
       		$nama="belum digunakan";
       		$namaPengguna="-";
       	}
-      	$tb_token.='
-	        <tr>
-	          <td>'.$no.'</td>
-	          <td>'.$token_item->nomorToken.'</td>
-	          <td>'.$token_item->masaAktif.'</td>
-	          <td>'.$nama.'</td>
-	          <td>'.$namaPengguna.'</td>
-	          <td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
-	      	</tr>
-    		';
-    		$no++;
+
+      		// tentukan jenis membernya dulu
+	      if ($token_item->masaAktif==365) {
+	      	$type = 'Hero Member';
+	      } else if($token_item->masaAktif==1095) {
+	      	$type = 'Angel Member';
+	      } else {
+	      	$type = '-';
+	      }
+	      	$tb_token.='
+		        <tr>
+		          <td>'.$no.'</td>
+		          <td>'.$token_item->nomorToken.'</td>
+		          <td>'.$token_item->masaAktif.'</td>
+		          <td>'.$nama.'</td>
+		          <td>'.$namaPengguna.'</td>
+		          <td>'.$type.'</td>
+		          <td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
+		      	</tr>
+	    		';
+	    		$no++;
       }
       echo json_encode( $tb_token );
     }
@@ -400,6 +408,7 @@ class Token extends MX_Controller {
       	$date2 = new DateTime($date_kadaluarsa);
       	$sisa_aktif = $date2->diff($date1);
       	$siswaID=$token_item->siswaID;
+      	$aktif = $token_item->masaAktif;
       	if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
       		$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
       		$namaPengguna=$token_item->namaPengguna;
@@ -413,13 +422,26 @@ class Token extends MX_Controller {
       	}else{
       		$tokenStatus="non-aktif";
       	}
+      	// tentukan jenis membernya dulu
+	    if ($token_item->masaAktif==365) {
+	      	$type = 'Hero Member';
+	      	$masa_aktif = '1 Tahun';
+	    } else if($token_item->masaAktif==1095) {
+	      	$type = 'Angel Member';
+	      	$masa_aktif = '3 Tahun';
+	    } else {
+	      	$type = '-';
+	      	$masa_aktif = $token_item->masaAktif.' Hari';
+	    }
+
       	$tb_token.='
 	        <tr>
 	          <td>'.$no.'</td>
 	          <td>'.$nama.'</td>
 	          <td>'.$namaPengguna.'</td>
+	          <td>'.$type.'</td>
 	          <td>'.$token_item->nomorToken.'</td>
-	          <td>'.$token_item->masaAktif.'</td>
+	          <td>'.$masa_aktif.'</td>
 	          <td>'.$date_diaktifkan.'</td>
 	          <td>'.$date_kadaluarsa.'</td>
 	          <td>'.$sisa_aktif->days.' Hari</td>

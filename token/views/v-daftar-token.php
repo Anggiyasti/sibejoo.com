@@ -19,9 +19,8 @@
              <!-- stkt = soal tingkat -->
              <select class="form-control" name="masa_aktif">
               <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="30">30 Hari</option>
-              <option value="100">100 Hari</option>
-              <option value="365">365 Hari</option>
+              <option value="365">1 Tahun</option>
+              <option value="1095">3 Tahun</option>
             </select>
           </div>
         </div>
@@ -56,9 +55,8 @@
          <!-- stkt = soal tingkat -->
          <select class="form-control" name="masa_aktif" id="masa_aktif_select">
           <option value="all">Semua</option>
-          <option value="30">30 Hari</option>
-          <option value="100">100 Hari</option>
-          <option value="365">365 Hari</option>
+          <option value="365">1 Tahun</option>
+          <option value="1095">3 Tahun</option>
         </select>
 
 
@@ -101,6 +99,7 @@
           <th>Masa Aktif</th>
           <th>Digunakan Oleh</th>
           <th>Nama Pengguna</th>
+          <th>Type</th>
           <th width="15%">Aksi</th>
         </tr>
         <tbody id="record_token">

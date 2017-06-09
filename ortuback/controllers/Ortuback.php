@@ -54,7 +54,7 @@ class Ortuback extends MX_Controller {
 
 		$hakAkses = $this->session->userdata['HAKAKSES'];
 		$data = array(
-        'judul_halaman' => 'Neon - Daftar Latihan',
+        'judul_halaman' => 'Sibejoo - Daftar Latihan',
         'judul_header' => 'History Pesan',
         'judul_tingkat' => '',
         );
@@ -141,7 +141,7 @@ class Ortuback extends MX_Controller {
 
 		$hakAkses = $this->session->userdata['HAKAKSES'];
 		$data = array(
-        'judul_halaman' => 'Neon - Daftar Pesan',
+        'judul_halaman' => 'Sibejoo - Daftar Pesan',
         'judul_header' => 'History Pesan',
         'judul_tingkat' => '',
         );

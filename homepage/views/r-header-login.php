@@ -34,7 +34,7 @@
    <div class="row">
     <div class="col-xs-12 col-sm-4 col-md-5">
      <div class="widget no-border m-0">
-      <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
+      <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="<?=base_url()?>"><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
      </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4">
@@ -72,36 +72,36 @@
       <!--  CEK USERNYA SIAPA -->
       <!--  KALO SISWA, KELUARIN MENU YANG INI. -->
       <?php if ($this->session->userdata('HAKAKSES')=='siswa'): ?>
-      <li><a href="<?=base_url('welcome') ?>">Home<span class="indicator"></a></li>
-      <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
-      <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
-      <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
-      <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
-      <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
-      <li><a href="<?=base_url('modulonline/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
+          <li><a href="<?=base_url('welcome') ?>">Home<span class="indicator"></a></li>
+          <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
+          <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
+          <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
+          <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
+          <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
+          <li><a href="<?=base_url('modulonline/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
 
-    <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
-      <li><a href="#home"> Learning Line<span class="indicator"></a>
-       <ul class="dropdown" style="right: auto; display: none;">
-        <li><a href="javascript:void(0);" onclick="lineMapel(1)">SD<span class="indicator"></span></a></li>
-        <li><a href="javascript:void(0);" onclick="lineMapel(2)">SMP<span class="indicator"></span></a></li>
-        <li><a href="javascript:void(0);" onclick="lineMapel(3)">SMA<span class="indicator"></span></a></li>
-        <li><a href="javascript:void(0);" onclick="lineMapel(4)">SMA IPA<span class="indicator"></span></a></li>
-        <li><a href="javascript:void(0);" onclick="lineMapel(5)">SMA IPS<span class="indicator"></span></a></li>
-      </ul>
-     </li>
-      
-      <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
-       <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
-          <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
-        <?php endif ?></a>
-        <ul class="dropdown" style="right: auto; display: none;">
-         <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a>
-         <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a>
-         <li><a href="<?=base_url('logout') ?>">Logout<span class="indicator"></span></a>
-         </li>
-        </li>
-       </ul>
+          <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
+            <li><a href="#home"> Learning Line<span class="indicator"></a>
+             <ul class="dropdown" style="right: auto; display: none;">
+              <li><a href="javascript:void(0);" onclick="lineMapel(1)">SD<span class="indicator"></span></a></li>
+              <li><a href="javascript:void(0);" onclick="lineMapel(2)">SMP<span class="indicator"></span></a></li>
+              <li><a href="javascript:void(0);" onclick="lineMapel(3)">SMA<span class="indicator"></span></a></li>
+              <li><a href="javascript:void(0);" onclick="lineMapel(4)">SMA IPA<span class="indicator"></span></a></li>
+              <li><a href="javascript:void(0);" onclick="lineMapel(5)">SMA IPS<span class="indicator"></span></a></li>
+            </ul>
+           </li>
+            
+            <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
+             <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
+                <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
+              <?php endif ?></a>
+              <ul class="dropdown" style="right: auto; display: none;">
+               <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a>
+               <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a>
+               <li><a href="<?=base_url('logout') ?>">Logout<span class="indicator"></span></a>
+               </li>
+              </li>
+             </ul>
       <?php else: ?>
       <!--  KALO ORANG TUA MURID, KELUARIN MENU YANG INI. -->
       <li><a href="<?=base_url('welcome') ?>">Welcome<span class="indicator"></a></li>

@@ -9,11 +9,9 @@
                 <li>
                   <a class="text-white" href="#"><i class="fa fa-phone"></i> (022)87805676</a>
                 </li>
-                <li class="text-white">|</li>
                 <li>
-                  <a class="text-white" href="#"><i class="fa fa-envelope-o"></i> info@sibejoo.com</a>
+                  <a href="mailto:contact@sibejoo.com" class="text-white" href="#"><i class="fa fa-envelope-o"></i> info@sibejoo.com</a>
                 </li>
-                <li class="text-white">|</li>
                 <li>
                   <a class="text-white" href="<?=base_url('index.php/login')?>">Login</a>
                 </li>
@@ -37,7 +35,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
-              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
+              <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="<?=base_url()?>" onclick=""><img src="http://sibejoo.com/img/logo-sibejoo.png" alt=""></a>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4">
@@ -89,7 +87,7 @@
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>
                 <!-- Modal: Book Now Starts -->
-                <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="<?=base_url('index.php/login')?>">Masuk</a>
+                <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="<?=base_url('index.php/login')?>">Masuk</a>
                 <!-- Modal: Book Now End -->
               </li>
             </ul>
