@@ -47,7 +47,7 @@
 			<div class="col-sm-6">
 				<div class="panel panel-teal">
       	<div class="panel-heading">
-      		<h3 class="panel-title">Priview Logo</h3>
+      		<h3 class="panel-title">Preview Logo</h3>
       	</div>  
       	<div class="panel-body pb0 pt0 pl0 pr0">
       		<!-- START Statistic Widget -->

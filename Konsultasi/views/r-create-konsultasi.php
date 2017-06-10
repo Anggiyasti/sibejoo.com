@@ -149,10 +149,12 @@
 <script type="text/javascript"> 
 
 	function submit_upload(){
+
 		$('.submit-upload').click();
 	}
 	jQuery(document).ready(function() { 
 		jQuery('#form-gambar').on('submit', function(e) {
+			console.log('masuk');
 			e.preventDefault();
 			jQuery('#submit-button').attr('disabled', ''); 
 			jQuery("#output").html('<div style="padding:10px"><img src="<?php echo base_url('assets/image/loading/spinner11.gif'); ?>" alt="Please Wait"/> <span>Mengunggah...</span></div>');
