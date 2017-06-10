@@ -43,6 +43,32 @@ class Mhomepage extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_artikel');
         $this->db->limit(3);
+        $this->db->order_by('rand()');
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+
+    public function get_report_heroo(){
+        $this->db->select('*');
+        $this->db->from('tb_report_heroo her');
+        $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+    public function get_heroo_detail($id){
+        $this->db->select('*');
+        $this->db->from('tb_report_heroo her');
+        $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
+        $this->db->where('id_art',$id);
+        $tampil = $this->db->get();
+        return $tampil->result_array();
+    }
+    public function list_heroo(){
+        $this->db->select('*');
+        $this->db->from('tb_report_heroo her');
+        $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
+        $this->db->limit(3);
+        $this->db->order_by('rand()');
         $tampil = $this->db->get();
         return $tampil->result_array();
     }

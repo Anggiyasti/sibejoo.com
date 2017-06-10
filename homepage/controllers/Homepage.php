@@ -38,6 +38,7 @@ class Homepage extends MX_Controller {
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();
         $data['artikel'] = $this->Mhomepage->get_artikel();
+        $data['report_heroo'] = $this->Mhomepage->get_report_heroo();
 
         $this->parser->parse('r-index-homepage', $data);
         // echo "string";
@@ -81,6 +82,15 @@ class Homepage extends MX_Controller {
             echo json_encode($id);
         
     }
+
+     // tampung id 
+    public function ambilidheroo()
+    {   
+            $id = $this->input->post('id_report');
+            $this->session->set_userdata('id_report', $id);
+            echo json_encode($id);
+        
+    }
     // menampilkan detail artikel
     public function detail_artikel()
     {
@@ -96,6 +106,26 @@ class Homepage extends MX_Controller {
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header.php',
             APPPATH . 'modules/homepage/views/r-detail-artikel.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
+        );
+        $this->parser->parse('templating/r-index', $data);
+    }
+
+    // menampilkan detail artikel
+    public function detail_report()
+    {
+        $id_report = $this->session->userdata['id_report']; 
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+             'judul_header2' =>'Detail Rpeort Heroo'
+        );
+
+
+        $data['detheroo'] = $this->Mhomepage->get_heroo_detail($id_report);
+        $data['listheroo'] = $this->Mhomepage->list_heroo();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-heroo-detail.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
         $this->parser->parse('templating/r-index', $data);
