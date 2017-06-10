@@ -12,9 +12,10 @@ class Token extends MX_Controller {
 		$this->load->model('siswa/msiswa');
 		$this->load->library('sessionchecker');
 		$this->load->library('pagination');
-    $this->sessionchecker->checkloggedin();
+    	$this->sessionchecker->checkloggedin();
 		$this->load->helper('string');
 		$this->hakakses = $this->gethakakses();
+
 	}
 
 	public function index(){
@@ -214,7 +215,7 @@ class Token extends MX_Controller {
 
       		// tentukan jenis membernya dulu
 	      if ($token_item->masaAktif==365) {
-	      	$type = 'Hero Member';
+	      	$type = 'Heroo Member';
 	      } else if($token_item->masaAktif==1095) {
 	      	$type = 'Angel Member';
 	      } else {
@@ -424,15 +425,12 @@ class Token extends MX_Controller {
       	}
       	// tentukan jenis membernya dulu
 	    if ($token_item->masaAktif==365) {
-	      	$type = 'Hero Member';
+	      	$type = 'Heroo Member';
 	      	$masa_aktif = '1 Tahun';
-	    } else if($token_item->masaAktif==1095) {
+	    } else {
 	      	$type = 'Angel Member';
 	      	$masa_aktif = '3 Tahun';
-	    } else {
-	      	$type = '-';
-	      	$masa_aktif = $token_item->masaAktif.' Hari';
-	    }
+	    } 
 	    // hitung sisa aktif 
 	    if ($date1 > $date2) {
 			$sisa_aktif = '0';
@@ -461,4 +459,6 @@ class Token extends MX_Controller {
       echo json_encode( $tb_token );
 
 	}
+
 }
+?>

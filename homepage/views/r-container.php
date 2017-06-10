@@ -692,13 +692,13 @@
                 <div class=" bg-white border-1px p-30 pt-20 pb-20">
                   <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
                   <ul class="table-list list-icon theme-colored pb-0">
-                    <li><i class="fa fa-check"></i>Video Belajar</li>
-                    <li><i class="fa fa-times"></i>Latihan</li>
-                    <li><i class="fa fa-times"></i>Try Out</li>
-                    <li><i class="fa fa-times"></i>Konsultasi</li>
-                    <li><i class="fa fa-times"></i>Edu Drive</li>
-                    <li><i class="fa fa-times"></i>Learning Line</li>
-                    <li><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
+                    <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
+                    <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
                   </ul>
                 </div>
                 <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
@@ -710,15 +710,15 @@
                 </div>
                 <img src="http://placehold.it/359x120" alt="">
                 <div class=" bg-white border-1px p-30 pt-20 pb-20">
-                  <h3 class="package-type font-28 m-0 text-black">Hero Member</h3>
+                  <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
                   <ul class="table-list list-icon theme-colored pb-0">
-                    <li><i class="fa fa-check"></i>Video Belajar</li>
-                    <li><i class="fa fa-check"></i>Latihan</li>
-                    <li><i class="fa fa-check"></i>Try Out</li>
-                    <li><i class="fa fa-check"></i>Konsultasi</li>
-                    <li><i class="fa fa-check"></i>Edu Drive</li>
-                    <li><i class="fa fa-check"></i>Learning Line</li>
-                    <li><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
+                    <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
                   </ul>
                 </div>
                 <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
@@ -732,13 +732,13 @@
                 <div class=" bg-white border-1px p-30 pt-20 pb-20">
                   <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
                   <ul class="table-list list-icon theme-colored pb-0">
-                    <li><i class="fa fa-check"></i>Video Belajar</li>
-                    <li><i class="fa fa-check"></i>Latihan</li>
-                    <li><i class="fa fa-check"></i>Try Out</li>
-                    <li><i class="fa fa-check"></i>Konsultasi</li>
-                    <li><i class="fa fa-check"></i>Edu Drive</li>
-                    <li><i class="fa fa-check"></i>Learning Line</li>
-                    <li><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
+                    <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                    <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
                   </ul>
                 </div>
                 <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>

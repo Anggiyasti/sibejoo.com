@@ -15,8 +15,8 @@
              <!-- stkt = soal tingkat -->
              <select class="form-control" name="masa_aktif_set">
               <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="365">1 Tahun</option>
-              <option value="1095">3 Tahun</option>
+              <option value="365">Heroo Member</option>
+              <option value="1095">Angel Member</option>
             </select>
           </div>
         </div>
@@ -92,14 +92,14 @@
             <li>
               <div class="section">
                 <h5 class="nm jumlah_365_stok"></h5>
-                <span>1 Tahun</span>
+                <span>Heroo Member</span>
               </div>
             </li>
 
             <li>
               <div class="section">
                 <h5 class="nm jumlah_1095_stok"></h5>
-                <span>3 Tahun</span>
+                <span>Angel Member</span>
               </div>
             </li>
           </ul>

@@ -19,8 +19,8 @@
              <!-- stkt = soal tingkat -->
              <select class="form-control" name="masa_aktif">
               <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="365">1 Tahun</option>
-              <option value="1095">3 Tahun</option>
+              <option value="365">Heroo Member</option>
+              <option value="1095">Angel Member</option>
             </select>
           </div>
         </div>
@@ -55,8 +55,8 @@
          <!-- stkt = soal tingkat -->
          <select class="form-control" name="masa_aktif" id="masa_aktif_select">
           <option value="all">Semua</option>
-          <option value="365">1 Tahun</option>
-          <option value="1095">3 Tahun</option>
+          <option value="365">Heroo Member</option>
+          <option value="1095">Angel Member</option>
         </select>
 
 
@@ -127,7 +127,7 @@
   var prev=1;
   var next=2;
   var records_per_page=10;
-  var status="null";
+  var status="1";
   var masaAktif="all";
   var page=0;
   var pageVal;
