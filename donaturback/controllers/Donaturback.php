@@ -70,12 +70,10 @@
 
  	public function co_donatur()
  	{
- 	
  		$data['judul_halaman'] = "List Donatur";
 		$data['files'] = array(
 			APPPATH . 'modules/donaturback/views/v-co-donatur.php',
-			);
-		
+			);	
  		$hakAkses = $this->session->userdata['HAKAKSES'];
 		if ($hakAkses == 'admin') {
 			$this->parser->parse('admin/v-index-admin', $data);
@@ -118,7 +116,6 @@
  			$info="Data berhasil disimpan dan logo berhasil di-upload ";
 	   }
  		//
-
  		echo json_encode($info);
  	}
 
@@ -196,7 +193,6 @@
  	{
  		$id=$this->input->post('id');
  		$this->Donaturback_model->ch_status_donatur_co($id);
-
  		echo json_encode("Yeyyeyey");
  	}
  	public function ubah_donatur_co($value='')
@@ -254,5 +250,16 @@
  		}
  		
  		echo json_encode($info);
+ 	}
+
+ 	public function hapus_logo($value='')
+ 	{
+ 		$post=$this->input->post();
+ 		$old_logo=$post["old_logo"];
+ 		$id=$post["id"];
+ 		unlink(FCPATH . "./assets/image/donatur/logo_perusahaan/" . $old_logo);
+ 		$data['logo']='';
+ 		$this->Donaturback_model->ch_donatur_co($data,$id);
+
  	}
  } ?>

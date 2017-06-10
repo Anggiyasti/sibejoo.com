@@ -32,7 +32,7 @@
 								<label for="filelogo" class="btn btn-sm btn-default filelogo">
 									Pilih Logo
 								</label>
-								<input style="display:none;" type="file" id="filelogo" name="logo" onchange="preview_fileLogo(this,z='');"/>
+								<input style="display:none;" type="file" id="filelogo" name="logo" onchange="cek_fileLogo(this,z='');"/>
 							</div>
 						</div>
 					</div>
@@ -135,6 +135,45 @@
 		</div>
 	</div>
 </section>
+
+<!-- Start Modal salah upload gambar -->
+<div class="modal fade" id="warningupload" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center text-danger">Peringatan</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Silahkan cek type extension gambar! </h3>
+        <h5 class="text-center">Type yang bisa di upload hanya ".jpg", ".jpeg", ".bmp", ".gif", ".png"</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Start Modal salah upload size img -->
+<div class="modal fade" id="e_size_img" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center text-danger">Peringatan</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center">Silahkan cek file size Logo!</h3>
+        <h5 class="text-center">File size logo maksimal 100kb</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- Script ajax upload -->
  <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 <!-- /Script ajax upload -->
@@ -227,8 +266,8 @@
 					//merubah kembali btn uabah ke btn simpan data
 					$('#simpan').html('Simpan');
 					//reset preview ogo
-									var logo=base_url+'assets/image/avatar/default.png';
-				$('#prevfile').attr('src', logo);
+					var logo=base_url+'assets/image/avatar/default.png';
+					$('#prevfile').attr('src', logo);
 					sweetAlert("Info",Data,"success")
 				},
 				error:function(){
@@ -334,29 +373,9 @@
 
 
 	function selectPage(pageVal='0'){
-	
 		page=pageVal;
 		pageSelek=page*records_per_page;
 		set_donatur_co();
-		// datas ={records_per_page:records_per_page,pageSelek:pageSelek,keySearch:keySearch};
-		// $.ajax({
-		// 	url:url,
-		// 	data:datas,
-		// 	dataType:"text",
-		// 	type:"post",
-		// 	success:function(Data)
-		// 	{
-  //       	// set emty tabel 
-  //       	$('#record_daftar_admin').empty();
-  //       	tb_admincabang = JSON.parse(Data);
-  //         //set tabel
-  //         $('#record_daftar_admin').append(tb_admincabang);
-  //       },
-  //       error:function(){
-
-  //       },
-  //     });	
-
 		//meridian adalah nilai tengah padination
 		$('#page-'+meridian).removeClass('active');
 		var newMeridian=page+1;
@@ -431,33 +450,90 @@
 }
 
  // show preview Logo
-  function preview_fileLogo(oInput,z='') {
-    var viewer = {
-          load : function(e){
-              $('#prevfile'+z).attr('src', e.target.result);
-          },
-          setProperties : function(file){
-              $('#namefile'+z).text(file.name);
-              $('#typefile'+z).text(file.type);
-              $('#sizefile'+z).text(Math.round(file.size/1024));
-              // $nama=$('[name=nama]').val();
-              // $namaPerusahaan= $('[name=namaPerusahaan]').val();
-              // $('#nama').html($nama);
-              // $('#namaPerusahaan').html($namaPerusahaan);
-          },
-        }
+ //cek file input
+  function cek_fileLogo(oInput,z='') {
+  	var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+  	if (oInput.type == "file") {
+  		var sFileName = oInput.value;
+  		if (sFileName.length > 0) {
+  			var blnValid = false;
+  			for (var j = 0; j < _validFileExtensions.length; j++) {
+  				var sCurExtension = _validFileExtensions[j];
+  				if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+  					blnValid = true;
+  					break;
+  				}
+  			}
 
-      var file = oInput.files[0];
-      var reader = new FileReader();
-      var size=Math.round(file.size/1024);
-      // start pengecekan ukuran file
-      if (size>=90000) {
-        // $('#e_size_video').modal('show');
-      }else{
-        $(".prv_logo"+z).show();
-        reader.onload = viewer.load;
-        reader.readAsDataURL(file);
-        viewer.setProperties(file);
+  			if (!blnValid) {
+  				$('#warningupload').modal('show');
+                return false;
+        }else{
+        	preview_fileLogo(oInput,z='');
+        }
       }
+    }
+          return true;
+  }
+
+  function preview_fileLogo(oInput,z='') {
+  	var viewer = {
+  		load : function(e){
+  			$('#prevfile'+z).attr('src', e.target.result);
+  		},
+  		setProperties : function(file){
+  			$('#namefile'+z).text(file.name);
+  			$('#typefile'+z).text(file.type);
+  			$('#sizefile'+z).text(Math.round(file.size/1024));
+  		},
+  	}
+  	var file = oInput.files[0];
+  	var reader = new FileReader();
+  	var size=Math.round(file.size/1024);
+      // start pengecekan ukuran file
+      if (size>=100) {
+        $('#e_size_img').modal('show');
+      }else{
+      	$(".prv_logo"+z).show();
+      	reader.onload = viewer.load;
+      	reader.readAsDataURL(file);
+      	viewer.setProperties(file);
+      }
+  }
+  //hapus logo
+  function drop_logo(id){
+  	var detail = '.detail-'+id;
+  	var datas = $(detail).data('id');
+  	var old_logo = datas.logo;
+  	var url =base_url+"donaturback/hapus_logo";
+
+  	swal({
+  		title: "Yakin akan mengahpus logo ini ?",
+  		text: "Anda tidak dapat membatalkan ini.",
+  		type: "warning",
+  		showCancelButton: true,
+  		confirmButtonColor: "#DD6B55",
+  		confirmButtonText: "Ya,Tetap hapus!",
+  		closeOnConfirm: false
+  	},
+  	function(){
+
+  		$.ajax({
+  			url:url,
+  			data:{id:id,old_logo:old_logo},
+  			dataType:"text",
+  			type:"post",
+  			success:function(){
+  				sweetAlert(":(","Logo berhasil dihapus!","success");
+  				set_donatur_co();
+  			},
+  			error:function(){
+
+  			}
+  		});
+  	});
+
+  
+
   }
 </script>
