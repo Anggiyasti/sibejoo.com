@@ -29,6 +29,7 @@
                             <p class="text-center">IDENTITAS TEAM</p>
                         </div>
                         <div class="clear-both"></div>
+                        <form action="<?=base_url('teamback/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
                         <div class="form-group">
                             <label class="control-label col-sm-4">Nama</label>
                             <div class="col-sm-8 mb10">
@@ -50,12 +51,26 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4">Foto</label>
                             <div class="col-sm-8">
-                                <label for="filefoto" class="btn btn-sm btn-default filefoto">
-                                    Pilih Foto
+                                <label for="filelogo" class="btn btn-sm btn-default filelogo">
+                                    Pilih Logo
                                 </label>
-                                <input style="display:none;" type="file" id="filefoto" name="foto" onchange="preview_fileFoto(this,z='');"/>
+                                <input style="display:none;" type="file" id="filelogo" name="logo" onchange="preview_fileFOto(this,z='');"/>
                             </div>
                         </div>
+                        <!-- form upload gambar -->
+                        
+                            <div class="form-group">
+                                <div class="col-sm-10 col-md-offset-1">
+                                    Upload Gambar : 
+                                    <input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline"> 
+                                    <a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload">Upload</a> 
+                                    <div id="output" style="display: inline">
+                                    </div>
+                                    <input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">
+                                </div>
+                            </div>
+                        
+                        </form>
                     </div>
 
                     <div class="panel-footer">
@@ -166,20 +181,16 @@
     // masukin text ke posisi tertentu
 
     function save(){
-        var logo = $('[name=foto]').val();
         var datas = {
             nama : $('input[name=nama]').val(),
             posisi : $('input[name=posisi]').val(),
-            keterangan:$('input[name=keterangan]').val(),
-            logo: logo
+            keterangan:$('input[name=keterangan]').val()
         }
-        console.log(datas);
+
         if (datas.nama == "" || datas.posisi == "") {
             swal('Tidak boleh kosong');
         }else{
-            // do_upload
-            url = base_url+"teamback/ajax_add_team";
-            // url = base_url+"teamback/do_upload";
+            url = base_url+"teamback/ajax_add_team/";
             $.ajax({
                 url : url,
                 type: "POST",
@@ -222,7 +233,6 @@
       var size=Math.round(file.size/1024);
       // start pengecekan ukuran file
       if (size>=90000) {
-        swal('Ukuran File terlalu besar!');
         // $('#e_size_video').modal('show');
       }else{
         $(".prv_logo"+z).show();

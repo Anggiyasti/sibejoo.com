@@ -38,7 +38,8 @@ class Mteamback extends CI_Model{
 	}
 
 	public function in_upload_team($data){
-		$this->db->insert('tb_team', $data['data_upload_team']);
+		// $this->db->insert('tb_team', $data['data_upload_team']);
+		$this->db->insert('tb_team', $data);
 	}
 
 	// update foto team
