@@ -26,6 +26,7 @@
  	{
  		$this->load->model('Donaturback_model');
  		$this->load->library('parser');
+ 		$this->load->library('generateavatar');
  	}
 
  	public function index($value='')
@@ -86,10 +87,39 @@
  	public function simpan_donatur_co($value='')
  	{
  		$post=$this->input->post();
- 		$data['nama']=$post['nama'];
- 		$data['namaPerusahaan']=$post['namaPerusahaan'];
- 		$this->Donaturback_model->in_donatur_co($data);
- 		echo json_encode($data);
+ 		//konfigurasi upload
+	  $configLogo['upload_path'] = './assets/image/donatur/logo_perusahaan/';
+	  $configLogo['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
+	  $configLogo['max_size'] = 100;
+	  $configLogo['max_width'] = 1024;
+	  $configLogo['max_height'] = 768;
+        //random name
+	  $configLogo['encrypt_name'] = TRUE;
+	  $new_name = time().$_FILES["logo"]['name'];
+	  $configLogo['file_name'] = $new_name;
+	  $this->load->library('upload', $configLogo);
+	  $logo = 'logo';
+	  $this->upload->initialize($configLogo);
+	  $file_logo=$post['logo'];
+	   if (!$this->upload->do_upload($logo)) {
+	   	//jika tidak uplop file atau gagal upload file logo
+	   	$data['nama']=$post['nama'];
+ 			$data['namaPerusahaan']=$post['namaPerusahaan'];
+ 			$this->Donaturback_model->in_donatur_co($data);
+ 			$info="Data berhasil disimpan dengan file logo kosong";
+	   }else {
+	   	$file_data = $this->upload->data();
+	   	//get nama file yg di upload
+      $file_name = $file_data['file_name'];
+ 			$data['nama']=$post['nama'];
+ 			$data['namaPerusahaan']=$post['namaPerusahaan'];
+ 			$data['logo']=$file_name;
+ 			$this->Donaturback_model->in_donatur_co($data);
+ 			$info="Data berhasil disimpan dan logo berhasil di-upload ";
+	   }
+ 		//
+
+ 		echo json_encode($info);
  	}
 
 
@@ -103,13 +133,24 @@
  		$tb_donatur = null;
  		$no=$pageSelek+1;
  		foreach ($arrDat as $value) {
- 			$tb_donatur .='<tr>
+ 			$fileLogo=$value->logo;
+ 			$namaPerusahaan=$value->namaPerusahaan;
+ 			if ($fileLogo!=' '&&$fileLogo!='') {
+ 				$logo=base_url().'assets/image/donatur/logo_perusahaan/'.$fileLogo;
+ 			} else {
+ 				$logo=$this->generateavatar->generate_first_letter_avtar_url($namaPerusahaan);;
+ 			}
+ 			
+ 			$tb_donatur .='
+ 										<tr>
  										<td>'.$no.'</td>
- 										<td><div class="media-object"><img src="'.base_url().'assets/image/avatar/avatar3.jpg" alt="" class="img-circle"></div></td>
+ 										<td><div class="media-object"><img src="'.$logo.'" alt="" class="img-rounded"></div></td>
  										<td>'.$value->nama.'</td>
- 										<td>'.$value->namaPerusahaan.'</td>	
+ 										<td>'.$namaPerusahaan.'</td>	
+ 										<td>'.$value->date.'</td>	
  										<td>
  										<button class="btn btn-warning detail-'.$value->id.' " data-id='."'".json_encode($value)."'".' onclick="edit('.$value->id.')"><i class="ico-edit"></i></button>
+ 										<button class="btn btn-danger" onclick="drop_logo('.$value->id.')" ><i class="ico-picture"></i></button>
  										<button class="btn btn-danger" onclick="hapus('.$value->id.')" ><i class="ico-trash"></i></button>
  										</td>
  										</tr>';
@@ -160,10 +201,58 @@
  	}
  	public function ubah_donatur_co($value='')
  	{
+ 		//tampung semua post di variabel post
  		$post=$this->input->post();
- 		$id=$post['id'];
- 		$data['nama']=$post['nama'];
- 		$data['namaPerusahaan']=$post['namaPerusahaan'];
- 		$this->Donaturback_model->ch_donatur_co($data,$id);
+ 		$old_logo=$post['old_logo'];
+ 		//konfigurasi upload
+	  $configLogo['upload_path'] = './assets/image/donatur/logo_perusahaan/';
+	  $configLogo['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
+	  $configLogo['max_size'] = 100;
+	  $configLogo['max_width'] = 1024;
+	  $configLogo['max_height'] = 768;
+    //random name file logo
+	  $configLogo['encrypt_name'] = TRUE;
+	  $new_name = time().$_FILES["logo"]['name'];
+	  $configLogo['file_name'] = $new_name;
+	  $this->load->library('upload', $configLogo);
+	  $logo = 'logo';
+	  $this->upload->initialize($configLogo);
+	  $file_logo=$post['logo'];
+	  //pengecekan upload jika berhasil di upload
+	  // maka '$this->upload->do_upload($logo)' akan eretrun true
+ 		if (!$this->upload->do_upload($logo)) {
+ 			//jika tidak berhasil upload file atau tidak ada 
+ 			//perubahan logo maka hanya nama dan nmPerusahaan yg akan di rubah
+ 			$id=$post['id'];
+ 			$data['nama']=$post['nama'];
+ 			$data['namaPerusahaan']=$post['namaPerusahaan'];
+ 			$this->Donaturback_model->ch_donatur_co($data,$id);
+ 				$info="Data berhasil dirubah";
+ 		} else if($old_logo==' ' || $old_logo=='') {
+ 			//jika sebelumnya tidak ada logo maka langsung di insert ke tb
+ 			$file_data = $this->upload->data();
+	   	//get nama file yg di upload
+      $file_name = $file_data['file_name'];
+      $id=$post['id'];
+ 			$data['nama']=$post['nama'];
+ 			$data['namaPerusahaan']=$post['namaPerusahaan'];
+ 			$data['logo']=$file_name;
+ 			$this->Donaturback_model->ch_donatur_co($data,$id);
+ 			$info="Data berhasil dirubah";
+ 		}else{
+ 			//jika sebelumnya sudah ada logo maka logo akan di drop dari folder logo_perusahaan
+ 			unlink(FCPATH . "./assets/image/donatur/logo_perusahaan/" . $old_logo);
+			$file_data = $this->upload->data();
+	   	//get nama file yg di upload
+      $file_name = $file_data['file_name'];
+      $id=$post['id'];
+ 			$data['nama']=$post['nama'];
+ 			$data['namaPerusahaan']=$post['namaPerusahaan'];
+ 			$data['logo']=$file_name;
+ 			$this->Donaturback_model->ch_donatur_co($data,$id);
+ 			$info="Data berhasil dirubah";
+ 		}
+ 		
+ 		echo json_encode($info);
  	}
  } ?>

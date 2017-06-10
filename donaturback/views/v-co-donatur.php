@@ -15,21 +15,24 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">Nama</label>
-							<div class="col-sm-8">
+							<div class="col-sm-8 mb10">
 								<input class="form-control" type="text" name="nama">
 								<input type="text" name="id" hidden="true">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">Nama Perusahaan</label>
-							<div class="col-sm-8">
+							<div class="col-sm-8 mb10">
 								<input class="form-control" type="text" name="namaPerusahaan">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-sm-4">Foto</label>
+							<label class="control-label col-sm-4">Logo</label>
 							<div class="col-sm-8">
-								<input class="form-control" type="file" name="namaPerusahaan">
+								<label for="filelogo" class="btn btn-sm btn-default filelogo">
+									Pilih Logo
+								</label>
+								<input style="display:none;" type="file" id="filelogo" name="logo" onchange="preview_fileLogo(this,z='');"/>
 							</div>
 						</div>
 					</div>
@@ -40,6 +43,43 @@
 				</form>
 				<!-- /panel form donatur -->
 			</div>
+
+			<div class="col-sm-6">
+				<div class="panel panel-teal">
+      	<div class="panel-heading">
+      		<h3 class="panel-title">Priview Logo</h3>
+      	</div>  
+      	<div class="panel-body pb0 pt0 pl0 pr0">
+      		<!-- START Statistic Widget -->
+      		<div class="table-layout animation delay animating fadeInDown  prv_logo mb0">
+      			<div class="col-xs-4 panel bgcolor-info text-center">
+      				<img id="prevfile" class="img-tumbnail logo" src="<?=base_url()?>assets\image\avatar\default.png" width="50%"  >
+      			</div>
+      	<!-- 		<div class="col-xs-8 panel">
+      				<div class="panel-body ">
+      		<h6>Name: <span id="namefile"></span></h6> 
+      		<h6>Size: <span id="sizefile"></span>Kb</h6>
+      			<h6>Type: <span id="typefile"></span></h6>  
+      				</div>
+      			</div> -->
+      		</div>
+      		<!--/ END Statistic Widget -->
+      	</div>
+      	<div class="panel-footer pb0 pt0 pl0 pr0">
+      		<!-- <div class="row" style="margin:1%;">  -->
+      			<div class="col-md-5 left"> 
+      				<h6>Name: <span id="namefile"></span></h6> 
+      			</div> 
+      			<div class="col-md-4 left"> 
+      				<h6>Size: <span id="sizefile"></span>Kb</h6> 
+      			</div> 
+      			<div class="col-md-3 bottom"> 
+      				<h6>Type: <span id="typefile"></span></h6> 
+      			</div>
+      		<!-- </div> -->
+      	</div>
+      	</div>                      
+      </div>
 			<div class="col-md-12">
 				<!-- panel tabel donatur -->
 				<div class="panel panel-teal">
@@ -74,6 +114,7 @@
 								<th width="5%">Logo</th>
 								<th>Nama</th>
 								<th>Perusahaan</th>
+								<th>Tanggal Donasi</th>
 								<th>Aksi</th>
 							</thead>
 							<tbody id="record_daftar_donatur_co">
@@ -94,6 +135,9 @@
 		</div>
 	</div>
 </section>
+<!-- Script ajax upload -->
+ <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
+<!-- /Script ajax upload -->
 <script type="text/javascript">
 		var dataTableToken;
 	  var meridian=4;
@@ -109,6 +153,7 @@
 		//even btn id simpan
 		//cek form input
 		$('#simpan').click(function(){
+			
 			var nama = $('[name=nama]').val();
 			var namaPerusahaan = $('[name=namaPerusahaan]').val();
 			//cek jika nama dan perusahaan kosong atau  ' '
@@ -122,9 +167,11 @@
 		// even reset form
 		// set empty input form
 		// set btn Simpan
-		$('#reset_form').change(function(){
+		$('#reset_form').click(function(){
 				$("#form_donatur")[0].reset();
 				$('#simpan').html('Simpan');
+				var logo=base_url+'assets/image/avatar/default.png';
+				$('#prevfile').attr('src', logo);
 		});
 		// even jumlah records_per_page_donatur
 		$('[name=records_per_page_donatur]').change(function(){
@@ -146,34 +193,46 @@
 	});
 	//menjalankan fungsi simpan data donatur dan ubah data donatur
 	function form_aksi_donatur() {
+
 			var metode =	$('#simpan').html();
 			var nama = $('[name=nama]').val();
-			var id;
 			var namaPerusahaan = $('[name=namaPerusahaan]').val();
+			var logo = $('[name=logo]').val();
+			//id fileinput
+			var elementId = "filelogo";
+			var id;
 			var datas;
 			var url;
 			// Cek button simpan atau ubah data
 			if (metode=='Simpan') {
-				datas = {nama:nama ,namaPerusahaan:namaPerusahaan};
+				datas = {nama:nama ,namaPerusahaan:namaPerusahaan,logo:logo};
 				url=base_url+"donaturback/simpan_donatur_co";
 			} else {
 				id = $('[name=id]').val();
-				datas = {nama:nama ,namaPerusahaan:namaPerusahaan,id:id};
+				var detail = '.detail-'+id;
+  			var datas = $(detail).data('id');
+  			var old_logo=datas.logo;
+				datas = {nama:nama ,namaPerusahaan:namaPerusahaan,id:id,logo:logo,old_logo:old_logo};
 				url=base_url+"donaturback/ubah_donatur_co";
 			}
-			$.ajax({
+			$.ajaxFileUpload({
 				url:url,
 				data:datas,
 				dataType:"TEXT",
 				type:"POST",
+				fileElementId :elementId,
 				success:function(Data){
 					//memanggil fungsi set_donatur_co untuk mengupdate data tabel
 					set_donatur_co();
 					//merubah kembali btn uabah ke btn simpan data
 					$('#simpan').html('Simpan');
+					//reset preview ogo
+									var logo=base_url+'assets/image/avatar/default.png';
+				$('#prevfile').attr('src', logo);
+					sweetAlert("Info",Data,"success")
 				},
 				error:function(){
-					//code error
+					
 				}
 			});
 	}
@@ -263,6 +322,14 @@
 		$('[name=nama]').val(datas.nama);
 		$('[name=id]').val(datas.id);
 		$('[name=namaPerusahaan]').val(datas.namaPerusahaan);
+		var filelogo=datas.logo;
+		if (filelogo!=''&&filelogo!=' ') {
+			var logo=base_url+'assets/image/donatur/logo_perusahaan/'+filelogo;
+		}else{
+			var logo=base_url+'assets/image/avatar/default.png';
+		}
+		$('#prevfile').attr('src', logo);
+		console.log(logo);
 	}
 
 
@@ -361,6 +428,36 @@
   next=newMeridian;
   meridian=newMeridian;
   $('#page-'+meridian).addClass('active');
-
 }
+
+ // show preview Logo
+  function preview_fileLogo(oInput,z='') {
+    var viewer = {
+          load : function(e){
+              $('#prevfile'+z).attr('src', e.target.result);
+          },
+          setProperties : function(file){
+              $('#namefile'+z).text(file.name);
+              $('#typefile'+z).text(file.type);
+              $('#sizefile'+z).text(Math.round(file.size/1024));
+              // $nama=$('[name=nama]').val();
+              // $namaPerusahaan= $('[name=namaPerusahaan]').val();
+              // $('#nama').html($nama);
+              // $('#namaPerusahaan').html($namaPerusahaan);
+          },
+        }
+
+      var file = oInput.files[0];
+      var reader = new FileReader();
+      var size=Math.round(file.size/1024);
+      // start pengecekan ukuran file
+      if (size>=90000) {
+        // $('#e_size_video').modal('show');
+      }else{
+        $(".prv_logo"+z).show();
+        reader.onload = viewer.load;
+        reader.readAsDataURL(file);
+        viewer.setProperties(file);
+      }
+  }
 </script>
