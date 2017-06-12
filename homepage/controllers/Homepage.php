@@ -64,15 +64,15 @@ class Homepage extends MX_Controller {
 
     function allrReportHeroo(){
         $data = array(
-            'judul_halaman' => 'Sibejoo - Artikel',
-             'judul_header2' =>'All Artikel'
+            'judul_halaman' => 'Sibejoo - Heroo',
+             'judul_header2' =>'All Report Heroo'
         );
 
-        $data['report_heroo'] = $this->Mhomepage->get_report_heroo();
-        $data['listart'] = $this->Mhomepage->list_artikel();
+        $data['allreportheroo'] = $this->Mhomepage->get_report_heroo();
+        $data['listheroo'] = $this->Mhomepage->list_heroo();
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header.php',
-            APPPATH . 'modules/homepage/views/r-all-artikel.php',
+            APPPATH . 'modules/homepage/views/r-all-heroo.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
         $this->parser->parse('templating/r-index', $data);
