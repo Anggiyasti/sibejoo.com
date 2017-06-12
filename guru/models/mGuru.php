@@ -143,7 +143,7 @@ return $query->result_array();
 
 		$this->db->order_by( 'rand()' );
 
-		$this->db->limit(4);
+		$this->db->limit(10);
 
 		$query = $this->db->get();
 

@@ -12,6 +12,8 @@ class Homepage extends MX_Controller {
         $this->load->model('matapelajaran/mmatapelajaran');
         $this->load->model('video/mvideos');
         $this->load->model('Mhomepage');
+   $this->load->library('generateavatar');
+        
         
     }
 
@@ -34,7 +36,9 @@ class Homepage extends MX_Controller {
 
         );
         $data['file'] = 'r-container.php';
+        // $data['teachers'] = $this->mguru->get_guru_random();
         $data['teachers'] = $this->mguru->get_guru_random();
+        
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();
         $data['artikel'] = $this->Mhomepage->get_artikel();
