@@ -48,6 +48,41 @@ class Homepage extends MX_Controller {
         // echo "string";
     }
     
+    function allArtikel(){
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+             'judul_header2' =>'All Artikel'
+        );
+
+
+        $data['allartikel'] = $this->Mhomepage->get_artikel();
+        $data['listart'] = $this->Mhomepage->list_artikel();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-all-artikel.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
+        );
+        $this->parser->parse('templating/r-index', $data);
+
+    }
+
+    function allrReportHeroo(){
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+             'judul_header2' =>'All Artikel'
+        );
+
+        $data['report_heroo'] = $this->Mhomepage->get_report_heroo();
+        $data['listart'] = $this->Mhomepage->list_artikel();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-all-artikel.php',
+            // APPPATH . 'modules/homepage/views/v-footer.php',
+        );
+        $this->parser->parse('templating/r-index', $data);
+
+    }
+
     function addpesan() {
         $data['name'] = htmlspecialchars($this->input->post('namalengkap'));
         $data['phone'] = htmlspecialchars($this->input->post('telepon'));

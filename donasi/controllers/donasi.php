@@ -18,7 +18,9 @@
         $this->load->library('form_validation');
         $this->load->library('pagination');
         $this->load->library('sessionchecker');
+        $this->sessionchecker->checkloggedin();
         $this->load->library('parser');
+        date_default_timezone_set('Asia/Jakarta');
 
 
   }
@@ -28,82 +30,43 @@
         $data = array(
             'judul_halaman' => 'Sibejoo - Welcome',
             'judul_header' => 'Mata Pelajaran',
-             'judul_header2' =>'mapel'
+             'judul_header2' =>'Donasi'
         );
-        
+
 
             $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-login.php',
-            APPPATH . 'modules/artikel/views/r-tambah_donasi.php',
+            APPPATH . 'modules/donasi/views/r-tambah-donasi.php',
             );
+
+        $data['status'] = $this->load->m_donasi->get_id_donasi()[0]['status'];
            
-         $this->parser->parse('templating/r-index', $data);
+        $this->parser->parse( 'templating/r-index', $data );
 
     }
 
-
-  // fungsi view artikel masuk ke update
-    public function view_artikel($id){
-        $data['artikel'] = $this->m_artikel->get_gambarartikel($id);
-        $data['judul_halaman'] = "Dashboard Admin";
-        $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_update_artikel.php',
+    // fungsi donasi
+    public function tambah_donasi()
+    {
+            //insert the user registration details into database
+            $data = array(
+                'donasi' => $this->input->post('donasi'),
+                'penggunaID' => $this->session->userdata('id'),
+                'status' => '1'
             );
-        $this->parser->parse('admin/v-index-admin', $data);
-        
-        
-    }  
+            
+            $this->m_donasi->insert_donasi($data);
+            
+            $id = $this->m_donasi->get_id_donasi()[0]['id'];
+            $this->session->set_userdata('id_donasi', $id);
+            echo json_encode($id);
 
-    // fungsi view report heroo masuk ke update
-    public function view_report_heroo($id){
-        $data['artikel'] = $this->m_artikel->get_gambarreport_heroo($id);
-        $data['judul_halaman'] = "Dashboard Admin";
-        $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_update_reportheroo.php',
-            );
-        $this->parser->parse('admin/v-index-admin', $data);
-        
-        
-    }  
+            
 
-    // FUNGSI update artikel
-    public function gambar_artikel($id) {
-
-        $config['upload_path'] = './assets/image/artikel';
-        $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
-        $config['max_size'] = 2000;
-        $config['max_width'] = 700;
-        $config['max_height'] = 467;
-        $this->load->library('upload', $config);
-        // PENGECEKAN KETIKA UPDATE APAKAH ADA FOTO ATAU TIDAK
-        if (!$this->upload->do_upload('photo')) {
-            $this->m_artikel->gambar_artikel1($id);            
-        } else {
-            $file_data = $this->upload->data();
-            $photo = $file_data['file_name'];
-            $this->m_artikel->gambar_artikel($id,$photo);
-        }
     }
 
 
-    // FUNGSI update report heroo
-    public function gambar_report_heroo($id) {
-
-        $config['upload_path'] = './assets/image/artikel';
-        $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
-        $config['max_size'] = 2000;
-        $config['max_width'] = 700;
-        $config['max_height'] = 467;
-        $this->load->library('upload', $config);
-        // PENGECEKAN KETIKA UPDATE APAKAH ADA FOTO ATAU TIDAK
-        if (!$this->upload->do_upload('photo')) {
-            $this->m_artikel->gambar_report1_heroo($id);            
-        } else {
-            $file_data = $this->upload->data();
-            $photo = $file_data['file_name'];
-            $this->m_artikel->gambar_report_heroo($id,$photo);
-        }
-    }
+  
 
     // FUNGSI VIEW FORM ARTIKEL
     function tambahartikel($index_artikel)
@@ -125,12 +88,13 @@
     }
 
     // FUNGSI INSERT ARTIKEL
-    public function insertartikel($index_artikel){
+    public function insertKonfirmasi(){
         $status ="";
         $msg ="";
-        $filename="gambar";
+        $filename="bukti";
+        $id_pengguna =$this->session->userdata('id');
         if ($status != "error") {
-            $config['upload_path']= './assets/image/artikel';
+            $config['upload_path']= './assets/image/konfirmasi_donasi';
             $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
             $config['max_size'] = 2000;
             $config['max_width'] = 700;
@@ -142,38 +106,30 @@
                 $status = 'error';
                 $msg = $this->upload->display_errors('','');
             } else {
-                if ($index_artikel == 1) {
+                
                 $data= $this->upload->data();
-                $file_id = $this->m_artikel->insert_artikel($_POST['judul_artikel'],
-                                                            $_POST['editor1'],
-                                                            $data['file_name']);
+                $file_id = $this->m_donasi->insert_konfirmasi_donasi($_POST['namapengirim'],
+                                                            $_POST['bankpengirim'],
+                                                            $_POST['bankpenerima'],
+                                                            $data['file_name'],
+                                                            $_POST['tglpengirim'],
+                                                            $this->session->userdata('id'),
+                                                            $this->session->userdata['id_donasi']);
+
+
+
                 if ($file_id) {
+                    $id_donasi=$this->session->userdata['id_donasi'];
+                    $this->m_donasi->set_status($id_donasi);
                     $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
-                    redirect('artikel/tambahartikel/1');
-                }
-                else{
-                    unlink($data['full_path']);
-                        $status = "error";
-                        $msg = "Please Try Again";
-                }
+                    redirect('donasi');
                     
-                }else{
-
-
-                $data= $this->upload->data();
-                $file_id = $this->m_artikel->insert_report_heroo($_POST['judul_artikel'],
-                                                            $_POST['editor1'],
-                                                            $_POST['kategori'],
-                                                            $data['file_name']);
-                if ($file_id) {
-                    $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
-                    redirect('artikel/tambahartikel/2');
                 }
                 else{
                     unlink($data['full_path']);
                         $status = "error";
                         $msg = "Please Try Again";
-                }
+                
             }
             }
             @unlink($_FILES[$filename]);
@@ -292,10 +248,10 @@
         
     }
 
-    public function getkategori() {
+    public function getdonasi() {
         $data = $this->output
         ->set_content_type( "application/json" )
-        ->set_output( json_encode( $this->m_artikel->scartikel() ) ) ;
+        ->set_output( json_encode( $this->m_donasi->scdonasi() ) ) ;
 }
 
  }

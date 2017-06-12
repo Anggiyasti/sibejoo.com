@@ -11,6 +11,33 @@ class m_donasi extends CI_Model
 		parent::__construct();
 	}
 
+
+    // insert siswa ke db
+    public function insert_donasi($data)
+        {
+            return $this->db->insert('tb_donasi', $data);
+        }
+
+    // get gambar artikel
+    public function get_id_donasi()
+
+    {
+
+        // $id_siswa=$this->session->userdata['email'] ;    
+
+        $this->db->select('*');
+
+        $this->db->from('tb_donasi');
+
+        $this->db->order_by('id','desc'); 
+        $this->db->limit('1'); 
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+
+    }
+
     // get daftar artikel
 	public function getDaftarslide(){
     	$this->db->distinct();
@@ -142,13 +169,17 @@ class m_donasi extends CI_Model
     }
 
     // insert artikel
-    function insert_artikel($judul_artikel,$isi_artikel,$filename){
+    function insert_konfirmasi_donasi($nrek_peng,$b_peng,$b_pener,$filename,$tgl_peng,$id_peng){
         $data = array(
-                        'judul_artikel'  =>     $judul_artikel,
-                        'isi_artikel' => $isi_artikel,
-                        'gambar' =>      $filename
+                        'nama_rek_pengirim'  => $nrek_peng,
+                        'bank_pengirim' => $b_peng,
+                        'bank_penerima' => $b_pener,
+                        'bukti_transfer' => $filename,
+                        'tanggal_pengirim' => $tgl_peng,
+                        'penggunaID' => $id_peng,
+
                         );
-        $this->db->insert('tb_artikel',$data);
+        $this->db->insert('tb_konfirmasi_donasi',$data);
         return $data;
 
     }
@@ -166,6 +197,13 @@ class m_donasi extends CI_Model
 
     }
 
+
+     // DELETE MATA PELAJARAN
+    public function set_status($id) {
+        $this->db->where('id',$id);
+        $this->db->set('status', 2);
+        $this->db->update('tb_donasi');
+    }
 
       // DELETE MATA PELAJARAN
     public function delete_artikel($id_artikel) {
@@ -194,6 +232,15 @@ class m_donasi extends CI_Model
     {
         $this->db->select('id_kategori,nama_kategori');
                 $this->db->from('tb_kategori');
+                // $this->db->where('status',1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function scdonasi()
+    {
+        $this->db->select('*');
+                $this->db->from('tb_jenis_donasi');
                 // $this->db->where('status',1);
         $query = $this->db->get();
         return $query->result_array();

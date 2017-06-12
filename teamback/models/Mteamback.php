@@ -45,7 +45,7 @@ class Mteamback extends CI_Model{
 	// update foto team
     public function edit_upload_team($data,$id) {
         $this->db->where('id', $id);
-        $this->db->update('tb_team', $data['data_upload_team']);
+        $this->db->update('tb_team', $data);
         
     }
 }

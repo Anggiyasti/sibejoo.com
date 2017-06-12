@@ -18,7 +18,7 @@
                     </div>
                 <?php }; ?>
                 <!-- Form horizontal layout bordered -->
-                <div class="panel panel-teal">
+                <div class="panel panel-danger">
                     <div class="panel-heading">
                         <h3 class="panel-title">Tambah Data Team</h3>
                         <a href="<?= base_url('index.php/teamback')?>" class="btn btn-default btn-sm pull-right" style="margin-top:-33px;" >Kembali</a>
@@ -57,9 +57,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-footer">
-                        <div class="col-md-4 pull-right">
+                        <div class="col-md-2 pull-right">
                             <a onclick="save()" class="btn btn-primary">Simpan</a>
                         </div>
                     </div>
@@ -68,15 +67,16 @@
                 <!--/ Form horizontal layout bordered -->
             </div>
 
+            <!-- untuk preview foto -->
             <div class="col-sm-5">
-                <div class="panel panel-teal">
+                <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h3 class="panel-title">Preview Foto Team</h3>
                 </div>  
                 <div class="panel-body pb0 pt0 pl0 pr0">
                     <!-- START Statistic Widget -->
                     <div class="table-layout animation delay animating fadeInDown  prv_logo mb0">
-                        <div class="col-xs-4 panel bgcolor-info text-center">
+                        <div class="col-xs-4 panel bgcolor-danger text-center">
                             <img id="prevfile" class="img-tumbnail logo" src="<?=base_url()?>assets\image\avatar\default.png" width="50%"  >
                         </div>
                     </div>
@@ -97,104 +97,46 @@
                 </div>
                 </div>                      
             </div>
+            <!-- end preview foto -->
 
         </div>
         <!--/ END row -->
     </div>
 </section>
 <script src="http://malsup.github.com/jquery.form.js"></script>
+<!-- Script ajax upload -->
+ <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
  <!-- END Template Main -->
  <script type="text/javascript">
-    function submit_upload(){
-
-        $('.submit-upload').click();
-    }
-    jQuery(document).ready(function() { 
-        jQuery('#form-gambar').on('submit', function(e) {
-            console.log('masuk');
-            e.preventDefault();
-            jQuery('#submit-button').attr('disabled', ''); 
-            jQuery("#output").html('<div style="padding:10px"><img src="<?php echo base_url('assets/image/loading/spinner11.gif'); ?>" alt="Please Wait"/> <span>Mengunggah...</span></div>');
-            jQuery(this).ajaxSubmit({
-                target: '#output',
-                success:  sukses 
-            });
-        });
-    }); 
-
-    function sukses()  { 
-        jQuery('#form-upload').resetForm();
-        jQuery('#submit-button').removeAttr('disabled');
-
-    } 
-
-    function insert(){
-        nama_file = $('.insert').data('nama');
-        url = base_url+"assets/image/konsultasi/"+nama_file;
-
-        CKEDITOR.instances.isi.insertHtml('<img src='+url+' ' + CKEDITOR.instances.isi.getSelection().getNative()+'>');
-
-    }
-
-    
-    // masukin text ke posisi tertentu
-    jQuery.fn.extend({
-        insertAtCaret: function(myValue){
-            return this.each(function(i) {
-                if (document.selection) {
-                    this.focus();
-                    sel = document.selection.createRange();
-                    sel.text = myValue;
-                    this.focus();
-                }
-                else if (this.selectionStart || this.selectionStart == '0') {
-                    var startPos = this.selectionStart;
-                    var endPos = this.selectionEnd;
-                    var scrollTop = this.scrollTop;
-                    this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
-                    this.focus();
-                    this.selectionStart = startPos + myValue.length;
-                    this.selectionEnd = startPos + myValue.length;
-                    this.scrollTop = scrollTop;
-                } else {
-                    this.value += myValue;
-                    this.focus();
-                }
-            })
-        }
-    });
-    // masukin text ke posisi tertentu
-
+    // simpan team
     function save(){
-        var logo = $('[name=foto]').val();
         var datas = {
             nama : $('input[name=nama]').val(),
             posisi : $('input[name=posisi]').val(),
             keterangan:$('input[name=keterangan]').val(),
-            logo: logo
+            foto: $('[name=foto]').val(),
         }
-        console.log(datas);
+        //id fileinput
+        var elementId = "filefoto";
         if (datas.nama == "" || datas.posisi == "") {
             swal('Tidak boleh kosong');
         }else{
-            // do_upload
             url = base_url+"teamback/ajax_add_team";
-            // url = base_url+"teamback/do_upload";
-            $.ajax({
-                url : url,
-                type: "POST",
-                data: datas,
-                dataType: "TEXT",
-                success: function(data)
-                {
-                swal('Posting berhasil...');
-                window.location = base_url+"teamback";
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                swal('Error adding / update data');
-            }
-        });
+            // do_upload
+            $.ajaxFileUpload({
+                url:url,
+                data:datas,
+                dataType:"TEXT",
+                type:"POST",
+                fileElementId :elementId,
+                success:function(Data){
+                    sweetAlert("Info",Data,"success");
+                    window.location = base_url+"teamback";
+                },
+                error:function(){
+                    
+                }
+            });
 
             
         }
@@ -210,10 +152,6 @@
               $('#namefile'+z).text(file.name);
               $('#typefile'+z).text(file.type);
               $('#sizefile'+z).text(Math.round(file.size/1024));
-              // $nama=$('[name=nama]').val();
-              // $namaPerusahaan= $('[name=namaPerusahaan]').val();
-              // $('#nama').html($nama);
-              // $('#namaPerusahaan').html($namaPerusahaan);
           },
         }
 
@@ -232,4 +170,3 @@
       }
   }
  </script>
- <script src="http://macyjs.com/assets/js/macy.min.js"></script>

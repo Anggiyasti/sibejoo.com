@@ -599,6 +599,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
           </div>
         </div>
       </div>
+      <<<<<<< HEAD
     </div>
   </div>
 </section>
@@ -610,282 +611,298 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
       <div class="row">
         <div class="col-md-8">
           <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Artikel</span></h2>
-        </div>
-      </div>
-    </div>
-    <div class="section-content" >
-      <div class="row">
-        <div class="col-md-12">
-          <div class="owl-carousel-4col" data-dots="true" >
-            <?php foreach ($artikel as $key): ?>
-              <div class="item " >
-                <div class="service-block bg-light" >
-                  <div class="thumb"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
-                    <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_artikel'] ?></span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0" style="height: 250px;">
-                    <h4 class="line-bottom mb-10"><?=$key['judul_artikel'] ?></h4>
-                    <p ><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
-                  </div>
-                </div>
-              </div>
-            <?php endforeach ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
-<!-- Section: SERVICE -->
-<section id="service" class="bg-lighter">
-  <div class="container pb-60">
-    <div class="section-title mb-10">
-      <div class="row">
-        <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Report Heroo</span></h2>
-        </div>
-      </div>
-    </div>
-    <div class="section-content" >
-      <div class="row">
-        <div class="col-md-12">
-          <div class="owl-carousel-4col" data-dots="true" >
-            <?php foreach ($report_heroo as $key): ?>
-              <div class="item " >
-                <div class="service-block bg-light" >
-                  <div class="thumb"><a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
-                    <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_art_katagori'] ?></span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0" style="height: 250px;">
-                    <h4 class="line-bottom mb-10"><?=$key['judul_art_katagori'] ?></h4>
-                    <p ><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
-                  </div>
-                </div>
-              </div>
-            <?php endforeach ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- Section: SERVICE -->
+        <section id="service" class="bg-lighter">
+          <div class="container pb-60">
+            <div class="section-title mb-10">
+              <div class="row">
+                <div class="col-md-8">
+                  <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Artikel</span></h2>
+                  <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+                    All Artikel
+                  </a>
 
-
-<!-- Section: Pricing Table -->
-<section class="bg-lighter" id="pricing">
-  <div class="container">
-   <div class="section-title mb-10">
-    <div class="row">
-      <div class="col-md-8">
-        <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Price List</span></h2>
-      </div>
-    </div>
-  </div>
-  <div class="section-content">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
-          </div>
-          <img src="http://placehold.it/359x120" alt="">
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
-            </ul>
-          </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
-          </div>
-          <img src="http://placehold.it/359x120" alt="">
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
-            </ul>
-          </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
-          </div>
-          <img src="http://placehold.it/359x120" alt="">
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
-            </ul>
-          </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- Divider: Fun Facts -->
-<section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1920x1280" data-parallax-ratio="0.7">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_siswa}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Siswa</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_mapel}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Pelajaran</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_guru}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Pengajar</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
-        <div class="funfact text-center">
-          <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_video}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Video</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section: team -->
-<section>
-  <div class="container">
-    <div class="section-title mb-10">
-      <div class="row">
-        <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Team Sibejoo</span></h2>
-        </div>
-      </div>
-    </div>
-    <div class="section-content">
-      <div class="row multi-row-clearfix">
-          <div class="owl-carousel-4col" data-dots="true" >
-
-        <?php foreach ($teachers as $teacher): ?>
-          <div class="ccol-md-3 sm-text-center mb-30 mb-sm-30">
-            <div class="team-members maxwidth400">
-              <div class="team-thumb">
-                <img class="img-fullwidth" alt="" src="http://placehold.it/200x200">
-              </div>
-              <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> <?=$teacher['namaDepan']." ".$teacher['namaBelakang'] ?></a></h4>
-                <h5 class="text-theme-color">Teacher</h5>
-                <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        <?php endforeach ?>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Divider: testimonials -->
-<section id="testimonials" class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="0.5" data-bg-img="http://placehold.it/1920x1280">
-  <div class="container pb-50">
-    <div class="section-title">
-      <div class="row">
-        <div class="col-md-6">
-          <h5 class="font-weight-300 m-0 text-gray-lightgray">Pengguna yang senang!</h5>
-          <h2 class="mt-0 mb-0 line-bottom text-white font-28">Testimonials<span class="font-30 text-theme-color-2">.</span></h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 mb-10">
-        <div class="owl-carousel-2col boxed" data-dots="true">
-          <?php foreach ($testimoni as $key) : ?>
-            <div class="item">
-              <div class="testimonial pt-10">
-                <div class="thumb pull-left mb-0 mr-0 pr-20">
-                  <img width="75" class="img-circle" alt="" src="http://placehold.it/100x100">
-                </div>
-                <div class="ml-100 ">
-                  <h4 class="text-white mt-0"><?= $key['testimoni']?></h4>
-                  <p class="author mt-20">- <span class="text-theme-color-2"><?= $key['namaDepan']." ".$key['namaBelakang']?>,</span> <small><em class="text-gray-lightgray"><?=$key['namaSekolah']?></em></small></p>
                 </div>
               </div>
             </div>
-          <?php endforeach ?> 
-        </div> 
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="subs" class="bg-lighter text-center">
-  <div class="container pt-30">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h3>Berinteraksi Dengan Kami.</h3>
-        <h5>Neon hadir untuk kalian yang pengen pinter dengan cara mudah dan asyik. Ayo bergabung dengan Neon. Silahkan masukkan email kalian.</h5>
-
-        <!-- Mailchimp Subscription Form-->
-        <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
-          <label for="mce-EMAIL"></label>
-          <div class="input-group">
-            <!-- untuk menampilkan pesan kesalahan penginputan email -->
-            <input type="email" id="mce-EMAIL" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
-            <span class="input-group-btn">
-              <input type="submit" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px"> 
-              <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
-              <span class="text-danger"><?php echo form_error('email'); ?></span>
-            </span>
           </div>
-        </form>
 
-        <!-- Mailchimp Subscription Form Validation-->
-        <script type="text/javascript">
-          $('#mailchimp-subscription-form1').ajaxChimp({
-            callback: mailChimpCallBack,
-            url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
-          });
+          
+          <div class="section-content" >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="owl-carousel-4col" data-dots="true" >
+                  <?php foreach ($artikel as $key): ?>
+                    <div class="item " >
+                      <div class="service-block bg-light" >
+                        <div class="thumb"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
+                          <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_artikel'] ?></span></h4>
+                        </div>
+                        <div class="content text-left flip p-25 pt-0" style="height: 250px;">
+                          <h4 class="line-bottom mb-10"><?=$key['judul_artikel'] ?></h4>
+                          <p ><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
+                        </div>
 
-          function mailChimpCallBack(resp) {
+                      </div>
+                    </div>
+                  <?php endforeach ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: SERVICE -->
+        <section id="service" class="bg-lighter">
+          <div class="container pb-60">
+            <div class="section-title mb-10">
+              <div class="row">
+                <div class="col-md-8">
+                  <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Report Heroo</span></h2>
+                </div>
+              </div>
+            </div>
+            <div class="section-content" >
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="owl-carousel-4col" data-dots="true" >
+                    <?php foreach ($report_heroo as $key): ?>
+                      <div class="item " >
+                        <div class="service-block bg-light" >
+                          <div class="thumb"><a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
+                            <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_art_katagori'] ?></span></h4>
+                          </div>
+                          <div class="content text-left flip p-25 pt-0" style="height: 250px;">
+                            <h4 class="line-bottom mb-10"><?=$key['judul_art_katagori'] ?></h4>
+                            <p ><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endforeach ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Section: Pricing Table -->
+        <section class="bg-lighter" id="pricing">
+          <div class="container">
+           <div class="section-title mb-10">
+            <div class="row">
+              <div class="col-md-8">
+                <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Price List</span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+                <div class="pricing-table maxwidth400">
+                  <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
+                  </div>
+                  <img src="http://placehold.it/359x120" alt="">
+                  <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                    <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
+                    <ul class="table-list list-icon theme-colored pb-0">
+                      <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
+                      <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
+                    </ul>
+                  </div>
+                  <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+                <div class="pricing-table maxwidth400">
+                  <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
+                  </div>
+                  <img src="http://placehold.it/359x120" alt="">
+                  <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                    <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
+                    <ul class="table-list list-icon theme-colored pb-0">
+                      <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
+                    </ul>
+                  </div>
+                  <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+                <div class="pricing-table maxwidth400">
+                  <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
+                  </div>
+                  <img src="http://placehold.it/359x120" alt="">
+                  <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                    <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
+                    <ul class="table-list list-icon theme-colored pb-0">
+                      <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                      <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
+                    </ul>
+                  </div>
+                  <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider: Fun Facts -->
+      <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1920x1280" data-parallax-ratio="0.7">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+              <div class="funfact text-center">
+                <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                <h2 data-animation-duration="2000" data-value="{jumlah_siswa}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                <h5 class="text-white text-uppercase mb-0">Siswa</h5>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+              <div class="funfact text-center">
+                <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                <h2 data-animation-duration="2000" data-value="{jumlah_mapel}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                <h5 class="text-white text-uppercase mb-0">Pelajaran</h5>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+              <div class="funfact text-center">
+                <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                <h2 data-animation-duration="2000" data-value="{jumlah_guru}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                <h5 class="text-white text-uppercase mb-0">Pengajar</h5>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+              <div class="funfact text-center">
+                <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
+                <h2 data-animation-duration="2000" data-value="{jumlah_video}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                <h5 class="text-white text-uppercase mb-0">Video</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: team -->
+      <section>
+        <div class="container">
+          <div class="section-title mb-10">
+            <div class="row">
+              <div class="col-md-8">
+                <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Team Sibejoo</span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="row multi-row-clearfix">
+              <div class="owl-carousel-4col" data-dots="true" >
+
+                <?php foreach ($teachers as $teacher): ?>
+                  <div class="ccol-md-3 sm-text-center mb-30 mb-sm-30">
+                    <div class="team-members maxwidth400">
+                      <div class="team-thumb">
+                        <img class="img-fullwidth" alt="" src="http://placehold.it/200x200">
+                      </div>
+                      <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
+                        <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> <?=$teacher['namaDepan']." ".$teacher['namaBelakang'] ?></a></h4>
+                        <h5 class="text-theme-color">Teacher</h5>
+                        <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
+                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                          <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider: testimonials -->
+      <section id="testimonials" class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="0.5" data-bg-img="http://placehold.it/1920x1280">
+        <div class="container pb-50">
+          <div class="section-title">
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="font-weight-300 m-0 text-gray-lightgray">Pengguna yang senang!</h5>
+                <h2 class="mt-0 mb-0 line-bottom text-white font-28">Testimonials<span class="font-30 text-theme-color-2">.</span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-10">
+              <div class="owl-carousel-2col boxed" data-dots="true">
+                <?php foreach ($testimoni as $key) : ?>
+                  <div class="item">
+                    <div class="testimonial pt-10">
+                      <div class="thumb pull-left mb-0 mr-0 pr-20">
+                        <img width="75" class="img-circle" alt="" src="http://placehold.it/100x100">
+                      </div>
+                      <div class="ml-100 ">
+                        <h4 class="text-white mt-0"><?= $key['testimoni']?></h4>
+                        <p class="author mt-20">- <span class="text-theme-color-2"><?= $key['namaDepan']." ".$key['namaBelakang']?>,</span> <small><em class="text-gray-lightgray"><?=$key['namaSekolah']?></em></small></p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach ?> 
+              </div> 
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="subs" class="bg-lighter text-center">
+        <div class="container pt-30">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <h3>Berinteraksi Dengan Kami.</h3>
+              <h5>Neon hadir untuk kalian yang pengen pinter dengan cara mudah dan asyik. Ayo bergabung dengan Neon. Silahkan masukkan email kalian.</h5>
+
+              <!-- Mailchimp Subscription Form-->
+              <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
+                <label for="mce-EMAIL"></label>
+                <div class="input-group">
+                  <!-- untuk menampilkan pesan kesalahan penginputan email -->
+                  <input type="email" id="mce-EMAIL" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
+                  <span class="input-group-btn">
+                    <input type="submit" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px"> 
+                    <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
+                    <span class="text-danger"><?php echo form_error('email'); ?></span>
+                  </span>
+                </div>
+              </form>
+
+              <!-- Mailchimp Subscription Form Validation-->
+              <script type="text/javascript">
+                $('#mailchimp-subscription-form1').ajaxChimp({
+                  callback: mailChimpCallBack,
+                  url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
+                });
+
+                function mailChimpCallBack(resp) {
                   // Hide any previous response text
                   var $mailchimpform = $('#mailchimp-subscription-form1'),
                   $response = '';

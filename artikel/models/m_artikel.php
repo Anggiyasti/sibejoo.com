@@ -190,7 +190,7 @@ class m_artikel extends CI_Model
         return $this->db->get('tb_artikel')->num_rows();
     }
 
-    public function scartikel()
+  public function scartikel()
     {
         $this->db->select('id_kategori,nama_kategori');
                 $this->db->from('tb_kategori');
