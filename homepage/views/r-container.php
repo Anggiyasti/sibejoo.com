@@ -610,6 +610,10 @@
         <div class="row">
           <div class="col-md-8">
             <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Artikel</span></h2>
+            <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+              All Artikel
+            </a>
+
          </div>
         </div>
         </div>
@@ -628,7 +632,9 @@
                       <p ><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
                     </div>
                   </div>
+
                 </div>
+
                 <?php endforeach ?>
               </div>
             </div>
