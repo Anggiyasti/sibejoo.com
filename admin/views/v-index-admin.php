@@ -903,6 +903,29 @@ JS aoutocomplate
   </ul>
 </li>
 
+<li>
+  <a href="javascript:void(0);" data-target="#team" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-users"></i></span>
+    <span class="text">Team</span>
+    <span class="arrow"></span>
+  </a>
+
+  <ul id="team" class="submenu collapse ">
+    <li class="submenu-header ellipsis">Team</li>
+
+    <li >
+      <a href="<?=  base_url('teamback')?>">
+        <span class="text">Daftar Team</span>
+      </a>
+    </li>
+    <li >
+      <a href="<?=  base_url('teamback/form_addteam')?>">
+        <span class="text">Add Team</span>
+      </a>
+    </li>
+  </ul>
+</li>
+
 
 
 </ul>

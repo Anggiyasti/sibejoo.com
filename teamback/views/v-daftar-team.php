@@ -41,10 +41,10 @@
 			      <thead>
 			        <tr>
 			          <th>No</th>
-			          <th>ID</th>
 			          <th>Nama</th>
 			          <th>Posisi</th>
 			          <th>Keterangan</th>
+			          <th>Foto</th>
 			          <th width="15%">Aksi</th>
 			        </tr>
 			        <tbody>
@@ -111,6 +111,7 @@ function drop_team(id){
       url:url,
       success:function(){
         swal("Terhapus!", "Team berhasil dihapus.", "success");
+        reload();
       },
       error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");
@@ -118,6 +119,10 @@ function drop_team(id){
 
     });
   });
+}
+
+function reload() {
+	dataTableTeam.ajax.reload(null,false);
 }
  	
 </script>
