@@ -50,7 +50,19 @@
                                     <!-- Untuk menampung staus step disable or enable -->
                                      <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
                                      <!-- // Untuk menampung staus step disable or enable  -->
+                                     <?php 
+                                      $v = $key['icon'];
+                                      $u=$key['uuid'];
+                                      $a ='as';
+                                      ?>
+                                      <?php if ($key['icon'] == "ico-play3"): ?>
+                                        <a onclick="getvideo('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
+                                      <?php else: ?>
                                         <a href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:20px;"><?=$key['namaStep']?></a>
+                                      <?php endif ?>
+                                        
+                                     
+                                        
                                     </div>
                                 </li>
                             <?php $i++; ?>
@@ -128,11 +140,41 @@
         $("#font-"+i).css("color","#b0b0b0");
       }else if(status =="current"){
         // jika step line yg sedang di buka
-        $("#ico-"+i).css("background","#D26161");
-        $("#font-"+i).css("color","#D26161");
+        $("#ico-"+i).css("background","#f2184f");
+        $("#font-"+i).css("color","#f2184f");
         $("#bg-"+i).css({ "background-color":"","box-shadow": "inset 0 0 0 1px #E4E4E4,inset 0 1px 6px #E6E6E6"});
       }
          
       }
   });
 </script>
+
+
+ <script type="text/javascript">
+    function getvideo(uuid) {
+      // uuid =$('input[name=uuid]').val();
+      // console.log(uuid);
+        url_ajax = base_url+"linetopik/tampunguuid";
+
+        var global_properties = {
+          uuid: uuid
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/step_video";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+    
+</script>
+
+
+

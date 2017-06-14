@@ -33,7 +33,7 @@
                 <div class="categories">
                   <ul class="list list-border angle-double-right">
 
-                    <li><a href="<?=base_url('index.php')?>/linetopik/learningline/<?=$key['babID']?>"><?=$key['judulBab']?></a></li>
+                    <li><a onclick="getlearning(<?=$key['babID']?>)" href="javascript:void(0);"><?=$key['judulBab']?></a></li>
                   </ul>
                 </div>
                 <?php $oldMpalel=$mapel; ?>
@@ -49,3 +49,28 @@
                 <h4 class="text-center" style="color:#f27c66;">Maaf,Pada Tingkat ini belum tersedia learning line!</h4>
               <?php endif ?>
 
+
+
+<script type="text/javascript">
+    function getlearning(judulBab) {
+        url_ajax = base_url+"linetopik/tampungid_bab";
+
+        var global_properties = {
+          judulBab: judulBab
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/learningline";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+    
+</script>

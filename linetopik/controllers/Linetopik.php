@@ -34,6 +34,25 @@ class Linetopik extends MX_Controller
 
 }
 
+   // tampung id tingkar
+ public function tampungid_bab()
+ {   
+    $id = $this->input->post('judulBab');
+    $this->session->set_userdata('id_bab', $id);
+    echo json_encode($id);
+
+}
+
+
+  // tampung id tingkar
+ public function tampunguuid()
+ {   
+    $id = $this->input->post('uuid');
+    $this->session->set_userdata('uuid_video', $id);
+    echo json_encode($id);
+
+}
+
     //list mapel untuk memilih step line
 public function lineMapel()
 {
@@ -94,7 +113,8 @@ public function check_member($babID){
     }
 }
 
-public function learningLine($babID){
+public function learningLine(){
+    $babID = $this->session->userdata['id_bab'];
     $this->check_member($babID);
 
     $data = array(
@@ -120,11 +140,11 @@ public function learningLine($babID){
            $jenis='Video';
             // pengecekan disable atau enable step
            if ($step == true || $urutan == '1' ) {
-            $icon='ico-movie ';
-            $link = base_url('index.php/linetopik/step_video/').$UUID;
+            $icon='ico-play3';
+            $link = $UUID;
             $status ="enable";
         } else {
-            $icon='ico-movie';
+            $icon='ico-play4';
             $link = 'javascript:void(0)';
             $status ="disable";
         }
@@ -133,11 +153,11 @@ public function learningLine($babID){
        $jenis='Materi';
  				// pengecekan disable atau enable step
        if ($step == true || $urutan == '1' ) {
-          $icon ='ico-file6';
+          $icon ='ico-folder';
           $link = base_url('index.php/linetopik/step_materi/').$UUID;
           $status ="enable";
       } else {
-       $icon='ico-file6';
+       $icon='ico-folder';
        $link = 'javascript:void(0)';
        $status ="disable";
    }
@@ -146,12 +166,12 @@ public function learningLine($babID){
    $jenis='Latihan';
    // pengecekan disable atau enable step
    if ($step == true || $urutan == '1' ) {
-     $icon ='ico-pencil';
+     $icon ='ico-edit';
      $latihanID = $rows['latihanID'];
      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
      $status ="enable";
  } else {
-  $icon='ico-pencil';
+  $icon='ico-edit';
   $link = 'javascript:void(0)';
   $status ="disable";
 }
@@ -166,7 +186,9 @@ $data['datline'][]=array(
     'jenisStep'=>$jenis,
     'icon' =>$icon,
     'link' => $link,
-    'status'=>$status);
+    'status'=>$status,
+    'uuid' => $UUID
+    );
 $log=$this->Mlinetopik->get_log($stepID);
 $step = $log;
 }
@@ -175,7 +197,7 @@ $data['files'] = array(
     APPPATH . 'modules/linetopik/views/r-line-topik.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
     );
-$this->parser->parse('templating/r-index-login', $data);
+$this->parser->parse('templating/r-index', $data);
 }
 
 
@@ -183,8 +205,9 @@ $this->parser->parse('templating/r-index-login', $data);
 
 
  // view step video
-public function step_video($UUID)
+public function step_video()
 {
+  $UUID = $this->session->userdata['uuid_video'];
         // pengecekan jika snip url
     $snip=$this->Mlinetopik->get_stepLog($UUID);
     if ($snip==false) {
@@ -225,11 +248,11 @@ public function step_video($UUID)
         $jenis='Video';
                 // pengecekan disable atau enable step
         if ($step == true || $urutan == '1' ) {
-            $icon='ico-movie ';
-            $link = base_url('index.php/linetopik/step_video/').$stepUUID;
+            $icon='ico-play3';
+            $link = $stepUUID;
             $status ="enable";
         } else {
-         $icon='ico-movie';
+         $icon='ico-play4';
          $link = 'javascript:void(0)';
          $status ="disable";
      }
@@ -237,11 +260,11 @@ public function step_video($UUID)
     $jenis='Materi';
                 // pengecekan disable atau enable step
     if ($step == true || $urutan == '1' ) {
-        $icon =' ico-file6';
+        $icon =' ico-folder';
         $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
         $status ="enable";
     } else {
-     $icon =' ico-file6';
+     $icon =' ico-folder';
      $link = 'javascript:void(0)';
      $status ="disable";
  }
@@ -249,12 +272,12 @@ public function step_video($UUID)
     $jenis='Latihan';
     // pengecekan disable atau enable step
     if ($step == true || $urutan == '1' ) {
-     $icon ='ico-pencil';
+     $icon ='ico-edit';
      $latihanID = $rows['latihanID'];
      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
      $status ="enable";
  } else {
-    $icon ='ico-pencil';
+    $icon ='ico-edit';
     $link = 'javascript:void(0)';
     $status ="disable";
 }
@@ -268,7 +291,8 @@ $data['datline'][]=array(
     'jenisStep'=>$jenis,
     'icon' =>$icon,
     'link' => $link,
-    'status'=>$status);
+    'status'=>$status,
+    'uuid' => $stepUUID);
 $data['tingkat']  = $rows['aliasTingkat'];
 $data['mapel']   = $rows['keterangan'];
 $data['bab']      = $rows['judulBab'];
@@ -288,7 +312,7 @@ $data['files'] = array(
     );
 
 
-$this->parser->parse('templating/r-index-login', $data);
+$this->parser->parse('templating/r-index', $data);
 
 }
 
@@ -351,11 +375,11 @@ public function step_materi($UUID)
     if ($tampJenis == '1') {
         $jenis='Video';
         if ($step == true || $urutan == '1' ) {
-            $icon='ico-movie';
-            $link = base_url('index.php/linetopik/step_video/').$stepUUID;
+            $icon='ico-play3';
+            $link = $stepUUID;
             $status ="enable";
         } else {
-            $icon ='ico-movie';
+            $icon ='ico-play4';
             $link = 'javascript:void(0)';
             $status ="disable";
         }
@@ -363,23 +387,23 @@ public function step_materi($UUID)
         $jenis='Materi';
 
         if ($step == true || $urutan == '1' ) {
-            $icon ='ico-file6';
+            $icon ='ico-folder';
             $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
             $status ="enable";
         } else {
-            $icon ='ico-file6';
+            $icon ='ico-folder';
             $link = 'javascript:void(0)';
             $status ="disable";
         }
     }else{
         $jenis='Latihan';
         if ($step == true || $urutan == '1' ) {
-         $icon ='ico-pencil';
+         $icon ='ico-edit';
          $latihanID = $rows['latihanID'];
          $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
          $status ="enable";
      } else {
-        $icon ='ico-pencil';
+        $icon ='ico-edit';
         $link = 'javascript:void(0)';
         $status ="disable";
     }
@@ -393,7 +417,9 @@ $data['datline'][]=array(
     'jenisStep'=>$jenis,
     'icon' =>$icon,
     'link' => $link,
-    'status'=>$status);
+    'status'=>$status,
+    'uuid' =>$stepUUID);
+
 $data['tingkat']  = $rows['aliasTingkat'];
 $data['mapel']   = $rows['keterangan'];
 $data['bab']      = $rows['judulBab'];
@@ -689,7 +715,7 @@ $data['files'] = array(
     );
 
 
-$this->parser->parse('templating/r-index-login', $data);
+$this->parser->parse('templating/r-index', $data);
 }
 
     //PENCARIAN TOPIK
@@ -719,8 +745,8 @@ public function cariTopik()
             $jenis='Video';
                 // pengecekan disable atau enable step
             if ($step == true || $urutan == '1' ) {
-                $icon='ico-movie ';
-                $link = base_url('index.php/linetopik/step_video/').$UUID;
+                $icon='ico-movie2';
+                $link = $UUID;
                 $status ="enable";
             } else {
                 $icon='ico-movie';
@@ -766,7 +792,8 @@ $data['datline'][]=array(
     'jenisStep'=>$jenis,
     'icon' =>$icon,
     'link' => $link,
-    'status'=>$status);
+    'status'=>$status,
+    'uuid'=>$UUID);
 $log=$this->Mlinetopik->get_log($stepID);
 $step = $log;
 
@@ -781,7 +808,7 @@ $data['files'] = array(
 
     );
 
-$this->parser->parse('templating/r-index-login', $data);
+$this->parser->parse('templating/r-index', $data);
         // END step line
 }
 

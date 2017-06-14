@@ -77,6 +77,24 @@
                     </div>
                   </article>
                   <?php endforeach ?>
+                  <nav>
+                  <center>
+                  <ul class="pagination">
+                    <li>
+                      <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li><?php echo $links; ?></li>
+                    <li>
+                      <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                  </center>
+                  </nav>
+                 
                 </div>
               </div>
             </div>

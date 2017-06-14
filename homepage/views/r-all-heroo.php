@@ -31,7 +31,7 @@
                     <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt=""></a>
                     <div class="post-right">
                       <h5 class="post-title mt-0"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><b><?=$key['judul_art_katagori'] ?></b></a></h5>
-                      <p><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 30) ?>...</p>
+                      <p><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 20) ?>...</p>
                     </div>
                   </article>
                   
@@ -51,7 +51,7 @@
           <div class="portfolio-filter font-alt align-center">
               <div class="btn-group" data-toggle="buttons" > 
 
-       <label class="btn active cws-button  btn-primary  small" onclick="pass()"> 
+       <label class="btn cws-button  btn-primary  small" onclick="pass()"> 
         <input type="radio" name="options"  autocomplete="off" checked="true" title="Tampilkan Semua Jenis Video"> Pass
       </label>
 
@@ -122,7 +122,7 @@
                       <div class="clearfix"></div>
                     </div>
                   </article>
-                <?php else: ?>
+                <?php elseif ($key['id_kategori'] == 3): ?>
 
                   <article class="post clearfix mb-30 pb-30 soon ">
                     <div class="entry-header">
@@ -154,6 +154,23 @@
                     
                   
                   <?php endforeach ?>
+                  <nav>
+                  <center>
+                  <ul class="pagination">
+                    <li>
+                      <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li><?php echo $links; ?></li>
+                    <li>
+                      <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                  </center>
+                  </nav>
                 </div>
               </div>
             </div>

@@ -124,12 +124,25 @@
                     <li for class="media">
                      <div class="media-object pull-left " >
                       <i  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
+                      
                     </div>
                     <div class="media-body">
+
                       <!-- Untuk menampung staus step disable or enable -->
                       <input type="text" id="status-<?=$i;?>" value="<?=$key["status"];?>" hidden="true">
+                      <?php 
+                      $v = $key['icon'];
+                      $u=$key['uuid'];
+                      $a ='as';
+                      ?>
+                      
+                      <?php if ($key['icon'] == "ico-play3" ): ?>
+                        <a onclick="getvideo('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
+                        
+                      <?php else: ?>
                       <!-- // Untuk menampung staus step disable or enable  -->
-                      <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:  20px;"><?=$key['namaStep']?></a>
+                       <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:  20px;"><?=$key['namaStep']?></a> 
+                      <?php endif ?>
                     </div>
                   </li> 
                   <!-- </a>       -->
@@ -193,4 +206,31 @@
        }
      });
    </script>
+
+
+   <script type="text/javascript">
+    function getvideo(uuid) {
+      // uuid =$('input[name=uuid]').val();
+      // console.log(uuid);
+        url_ajax = base_url+"linetopik/tampunguuid";
+
+        var global_properties = {
+          uuid: uuid
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/step_video";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+    
+</script>
 

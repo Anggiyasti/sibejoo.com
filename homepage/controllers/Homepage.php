@@ -12,6 +12,8 @@ class Homepage extends MX_Controller {
         $this->load->model('matapelajaran/mmatapelajaran');
         $this->load->model('video/mvideos');
         $this->load->model('Mhomepage');
+        $this->load->library("pagination");
+
    $this->load->library('generateavatar');
         
         
@@ -53,16 +55,34 @@ class Homepage extends MX_Controller {
             'judul_halaman' => 'Sibejoo - Artikel',
              'judul_header2' =>'All Artikel'
         );
+        $config = array();
+            $config["base_url"] = base_url() . "homepage/allArtikel/";
+            $config["uri_segment"] = 3;
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $config["total_rows"] = $this->Mhomepage->get_artikel_number();
+            $config["per_page"] = 2;
 
+            # konfig link
+                $config['cur_tag_open'] = "<a style='background:#800000;color:white'>";
+                $config['cur_tag_close'] = '</a>';
+                $config['first_link'] = "<span title='Page Awal'> << </span>"; 
+                $config['last_link'] = "<span title='Page Akhir'> >> </span>";
 
-        $data['allartikel'] = $this->Mhomepage->get_artikel();
+                # konfig link
+
+                $this->pagination->initialize($config);
+                ##KONFIGURASI UNTUUK PAGINATION
+
+        $data['jumlah_postingan'] = $config['total_rows'];
+        $data["links"] = $this->pagination->create_links();
+        $data['allartikel'] = $this->Mhomepage->get_artikel_pag($config["per_page"], $page);
         $data['listart'] = $this->Mhomepage->list_artikel();
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header.php',
             APPPATH . 'modules/homepage/views/r-all-artikel.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-        $this->parser->parse('templating/r-index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
     }
 
@@ -72,14 +92,35 @@ class Homepage extends MX_Controller {
              'judul_header2' =>'All Report Heroo'
         );
 
-        $data['allreportheroo'] = $this->Mhomepage->get_report_heroo();
+        $config = array();
+            $config["base_url"] = base_url() . "homepage/allrReportHeroo/";
+            $config["uri_segment"] = 3;
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $config["total_rows"] = $this->Mhomepage->get_report_heroo_number();
+            $config["per_page"] = 5;
+
+            # konfig link
+                $config['cur_tag_open'] = "<a style='background:#800000;color:white'>";
+                $config['cur_tag_close'] = '</a>';
+                $config['first_link'] = "<span title='Page Awal'> << </span>"; 
+                $config['last_link'] = "<span title='Page Akhir'> >> </span>";
+
+                # konfig link
+
+                $this->pagination->initialize($config);
+                ##KONFIGURASI UNTUUK PAGINATION
+
+        $data['jumlah_postingan'] = $config['total_rows'];
+        $data["links"] = $this->pagination->create_links();
+
+        $data['allreportheroo'] = $this->Mhomepage->get_report_heroo_peg($config["per_page"], $page);
         $data['listheroo'] = $this->Mhomepage->list_heroo();
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header.php',
             APPPATH . 'modules/homepage/views/r-all-heroo.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-        $this->parser->parse('templating/r-index', $data);
+        $this->parser->parse('templating/r-index-login', $data);
 
     }
 
