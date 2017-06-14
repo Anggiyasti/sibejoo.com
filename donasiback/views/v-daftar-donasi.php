@@ -104,7 +104,8 @@
 
   function konfirm(id_donasi){
     $.post(base_url+"donasiback/konfirmasi_donasi", {id_donasi:id_donasi}, function(data, textStatus) {
-      console.log(data);
+      swal('yeah!',data,'success');
+      $('#modal_konfirmasi').modal('hide');
     }, "json");
   }
 </script>

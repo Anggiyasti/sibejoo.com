@@ -65,7 +65,7 @@ public function validasiLogin() {
             'eMail' => $row->eMail,
             'verifikasiCode' => $verifikasiCode,
             'loggedin' => TRUE,
-            'member' => 0
+            'member' => 1
             );
          $this->session->set_userdata($sess_array);
          if ($hakAkses == 'admin') {
