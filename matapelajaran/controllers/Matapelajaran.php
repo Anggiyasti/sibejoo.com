@@ -31,9 +31,22 @@ class Matapelajaran extends MX_Controller {
 
 
 	public function memberzone_get_bab_by_tingpel_id( $tingpelID ) {
-		$data = $this->output
-		->set_content_type( "application/json" )
-		->set_output( json_encode( $this->Mmatapelajaran->member_sc_bab_by_tingpel_id( $tingpelID ) ) ) ;
+		$data = $this->Mmatapelajaran->member_sc_bab_by_tingpel_id( $tingpelID );
+		$string = "";
+		$member = $this->session->userdata('member');
+		foreach ($data as $datas) {
+			if($member==0){
+				if ($datas['statusAksesLatihan']==0) {
+					$string .="<option value='" .$datas['id']. "'>" .$datas['judulBab']. "</option>";
+				}else{
+					$string .="<option class='disabled' value='non_member'>" .$datas['judulBab']. " - Member </option>";
+				}
+			}else{
+				$string .="<option value='" .$datas['id']. "'>" .$datas['judulBab']. "</option>";
+			}
+			
+		}
+		echo $string;
 	}
 
 }

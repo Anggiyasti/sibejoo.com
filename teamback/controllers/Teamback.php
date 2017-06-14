@@ -135,10 +135,7 @@ class Teamback extends MX_Controller {
 	 			$this->Mteamback->in_upload_team($data);
 	 			$info="Data Team Berhasil disimpan dan foto berhasil di-upload ";
 		   }
-	 		//
- 		echo json_encode($info);
-		
-	 
+ 		echo json_encode($info);	 
 	}
 
 	// view update form

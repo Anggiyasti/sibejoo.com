@@ -240,12 +240,8 @@ class Mmatapelajaran extends CI_Model {
     }
 
     public function member_sc_bab_by_tingpel_id($tingpelID){
-        $member = $this->session->userdata('member');
-        if ($member==0) {
-            $this->db->where('statusAksesLatihan',  0);
-        }
         $this->db->where('tingkatPelajaranID', $tingpelID);
-        $this->db->select('id, keterangan, judulBab')->from('tb_bab');
+        $this->db->select('id, keterangan, judulBab,statusAksesLatihan')->from('tb_bab');
         $query = $this->db->get();
         return $query->result_array();
     }

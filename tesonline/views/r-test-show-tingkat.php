@@ -1,3 +1,7 @@
+<style type="text/css">
+  .disabled {color:#808080;}
+</style>
+
 <!-- TITLE -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
   <div class="container pt-70 pb-20">
@@ -227,11 +231,13 @@
         type: "POST",
         url: "<?php echo base_url() ?>index.php/matapelajaran/memberzone_get_bab_by_tingpel_id/" + tingPel,
         success: function (data) {
+          $('#babSelect').append(data);
 
-          $.each(data, function (i, data) {
-            $('#babSelect').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
-            babid = data.id;
-          });
+          console.log(data);
+          // $.each(data, function (i, data) {
+          //   $('#babSelect').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
+          //   babid = data.id;
+          // });
         }
       });
 
@@ -263,13 +269,13 @@
       var babid = $("select[name=bab]").val();
 
 
-
       var data = {
         kesulitan: kesulitan,
         jumlahsoal: jumlahsoal,
         subab: subabid,
         bab:babid
       };
+
       if (data.kesulitan == 0 || data.jumlahsoal == 0) {
         $('#info').show();
       }else{
@@ -323,5 +329,24 @@
           mulai('nanti');
 
         });
+        $('option[name=non_member]').click(function(){
+          go_token();
+        });
+        function go_token(){
+          swal('Maaf, anda harus menjadi member');
+        }
 
+        $(function(){
+          var options_sel_idx = 0;
+
+          $("#babSelect").on("change", this, function(event) {
+            if($(this.options[this.selectedIndex]).hasClass("disabled")) {
+              go_token();
+              window.open(base_url+"donasi", '_blank')
+              this.selectedIndex = options_sel_idx;
+            } else {
+              options_sel_idx = this.selectedIndex;
+            }
+          });
+        });
       </script>

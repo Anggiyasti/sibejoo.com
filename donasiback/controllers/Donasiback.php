@@ -38,6 +38,24 @@ class Donasiback extends CI_Controller{
 		}
 	}
 
+	function get_konfirmasi_by_id_donasi(){
+		if ($this->input->post()) {
+			$id_donasi = $this->input->post('id_donasi');
+			$data['donasi']=$this->donasiback_model->get_konfirmasi_by_id_donasi($id_donasi);
+			echo json_encode($data['donasi'][0]);
+		}
+		
+	}
+
+	function konfirmasi_donasi(){
+		if ($this->input->post()) {
+			$id_donasi = $this->input->post('id_donasi');
+			$this->donasiback_model->konfirmasi_donasi($id_donasi);
+			echo json_encode("Konfrimasi donasi sukses!");
+
+		}
+	}
+
 
 
 }
