@@ -57,7 +57,7 @@
                                 <label for="filefoto" class="btn btn-sm btn-default filefoto">
                                     Pilih Foto
                                 </label>
-                                <input style="display:none;" type="file" id="filefoto" name="foto" onchange="preview_fileFoto(this,z='');"/>
+                                <input style="display:none;" type="file" id="filefoto" name="foto" onchange="cek_fileFoto(this,z='');"/>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                             <?php if ($team['foto'] != '' ) : ?>
                                 <?php $filefoto=base_url().'assets/image/team/'.$team['foto']; ?>
                                 <!-- START Statistic Widget -->
-                                <div class="table-layout animation delay animating fadeInDown  prv_logo mb0">
+                                <div class="table-layout animation delay animating fadeInDown  prv_foto mb0">
                                     <div class="col-xs-4 panel bgcolor-danger text-center">
                                         <img id="prevfile" class="img-tumbnail logo" src="<?=$filefoto;?>" width="50%"  >
                                     </div>
@@ -119,7 +119,7 @@
     </div>
 </section>
  <!-- END Template Main -->
- <script src="http://malsup.github.com/jquery.form.js"></script>
+ <script src="<?= base_url('assets/library/jquery/js/jequery.form.js') ?>"></script>
  <!-- Script ajax upload -->
  <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 
@@ -157,31 +157,57 @@
         }
     }
 
-    // show preview foto
-    function preview_fileFoto(oInput,z='') {
-        var viewer = {
-            load : function(e){
-                $('#prevfile'+z).attr('src', e.target.result);
-            },
-            seroperties : function(file){
-                $('#namefile'+z).text(file.name);
-                $('#typefile'+z).text(file.type);
-                $('#sizefile'+z).text(Math.round(file.size/1024));
-            },
+     // show preview foto
+  function preview_fileFoto(oInput,z='') {
+    var viewer = {
+          load : function(e){
+              $('#prevfile'+z).attr('src', e.target.result);
+          },
+          setProperties : function(file){
+              $('#namefile'+z).text(file.name);
+              $('#typefile'+z).text(file.type);
+              $('#sizefile'+z).text(Math.round(file.size/1024));
+          },
         }
 
-        var file = oInput.files[0];
-        var reader = new FileReader();
-        var size=Math.round(file.size/1024);
-        // start pengecekan ukuran file
-        if (size>=90000) {
-            swal('Ukuran File terlalu besar!');
+      var file = oInput.files[0];
+      var reader = new FileReader();
+      var size=Math.round(file.size/1024);
+      // start pengecekan ukuran file
+      if (size>=100) {
+        swal('Silahkan cek file size Foto!','File size foto maksimal 100kb','warning');
+      }else{
+        $(".prv_foto"+z).show();
+        reader.onload = viewer.load;
+        reader.readAsDataURL(file);
+        viewer.setProperties(file);
+      }
+  }
+
+  //cek dulu type filenya
+  function cek_fileFoto(oInput,z='') {
+    var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+
+            if (!blnValid) {
+                swal('Silahkan cek type extension gambar! ', 'Type yang bisa di upload hanya ".jpg", ".jpeg", ".bmp", ".gif", ".png', 'warning');
+                return false;
         }else{
-            $(".prv_logo"+z).show();
-            reader.onload = viewer.load;
-            reader.readAsDataURL(file);
-            viewer.setProperties(file);
+            preview_fileFoto(oInput,z='');
         }
+      }
     }
+          return true;
+  }
 
  </script>
