@@ -47,7 +47,7 @@
                             $i=0;
                             foreach ($datline as $key ):           
                             ?>
-                                <li  class="media" id="bg-<?=$i;?>">
+                                <li  class="media" id="bg-0">
                                      <div class="media-object pull-left ">
                                         <i href="<?=$key['link'];?>"  class="<?=$key['icon']?> " id="ico-<?=$i;?>"></i>
                                     </div>
