@@ -98,7 +98,7 @@
               <ul class="dropdown" style="right: auto; display: none;">
                <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a>
                <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a>
-               <li><a href="<?=base_url('') ?>">Donasi<span class="indicator"></span></a>
+               <li><a href="<?=base_url('donasi') ?>">Donasi<span class="indicator"></span></a>
                <li><a href="<?=base_url('logout') ?>">Logout<span class="indicator"></span></a>
                </li>
               </li>

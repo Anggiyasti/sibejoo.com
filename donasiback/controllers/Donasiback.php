@@ -5,6 +5,7 @@ class Donasiback extends CI_Controller{
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('donasiback_model');
+		$this->load->model('laporanortu/laporanortu_model');
 
 		$this->load->library('parser');
 		$this->load->helper('string');
@@ -70,19 +71,25 @@ class Donasiback extends CI_Controller{
 				$update = ['id_donasi'=>$id_donasi,'id_token'=>$token_id[0]->token_id,'id_siswa'=>$id_siswa_jenis_donasi->id_siswa];
 			// UPDATE TOKEN
 				$this->donasiback_model->update_status_token($update);			
-				echo json_encode(array('status'=>1,'message'=>"Berhasil mengirim token"));
+				echo json_encode(array('status'=>1,'message'=>"Berhasil menset token"));
 			}
 		}
 	}
 
 	function kirim_token_to_siswa(){
-		// if ($this->input->post()) {
-			// $id_donasi = $this->input->post('id');
-			$id_donasi = 2;
+		if ($this->input->post()) {
+			$id_donasi = $this->input->post('id');
+			// get data info untuk dikirim ke pengguna
 			$info_to_send_token = $this->donasiback_model->get_info_for_send_token($id_donasi)[0];
-			print_r($info_to_send_token);
+			$data_insert_laporan_ortu = ['id_ortu'=>$info_to_send_token->ortu_id,
+										 'jenis'=>"TOKEN DONASI",
+										 'UUID'=>uniqid(),
+										 'isi'=>'Halo, '.$info_to_send_token->namaDepan." ".$info_to_send_token->namaBelakang.'! dibawah ini adalah token anda <br> <span class="text-info">'.$info_to_send_token->nomor_token.'</span> dengan masa aktif '.$info_to_send_token->masa_aktif.' Hari. Simpan nomor token anda untuk kebutuhan kemudian hari. Terimakasih!'
+			];
 
-		// }
+			$this->laporanortu_model->insert_laporan($data_insert_laporan_ortu);
+			echo json_encode(array('status'=>1,'message'=>"Token berhasil dikirim ke ".$info_to_send_token->namaDepan." ".$info_to_send_token->namaBelakang));
+		}
 	}
 
 
