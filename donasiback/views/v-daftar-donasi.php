@@ -51,7 +51,7 @@
         </thead>
 
         <tbody>
-         <?php $status = ['','Idle','Wait to Konfirm','Diterima']; ?>
+         <?php $status = ['','Idle','Wait to Konfirm','Diterima','Kirim Token']; ?>
          <?php $donasi = ['','Heroo','Angel']; ?>
          <?php $no = 1; ?>
 
@@ -66,11 +66,13 @@
           </td>
           <td>
             <?php if ($item->status_donasi==1): ?>
-              <span class="text-warning">Belum Transfer</span>
+              <button type="button" class="btn btn-default mb5" disabled="true"><i class="ico-cart-remove2"></i> Belum Transfer</button>
             <?php elseif($item->status_donasi==2): ?>
-              <a onclick="info(<?=$item->donasi_id ?>)" class="btn btn-info"><i class="fa fa-home"></i>Info</a>
+              <button  onclick="info(<?=$item->donasi_id ?>)" type="button" class="btn btn-info mb5" ><i class="ico-file"></i> Info</button>
+            <?php elseif($item->status_donasi==3): ?>
+              <button  onclick="set_token(<?=$item->donasi_id ?>)" type="button" class="btn btn-primary mb5" ><i class="ico-barcode3"></i> Set Token</button>
             <?php else: ?>
-              <a class="btn btn-info" onclick="kirim_token(<?=$item->donasi_id ?>)" class="btn btn-dark btn-transparent btn-theme-colored btn-sm"><i class="fa fa-home"></i> Kirim Token</a>
+              <button   onclick="kirim_token(<?=$item->donasi_id ?>)" type="button" class="btn btn-primary mb5" ><i class="ico-mail-send"></i> Kirim Token</button>
             <?php endif ?>
           </td>
           <?php $no++; ?>
@@ -108,4 +110,21 @@
       $('#modal_konfirmasi').modal('hide');
     }, "json");
   }
+
+  function set_token(data){
+    id_donasi = data;
+
+    $.post(base_url+"donasiback/set_siswa_donasi", {id:id_donasi}, function(data, textStatus) {
+      if (data.status==1) {
+        swal('Berhasil dikirim',data.message,'success')
+      }else{
+        swal('Gagal Mengirim',data.message,'warning');
+      }
+    }, "json");
+  }
+
+  function kirim_token(data){
+    console.log(data);
+  }
+
 </script>
