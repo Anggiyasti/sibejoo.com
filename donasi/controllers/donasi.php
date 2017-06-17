@@ -1,5 +1,4 @@
 <?php 
-
 include_once APPPATH . '/modules/crud_groceries/controllers/Crud_groceries.php';
 
 class Donasi extends Crud_groceries
@@ -21,39 +20,48 @@ class Donasi extends Crud_groceries
 
 
 }
-
-function index(){    //untuk daftar artikel
+function get_info_donasi(){
     $data['status'] = $this->load->m_donasi->get_id_donasi();
-    $data['jenis_donasi'] = ['','Heroo','Angel'];
-    $data['status_donasi'] = ['','Idle','Konfirm','Diterima'];
-    $data['deskripsi'] = ['',
-    'Layanan yang didapat Video Belajar,Latihan,Try Out,Konsultasi,Edu Drive,Learning Line dan Diskon Produk Sibejoo : 10% selama 1 Tahun',
-    'Layanan yang didapat Video Belajar,Latihan,Try Out,Konsultasi,Edu Drive,Learning Line dan Diskon Produk Sibejoo : 20% selama 3 Tahun'];
-    $data['harga'] = ['','Rp.234.000','Rp.478.000'];
-
-
-
-    if ($data['status']) {
-    //status idle
-        $data = array(
-            'judul_halaman' => 'Sibejoo - Page Donasi',
-            'judul_header' => 'Mata Pelajaran',
-            'judul_header2' =>'Donasi',
-            'status'=>$data['status']['status'],
-            'jenis_donasi'=>$data['jenis_donasi'][$data['status']['donasi']],
-            'status_donasi'=>$data['status_donasi'][$data['status']['status']],
-            'harga'=>$data['harga'][$data['status']['donasi']],
-            'deskripsi'=>$data['deskripsi'][$data['status']['donasi']],
-            'id_donasi'=>$data['status']['id'],
-            );
+    if ($data['status']==false) {
+        $respon = ['status'=>0];
+        echo json_encode($respon);
     }else{
-     $data = array(
-        'judul_halaman' => 'Sibejoo - Page Donasi',
-        'judul_header' => 'Mata Pelajaran',
-        'judul_header2' =>'Donasi',
-        'status'=>'0'
-        );
- }
+        $data['jenis_donasi'] = ['','Heroo','Angel'];
+        $data['status_donasi'] = ['','Idle','Konfirm','Diterima','Aktif'];
+        $data['deskripsi'] = ['',
+        'Layanan yang didapat Video Belajar,Latihan,Try Out,Konsultasi,Edu Drive,Learning Line dan Diskon Produk Sibejoo : 10% selama 1 Tahun',
+        'Layanan yang didapat Video Belajar,Latihan,Try Out,Konsultasi,Edu Drive,Learning Line dan Diskon Produk Sibejoo : 20% selama 3 Tahun'];
+        $data['harga'] = ['','Rp.234.000','Rp.478.000'];
+        
+
+        $status_donasi = $data['status_donasi'][$data['status']['status']];
+        $harga = $data['harga'][$data['status']['donasi']];
+        $deskripsi = $data['deskripsi'][$data['status']['donasi']];
+
+
+        $string_konten = 
+        '<div class="col-sm-12 col-md-12">
+        <h4 class="line-bottom mt-0 mt-sm-20">Donasi Status : '.$status_donasi.'</h4>
+        <ul class="review_text list-inline">
+          <li><h4 class="mt-0"><span class="text-theme-color-2">Besar Donasi :</span> '.$harga.'</h4></li>
+          <li>
+            <div class="star-rating" title="Rated 4.50 out of 5"><span style="width: 90%;">4.50</span></div>
+        </li>
+    </ul>
+    <p>'.$deskripsi.'</p>
+</div>';
+$respon = ['status'=>1,'message'=>$string_konten,'id_donasi'=>$data['status']['id']];
+echo json_encode($respon);
+}
+
+
+}
+function index(){    //untuk daftar artikel
+ $data = array(
+    'judul_halaman' => 'Sibejoo - Page Donasi',
+    'judul_header' => 'Mata Pelajaran',
+    'judul_header2' =>'Donasi',
+    );
  $data['files'] = array(
     APPPATH . 'modules/homepage/views/r-header-login.php',
     APPPATH . 'modules/donasi/views/r-tambah-donasi.php',

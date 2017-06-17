@@ -17,27 +17,11 @@
     <div class="container">
       <div class="col-md-6">
         <div class="border-1px p-20 mb-0">
-          <?php if ($status!=0): ?>
-            <div class="row mb-15">
-              <div class="col-sm-12 col-md-12">
-                <h4 class="line-bottom mt-0 mt-sm-20">Donasi Status : {status_donasi}</h4>
-                <ul class="review_text list-inline">
-                  <li><h4 class="mt-0"><span class="text-theme-color-2">Besar Donasi :</span> {harga}</h4></li>
-                  <li>
-                    <div class="star-rating" title="Rated 4.50 out of 5"><span style="width: 90%;">4.50</span></div>
-                  </li>
-                </ul>
-                <p>{deskripsi}</p>
-              </div>
-            </div>
-            <hr>
+          <div class="row mb-15 info-status-donasi">
 
-          <?php endif ?>
-          
-
-
+          </div>
+          <hr>
           <h3 class="text-theme-colored mt-0 pt-5">Daftar Donasi</h3>
-
           <form id="donasi_form" name="donasi_form"  action="action="<?=base_url('konsultasi/do_upload') ?>"" enctype="multipart/form-data" disabled>
            <div class="row">
             <div class="form-group col-md-12">
@@ -63,14 +47,12 @@
 
         <form id="konfirmasi_form" name="job_apply_form" action="<?=base_url()?>index.php/donasi/insert_konfirmasi" method="post" enctype="multipart/form-data">
           <?php echo $this->session->flashdata('msg'); ?> 
-
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group mb-10">
                 <label for="form_name">Nama Pengirim</label>
                 <input name="namapengirim" class="form-control required" type="text" required="" placeholder="Nama Pengirim" aria-required="true">
-                <input name="id_donasi"  type="hidden" value="{id_donasi}">
-
+                <input name="id_donasi"  type="hidden">
               </div>
             </div>
             <div class="col-sm-12">
@@ -99,14 +81,11 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <input name="form_botcheck" class="form-control" type="hidden" value=""/>
-            <?php if ($status==1): ?>
-              <a onclick="form_aksi_konfirmasi()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpan_konfirmasi" data-loading-text="Please wait...">Simpan</a> 
-              <input type="submit" class="fa fa-cloud-upload submit_konfirmasi" style="margin-top: 3px" value="Upload">       
-            <?php else: ?>
-              <span class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 " data-loading-text="Please wait..." onclick="peringatan_belum_daftar()">Konfirmasi Donasi</span>   
-            <?php endif ?>
+          <div class="form-group button-konfirmasi">
+            <!-- <input name="form_botcheck" class="form-control" type="hidden" value=""/> -->
+
+
+
 
           </div>
         </form>
@@ -123,24 +102,19 @@
 <script type="text/javascript">
 
   function peringatan_belum_daftar(){
-    swal("Good job!", "Mohon untuk melakukan pemilihan donasi terlebih dahulu", "warning")
+    swal("Oops!", "Mohon untuk melakukan pemilihan donasi terlebih dahulu", "warning")
   }
 
   function peringatan_sudah_donasi(){
-    swal("Good job!", "Anda tidak dapat melakukan donasi sebelum melakukan Konfirmasi dan diaktifkan oleh admin!", "warning")
+    swal("Oops!", "Anda tidak dapat melakukan donasi sebelum melakukan Konfirmasi dan diaktifkan oleh admin!", "warning")
   }
 
 
   function loadDonasi() {
     jQuery(document).ready(function () {
       // disable form kalo sudah pernah daftar.
-      status_donasi = <?php echo $status ?>;
-      if (status_donasi==1) {
-        $("#donasi_form a, #donasi_form select").attr('readonly',true);
-        $("#donasi_form a").attr('onclick','peringatan_sudah_donasi()');
-      }else{
 
-      }
+
 
       var donasi_id = {"donasi_id": $('#donasi').val()};
       var iddonasi;
@@ -186,7 +160,8 @@
         success:function(data){
           console.log(data);
           swal('Donasi berhasil ditambahkan');
-          location.reload();
+          // location.reload();
+          load_status_donasi();
         },
         error:function(){
           sweetAlert('Data gagal disimpan','error');
@@ -233,12 +208,30 @@
         fileElementId :elementId,
         success:function(Data){
           $('.simpan_konfirmasi').html('Simpan');
-          sweetAlert("Info",Data,"success");
-          location.reload();
+          swal("Info",Data,"success");
+          $('#konfirmasi_form')[0].reset();
         },
         error:function(data){
           console.log(data);
         }
       });
     }
+
+    function load_status_donasi(){
+      $.post(base_url+"donasi/get_info_donasi", function(data, textStatus) {
+        if (data.status==1) {
+          console.log(data.id_donasi);
+          konten_button = '<a onclick="form_aksi_konfirmasi()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpan_konfirmasi" data-loading-text="Please wait...">Simpan</a> ';
+          $('.info-status-donasi').fadeIn("slow").html(data.message);
+          $("#donasi_form").attr('onclick','peringatan_sudah_donasi()');
+          $("#donasi_form a, #donasi_form select").attr('readonly',true);
+          $('input[name=id_donasi]').val(data.id_donasi);
+        }else{
+          konten_button = '<span class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 " data-loading-text="Please wait..." onclick="peringatan_belum_daftar()">Konfirmasi Donasi</span>';
+        }
+        $(".button-konfirmasi").fadeIn('slow').html(konten_button);
+      }, "json");
+    }
+
+    load_status_donasi();
   </script>

@@ -116,15 +116,21 @@
 
     $.post(base_url+"donasiback/set_siswa_donasi", {id:id_donasi}, function(data, textStatus) {
       if (data.status==1) {
-        swal('Berhasil dikirim',data.message,'success')
+        swal('Token berhasil di set',data.message,'success')
       }else{
         swal('Gagal Mengirim',data.message,'warning');
       }
     }, "json");
   }
 
-  function kirim_token(data){
-    console.log(data);
+  function kirim_token(id_donasi){
+        $.post(base_url+"donasiback/kirim_token_to_siswa", {id:id_donasi}, function(data, textStatus) {
+      if (data.status==1) {
+        swal('Berhasil dikirim',data.message,'success')
+      }else{
+        swal('Gagal Mengirim',data.message,'warning');
+      }
+    }, "json");
   }
 
 </script>
