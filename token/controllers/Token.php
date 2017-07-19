@@ -12,10 +12,9 @@ class Token extends MX_Controller {
 		$this->load->model('siswa/msiswa');
 		$this->load->library('sessionchecker');
 		$this->load->library('pagination');
-    	$this->sessionchecker->checkloggedin();
+		$this->sessionchecker->checkloggedin();
 		$this->load->helper('string');
-		$this->hakakses = $this->gethakakses();
-
+		// $this->hakakses = $this->gethakakse1s();
 	}
 
 	public function index(){
@@ -126,16 +125,22 @@ class Token extends MX_Controller {
 
 	function settoken(){
 		$token = $this->session->userdata('token');
-		if ($token=='BelumAktif') {
-			$pesan = "<span>Maaf Token belum aktif,</span><br> silahkan aktifkan dengan cara memasukan nomor token yang sudah dikirim admin";
-		}elseif ($token=='Habis') {
-			$pesan = "<span>Maaf Token anda sudah habis,</span><br> silahkan isi terlebih dahulu token anda";
+		if ($token=='Aktif') {
+			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$this->session->userdata('sisa_token')." Hari<br> Tambah token ?";
 		}else{
-			$pesan = "<span>Maaf anda tidak memiliki Token,</span><br> silahkan lakukan permintaan pada admin untuk mengirim token";
-
+			if ($token=='non-aktif') {
+				$pesan = "<span>Maaf Token belum aktif,</span><br> silahkan aktifkan dengan cara memasukan nomor token yang sudah dikirim admin";
+			}elseif ($token=='Habis') {
+				$pesan = "<span>Maaf Token anda sudah habis,</span><br> silahkan isi terlebih dahulu token anda";
+			}elseif ($token=='non-aktif') {
+			}else{
+				$pesan = "<span>Maaf anda tidak memiliki Token,</span><br> silahkan lakukan permintaan pada admin untuk mengirim token";
+			}
 		}
+
+		
 		$data = array(
-			'judul_halaman' => 'Neon - Halaman Token',
+			'judul_halaman' => 'sibejoo - Halaman Token',
 			'judul_header' =>'Welcome',
 			'judul_header2' =>'Video Belajar',
 			'pesan'=>$pesan
@@ -143,12 +148,11 @@ class Token extends MX_Controller {
 
 
 		$data['files'] = array( 
-			APPPATH.'modules/homepage/views/v-header-login.php',
+			APPPATH.'modules/homepage/views/r-header-login.php',
 			APPPATH.'modules/token/views/v-set-token.php',
-			APPPATH.'modules/testimoni/views/v-footer.php',
 			);
 
-		$this->parser->parse( 'templating/index', $data );
+		$this->parser->parse( 'templating/r-index', $data );
 	}
 
 	function drop_token(){
@@ -179,286 +183,286 @@ class Token extends MX_Controller {
 	}
 
 	public function ajaxLisToken()
-  {
-    	$tb_token=null;
+	{
+		$tb_token=null;
       // code u/pagination
-     	$this->load->database();
-  
-     		$masaAktif=$this->input->post("masaAktif");
-     		$status=$this->input->post("status");
-     		$jumlah_data_per_page=$this->input->post("records_per_page");
-     		$page=$this->input->post("pageSelek");
-     		$keySearch=$this->input->post("keySearch");
+		$this->load->database();
 
-      if ($keySearch != '' && $keySearch !=' ' ) {
-      	if ($status==1) {
-  					$list = $this->token_model->data_cari_pengguna_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
-      	} else {
-      		$list = $this->token_model->data_cari_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
-      	}
-      	
-      }else{
-      	$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
-      }
+		$masaAktif=$this->input->post("masaAktif");
+		$status=$this->input->post("status");
+		$jumlah_data_per_page=$this->input->post("records_per_page");
+		$page=$this->input->post("pageSelek");
+		$keySearch=$this->input->post("keySearch");
 
-      $no=$page+1;
+		if ($keySearch != '' && $keySearch !=' ' ) {
+			if ($status==1) {
+				$list = $this->token_model->data_cari_pengguna_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
+			} else {
+				$list = $this->token_model->data_cari_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
+			}
+
+		}else{
+			$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
+		}
+
+		$no=$page+1;
       //cacah data 
-      foreach ( $list as $token_item ) {
-      	$siswaID=$token_item->siswaID;
-      	if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
-      		$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
-      		$namaPengguna=$token_item->namaPengguna;
-      	}else{
-      		$nama="belum digunakan";
-      		$namaPengguna="-";
-      	}
+		foreach ( $list as $token_item ) {
+			$siswaID=$token_item->siswaID;
+			if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
+				$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
+				$namaPengguna=$token_item->namaPengguna;
+			}else{
+				$nama="belum digunakan";
+				$namaPengguna="-";
+			}
 
       		// tentukan jenis membernya dulu
-	      if ($token_item->masaAktif==365) {
-	      	$type = 'Heroo Member';
-	      } else if($token_item->masaAktif==1095) {
-	      	$type = 'Angel Member';
-	      } else {
-	      	$type = '-';
-	      }
-	      	$tb_token.='
-		        <tr>
-		          <td>'.$no.'</td>
-		          <td>'.$token_item->nomorToken.'</td>
-		          <td>'.$token_item->masaAktif.'</td>
-		          <td>'.$nama.'</td>
-		          <td>'.$namaPengguna.'</td>
-		          <td>'.$type.'</td>
-		          <td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
-		      	</tr>
-	    		';
-	    		$no++;
-      }
-      echo json_encode( $tb_token );
-    }
+			if ($token_item->masaAktif==365) {
+				$type = 'Heroo Member';
+			} else if($token_item->masaAktif==1095) {
+				$type = 'Angel Member';
+			} else {
+				$type = '-';
+			}
+			$tb_token.='
+			<tr>
+				<td>'.$no.'</td>
+				<td>'.$token_item->nomorToken.'</td>
+				<td>'.$token_item->masaAktif.'</td>
+				<td>'.$nama.'</td>
+				<td>'.$namaPengguna.'</td>
+				<td>'.$type.'</td>
+				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
+			</tr>
+			';
+			$no++;
+		}
+		echo json_encode( $tb_token );
+	}
     //page adalah variabel untuk menampung jumlah record yg akan di tampilkan pada satu halaman
-    public function paginationToken()
-    {
-    	$masaAktif=$this->input->post('masaAktif');
-    	$status=$this->input->post('status');
-    	$records_per_page=$this->input->post('records_per_page');
-    	$keySearch=$this->input->post('keySearch');
-    	if ($keySearch != '' && $keySearch !=' ') {
-    		if ($status==1) {
-    				$jumlah_data =$this->token_model->sum_cari_pengguna_token($masaAktif,$status,$keySearch);
-    		} else {
-    			$jumlah_data =$this->token_model->sum_cari_data_token($masaAktif,$status,$keySearch);
-    		}
-    	}else{
-				$jumlah_data = $this->token_model->jumlah_data_token($masaAktif,$status); 
-    	}
-    	$pagination='<li class="hide" id="page-prev"><a href="javascript:void(0)" onclick="prevPage()" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a></li>';
-    	 $pagePagination=1;
+	public function paginationToken()
+	{
+		$masaAktif=$this->input->post('masaAktif');
+		$status=$this->input->post('status');
+		$records_per_page=$this->input->post('records_per_page');
+		$keySearch=$this->input->post('keySearch');
+		if ($keySearch != '' && $keySearch !=' ') {
+			if ($status==1) {
+				$jumlah_data =$this->token_model->sum_cari_pengguna_token($masaAktif,$status,$keySearch);
+			} else {
+				$jumlah_data =$this->token_model->sum_cari_data_token($masaAktif,$status,$keySearch);
+			}
+		}else{
+			$jumlah_data = $this->token_model->jumlah_data_token($masaAktif,$status); 
+		}
+		$pagination='<li class="hide" id="page-prev"><a href="javascript:void(0)" onclick="prevPage()" aria-label="Previous">
+		<span aria-hidden="true">&laquo;</span>
+	</a></li>';
+	$pagePagination=1;
 
-    	 $sumPagination=($jumlah_data/$records_per_page);
-    	 for ($i=0; $i < $sumPagination; $i++) { 
-    	 	if ($pagePagination<=7) {
-    	 		$pagination.='<li ><a href="javascript:void(0)" onclick="selectPage('.$i.')" id="page-'.$pagePagination.'">'.$pagePagination.'</a></li>';
-    	 	}else{
-    	 		$pagination.='<li class="hide" id="page-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPage('.$i.')" >'.$pagePagination.'</a></li>';
-    	 	}
+	$sumPagination=($jumlah_data/$records_per_page);
+	for ($i=0; $i < $sumPagination; $i++) { 
+		if ($pagePagination<=7) {
+			$pagination.='<li ><a href="javascript:void(0)" onclick="selectPage('.$i.')" id="page-'.$pagePagination.'">'.$pagePagination.'</a></li>';
+		}else{
+			$pagination.='<li class="hide" id="page-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPage('.$i.')" >'.$pagePagination.'</a></li>';
+		}
 
-    	 	$pagePagination++;
-    	 }
-    	 if ($pagePagination>7) {
-    	 	  $pagination.='<li class="" id="page-next">
-		      								<a href="javascript:void(0)" onclick="nextPage()" aria-label="Next">
-		        								<span aria-hidden="true">&raquo;</span>
-		      								</a>
-		    								</li>';
-    	 }
+		$pagePagination++;
+	}
+	if ($pagePagination>7) {
+		$pagination.='<li class="" id="page-next">
+		<a href="javascript:void(0)" onclick="nextPage()" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+		</a>
+	</li>';
+}
     	 // cek jika halaman pagination hanya satu set pagination menjadi null
-    	 if ($sumPagination<=1) {
-    	 		$pagination='';
-    	 }
+if ($sumPagination<=1) {
+	$pagination='';
+}
 
-    	 echo json_encode ($pagination);
-    }
+echo json_encode ($pagination);
+}
 
-   public function kirimtoken()
-   {
-   	$data = array(
-			'judul_halaman' => 'Dashboard '.$this->hakakses." - Kirim Token",
-			);
+public function kirimtoken()
+{
+	$data = array(
+		'judul_halaman' => 'Dashboard '.$this->hakakses." - Kirim Token",
+		);
 
-		$data['files'] = array(
-			APPPATH . 'modules/token/views/v-kirim-token.php',
-			);
+	$data['files'] = array(
+		APPPATH . 'modules/token/views/v-kirim-token.php',
+		);
 		// var_dump($data['dataToken']);
-		$this->loadparser($data);
-   }
+	$this->loadparser($data);
+}
 
-  public function ajax_data_siswa(){
+public function ajax_data_siswa(){
   	//   	$jumlah_data_per_page = 10;
   	// $page = 0;
 
-  	$jumlah_data_per_page = $this->input->post('records_per_page_siswa');
-  	$page = $this->input->post('pageSelekSiswa');
-  	$keySearchSiswa = $this->input->post('keySearchSiswa');
-		$list = $this->token_model->get_siswa_unvoucher($jumlah_data_per_page,$page,$keySearchSiswa);
-		$data = array();
-		$n=1;
-		$no=$page+1;
-		$tb_siswa=null;
+	$jumlah_data_per_page = $this->input->post('records_per_page_siswa');
+	$page = $this->input->post('pageSelekSiswa');
+	$keySearchSiswa = $this->input->post('keySearchSiswa');
+	$list = $this->token_model->get_siswa_unvoucher($jumlah_data_per_page,$page,$keySearchSiswa);
+	$data = array();
+	$n=1;
+	$no=$page+1;
+	$tb_siswa=null;
 		//mengambil nilai list
-		$baseurl = base_url();
-		foreach ( $list as $list_siswa ) {
-			if ($list_siswa['namaCabang']=="") {
-				$namaCabang="non-neutron";
-			} else {
-				$namaCabang=$list_siswa['namaCabang'];
-			}
-			
-      $tb_siswa.='
-	        <tr>
-	          <td><span class="checkbox custom-checkbox custom-checkbox-inverse">
-								<input type="checkbox" name='.'token'.$n.' id='.'soal'.$list_siswa["id"].' value='.$list_siswa["id"].'>
-								<label for='.'soal'.$list_siswa["id"].'>&nbsp;&nbsp;</label></span>
-						</td>
-	          <td>'.$no.'</td>
-	          <td>'.$list_siswa["namaDepan"].' '.$list_siswa["namaBelakang"].'</td>
-	       
-	          <td>'. $list_siswa["namaPengguna"].'</td>
-	          <td>'.$namaCabang.'</td>
-	      	</tr>
-    		';
-    		$n++;
-    		$no++;
-      }
-		echo json_encode( $tb_siswa );
+	$baseurl = base_url();
+	foreach ( $list as $list_siswa ) {
+		if ($list_siswa['namaCabang']=="") {
+			$namaCabang="non-neutron";
+		} else {
+			$namaCabang=$list_siswa['namaCabang'];
+		}
 
+		$tb_siswa.='
+		<tr>
+			<td><span class="checkbox custom-checkbox custom-checkbox-inverse">
+				<input type="checkbox" name='.'token'.$n.' id='.'soal'.$list_siswa["id"].' value='.$list_siswa["id"].'>
+				<label for='.'soal'.$list_siswa["id"].'>&nbsp;&nbsp;</label></span>
+			</td>
+			<td>'.$no.'</td>
+			<td>'.$list_siswa["namaDepan"].' '.$list_siswa["namaBelakang"].'</td>
+
+			<td>'. $list_siswa["namaPengguna"].'</td>
+			<td>'.$namaCabang.'</td>
+		</tr>
+		';
+		$n++;
+		$no++;
 	}
-	public function paginationSiswa()
-	{	
-     		
-     		$jumlah_data_per_page=$this->input->post("records_per_page_siswa");
-     		$keySearch=$this->input->post("keySearchSiswa");
-     		if ($keySearch!='' && $keySearch!=' ') {
-     				   $jumlah_data = $this->token_model->jumlah_cari_siswa_unvoucher($keySearch); 
-     		} else {
-     				   $jumlah_data = $this->token_model->jumlah_siswa_unvoucher(); 
-     		}
-     		
+	echo json_encode( $tb_siswa );
+
+}
+public function paginationSiswa()
+{	
+
+	$jumlah_data_per_page=$this->input->post("records_per_page_siswa");
+	$keySearch=$this->input->post("keySearchSiswa");
+	if ($keySearch!='' && $keySearch!=' ') {
+		$jumlah_data = $this->token_model->jumlah_cari_siswa_unvoucher($keySearch); 
+	} else {
+		$jumlah_data = $this->token_model->jumlah_siswa_unvoucher(); 
+	}
+
 	
-    	 $pagination='<li class="hide" id="page-prev-siswa"><a href="javascript:void(0)" onclick="prevPageSiswa()" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a></li>';
-    	 $pagePagination=1;
+	$pagination='<li class="hide" id="page-prev-siswa"><a href="javascript:void(0)" onclick="prevPageSiswa()" aria-label="Previous">
+	<span aria-hidden="true">&laquo;</span>
+</a></li>';
+$pagePagination=1;
 
-    	 $sumPagination=($jumlah_data/$jumlah_data_per_page);
-    	
-    	 for ($i=0; $i < $sumPagination; $i++) { 
-    	 	if ($pagePagination<=7) {
-    	 		    	 	$pagination.='<li ><a href="javascript:void(0)" onclick="selectPageSiswa('.$i.')" id="pageSiswa-'.$pagePagination.'">'.$pagePagination.'</a></li>';
-    	 	}else{
-    	 		    	 	$pagination.='<li class="hide" id="pageSiswa-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPageSiswa('.$i.')" >'.$pagePagination.'</a></li>';
-    	 	}
+$sumPagination=($jumlah_data/$jumlah_data_per_page);
 
-    	 	$pagePagination++;
-    	 }
-    	 if ($pagePagination>7) {
-    	 	  $pagination.='<li class="" id="page-next-siswa">
-		      								<a href="javascript:void(0)" onclick="nextPageSiswa()" aria-label="Next">
-		        								<span aria-hidden="true">&raquo;</span>
-		      								</a>
-		    								</li>';
-    	 }
-    	     	 // cek jika halaman pagination hanya satu set pagination menjadi null
-    	 if ($sumPagination<=1) {
-    	 		$pagination='';
-    	 		# code...
-    	 }
-    	 echo json_encode ($pagination);
+for ($i=0; $i < $sumPagination; $i++) { 
+	if ($pagePagination<=7) {
+		$pagination.='<li ><a href="javascript:void(0)" onclick="selectPageSiswa('.$i.')" id="pageSiswa-'.$pagePagination.'">'.$pagePagination.'</a></li>';
+	}else{
+		$pagination.='<li class="hide" id="pageSiswa-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPageSiswa('.$i.')" >'.$pagePagination.'</a></li>';
 	}
-		function ajax_rekap_penggunaan_token($masaAktif="all", $status="1",$jumlah_data_per_page="10",$page="0"){
 
-			    	$tb_token=null;
+	$pagePagination++;
+}
+if ($pagePagination>7) {
+	$pagination.='<li class="" id="page-next-siswa">
+	<a href="javascript:void(0)" onclick="nextPageSiswa()" aria-label="Next">
+		<span aria-hidden="true">&raquo;</span>
+	</a>
+</li>';
+}
+    	     	 // cek jika halaman pagination hanya satu set pagination menjadi null
+if ($sumPagination<=1) {
+	$pagination='';
+    	 		# code...
+}
+echo json_encode ($pagination);
+}
+function ajax_rekap_penggunaan_token($masaAktif="all", $status="1",$jumlah_data_per_page="10",$page="0"){
+
+	$tb_token=null;
       // code u/pagination
-     	$this->load->database();
-  
-     		$masaAktif=$this->input->post("masaAktif");
-     		$status=1;
-     		$jumlah_data_per_page=$this->input->post("records_per_page");
-     		$page=$this->input->post("pageSelek");
-     		$keySearch=$this->input->post("keySearch");
+	$this->load->database();
 
-      if ($keySearch != '' && $keySearch !=' ' ) {
-      	if ($status==1) {
-  					$list = $this->token_model->data_cari_pengguna_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
-      	} else {
-      		$list = $this->token_model->data_cari_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
-      	}
-      	
-      }else{
-      	$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
-      }
-			$no=$page+1;
+	$masaAktif=$this->input->post("masaAktif");
+	$status=1;
+	$jumlah_data_per_page=$this->input->post("records_per_page");
+	$page=$this->input->post("pageSelek");
+	$keySearch=$this->input->post("keySearch");
+
+	if ($keySearch != '' && $keySearch !=' ' ) {
+		if ($status==1) {
+			$list = $this->token_model->data_cari_pengguna_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
+		} else {
+			$list = $this->token_model->data_cari_token($jumlah_data_per_page,$page,$masaAktif,$status,$keySearch);
+		}
+
+	}else{
+		$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
+	}
+	$no=$page+1;
       //cacah data 
-      foreach ( $list as $token_item ) {
-      	$date1 = new DateTime($token_item->tanggal_diaktifkan);
-      	$date_diaktifkan = $date1->format('d-M-Y');
-      	$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token_item->masaAktif));
-      	$date1 = new DateTime(date("d-M-Y"));
-      	$date2 = new DateTime($date_kadaluarsa);
-      	$sisa_aktif = $date2->diff($date1);
-      	$siswaID=$token_item->siswaID;
-      	$aktif = $token_item->masaAktif;
-      	if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
-      		$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
-      		$namaPengguna=$token_item->namaPengguna;
-      	}else{
-      		$nama="belum digunakan";
-      		$namaPengguna="-";
-      	}
+	foreach ( $list as $token_item ) {
+		$date1 = new DateTime($token_item->tanggal_diaktifkan);
+		$date_diaktifkan = $date1->format('d-M-Y');
+		$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token_item->masaAktif));
+		$date1 = new DateTime(date("d-M-Y"));
+		$date2 = new DateTime($date_kadaluarsa);
+		$sisa_aktif = $date2->diff($date1);
+		$siswaID=$token_item->siswaID;
+		$aktif = $token_item->masaAktif;
+		if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
+			$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
+			$namaPengguna=$token_item->namaPengguna;
+		}else{
+			$nama="belum digunakan";
+			$namaPengguna="-";
+		}
       	//cek aktif
-      	if ($token_item->tokenStatus==1) {
-      		$tokenStatus="Aktif";
-      	}else{
-      		$tokenStatus="non-aktif";
-      	}
+		if ($token_item->tokenStatus==1) {
+			$tokenStatus="Aktif";
+		}else{
+			$tokenStatus="non-aktif";
+		}
       	// tentukan jenis membernya dulu
-	    if ($token_item->masaAktif==365) {
-	      	$type = 'Heroo Member';
-	      	$masa_aktif = '1 Tahun';
-	    } else {
-	      	$type = 'Angel Member';
-	      	$masa_aktif = '3 Tahun';
-	    } 
+		if ($token_item->masaAktif==365) {
+			$type = 'Heroo Member';
+			$masa_aktif = '1 Tahun';
+		} else {
+			$type = 'Angel Member';
+			$masa_aktif = '3 Tahun';
+		} 
 	    // hitung sisa aktif 
-	    if ($date1 > $date2) {
+		if ($date1 > $date2) {
 			$sisa_aktif = '0';
 		} else {
 			$sisa_aktif =$date2->diff($date1)->days;
 		}
 
-      	$tb_token.='
-	        <tr>
-	          <td>'.$no.'</td>
-	          <td>'.$nama.'</td>
-	          <td>'.$namaPengguna.'</td>
-	          <td>'.$type.'</td>
-	          <td>'.$token_item->nomorToken.'</td>
-	          <td>'.$masa_aktif.'</td>
-	          <td>'.$date_diaktifkan.'</td>
-	          <td>'.$date_kadaluarsa.'</td>
-	          <td>'.$sisa_aktif.' Hari</td>
-	          <td>'.$tokenStatus.'</td>
-	          <td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
-	      	</tr>
-    		';
-    		$no++;
-      }
-
-      echo json_encode( $tb_token );
-
+		$tb_token.='
+		<tr>
+			<td>'.$no.'</td>
+			<td>'.$nama.'</td>
+			<td>'.$namaPengguna.'</td>
+			<td>'.$type.'</td>
+			<td>'.$token_item->nomorToken.'</td>
+			<td>'.$masa_aktif.'</td>
+			<td>'.$date_diaktifkan.'</td>
+			<td>'.$date_kadaluarsa.'</td>
+			<td>'.$sisa_aktif.' Hari</td>
+			<td>'.$tokenStatus.'</td>
+			<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
+		</tr>
+		';
+		$no++;
 	}
+
+	echo json_encode( $tb_token );
+
+}
 
 }
 ?>

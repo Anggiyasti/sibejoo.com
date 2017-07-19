@@ -57,8 +57,7 @@ class Donasiback_model extends CI_model{
 		$date = date("Y-m-d H:i:s"); 
 		$this->db->where('id',$data['id_token']);
 		$this->db->set('siswaID', $data['id_siswa']);
-		$this->db->set('status', 1);
-		$this->db->set('tanggal_diaktifkan', $date);
+		$this->db->set('status', 0);
 		$this->db->update('tb_token');
 	}
 	function get_info_for_send_token($id_donasi){

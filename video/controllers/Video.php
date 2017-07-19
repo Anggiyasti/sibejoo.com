@@ -6,6 +6,8 @@ class Video extends MX_Controller {
 
 
     public function index(){
+        var_dump($this->session->userdata());
+
         $data = array(
             'judul_halaman' => 'Sibejoo - Video',
             'judul_header' =>'Video',
@@ -45,7 +47,7 @@ class Video extends MX_Controller {
         if ($this->session->userdata('HAKAKSES')=='ortu') {
             # langusung masuk
         }else{
-            $this->sessionchecker->cek_token();
+            // $this->sessionchecker->cek_token();
         }
     // 
     }
