@@ -53,16 +53,16 @@
  		$no=1;
  		foreach ($arrDat as $value) {
  			$tb_donatur .='<tr>
- 										<td>'.$no.'</td>
- 										<td>'.$value->nama.'</td>
- 										<td>'.$value->nama_pengguna.'</td>
- 												<td></td>
- 										<td>'.$value->jenis_member.'</td>
- 										<td>
- 										<button class="btn btn-warning"><i class="ico-file"></i></button>
- 										<button class="btn btn-danger" ><i class="ico-file"></i></button>
- 										</td>
- 										</tr>';
+				<td>'.$no.'</td>
+				<td>'.$value->nama.'</td>
+				<td>'.$value->nama_pengguna.'</td>
+						<td></td>
+				<td>'.$value->jenis_member.'</td>
+				<td>
+				<button class="btn btn-warning"><i class="ico-file"></i></button>
+				<button class="btn btn-danger" ><i class="ico-file"></i></button>
+				</td>
+				</tr>';
  			$no++;
  		}
  		echo json_encode($tb_donatur);
@@ -139,18 +139,18 @@
  			}
  			
  			$tb_donatur .='
- 										<tr>
- 										<td>'.$no.'</td>
- 										<td><div class="media-object"><img src="'.$logo.'" alt="" class="img-rounded"></div></td>
- 										<td>'.$value->nama.'</td>
- 										<td>'.$namaPerusahaan.'</td>	
- 										<td>'.$value->date.'</td>	
- 										<td>
- 										<button class="btn btn-warning detail-'.$value->id.' " data-id='."'".json_encode($value)."'".' onclick="edit('.$value->id.')"><i class="ico-edit"></i></button>
- 										<button class="btn btn-danger" onclick="drop_logo('.$value->id.')" ><i class="ico-picture"></i></button>
- 										<button class="btn btn-danger" onclick="hapus('.$value->id.')" ><i class="ico-trash"></i></button>
- 										</td>
- 										</tr>';
+							<tr>
+							<td>'.$no.'</td>
+							<td><div class="media-object"><img src="'.$logo.'" alt="" class="img-rounded"></div></td>
+							<td>'.$value->nama.'</td>
+							<td>'.$namaPerusahaan.'</td>	
+							<td>'.$value->date.'</td>	
+							<td>
+							<button class="btn btn-warning detail-'.$value->id.' " data-id='."'".json_encode($value)."'".' onclick="edit('.$value->id.')"><i class="ico-edit"></i></button>
+							<button class="btn btn-danger" onclick="drop_logo('.$value->id.')" ><i class="ico-picture"></i></button>
+							<button class="btn btn-danger" onclick="hapus('.$value->id.')" ><i class="ico-trash"></i></button>
+							</td>
+							</tr>';
  			$no++;
  		}
  		echo json_encode($tb_donatur);

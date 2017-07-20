@@ -8,6 +8,10 @@ class Homepage extends MX_Controller {
         parent::__construct();
         $this->load->library('parser');
         $this->load->model('guru/mguru');
+        $this->load->model('teamback/mteamback');
+        $this->load->model('donaturback/donaturback_model');
+
+
         $this->load->model('siswa/msiswa');
         $this->load->model('matapelajaran/mmatapelajaran');
         $this->load->model('video/mvideos');
@@ -39,7 +43,8 @@ class Homepage extends MX_Controller {
         );
         $data['file'] = 'r-container.php';
         // $data['teachers'] = $this->mguru->get_guru_random();
-        $data['teachers'] = $this->mguru->get_guru_random();
+        $data['teams'] = $this->mteamback->data_all_team();
+        $data['donaturs'] = $this->donaturback_model->get_all_donatur();
         
         $data['last_video'] = $this->mvideos->get_last_video();
         $data['testimoni'] = $this->Mhomepage->gettestimoni();

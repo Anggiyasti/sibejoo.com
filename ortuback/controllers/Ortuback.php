@@ -11,7 +11,7 @@ class Ortuback extends MX_Controller {
 		$this->load->model('Ortuback_model');
 		$this->load->model('Laporanortu/Laporanortu_model');
 		$this->load->model('admincabang/admincabang_model');
-		$this->load->model('tingkat/Mtingkat');
+		$this->load->model('tingkat/mtingkat');
 		$this->load->model('siswa/msiswa');
 		$this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();

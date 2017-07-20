@@ -15,17 +15,17 @@ class Login extends MX_Controller {
             if ($this->session->userdata('HAKAKSES')=='siswa'){
                // redirect('welcome');
             }else if($this->session->userdata('HAKAKSES')=='guru'){
-             redirect('guru/dashboard');
-         }else{
-         }
+               redirect('guru/dashboard');
+           }else{
+           }
 
-     }
+       }
 
- }
+   }
 
 
 
- public function index() {
+   public function index() {
     $data = array(
         'judul_halaman' => 'Login - Sibejoo',
         'judul_header' => 'Welcome'
@@ -53,11 +53,11 @@ public function validasiLogin() {
         //variabelSession
         $sess_array = array();
         foreach ($result as $row) {
-           $idPengguna = $row->id;
-           $hakAkses = $row->hakAkses;
+         $idPengguna = $row->id;
+         $hakAkses = $row->hakAkses;
             //membuat session
-           $verifikasiCode = md5($row->regTime);
-           $sess_array = array(
+         $verifikasiCode = md5($row->regTime);
+         $sess_array = array(
             'id' => $idPengguna,
             'USERNAME' => $this->db->escape_str($row->namaPengguna),
             'HAKAKSES' => $row->hakAkses,
@@ -66,8 +66,8 @@ public function validasiLogin() {
             'verifikasiCode' => $verifikasiCode,
             'loggedin' => TRUE,
             );
-           $this->session->set_userdata($sess_array);
-           if ($hakAkses == 'admin') {
+         $this->session->set_userdata($sess_array);
+         if ($hakAkses == 'admin') {
             $this->session->set_userdata('member', 1);
 
             redirect(base_url('index.php/admin'));
@@ -87,12 +87,36 @@ public function validasiLogin() {
             $this->session->set_userdata('NAMASISWA', $namaSiswa);
             $token = $this->Mlogin->get_token();
 
+            // kalo punya token.
             if ($token) {
-                $this->session->set_userdata('member', 1);
+                // kalo tokenya aktif,cek keaktivanya
+                if ($token['status']==1) {
+                    $date1 = new DateTime($token['tanggal_diaktifkan']);
+                    $date_diaktifkan = $date1->format('d-M-Y');
+                    $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+                    $date1 = new DateTime(date("d-M-Y"));
+                    $date2 = new DateTime($date_kadaluarsa);
+                    $sisa_aktif = $date2->diff($date1)->days; 
+                    // ini ada sisa masa aktif
+                    if($sisa_aktif>0){
+                        $this->session->set_userdata('member', 1);
+                        $this->session->set_userdata('token','Aktif');
+                        $this->session->set_userdata('sisa_token',$sisa_aktif);
+                    // ini ada habis    s masa aktif
+                    }else{
+                        $this->session->set_userdata('member', 0);
+                        $this->session->set_userdata('token','Habis');              
+                    }
+                }else{
+                    $this->session->set_userdata('token','non-aktif');
+                    $this->session->set_userdata('member', 0);
+                    $this->session->set_userdata('sisa_token','-');
+                }
             }else{
-                $this->session->set_userdata('member', 0);               
+                $this->session->set_userdata('member', 0);
+                $this->session->set_userdata('token','non-token'); 
+                $this->session->set_userdata('sisa_token','-');
             }
-
             redirect(site_url('welcome'));
 
         } elseif ($hakAkses == 'ortu') {
@@ -107,8 +131,8 @@ public function validasiLogin() {
             redirect(site_url('welcome'));
 
         }elseif ($hakAkses == 'admin_cabang') {
-         redirect(site_url('admincabang'));
-     } else {
+           redirect(site_url('admincabang'));
+       } else {
         echo 'tidak ada hak akses';
     }
 }
@@ -201,11 +225,11 @@ public function createSession($userID) {
             } elseif ($hakAkses == 'user') {
 //                      redirect(site_url('welcome'));
             } else {
-               echo 'tidak ada hak akses';
-           }
-       }
-       return TRUE;
-   }
+             echo 'tidak ada hak akses';
+         }
+     }
+     return TRUE;
+ }
 
 }
 
@@ -218,13 +242,13 @@ function cek_token(){
         // cek dulu statusna udah di aktivin atau belum
         if ($token['status']==1) {
             # udah diaktifin
-           $date_diaktifkan = $date1->format('d-M-Y');
-           $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+         $date_diaktifkan = $date1->format('d-M-Y');
+         $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
 
-           $date1 = new DateTime(date("d-M-Y"));
-           $date2 = new DateTime($date_kadaluarsa);
-           $sisa_aktif = $date2->diff($date1)->days;
-           if ($sisa_aktif != 0) {
+         $date1 = new DateTime(date("d-M-Y"));
+         $date2 = new DateTime($date_kadaluarsa);
+         $sisa_aktif = $date2->diff($date1)->days;
+         if ($sisa_aktif != 0) {
             //token aktif
             $this->session->set_userdata(array('token'=>'Aktif','sisa'=>$sisa_aktif));
         }else{

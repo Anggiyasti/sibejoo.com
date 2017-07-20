@@ -52,4 +52,11 @@
  		$this->db->where('id',$id);
  		$this->db->update('tb_donatur_co',$data);
  	}
+
+ 	public function get_all_donatur(){
+ 		$this->db->select('*');
+ 		$this->db->from('tb_donatur_co');
+ 		$query=$this->db->get();
+ 		return $query->result();
+ 	}
  } ?>

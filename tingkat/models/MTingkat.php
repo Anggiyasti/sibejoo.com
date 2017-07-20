@@ -1,6 +1,6 @@
 <?php
 defined( 'BASEPATH' ) or exit( 'No direct script access allowed' );
-class MTingkat extends CI_Model {
+class Mtingkat extends CI_Model {
 
 	var $table = 'tb_tingkat';
 
