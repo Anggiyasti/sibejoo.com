@@ -437,10 +437,8 @@ function get_meta_mapel($subBabID){
   JOIN `tb_tingkat-pelajaran` tingpel
   ON tingpel.`id` = bab.`tingkatPelajaranID`
   JOIN `tb_mata-pelajaran` mapel
-  ON mapel.`id` = `tingpel`.`mataPelajaranID`
-  ";
+  ON mapel.`id` = `tingpel`.`mataPelajaranID`";
   $result = $this->db->query($myquery);
-    // return $result->result_array();
   if ($result->result_array()==array()) {
     return false;
   } else {
@@ -473,10 +471,5 @@ function get_video_limit(){
   $query = $this->db->get();
   return $query->result_array();
 }
-
-
 }
-
-
-
 ?>

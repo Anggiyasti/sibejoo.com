@@ -877,7 +877,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         <!-- Section: Clients -->
         <div class="owl-carousel-6col clients-logo transparent text-center owl-nav-top">
           <?php foreach ($donaturs as $donatur): ?>
-              <?php $link = base_url('assets/image/donatur/logo_perusahaan/'.$donatur->logo) ?>
+            <?php $link = base_url('assets/image/donatur/logo_perusahaan/'.$donatur->logo) ?>
             <div class="item"> 
               <a href="#"><img src=<?=$link?> ></a>
               <h5 class="text-center text-black font-weight-600 mt-0 mb-0"><?=$donatur->namaPerusahaan ?></h5>
@@ -904,9 +904,9 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
           <label for="mce-EMAIL"></label>
           <div class="input-group">
             <!-- untuk menampilkan pesan kesalahan penginputan email -->
-            <input type="email" id="mce-EMAIL" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
+            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
             <span class="input-group-btn">
-              <input type="submit" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px"> 
+              <input type="button" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()"> 
               <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
               <span class="text-danger"><?php echo form_error('email'); ?></span>
             </span>
@@ -915,23 +915,38 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 
         <!-- Mailchimp Subscription Form Validation-->
         <script type="text/javascript">
-          $('#mailchimp-subscription-form1').ajaxChimp({
-            callback: mailChimpCallBack,
-            url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
-          });
+          function subscribe(){
+            email = $('#emailsubs').val();
 
-          function mailChimpCallBack(resp) {
+            $.ajax({
+              url: base_url+'homepage/addsubs',
+              type: "POST",
+              data: {email:email},
+              dataType: "json",
+              success: function(data) {
+            respon_action(data);
+          },
+          error: function(data) {
+                respon_action(data);
+              }
+            });
+          }
+
+
+
+          function respon_action(resp) {
                   // Hide any previous response text
                   var $mailchimpform = $('#mailchimp-subscription-form1'),
                   $response = '';
                   $mailchimpform.children(".alert").remove();
-                  if (resp.result === 'success') {
-                    $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                  } else if (resp.result === 'error') {
-                    $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                  if (resp.status === true) {
+                    $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.message + '</div>';
+                  } else if (resp.status === false) {
+                    $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.message + '</div>';
                   }
                   $mailchimpform.prepend($response);
                 }
+
               </script>
             </div>
           </div>
