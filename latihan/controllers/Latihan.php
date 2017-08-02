@@ -1,11 +1,4 @@
 <?php
-
-
-
-/**
- *
- */
-
 class Latihan extends MX_Controller {
 
 
@@ -235,8 +228,4 @@ class Latihan extends MX_Controller {
 
 
 }
-
-
-
 ?>
-
