@@ -31,13 +31,12 @@ class Welcome extends MX_Controller {
 
 
 
-   public function index() {
+   public function index() {    
     $data = array(
         'judul_halaman' => 'Sibejoo - Welcome',
         'judul_header' =>'Video',
         'judul_header2' =>'Video Belajar'
         );
-
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
         APPPATH.'modules/welcome/views/r-container-graph.php',

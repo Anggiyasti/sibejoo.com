@@ -54,7 +54,7 @@
          <?php $status = ['','Idle','Wait to Konfirm','Diterima','Kirim Token']; ?>
          <?php $donasi = ['','Heroo','Angel']; ?>
          <?php $no = 1; ?>
-
+         <tr>
          <?php foreach ($donasi_items as $item): ?>
           <td><?=$no ?></td>
           <td><?=$item->namaPengguna ?></td>
@@ -75,6 +75,8 @@
               <button   onclick="kirim_token(<?=$item->donasi_id ?>)" type="button" class="btn btn-primary mb5" ><i class="ico-mail-send"></i> Kirim Token</button>
             <?php endif ?>
           </td>
+         </tr>
+
           <?php $no++; ?>
 
         <?php endforeach ?>

@@ -222,6 +222,4 @@ class Mlatihan extends CI_Model
 
 
 }
-
 ?>
-

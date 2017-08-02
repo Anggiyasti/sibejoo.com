@@ -422,26 +422,30 @@
 
     <?php foreach ($konsultasi as $value ): ?>
       <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
-      <a href="<?= base_url('konsultasi/singlekonsultasi/'.$value['id'])?>" class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
-        <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
-        <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Ditujukan Pada Anda"><i class="ico-star"></i></span>
-        <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
-        | 
-      </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
-    <?php endforeach ?>
+      <a 
+      onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
+      class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
+      <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
+      <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Ditujukan Pada Anda"><i class="ico-star"></i></span>
+      <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
+      | 
+    </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
+  <?php endforeach ?>
 
-    <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
-      <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
-      <a href="<?= base_url('konsultasi/singlekonsultasi/'.$value['id'])?>" class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
-        <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
-        <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Pelajaran <?=$value['namaMataPelajaran'] ?>"><i class="ico-star-empty"></i></span>
-        <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
-        | 
-      </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
-    <?php endforeach ?>
+  <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
+    <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
+    <a 
+    onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
+    class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
+    <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
+    <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Pelajaran <?=$value['namaMataPelajaran'] ?>"><i class="ico-star-empty"></i></span>
+    <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
+    | 
+  </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
+<?php endforeach ?>
 
-  </div>
-  <!--/ Message list -->
+</div>
+<!--/ Message list -->
 </div>
 </div>
 <!--/ Dropdown menu -->
@@ -1146,12 +1150,37 @@ function filter_gallery() {
              }
 
            </script>
-           <!-- Cometchat -->
-           <link type="text/css" href="/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
-           <script type="text/javascript" src="/cometchat/cometchatjs.php" charset="utf-8"></script>
-           <!--/ App and page level script -->
-           <!--/ END JAVASCRIPT SECTION -->
 
-         </body>
-         <!--/ END Body -->
-         </html>
+           <script type="text/javascript">
+             // fungsi membuat session id pertanyaan
+             function singlekonsultasi(pertanyaanID){
+              
+              url_ajax = base_url+"konsultasi/tamp_single";
+
+              var global_properties = {
+                pertanyaanID: pertanyaanID
+              };
+
+              $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: url_ajax,
+                data: global_properties,
+                success: function(data){
+                  window.location.href = base_url + "konsultasi/singlekonsultasi";  
+                },error:function(data){
+                  sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+                }
+
+              });
+            }
+          </script>
+          <!-- Cometchat -->
+          <link type="text/css" href="/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
+          <script type="text/javascript" src="/cometchat/cometchatjs.php" charset="utf-8"></script>
+          <!--/ App and page level script -->
+          <!--/ END JAVASCRIPT SECTION -->
+
+        </body>
+        <!--/ END Body -->
+        </html>

@@ -160,7 +160,7 @@ class Ortuback extends MX_Controller {
 		// get report berdasarkan umum
 		$report_umum = $this->Ortuback_model->get_report_umum($id_pengguna);
 
-		if ($report_nilai != '') {
+		if (!empty($report_nilai)) {
 			$data['namaortu'] = $report_nilai[0]['namaOrangTua'];
 		}
 		

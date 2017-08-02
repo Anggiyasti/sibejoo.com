@@ -3,7 +3,7 @@
 /**
 * 
 */
-class m_donasi extends CI_Model
+class M_donasi extends CI_Model
 {
 
 	function __construct()

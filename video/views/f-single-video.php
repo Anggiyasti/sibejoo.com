@@ -111,12 +111,12 @@
           <!-- Start div demo -->
           <div class="demo">
               <strong><?=$subbab ?></strong><br>
-              <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>#ini" title="Room" >
+              <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>" title="Room" >
                <?=$bab_video_items['judulVideo'];?>           
            </a></span><br>
            <?php }else{ ?>
 
-           <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>#ini" title="Room" >
+           <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>" title="Room" >
                <?=$bab_video_items['judulVideo'];?>           
            </a></span><br>
 
@@ -144,7 +144,7 @@
                 <hr class="divider-big" />
                 <!-- <ul > -->
                     <?php foreach ($videobysub as $videobysub_item): ?>
-                        <li ><a href="<?= base_url('index.php/video/seevideo/') ?><?= $videobysub_item->id ?>#ini"><?= $videobysub_item->judulVideo ?></a></li>
+                        <li ><a href="<?= base_url('index.php/video/seevideo/') ?><?= $videobysub_item->id ?>"><?= $videobysub_item->judulVideo ?></a></li>
                     <?php endforeach ?>
                 <!-- </ul> -->
             </aside>

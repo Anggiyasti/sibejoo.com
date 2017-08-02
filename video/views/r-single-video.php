@@ -348,16 +348,17 @@
             var penggunaID = '<?=$this->session->userdata['id'];?>';
             var old_count_komen = parseInt($('[name=count_komen]').val());
             new_count_komen = old_count_komen + 1;
+
             if (penggunaID!=data.userID && videoID==data.videoID) {
 
              $( "#new_count_komen" ).html('Komenta <span>'+new_count_komen+'<span>');  
              $('#notif_audio')[0].play();
              $('[name=count_komen]').val(new_count_komen);
-             $( "#comment-tbody" ).append('<li class="comment"><div class="comment_container clear" style="margin-right: 100px"><img src="http://placehold.it/70x70" data-at2x="http://placehold.it/70x70" alt="" class="avatar"><div class="comment-text"><p class="meta"><strong>'+data.namaPengguna+'</strong><time datetime="<?=$comment->date_created ?>"> : '+data.date_created+'</time></p><div class="description"><p>'+data.isiKomen+'</p></div></div></div></li>');
+             $( "#comment-tbody" ).append('<li class="comment"><div class="comment_container clear" style="margin-right: 100px"><img src="http://placehold.it/70x70" data-at2x="http://placehold.it/70x70" alt="" class="avatar"><div class="comment-text"><p class="meta"><strong>'+data.namaPengguna+'</strong><time datetime="'+data.date_created+'"> : '+data.date_created+'</time></p><div class="description"><p>'+data.isiKomen+'</p></div></div></div></li>');
            }else if(videoID==data.videoID){
             $( "#new_count_komen" ).html('Komenta <span>'+new_count_komen+'<span>'); 
             $('[name=count_komen]').val(new_count_komen);
-            $( "#comment-tbody" ).append('<li class="comment"><div class="comment_container clear" style="margin-right: 100px"><img src="http://placehold.it/70x70" data-at2x="http://placehold.it/70x70" alt="" class="avatar"><div class="comment-text"><p class="meta"><strong>'+data.namaPengguna+'</strong><time datetime="<?=$comment->date_created ?>"> : '+data.date_created+'</time></p><div class="description"><p>'+data.isiKomen+'</p></div></div></div></li>');
+            $( "#comment-tbody" ).append('<li class="comment"><div class="comment_container clear" style="margin-right: 100px"><img src="http://placehold.it/70x70" data-at2x="http://placehold.it/70x70" alt="" class="avatar"><div class="comment-text"><p class="meta"><strong>'+data.namaPengguna+'</strong><time datetime="'+data.date_created+'"> : '+data.date_created+'</time></p><div class="description"><p>'+data.isiKomen+'</p></div></div></div></li>');
           }
 
 

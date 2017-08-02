@@ -108,7 +108,7 @@ class Mhomepage extends CI_Model {
     function mail_exists($key)
     {
         $this->db->select("*");
-        $this->db->where($key);
+        $this->db->where('email',$key);
         $this->db->from('tb_subscribe');
         
         $query = $this->db->get();

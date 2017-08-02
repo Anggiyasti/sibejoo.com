@@ -22,7 +22,7 @@
     $this->sessionchecker->checkloggedin();
   }
 
-    function jumlah_komen(){
+  function jumlah_komen(){
     $data['new_count_komen'] = $this->db->where('read_status',0)->count_all_results('tb_komen');
     $data['new_count_konsultasi'] = $this->db->where('statusRespon = 0 and mentorID='.$this->session->userdata('id_guru'))->count_all_results('tb_k_pertanyaan');
     $keahlian_detail=($this->mguru->get_m_keahlianGuru($this->session->userdata('id_guru')));
@@ -38,9 +38,9 @@
     //history di guru 
   public function myhistory()
   {
-      $data['count_komen']=$this->jumlah_komen();
+    $data['count_komen']=$this->jumlah_komen();
     $data['konsultasi'] = $this->mkonsultasi->get_pertanyaan_blm_direspon();
-      $data['count_konsultasi'] = count($data['konsultasi']);
+    $data['count_konsultasi'] = count($data['konsultasi']);
 
     $data['judul_halaman'] = "History Konsultasi";
     $data['files'] = array(
