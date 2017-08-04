@@ -1,90 +1,5 @@
 
 <div class="row">
-  <div class="col-md-12 kirim_token"  style="display: none">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Kirim Token</h3> 
-      </div>
-      <div class="panel-body">
-        <form  class="panel panel-default form-horizontal form-bordered form-step"  method="post" >
-         <div  class="form-group">
-           <label class="col-sm-2 control-label">Masa aktif</label>
-           <div class="col-sm-9">
-             <!-- stkt = soal tingkat -->
-             <select class="form-control" name="masa_aktif_set">
-              <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="30">30 Hari</option>
-              <option value="100">100 Hari</option>
-              <option value="365">365 Hari</option>
-            </select>
-          </div>
-        </div>
-      </form>
-      <div  class="form-group">
-        <table class="daftarsiswa table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-          <thead>
-            <tr>
-              <th>
-                <span class="checkbox custom-checkbox check-all">
-                  <input type="checkbox" name="checkall" id="check-all">
-                  <label for="check-all">&nbsp;&nbsp;</label></span> 
-                </th>
-                <th>No</th>
-                <th>Nama Mahasiswa</th>
-                <th>Nama Pengguna</th>
-                <th>Cabang</th>
-
-              </tr>
-            </thead>
-
-            <tbody>
-
-            </tbody>
-          </table>
-          <hr>
-          <a class="btn btn-primary set_token">Kirim Token</a>
-
-        </div>
-        <div class="panel-footer">
-          <ul class="nav nav-section nav-justified">
-            <li>
-              <div class="section">
-                <input type="hidden" name="jumlah_semua_stok">
-                <input type="hidden" name="jumlah_30_stok">
-                <input type="hidden" name="jumlah_100_stok">
-                <input type="hidden" name="jumlah_365_stok">  
-                <h5 class="nm jumlah_semua_stok"></h5>
-                <span>Semua</span>
-              </div>
-            </li>
-
-            <li>
-              <div class="section">
-                <h5 class="nm jumlah_30_stok"></h5>
-                <span>30 Hari</span>
-              </div>
-            </li>
-
-            <li>
-              <div class="section">
-                <h5 class="nm jumlah_100_stok"></h5>
-                <span>100 Hari</span>
-              </div>
-            </li>
-
-            <li>
-              <div class="section">
-                <h5 class="nm jumlah_365_stok"></h5>
-                <span>365 Hari</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
   <div class="col-md-12 form-token" style="display: none">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -104,9 +19,8 @@
              <!-- stkt = soal tingkat -->
              <select class="form-control" name="masa_aktif">
               <option value="0">-- Pilih Masa Aktif --</option>
-              <option value="30">30 Hari</option>
-              <option value="100">100 Hari</option>
-              <option value="365">365 Hari</option>
+              <option value="365">Heroo Member</option>
+              <option value="1095">Angel Member</option>
             </select>
           </div>
         </div>
@@ -140,127 +54,272 @@
 
          <!-- stkt = soal tingkat -->
          <select class="form-control" name="masa_aktif" id="masa_aktif_select">
-          <option value="all">Semua</option>
-          <option value="30">30 Hari</option>
-          <option value="100">100 Hari</option>
-          <option value="365">365 Hari</option>
+ <option value="0">-- Pilih Masa Aktif --</option>
+              <option value="365">Heroo Member</option>
+              <option value="1095">Angel Member</option>
         </select>
 
 
       </div>
       <a class="btn btn-inverse btn-outline add-token" title="Tambah Token" ><i class="ico-plus"></i></a>
-      <a class="btn btn-inverse btn-outline send-token" title="Kirim Token" ><i class="ico-user-plus2"></i></a>
-      <a class="btn btn-inverse btn-outline send-token" title="Rekap Token" ><i class="ico-notebook"></i></a>
     </div>
   </div>
   <div class="panel-body">
-    <table class="daftartoken table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+    <!-- div seting record dan pencarian   -->
+    <div class="col-md-12" >
+      <!-- div setting record -->
+      <div class="col-md-2 mb2 mt10 pl0">
+        <div  class="form-group">
+          <select  class="form-control" name="records_per_page">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <!-- /div setting record -->
+      <!-- div pencarian  -->
+      <div class="col-md-10 mb10 mt10 pr0">
+        <div class="input-group">
+         <span class="input-group-addon btn" id="cariToken"><i class="ico-search"></i></span>
+         <input class="form-control" type="text" name="cariToken" placeholder="Cari Data">
+       </div>
+     </div>
+     <!-- div pencarian -->
+   </div>
+   <!-- div seting record dan pencarian -->
+   <!-- div tabel daftar token -->
+   <div class="col-md-12">
+    <table class="table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
       <thead>
         <tr>
           <th>id</th>
           <th>Nomor Token</th>
           <th>Masa Aktif</th>
           <th>Digunakan Oleh</th>
+          <th>Nama Pengguna</th>
+          <th>Type</th>
           <th width="15%">Aksi</th>
         </tr>
-      </thead>
-
-      <tbody>
-
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Penggunaan Token</h3>
-      <!-- panel toolbar -->
-      <div class="panel-toolbar text-right">
-        <!-- option -->
-        <div class="option">
-          <button class="btn up" data-toggle="panelcollapse"><i class="arrow"></i></button>
-          <button class="btn" data-toggle="panelremove"><i class="remove"></i></button>
-        </div>
-        <!--/ option -->
-      </div>
-      <!--/ panel toolbar -->
-    </div>
-    <div class="panel-body">
-      <table class="rekap_token table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Siswa</th>
-            <th>Nama Pengguna</th>
-
-            <th>Nomor Token</th>
-            <th>Masa Aktif</th>
-            <th>Mulai</th>
-            <th>Finish</th>
-            <th>Sisa Aktif</th>
-            <th>Status</th>
-            <th width="15%">Aksi</th>
-          </tr>
-        </thead>
-
-        <tbody>
+        <tbody id="record_token">
 
         </tbody>
       </table>
     </div>
+    <!-- /div tabel daftar token -->
+    <!-- div pagination daftar token -->
+    <div class="col-md-12">
+      <ul class="pagination pagination-token">
+
+      </ul>
+    </div>
+    <!-- div pagination daftar token -->
   </div>
 </div>
-
-
-
+</div>
 
 </div>
 <!-- TABEL TOKEN -->
 <script type="text/javascript">
-var dataTableToken;
-var dataTableSiswa;
-var dataRekapToken
-
-
-$(document).ready(function(){
-  // TABLE TOKEN
-  dataTableToken = $('.daftartoken').DataTable({
-    "ajax": {
-      "url": base_url+"token/ajax_data_token",
-      "type": "POST"
-    },
-    "emptyTable": "Tidak Ada Data Pesan",
-    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-    "bDestroy": true,
-  });
-
-  // TABLE SISWA
-  dataTableSiswa = $('.daftarsiswa').DataTable({
-    "ajax": {
-      "url": base_url+"token/ajax_data_siswa2",
-      "type": "POST"
-    },
-    "emptyTable": "Tidak Ada Data Pesan",
-    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-    "bDestroy": true,
-  });
-
-    // TABLE REKAP
-    dataRekapToken = $('.rekap_token').DataTable({
-      "ajax": {
-        "url": base_url+"token/ajax_rekap_penggunaan_token",
-        "type": "POST"
+  var dataTableToken;
+  var meridian=4;
+  var prev=1;
+  var next=2;
+  var records_per_page=10;
+  var status="null";
+  var masaAktif="all";
+  var page=0;
+  var pageVal;
+  var keySearch='';
+  var url;
+  var tb_token;
+  var pageSelek=0;
+  var datas ;
+  $(document).ready(function(){
+  //set tb_token
+  function set_tb_token() {
+    datas ={masaAktif:masaAktif,status:status,records_per_page:records_per_page,pageSelek:pageSelek,keySearch:keySearch};
+    $('#record_token').empty();
+    
+    url=base_url+"token/ajaxLisToken";
+    $.ajax({
+      url:url,
+      data:datas,
+      dataType:"text",
+      type:"post",
+      success:function(Data)
+      {
+        tb_token = JSON.parse(Data);
+        $('#record_token').append(tb_token);
       },
-      "emptyTable": "Tidak Ada Data Pesan",
-      "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-      "bDestroy": true,
+      error:function(e,jqXHR, textStatus, errorThrown)
+      {
+       sweetAlert("Oops...", e, "error");
+     }
+   });
+
+  }
+  set_tb_token();
+  // even untuk jumlah record per halaman
+  $("[name=records_per_page]").change(function(){
+    records_per_page =$('[name=records_per_page]').val();
+    selectPage(0);
+    paginationToken();
+  });
+  // even untuk menampilkan jenis token yg sudah digunakan atau belum digunakan 
+  $('input[name=status_token]').click(function(){
+    status = this.value;
+    console.log(page+"ini");
+    selectPage(page);
+    paginationToken();
+  });
+
+  // ketika masa aktif radio button di klik
+  $('#masa_aktif_select').on('change', function() {
+    masaAktif = this.value ;
+    selectPage(page);
+    paginationToken();
+  });
+
+  paginationToken();
+  // di konen dulu karena koneksi tidak mendukung Lol
+  // // event pencarian ketika tekan enter
+  // $('[name=cariToken]').on('keydown',function(e){
+  //   //get value dari input name cariToken
+  //   keySearch=$('[name=cariToken]').val();
+  //   selectPage(pageVal='0',keySearch);
+  //   paginationToken();
+  //   //
+  // });
+
+  $('#cariToken').click(function(e){
+      //get value dari input name cariToken
+      keySearch=$('[name=cariToken]').val();
+      selectPage(pageVal='0');
+      paginationToken();
+      //
     });
 
+});
+    //set pagination
+    function paginationToken() {
+      $.ajax({
+        url:base_url+"token/paginationToken/",
+        data:{masaAktif:masaAktif,status:status,records_per_page:records_per_page,keySearch:keySearch},
+        type:"POST",
+        dataType:"TEXT",
+        success:function(data){
+          $('.pagination-token').empty();
+          $('.pagination-token').append(JSON.parse(data));
+        },error:function(){
+        // swal('Gagal pagination');
+      }
+    });
+    }
+// next page
+function nextPage() {
+  selectPage(next);
+}
+// prev page
+function prevPage() {
+  selectPage(prev);
+}
+function selectPage(pageVal='0') {
+  page=pageVal;
+  pageSelek=page*records_per_page;
+  // 
+  $('#record_token').empty();
+  datas ={masaAktif:masaAktif,status:status,records_per_page:records_per_page,pageSelek:pageSelek,keySearch:keySearch};
+  url=base_url+"token/ajaxLisToken";
+  $.ajax({
+    url:url,
+    data:datas,
+    dataType:"text",
+    type:"post",
+    success:function(Data)
+    {
+      tb_token = JSON.parse(Data);
+      $('#record_token').append(tb_token);
+    },
+    error:function(e,jqXHR, textStatus, errorThrown)
+    {
+         // sweetAlert("Oops...", e, "error");
+       }
+     });
+  //meridian adalah nilai tengah padination
+  $('#page-'+meridian).removeClass('active');
+  var newMeridian=page+1;
+  var loop;
+  var hidePage;
+  var showPage;
+  if (newMeridian<=4) {
+    $("#page-prev").addClass('hide');
+    //banyak pagination yg akan di tampilkan dan sisembunyikan
+    loop=meridian-newMeridian;
+    // start id pagination yg akan ditampilkan
+    var idPaginationshow =1;
+    // start id pagination yg akan sembunyikan
+    var idPaginationhide =9;
+    prev=1;
+    next=7;
+    //lakukan pengulangan sebanyak loop
+    for (var i = 0; i < loop; i++) {
+      hidePagination='#page-'+idPaginationhide;
+      showPagination='#page-'+idPaginationshow;
+      //pagination yg di hide
+      $(showPagination).removeClass('hide');
+      //pagination baru yg ditampilkan
+      $(hidePagination).addClass('hide');
+      idPaginationshow++;
+      idPaginationhide--;
+    }
+  }else if( newMeridian>meridian){
+    $("#page-prev").removeClass('hide');
+        //banyak pagination yg akan di tampilkan dan sisembunyikan
+        loop=newMeridian-meridian;
+        // start id pagination yg akan ditampilkan
+        var idPaginationshow =newMeridian+3;
+        // start id pagination yg akan sembunyikan
+        var idPaginationhide =meridian-3;
+        console.log("ini"+next);
+        //lakukan pengulangan sebanyak loop
+        for (var i = 0; i < loop; i++) {
+          hidePagination='#page-'+idPaginationhide;
+          showPagination='#page-'+idPaginationshow;
+          //pagination yg di hide
+          $(showPagination).removeClass('hide');
+          //pagination baru yg ditampilkan
+          $(hidePagination).addClass('hide');
+          idPaginationshow--;
+          idPaginationhide++;
+        }
+      }else{
 
+    //banyak pagination yg akan di tampilkan dan sisembunyikan
+    loop=meridian-newMeridian;
+    // start id pagination yg akan ditampilkan
+    var idPaginationshow =newMeridian-3;
+    // start id pagination yg akan sembunyikan
+    var idPaginationhide =meridian+3;
+    //lakukan pengulangan sebanyak loop
+    for (var i = 0; i < loop; i++) {
+      hidePagination='#page-'+idPaginationhide;
+      showPagination='#page-'+idPaginationshow;
+      //pagination yg di hide
+      $(showPagination).removeClass('hide');
+      //pagination baru yg ditampilkan
+      $(hidePagination).addClass('hide');
+      idPaginationshow++;
+      idPaginationhide--;
+    }
+  } 
+  prev=newMeridian-2;
+  next=newMeridian;
+  meridian=newMeridian;
+  $('#page-'+meridian).addClass('active');
+}
 
-  });
 // onclick action
 $('.add-token').click(function(){
   $('.form-token').toggle('show');
@@ -268,44 +327,8 @@ $('.add-token').click(function(){
 
 $('.simpan_token').click(function(){
   addtoken();
-  dataTableToken.ajax.reload(null,false); 
-});
-
-$('.send-token').click(function(){
-  $('.kirim_token').toggle('show');
-  dataTableToken.ajax.reload(null,false); 
-  dataTableSiswa.ajax.reload(null,false); 
-  dataRekapToken.ajax.reload(null,false); 
-
-});
-
-$('.set_token').click(function(){
-  set_token_to_mahasiswa();
-});
-
-$('input[name=status_token]').click(function(){
-  status_token = this.value;
-  data = $('#masa_aktif_select').val();
-  url = base_url+"token/ajax_data_token/"+data+"/"+status_token;
-
-  dataTableToken = $('.daftartoken').DataTable({
-    "ajax": {
-      "url": url,
-      "type": "POST",
-    },
-    "emptyTable": "Tidak Ada Data Pesan",
-    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-    "bDestroy": true,
-  });
-
-  console.log(url);
-});
-
-
-// ketika masa aktif radio button di klik
-$('#masa_aktif_select').on('change', function() {
-  masa_aktif = this.value ;
-  get_filtered_token(masa_aktif);
+  selectPage();
+  paginationToken();
 });
 
 // UDF //
@@ -318,116 +341,12 @@ function addtoken(){
     dataType:"TEXT",
     success:function(){
       swal('Token Berhasil Di Tambahkan');
-      reload();
+      selectPage();
+      paginationToken();
     },error:function(){
       swal('Gagal membuat Token');
     }
-  })
-}
-
-
-//fungsi set token ke mahasiswa
-function set_token_to_mahasiswa(){
-  //tampung id mahasiswa
-  id_siswa = [];
-  //tampung masa aktif
-  masa_aktif = $('select[name=masa_aktif_set]').val();
-  //cek kalo belum set masa aktif
-  if (masa_aktif==0) {
-    swal('silahkan tentukan masa aktif terlebih dahulu');
-    $('select[name=masa_aktif_set]').focus();
-  }else{
-   $('.daftarsiswa tbody td :checkbox:checked').each(function(i){
-     id_siswa[i] = $(this).val();
-   }); 
-  console.log(id_siswa);
-   
-   jumlah_mahasiswa = id_siswa.length;
-   jumlah_stok = $('input[name=jumlah_'+masa_aktif+'_stok]').val();
-
-   // cek jumlah mahasiswa yang dipilih
-   if (jumlah_mahasiswa==0) {
-    swal('Silahkan tentukan mahasiswa terlebih dahulu');
-  }else{
-    if (jumlah_mahasiswa>jumlah_stok) {
-      swal('Jumlah stok kurang');
-    }else{
-      data = {
-        id:id_siswa,
-        jumlah_mahasiswa:jumlah_mahasiswa,
-        masa_aktif:masa_aktif
-      };
-      $.ajax({
-        url:base_url+"token/set_token_to_mahasiswa",
-        data:data,
-        type:"POST",
-        dataType:"TEXT",
-        success:function(){
-          swal('Token Berhasil Di Kirim');
-          reload();
-        },error:function(){
-          swal('Gagal mengirim Token');
-        }
-      });
-    }
-    
-
-    
-
-  }
-}
-
-}
-
-
-//fungsi untuk filter token
-function get_filtered_token(data){
-  status_token = $('input[name=status_token]:checked').val();
-  console.log(status_token);
-  if (status_token) {
-  //kalo tidak undfined
-  url = base_url+"token/ajax_data_token/"+data+"/"+status_token;
-}else{
-    //kalo undefined
-    url = base_url+"token/ajax_data_token/"+data;
-  }
-
-  console.log(url);
-
-  dataTableToken = $('.daftartoken').DataTable({
-    "ajax": {
-      "url": url,
-      "type": "POST",
-    },
-    "emptyTable": "Tidak Ada Data Pesan",
-    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-    "bDestroy": true,
   });
-}
-
-
-function get_stok(){
-  $.ajax({
-    url:base_url+"token/ajax_get_stock",
-    type:"POST",
-    dataType:"json",
-    success:function(data, key){
-      $.each(data, function(key, value){
-        $("."+key).html("Stok : "+value);
-        $('input[name='+key+']').val(value);
-      });
-    },error:function(){
-      swal('Gagal mengirim Token');
-    }
-  });
-}
-
-
-function reload(){
-  get_stok();
-  dataTableToken.ajax.reload(null,false); 
-  dataTableSiswa.ajax.reload(null,false); 
-  dataRekapToken.ajax.reload(null,false); 
 }
 
 
@@ -450,8 +369,9 @@ function drop_token(data){
       type:"POST",
       url:url,
       success:function(){
-        swal("Terhapus!", "Token berhasil dihapus.", "success");
-        dataRekapToken.ajax.reload(null,false)
+        swal("Terhapus!", "Token berhasil dihapusss.", "success");
+        selectPage(page);
+        paginationToken();
       },
       error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");
@@ -463,7 +383,6 @@ function drop_token(data){
 
 
 function update_token(data){
-
   url = base_url+"token/aktifkan_token";
   swal({
     title: "Yakin akan aktifkan Token?",
@@ -483,7 +402,8 @@ function update_token(data){
       url:url,
       success:function(){
         swal("Diaktifkan!", "Token berhasil diaktikan.", "success");
-        dataRekapToken.ajax.reload(null,false)
+        selectPage();
+        paginationToken();
       },
       error:function(){
         sweetAlert("Oops...", "Token gagal diaktikan!", "error");
@@ -493,15 +413,4 @@ function update_token(data){
   });
 }
 
-
-
-$('[name="checkall"]:checkbox').click(function () {
- if($(this).attr("checked")){
-  $('table.daftarsiswa tbody input:checkbox').prop( "checked", true );
-} else{ 
-  $('table.daftarsiswa tbody input:checkbox').prop( "checked", false );
-}
-});
-
-get_stok();
 </script>
