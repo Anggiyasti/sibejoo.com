@@ -32,18 +32,6 @@
  	public function index($value='')
  	{
  		$this->co_donatur();
- 	// 	$data['judul_halaman'] = "List Donatur";
-		// $data['files'] = array(
-		// 	APPPATH . 'modules/donaturback/views/v-list-donatur.php',
-		// 	);
-		
- 	// 	// $hakAkses = $this->session->userdata['HAKAKSES'];
-		// // if ($hakAkses == 'admin') {
-		// 	$this->parser->parse('admin/v-index-admin', $data);
-		// // } else {
-		// 	// redirect(site_url('login'));
-		// // }
-
  	}
 
  	public function ajax_donatur($value='')
