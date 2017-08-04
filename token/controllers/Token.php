@@ -177,7 +177,7 @@ class Token extends MX_Controller {
 			);
 
 		$data['files'] = array(
-			APPPATH . 'modules/token/views/v-daftar-token.php',
+			APPPATH . 'modules/token/views/v-daftar-token2.php',
 			);
 		$this->loadparser($data);
 	}
