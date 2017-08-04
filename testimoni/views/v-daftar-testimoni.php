@@ -39,7 +39,7 @@
         console.log(pu);
 //        if (pu == 1) {
             $.ajax({
-                url: base_url + "index.php/Testimoni/publishtestimoni/" + id_testi,
+                url: base_url + "index.php/testimoni/publishtestimoni/" + id_testi,
                 data: "id_testi=" + id_testi,
                 type: "POST",
                 dataType: "TEXT",
@@ -66,7 +66,7 @@
         console.log(nilai);
 //        if (nilai == 1) {
             $.ajax({
-                url: base_url + "index.php/Testimoni/disabletestimoni/" + id_testi,
+                url: base_url + "index.php/testimoni/disabletestimoni/" + id_testi,
                 data: "id_testi=" + id_testi,
                 type: "POST",
                 dataType: "TEXT",
@@ -92,7 +92,7 @@
     $(document).ready(function () {
         tb_testimoni = $('.daftartestimoni').DataTable({
             "ajax": {
-                "url": base_url + "Testimoni/ajax_daftar_testimoni",
+                "url": base_url + "testimoni/ajax_daftar_testimoni",
                 "type": "POST"
             },
             "emptyTable": "Tidak Ada Data Pesan",
@@ -105,7 +105,7 @@
             // ajax delete data to database
 //            console.log(base_url + "index.php/Testimoni/deletePesan/" + id_testi);
             $.ajax({
-                url: base_url + "index.php/Testimoni/deleteTesti/" + id_testi,
+                url: base_url + "index.php/testimoni/deleteTesti/" + id_testi,
                 data: "id_testi=" + id_testi,
                 type: "POST",
                 dataType: "TEXT",
