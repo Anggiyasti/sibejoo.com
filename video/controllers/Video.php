@@ -6,8 +6,6 @@ class Video extends MX_Controller {
 
 
     public function index(){
-        var_dump($this->session->userdata());
-
         $data = array(
             'judul_halaman' => 'Sibejoo - Video',
             'judul_header' =>'Video',

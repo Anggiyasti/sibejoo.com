@@ -107,6 +107,8 @@ public function get_cariTopik($kunciCari)
   $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
   $this->db->like('topik.namaTopik',$kunciCari
     );
+  $this->db->where('step.status',1);
+  $this->db->where('topik.status',1);
   $this->db->order_by('topik.namaTopik');
   $this->db->order_by('step.urutan', 'asc');
   $query=$this->db->get();
@@ -142,12 +144,15 @@ public function get_topik($babID)
     // get topik untuk side bar by namatopik
 public function get_topik_bynama($kunciCari)
 {
-  $this->db->select('id,UUID,namaTopik');
-  $this->db->from('tb_line_topik');
-  $this->db->like('namaTopik',$kunciCari);
-  $this->db->where('status',1);
-  $this->db->where('statusLearning',1);
-  $this->db->order_by('namaTopik');
+  $this->db->distinct('topik.namaTopik');
+  $this->db->select('topik.id,topik.UUID,topik.namaTopik');
+  $this->db->from('tb_line_topik topik');
+  $this->db->join('tb_line_step step','step.topikID=topik.id');
+  $this->db->like('topik.namaTopik',$kunciCari);
+  $this->db->where('topik.status',1);
+  $this->db->where('topik.statusLearning',1);
+  $this->db->order_by('topik.namaTopik');
+
   $query=$this->db->get();
   return $query->result_array();
 }
