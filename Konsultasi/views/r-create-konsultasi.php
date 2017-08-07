@@ -120,7 +120,7 @@
 				Isi Pertanyaan :
 				<textarea  name="editor1" class="form-control" id="isi"></textarea>
 				<br>
-				<form action="<?=base_url('donasi/insert_konfirmasi') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
+				<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
 					Upload Gambar : 
 					<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline">
 

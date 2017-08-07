@@ -151,6 +151,7 @@
       success:function(Data)
       {
         tb_token = JSON.parse(Data);
+        console.log(tb_token);
         $('#record_token').append(tb_token);
       },
       error:function(e,jqXHR, textStatus, errorThrown)

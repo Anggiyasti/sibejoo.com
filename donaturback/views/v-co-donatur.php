@@ -215,14 +215,12 @@
 		// even jumlah records_per_page_donatur
 		$('[name=records_per_page_donatur]').change(function(){
 			records_per_page=$('[name=records_per_page_donatur]').val();
-			// console.log(records_per_page);
 			set_donatur_co();
 		});
 		//even  cari donator
 		// $('[name=]').
 		$('#cariDonatur').click(function(){
 			keySearch= $('[name=cariDonatur]').val();
-			console.log(keySearch);
 			set_donatur_co();
 		});
 
@@ -368,7 +366,6 @@
 			var logo=base_url+'assets/image/avatar/default.png';
 		}
 		$('#prevfile').attr('src', logo);
-		console.log(logo);
 	}
 
 
@@ -411,7 +408,6 @@
         var idPaginationshow =newMeridian+3;
         // start id pagination yg akan sembunyikan
         var idPaginationhide =meridian-3;
-        console.log("ini"+next);
         //lakukan pengulangan sebanyak loop
         for (var i = 0; i < loop; i++) {
         	hidePagination='#page-'+idPaginationhide;

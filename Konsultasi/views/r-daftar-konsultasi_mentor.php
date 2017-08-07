@@ -67,7 +67,7 @@
 				                <div class="search-form">
 				                  <form>
 				                    <div class="input-group">
-				                      <input type="text" placeholder="Cari pertanyaan lalu enter" class="form-control search-input" style="height: 35px;" name="cari" id="search1">
+				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="search_mentor()">
 				                      <span class="input-group-btn">
 				                      <a href="#" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
@@ -89,67 +89,11 @@
       			<?php endif; ?>
 
       			<!-- semua -->
-      			<?php if ($my_questions): ?>
-      				<?php foreach ($my_questions as $question): ?>
-      					<div class="blog-post">
-      						<hr class="divider-color">
+                  <div id="konsulList">
 
-      						<div class="author-details media-post">
-				                <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="http://placehold.it/110x110" data-at2x="<?=base_url("assets/image/photo/siswa/".$question['photo'])?>"></a>
-				                <div class="post-right">
-				                  <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5>
-				                  <div class="comment-date">(<?=$question['date_created'] ?>)</div>
-				                  <div class="col-md-10">
-				                  	<a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)">
-					                  <blockquote class="gray pt-20 pb-20" >
-						                <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
-						                <footer><?=$question['isiPertanyaan'] ?></footer>
-						              </blockquote>
-						            </a>
-					              
-				                  <div class="tagline p-0 pt-20 mt-5">
-					                <div class="row">
-					                  <div class="col-md-4">
-					                  </div>
-					                  <div class="col-md-8">
-					                    <div class="share text-right">
-					                     	<p>
-					                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/all') ?>"><i class="fa fa-tags text-theme-color-2"></i> <?=$question['namaMataPelajaran'] ?></a> | 
-					                     		<a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/'.str_replace(' ', '_', $question['judulBab'])) ?>">
-												<i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?></a> |
-												<span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
-												<?php if (!empty($question['namaGuru'])): ?>
-													<span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></a>
-												<?php else: ?>
-													<span>Tanpa Mentor</span>
-												<?php endif ?>
-											</p>
-					                    </div>
-					                  </div>
-					                </div>
-				                  </div>
-
-				                </div>
-				                <div class="clearfix"></div>
-				             </div>
-
-      					</div>
-      				<?php endforeach ?>
-      			<?php else: ?>
-					<h3>Tidak Ada Pertanyaan</h3>
-      			<?php endif; ?>
-
-      		<!-- pagination -->
-			<hr>
-			<br>
-			<div>
-
-				<div class="page-pagination clear-fix" style="width:100%;">
-					<center><?php echo $links; ?></center>	
-				</div>
-				<b>Jumlah Pertanyaan :<?=$jumlah_postingan ?></b>
-			</div>
-			<!-- / pagination -->
+              
+                  </div>
+                  <!-- / konsulList -->
 			
       		</div>
       	</div>
@@ -164,46 +108,48 @@
 	}
 </script>
 <script type="text/javascript">
-	$("#search1").on('keyup', function (e) {
-		if (e.keyCode == 13) {
-			keyword = $('#search1').val().replace(/ /g,"-");		;
-			
-			url_ajax = base_url+"konsultasi/tamp_search";
-	    
-		   var global_properties = {
-		      keyword: keyword
-		   };
+	window.onload = function() {
+      page_num=0;
+      keyword = $('#search1').val().replace(/ /g,"-"); 
+      var properties_load = {
+          page:page_num,
+          keyword: keyword
+       };
 
-		   $.ajax({
-		      type: "POST",
-		      dataType: "JSON",
-		      url: url_ajax,
-		      data: global_properties,
-		      success: function(data){
-		        document.location = base_url+"konsultasi/pertanyaan_mentor_search";
-		      },error:function(data){
-		        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-		      }
+      $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/ajaxPaginationMentor/'+page_num,
+          data: properties_load,
+          beforeSend: function () {
+            $('.loading').show();
+          },
+          success: function (html) {
+            $('#konsulList').html(html);
+          }
+      });
+  }
 
-		    });
-		}
-	});
+	function search_mentor(page_num) {
+    page_num = page_num?page_num:0;
+    keyword = $('#search1').val().replace(/ /g,"-");    
+          
+    var properties_search = {
+      keyword: keyword,
+      page: page_num
+    };
 
-	 	$('.cari-btn').click(function(){
- 		var mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
- 		var bab= $('#babSelect').find(":selected").text().replace(/ /g,"_");
-
- 		console.log(bab);
- 		if (mapel == 'Pilih_Mata_Pelajaran') {
- 			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
- 		}else{
- 			if (bab=='Bab_Pelajaran') {
- 				document.location = base_url+"konsultasi/filter_mentor/"+mapel+"/all";
- 			}else if(bab!='Bab_Pelajaran'){
- 				document.location = base_url+"konsultasi/filter_mentor/"+mapel+"/"+bab;
- 			}
- 		}
- 	});
+    $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/ajaxPaginationMentor/'+page_num,
+          data: properties_search,
+          beforeSend: function () {
+              $('.loading').show();
+          },
+          success: function (html) {
+              $('#konsulList').html(html);
+          }
+      });
+  }
 
 	 	// redirect ke single konsultasi
   function single_konsul(pertanyaanID) {
