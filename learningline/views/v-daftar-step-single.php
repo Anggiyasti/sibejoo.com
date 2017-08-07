@@ -14,6 +14,55 @@
         </div>  
     </div>
 
+    <!-- Start Modal Detail Soal dari server -->
+    <div class="modal fade" id="mdetailsoal">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+
+                    </button>
+
+                    <h3 class="semibold mt0 text-accent text-center"></h3>
+
+                </div>
+
+                <div class="modal-body">
+                <label>Soal :</label>
+                <p class="text-justify" id="dsoal">
+                    
+                </p>
+
+                <label>Sumber :</label>
+                <p class="text-justify" id="dsumber">
+                    
+                </p>
+
+                <label>Kesulitan :</label>
+                <p class="text-justify" id="dkesulitan">
+                    
+                </p>
+                    
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-danger mb5" data-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+
+        </div>
+       
+    </div>
+
 
     <!-- MODAL TABEL STEP -->
     <div class="row">

@@ -178,7 +178,7 @@
     // Fungsi untuk detail soal
     function detailSoal(id_soal) {
         var kelas ='.detail-'+id_soal;
-        var data = $(kelas).data('id');
+        var data = $(kelas).data('todo');
         var jawaban=$('#jawaban-'+id_soal).val();
         $('h3.semibold').html(data.judul_soal);
 

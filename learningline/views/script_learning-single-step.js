@@ -37,6 +37,27 @@ function materi_detail(id){
 
 }
 
+
+// Fungsi untuk detail soal
+    function detail_soal(id_soal) {
+        var kelas ='.soal-'+id_soal;
+        var data = $(kelas).data('todo');
+        if (data.kesulitan=='0') {
+		kesulitan = "Mudah";
+		} else if(data.kesulitan=='1'){
+		kesulitan = "Sedang";
+		}else{
+		kesulitan= "Sulit";
+		}
+
+        $('h3.semibold').html(data.judul_soal);
+        $('p#dsumber').html(data.sumber);
+        $('p#dsoal').html(data.soal);
+        $('p#dkesulitan').html(kesulitan);
+        $('#mdetailsoal').modal('show');
+    }
+
+
 function get_detail_materi(id,url){
 
 	$.ajax({
@@ -142,6 +163,8 @@ function latihan_detail(id, url){
 	$('.detailstep').modal('show');
 
 }
+
+
 
 
 function drop_step(idstep){
