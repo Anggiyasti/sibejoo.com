@@ -94,7 +94,6 @@ class Admincabang extends MX_Controller {
 		$keySearch=$this->input->post('keySearch');
 		//data post
 		# get cabang
-		$data['cabang'] = $this->mcabang->get_all_cabang();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
 
@@ -488,13 +487,14 @@ class Admincabang extends MX_Controller {
 			APPPATH . 'modules/admincabang/views/v-daftar-paket.php',
 			);
 		# get cabang sementara tidak di pakai karena laporan sesuai admincabang
-		// $data['cabang'] = $this->mcabang->get_all_cabang();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
 		$hakAkses = $this->session->userdata['HAKAKSES'];
 		if ($hakAkses == 'admin_cabang') {
 			$this->parser->parse('v-index-admincabang', $data);
 		} elseif ($hakAkses == 'admin') {
+		$data['cabang'] = $this->mcabang->get_all_cabang();
+			
 			$data['files'] = array(
 				APPPATH . 'modules/admincabang/views/v-daftar-paket-admin.php',
 				);

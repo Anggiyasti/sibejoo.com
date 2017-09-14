@@ -703,7 +703,7 @@ function update_token(data){
       success:function(){
         swal("Diaktifkan!", "Token berhasil diaktikan.", "success");
         selectPage(pageVal='0');
-        paginationToken(masaAktif,status,records_per_page);
+        selectPageSiswa(pageVal='0')
       },
       error:function(){
         sweetAlert("Oops...", "Token gagal diaktikan!", "error");
