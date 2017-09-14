@@ -48,7 +48,7 @@
 
                         <!-- untuk menampung bab id -->
 
-                        <a href="<?= base_url('index.php/siswa/daftar')?>" class="btn btn-default btn-sm pull-right"style="margin-top:-33px;" >Kembali</a>
+                        <a href="<?= base_url('index.php/siswa/listSiswa')?>" class="btn btn-default btn-sm pull-right"style="margin-top:-33px;" >Kembali</a>
 
                     </div>               
 

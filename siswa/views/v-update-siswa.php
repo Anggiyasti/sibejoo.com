@@ -162,7 +162,7 @@
 
                                 <div class="col-sm-10 col-md-offset-1">
 
-                                    <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control" name="noinduk" value="<?php echo set_value('noinduk'); ?>" data-parsley-required>
+                                    <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control" name="noinduk" value="<?= $siswa['noIndukNeutron'] ?>" data-parsley-required>
 
                                     <i class="ico-tag9 form-control-icon"></i>
 

@@ -1107,7 +1107,7 @@ public function message()
             $no++;
         }
         if ($arrKk==null) {
-            $optionKk='<option value="">Belum kelompok Kelas</option>';
+            $optionKk='<option value="">Belum Terdapat Kelompok Kelas</option>';
         }
         echo json_encode($optionKk);
     }

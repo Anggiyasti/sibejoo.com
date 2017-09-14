@@ -239,7 +239,7 @@ class Msiswa extends CI_Model {
 
 
     function get_siswa_byid($idsiswa, $idpengguna) {
-        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak,siswa.tingkatID as kelasID,siswa.namaSekolah,siswa.alamatSekolah,siswa.cabangID,tkt.depedensi as tingkatID,siswa.id_kelompok_kelas');
+        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak,siswa.tingkatID as kelasID,siswa.namaSekolah,siswa.alamatSekolah,siswa.cabangID,tkt.depedensi as tingkatID,siswa.id_kelompok_kelas, noIndukNeutron');
         $this->db->from('tb_siswa siswa');
         $this->db->join('tb_pengguna pengguna', 'siswa.penggunaID = pengguna.id');
         $this->db->join('tb_tingkat tkt','tkt.id = siswa.tingkatID');
