@@ -765,5 +765,93 @@ public function cariGuru($key=''){
 
 }
 
+  ## LIST GURU BARU 14/09/2017 ##
+
+  public function ajaxlistguru()
+  {
+      $tb_guru=null;
+      // code u/pagination
+      $this->load->database();
+  
+        $jumlah_data_per_page=$this->input->post("records_per_page");
+        $page=$this->input->post("pageSelek");
+        $keySearch=$this->input->post("keySearch");
+
+      if ($keySearch != '' && $keySearch !=' ' ) {
+        $list = $this->mguru->data_cari_guru($jumlah_data_per_page,$page,$keySearch);        
+      }else{
+        $list = $this->mguru->data_guru($jumlah_data_per_page,$page);
+      }
+      $no=$page+1;
+      //cacah data 
+      foreach ( $list as $guru_item ) {
+        $datReset=$guru_item["penggunaID"].",'".$guru_item["namaPengguna"]."'";
+        $datChEmail=$guru_item["penggunaID"].",'".$guru_item["eMail"]."'";
+        $guruID=$guru_item['guruID'];
+        $mengajar=$this->get_keahlianGuru($guruID);
+        $datas="'".json_encode($guru_item)."'";
+        $tb_guru.='
+          <tr>
+            <td>'.$no.'</td>
+            <td>'.$guru_item["namaPengguna"].'</td>
+            <td>'.$guru_item['namaDepan'].' '.$guru_item["namaBelakang"].'</td>
+            <td>'.$mengajar.'</td>
+            <td>'.$guru_item["eMail"].'</td>
+            <td>'.$guru_item["regTime"].'</td>
+            <td>
+              <button class="btn btn-sm btn-info"  title="Lihat Detail Data Guru" data-todo='. $datas.' onclick="detail('.$no.')" id="data-'.$no.'"><i class="ico-folder-open-alt"></i></button>
+              <button class="btn btn-sm btn-warning" title="Ubah Email" onclick="modalChEmail('.$datChEmail.')"><i class=" ico-envelop2"></i></button>
+              <button class="btn btn-sm btn-danger" title="Reset Katasandi" onclick="resetSandi('.$datReset.')"><i class=" ico-key"></i></button>
+              <button class="btn btn-sm btn-danger" title="Hapus Data guru" onclick="del_guru('.$no.')"><i class="ico-remove2"></i></button>
+            </td>
+          </tr>
+        ';
+        $no++;
+      }
+      echo json_encode( $tb_guru );
+    }
+
+    //page adalah variabel untuk menampung jumlah record yg akan di tampilkan pada satu halaman
+    public function pagination_guru()
+    {
+      $records_per_page=$this->input->post('records_per_page');
+      $keySearch=$this->input->post('keySearch');
+      if ($keySearch != '' && $keySearch !=' ') {
+        $jumlah_data =$this->mguru->sum_cari_guru($keySearch);
+      }else{
+        $jumlah_data = $this->mguru->jumlah_guru(); 
+      }
+      $pagination='<li class="hide" id="page-prev"><a href="javascript:void(0)" onclick="prevPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a></li>';
+       $pagePagination=1;
+
+       $sumPagination=($jumlah_data/$records_per_page);
+       for ($i=0; $i < $sumPagination; $i++) { 
+        if ($pagePagination<=7) {
+          $pagination.='<li ><a href="javascript:void(0)" onclick="selectPage('.$i.')" id="page-'.$pagePagination.'">'.$pagePagination.'</a></li>';
+        }else{
+          $pagination.='<li class="hide" id="page-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPage('.$i.')" >'.$pagePagination.'</a></li>';
+        }
+
+        $pagePagination++;
+       }
+       if ($pagePagination>7) {
+          $pagination.='<li class="" id="page-next">
+                          <a href="javascript:void(0)" onclick="nextPage()" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>';
+       }
+       // cek jika halaman pagination hanya satu set pagination menjadi null
+       if ($sumPagination<=1) {
+          $pagination='';
+       }
+
+       echo json_encode ($pagination);
+    }
+
+  ## END ##
+
 }
 ?>

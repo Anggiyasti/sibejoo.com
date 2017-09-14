@@ -237,20 +237,68 @@ return $query->result_array();
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-		function jumlah_guru(){
-		    $this->db->where('status','1');
-		    return $this->db->get('tb_guru')->num_rows();
+
+	## PAGINATION LIST GURU 14/09/2017 BY ANGGI ##
+
+	// jumlah guru pagination all
+	function jumlah_guru(){
+		    $this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');
+		    $this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
+			$this->db->order_by('regTime','desc');
+			$this->db->where('pengguna.status', 1);
+			$this->db->where('guru.status', 1);
+		    return $this->db->get('tb_guru guru')->num_rows();
 		}
 
-    // get data siswa per segment
+	// data pagination all guru
 	function data_guru($number,$offset){
 	    $this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');
-		$this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
+	    $this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
 		$this->db->order_by('regTime','desc');
 		$this->db->where('pengguna.status', 1);
 		$this->db->where('guru.status', 1);
-	    return $query = $this->db->get('tb_guru guru',$number,$offset)->result_array();       
+	    return $query = $this->db->get('tb_guru guru',$number,$offset)->result_array();      
 	}
+
+	// jumlah search guru pagination
+	public function sum_cari_guru($keySearch)
+	{
+		$this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');
+		$this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
+		$this->db->like('guru.namaDepan',$keySearch);
+		$this->db->or_like('guru.namaBelakang',$keySearch);
+		$this->db->or_like('pengguna.namaPengguna',$keySearch);
+		$this->db->where('pengguna.status', 1);
+		$this->db->where('guru.status', 1);
+		return $this->db->get('tb_guru guru')->num_rows();
+	}
+
+	  // data hasil cari paginataion all token
+	function data_cari_guru($number,$offset,$keySearch){
+	   $this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');
+		$this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
+		$this->db->where('pengguna.status', 1);
+		$this->db->where('guru.status', 1);
+		$this->db->like('guru.namaDepan',$keySearch);
+		$this->db->or_like('guru.namaBelakang',$keySearch);
+		$this->db->or_like('pengguna.namaPengguna',$keySearch);
+	
+	    return $query = $this->db->get('tb_guru guru',$number,$offset)->result_array();      
+	}
+
+	## END ##
+
+
+
+    // get data siswa per segment
+	// function data_guru($number,$offset){
+	//     $this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');
+	// 	$this->db->join('tb_pengguna pengguna','guru.penggunaID = pengguna.id');
+	// 	$this->db->order_by('regTime','desc');
+	// 	$this->db->where('pengguna.status', 1);
+	// 	$this->db->where('guru.status', 1);
+	//     return $query = $this->db->get('tb_guru guru',$number,$offset)->result_array();       
+	// }
 
 	// ubah katasandi pengguna
 	function ch_password($md5Sandi,$penggunaID)
@@ -296,17 +344,17 @@ return $query->result_array();
 				$this->db->where('guruID',$guruID);
 		$this->db->delete('tb_mm-gurumapel');
 	}
-	public function sum_cari_guru($key='')
-	{
-    $this->db->select('guru.id');
-    $this->db->from('tb_guru guru');
-    $this->db->join('tb_pengguna p','p.id=guru.penggunaID');
-    $this->db->like('guru.namaDepan',$key);
-    $this->db->or_like('guru.namaBelakang',$key);
-    $this->db->or_like('p.namaPengguna',$key);
-    $this->db->where('guru.status',1);
-    return $this->db->get()->num_rows();
-	}
+	// public function sum_cari_guru($key='')
+	// {
+ //    $this->db->select('guru.id');
+ //    $this->db->from('tb_guru guru');
+ //    $this->db->join('tb_pengguna p','p.id=guru.penggunaID');
+ //    $this->db->like('guru.namaDepan',$key);
+ //    $this->db->or_like('guru.namaBelakang',$key);
+ //    $this->db->or_like('p.namaPengguna',$key);
+ //    $this->db->where('guru.status',1);
+ //    return $this->db->get()->num_rows();
+	// }
 	    // get data siswa per segment
 	function data_guru_cari($number,$offset,$key=''){
 	    $this->db->select('guru.namaDepan,guru.namaBelakang,guru.id as guruID,guru.alamat,guru.noKontak,guru.biografi,pengguna.id as penggunaID,pengguna.namaPengguna,pengguna.regTime,pengguna.eMail');

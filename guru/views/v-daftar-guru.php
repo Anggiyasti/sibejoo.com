@@ -1,63 +1,76 @@
-<section id="main" role="main">
-	<div>
-		<div class="col-md-12">
-			<div class="row">
-				<!-- Panel -->
-				<div class="panel panel-default">
-						<!-- Panel Heading -->
-					  <div class="panel-heading">
-              <h4 class="panel-title">Daftar Guru</h4>
-              <div class="panel-toolbar text-right">
-              	<a href="<?=base_url()?>index.php/register/registerGuru" class="btn btn-success"><i class="ico-user-plus"></i></a>
-              </div>
-            </div>
-            <!-- /Panel Heading -->
-            <!-- Panel Body -->
-            <div class="panel-body">
-            	<!-- Tabel Guru -->
-            	<table class="daftarsiswa table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-	            	<thead>
-	            	<form action="<?=base_url()?>index.php/guru/cariGuru" method="get">
-	            			<div class="input-group mb10">
-	            				<input id="carisoal" type="text" name="keyword" class="form-control " placeholder="Search...">
-	            				<span class="input-group-btn">
-	            					<button class="btn  btn-success" type="submit" >Cari</button>
-	            				</span>
-	            			</div>
-	            		</form>
-	            		<tr>
-	            			<th>No</th>
-	            			<th>Nama Pengguna</th>
-	            			<th>Nama</th>
-	            			<th>Mengajar</th>
-	            			<th>Email</th>
-	            			<th>Tanggal Terdaftar</th>
-	            			<th>Aksi</th>
-	            		</tr>
-	            	</thead>
-	            	<tbody>
-	            			<?=$tb_guru?>
-	            	</tbody>
-            	</table>
-            	<!-- /Tabel Guru -->
-            </div>
-            <div class="panel-footer">
-            	<ul class="pagination mt0 mb0 col-sm-6">
-								<?php 
-										echo $this->pagination->create_links();
-								 ?>
-							</ul>
-							<div class="text-right col-sm-6"><a href="javascript:void(0);"><?=$jumlahGuru?> terdaftar</a></div>
-            </div>
-            <!-- /Panel Body -->
-				</div>
-				<!-- /Panel -->
+
+<div class="row">
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+     <h3 class="panel-title">Daftar Guru 
+
+     </h3>
 
 
-			</div>
-		</div>
-	</div>
-</section>
+     <div class="panel-toolbar text-right">
+       <div class="col-sm-4">
+       </div>
+       <div class="col-sm-4">
+      	</div>
+      <a href="<?=base_url()?>index.php/register/registerGuru" class="btn btn-inverse btn-outline" title="Tambah Guru" ><i class="ico-plus"></i></a>
+    </div>
+  </div>
+  <div class="panel-body">
+    <!-- div seting record dan pencarian   -->
+    <div class="col-md-12" >
+      <!-- div setting record -->
+      <div class="col-md-2 mb2 mt10 pl0">
+        <div  class="form-group">
+          <select  class="form-control" name="records_per_page">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <!-- /div setting record -->
+      <!-- div pencarian  -->
+      <div class="col-md-10 mb10 mt10 pr0">
+        <div class="input-group">
+         <span class="input-group-addon btn" id="cariGuru"><i class="ico-search"></i></span>
+         <input class="form-control" type="text" name="cariGuru" placeholder="Cari Data">
+       </div>
+     </div>
+     <!-- div pencarian -->
+   </div>
+   <!-- div seting record dan pencarian -->
+   <!-- div tabel daftar token -->
+   <div class="col-md-12">
+    <table class="table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Pengguna</th>
+          <th>Nama</th>
+          <th>Mengajar</th>
+          <th>Email</th>
+          <th>Tanggal Terdaftar</th>
+          <th width="15%">Aksi</th>
+        </tr>
+        <tbody id="record_guru">
+
+        </tbody>
+      </table>
+    </div>
+    <!-- /div tabel daftar token -->
+    <!-- div pagination daftar token -->
+    <div class="col-md-12">
+      <ul class="pagination pagination-guru">
+
+      </ul>
+    </div>
+    <!-- div pagination daftar token -->
+  </div>
+</div>
+</div>
+
 <!-- Modal form ubah email -->
 <div class="modal fade" id="modal-chEmail">
 	<div class="modal-dialog" role="document">
@@ -161,9 +174,238 @@
 </div>
 <!-- /Modal form ubah data guru -->
 
-<!-- script event -->
+</div>
+<!-- TABEL TOKEN -->
 <script type="text/javascript">
-	function resetSandi(penggunaID='',namaPengguna='') {
+  var dataTableGUru;
+  var meridian=4;
+  var prev=1;
+  var next=2;
+  var records_per_page=10;
+  var page=0;
+  var pageVal;
+  var keySearch='';
+  var url;
+  var tb_guru;
+  var pageSelek=0;
+  var datas ;
+  $(document).ready(function(){
+
+  	var i =0;
+
+    $('#mataPelajaran').change(function () {
+      i ++;
+      var idMapel =$('#mataPelajaran').val();
+      var mapel =$('#mataPelajaran option:selected').text();
+      $("#listGuruMapel").append('<span class="note note-success mb15 mr15 mt15 pickMapel" id="mapelke-'+i+'"> <i class="ico-remove" onClick="removeMapel('+i+','+idMapel+')"></i> '+mapel+' </span> <input type="text" name="mapelIDke-'+i+'" value="'+idMapel+'" hidden="true" id="mapelIDke-'+i+'">');
+      // var ini = $("mapelke-"+i).text();
+      // console.log(ini);
+      $('[name=sumMapel]').val(i);
+      //remove mapel dari dropdown
+      $("#id-"+idMapel).addClass("hidden");
+      $('#resetMapel').removeClass('hidden');
+    }); 
+    $( "#resetMapel" ).click(function() {
+      i=0;
+      $('.op').removeClass("hidden");  
+      $('[name=sumMapel]').val(i);
+      $('.pickMapel').remove();
+      $('#resetMapel').addClass('hidden');
+      $("#mataPelajaran").removeClass("hidden");
+    }); 
+
+    $("#formUpdateGuru").submit(function(e) { 
+    		var url = base_url+"index.php/guru/update_guru_jsonDat/";
+    		var formUp=$("#formUpdateGuru");
+    		 $.ajax({
+	      dataType:"text",
+	      data:formUp.serialize(),
+	      type:"POST",
+	      url:url,
+	      success:function(data){
+	      	swal("Data Guru berhasil diperbaharui!","--","success");
+	        window.location.href =base_url+"guru/daftar/";
+	      },
+	      error:function(){
+	        sweetAlert("Oops...", "Email gagal diperbaharui!", "error");
+	      }
+
+	    });
+    }); 
+
+
+  //set tb_guru
+  function set_tb_guru() {
+    datas ={records_per_page:records_per_page,pageSelek:pageSelek,keySearch:keySearch};
+    $('#record_guru').empty();
+    
+    url=base_url+"guru/ajaxlistguru";
+    $.ajax({
+      url:url,
+      data:datas,
+      dataType:"text",
+      type:"post",
+      success:function(Data)
+      {
+        tb_token = JSON.parse(Data);
+        $('#record_guru').append(tb_token);
+      },
+      error:function(e,jqXHR, textStatus, errorThrown)
+      {
+       sweetAlert("Oops...", e, "error");
+     }
+   });
+
+  }
+  set_tb_guru();
+  // even untuk jumlah record per halaman
+  $("[name=records_per_page]").change(function(){
+    records_per_page =$('[name=records_per_page]').val();
+    selectPage(0);
+    paginationGuru();
+  });
+ 
+
+  paginationGuru();
+  // di konen dulu karena koneksi tidak mendukung Lol
+  // // event pencarian ketika tekan enter
+  // $('[name=cariToken]').on('keydown',function(e){
+  //   //get value dari input name cariToken
+  //   keySearch=$('[name=cariToken]').val();
+  //   selectPage(pageVal='0',keySearch);
+  //   paginationToken();
+  //   //
+  // });
+
+  $('#cariGuru').click(function(e){
+      //get value dari input name cariToken
+      keySearch=$('[name=cariGuru]').val();
+      selectPage(pageVal='0');
+      paginationGuru();
+      //
+    });
+
+});
+    //set pagination
+    function paginationGuru() {
+      $.ajax({
+        url:base_url+"guru/pagination_guru/",
+        data:{records_per_page:records_per_page,keySearch:keySearch},
+        type:"POST",
+        dataType:"TEXT",
+        success:function(data){
+          $('.pagination-guru').empty();
+          $('.pagination-guru').append(JSON.parse(data));
+        },error:function(){
+        // swal('Gagal pagination');
+      }
+    });
+    }
+// next page
+function nextPage() {
+  selectPage(next);
+}
+// prev page
+function prevPage() {
+  selectPage(prev);
+}
+function selectPage(pageVal='0') {
+  page=pageVal;
+  pageSelek=page*records_per_page;
+  // 
+  $('#record_guru').empty();
+  datas ={records_per_page:records_per_page,pageSelek:pageSelek,keySearch:keySearch};
+  url=base_url+"guru/ajaxlistguru";
+  $.ajax({
+    url:url,
+    data:datas,
+    dataType:"text",
+    type:"post",
+    success:function(Data)
+    {
+      tb_token = JSON.parse(Data);
+      $('#record_guru').append(tb_token);
+    },
+    error:function(e,jqXHR, textStatus, errorThrown)
+    {
+         // sweetAlert("Oops...", e, "error");
+       }
+     });
+  //meridian adalah nilai tengah padination
+  $('#page-'+meridian).removeClass('active');
+  var newMeridian=page+1;
+  var loop;
+  var hidePage;
+  var showPage;
+  if (newMeridian<=4) {
+    $("#page-prev").addClass('hide');
+    //banyak pagination yg akan di tampilkan dan sisembunyikan
+    loop=meridian-newMeridian;
+    // start id pagination yg akan ditampilkan
+    var idPaginationshow =1;
+    // start id pagination yg akan sembunyikan
+    var idPaginationhide =9;
+    prev=1;
+    next=7;
+    //lakukan pengulangan sebanyak loop
+    for (var i = 0; i < loop; i++) {
+      hidePagination='#page-'+idPaginationhide;
+      showPagination='#page-'+idPaginationshow;
+      //pagination yg di hide
+      $(showPagination).removeClass('hide');
+      //pagination baru yg ditampilkan
+      $(hidePagination).addClass('hide');
+      idPaginationshow++;
+      idPaginationhide--;
+    }
+  }else if( newMeridian>meridian){
+    $("#page-prev").removeClass('hide');
+        //banyak pagination yg akan di tampilkan dan sisembunyikan
+        loop=newMeridian-meridian;
+        // start id pagination yg akan ditampilkan
+        var idPaginationshow =newMeridian+3;
+        // start id pagination yg akan sembunyikan
+        var idPaginationhide =meridian-3;
+        console.log("ini"+next);
+        //lakukan pengulangan sebanyak loop
+        for (var i = 0; i < loop; i++) {
+          hidePagination='#page-'+idPaginationhide;
+          showPagination='#page-'+idPaginationshow;
+          //pagination yg di hide
+          $(showPagination).removeClass('hide');
+          //pagination baru yg ditampilkan
+          $(hidePagination).addClass('hide');
+          idPaginationshow--;
+          idPaginationhide++;
+        }
+      }else{
+
+    //banyak pagination yg akan di tampilkan dan sisembunyikan
+    loop=meridian-newMeridian;
+    // start id pagination yg akan ditampilkan
+    var idPaginationshow =newMeridian-3;
+    // start id pagination yg akan sembunyikan
+    var idPaginationhide =meridian+3;
+    //lakukan pengulangan sebanyak loop
+    for (var i = 0; i < loop; i++) {
+      hidePagination='#page-'+idPaginationhide;
+      showPagination='#page-'+idPaginationshow;
+      //pagination yg di hide
+      $(showPagination).removeClass('hide');
+      //pagination baru yg ditampilkan
+      $(hidePagination).addClass('hide');
+      idPaginationshow++;
+      idPaginationhide--;
+    }
+  } 
+  prev=newMeridian-2;
+  next=newMeridian;
+  meridian=newMeridian;
+  $('#page-'+meridian).addClass('active');
+}
+
+
+function resetSandi(penggunaID='',namaPengguna='') {
 		 url = base_url + "index.php/guru/resetPassword/";
 		 var data;
 	  swal({
@@ -377,51 +619,5 @@
 		$('.pickMapel').remove();
 		$('.op').remove();
 	}
-</script>
-<script type="text/javascript">
-	 $(document).ready(function(){ 
-    var i =0;
 
-    $('#mataPelajaran').change(function () {
-      i ++;
-      var idMapel =$('#mataPelajaran').val();
-      var mapel =$('#mataPelajaran option:selected').text();
-      $("#listGuruMapel").append('<span class="note note-success mb15 mr15 mt15 pickMapel" id="mapelke-'+i+'"> <i class="ico-remove" onClick="removeMapel('+i+','+idMapel+')"></i> '+mapel+' </span> <input type="text" name="mapelIDke-'+i+'" value="'+idMapel+'" hidden="true" id="mapelIDke-'+i+'">');
-      // var ini = $("mapelke-"+i).text();
-      // console.log(ini);
-      $('[name=sumMapel]').val(i);
-      //remove mapel dari dropdown
-      $("#id-"+idMapel).addClass("hidden");
-      $('#resetMapel').removeClass('hidden');
-    }); 
-    $( "#resetMapel" ).click(function() {
-      i=0;
-      $('.op').removeClass("hidden");  
-      $('[name=sumMapel]').val(i);
-      $('.pickMapel').remove();
-      $('#resetMapel').addClass('hidden');
-      $("#mataPelajaran").removeClass("hidden");
-    }); 
-
-    $("#formUpdateGuru").submit(function(e) { 
-    		var url = base_url+"index.php/guru/update_guru_jsonDat/";
-    		var formUp=$("#formUpdateGuru");
-    		 $.ajax({
-	      dataType:"text",
-	      data:formUp.serialize(),
-	      type:"POST",
-	      url:url,
-	      success:function(data){
-	      	swal("Data Guru berhasil diperbaharui!","--","success");
-	        window.location.href =base_url+"guru/daftar/";
-	      },
-	      error:function(){
-	        sweetAlert("Oops...", "Email gagal diperbaharui!", "error");
-	      }
-
-	    });
-    }); 
-
-  }); 
-	 
 </script>
