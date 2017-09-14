@@ -87,33 +87,37 @@
 	    });
 	  });
     }
-    function resetPassword(penggunaID) {
-    	swal({
-	    title: "Yakin akan meresset kata sandi data ini?",
-	    text: "Anda tidak dapat membatalkan ini.",
-	    type: "warning",
-	    showCancelButton: true,
-	    confirmButtonColor: "#DD6B55",
-	    confirmButtonText: "Ya,Tetap hapus!",
-	    closeOnConfirm: false
-	  },
-	  function(){
-	     var datas = {penggunaID:penggunaID};
-	    $.ajax({
-	      dataType:"text",
-	      data:datas,
-	      type:"POST",
-	      url:base_url+"index.php/pengawas/resetPassword/",
-	      success:function(){
-	        swal("Terhapus!", "Password berhasil direset menjadi default.", "success");
-	   
-	      },
-	      error:function(){
-	        sweetAlert("Oops...", "Password gagal direset!", "error");
-	      }
+    function resetPassword(penggunaID,namaPengguna) {
+    	url = base_url + "index.php/pengawas/resetPassword/";
+         var data;
+      swal({
+        title: "Yakin akan me-reset katasandi "+namaPengguna+"?",
+        text: "Anda tidak dapat membatalkan ini.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Ya,Tetap me-reset katasandi!",
+        closeOnConfirm: false
+      },
+      function(){
+        var datas = {penggunaID:penggunaID,
+                                    namaPengguna:namaPengguna};
+        $.ajax({
+          dataType:"text",
+          data:datas,
+          type:"POST",
+          url:url,
+          success:function(data){
 
-	    });
-	  });
+            swal("kata sandi baru : [namaPengguna]+[tgl sekarang] !", "Katasandi Baru = "+data, "success");
+           // window.location.href =base_url+"videoback/daftarvideo";
+          },
+          error:function(){
+            sweetAlert("Oops...", "Ktasandi gagal di reset!", "error");
+          }
+
+        });
+      });
     }
     function reload_tblist(){
       tb_pengawas.ajax.reload(null,false); 
