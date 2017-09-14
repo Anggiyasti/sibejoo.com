@@ -145,7 +145,7 @@ class Pengawas extends MX_Controller
 
             $row[]=' 
             <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropPengawas('."'".$list_pengawas['uuid']."'".')"><i class="ico-remove"></i></a>
-             <a class="btn btn-sm btn-danger"  title="Reset Password" onclick="resetPassword('."'".$list_pengawas['penggunaID']."'".')"><i class="ico-key"></i></a>
+             <a class="btn btn-sm btn-danger"  title="Reset Password" onclick="resetPassword('."'".$list_pengawas['penggunaID']."'".","."'".$list_pengawas['namaPengguna']."'".')"><i class="ico-key"></i></a>
             <a href="pengawas/ubahPengawas/'.$list_pengawas["uuid"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
 
             $data[] = $row;
