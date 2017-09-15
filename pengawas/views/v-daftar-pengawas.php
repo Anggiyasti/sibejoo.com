@@ -87,7 +87,7 @@
 	    });
 	  });
     }
-    function resetPassword(penggunaID,namaPengguna) {
+    function resetPassword(penggunaID='',namaPengguna='') {
     	url = base_url + "index.php/pengawas/resetPassword/";
          var data;
       swal({

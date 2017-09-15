@@ -11,7 +11,8 @@ class Pengawas extends MX_Controller
         $this->load->library('parser');
         $this->load->model('register/mregister');
         $this->load->model('Mpengawas');
-                $this->load->library('sessionchecker');
+        $this->load->model( 'guru/mguru' );
+        $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
 
 	}
@@ -231,12 +232,22 @@ class Pengawas extends MX_Controller
 
     public function resetPassword()
     {
-      if ($this->input->post()) {
-            $post = $this->input->post();
-            $nama = $this->Mpengawas->get_namaPengguna($post['penggunaID']);
-            $kataSandi = md5($nama );
-            $this->Mpengawas->reset_password($kataSandi,$post['penggunaID']);
-        }
+      // if ($this->input->post()) {
+      //       $post = $this->input->post();
+      //       $nama = $this->Mpengawas->get_namaPengguna($post['penggunaID']);
+      //       $kataSandi = md5($nama );
+      //       $this->Mpengawas->reset_password($kataSandi,$post['penggunaID']);
+      //   }
+
+        $penggunaID=$this->input->post('penggunaID');
+        $namaPengguna=$this->input->post('namaPengguna');
+        $date=date("d");
+        $newPassword=$namaPengguna.$date;
+        //m5 katasandi
+        $md5Sandi=md5($newPassword);
+        $this->mguru->ch_password($md5Sandi,$penggunaID);
+        // return kata sandi baru
+        echo json_encode($newPassword);
     }
 
 
