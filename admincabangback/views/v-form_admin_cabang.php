@@ -30,7 +30,7 @@
 					<div class="form-group" id="pass">
 						<label class="control-label">Katasandi</label>
 						<div class="has-icon pull-left">
-							<input type="password" class="form-control" name="password" data-parsley-required="" disabled="true">
+							<input type="password" class="form-control" name="password" data-parsley-required="">
 							<i class="ico-key2 form-control-icon"></i>
 						</div>
 							<span class="hidden" style="color:red;" id="error-msg-pass">*katasandi minimal 8 karakter</span>
@@ -38,7 +38,7 @@
 					<div class="form-group" id="re-pass">
 						<label class="control-label">Ulangi Katasandi</label>
 						<div class="has-icon pull-left">
-							<input type="password" class="form-control" name="retype-password" data-parsley-equalto="input[name=password]" disabled="true">
+							<input type="password" class="form-control" name="retype-password" data-parsley-equalto="input[name=password]">
 							<i class="ico-asterisk form-control-icon"></i>
 						</div>
 						<span class="hidden" style="color:red;" id="error-msg-repass">*katasandi tidak sama</span>
@@ -64,7 +64,7 @@
 						<label class="control-label">Email</label>
 						<div class="input-group">
 							<div class="has-icon pull-left">
-								<input type="email" class="form-control" name="email" data-parsley-required="" disabled="true">
+								<input type="email" class="form-control" name="email" data-parsley-required="" >
 								<i class="ico-mail form-control-icon"></i>
 							</div>
 							<span class="input-group-addon btn" id="cekEmail" ><i class="ico-ok"></i></span>
@@ -88,7 +88,7 @@
 
 				</div> -->
 				<div class="panel-footer">
-					<button class="btn btn-block btn-success" disabled="true"><span class="semibold">Simpan</span></button> 
+					<button class="btn btn-block btn-success"><span class="semibold">Simpan</span></button> 
 				</div>
 			</form>
 			<!--/ Form horizontal layout bordered -->
