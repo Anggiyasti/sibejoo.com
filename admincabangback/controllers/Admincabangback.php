@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  	{
  		$namaPengguna=$this->input->post("username");
  		$dataP["namaPengguna"]=$namaPengguna;
- 		$dataP["kataSandi"]=$this->input->post("password");
+ 		$dataP["kataSandi"]=htmlspecialchars(md5($this->input->post("password")));
  		$dataP["eMail"]=$this->input->post("email");
  		$dataP["hakAkses"]="admin_cabang";
  		//insert pengguna kemudian meretrun idpengguna
@@ -107,7 +107,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  														<td>'.$value->tgldaftar.'</td>
  														<td>
 
- 																<a class="btn btn-sm btn-warning" onclick="editAdminCabang('.$value->idCabang.')" title="Edit"><i class="ico-pencil3"></i></a>
+ 																
  																<a class="btn btn-sm btn-danger" title="Rest Katasandi"  onclick="restKatasandi('.$value->id.','.$namaPengguna.')"><i class="ico-key2"></i></a>
  																	<a class="btn btn-sm btn-danger" title="Hapus admin cabang" onclick="hapusAkun('.$value->id.','.$value->idCabang.')"><i class="ico-close3"></i></a>
  														</td>

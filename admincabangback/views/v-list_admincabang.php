@@ -151,7 +151,6 @@
 
 	// menampilkan modal edit admincabang
 	function editAdminCabang(id_pengguna=''){
-		console.log(id_pengguna);
 	}
 
 	function restKatasandi(id_pengguna='',namaPengguna=''){
@@ -320,8 +319,6 @@
 
 	}
 function editAdminCabang(idCabang){
-
-	console.log(idCabang);
 
 }
 </script>
