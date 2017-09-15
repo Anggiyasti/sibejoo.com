@@ -106,13 +106,6 @@ public function get_data_latihan(){
          </div>
         </div></div>';
 
-        // $row[] = "<span class='skill-bar' title=".$persentasi."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".$persentasi."%;'></span></span></span>";
-        // $persentasi;
-
-
-
-
-
         $data[] = $row;
         $n++;
 
@@ -141,7 +134,13 @@ public function get_data_learning_line(){
         $persentasi = (int)$item['stepDone'] / (int)$item['jumlah_step'] * 100;   
         $row[] = (int)$persentasi;
         $title = (int)$persentasi."%"; 
-        $row[] = "<span class='skill-bar' title=".$title."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".$persentasi."%;'></span></span></span>";
+        // $row[] = "<span class='skill-bar' title=".$title."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".(intdiv(dividend, divisor))$persentasi."%;'></span></span></span>";
+
+                $row[] = '<div class="progress-item"><div class="progress">
+         <div class="progress-bar appeared" data-percent="'.(int)$persentasi.'" style="width: '.$persentasi.'%;">
+          <span class="percent">'.(int)$persentasi.'%</span>
+         </div>
+        </div></div>';
 
 
         $data[] = $row;

@@ -16,7 +16,6 @@ class Donasiback extends CI_Controller{
 		$data = array(
 			'judul_halaman' => 'Dashboard '.$this->hakakses." - Daftar Donasi Member",
 			);
-		$data['donasi_items'] = $this->donasiback_model->get_donasi();
 		$data['files'] = array(
 			APPPATH . 'modules/donasiback/views/v-daftar-donasi.php',
 			);
@@ -89,6 +88,45 @@ class Donasiback extends CI_Controller{
 			$this->laporanortu_model->insert_laporan($data_insert_laporan_ortu);
 			echo json_encode(array('status'=>1,'message'=>"Token berhasil dikirim ke ".$info_to_send_token->namaDepan." ".$info_to_send_token->namaBelakang));
 		}
+	}
+
+	function ajax_datatatable_donasi(){
+		$data['donasi_items'] = $this->donasiback_model->get_donasi();
+
+		$status = ['','Idle','Wait to Konfirm','Diterima','Kirim Token'];
+		$donasi = ['','Heroo','Angel'];
+		$list = [];
+		$no = 1;
+
+		foreach ( $data['donasi_items'] as $item ) {
+			$no++;
+			$index = $item->status_donasi;
+
+			$row = array();			
+			$row[] = $no;
+			$row[] = $item->namaPengguna;
+			$row[] = $donasi[$item->donasi];
+			$row[] = $item->tgl_create;
+			$row[] = $index = $item->status_donasi." ".$status[$index];
+			if ($item->status_donasi==1){
+				$button = '<button type="button" class="btn btn-default mb5" disabled="true"><i class="ico-cart-remove2"></i> Belum Transfer</button>';
+			}elseif($item->status_donasi==2){
+				$button = '<button  onclick="info('.$item->donasi_id.')" type="button" class="btn btn-info mb5" ><i class="ico-file"></i> Info</button>';
+			}elseif($item->status_donasi==3){
+				$button = '<button  onclick="set_token('.$item->donasi_id.')" type="button" class="btn btn-primary mb5" ><i class="ico-barcode3"></i> Set Token</button>';
+			}else{
+				$button = '<button   onclick="kirim_token('.$item->donasi_id.')" type="button" class="btn btn-primary mb5" ><i class="ico-mail-send"></i> Kirim Token</button>';
+			}
+			$row[] = $button;
+			$list[] = $row;
+		}
+
+		$output = array(
+			"data"=>$list,
+			);
+
+		echo json_encode( $output );        
+
 	}
 
 

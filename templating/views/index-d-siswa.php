@@ -172,7 +172,7 @@
  </a>
  <ul class="dropdown-menu" role="menu">
   <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li>
-  <li><a href="<?=base_url('index.php/guru/pengaturanProfileguru');?>"><span class="icon"><i class="ico-cog4"></i></span> Profile Setting</a></li>
+  <li><a href="<?=base_url('siswa/profilesetting');?>"><span class="icon"><i class="ico-cog4"></i></span> Profile Setting</a></li>
   <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li>
   <li class="divider"></li>
   <li><a href="<?=base_url('index.php/logout');?>"><span class="icon"><i class="ico-exit"></i></span> Sign Out</a></li>
@@ -210,14 +210,14 @@
   </li>
 
   <li>
-   <a href="">
+   <a href="<?= base_url('video') ?>">
     <span class="figure"><i class="ico-bubble-video-chat"></i></span>
     <span class="text">Video</span>
   </a>
 </li>
 
 <li>
- <a href="<?= base_url('index.php/Konsultasi') ?>">
+ <a href="<?= base_url('konsultasi') ?>">
   <span class="figure"><i class="ico-bubbles8"></i></span>
   <span class="text">Konsultasi</span>
 </a>
@@ -247,19 +247,19 @@
 
   <ul id="filtervideo" class="submenu collapse">
     <li>
-      <span class="text"><a href="<?=base_url("linetopik/lineMapel/1") ?>">SD</a></span>
+      <span class="text cursor" href="javascript(0)"><a onclick="linemapel(1)">SD</a></span>
     </li>
-
     <li>
-      <span class="text"><a href="<?=base_url("linetopik/lineMapel/2") ?>">SMP</a></span>
+      <span class="text cursor" href="javascript(0)"><a onclick="linemapel(2)">SMP</a></span>
     </li>
-
     <li>
-      <span class="text"><a href="<?=base_url("linetopik/lineMapel/3") ?>">SMA IPS</a></span>
+      <span class="text cursor" href="javascript(0)"><a onclick="linemapel(3)">SMA</a></span>
     </li>
-
     <li>
-      <span class="text"><a href="<?=base_url("linetopik/lineMapel/4") ?>">SMA IPA</a></span>
+      <span class="text cursor" href="javascript(0)"><a onclick="linemapel(3)">SMA IPS</a></span>
+    </li>
+    <li>
+      <span class="text cursor" href="javascript(0)"><a onclick="linemapel(4)">SMA IPA</a></span>
     </li>
 
   </ul>
@@ -391,7 +391,29 @@
 
 
 </script>
+<script type="text/javascript">
+  function linemapel(id_tingkat) {
+    url_ajax = base_url+"linetopik/ambiltingkat";
 
+    var global_properties = {
+      id_tingkat: id_tingkat
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "linetopik/lineMapel";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
+  
+</script>
 
 </body>
 </htmlf>

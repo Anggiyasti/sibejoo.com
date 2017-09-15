@@ -413,14 +413,14 @@ public function uploadmodul() {
     $create_by = $this->session->userdata['id'];
            //kesulitan indks 1-3
     $data_modul = array(
-     'judul' => $judul,
-     'deskripsi' => $deskripsi,
-     'publish' => $publish,
-     'UUID' => $UUID,
-     'create_by' => $create_by,
-     'id_tingkatpelajaran' => $mapelID,
-     'statusAksesFile'=>$this->input->post('statusAksesFile')
-     );
+       'judul' => $judul,
+       'deskripsi' => $deskripsi,
+       'publish' => $publish,
+       'UUID' => $UUID,
+       'create_by' => $create_by,
+       'id_tingkatpelajaran' => $mapelID,
+       'statusAksesFile'=>$this->input->post('statusAksesFile')
+       );
 
     $this->Mmodulonline->insert_modul($data_modul);
     $this->up_img_soal($UUID);  
@@ -458,7 +458,7 @@ public function ch_img_soal($UUID) {
     $gambar = "gambarSoal";
     $oldgambar = $this->Mmodulonline->get_oldgambar_soal($UUID);
     if ($this->upload->do_upload($gambar)) {
-       foreach ($oldgambar as $rows) {
+     foreach ($oldgambar as $rows) {
         unlink(FCPATH . "./assets/modul/" . $rows['url_file']);
     }
     $file_data = $this->upload->data();
@@ -499,8 +499,8 @@ public function form_update() {
       if ($data['id_tingkatpelajaran'] == null || $UUID == null) {
         redirect(site_url('admincabang'));
     } else {
-     $this->parser->parse('admincabang/v-index-admincabang', $data);
- }
+       $this->parser->parse('admincabang/v-index-admincabang', $data);
+   }
 } elseif($hakAkses=='guru'){
             // jika guru
     if ($data['id_tingkatpelajaran'] == null || $uuid == null) {
@@ -563,9 +563,9 @@ public function filtermodul()
     } else if ($tingkatID != null) {
         $this->soalTingkat($tingkatID);
     } else {
-     $this->allsoal();
+       $this->allsoal();
             // $this->listsoal($subbab);
- }    
+   }    
 }
 
 
@@ -619,12 +619,17 @@ public function modulsd() {
     $data['downloads'] = $this->Mmodulonline->get_modulteratas();
 
     //total rows count
-    $totalRec = count($this->Mmodulonline->getRowssd());
-
+    $totalRec = $this->Mmodulonline->getRowssd();
+    if (!$totalRec) {
+        $jumlah_row = 0;
+        # code...
+    }else{
+        $jumlah_row = count($totalRec);
+    }
     //pagination configuration
     $config['target']      = '#postList';
     $config['base_url']    = base_url().'index.php/modulonline/modulsd/ajaxPaginationData';
-    $config['total_rows']  = $totalRec;
+    $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
     $this->ajax_pagination->initialize($config);
@@ -651,11 +656,18 @@ public function modulsmp() {
     $data['member'] = $this->session->userdata('member');
     $data['downloads'] = $this->Mmodulonline->get_modulteratas();
     //total rows count
-    $totalRec = count($this->Mmodulonline->getRowssmp());
+    $totalRec = $this->Mmodulonline->getRowssmp();
+
+    if (!$totalRec) {
+        $jumlah_row = 0;
+        # code...
+    }else{
+        $jumlah_row = count($totalRec);
+    }
     //pagination configuration
     $config['target']      = '#postList';
     $config['base_url']    = base_url().'index.php/modulonline/modulsmp/ajaxPaginationData';
-    $config['total_rows']  = $totalRec;
+    $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
     $this->ajax_pagination->initialize($config);
@@ -681,11 +693,17 @@ public function modulsma() {
     $data['member'] = $this->session->userdata('member');
 
     //total rows count
-    $totalRec = count($this->Mmodulonline->getRowssma());
+    $totalRec = $this->Mmodulonline->getRowssma();
+    if (!$totalRec) {
+        $jumlah_row = 0;
+        # code...
+    }else{
+        $jumlah_row = count($totalRec);
+    }
     //pagination configuration
     $config['target']      = '#postList';
     $config['base_url']    = base_url().'index.php/modulonline/modulsma/ajaxPaginationData';
-    $config['total_rows']  = $totalRec;
+    $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
     $this->ajax_pagination->initialize($config);
@@ -713,12 +731,17 @@ public function modulsmaipa() {
 
 
     //total rows count
-    $totalRec = count($this->Mmodulonline->getRowssmaipa());
-
+    $totalRec = $this->Mmodulonline->getRowssmaipa();
+    if (!$totalRec) {
+        $jumlah_row = 0;
+        # code...
+    }else{
+        $jumlah_row = count($totalRec);
+    }
         //pagination configuration
     $config['target']      = '#postList';
     $config['base_url']    = base_url().'index.php/modulonline/modulsmaipa/ajaxPaginationData';
-    $config['total_rows']  = $totalRec;
+    $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
     $this->ajax_pagination->initialize($config);
@@ -751,12 +774,17 @@ public function modulsmaips() {
         // $data = array();
 
         //total rows count
-    $totalRec = count($this->Mmodulonline->getRowssmaips());
-
+    $totalRec = $this->Mmodulonline->getRowssmaips();
+    if (!$totalRec) {
+        $jumlah_row = 0;
+        # code...
+    }else{
+        $jumlah_row = count($totalRec);
+    }
     //pagination configuration
     $config['target']      = '#postList';
     $config['base_url']    = base_url().'index.php/modulonline/modulsmaips/ajaxPaginationData';
-    $config['total_rows']  = $totalRec;
+    $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
     $this->ajax_pagination->initialize($config);

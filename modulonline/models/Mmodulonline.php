@@ -92,7 +92,7 @@ function getRows($params = array()){
 
 
         //filter data by searched keywords
- if(!empty($params['search']['keywords'])){
+  if(!empty($params['search']['keywords'])){
    $this->db->like('judul',$params['search']['keywords']);
  }
 
@@ -146,96 +146,96 @@ function getRows($params = array()){
           $this->db->from('tb_modul as mdl');
           $this->db->where('mdl.status','1');
 
-         $this->db->order_by('download desc'); 
-         $this->db->limit(2);
-         $query = $this->db->get();
-         return $query->result_array();
-       }
+          $this->db->order_by('download desc'); 
+          $this->db->limit(2);
+          $query = $this->db->get();
+          return $query->result_array();
+        }
 
-       public function modulsd(){
-        $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-        $this->db->from('tb_modul as mdl');
-        $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-        $this->db->where('mdl.status','1');
-        $this->db->where('tp.tingkatID','1');
+        public function modulsd(){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','1');
 
-       $query = $this->db->get();
-       return $query->result_array();
-     }
+          $query = $this->db->get();
+          return $query->result_array();
+        }
 
-     public function modulsmp(){
-      $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-      $this->db->from('tb_modul as mdl');
-      $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-      $this->db->where('mdl.status','1');
-      $this->db->where('tp.tingkatID','2');
+        public function modulsmp(){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','2');
 
-     $query = $this->db->get();
-     return $query->result_array();
-   }
+          $query = $this->db->get();
+          return $query->result_array();
+        }
 
-   public function modulsma(){
-    $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-    $this->db->from('tb_modul as mdl');
-    $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-    $this->db->where('mdl.status','1');
-    $this->db->where('tp.tingkatID','3');
+        public function modulsma(){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','3');
 
-   $query = $this->db->get();
-   return $query->result_array();
- }
+          $query = $this->db->get();
+          return $query->result_array();
+        }
 
- public function modulsmaipa(){
-  $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-  $this->db->from('tb_modul as mdl');
-  $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-  $this->db->where('mdl.status','1');
-  $this->db->where('tp.tingkatID','4');
+        public function modulsmaipa(){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','4');
 
- $query = $this->db->get();
- return $query->result_array();
-}
-
-
-public function modulsmaips(){
-  $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-  $this->db->from('tb_modul as mdl');
-  $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-  $this->db->where('mdl.status','1');
-  $this->db->where('tp.tingkatID','5');
-
- $query = $this->db->get();
- return $query->result_array();
-}
+          $query = $this->db->get();
+          return $query->result_array();
+        }
 
 
-function getRowssd($params = array()){
-  $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
-  $this->db->from('tb_modul as mdl');
-  $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
-  $this->db->where('mdl.status','1');
-  $this->db->where('tp.tingkatID','1');
+        public function modulsmaips(){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','5');
 
- 
+          $query = $this->db->get();
+          return $query->result_array();
+        }
+
+
+        function getRowssd($params = array()){
+          $this->db->select('mdl.statusAksesFile,mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran,tp.id');
+          $this->db->from('tb_modul as mdl');
+          $this->db->join('tb_tingkat-pelajaran as tp','tp.id = mdl.id_tingkatpelajaran');
+          $this->db->where('mdl.status','1');
+          $this->db->where('tp.tingkatID','1');
+
+
         //filter data by searched keywords
- if(!empty($params['search']['keywords'])){
-   $this->db->like('judul',$params['search']['keywords']);
-   $this->db->where('mdl.status','1');
-   $this->db->where('tp.tingkatID','1');
- }
+          if(!empty($params['search']['keywords'])){
+           $this->db->like('judul',$params['search']['keywords']);
+           $this->db->where('mdl.status','1');
+           $this->db->where('tp.tingkatID','1');
+         }
 
         //sort data by ascending or desceding order
- if(!empty($params['search']['sortBy'])){
-   switch ($params['search']['sortBy']) {
-    case 'date_created':
-    $this->db->order_by($params['search']['sortBy'],'desc');
-    break;
-    case 'asc':
-    $this->db->order_by('mdl.judul','asc');
-    break;
-    case 'desc':
-    $this->db->order_by('mdl.judul','desc');
-    break;
+         if(!empty($params['search']['sortBy'])){
+           switch ($params['search']['sortBy']) {
+            case 'date_created':
+            $this->db->order_by($params['search']['sortBy'],'desc');
+            break;
+            case 'asc':
+            $this->db->order_by('mdl.judul','asc');
+            break;
+            case 'desc':
+            $this->db->order_by('mdl.judul','desc');
+            break;
                 echo $output; // The output should be: 0.7
               }
             }else{
@@ -262,9 +262,9 @@ function getRowssd($params = array()){
           $this->db->where('mdl.status','1');
           $this->db->where('tp.tingkatID','2');
 
-         
+
         //filter data by searched keywords
-         if(!empty($params['search']['keywords'])){
+          if(!empty($params['search']['keywords'])){
            $this->db->like('judul',$params['search']['keywords']);
            $this->db->where('mdl.status','1');
            $this->db->where('tp.tingkatID','2');
@@ -309,9 +309,9 @@ function getRowssd($params = array()){
           $this->db->where('mdl.status','1');
           $this->db->where('tp.tingkatID','3');
 
-         
+
         //filter data by searched keywords
-         if(!empty($params['search']['keywords'])){
+          if(!empty($params['search']['keywords'])){
            $this->db->like('judul',$params['search']['keywords']);
            $this->db->where('mdl.status','1');
            $this->db->where('tp.tingkatID','3');
@@ -356,9 +356,9 @@ function getRowssd($params = array()){
           $this->db->where('tp.tingkatID','4');
 
 
-         
+
         //filter data by searched keywords
-         if(!empty($params['search']['keywords'])){
+          if(!empty($params['search']['keywords'])){
            $this->db->like('judul',$params['search']['keywords']);
            $this->db->where('mdl.status','1');
            $this->db->where('tp.tingkatID','4');
@@ -403,7 +403,7 @@ function getRowssd($params = array()){
           $this->db->where('tp.tingkatID','5');
 
         //filter data by searched keywords
-         if(!empty($params['search']['keywords'])){
+          if(!empty($params['search']['keywords'])){
            $this->db->like('judul',$params['search']['keywords']);
            $this->db->where('mdl.status','1');
            $this->db->where('tp.tingkatID','5');

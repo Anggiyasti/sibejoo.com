@@ -51,35 +51,7 @@
         </thead>
 
         <tbody>
-         <?php $status = ['','Idle','Wait to Konfirm','Diterima','Kirim Token']; ?>
-         <?php $donasi = ['','Heroo','Angel']; ?>
-         <?php $no = 1; ?>
-         <tr>
-         <?php foreach ($donasi_items as $item): ?>
-          <td><?=$no ?></td>
-          <td><?=$item->namaPengguna ?></td>
-          <td><?=$donasi[$item->donasi] ?></td>
-          <td><?=$item->tgl_create ?></td>
-          <td>
-            <?php $index = $item->status_donasi ?>
-            <?=$status[$index] ?>
-          </td>
-          <td>
-            <?php if ($item->status_donasi==1): ?>
-              <button type="button" class="btn btn-default mb5" disabled="true"><i class="ico-cart-remove2"></i> Belum Transfer</button>
-            <?php elseif($item->status_donasi==2): ?>
-              <button  onclick="info(<?=$item->donasi_id ?>)" type="button" class="btn btn-info mb5" ><i class="ico-file"></i> Info</button>
-            <?php elseif($item->status_donasi==3): ?>
-              <button  onclick="set_token(<?=$item->donasi_id ?>)" type="button" class="btn btn-primary mb5" ><i class="ico-barcode3"></i> Set Token</button>
-            <?php else: ?>
-              <button   onclick="kirim_token(<?=$item->donasi_id ?>)" type="button" class="btn btn-primary mb5" ><i class="ico-mail-send"></i> Kirim Token</button>
-            <?php endif ?>
-          </td>
-         </tr>
 
-          <?php $no++; ?>
-
-        <?php endforeach ?>
       </tbody>
     </table>
   </div>
@@ -87,9 +59,19 @@
 </div>
 </div>
 <script>
-  $(document).ready(function(){
-    $('.daftar_donasi').DataTable();
+var table;
+$(document).ready(function () {
+  url = base_url+"donasiback/ajax_datatatable_donasi";
+  tabel = $('.daftar_donasi').DataTable({
+    "ajax": {
+      "url": url,
+      "type": "POST"
+    },
+    "emptyTable": "Tidak Ada Data Pesan",
+    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
   });
+});
+
 
   function info(id_donasi){
     $.post(base_url+"donasiback/get_konfirmasi_by_id_donasi", {id_donasi:id_donasi}, function(data, textStatus) {
@@ -110,6 +92,7 @@
     $.post(base_url+"donasiback/konfirmasi_donasi", {id_donasi:id_donasi}, function(data, textStatus) {
       swal('yeah!',data,'success');
       $('#modal_konfirmasi').modal('hide');
+      tabel.ajax.reload(null,false);;
     }, "json");
   }
 
@@ -118,7 +101,8 @@
 
     $.post(base_url+"donasiback/set_siswa_donasi", {id:id_donasi}, function(data, textStatus) {
       if (data.status==1) {
-        swal('Token berhasil di set',data.message,'success')
+        swal('Token berhasil di set',data.message,'success');
+        tabel.ajax.reload(null,false);;
       }else{
         swal('Gagal Mengirim',data.message,'warning');
       }
@@ -128,7 +112,8 @@
   function kirim_token(id_donasi){
         $.post(base_url+"donasiback/kirim_token_to_siswa", {id:id_donasi}, function(data, textStatus) {
       if (data.status==1) {
-        swal('Berhasil dikirim',data.message,'success')
+        swal('Berhasil dikirim',data.message,'success');
+        tabel.ajax.reload(null,false);;
       }else{
         swal('Gagal Mengirim',data.message,'warning');
       }
