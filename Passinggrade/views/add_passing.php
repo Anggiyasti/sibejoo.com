@@ -8,13 +8,13 @@
                 <!-- Page Header -->
                 <div class="page-header page-header-block">
                     <div class="page-header-section">
-                        <h4 class="title semibold">GURU</h4>
+                        <h4 class="title semibold">Passing Grade</h4>
                     </div>
                     <div class="page-header-section">
                         <!-- Toolbar -->
                         <div class="toolbar">
                             <ol class="breadcrumb breadcrumb-transparent nm">
-                                <li><a href="javascript:void(0);">Form Guru</a></li>
+                                <li><a href="javascript:void(0);">Form Passing Grade</a></li>
                                 <li class="active">Elements</li>
                             </ol>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="panel panel-default">
                             <!-- panel heading/header -->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Form Guru</h3>
+                                <h3 class="panel-title">Form Passing Grade</h3>
                             </div>
                             <!--/ panel heading/header -->
                             <!-- panel body -->

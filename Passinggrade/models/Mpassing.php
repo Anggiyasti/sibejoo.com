@@ -47,6 +47,13 @@
 		return $this->db->update('tb_passing_grade', $arr);
 	}
 
+	function get_edit_passing($id){
+		$this->db->select()->from('tb_passing_grade');
+		$this->db->where('id_passing', $id);
+		$tampil=$this->db->get();
+		return $tampil->result_array()[0];
+	}
+
 	// fungsi delete passing
 	public function delete_passing($id_passing) {
 		$this->db->where('id_passing', $id_passing);

@@ -8,6 +8,7 @@ class Passinggrade extends MX_Controller {
         $this->load->helper('url');
         $this->murl = 'assets/adminre/';
         $this->load->model('Mpassing');
+        $this->load->library( 'parser' );
         // $this->load->model('login/Loginmodel');
         // $this->load->model('workout1/Mworkout1');
         $this->load->helper(array('form', 'url', 'file', 'html'));
@@ -92,20 +93,20 @@ class Passinggrade extends MX_Controller {
 	
 	public function t_pass()
 	{  //hak akses jika admin
-		if ($this->session->userdata('id_admin')) {
-		$this->load->view('admin/layout/header');
-		$this->load->view('add_passing');
-		$this->load->view('admin/layout/footer');
-	}  //hak akses jika guru
-		elseif ($this->session->userdata('id_guru')) {
-		$this->load->view('guru/layout/header');
-		$this->load->view('add_passing');
-		$this->load->view('guru/layout/footer');
-	}
+
+
+        $data['judul_halaman'] = "Dashboard Admin";
+        $data['files'] = array(
+            APPPATH . 'modules/passinggrade/views/add_passing.php',
+            
+            );
+         $this->parser->parse('admin/v-index-admin', $data);
 	}
 
     //ubah passing grade
-    public function edit_pass($no) {
+    public function edit_pass($id) {
+        
+        
         if ($this->input->post('update')) 
         {
             $this->Mpassing->update_passing();
@@ -124,21 +125,16 @@ class Passinggrade extends MX_Controller {
             }
         }
         else
-        {     //hak akses jika admin
-            if ($this->session->userdata('id_admin')) {
-            $data['editdata'] = $this->db->get_where('tb_passing_grade',array('id_passing'=> $no))->row();
-            $this->load->view('admin/layout/header');
-            $this->load->view('edit_passing', $data);
-            $this->load->view('admin/layout/footer');
+        {    
+            $data['editdata'] = $this->Mpassing->get_edit_passing($id);
+            $data['judul_halaman'] = "Dashboard Admin";
+            $data['files'] = array(
+            APPPATH . 'modules/passinggrade/views/edit_passing.php',
+            );
+         
+        
         }
-              //hak akses jika GURU
-            elseif ($this->session->userdata('id_guru')) {
-            $data['editdata'] = $this->db->get_where('tb_passing_grade',array('id_passing'=> $no))->row();
-            $this->load->view('guru/layout/header');
-            $this->load->view('edit_passing', $data);
-            $this->load->view('guru/layout/footer');
-        }
-        }
+        $this->parser->parse('admin/v-index-admin', $data);
     }
 
     //TAMPIL PASSING GRADE BANKEND
@@ -147,17 +143,26 @@ class Passinggrade extends MX_Controller {
         //hak akses bila admin
         // if ($this->session->userdata('id_admin')) {
         $data['data']   = $this->Mpassing->getpassing();
-        $this->load->view('admin/layout/header');
-        $this->load->view('daftar_passing', $data);
-        $this->load->view('admin/layout/footer');
+        $data['judul_halaman'] = "Dashboard Admin";
+
+        $data['files'] = array(
+            APPPATH . 'modules/passinggrade/views/daftar_passing.php',
+            
+            );
+         $this->parser->parse('admin/v-index-admin', $data);
+        
+        // $this->load->view('admin/layout/header');
+        // $this->load->view('daftar_passing', $data);
+        // $this->load->view('admin/layout/footer');
     // }
     //     //hak akses bila guru
     //     elseif ($this->session->userdata('id_guru')) {
-        $data['data']   = $this->Mpassing->getpassing();
+        // $data['data']   = $this->Mpassing->getpassing();
         // $this->load->view('guru/layout/header');
         // $this->load->view('daftar_passing', $data);
         // $this->load->view('guru/layout/footer');
     // }
+
     }
 
     //MEGHAPUS PASSING GRADE BACKEND

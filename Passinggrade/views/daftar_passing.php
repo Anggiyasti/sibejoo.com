@@ -21,7 +21,7 @@
                 <!-- Page Header -->
                 <div class="page-header page-header-block">
                     <div class="checkbox custom-checkbox pull-left">  
-                        <h3 class="panel-title"><span class="panel-icon mr5"><i class="ico-table22"></i></span> Daftar Guru</h3>
+                        <h3 class="panel-title"><span class="panel-icon mr5"><i class="ico-table22"></i></span> Daftar Passing grade</h3>
                     </div>
                     <div class="page-header-section">
                         <!-- Toolbar -->

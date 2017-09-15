@@ -680,6 +680,27 @@
               </li>
             </ul>
           </li>
+
+          <li>
+            <a href="javascript:void(0);" data-target="#ps" data-toggle="submenu" data-parent=".topmenu">
+            <span class="figure"><i class="ico-users3"></i></span>
+            <span class="text">Passing Grade</span>
+            <span class="arrow"></span>
+            </a>
+            <ul id="ps" class="submenu collapse ">
+              <li class="submenu-header ellipsis">Passing Grade</li>
+              <li>
+                <a href="<?=base_url('passinggrade/t_pass') ?>">
+                <span class="text">Tambah Passing Grade</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?=base_url('passinggrade/daftar_pass') ?>">
+                <span class="text">Daftar Passing Grade</span>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li>
             <a href="javascript:void(0);" data-target="#subscribe" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-envelop2"></i></span>
