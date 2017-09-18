@@ -208,6 +208,7 @@ class paketsoal extends MX_Controller
 			'jumlah_soal' => $this->input->post( 'jumlah_soal' ),
 			'deskripsi' =>$this->input->post( 'deskripsi' ),
 			'durasi' =>$this->input->post( 'durasi' ),
+			'jenis_penilaian' =>$this->input->post( 'jenis_penilaian' ),
 			'random'=>$this->input->post('random'),
 			'penggunaID'=>$this->session->userdata['id']
 
@@ -230,6 +231,7 @@ class paketsoal extends MX_Controller
 			'deskripsi' => $this->input->post( 'deskripsi' ),
 			'jumlah_soal' => $this->input->post( 'jumlah_soal' ),
 			'durasi' => $this->input->post( 'durasi' ),
+			'jenis_penilaian' => $this->input->post( 'jenis_penilaian' ),
 			'random'=>$this->input->post('random')
 			);
 
