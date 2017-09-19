@@ -57,6 +57,8 @@
                                       ?>
                                       <?php if ($key['icon'] == "ico-play3"): ?>
                                         <a onclick="getvideo('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
+                                      <?php elseif ($key['icon'] == "ico-folder" ): ?>
+                                        <a onclick="getmateri('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
                                       <?php else: ?>
                                         <a href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:20px;"><?=$key['namaStep']?></a>
                                       <?php endif ?>
@@ -94,11 +96,19 @@
                 <div class="entry-content mt-10">
                   <!-- video -->
                   <div class="post-thumb thumb">
-                    <div class="video-player">
-                    <iframe  width="600" height="360" src="<?=$datVideo['link']?>"></iframe> 
-                    </div>
-
-
+                    <?php if ($datVideo['link']=='' || $datVideo['link']==' '): ?>
+                      <div class="container-video color-palette bg-color-6alt">
+                        <video class="" width="100%" height="100%"  controls>
+                          <source src="<?=base_url();?>assets/video/<?=$datVideo['namaFile'];?>" >
+                            Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    <?php endif ?>
+                    <?php if ($datVideo['namaFile']=='' || $datVideo['namaFile']==' '): ?>
+                      <div class="video-player">
+                        <iframe  width="600" height="360" src="<?=$datVideo['link']?>"></iframe> 
+                      </div>
+                    <?php endif ?>
                   </div>
                   <h3>Deskripsi</h3>
             <p><?=$datVideo['deskripsiVideo']?></p>
@@ -120,7 +130,7 @@
 
             </div>
           </div>
-          <!-- / div isi materi -->
+          <!-- / div isi materi
         </div>
       </div>
     </section>
@@ -167,6 +177,27 @@
           data: global_properties,
           success: function(data){
             window.location.href = base_url + "linetopik/step_video";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+
+    function getmateri(uuid) {
+        url_ajax = base_url+"linetopik/tampunguuid";
+
+        var global_properties = {
+          uuid: uuid
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/step_materi";  
           },error:function(data){
             sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
           }

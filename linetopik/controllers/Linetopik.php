@@ -118,7 +118,7 @@ public function learningLine(){
     $this->check_member($babID);
 
     $data = array(
-      'judul_halaman' => 'Sibejoo - Welcome',
+      'judul_halaman' => 'Sibejoo - Learning Line',
       'judul_header' => 'Welcome',
       'judul_header2' =>'Time Line'
       );
@@ -154,7 +154,8 @@ public function learningLine(){
  				// pengecekan disable atau enable step
        if ($step == true || $urutan == '1' ) {
           $icon ='ico-folder';
-          $link = base_url('index.php/linetopik/step_materi/').$UUID;
+          // $link = base_url('index.php/linetopik/step_materi/').$UUID;
+          $link = $UUID;
           $status ="enable";
       } else {
        $icon='ico-folder';
@@ -260,11 +261,12 @@ public function step_video()
     $jenis='Materi';
                 // pengecekan disable atau enable step
     if ($step == true || $urutan == '1' ) {
-        $icon =' ico-folder';
-        $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
+        $icon ='ico-folder';
+        // $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
+        $link = $stepUUID;
         $status ="enable";
     } else {
-     $icon =' ico-folder';
+     $icon ='ico-folder';
      $link = 'javascript:void(0)';
      $status ="disable";
  }
@@ -340,8 +342,9 @@ public function logLine($stepID)
 
 
  	// View step Materi
-public function step_materi($UUID)
+public function step_materi()
 {
+  $UUID = $this->session->userdata['uuid_video'];
    $stepID= $this->Mlinetopik->get_stepID($UUID);
    $this->logLine($stepID);
    $data = array(
@@ -388,7 +391,8 @@ public function step_materi($UUID)
 
         if ($step == true || $urutan == '1' ) {
             $icon ='ico-folder';
-            $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
+            // $link = base_url('index.php/linetopik/step_materi/').$stepUUID;
+            $link = $stepUUID;
             $status ="enable";
         } else {
             $icon ='ico-folder';
@@ -622,7 +626,7 @@ public function laporanQuiz($datArr)
 {
   $data = array(
 
-    'judul_halaman' => 'Sibejoo - Step Materi',
+    'judul_halaman' => 'Sibejoo - Hasil Latihan',
 
     'judul_header' => 'Step Quiz',
     'judul_header2' =>'Step Quiz'
@@ -647,11 +651,11 @@ public function laporanQuiz($datArr)
         $jenis='Video';
                 // pengecekan disable atau enable step
         if ($step == true || $urutan == '1' ) {
-            $icon='ico-movie ';
-            $link = base_url('index.php/linetopik/step_video/').$UUID;
+            $icon='ico-play3';
+            $link = $UUID;
             $status ="enable";
         } else {
-            $icon='ico-movie';
+            $icon='ico-play4';
             $link = 'javascript:void(0)';
             $status ="disable";
         }
@@ -661,11 +665,11 @@ public function laporanQuiz($datArr)
         $jenis='Materi';
                 // pengecekan disable atau enable step
         if ($step == true || $urutan == '1' ) {
-            $icon ='ico-file6';
-            $link = base_url('index.php/linetopik/step_materi/').$UUID;
+            $icon ='ico-folder';
+            $link = $UUID;
             $status ="enable";
         } else {
-         $icon='ico-file6';
+         $icon='ico-folder';
          $link = 'javascript:void(0)';
          $status ="disable";
      }
@@ -692,7 +696,7 @@ $data['topikUUID']=$rows['topikUUID'];
 $data['datline'][]=array(
     'deskripsi'=>$rows['deskripsi'],
     'namaStep'=> $rows['namaStep'],
-
+    'uuid' => $UUID,  
     'jenisStep'=>$jenis,
     'icon' =>$icon,
     'link' => $link,

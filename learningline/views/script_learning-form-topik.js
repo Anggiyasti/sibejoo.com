@@ -83,8 +83,10 @@ $('.simpanlearning').click(function(){
   statusLearning:1,
   deskripsi:$('textarea[name=deskripsi]').val(),
   namaTopik:$('input[name=nama_topik]').val(),
-  urutan:$('input[name=urutan]').val()
+  urutan:$('input[name=urutan]').val(),
+  status:$('input[name=status]:checked  ').val()
 };
+console.log("data", data);
   if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
     swal('Silahkan lengkapi data');
   }else{

@@ -277,21 +277,18 @@ class Learningline extends MX_Controller {
 				$row[] = '<a class="btn btn-sm btn-warning"  
 				title="Edit" 
 				href="'.base_url().'learningline/edit_step/'.$list_item['id'].'"><i class="ico-edit"></i></a>
-				<a class="btn btn-sm btn-success detail-'.$list_item['id'].'"  title="Play" data-todo='."'".json_encode($list_item)."'".' onclick="play('."'".$list_item['id']."'".')"><i class="ico-play"></i></a>
 				<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_step('."'".$list_item['id']."'".')"><i class="ico-remove"></i></a>';
 			} else if ($list_item['jenisStep']==2) {
 				$row[] = "Materi";
 				$row[] = '<a class="btn btn-sm btn-warning"  
 				title="Edit" 
 				href="'.base_url().'learningline/edit_step/'.$list_item['id'].'"><i class="ico-edit"></i></a>
-				<a class="btn btn-sm btn-success detail-'.$list_item['id'].'"  title="Prevew Materi" data-todo='."'".json_encode($list_item)."'".' onclick="materi_detail('."'".$list_item['id']."'".')"><i class="ico-eye-open"></i></a>
 				<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_step('."'".$list_item['id']."'".')"><i class="ico-remove"></i></a>';
 			}else{
 				$row[] = "Latihan";
 				$row[] = '<a class="btn btn-sm btn-warning"  
 				title="Edit" 
 				href="'.base_url().'learningline/edit_step/'.$list_item['id'].'"><i class="ico-edit"></i></a>
-				<a class="btn btn-sm btn-success detail-'.$list_item['id'].'"  title="Daftar latihan" data-todo='."'".json_encode($list_item)."'".' onclick="latihan_detail('."'".$list_item['id']."'".')"><i class="ico-th-list"></i></a>
 				<a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_step('."'".$list_item['id']."'".')"><i class="ico-remove"></i></a>';
 			}
 			$data[] = $row;
@@ -489,7 +486,7 @@ function ajax_insert_line_topik(){
 		'statusLearning'=>$this->input->post('statusLearning'),
 		'deskripsi'=>$this->input->post('deskripsi'),
 		'namaTopik'=>$this->input->post('namaTopik'),
-		'status'=>1,
+		'status'=>$this->input->post('status'),
 		'urutan'=>$this->input->post('urutan'),
 		'UUID'=>uniqid(),
 		);
@@ -503,7 +500,7 @@ function ajax_update_line_topik(){
 		'statusLearning'=>$this->input->post('statusLearning'),
 		'deskripsi'=>$this->input->post('deskripsi'),
 		'namaTopik'=>$this->input->post('namaTopik'),
-		'status'=>1,
+		'status'=>$this->input->post('status'),
 		'urutan'=>$this->input->post('urutan'),
 		'id'=>$this->input->post('topikID'),
 		);

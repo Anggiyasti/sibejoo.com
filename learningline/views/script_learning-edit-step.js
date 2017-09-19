@@ -101,7 +101,14 @@ $('.update_step').click(function(){
 		};
 		update(data);
 	}else if(value==3){
-
+		data = {
+			materiID:$('input[name=materi]:checked').val(),
+			urutan:form.urutan,
+			namastep:form.namastep,
+			select_jenis:form.select_jenis,
+			id:$('input[name=id]').val()
+		};
+		update(data);
 	}else{
 		swal('Silahkan Pilih Jenis Step!');
 	}

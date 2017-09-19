@@ -7,6 +7,7 @@ $('.update_topik').click(function(){
 	namaTopik:$('input[name=nama_topik]').val(),
 	urutan:$('input[name=urutan]').val(),
 	topikID:$('input[name=topikID]').val(),
+	status:$('input[name=status]:checked  ').val()
 };
 if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
 	swal('Silahkan lengkapi data');

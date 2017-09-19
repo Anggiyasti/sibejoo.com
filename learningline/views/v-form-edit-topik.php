@@ -30,7 +30,7 @@
       <div class="col-sm-8">
 
        <!-- stkt = soal tingkat -->                          
-       <select class="form-control" id="tingkat" id="tingkat">
+       <select class="form-control" id="tingkat" id="tingkat" disabled="true">
          <option>-Pilih Tingkat-</option>
        </select>
      </div>
@@ -39,7 +39,7 @@
    <div  class="form-group">
     <label class="col-sm-3 control-label">Mata Pelajaran</label>
     <div class="col-sm-8">
-     <select class="form-control" id="pelajaran">
+     <select class="form-control" id="pelajaran" disabled="true">
 
      </select>
    </div>
@@ -48,7 +48,7 @@
  <div  class="form-group">
   <label class="col-sm-3 control-label">Bab</label>
   <div class="col-sm-8">
-    <select class="form-control" id="bab" id="bab">
+    <select class="form-control" id="bab" id="bab" disabled="true">
 
     </select>
   </div>
@@ -95,7 +95,6 @@
   <label class="col-sm-3 control-label"></label>
   <div class="col-sm-9">
    <a class="btn btn-primary update_topik">Update</a>
-   <button type="reset" class="btn btn-danger reset">Reset</button>
  </div>
 </div>
 </form>
@@ -249,8 +248,6 @@
   }
 
   loadTingkat();
-  console.log("asd"+$('#oldtkt').val());
   loadPelajaran($('#oldtkt').val());
   load_bab($('#oldmp').val());
-  console.log($('#oldmp').val());
 </script>

@@ -17,6 +17,7 @@ class Mlinetopik extends CI_Model
     $this->db->order_by('tp.keterangan');
     $this->db->order_by('bab.judulBab');
     $this->db->where('topik.status',1);
+    $this->db->where('bab.statusLearningLine',1);
     $this->db->where('tingkatID',$tingkatID);
     $query=$this->db->get();
     return $query->result_array();

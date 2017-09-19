@@ -88,7 +88,6 @@
   <label class="col-sm-3 control-label"></label>
   <div class="col-sm-9">
    <a class="btn btn-primary simpanlearning">Simpan</a>
-   <button type="reset" class="btn btn-danger reset">Reset</button>
  </div>
 </div>
 </form>

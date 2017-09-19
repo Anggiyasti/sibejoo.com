@@ -62,6 +62,8 @@
                                       ?>
                                       <?php if ($key['icon'] == "ico-play3"): ?>
                                         <a onclick="getvideo('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
+                                      <?php elseif ($key['icon'] == "ico-folder" ): ?>
+                                        <a onclick="getmateri('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
                                       <?php else: ?>
                                         <a href="<?=$key['link'];?>" class="media-heading headline" style="padding-left:  20px;"  id="font-<?=$i;?>" ><?=$key['namaStep']?></a>           
                                         <?php endif ?>
@@ -178,6 +180,27 @@
           data: global_properties,
           success: function(data){
             window.location.href = base_url + "linetopik/step_video";  
+          },error:function(data){
+            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+          }
+
+        });
+    }
+
+    function getmateri(uuid) {
+        url_ajax = base_url+"linetopik/tampunguuid";
+
+        var global_properties = {
+          uuid: uuid
+        };
+
+        $.ajax({
+          type: "POST",
+          dataType: "JSON",
+          url: url_ajax,
+          data: global_properties,
+          success: function(data){
+            window.location.href = base_url + "linetopik/step_materi";  
           },error:function(data){
             sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
           }
