@@ -347,4 +347,18 @@ class Admincabang_model extends CI_model {
 		return $query->result_array();
 	}
 
+	public function get_to_bycabang($id_cabang){
+		if($id_cabang=="all"){
+			$query = "SELECT t.id_tryout, nm_tryout FROM tb_tryout t";
+		}else{
+			$query = "SELECT DISTINCT(t.id_tryout), nm_tryout FROM tb_tryout t
+			JOIN `tb_hakakses-to` th ON th.`id_tryout` = t.id_tryout
+			JOIN  `tb_siswa` siswa ON siswa.`id` = th.`id_siswa`
+			WHERE siswa.`cabangID` = $id_cabang";
+		}
+
+		$result = $this->db->query($query);
+		return $result->result_array();
+	}
+
 }

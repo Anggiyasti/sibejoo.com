@@ -72,8 +72,9 @@
           <th>No</th>
           <th>Username</th>
           <th>Nama Paket</th>
+          <th>Jenis</th>
           <th>Cabang</th>
-          <th>Nama SIswa</th>
+          <th>Nama Siswa</th>
           <th>Jumlah Soal</th>
           <th>Benar</th>
           <th>Salah</th>
@@ -183,7 +184,8 @@ function prevPage() {
       cabang = $('#select_cabang').val();
       tryout = $('#select_to').val();
       paket = $('#select_paket').val();
-
+      // select to yang ada di cabang itu.
+      get_to_by_id_cabang(cabang);
       selectPagePaket();
       set_pagination_tb_paket();
 
@@ -323,6 +325,26 @@ function load_paket(id_to){
  }
 });
 }
+
+function get_to_by_id_cabang(id_cabang){
+      url = base_url+"admincabang/get_to_by_id_cabang/"+id_cabang;
+
+      $.ajax({
+      dataType: "text",
+      url: url,
+      success: function(data){
+        if (data=="") {
+          // $('#select_to').prop('disabled', false);
+          $('#select_to').html("<option value='all'>Tidak Ada Tryout</option>");
+
+        }else{
+          $('#select_to').html("<option value='all'>Semua Tryout</option>");
+          $('#select_to').append(data);
+        }
+      }
+    });
+
+    }
 
 
 

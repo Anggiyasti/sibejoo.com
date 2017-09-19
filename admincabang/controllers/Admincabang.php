@@ -121,12 +121,18 @@ class Admincabang extends MX_Controller {
 			// cek jika pembagi 0
 			if ($jumlahSoal != 0) {
 				//hitung nilai
-				$nilai=$sumBenar/$jumlahSoal*100;
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
 			}
 			$tb_paket.=	'<tr>
 							<td>'.$no.'</td>	
 							<td>'.$item ['namaPengguna'].'</td>
 							<td>'.$item ['nm_paket'].'</td>
+							<td>'.$item ['jenis_penilaian'].'</td>
 							<td>'.$item ['namaCabang'].'</td>
 							<td>'.$nama.'</td>
 							<td>'.$jumlahSoal.'</td>							
@@ -254,7 +260,12 @@ class Admincabang extends MX_Controller {
 						// cek jika pembagi 0
 			if ($jumlahSoal != 0) {
 				//hitung nilai
-				$nilai=$sumBenar/$jumlahSoal*100;
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
 			}
 			
 			$paket=$item ['nm_paket'];
@@ -612,6 +623,16 @@ class Admincabang extends MX_Controller {
 		$data["id_cabang"]=$arrPengguna[0]["id_cabang"];
 		$data["namaCabang"]=$arrPengguna[0]["namaCabang"];
 		echo json_encode($data);
+	}
+
+	// get to by cabang
+	function get_to_by_id_cabang($id_cabang){
+		$data['to'] = $this->admincabang_model->get_to_bycabang($id_cabang);
+		$option_to = "";
+		foreach ($data['to'] as $to_item) {
+			$option_to .=" <option value=".$to_item['id_tryout'].">".$to_item['nm_tryout']."</option>";
+		}
+		echo $option_to;
 	}
 }
 ?>
