@@ -16,6 +16,10 @@
 
             $alamatSekolah  = $row['alamatSekolah']; 
 
+            $universitas  = $row['univ']; 
+
+            $jur  = $row['jurusan']; 
+
             $photo=base_url().'assets/image/photo/siswa/'.$row['photo'];
 
             $oldphoto=$row['photo'];
@@ -224,6 +228,27 @@
 
 
                                         </div>
+                                        <div class="form-group">
+
+                                            <label class="control-label">Universitas</label>
+
+
+                                                <input type="text" class="form-control" name="namasekolah" value="<?=$universitas;?>" disabled>    
+
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label class="control-label">Jurusan</label>
+
+
+                                                <input type="text" class="form-control" name="namasekolah" value="<?=$jur;?>" disabled>    
+
+
+                                        </div>
+
+
+
 
                                         <div class="form-group">
 

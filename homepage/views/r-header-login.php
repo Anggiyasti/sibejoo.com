@@ -90,6 +90,7 @@
             <li><a href="javascript:void(0);" onclick="lineMapel(5)">SMA IPS<span class="indicator"></span></a></li>
           </ul>
         </li>
+        <li><a href="javascript:void(0);" onclick="pilihwilayah(1)">Passing Grade<span class="indicator"></a></li>
         
         <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
          <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
@@ -267,6 +268,27 @@
       data: global_properties,
       success: function(data){
         window.location.href = base_url + "linetopik/lineMapel";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
+
+  function pilihwilayah(wilayah) {
+    url_ajax = base_url+"passinggradefront/pilwilayah";
+
+    var global_properties = {
+      wilayah: wilayah
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
         sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
       }
