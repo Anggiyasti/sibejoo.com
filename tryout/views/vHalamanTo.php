@@ -1,3 +1,19 @@
+<!-- LOADING -->
+<style>
+  .no-js #loader { display: none;  }
+  .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+  .se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(http://www.thebuddhistchef.com/wp-content/themes/culinier-theme/images/loader.gif) center no-repeat #fff;
+  }
+</style>
+<!-- LOADING -->
+
 <style>
  #jwb_sisJ {
   border-radius: 12px;
@@ -12,20 +28,16 @@
   border: 1px solid #63d3e9; 
   margin-left: 27px;
   margin-top: 4px;
- }
-
- #flex-item {
+}
+#flex-item {
   float:left;
   width: 48px;
   height: 48px;
   /*margin: 1px;*/
   padding: 2px;
   margin-top: 12px; 
-
- }
-
-
- #lihatStatus{
+}
+#lihatStatus{
   /*position: fixed;*/
   /*top: 0;*/
   /*left: 10px;*/
@@ -35,11 +47,11 @@
   /*padding: 9px;*/
   /*background-color: #fff;*/
   /*border: 1px solid #555;*/
- }
- #lihat{
+}
+#lihat{
   margin: 5px;
- }
- #kotak{
+}
+#kotak{
   width: 30px;
   height: 30px;
   border: 1px solid aqua;
@@ -47,336 +59,377 @@
   float: left;
   padding: 5px;
   /*position: absolute;*/
- }
-
- label > input{ /* HIDE RADIO */
+}
+label > input{ /* HIDE RADIO */
   visibility: hidden;  
   position: absolute; /* Remove input from document flow */
- }
-
- label:hover{ /* HIDE RADIO */
+}
+label:hover{ /* HIDE RADIO */
   background-color: #63d3e9;
- }
-
- .terpilih{
+}
+.terpilih{
   background-color: #63d3e9;
- }
-
+}
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.modal-content {
+  height: auto;
+  height: 100%;
+  min-height: 100%;
+  border-radius: 0;
+}
 </style>
 <!-- START Body -->
 
 <body class="bgcolor-white">
- <div id="buffer">a</div>
- <div id="preview">b</div>
-
- <!-- START Template Main -->
- <script src="<?= base_url('assets/js/bjqs-1.10.js') ?>"></script>
- <script type="text/javascript">
-  jQuery(document).ready(function ($) {
-   $('#my-slideshow').bjqs({
-//                'height': 400,
-                // 'width': 600,
-                // 'responsive': false
-               });
+  <div class="se-pre-con">
+  </div>
+  <!-- START Template Main -->
+  <script src="<?= base_url('assets/js/bjqs-1.10.js') ?>"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+     $('#my-slideshow').bjqs({
+     });
+   });
+    $(window).load(function() {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
   });
- </script>
- <section id="main" role="main">
-  <!-- START page header -->
-  <section class="page-header page-header-block nm" style="">
-   <!-- pattern -->
-   <!--/ pattern -->
-   <div class="container pt15 pb15">
-    <div class="">
-     <div class="page-header-section text-center">
-      <img src="<?= base_url('assets/back/img/logo.png') ?>" width="70px"  alt>
-      <p class="title font-alt">Tryout Online 
-      </p>
-      <?php foreach ($topaket as $key): ?>
-       <div class="text-center"><div style="font-size:20px;"><?= $key['namato'] ?>/<?= $key['namapa'] ?></div></div>
-      <?php endforeach ?>
-     </div>
-    </div>
-   </div>
-  </section>
-  <!--/ END page header -->
-
-  <!-- START Register Content -->
-  <section class="section bgcolor-white">
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-md-10 col-md-offset-1">
-      <form action="<?= base_url('index.php/tryout/cekjawaban') ?>" method="post" id="hasil">
-       <div class="col-md-8" style="margin-bottom:30">
-
-        <?php $i = 1; $nosoal = 1; $soal_bu = 0;?>
-        <div id="my-slideshow" style="">
-         <ul class="bjqs" style="display: block;list-style: none">
-          <?php foreach ($soal as $key): ?>
-
-           <li class="bjqs-slide" style="display: none;">
-            <div class="">
-             <div class="panel panel-default" style="">
-              <div class="panel-heading">
-               <!-- <h1>Selamat datang</h1> -->
-               <div class="row">
-                <div class="col-md-6 center"><h4 class=""><h4 class="">ID Soal : <small> <?= $key['judul'] ?></small></h4></div>
-
-                <div class="col-md-2"></div>
-                <div class="col-md-6 text-right" style="margin-top:5">
-                 <a class="btn btn-sm btn-success" onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">Batal Jawab</a>&nbsp&nbsp&nbsp
-                 <a class="btn btn-sm btn-warning" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a>&nbsp&nbsp&nbsp
-                 <a class="btn btn-sm btn-success" onclick="lihatJawaban('<?= $key['soalid']?>')">Lihat jawaban</a>
-
-                </div>
-               </div>
-              </div>
-              <div class="panel-collapse">
-               <div class="panel-body">
-                <div class="row">
-                 <!-- info untuk soal -->
-                 <div class="col-md-12">
-                  <div class="alert alert-success fade in">
-                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                   <center>
-                    <h4 class="semibold">Jawaban Anda</h4>
-                    <h4 class="mb10 notif-jawaban-<?=$key['soalid']?>"></h4>
-                    <h4 class="mb10 notif-jawaban-buffer-<?=$key['soalid']?>"></h4>
-
-                    <!-- info untuk soal -->
-                   </center>
-
-                  </div>
-                 </div>
-                 <?php if (!empty($key['audio'])): ?>
-                  <div class="col-md-12">
-                   <audio class="col-md-12" controls>
-                    <source src="<?=base_url()?>assets/audio/soal/<?=$key['audio']?>" type="audio/mpeg">
-                    </audio>
-                    <!-- End Audio Listening  -->
-                   </div>
-                  <?php endif ?>
-                  <!-- Start Audio listening -->
-                  
-                  <!-- untuk nomor soal -->
-                  <div class="col-md-1 text-right">
-                   <p><h4><?= $i ?>.</h4></p>
-                  </div>
-                  <!-- untuk nomor soal -->
+</script>
 
 
 
-                  <div class="col-md-11">
-                   <?php if (!empty($key['gambar'])) { ?>       
-                   <img src="<?= base_url('./assets/image/soal/' . $key['gambar']) ?>">   
-                   <?php } ?>
-
-                   <h5><?= $key['soal'] ?></h5>
-                   <br>
-                  </div>  
-                 </div>
-                 <div class="row">
-                  <div class="col-md-10 col-md-offset-1">
-                   <?php $k = $key['soalid']; $pilihan = array("A", "B", "C", "D", "E"); $indexpil = 0; ?>
-
-                   <!-- cacah pilihan jawaban -->
-                   <?php foreach ($pil as $row): ?>
-                    <?php if ($row['pilid'] == $k) { ?>
-                    <div class="mb10">
-                     <?php $soal_bu = $key['soal'] ?>
-                     <label id="<?=$key['soalid'].$indexpil;?>" 
-                      onclick="changeColor('<?=$key['soalid'].$indexpil;?>','<?=$key['soalid']?>','<?=str_replace('\\', '\\\\', $row['piljaw']); ?>')" 
-                      alt="<?=$key['soalid'];?>" 
-                      style="border:1px solid #63d3e9; padding: 5px;width:100% ">
-
-                      <input type="radio" 
-                      id="<?= $i ?>" 
-                      value="<?= $row['pilpil'].$pilihan[$indexpil]; ?>" 
-                      name="pil[<?= $row['pilid']; ?>]" 
-                      onclick="updateColor(<?= $i ?>)">
-
-                      <!-- INDEX PILIHAN -->
-                      <div class ="btn">
-                       <?=  $pilihan[$indexpil];?>.
-                      </div>
-                      <!-- INDEX PILIHAN -->
-
-                      <!-- INDEX PILIHAN KALO ADA GAMBAR-->
-                      <?php if (empty($row['pilgam'])) {
-                       echo '';
-                      } else { ?>
-                      <img src="<?= base_url('./assets/image/jawaban/' . $row['pilgam']) ?>">
-                      <?php } ?>
-                      <!-- INDEX PILIHAN KALO ADA GAMBAR-->
-
-                      <?= $row['piljaw'] ?>
-                      <?php $indexpil++;?>
-                     </label> 
-
-                    </div>
-                    <?php
-                   } else {
-                                                                                // $indexpil=0;
-                   }
-                   ?>
-                  <?php endforeach ?>
-
-                  <!-- soal dimasukan ke input, biar bisa di get valuena -->
-                  <input type="hidden" value="<?=$soal_bu ?>" name="soal-bu-<?=$key['soalid'] ?>">  
-                  <!-- soal dimasukan ke input, biar bisa di get valuena -->
-
-                 </div>
-                </div>
-               </div>
-              </div>
-             </div>
-            </div>
-           </li>
-           <?php
-           $i++;
-           $nosoal++;
-           ?>
-          <?php endforeach; ?>
-         </ul>
+<section id="main" role="main">
+  <!-- Trigger the modal with a button -->
+  <!-- START modal-lg -->
+  <div class="modal fade" id="pesan_habis">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <div class="ico-clock mb15 mt15" style="font-size:36px;"></div>
+          <h3 class="semibold modal-title text-primary">Waktu Habis</h3>
+          <p class="text-danger">
+            Waktu Habis, silahkan kumpulkan jawaban.
+          </p>
         </div>
-        <div style="margin-left:40">
-         <div class="col-md-6">
-          <button class="btn btn-info btn-block" id="btnPrev">Sebelumnya</button>
-          <!--<button type="button" class="btn btn-primary btn-block">Selanjutnya</button>-->
-         </div>
-         <div class="col-md-6"> 
-          <button class="btn btn-info btn-block" id="btnNext">Selanjutnya</button>
-          <!--<button type="button" class="btn btn-teal btn-block">Sebelumnya</button>-->
-         </div>
-        </div>
+        <div class="modal-body">
+         <center><a onclick="kirim_hasil_habis()" class="btn btn-default">Kirim Jawaban</a></center>
        </div>
+       <div class="modal-footer">
+         <!-- <a onclick="kirim_hasil_habis()" class="btn btn-default">Kirim Jawaban</a> -->
+       </div>
+     </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+ </div>
+ <!--/ END modal-lg -->
+</div>
 
-       <!--<div style="clear: both"></div>-->
-       <div class="col-md-4">
-        <div class="panel panel-default"  style="min-height:170px;">
-         <!--panel heading/header--> 
-         <div class="panel-heading">
-          <div class="row">
-           <!--<div class="text-center"><h4>Lembar Jawaban</h4></div>-->
-           <div class="text-center"> <h4><span id="timer"></span></h4></div>
-           <input type="text" hidden="true" id="durasi" value="" name="durasi" />
-          </div>
+
+
+<!-- START page header -->
+<section class="page-header page-header-block nm" style="">
+ <!-- pattern -->
+ <!--/ pattern -->
+ <div class="container pt15 pb15">
+  <div class="">
+   <div class="page-header-section text-center">
+    <img src="<?= base_url('assets/back/img/logo.png') ?>" width="70px"  alt>
+    <p class="title font-alt">Tryout Online 
+    </p>
+    <?php foreach ($topaket as $key): ?>
+     <div class="text-center"><div style="font-size:20px;"><span class="text-info jenis_penilaian"><?= $key['jenis_penilaian'] ?></span>: <?= $key['namato'] ?>/<?= $key['namapa'] ?></div></div>
+   <?php endforeach ?>
+  </div>
+</section>
+<!--/ END page header -->
+
+<!-- START Register Content -->
+<section class="section bgcolor-white">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-12">
+    <form action="<?= base_url('index.php/tryout/cekjawaban') ?>" method="post" id="hasil">
+     <div class="col-md-8" style="margin-bottom:30">
+
+      <?php $i = 1; $nosoal = 1; $soal_bu = 0;?>
+      <div id="my-slideshow" style="">
+       <ul class="bjqs" style="display: block;list-style: none">
+        <?php foreach ($soal as $key): ?>
+
+         <li class="bjqs-slide" style="display: none;">
+          <div class="">
+           <div class="panel panel-default" style="">
+            <div class="panel-heading">
+             <!-- <h1>Selamat datang</h1> -->
+             <div class="row">
+              <div class="col-md-6 center"><h4 class=""><h4 class="">ID Soal : <small> <?= $key['judul'] ?></small></h4></div>
+              <div class="col-md-2"></div>
+              <div class="col-md-6 text-right" style="margin-top:5">
+               <a class="btn btn-sm btn-success" onclick="bataljawab('pil[<?= $key['soalid']?>]','<?=$i?>',<?= $key['soalid']?>)">Batal Jawab</a>
+               <a class="btn btn-sm btn-warning" onclick="raguColor(<?= $i ?>)">Ragu Ragu</a>&nbsp&nbsp&nbsp
+             </div>
+           </div>
          </div>
-         <!--/ panel heading/header--> 
-         <!--panel body with collapse capabale--> 
          <div class="panel-collapse">
-          <div class="panel-body">
+           <div class="panel-body">
+            <div class="row">
+
+              <?php if (!empty($key['audio'])): ?>
+                <!-- Start Audio listening -->
+                <div class="col-md-12">
+                 <audio class="col-md-12" controls>
+                  <source src="<?=base_url()?>assets/audio/soal/<?=$key['audio']?>" type="audio/mpeg">
+                  </audio>
+                </div>
+                <!-- End Audio Listening  -->
+              <?php endif ?>
+
+              <!-- untuk nomor soal -->
+              <div class="col-md-1 text-right">
+               <p><h4><?= $i ?>.</h4></p>
+             </div>
+             <!-- untuk nomor soal -->
+
+
+
+             <div class="col-md-11">
+               <?php $gambar=$key['gambar']; ?>
+               <?php if (!empty($gambar) && $gambar!="" && $gambar!=' ') { ?>  
+               <img src="<?= base_url('./assets/image/soal/' . $gambar) ?>">   
+               <?php } ?>
+               <h5><?= $key['soal'] ?></h5>
+               <br>
+             </div>  
+           </div>
            <div class="row">
             <div class="col-md-10 col-md-offset-1">
-             <!--<li class="pageNumbers"></li>-->
-             <div class="ljk" style="margin-top:-20">
-              <?php
-              $nojwb = 1;
-              foreach ($soal as $jwb) {
-               ?>
-               <div id="flex-item" >
-                <div id ="jwb_sisJ" class ="jwb<?= $nojwb ?>"></div>
-                <a href ="#" id ="nom_sisS" class ="go_slide btn" style ="border:1px solid #63d3e9" alt="<?= $nojwb ?>"><?= $nojwb ?></a>
-               </div>
-               <?php
-               $nojwb++;
-              }
-              ?>
+
+             <?php $k = $key['soalid']; $pilihan = array("A", "B", "C", "D", "E"); $indexpil = 0; ?>
+
+             <!-- cacah pilihan jawaban -->
+             <?php foreach ($pil as $row): ?>
+              <?php if ($row['pilid'] == $k) { ?>
+              <div class="mb10">
+               <?php $soal_bu = $key['soal'] ?>
+
+               <!-- characterna di ganti, karena gaboleh kirim \\ ke paramter -->
+               <?php 
+               $param = array(
+                'value'=>$key['soalid'].$indexpil,
+                'soalid'=>$key['soalid']
+                ) ?>
+
+                <?php $param_send = html_entity_decode(json_encode($param)); ?>
+                <input type="hidden" name="pilsoal-<?=$key['soalid'].$indexpil;?>" value="<?=$row['piljaw'] ?>">
+                <label id="<?=$key['soalid'].$indexpil;?>" 
+
+                  onclick='changeColor(<?=$param_send ?>)' 
+
+                  alt="<?=$key['soalid'];?>" 
+                  style="border:1px solid #63d3e9; padding: 5px;width:100% ">
+
+                  <input type="radio" 
+                  id="<?= $i ?>" 
+                  value="<?= $row['pilpil'].$pilihan[$indexpil]; ?>" 
+                  name="pil[<?= $row['pilid']; ?>]" 
+                  onclick="updateColor(<?= $i ?>)">
+
+                  <!-- INDEX PILIHAN -->
+                  <div class ="btn">
+                   <?=  $pilihan[$indexpil];?>.
+                 </div>
+                 <!-- INDEX PILIHAN -->
+
+                 <!-- INDEX PILIHAN KALO ADA GAMBAR-->
+                 <?php if (empty($row['pilgam'])) {
+                   echo '';
+                 } else { ?>
+                 <img src="<?= base_url('./assets/image/jawaban/' . $row['pilgam']) ?>">
+                 <?php } ?>
+                 <!-- INDEX PILIHAN KALO ADA GAMBAR-->
+
+                 <?= $row['piljaw'] ?>
+                 <?php $indexpil++;?>
+               </label> 
              </div>
-
-            </div>
-            <!--</ul>-->  
-
-            <div class="clear" style="clear:both"></div>
-
-            <div class="col-md-12" style="">
-             <hr> 
-             <button type="button" class="btn btn-info btn-block" onclick="kirimHasil();">Kumpulkan Jawaban</button>
-            </div>
-
-           </div>
-          </div> 
-          <!--/ panel body with collapse capabale--> 
-         </div>
-         <!--/ END panel--> 
-        </div>
+             <?php
+           } else {
+           // $indexpil=0;
+           }
+           ?>
+         <?php endforeach ?>
+         <span class="soal-<?=$key['soalid']?>"></span>
        </div>
-      </form>
      </div>
-    </div>
-
    </div>
-  </section>
+ </div>
+</div>
+</div>
+</li>
+<?php
+$i++;
+$nosoal++;
+?>
+<?php endforeach; ?>
+</ul>
+</div>
+<div style="margin-left:40">
+ <div class="col-md-6">
+  <button class="btn btn-info btn-block" id="btnPrev"><i class="ico ico-arrow-left2"></i> Soal Sebelumnya </button>
+  <!--<button type="button" class="btn btn-primary btn-block">Selanjutnya</button>-->
+</div>
+<div class="col-md-6"> 
+  <button class="btn btn-info btn-block" id="btnNext"> Soal Selanjutnya <i class="ico ico-arrow-right22"></i></button>
+  <!--<button type="button" class="btn btn-teal btn-block">Sebelumnya</button>-->
+</div>
+</div>
+</div>
 
-  <!--/ END Register Content -->
+<!--<div style="clear: both"></div>-->
+<div class="col-md-4">
+  <div class="panel panel-default"  style="min-height:170px;">
+   <!--panel heading/header--> 
+   <div class="panel-heading">
+    <div class="row">
+     <!--<div class="text-center"><h4>Lembar Jawaban</h4></div>-->
+     <div class="text-center"> <h4>Sisa Waktu <span id="timer"></span></h4></div>
+     <input type="text" hidden="true" id="durasi" value="" name="durasi" />
+   </div>
+ </div>
+ <!--/ panel heading/header--> 
+ <!--panel body with collapse capabale--> 
+ <div class="panel-collapse">
+  <div class="panel-body">
+   <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+     <!--<li class="pageNumbers"></li>-->
+     <div class="ljk" style="margin-top:-20">
+      <?php
+      $nojwb = 1;
+      foreach ($soal as $jwb) {
+       ?>
+       <div id="flex-item" >
+        <div id ="jwb_sisJ" class ="jwb<?= $nojwb ?>"></div>
+        <a href ="#" id ="nom_sisS" class ="go_slide btn" style ="border:1px solid #63d3e9" alt="<?= $nojwb ?>"><?= $nojwb ?></a>
+      </div>
+      <?php
+      $nojwb++;
+    }
+    ?>
+  </div>
 
-  <!-- START To Top Scroller -->
+</div>
+<!--</ul>-->  
 
-  <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+<div class="clear" style="clear:both"></div>
 
-  <!--/ END To Top Scroller -->
+<div class="col-md-12" style="">
+ <hr> 
+ <button type="button" class="btn btn-info btn-block" onclick="kirimHasil();">Kumpulkan Jawaban</button>
+</div>
 
- </section>
- <!--/ END Template Main -->
- <script>
+</div>
+</div> 
+<!--/ panel body with collapse capabale--> 
+</div>
+<!--/ END panel--> 
+</div>
+</div>
+</form>
+</div>
+</div>
+
+</div>
+</section>
+
+<!--/ END Register Content -->
+
+<!-- START To Top Scroller -->
+
+<a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
+
+<!--/ END To Top Scroller -->
+
+</section>
+<!--/ END Template Main -->
+<script>
   function updateColor(id) {
    $(".jwb" + id).html($('input[id="' + id + '"]:checked').val()[1]);
    $('a[alt="' + id + '"]').css({"background-color": "#5bc0de", "color": "#fff", "border": "none"});
-  }
-
-  function raguColor(id) {
+ }
+ function raguColor(id) {
    $('a[alt="' + id + '"]').css({"background-color": "#ffd66a", "color": "#fff", "border": "none"});
-  }
-
-
-  function bataljawab(idsoal,idpil,grouppil){
+ }
+ function bataljawab(idsoal,idpil,grouppil){
    clearRadioGroup(idsoal);
    clearpiljaw(idpil,grouppil);
-  }
-
-
-  function clearRadioGroup(GroupName)
-  {
+ }
+ function clearRadioGroup(GroupName)
+ {
    var ele = document.getElementsByName(GroupName);
    for(var i=0;i<ele.length;i++)
     ele[i].checked = false;
-  }
-
-  function clearpiljaw(id,groupname){
-   $(".jwb" + id).html("");
-   $('a[alt="' + id + '"]').css({"background-color": "#fff", "color": "#00b1e1", "border": "1px solid #63d3e9"});
-   $('label[alt="' + groupname + '"]').removeClass( "terpilih" );
-  }
-
-  function changeColor(pilid,groupname,pilihan){
-   $('label[alt="' + groupname + '"]').removeClass( "terpilih" );
-   var d = document.getElementById(pilid);
-   d.className = "terpilih";
-   
-   // ambil isi soal
-   input = 'input[name=soal-bu-'+groupname+']';
-   soal = $(input).val();
-
+}
+function clearpiljaw(id,groupname){
+ $(".jwb" + id).html("");
+ $('a[alt="' + id + '"]').css({"background-color": "#fff", "color": "#00b1e1", "border": "1px solid #63d3e9"});
+ $('label[alt="' + groupname + '"]').removeClass( "terpilih" );
+}
+function changeColor(data){
+  $('label[alt="' + data.soalid + '"]').removeClass( "terpilih" );
+  var d = document.getElementById(data.value);
+  d.className = "terpilih";
+  pilihan_jawaban = $('input[name=pilsoal-'+data.value+']').val();
    // simpan di local storage
-   backup_jawaban = {id:groupname,soal:soal,pilihan:pilihan};
-   localStorage.setItem('soal-'+groupname, JSON.stringify(backup_jawaban));
-  }
-
+   backup_jawaban = {id:data.soalid,pilihan:pilihan_jawaban};
+   localStorage.setItem('soal-'+data.soalid, JSON.stringify(backup_jawaban));
+ }
   // lihat jawaban yang sudah di jawab Sebelumnya
   function lihatJawaban(data){
    //ambil local storage berdasarkan id soal
    var retrievedObject = localStorage.getItem('soal-'+data);
    //cek apakah objek yang di cari ada?
    if(retrievedObject){
-    backup = JSON.parse(retrievedObject);
     // kalo ada masukin ke notif jawaban sebelumna
-    // data_load = {idsoal:data,pilihan:backup.pilihan};
-    // load_mathjax(data_load);
-    $('.notif-jawaban-'+backup.id).html(backup.pilihan);
-   }else{
+    backup = JSON.parse(retrievedObject);
+    var pilihan = backup.pilihan;
+    // kalo di str nya ada delimeter
+    if(~pilihan.indexOf("$")){
+      //kalo ada render ke mathjax
+      backup_replace = pilihan.replace(/\$/g, '');
+      // jalan kan fungsi render
+      UpdateMath(backup_replace);
+    }else{
+      // kalo enggak ada pake html biasa aja
+      $('#MathOutput').html(backup.pilihan);
+    }
+  }else{
     // kalo enggak ada, keluarin notifikasi soal belum pernah dijawab
-    swal("Anda Belum Menjawab Soal ini!")
-   }
+    swal("Anda Belum Menjawab Soal ini!");
   }
+}
+function close_info_jawaban(){
+  $('.pesan-jawaban').toggle();
+}
+function allStorage() {
+  var values = [],
+  keys = Object.keys(localStorage),
+  i = keys.length;
+  while ( i-- ) {
+    values.push( localStorage.getItem(keys[i]) ); 
+  }
+  return values;
+}
   // lihat jawaban yang sudah di jawab Sebelumnya
-
- </script>
+  function show_storage(data){
+    $.each( data, function( key, value ) {
+     backup = JSON.parse(value);
+     $('span.soal-'+backup.id).html("Jawaban Sebelumnya : "+backup.pilihan);
+   });
+  }
+  show_storage(allStorage());
+</script>

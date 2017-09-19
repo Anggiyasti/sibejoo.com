@@ -41,14 +41,12 @@
           </div>
         <?php else: ?>
           <?php foreach ($paket as $paketitem):?>
-            <!-- <?php echo $status_to; ?> -->
             <div class="col-sm-6 col-md-3">
               <div class="service-block bg-white">
-                <div class="thumb"> <img alt="featured project" src="http://placehold.it/125x55" class="img-fullwidth">
-                </div>
                 <div class="content text-left flip p-25 pt-0">
                   <h4 class="line-bottom mb-10"><?=$paketitem['nm_paket'] ?></h4>
                   <p>Status : Belum Dikerjakan</p>
+                  <p><?=$paketitem['jenis_penilaian'] ?></p>
                   <?php if ($status_to=='doing'): ?>
                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
                   <?php elseif ($status_to=='done'): ?>
@@ -75,6 +73,8 @@
                 <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
                   <div class="media-body">
                     <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
+                    <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
+
                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
                     <?php if ($status_to=="done"): ?>
                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
@@ -155,8 +155,8 @@
 
   function load_grafik(data) {
   // nilai =data.jmlh_benar/ data.jumlah_soal * 100;
-   if (data.jenis_penilaian == 'SMBPTN') {
-      nilai =(data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0);
+   if (data.jenis_penilaian == 'SBMPTN') {
+      nilai =((data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0)) / ( data.jumlah_soal*4) * 100;
     }
   else {
       nilai =data.jmlh_benar/ data.jumlah_soal * 100;

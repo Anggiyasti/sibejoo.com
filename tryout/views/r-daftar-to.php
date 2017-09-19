@@ -34,7 +34,6 @@
             <div class="pricing-table maxwidth400">
               <div class="font-16 pl-10 bg-theme-color-2 text-white text-left pr-20 p-10"> <p align="center"><?=$tryout_item['nm_tryout'] ?></p>
               </div>
-                <img src="http://placehold.it/359x120" alt="">
                 <div class=" bg-white border-1px p-30 pt-20 pb-20">
                   <h3 class="package-type font-14 m-0 text-black"><?=$tryout_item['nm_tryout'] ?></h3>
                   <ul class="table-list list-icon theme-colored pb-0">

@@ -258,10 +258,10 @@ class Tryout extends MX_Controller {
         $this->load->view('v-error-test.php');
     }
 
-    public function cekJawaban() {
+    public function cekJawaban() {        
         if ($this->input->post()) {
             $data = $this->input->post('pil');
-            
+
             $id = $this->session->userdata['id_mm-tryoutpaket'];
             $id_paket = $this->Mtryout->datapaket($id)[0]->id_paket;
 
@@ -272,37 +272,52 @@ class Tryout extends MX_Controller {
             $kosong = 0;
             $koreksi = array();
             $idSalah = array();
+            $status = false;
+            $rekap_hasil_koreksi = [];
+
+            //untuk cek hawaban
             for ($i = 0; $i < sizeOf($result); $i++) {
                 $id = $result[$i]['soalid'];
-
                 if (!isset($data[$id])) {
+                    // untuk jawaban kosong
                     $kosong++;
                     $koreksi[] = $result[$i]['soalid'];
                     $idSalah[] = $i;
+                    $status = 3;
                 } else if ($data[$id][0] == $result[$i]['jawaban']) {
+                    // untuk jawaban benar
                     $benar++;
+                    $status = 1;
                 } else {
+                    // untuk jawaban salah
                     $salah++;
                     $koreksi[] = $result[$i]['soalid'];
                     $idSalah[] = $i;
+                    $status = 2;
                 }
+
+                $tempt['id_soal'] = $id;
+                $tempt['status_koreksi'] = $status;
+                $rekap_hasil_koreksi[] = $tempt;
             }
 
-            // data buat di insert ke laporan tryout paket
+            $json_rekap_hasil_koreksi = json_encode($rekap_hasil_koreksi);       
+
             $hasil['id_pengguna'] = $this->session->userdata['id'];
             $hasil['siswaID'] = $this->msiswa->get_siswaid();
             $hasil['id_mm-tryout-paket'] = $this->session->userdata['id_mm-tryoutpaket'];
-            
+            ;
             $hasil['jmlh_kosong'] = $kosong;
             $hasil['jmlh_benar'] = $benar;
             $hasil['jmlh_salah'] = $salah;
             $hasil['total_nilai'] = $benar;
             $hasil['poin'] = $benar;
             $hasil['status_pengerjaan'] = 1;
+            $hasil['rekap_hasil_koreksi'] = $json_rekap_hasil_koreksi;
 
-            // insert ke repory paket
             $result = $this->load->Mtryout->inputreport($hasil);
-            
+            $this->session->unset_userdata('id_mm-tryoutpaket');
+
             // update tb log tryout
             $waktu = new DateTime("now");
             $data['update'] = ['waktu_selesai'=>date($waktu->format("Y-m-d H:i:s")),
@@ -311,15 +326,11 @@ class Tryout extends MX_Controller {
             'mm_tryout_paket_id'=>$hasil['id_mm-tryout-paket']];
             $this->Mtryout->update_log_tryout($data);
             // update tb log tryout
-
-            // unset session userdata
-            $this->session->unset_userdata('id_mm-tryoutpaket');
-            // direct ke daftar
-            redirect(base_url('index.php/tryout/daftarpaket'));
+            
+            redirect(base_url('index.php/tryout'));
         }else{
-            redirect(base_url('index.php/tryout/daftarpaket'));
+            redirect(base_url('index.php/tryout'));
         }
-
     }
 
     //end fungsi ilham

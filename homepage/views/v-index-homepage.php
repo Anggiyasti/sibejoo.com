@@ -44,7 +44,7 @@
     <div class="se-pre-con">
     </div>
     <?php include 'v-header.php' ?>
-    <?php include 'v-revolution-slidder.php' ?>
+    <?php// include 'v-revolution-slidder.php' ?>
 
     <hr class="divider-color">
     <!-- content -->

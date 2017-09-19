@@ -369,22 +369,6 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
             v_offset:0
           }
         },
-        bullets: {
-          enable:true,
-          hide_onmobile:true,
-          hide_under:600,
-          style:"metis",
-          hide_onleave:true,
-          hide_delay:200,
-          hide_delay_mobile:1200,
-          direction:"horizontal",
-          h_align:"center",
-          v_align:"bottom",
-          h_offset:0,
-          v_offset:30,
-          space:5,
-          tmp:'<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
-        }
       },
       responsiveLevels: [1240, 1024, 778],
       visibilityLevels: [1240, 1024, 778],
@@ -476,7 +460,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         <div class="col-md-6">
           <div class="video-popup">                
             <a href="https://youtu.be/zqju4Baw-Fs" data-lightbox-gallery="youtube-video" title="Video">
-              <iframe width="420" height="315" src="https://www.youtube.com/v/zqju4Baw-Fs"></iframe>
+              <!-- <iframe width="420" height="315" src="https://www.youtube.com/v/zqju4Baw?autoplay=1"></iframe> -->
             </a>
           </div>
         </div>
