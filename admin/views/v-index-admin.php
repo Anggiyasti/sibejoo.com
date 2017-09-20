@@ -512,6 +512,35 @@
             </ul>
           </li>
 
+           <!-- menu import file excel -->
+      <li>
+        <a href="javascript:void(0);" data-target="#import_file" data-toggle="submenu" data-parent=".topmenu">
+          <span class="figure"><i class="ico-bubble-user"></i></span>
+          <span class="text">Import File Excel</span>
+          <span class="arrow"></span>
+        </a>
+
+        <ul id="import_file" class="submenu collapse ">
+          <li class="submenu-header ellipsis">Import </li>
+          <li >
+            <a href="<?=base_url('import_user/f_import_siswa')?>">
+              <span class="text">Import Siwa</span>
+            </a>
+          </li>
+          <li >
+            <a href="<?=base_url('import_user/f_import_guru')?>">
+              <span class="text">Import Guru </span>
+            </a>
+          </li>
+           <li >
+           <a href="<?=base_url('import_user/xlsx_backUp')?>">
+              <span class="text">Back Up File Excel </span>
+            </a>
+          </li>
+        </ul>
+
+      </li>
+<!-- menu laporan ortu -->
 
           <li>
             <a href="javascript:void(0);" data-target="#guru" data-toggle="submenu" data-parent=".topmenu">
