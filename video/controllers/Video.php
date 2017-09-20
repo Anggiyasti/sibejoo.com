@@ -160,6 +160,7 @@ class Video extends MX_Controller {
 
         //
         $data['bab_video'] = $this->load->Mvideos->get_video_as_sub($tingpelID);
+        // var_dump($data['bab_video']);
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . 'modules/templating/views/t-f-pagetitle.php',

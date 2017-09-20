@@ -187,7 +187,7 @@
              <div class="picture">
               <div class="course-item">
                <div class="course-date bg-color-3 clear-fix skill-bar">
-                <h5 class="font-16 title"><a href="#"><a href="<?=base_url("linetopik/learningline/".$item['babID']) ?>"><?=$item['namaTopik'] ?></a></a></h5>
+                <h5 class="font-16 title"><a href="#"><a onclick="getlearning(<?=$item['babID'] ?>)"><?=$item['namaTopik'] ?></a></a></h5>
                 
                 <div class="progress-item">
                 <div class="progress">
@@ -317,9 +317,12 @@
 
          </div>
          <center>
-           <?php if (!empty($item['link'])): ?>
-             <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
-           <?php endif ?>
+          <?php if ($item['link']=='' || $item['link']==' '): ?>
+            <iframe width="250" src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>"></iframe>
+          <?php endif ?>
+          <?php if ($item['namaFile']=='' || $item['namaFile']==' '): ?>
+            <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
+          <?php endif ?>
          </center>
 
        </div>
@@ -461,4 +464,24 @@ $('.tryout_select').change(function () {
  function show_modal_tryout() {
    $('#laporan_tryout').modal('show');
  }
+ function getlearning(id_bab) {
+  url_ajax = base_url+"linetopik/tampungid_bab";
+
+  var global_properties = {
+    judulBab: id_bab
+  };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "linetopik/learningline";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+}
 </script>

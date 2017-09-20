@@ -111,7 +111,7 @@ class Mvideos extends CI_Model
     $myquery = "SELECT video.id FROM tb_video video
     JOIN tb_subbab subab ON 
     video.subBabID = subab.id
-    WHERE subab.id = $id_sub
+    WHERE video.id = $id_sub
     ORDER BY video.id ASC
     LIMIT 1";
     $result = $this->db->query($myquery);
