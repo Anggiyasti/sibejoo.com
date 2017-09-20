@@ -90,7 +90,7 @@
       url: url_ajax,
       data: global_properties,
       success: function(data){
-        window.location.href = base_url + "passinggradefront/passinggrade_univ_wil";  
+        window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
         sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
       }
