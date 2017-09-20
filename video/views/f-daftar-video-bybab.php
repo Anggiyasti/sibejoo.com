@@ -152,13 +152,13 @@
       }
 
       function justroom(){
-        $('.screen').hide("slow");
-        $('.room').show("slow");
+        $('.room').hide("slow");
+        $('.screen').show("slow");
       }
 
       function justscreen(){
-        $('.screen').show("slow");
-        $('.room').hide("slow");
+        $('.room').show("slow");
+        $('.screen').hide("slow");
       }
 
       function semua(){

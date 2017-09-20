@@ -88,7 +88,7 @@
 					<!-- MENU UNTUK GURU -->
 					<!-- END MENU UNTUK GURU -->
       			<?php endif; ?>
-
+      			
       			 <!-- semua -->
                   <div id="konsulList">
 
