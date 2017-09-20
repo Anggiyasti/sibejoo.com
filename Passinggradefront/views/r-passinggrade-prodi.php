@@ -27,9 +27,9 @@
                     <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
                     </div>
                     <div class="content text-left flip p-25 pt-0">
-                      <h4 class="line-bottom mb-5" style="height: 80px;"><?=$key['prodi'] ?></h4>
+                      <h4 class="line-bottom mb-5" style="height: 100px;"><?=$key['prodi'] ?></h4>
                       <p>Passing Grade: <?=$key['passinggrade'] ?>%</p>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="<?=base_url()?>index.php/passinggradefront/ubahprofilesiswa/<?=$key['prodi']?>/<?=$key['universitas']?>">Set Prodi</a>
+                     <!-- <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="<?=base_url()?>index.php/passinggradefront/ubahprofilesiswa/<?=$key['prodi']?>/<?=$key['universitas']?>">Set Prodi</a> -->
                     </div>
                   </div>
                 </div>
@@ -40,11 +40,12 @@
           <div class="col-sm-12 col-md-3">
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
-                <h5 class="widget-title line-bottom">Search <span class="text-theme-color-2">Courses</span></h5>
+                <h5 class="widget-title line-bottom">Search Prodi</h5>
                 <div class="search-form">
-                  <form>
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariprodi"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
-                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                    <div class="input-group">
+                      <input type="search" class="form-control search-input" placeholder="Search"  name="keycari" title="Search for:" id="cariprodi">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>

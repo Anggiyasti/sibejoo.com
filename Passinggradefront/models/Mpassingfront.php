@@ -141,4 +141,30 @@
 		return $tampil->result_array();
     }
 
+public function get_cariuniv($wil,$kunciCari)
+{  
+		$this->db->distinct();
+		$this->db->select('*');
+		$this->db->from('tb_passing_grade');
+		$this->db->like('universitas',$kunciCari);
+		$this->db->where('status', '1');
+		$this->db->where('wilayah', $wil);
+		$this->db->group_by('universitas');
+  $query=$this->db->get();
+  return  $query->result_array();
+}
+
+
+ // tampil prodi berdasarkan univ
+    public function get_cariprodi($univ,$kunciCari) {
+        $this->db->distinct();
+		$this->db->select()->from('tb_passing_grade');
+		$this->db->like('prodi',$kunciCari);
+		$this->db->where('status', '1');
+		$this->db->where('universitas', $univ);
+		// $this->db->group_by('universitas', $univ);
+		$tampil=$this->db->get();
+		return $tampil->result_array();
+    }
+
  } ?>

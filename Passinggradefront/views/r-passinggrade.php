@@ -28,7 +28,7 @@
                     <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
                     </div>
                     <div class="content text-left flip p-25 pt-0">
-                      <h4 class="line-bottom mb-5" style="height: 80px;"><?=$key['universitas'] ?></h4>
+                      <h4 class="line-bottom mb-5" style="height: 100px;"><?=$key['universitas'] ?></h4>
                       <p>Passing Grade: <?=$key['passinggrade'] ?>%</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">View Prodi</a>
                     </div>
@@ -41,11 +41,11 @@
           <div class="col-sm-12 col-md-3">
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
-                <h5 class="widget-title line-bottom">Search <span class="text-theme-color-2">Courses</span></h5>
+                <h5 class="widget-title line-bottom">Search Universitas</h5>
                 <div class="search-form">
-                  <form>
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariuniv"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
-                      <input type="text" placeholder="Click to Search" class="form-control search-input">
+                      <input type="search" class="form-control search-input" placeholder="Search"  name="keycari" title="Search for:" id="cariuniv">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>
@@ -113,7 +113,7 @@
       success: function(data){
         window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
-        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+        // sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
       }
 
     });

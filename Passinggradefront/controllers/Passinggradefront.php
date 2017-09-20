@@ -14,6 +14,9 @@ class Passinggradefront extends MX_Controller {
         // $this->load->model('workout1/Mworkout1');
         $this->load->helper(array('form', 'url', 'file', 'html'));
         $this->load->library('form_validation');
+        $this->load->library('sessionchecker');
+        $this->sessionchecker->checkloggedin();
+        
     }
 
 	public function index() {
@@ -84,12 +87,64 @@ class Passinggradefront extends MX_Controller {
 
     }
 
-    function tampunguniv(){
+    public function tampunguniv(){
         $id = $this->input->post('univ');
         $this->session->set_userdata('nama_univ', $id);
         echo json_encode($id);
 
     }
+
+    public function cariuniv(){
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Passinggrade',
+            'judul_header' =>'Universitas',
+            'judul_header2' =>'Universitas'
+            );
+        $kunciCari=htmlspecialchars($this->input->get('keycari'));
+        $wil = $this->session->userdata['id_wil'];
+
+        $data['data']=$this->Mpassingfront->get_cariuniv($wil,$kunciCari);
+    
+        $data['files'] = array(
+
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+
+            APPPATH . 'modules/passinggradefront/views/r-passinggrade.php',
+
+            APPPATH.'modules/testimoni/views/r-footer.php',
+
+            );
+
+        $this->parser->parse('templating/r-index', $data);
+
+    }
+
+
+    public function cariprodi(){
+
+        $univ = $this->session->userdata['nama_univ'];
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Passing grade',
+            'judul_header' =>$univ,
+            'judul_header2' =>'Program Studi'
+            );
+        $kunciCari=htmlspecialchars($this->input->get('keycari'));
+
+        $data['data']=$this->Mpassingfront->get_cariprodi($univ,$kunciCari);
+    
+        $data['files'] = array(
+
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+
+            APPPATH . 'modules/passinggradefront/views/r-passinggrade-prodi.php',
+
+            APPPATH.'modules/testimoni/views/r-footer.php',
+        );
+
+        $this->parser->parse('templating/r-index', $data);
+
+    }
+
 
 
     public function ubahprofilesiswa($jur,$univ) {
