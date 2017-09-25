@@ -5,19 +5,7 @@
  */
 class Siswa extends MX_Controller {
 
-    function get_status_login(){
-        $log_in = $this->session->userdata('loggedin');
-        return $log_in;        
-    }
-
-    function get_hak_akses(){
-        $hak_akses = $this->session->userdata('HAKAKSES');        
-        return $hak_akses;        
-    }
-
-
-
-    public function __construct() {
+  public function __construct() {
         parent::__construct();
         $this->load->model('msiswa');
         $this->load->model('register/mregister');
@@ -34,8 +22,15 @@ class Siswa extends MX_Controller {
         $this->sessionchecker->checkloggedin();
     }
 
-    
+    function get_status_login(){
+        $log_in = $this->session->userdata('loggedin');
+        return $log_in;        
+    }
 
+    function get_hak_akses(){
+        $hak_akses = $this->session->userdata('HAKAKSES');        
+        return $hak_akses;        
+    }
     public function profilesetting() {
         if ($this->get_status_login()) {
             $data = array(
@@ -316,34 +311,32 @@ public function daftar() {
     }
 }
 
-public function daftarsiswa() {
-    $hak_akses = $this->get_hak_akses();
-
-    if ($this->get_status_login()&& $hak_akses=="admin") {
-        $data['judul_halaman'] = "Pengelolaan Data Siswa";
-        $data['files'] = array(
-            APPPATH . 'modules/siswa/views/v-form-siswa.php',
-            );
-
-        $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-        $data['datKelas']=$this->msiswa->get_kelas();
-        $data['cabang'] = $this->mcabang->get_all_cabang();
-
-        $this->parser->parse('admin/v-index-admin', $data);
-    }else{
-        redirect('login');
-    }
+public function daftarsiswa() 
+{
+  $hak_akses = $this->get_hak_akses();
+  if ($this->get_status_login()&& $hak_akses=="admin")
+  {
+    $data['judul_halaman'] = "Pengelolaan Data Siswa";
+    $data['files'] = array(
+      APPPATH . 'modules/siswa/views/v-form-siswa.php',
+    );
+    $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
+    $data['datKelas']=$this->msiswa->get_kelas();
+    $data['cabang'] = $this->mcabang->get_all_cabang();
+    $this->parser->parse('admin/v-index-admin', $data);
+  }else{
+    redirect('login');
+  }
 }
 
 //function untuk menyimpan data pendaftaran user siswa ke database
-public function savesiswa(){
-   $hak_akses = $this->get_hak_akses();
-
-   if ($this->get_status_login()&& $hak_akses=="admin") {   
+public function savesiswa()
+{
+  $hak_akses = $this->get_hak_akses();
+  if ($this->get_status_login()&& $hak_akses=="admin") {   
     //load library n helper
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
-
     //syarat pengisian form regitrasi siswa
     $this->form_validation->set_rules('namapengguna', 'Nama Pengguna', 'trim|required|min_length[5]|max_length[12]|is_unique[tb_pengguna.namaPengguna]');
     $this->form_validation->set_rules('namadepan', 'Nama Depan', 'required');
@@ -352,7 +345,6 @@ public function savesiswa(){
     $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'required|matches[passconf]|min_length[5]');
     $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
     $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tb_pengguna.email]');
-
     //pesan error atau pesan kesalahan pengisian form registrasi siswa
     $this->form_validation->set_message('is_unique', '*Nama Pengguna atau email sudah terpakai');
     $this->form_validation->set_message('max_length', '*Nama Pengguna maksimal 12 karakter!');
@@ -360,74 +352,86 @@ public function savesiswa(){
     $this->form_validation->set_message('required', '*tidak boleh kosong!');
     $this->form_validation->set_message('matches', '*Kata Sandi tidak sama!');
     $this->form_validation->set_message('valid_email', '*silahkan masukan alamat email anda dengan benar');
-
     //pengecekan pengisian form regitrasi siswa
     if ($this->form_validation->run() == FALSE) {
-        //jika tidak memenuhi syarat akan menampilkan pesan error/kesalahan di halaman regitrasi siswa
-        $this->daftarsiswa();
+    //jika tidak memenuhi syarat akan menampilkan pesan error/kesalahan di halaman regitrasi siswa
+      $this->daftarsiswa();
     } else {
-        //data siswa
-        $namaDepan = htmlspecialchars($this->input->post('namadepan'));
-        $namaBelakang = htmlspecialchars($this->input->post('namabelakang'));
-        $alamat = htmlspecialchars($this->input->post('alamat'));
-        $noKontak = htmlspecialchars($this->input->post('nokontak'));
+    //data siswa
+      $namaDepan = htmlspecialchars($this->input->post('namadepan'));
+      $namaBelakang = htmlspecialchars($this->input->post('namabelakang'));
+      $alamat = htmlspecialchars($this->input->post('alamat'));
+      $noKontak = htmlspecialchars($this->input->post('nokontak'));
 
+      $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
+      $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
+      $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
+      $cabangID = htmlspecialchars($this->input->post('cabang'));
+      $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
 
-        $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
-        $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
-        $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
-        $cabangID = htmlspecialchars($this->input->post('cabang'));
-        $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
+    //data akun
+      $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
+      $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
+      $email = htmlspecialchars($this->input->post('email'));
+      $id_kk=htmlspecialchars($this->input->post('kk'));
+      $hakAkses = 'siswa';
 
-        //data akun
-        $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
-        $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
-        $email = htmlspecialchars($this->input->post('email'));
-        $id_kk=htmlspecialchars($this->input->post('kk'));
-        $hakAkses = 'siswa';
-
-        //data array akun
-        $data_akun = array(
-            'namaPengguna' => $namaPengguna,
-            'kataSandi' => $kataSandi,
-            'eMail' => $email,
-            'hakAkses' => $hakAkses,
-            );
-
-
-        //melempar data guru ke function insert_pengguna di kelas model
-        $data['mregister'] = $this->mregister->insert_pengguna($data_akun);
-        //untuk mengambil nilai id pengguna untuk di jadikan FK pada tabel siswa
-        $data['tb_pengguna'] = $this->mregister->get_idPengguna($namaPengguna)[0];
-
-        $penggunaID = $data['tb_pengguna']['id'];
-
-        //session buat id
-        $id_arr = array('id' => $penggunaID);
-
-        //data array siswa
-        $data_siswa = array(
-            'namaDepan' => $namaDepan,
-            'namaBelakang' => $namaBelakang,
-            'alamat' => $alamat,
-            'noKontak' => $noKontak,
-            'namaSekolah' => $namaSekolah,
-            'alamatSekolah' => $alamatSekolah,
-            'penggunaID' => $penggunaID,
-            'tingkatID' => $tingkatID,
-            'cabangID' => $cabangID,
-            'noIndukNeutron' => $noIndukNeutron,
-            'id_kelompok_kelas'=>$id_kk
-            );
-
-            //melempar data guru ke function insert_guru di kelas model
-        $data['mregister'] = $this->mregister->insert_siswabyadmin($data_siswa, $email, $namaPengguna);
-        redirect(base_url('index.php/siswa/daftarsiswa'));
+    //data array akun
+      $data_akun = array(
+        'namaPengguna' => $namaPengguna,
+        'kataSandi' => $kataSandi,
+        'eMail' => $email,
+        'hakAkses' => $hakAkses,
+      );
+    //melempar data guru ke function insert_pengguna di kelas model
+      $this->mregister->insert_pengguna($data_akun);
+    //untuk mengambil nilai id pengguna untuk di jadikan FK pada tabel siswa
+      $penggunaID = $this->mregister->get_idPengguna($namaPengguna)[0]['id'];
+    //session buat id
+      $id_arr = array('id' => $penggunaID);
+    //data array siswa
+      $data_siswa = array(
+        'namaDepan' => $namaDepan,
+        'namaBelakang' => $namaBelakang,
+        'alamat' => $alamat,
+        'noKontak' => $noKontak,
+        'namaSekolah' => $namaSekolah,
+        'alamatSekolah' => $alamatSekolah,
+        'penggunaID' => $penggunaID,
+        'tingkatID' => $tingkatID,
+        'cabangID' => $cabangID,
+        'noIndukNeutron' => $noIndukNeutron,
+        'id_kelompok_kelas'=>$id_kk
+      );
+    //melempar data guru ke function insert_guru di kelas model
+      $this->mregister->insert_siswabyadmin($data_siswa, $email, $namaPengguna);
+    // <akun ortu>
+    //get siswaId
+      $siswaID= $this->mregister->get_idSiswa($namaPengguna)[0]['siswaID'];
+      $namapengguna_ortu="P_".$namaPengguna;
+    //data pengguna orangtua
+      $data_pengguna_ortu = array(
+        'namaPengguna' => $namapengguna_ortu,
+        'kataSandi' => $kataSandi,
+        'hakAkses' => "ortu",
+      );
+    //inser data pengguna ortu
+      $this->mregister->insert_pengguna($data_pengguna_ortu);
+    //untuk mengambil nilai id pengguna untuk di jadikan FK pada tabel orangtua
+      $penggunaID_ortu= $this->mregister->get_idPengguna($namapengguna_ortu)[0]['id'];
+    //data orangtua
+      $data_ortu = array(
+        "namaOrangTua" => "orangtua_".$namaDepan,
+        "siswaID"=> $siswaID,
+        "penggunaID"=>$penggunaID_ortu,
+      );
+      $this->mregister->insert_orangtua($data_ortu);
+    // </akun ortu>
+      redirect(base_url('index.php/siswa/daftarsiswa'));
     }
-
-}else{
+  }else{
     redirect('login');
-}
+  }
 }
 # -------------------------- #
 public function deleteSiswa() {
