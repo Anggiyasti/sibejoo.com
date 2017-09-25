@@ -153,9 +153,8 @@ class Ortuback_model extends CI_Model{
 
 	public function get_siswa_not_ortu($records_per_page,$pageSelek,$keySearch)
 	{
-		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,p.email,p.namaPengguna, c.namaCabang");
+		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,p.email,p.namaPengguna");
 		$this->db->join("tb_pengguna p","p.id=s.penggunaID");
-		$this->db->join("tb_cabang c","c.id=s.cabangID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id",'left outer');
 		$this->db->where("tua.id is null");
 		$this->db->where("p.status",1);
@@ -166,11 +165,10 @@ class Ortuback_model extends CI_Model{
 
 	public function get_ortu_siswa($records_per_page,$pageSelek,$keySearch)
 	{
-		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,penggunaSiswa.email,penggunaSiswa.namaPengguna as np_siswa,penggunaOrtu.namaPengguna as np_ortu, c.namaCabang,tua.namaOrangTua");
+		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,penggunaSiswa.email,penggunaSiswa.namaPengguna as np_siswa,penggunaOrtu.namaPengguna as np_ortu,tua.namaOrangTua");
 		$this->db->join("tb_pengguna penggunaSiswa","penggunaSiswa.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id");
 		$this->db->join("tb_pengguna penggunaOrtu","penggunaOrtu.id=tua.penggunaID");
-		$this->db->join("tb_cabang c","c.id=s.cabangID");
 		
 		$query=$this->db->get("tb_siswa s",$records_per_page,$pageSelek);
 		return $query->result();
@@ -182,7 +180,6 @@ class Ortuback_model extends CI_Model{
 		$this->db->join("tb_pengguna penggunaSiswa","penggunaSiswa.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id");
 		$this->db->join("tb_pengguna penggunaOrtu","penggunaOrtu.id=tua.penggunaID");
-		$this->db->join("tb_cabang c","c.id=s.cabangID");
 		
 		$query=$this->db->get("tb_siswa s");
 		return $query->num_rows();

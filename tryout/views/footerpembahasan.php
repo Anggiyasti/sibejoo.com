@@ -1,18 +1,23 @@
+<!-- ini START Template Footer -->
 <script type="text/javascript" src="<?= base_url('assets/library/jquery/js/jquery.min.js'); ?>"></script>
+<!--/ END Template Footer -->
+<!--<script type="text/javascript" src="<?= base_url('assets/library/jquery/js/jquery-migrate.min.js'); ?>"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/library/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/library/core/js/core.min.js'); ?>"></script>
 <script>
+
     function disableF5(e) {
         if ((e.which || e.keyCode) == 116)
             e.preventDefault();
     }
-
+    
     $(document).on("keydown", disableF5);
-
     $(document).bind("contextmenu", function (e) {
         e.preventDefault();
     });
 </script>
+
+
 <script type="text/javascript" src="<?= base_url('assets/plugins/owl/js/owl.carousel.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/javascript/pages/frontend/home.js'); ?>"></script>
 

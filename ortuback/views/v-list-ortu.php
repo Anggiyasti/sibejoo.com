@@ -44,7 +44,6 @@
 								<th>Nama Pengguna</th>
 								<th>Nama Siswa</th>
 								<th>Email</th>
-								<th>Cabang Neutron</th>
 							</tr>
 						</thead>
 

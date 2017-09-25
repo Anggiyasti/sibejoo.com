@@ -603,6 +603,27 @@ function lihat_konsultasi(id){
 });
 // KETIKA BAB CHANGE, LOOAD GRAFIK
 
+
+function konsultasi(pertanyaanID){
+   url_ajax = base_url+"konsultasi/tamp_single";
+
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+}
 </script>
 <!-- FILTER PENCARIAN TO -->
 

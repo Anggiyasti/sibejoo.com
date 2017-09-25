@@ -222,7 +222,10 @@ class Tryout extends MX_Controller {
     public function mulaipembahasan() {
         if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
             $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
+            $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];
+            $data['rekap_jawaban'] = json_decode($this->Mtryout->get_report_paket_by_mmid($data)->rekap_hasil_koreksi);
             $data['topaket'] = $this->Mtryout->datatopaket($id);
+            $jumlah_soal = count($data['rekap_jawaban']);
 
             $id_paket = $this->Mtryout->datapaket($id)[0]->id_paket;
 
@@ -230,6 +233,16 @@ class Tryout extends MX_Controller {
             $query = $this->load->Mtryout->get_pembahasan($id_paket);
             $data['soal'] = $query['soal'];
             $data['pil'] = $query['pil'];
+            
+            for ($i=0; $i <$jumlah_soal ; $i++) { 
+                $rekap_id = $data['rekap_jawaban'][$i]->id_soal;
+                $soal_id = $data['soal'][$i]['soalid'];
+
+                if ($rekap_id == $soal_id) {
+                    $data['soal'][$i]['status_koreksi'] = $data['rekap_jawaban'][$i]->status_koreksi;
+                }
+            }
+
 
             $this->load->view('v-pembahasanto.php', $data);
             $this->load->view('footerpembahasan', $data);

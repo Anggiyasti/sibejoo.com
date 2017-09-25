@@ -864,7 +864,7 @@ function ajax_daftar_konsultasi(){
         
         $row[] ='<a class="btn btn-sm btn-success latihan-'.$list_item['id'].'"  
         title="Lihat Konsultasi" 
-        href='.base_url()."konsultasi/singlekonsultasi/".$list_item['id'].'
+        onclick="konsultasi('.$list_item['id'].')"
         "><i class="ico-search"></i></a>';
 
 

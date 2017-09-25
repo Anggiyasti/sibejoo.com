@@ -315,11 +315,6 @@ class Ortuback extends MX_Controller {
 		$no=$pageSelek+1;
 		foreach ($datArr as $value) {
 			$nama=$value->namaDepan." ".$value->namaBelakang;
-			if ($value->namaCabang=="") {
-				$namaCabang="non-neutron";
-			} else {
-				$namaCabang=$value->namaCabang;
-			}
 			 $tb_siswa.='<tr>
 			 	 <td><span class="checkbox custom-checkbox custom-checkbox-inverse">
 								<input type="checkbox" name='.'token'.$n.' id='.'soal'.$value->idSiswa.' value='.$value->idSiswa.'>
@@ -329,7 +324,6 @@ class Ortuback extends MX_Controller {
 						<td>'.$value->namaPengguna.'</td>
 						<td>'.$nama.'</td>
 						<td>'.$value->email.'</td>
-						<td>'.$namaCabang.'</td>
 			 </tr>
 			 ';
 			$n++;
