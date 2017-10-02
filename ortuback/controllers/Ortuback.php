@@ -29,7 +29,7 @@ class Ortuback extends MX_Controller {
 	public function loadparser($data){
 		$this->hakakses = $this->gethakakses();
 		if ($this->hakakses=='ortu') {
-			$this->parser->parse('templating/index', $data);
+			$this->parser->parse('templating/r-index', $data);
 		}elseif ($this->hakakses=='siswa'){
 			$this->parser->parse('templating/r-index', $data); 		
 		}else {

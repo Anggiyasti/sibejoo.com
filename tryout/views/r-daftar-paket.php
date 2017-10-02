@@ -33,6 +33,35 @@
     <div class="section-content">
       <div class="row">
         <div class="col-md-12">
+          <?php if ($this->session->userdata['HAKAKSES']=='ortu'): ?>
+            <div class="col-md-12">
+          <h4><b>Paket Soal yang Sudah Dikerjakan</b></h4>
+        </div>
+        <?php if($paket_dikerjakan==array()): ?>
+          <div class="col-md-12">
+            <h5>Tidak ada paket soal.</h5>
+          </div>
+        <?php else: ?>
+          <?php foreach ($paket_dikerjakan as $paketitem): ?>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
+                  <div class="media-body">
+                    <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
+                    <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
+
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
+                    <?php if ($status_to=="done"): ?>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+          <?php endforeach ?>
+        <?php endif; ?>
+        
+      </div>
+    <?php else: ?>
+
           <h4><b>Daftar Paket TO yang Belum Dikerjakan</b></h4>
         </div>
         <?php if ($paket==array()): ?>
@@ -86,6 +115,7 @@
         <?php endif; ?>
         
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </section>
