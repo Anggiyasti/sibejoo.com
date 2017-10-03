@@ -23,6 +23,7 @@
 		$this->db->select()->from('tb_passing_grade');
 		$this->db->where('status', '1');
 		$this->db->group_by('universitas');
+		$this->db->order_by('id_passing', 'desc');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -46,6 +47,16 @@
 		$this->db->where('id_passing', $a);
 		return $this->db->update('tb_passing_grade', $arr);
 	}
+
+
+	public function up_passing($data)
+ 	{
+ 		$this->db->set($data['datpas']);
+ 		$this->db->where('id_passing',$data['id_passing']);
+ 		$this->db->update('tb_passing_grade');
+
+
+ 	}
 
 	function get_edit_passing($id){
 		$this->db->select()->from('tb_passing_grade');
