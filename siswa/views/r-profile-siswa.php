@@ -322,7 +322,7 @@
 
                                                    
 
-                                                <input type="file" id="file" name="photo" class="btn btn-default" required="true"/>
+                                                <input type="file" id="file" name="photo" class="btn btn-default" required="true" onchange="ValidateSingleInput(this);"/>
 
                                                 </div>
 
@@ -505,4 +505,39 @@
         </div>
       </div>
 </section>
+<script type="text/javascript">
+var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
 
+function ValidateSingleInput(oInput) {
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        console.log(sFileName);
+         if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+             
+            if (!blnValid) {
+              swal('Silahkan cek type extension gambar!');
+             // $('#notif').show();
+                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                // oInput.value = "";
+                return false;
+            }
+
+            file = oInput.files[0];
+            if (file.size > 508 ) {
+               // $('#size').show();
+               return false;
+            } 
+            
+        }
+    }
+    return true;
+}
+</script>
