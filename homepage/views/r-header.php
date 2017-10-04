@@ -7,7 +7,7 @@
             <div class="widget no-border m-0">
               <ul class="list-inline font-13 sm-text-center mt-5">
                 <li>
-                  <a class="text-white" href="#"><i class="fa fa-phone"></i> (022)87805676</a>
+                  <a class="text-white" href="telp:(022)87805676"><i class="fa fa-phone"></i> (022)87805676</a>
                 </li>
                 <li>
                   <a href="mailto:contact@sibejoo.com" class="text-white" href="#"><i class="fa fa-envelope-o"></i> info@sibejoo.com</a>
@@ -21,9 +21,9 @@
           <div class="col-md-8">
             <div class="widget no-border m-0 mr-15 pull-right flip sm-pull-none sm-text-center">
               <ul class="styled-icons icon-circled icon-sm pull-right flip sm-pull-none sm-text-center mt-sm-15">
-                <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
+                <li><a href="https://www.facebook.com/Sibejoo-239504716124473"><i class="fa fa-facebook text-white"></i></a></li>
+                <li><a href="https://twitter.com/sibejoo"><i class="fa fa-twitter text-white"></i></a></li>
+                <li><a href="https://www.instagram.com/sibejoo"><i class="fa fa-instagram text-white"></i></a></li>
               </ul>
             </div>
           </div>

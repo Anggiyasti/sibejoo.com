@@ -1,9 +1,5 @@
 <?php 	
 class Bug extends MX_Controller {
-
-
-
-
 	function __construct(){
 		$this->load->model('mbug');
 		$this->load->library('parser');
