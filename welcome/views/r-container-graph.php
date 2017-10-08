@@ -149,6 +149,7 @@
    <div class="row">
     <!-- PESAN -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+      <div class="row">
      <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
 
       <span class="text-theme-color-1"> Pesan</span></h2>
@@ -162,8 +163,10 @@
         </div>
       <?php endforeach ?>
       <br><br><br>
-      <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br>
+      
 
+    </div>
+    <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br>
     </div>
     <!-- PESAN -->
 

@@ -96,12 +96,11 @@
          <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
           <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
         <?php endif ?></a>
-        <ul class="dropdown" style="right: auto; display: none;">
+        <ul class="dropdown" style="right: auto; display: none;">++
          <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a></li>
          <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a></li>
          <li><a href="<?=base_url('donasi') ?>">Donasi<span class="indicator"></span></a></li>
          <li><a href="<?=base_url('token/settoken') ?>">Token<span class="indicator"></span></a></li>
-
          <li><a href="<?=base_url('logout') ?>">Logout<span class="indicator"></span></a></li>
        </li>
      </li>
@@ -111,18 +110,25 @@
   <li><a href="<?=base_url('welcome') ?>">Welcome<span class="indicator"></a></li>
   <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
   <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
-  <li><a href="<?=base_url('welcome') ?>">Latihan<span class="indicator"></a></li>
-  <li><a href="<?=base_url('welcome') ?>">Pesan<span class="indicator"></a></li>
+  <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
+  <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
+  <li><a href="javascript:void(0);" onclick="pilihwilayah(1)">Passing Grade<span class="indicator"></a></li>
   <li><a href="<?=base_url('welcome') ?>">Halo, <?=$this->session->userdata('USERNAME') ?>! 
     <?php if ($this->session->userdata('member')==1): ?>
       <span class="label label-info">Member</span>
     <?php endif ?>
-    <span class="indicator"></a></li>     
+    <span class="indicator"></a>
+      <ul class="dropdown" style="right: auto; display: none;">
+    <li><a href="<?=base_url('logout') ?>">Logout<span class="indicator"></span></a></li>
+    </ul>
+  </li>     
     <?php endif ?>
 
 
 
   </ul>
+
+
 
   
 

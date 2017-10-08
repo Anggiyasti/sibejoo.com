@@ -162,7 +162,7 @@
               </tbody>
             </table>
           <?php endif; ?>
-        <?php endif; ?>
+      
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
@@ -205,6 +205,8 @@
             </tbody>
           </table>
         <?php endif; ?>
+        <?php endif; ?>
+
       </div>
       
     </div>

@@ -29,6 +29,7 @@
                         <!-- START panel -->
                         <div class="panel panel-default">
                             <!-- panel heading/header -->
+
                             <div class="panel-heading">
                                 <h3 class="panel-title">Form Passing Grade</h3>
                             </div>
@@ -36,40 +37,40 @@
                             <!-- panel body -->
                             <div class="panel-body">
                             <?php echo $this->session->flashdata('msg'); ?>
-                                <form class="form-horizontal form-bordered" action="<?=base_url()?>index.php/passinggrade/tambah_passing" method="post">
-                                    
+                                <!-- <form class="form-horizontal form-bordered" method="post"> -->
+                            
                                    
                                     <div class="form-group">
                                         <label class="col-sm-2">Kode</label>
-                                        <div class="col-sm-5">
+                                        <div class="input-group">
                                             <input class="form-control" name="kode" placeholder="Kode" type="text" value="<?php echo set_value('kode'); ?>" />
                                             <span class="text-danger"><?php echo form_error('kode'); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Wilayah</label>
-                                        <div class="col-sm-5">
+                                        <div class="input-group">
                                             <input type="text" name="wilayah" class="form-control"value="<?php echo set_value('wilayah'); ?>" >
                                             <span class="text-danger"><?php echo form_error('wilayah'); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Universitas</label>
-                                        <div class="col-sm-5">
+                                        <div class="input-group">
                                             <input type="text" name="universitas" class="form-control" value="<?php echo set_value('universitas'); ?>" >
                                             <span class="text-danger"><?php echo form_error('universitas'); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Program studi</label>
-                                        <div class="col-sm-5">
+                                        <div class="input-group">
                                             <input type="text" name="prodi" class="form-control" >
                                             <span class="text-danger"><?php echo form_error('prodi'); ?></span>
                                             </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Passing Grade</label>
-                                        <div class="col-sm-5">
+                                        <div class="input-group">
                                             <input type="text" name="passinggrade" class="form-control" >
                                             <span class="text-danger"><?php echo form_error('passinggrade'); ?></span>
                                             </div>
@@ -80,18 +81,21 @@
                                         <div class="form-group no-border">
                                             <!-- <label class="col-sm-3 control-label">Button</label> -->
                                             <div class="col-sm-9">
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                <button type="submit" class="btn btn-primary" onclick="save()">Simpan</button>
                                                 <!-- <button type="reset" class="btn btn-danger">Reset button</button> -->
                                             </div>
                                         </div> 
                                     </div>
-                                </form>
+                                <!-- </form> -->
                             </div>
                             <!-- panel body -->
                         </div>
                         <!--/ END form panel -->
                     </div>
                 </div>
+
+
+
                 <!--/ END row -->
 
                 <!-- START row -->
@@ -116,5 +120,51 @@
 <script>
 
 CKEDITOR.replace( 'editor1' );
+
+
+function save(){
+        var datas = {
+            kode : $('input[name=kode]').val(),
+            wilayah : $('input[name=wilayah]').val(),
+            universitas:$('input[name=universitas]').val(),
+            prodi:$('input[name=prodi]').val(),
+            passinggrade:$('input[name=passinggrade]').val(),
+        }
+        if (datas.kode == "" || datas.passinggrade == "") {
+            swal('Tidak boleh kosong');
+        }else{
+            url = base_url+"passinggrade/add_passinggrade";
+            // do_upload
+            $.ajax({
+                url:url,
+                data:datas,
+                dataType:"TEXT",
+                type:"POST",
+                success:function(){
+            swal({
+                    title: "passinggrade berhasil ditambahkan!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Selesai",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+            function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href = base_url+"passinggrade/daftar_pass";
+                    } 
+                    else {
+                        swal("Tambah Data dibatalkan");
+                    }
+                });
+            },      error:function(){
+                    
+                }
+            });
+
+            
+        }
+    }
 
 </script>

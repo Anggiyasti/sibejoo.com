@@ -19,6 +19,41 @@ class Passinggrade extends MX_Controller {
 		$this->load->model('Mpassing');
 	}
 
+    //form tambah passing grade
+    public function t_pass()
+    {  
+        $data['judul_halaman'] = "Dashboard Admin";
+        $data['files'] = array(
+            APPPATH . 'modules/passinggrade/views/add_passing.php',
+            
+            );
+         $hakAkses=$this->session->userdata['HAKAKSES'];
+                // cek hakakses 
+        if ($hakAkses=='admin') {
+        // jika admin
+            $this->parser->parse('admin/v-index-admin', $data);
+        } elseif($hakAkses=='guru'){
+                 // jika guru
+             redirect(site_url('guru/dashboard/'));       
+        }else{
+            // jika siswa redirect ke welcome
+            redirect(site_url('welcome'));
+        }
+    }
+
+    public function add_passinggrade(){
+        $post=$this->input->post();
+            $data['kode']=$post['kode'];
+            $data['wilayah']=$post['wilayah'];
+            $data['universitas']=$post['universitas'];
+            $data['prodi']=$post['prodi'];
+            $data['passinggrade']=$post['passinggrade'];
+            $this->Mpassing->insert_passing($data);
+            $info="Data Team Berhasil disimpan dan foto berhasil di-upload ";
+           
+        echo json_encode($info);    
+    }
+
     // fungsi untuk menampilkan berdasarkan universitas
     public function univ_wilayah($wil)
     {
@@ -91,51 +126,6 @@ class Passinggrade extends MX_Controller {
 	}
 
 	
-	public function t_pass()
-	{  //hak akses jika admin
-
-
-        $data['judul_halaman'] = "Dashboard Admin";
-        $data['files'] = array(
-            APPPATH . 'modules/passinggrade/views/add_passing.php',
-            
-            );
-         $this->parser->parse('admin/v-index-admin', $data);
-	}
-
-    //ubah passing grade
-    public function edit_pass($id) {
-        
-        
-        if ($this->input->post('update')) 
-        {
-            $this->Mpassing->update_passing();
-            
-            if ($this->db->affected_rows())
-            {
-                //bila sukses akan menampilkan pesan 
-                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Updated </div>');
-                redirect('Passinggrade/daftar_pass');
-            }
-            else
-            {
-                //bila gagal akan menampilkan pesan
-                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-                redirect('Passinggrade/daftar_pass');
-            }
-        }
-        else
-        {    
-            $data['editdata'] = $this->Mpassing->get_edit_passing($id);
-            $data['judul_halaman'] = "Dashboard Admin";
-            $data['files'] = array(
-            APPPATH . 'modules/passinggrade/views/edit_passing.php',
-            );
-         
-        
-        }
-        $this->parser->parse('admin/v-index-admin', $data);
-    }
 
     //TAMPIL PASSING GRADE BANKEND
     public function daftar_pass()
@@ -149,40 +139,118 @@ class Passinggrade extends MX_Controller {
             APPPATH . 'modules/passinggrade/views/daftar_passing.php',
             
             );
-         $this->parser->parse('admin/v-index-admin', $data);
+         $hakAkses=$this->session->userdata['HAKAKSES'];
+                // cek hakakses 
+        if ($hakAkses=='admin') {
+        // jika admin
+            $this->parser->parse('admin/v-index-admin', $data);
+        } elseif($hakAkses=='guru'){
+                 // jika guru
+             redirect(site_url('guru/dashboard/'));       
+        }else{
+            // jika siswa redirect ke welcome
+            redirect(site_url('welcome'));
+        }
+
+    }
+
+    
+
+   public function ajax_get_all_passing()
+    {
+        $passing= $this->load->Mpassing->getpassing();
+        $data = array();
+        //var_dump($list);
+        //mengambil nilai list
+        $baseurl = base_url();
+        $no='1';
+        foreach ( $passing as $list_passing ) {
+            $n='1';
+            
+            $row = array();
+            
+            $row[] = $no;
+            $row[] =$list_passing['kode'];
+            $row[] =$list_passing['wilayah'];
+            $row[] =$list_passing['universitas'];
+            $row[] =$list_passing['prodi'];
+            $row[] =$list_passing['passinggrade'];
+            $row[] = '<a class="btn btn-sm btn-warning" href="form_update_passing/'.$list_passing['id_passing'].'"  title="Ubah Video"
+              )"
+              >
+              <i class="ico-file5"></i>
+              </a> 
+              <a class="btn btn-sm btn-danger"  
+              title="Hapus" onclick="drop_passing('."'".$list_passing['id_passing']."'".')">
+              <i class="ico-remove"></i></a> 
+               ';
+          
+         
+
+          $data[] = $row;
+          $n++;
+          $no++;
+
+        }
+
+        $output = array(
+            "data"=>$data,
+            );
+        echo json_encode( $output );
+    }
+
+
+    // menampilkan  form update materi
+    public function form_update_passing($id_passing)
+    {
+        $data['editdata']=$this->Mpassing->get_edit_passing($id_passing);
+        $data['files'] = array(
+            APPPATH . 'modules/passinggrade/views/edit_passing.php',
+            );
+        $data['judul_halaman'] = "Form Update Materi";
         
-        // $this->load->view('admin/layout/header');
-        // $this->load->view('daftar_passing', $data);
-        // $this->load->view('admin/layout/footer');
-    // }
-    //     //hak akses bila guru
-    //     elseif ($this->session->userdata('id_guru')) {
-        // $data['data']   = $this->Mpassing->getpassing();
-        // $this->load->view('guru/layout/header');
-        // $this->load->view('daftar_passing', $data);
-        // $this->load->view('guru/layout/footer');
-    // }
-
+       $hakAkses=$this->session->userdata['HAKAKSES'];
+                // cek hakakses 
+        if ($hakAkses=='admin') {
+        // jika admin
+            $this->parser->parse('admin/v-index-admin', $data);
+        } elseif($hakAkses=='guru'){
+                 // jika guru
+             redirect(site_url('guru/dashboard/'));       
+        }else{
+            // jika siswa redirect ke welcome
+            redirect(site_url('welcome'));
+        }
     }
 
-    //MEGHAPUS PASSING GRADE BACKEND
-    public function delete_pass($id) {
+
+    // update passing grade
+    public function up_passinggrade(){
+        $data['id_passing'] = $this->input->post('id_passing');
+        $kode=htmlspecialchars($this->input->post('kode'));
+        $wilayah = htmlspecialchars($this->input->post('wilayah'));
+        $universitas = $this->input->post('universitas');
+        $prodi= htmlspecialchars($this->input->post('prodi'));
+        $passinggrade = htmlspecialchars($this->input->post('passinggrade'));
+        $data['datpas']=array(
+                        'kode'=>$kode,
+                        'wilayah'=>$wilayah,
+                        'universitas'=>$universitas,
+                        'prodi'=>$prodi,
+                        'passinggrade'=>$passinggrade);
+
+        
+        $this->Mpassing->up_passing($data);
+        redirect(site_url('passinggrade/daftar_pass'));
+    }
+
+    // menghapus passing grade
+    public function del_passing($id)
+    {
         $this->Mpassing->delete_passing($id);
-
-        if ($this->db->affected_rows()) 
-        {
-            //bila sukses akan menampilkan pesan
-            $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Deleted </div>');
-            redirect('passinggrade/daftar_pass');    
-        }
-        else
-        {
-            //bila gagal akan menampilkan pesan 
-            $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Failed </div>');
-            redirect('passinggrade/daftar_pass');
-        }
-
     }
+
+    
 
     // tampilan awal passing grade FRONTEND
     public function pass_grade()
