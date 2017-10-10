@@ -76,14 +76,14 @@ class Homepage extends MX_Controller {
                 # konfig link
 
         $this->pagination->initialize($config);
-                ##KONFIGURASI UNTUUK PAGINATION
+        ##KONFIGURASI UNTUUK PAGINATION
 
         $data['jumlah_postingan'] = $config['total_rows'];
         $data["links"] = $this->pagination->create_links();
         $data['allartikel'] = $this->Mhomepage->get_artikel_pag($config["per_page"], $page);
         $data['listart'] = $this->Mhomepage->list_artikel();
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . 'modules/homepage/views/r-all-artikel.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
             );
@@ -170,17 +170,21 @@ public function ambilidheroo()
     // menampilkan detail artikel
 public function detail_artikel()
 {
-    $id_artikel = $this->session->userdata['id_artikel']; 
+    if (isset($this->session->userdata['id_artikel'])) {
+        $id_artikel = $this->session->userdata['id_artikel'];
+    }else{
+        redirect('homepage');
+    }
+
     $data = array(
         'judul_halaman' => 'Sibejoo - Artikel',
         'judul_header2' =>'Detail Artikel'
         );
 
-
     $data['detartikel'] = $this->Mhomepage->get_artikel_detail($id_artikel);
     $data['listart'] = $this->Mhomepage->list_artikel();
     $data['files'] = array(
-        APPPATH . 'modules/homepage/views/r-header.php',
+        APPPATH . 'modules/homepage/views/r-header-detail.php',
         APPPATH . 'modules/homepage/views/r-detail-artikel.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
@@ -200,7 +204,7 @@ public function detail_report()
     $data['detheroo'] = $this->Mhomepage->get_heroo_detail($id_report);
     $data['listheroo'] = $this->Mhomepage->list_heroo();
     $data['files'] = array(
-        APPPATH . 'modules/homepage/views/r-header.php',
+        APPPATH . 'modules/homepage/views/r-header-detail.php',
         APPPATH . 'modules/homepage/views/r-heroo-detail.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );

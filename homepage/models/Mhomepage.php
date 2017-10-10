@@ -20,14 +20,19 @@ class Mhomepage extends CI_Model {
         $this->db->join("tb_siswa as siswa","siswa.penggunaID = testi.id_user");
         $this->db->where("testi.status", 1);
         $this->db->where("testi.publish", 1);
+
+
+
         $query = $this->db->get();
         return $query->result_array();
     }
 
       public function get_artikel(){
         $this->db->select('*');
-        $this->db->from('tb_artikel');
-        $tampil = $this->db->get();
+        $this->db->limit(5);
+        $this->db->order_by("date_created", "desc");
+        $tampil = $this->db->get('tb_artikel');
+
         return $tampil->result_array();
     }
 
@@ -66,6 +71,8 @@ class Mhomepage extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_report_heroo her');
         $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
+        // $this->db->limit(5);
+        $this->db->order_by("date_created", "desc");
         $tampil = $this->db->get();
         return $tampil->result_array();
     }

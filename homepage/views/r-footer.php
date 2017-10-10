@@ -17,20 +17,11 @@
         </div>
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
-            <h4 class="widget-title line-bottom-theme-colored-2">Opening Hours</h4>
+            <h4 class="widget-title line-bottom-theme-colored-2">Jam Kerja</h4>
             <div class="opening-hours">
               <ul class="list-border">
-                <li class="clearfix"> <span> Mon - Tues :  </span>
-                  <div class="value pull-right"> 6.00 am - 10.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Wednes - Thurs :</span>
-                  <div class="value pull-right"> 8.00 am - 6.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Fri : </span>
-                  <div class="value pull-right"> 3.00 pm - 8.00 pm </div>
-                </li>
-                <li class="clearfix"> <span> Sun : </span>
-                  <div class="value pull-right"> Closed </div>
+                <li class="clearfix"> <span> Senin - Jum'at :  </span>
+                  <div class="value pull-right"> 8.00 am - 16.00 pm </div>
                 </li>
               </ul>
             </div>
@@ -40,7 +31,7 @@
       <div class="row mt-30">
         <div class="col-md-2">
           <div class="widget dark">
-            <h5 class="widget-title mb-10">Call Us Now</h5>
+            <h5 class="widget-title mb-10">Hubungi kami</h5>
             <div class="text-gray">
              022-87805676 <br>
             </div>
@@ -48,26 +39,24 @@
         </div>
         <div class="col-md-3">
           <div class="widget dark">
-            <h5 class="widget-title mb-10">Connect With Us</h5>
+            <h5 class="widget-title mb-10">Terhubung dengan kami</h5>
             <ul class="styled-icons icon-bordered icon-sm">
               <li><a href="https://www.facebook.com/Sibejoo-239504716124473"><i class="fa fa-facebook"></i></a></li>
               <li><a href="https://twitter.com/sibejoo"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-skype"></i></a></li>
               <li><a href="https://www.youtube.com/user/sibejoo"><i class="fa fa-youtube"></i></a></li>
               <li><a href="https://www.instagram.com/sibejoo/"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-5 col-md-offset-2">
           <div class="widget dark">
-            <h5 class="widget-title mb-10">Subscribe Us</h5>
+            <h5 class="widget-title mb-10">Berlangganan</h5>
             <!-- Mailchimp Subscription Form Starts Here -->
             <form id="mailchimp-subscription-form-footer" class="newsletter-form">
               <div class="input-group">
-                <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
+                <input type="email" value="" name="EMAIL" placeholder="Email Anda" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                 <span class="input-group-btn">
-                  <button data-height="45px" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
+                  <button data-height="45px" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" type="submit">Berlangganan</button>
                 </span>
               </div>
             </form>
@@ -104,20 +93,7 @@
           </div>
           <div class="col-md-6 text-right">
             <div class="widget no-border m-0">
-              <ul class="list-inline sm-text-center mt-5 font-12">
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-                <li>|</li>
-                <li>
-                  <a href="#">Help Desk</a>
-                </li>
-                <li>|</li>
-                <li>
-                  <a href="#">Support</a>
-                </li>
-              </ul>
-            </div>
+
           </div>
         </div>
       </div>

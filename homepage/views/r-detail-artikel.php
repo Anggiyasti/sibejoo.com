@@ -19,9 +19,6 @@
       <div class="container">
         <div class="row">
         <div class="col-sm-12 col-md-3">
-        
-          
-        
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
                 <h5 class="widget-title line-bottom">Artikel Lain</h5>
@@ -48,9 +45,11 @@
               
             
               <article class="post clearfix mb-0">
-                <div class="entry-header">
+                <?php if (!$key['gambar']==""): ?>
+                  <div class="entry-header">
                   <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 600px; width: 450px;" alt="" class="img-responsive img-fullwidth"> </div>
                 </div>
+                <?php endif ?>
                 <div class="entry-content">
                   <div class="entry-meta media no-bg no-border mt-15 pb-20">
                     <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">

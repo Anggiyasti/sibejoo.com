@@ -12,6 +12,9 @@
                 <li>
                   <a href="mailto:contact@sibejoo.com" class="text-white" href="#"><i class="fa fa-envelope-o"></i> info@sibejoo.com</a>
                 </li>
+                <li>
+                  <a class="text-white" href="<?=base_url('index.php/login')?>">Login</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -66,20 +69,9 @@
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li class="">
-                <a class="service" href="#service">Layanan</a>
+                <a class="service" href="<?=base_url() ?>#detail_artikel">Kembali</a>
               </li>
-              <li>
-                <a class="subs" href="#subs">Interaksi</a>
-              </li>
-              <li>
-                <a class="testimonials" href="#testimonials">Testimonials</a>
-              </li>
-              <li>
-                <a href="<?=base_url('index.php/register')?>">Daftar</a>
-              </li>
-              <li>
-                <a href="<?=base_url('index.php/login')?>">Masuk</a>
-              </li>
+
             </ul>
             <ul class="pull-right flip hidden-sm hidden-xs">
               <li>

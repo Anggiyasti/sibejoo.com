@@ -469,279 +469,285 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
   </div>
 </section>
 
+
 <!-- Section: SERVICE -->
 <section id="service" class="bg-lighter">
   <div class="container pb-60">
     <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Layanan Kita</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Layanan <span class="text-theme-color-2 font-weight-400">Kita</span></h2>
         </div>
       </div>
     </div>
     <div class="section-content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="owl-carousel-4col" data-dots="true">
-            <div class="item ">
-              <div class="service-block bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/film.svg') ?>" class="img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Video Belajar</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Video Belajar</h4>
-                  <p>Neon Menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami. Tidak hanya itu Neon juga memberikan 2 jenis video yang bisa kalian sesuaiank dengan kecepatan akses internet kalian. Video Screen Recording untuk akses badwith dan kuota yang tidak terlalu besar dan Teacher Recording untuk kalian punya akses internet cepat dan kuota besar. Neon juga  menyediakan video2 pembahasan soal.</p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/faq.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Konsultasi</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Konsultasi</h4>
-                  <p>Neon menyediakan tentor-tentor piket yang setiap saat akan menjawab pertanyaan-pertanyaan kalian ni guys, so jangan kuatir kalo tiba2 kalian mendaadak ada pertanyaan yang harus segera diselesaikan, kalian bisa langsung hubungi tentor neon.</p>
-                  <br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/survey.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">TryOut Online</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">TryOut Online</h4>
-                  <p>Kalian bisa menikmati latihan semester, latihan UN, Latian SBMPTN atau TryOut yang lain secara online. Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan kalian.</p>
-                  <br><br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/filing_cabinet.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Edu Drive</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Edu Drive</h4>
-                  <p>Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar. Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
-                  <br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/diploma_1.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">TOEFL Fokus</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">TOEFL Fokus</h4>
-                  <p>Pagi kalian yg pengen memperdalam bahasa inggris denga belajar toefl disini tempatnya. Cukup menjadi member neon anda bisa belajar toefl sesuka dan sepuasnya sampaikalian benar-benar bisa.</p>
-                  <br><br><br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/org_unit.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Penjurusan</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Penjurusan</h4>
-                  <p>Masih bingung pilih jurusan untuk tempat kuliah kalian ? . Tenang, neon akan membatu  kalian. Dengan sistem DETECTION kami akan membantu kalia menemukan jurusan yang tepat untuk kuliah kalian.</p>
-                  <br><br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/fine_print.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Raport Online</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Raport Online</h4>
-                  <p>Rapor online akan merekam semua kegiatan kalian selama menjadi member.Informasi tentang video pembelajaran yang kalian akses, latihan dan TO yang kalian kerjakan akan bisa kalian lihat dalam rapor online.</p>
-                  <br><br><br><br><br><br><br>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="service-block mb-md-30 bg-light">
-                <div class="thumb"> <img alt="featured project" src="<?=base_url('assets/retemplate/images/flat-color-icons-svg/reading_ebook.svg') ?>" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">Latihan Online</span></h4>
-                </div>
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10">Latihan Online</h4>
-                  <p>Nah ini ni... bagi kamu yang demen nguji kemampuan diri kalian, dengan latihan online ini, kalian bisa latihan kapapun selama kalian mau. Dan Asyiknya lagi kalian bisa pilih sendiri level soalnya dari yang mudah sampai yang susah.</p>
-                  <br><br><br><br><br><br>
-                </div>
-              </div>
-            </div>
+      <div class="row mt-30 text-center">
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-file-video-o"></i>
+            </a>
+            <h5 class="icon-box-title">Video Belajar</h5>
+            <p class="text-gray">Neon Menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami. Tidak hanya itu Neon juga memberikan 2 jenis video yang bisa kalian sesuaiank dengan kecepatan akses internet kalian.</p>
           </div>
         </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-file-text-o"></i>
+            </a>
+            <h5 class="icon-box-title">Tryout Online</h5>
+            <p class="text-gray">Kalian bisa menikmati latihan semester, latihan UN, Latian SBMPTN atau TryOut yang lain secara online. Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan kalian..</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-sticky-note"></i>
+            </a>
+            <h5 class="icon-box-title">Raport Online</h5>
+            <p class="text-gray">Rapor online akan merekam semua kegiatan kalian selama menjadi member.Informasi tentang video pembelajaran yang kalian akses, latihan dan TO yang kalian kerjakan akan bisa kalian lihat dalam rapor online..</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-child"></i>
+            </a>
+            <h5 class="icon-box-title">Latihan Online</h5>
+            <p class="text-gray">Rapor online akan merekam semua kegiatan kalian selama menjadi member.Informasi tentang video pembelajaran yang kalian akses, latihan dan TO yang kalian kerjakan akan bisa kalian lihat dalam rapor online..</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-30 text-center">
+        <div class="col-sm-6 col-md-3">
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-cloud-download"></i>
+            </a>
+            <h5 class="icon-box-title">Edu Drive</h5>
+            <p class="text-gray">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar. Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-group"></i>
+            </a>
+            <h5 class="icon-box-title">Konsultasi</h5>
+            <p class="text-gray">Neon menyediakan tentor-tentor piket yang setiap saat akan menjawab pertanyaan-pertanyaan kalian ni guys, so jangan kuatir kalo tiba2 kalian mendaadak ada pertanyaan yang harus segera diselesaikan, kalian bisa langsung hubungi tentor neon.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+        </div>
+        
       </div>
 
     </div>
   </div>
 </section>
 
-
 <!-- Section: SERVICE -->
-<section id="service" class="bg-lighter">
-  <div class="container pb-60">
+<section id="blog" class="bg-white">
+  <div class="container">
     <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Artikel</span></h2>
-          <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
-            All Artikel
-          </a>
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="section-content" >
-      <div class="row">
-        <div class="col-md-12">
-          <div class="owl-carousel-4col" data-dots="true" >
-            <?php foreach ($artikel as $key): ?>
-              <div class="item " >
-                <div class="service-block bg-light" >
-                  <div class="thumb"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
-                    <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_artikel'] ?></span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0" style="height: 250px;">
-                    <h4 class="line-bottom mb-10"><?=$key['judul_artikel'] ?></h4>
-                    <p ><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
-                  </div>
-
-                </div>
-
-              </div>
-            <?php endforeach ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section: SERVICE -->
-  <section id="service" class="bg-lighter">
-    <div class="container pb-60">
-      <div class="section-title mb-10">
-        <div class="row">
-          <div class="col-md-8">
-            <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Report Heroo</span></h2>
-            <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
-              All Report Heroo
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="section-content" >
-        <div class="row">
-          <div class="col-md-12">
-            <div class="owl-carousel-4col" data-dots="true" >
-              <?php foreach ($report_heroo as $key): ?>
-                <div class="item " >
-                  <div class="service-block bg-light" >
-                    <div class="thumb"><a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" ><img alt="featured project" style="height: 300px;" src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" class="img-fullwidth"></a> 
-                      <h4 class="text-white mt-0 mb-0"><span class="price"><?=$key['judul_art_katagori'] ?></span></h4>
-                    </div>
-                    <div class="content text-left flip p-25 pt-0" style="height: 250px;">
-                      <h4 class="line-bottom mb-10"><?=$key['judul_art_katagori'] ?></h4>
-                      <p ><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
-                    </div>
-                  </div>
-                </div>
-              <?php endforeach ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Section: Pricing Table -->
-  <section class="bg-lighter" id="pricing">
-    <div class="container">
-     <div class="section-title mb-10">
-      <div class="row">
-        <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Price List</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Artikel <span class="text-theme-color-2 font-weight-400">Terbaru</span></h2>
         </div>
       </div>
     </div>
     <div class="section-content">
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-          <div class="pricing-table maxwidth400">
-            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
-            </div>
-            <img src="http://placehold.it/359x120" alt="">
-            <div class=" bg-white border-1px p-30 pt-20 pb-20">
-              <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
-              <ul class="table-list list-icon theme-colored pb-0">
-                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
-                <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
-              </ul>
-            </div>
-            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
+        <?php foreach ($artikel as $key): ?>
+          <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
+            <article class="post clearfix mb-sm-30">
+              <div class="entry-header">
+                <div class="post-thumb thumb"> 
+                  <?php if ($key['gambar']==''): ?>
+                    <img src="<?= base_url('./assets/image/artikel/no-thumbnail.png') ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
+                  <?php else: ?>
+                    <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
+                  <?php endif ?>
+                </div>
+              </div>
+              <div class="entry-content p-20 pr-10 bg-white">
+                <div class="entry-meta media mt-0 no-bg no-border">
+                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                    <ul>
+                      <li class="font-16 text-white font-weight-600 border-bottom"><?=date('d', strtotime($key['date_created'])) ?></li>
+                      <li class="font-12 text-white text-uppercase"><?=date('M', strtotime($key['date_created'])) ?></li>
+                    </ul>
+                  </div>
+                  <div class="media-body pl-15">
+                    <div class="event-content pull-left flip">
+                      <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#"><?=$key['judul_artikel'] ?></a></h4>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-10"><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
+                <a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" class="btn-read-more">Selengkapnya</a>
+                <div class="clearfix"></div>
+              </div>
+            </article>
           </div>
+        <?php endforeach ?>
+
+      </div>
+      <br>
+      <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+        Semua Artikel
+      </a>
+
+      <div class="separator separator-small-line separator-rouned">
+        <i class="fa fa-cog fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: SERVICE -->
+<section id="blog" class="bg-lighter">
+  <div class="container">
+    <div class="section-title mb-10">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Report <span class="text-theme-color-2 font-weight-400">Heroo</span></h2>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-          <div class="pricing-table maxwidth400">
-            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
-            </div>
-            <img src="http://placehold.it/359x120" alt="">
-            <div class=" bg-white border-1px p-30 pt-20 pb-20">
-              <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
-              <ul class="table-list list-icon theme-colored pb-0">
-                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
-              </ul>
-            </div>
-            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row">
+        <?php foreach ($report_heroo as $key): ?>
+          <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
+            <article class="post clearfix mb-sm-30">
+              <div class="entry-header">
+                <div class="post-thumb thumb"> 
+                  <?php if ($key['gambar']==''): ?>
+                    <img src="<?= base_url('./assets/image/artikel/no-thumbnail.png') ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
+                  <?php else: ?>
+                    <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
+                  <?php endif ?>
+                </div>
+              </div>
+              <div class="entry-content p-20 pr-10 bg-white">
+                <div class="entry-meta media mt-0 no-bg no-border">
+                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                    <ul>
+                      <li class="font-16 text-white font-weight-600 border-bottom"><?=date('d', strtotime($key['date_created'])) ?></li>
+                      <li class="font-12 text-white text-uppercase"><?=date('M', strtotime($key['date_created'])) ?></li>
+                    </ul>
+                  </div>
+                  <div class="media-body pl-15">
+                    <div class="event-content pull-left flip">
+                      <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#"><?=$key['judul_art_katagori'] ?></a></h4>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-10"><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
+                <a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" class="btn-read-more">Selengkapnya</a>
+                <div class="clearfix"></div>
+              </div>
+            </article>
           </div>
+        <?php endforeach ?>
+
+      </div>
+      <br>
+      <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+        Semua Report
+      </a>
+
+      <div class="separator separator-small-line separator-rouned">
+        <i class="fa fa-cog fa-spin"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section: Pricing Table -->
+<section class="bg-white" id="pricing">
+  <div class="container">
+   <div class="section-title mb-10">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Price <span class="text-theme-color-2 font-weight-400">List</span></h2>
+      </div>
+    </div>
+  </div>
+  <div class="section-content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+        <div class="pricing-table maxwidth400">
+          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
+          </div>
+          <div class=" bg-white border-1px p-30 pt-20 pb-20">
+            <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
+            <ul class="table-list list-icon theme-colored pb-0">
+              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
+              <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
+            </ul>
+          </div>
+          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-          <div class="pricing-table maxwidth400">
-            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
-            </div>
-            <img src="http://placehold.it/359x120" alt="">
-            <div class=" bg-white border-1px p-30 pt-20 pb-20">
-              <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
-              <ul class="table-list list-icon theme-colored pb-0">
-                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-                <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
-              </ul>
-            </div>
-            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+        <div class="pricing-table maxwidth400">
+          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
           </div>
+          <div class=" bg-white border-1px p-30 pt-20 pb-20">
+            <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
+            <ul class="table-list list-icon theme-colored pb-0">
+              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
+            </ul>
+          </div>
+          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+        <div class="pricing-table maxwidth400">
+          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
+          </div>
+          <div class=" bg-white border-1px p-30 pt-20 pb-20">
+            <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
+            <ul class="table-list list-icon theme-colored pb-0">
+              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
+            </ul>
+          </div>
+          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- Divider: Fun Facts -->
@@ -786,29 +792,26 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
     <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1"><span class="text-theme-color-2 font-weight-400">Team Sibejoo</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Team <span class="text-theme-color-2 font-weight-400">Sibejoo</span></h2>
         </div>
       </div>
     </div>
     <div class="section-content">
       <div class="row multi-row-clearfix">
         <div class="owl-carousel-4col" data-dots="true" >
-
           <?php foreach ($teams as $team): ?>
-            <div class="ccol-md-3 sm-text-center mb-30 mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <?php $link =base_url('/assets/image/team/'.$team['foto']); ?>
-
-                  <img class="img-fullwidth" alt="" src="<?=$link ?>">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> <?=$team['nama']?></a></h4>
-                  <h5 class="text-theme-color"> <?=$team['posisi']?></h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  </ul>
-                </div>
+            <?php $link =base_url('/assets/image/team/'.$team['foto']); ?>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="http://placehold.it/300x300" alt=""></div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <h4 class="name mt-0 text-theme-color-2"><?=$team['nama']?> - <small><?=$team['posisi']?></small></h4>
+                <p class="mb-20"><?=$team['keterangan']?>.</p>
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+                <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
               </div>
             </div>
           <?php endforeach ?>
@@ -849,6 +852,9 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
       </div>
     </div>
   </div>
+  <div class="separator">
+    <i class="fa fa-cog fa-spin"></i>
+  </div>
 </section>
 
 <!-- Divider: Clients -->
@@ -856,22 +862,23 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
   <div class="container pt-10 pb-0">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="text-uppercase text-center text-black font-weight-600 mt-0 mb-0 font-28">Donatur Yang Kami Banggakan</h2>
+        <h2 class="mt-10 font-28 line-bottom line-height-1"><span class="text-theme-color-1 font-weight-600">Donatur Yang Kami Banggakan</span></h2>
         <hr style="margin: 0;padding: 0">  
         <!-- Section: Clients -->
         <div class="owl-carousel-6col clients-logo transparent text-center owl-nav-top">
           <?php foreach ($donaturs as $donatur): ?>
             <?php $link = base_url('assets/image/donatur/logo_perusahaan/'.$donatur->logo) ?>
             <div class="item"> 
-              <a href="#"><img src=<?=$link?> ></a>
-              <h5 class="text-center text-black font-weight-600 mt-0 mb-0"><?=$donatur->namaPerusahaan ?></h5>
+              <a href="#"><img src="http://placehold.it/100x100"> </a>
+              <h5 class="text-center text-black font-weight-600 mt-5 mb-0"><?=$donatur->namaPerusahaan ?></h5>
             </div>
           <?php endforeach ?>
-          
-
         </div>
       </div>
     </div>
+  </div>
+  <div class="separator">
+    <i class="fa fa-cog fa-spin"></i>
   </div>
 </section>
 <!-- end main-content -->
@@ -880,7 +887,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
   <div class="container pt-30">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h3>Berinteraksi Dengan Kami.</h3>
+        <h3>Berlangganan Dengan Kami.</h3>
         <h5>Neon hadir untuk kalian yang pengen pinter dengan cara mudah dan asyik. Ayo bergabung dengan Neon. Silahkan masukkan email kalian.</h5>
 
         <!-- Mailchimp Subscription Form-->
@@ -888,12 +895,16 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
           <label for="mce-EMAIL"></label>
           <div class="input-group">
             <!-- untuk menampilkan pesan kesalahan penginputan email -->
-            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Your Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
+            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
             <span class="input-group-btn">
-              <input type="button" value="Subscribe" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()"> 
+              <input type="button" value="Berlangganan" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()"> 
               <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
               <span class="text-danger"><?php echo form_error('email'); ?></span>
             </span>
+          </div>
+
+          <div class="separator">
+            <i class="fa fa-cog fa-spin"></i>
           </div>
         </form>
 
@@ -908,9 +919,9 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
               data: {email:email},
               dataType: "json",
               success: function(data) {
-            respon_action(data);
-          },
-          error: function(data) {
+                respon_action(data);
+              },
+              error: function(data) {
                 respon_action(data);
               }
             });
@@ -935,6 +946,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
             </div>
           </div>
         </div>
+
       </section>
 
 
