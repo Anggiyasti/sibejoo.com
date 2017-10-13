@@ -153,11 +153,18 @@ class Ortuback_model extends CI_Model{
 
 	public function get_siswa_not_ortu($records_per_page,$pageSelek,$keySearch)
 	{
+		$this->db->where("tua.id is null");
+		$this->db->where("p.status",1);
 		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,p.email,p.namaPengguna");
 		$this->db->join("tb_pengguna p","p.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id",'left outer');
-		$this->db->where("tua.id is null");
-		$this->db->where("p.status",1);
+
+		if ($keySearch!='' && $keySearch!=' ') {
+			$this->db->like("p.namaPengguna",$keySearch);
+			$this->db->or_like("s.namaDepan",$keySearch);
+			$this->db->or_like("s.namaBelakang",$keySearch);
+			// $this->db->where("tua.id is null");
+		}
 		$query=$this->db->get("tb_siswa s",$records_per_page,$pageSelek);
 		return $query->result();
 
@@ -165,21 +172,40 @@ class Ortuback_model extends CI_Model{
 
 	public function get_ortu_siswa($records_per_page,$pageSelek,$keySearch)
 	{
-		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,penggunaSiswa.email,penggunaSiswa.namaPengguna as np_siswa,penggunaOrtu.namaPengguna as np_ortu,tua.namaOrangTua");
+		$this->db->select("s.id as idSiswa,s.namaDepan,s.namaBelakang,penggunaSiswa.email,penggunaSiswa.namaPengguna as np_siswa,penggunaOrtu.namaPengguna as np_ortu,tua.namaOrangTua, penggunaOrtu.id as id_np_ortu");
 		$this->db->join("tb_pengguna penggunaSiswa","penggunaSiswa.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id");
 		$this->db->join("tb_pengguna penggunaOrtu","penggunaOrtu.id=tua.penggunaID");
+		
+		if ($keySearch!='' && $keySearch!=' ') {
+			$this->db->like("penggunaOrtu.namaPengguna",$keySearch);
+			// $this->db->or_like("penggunaSiswa.namaPengguna",$keySearch);
+			// $this->db->or_like("s.namaDepan",$keySearch);
+			// $this->db->or_like("s.namaBelakang",$keySearch);
+
+		} 
+
+		$this->db->where("penggunaOrtu.status",1);
+		$this->db->order_by('np_ortu', 'asc');
 		
 		$query=$this->db->get("tb_siswa s",$records_per_page,$pageSelek);
 		return $query->result();
 
 	}
 
-	public function jumlah_ortu_siswa($value='')
+	public function jumlah_ortu_siswa($keySearch)
 	{
 		$this->db->join("tb_pengguna penggunaSiswa","penggunaSiswa.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id");
 		$this->db->join("tb_pengguna penggunaOrtu","penggunaOrtu.id=tua.penggunaID");
+		if ($keySearch!='' && $keySearch!=' ') {
+			$this->db->like("penggunaOrtu.namaPengguna",$keySearch);
+			// $this->db->or_like("penggunaSiswa.namaPengguna",$keySearch);
+			// $this->db->or_like("s.namaDepan",$keySearch);
+			// $this->db->or_like("s.namaBelakang",$keySearch);
+
+		} 
+		$this->db->where("penggunaOrtu.status",1);
 		
 		$query=$this->db->get("tb_siswa s");
 		return $query->num_rows();
@@ -188,8 +214,13 @@ class Ortuback_model extends CI_Model{
 	public function jumlah_siswa_not_ortu($value='')
 	{
 		$this->db->join("tb_pengguna p","p.id=s.penggunaID");
-		$this->db->join("tb_cabang c","c.id=s.cabangID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id",'left outer');
+		if ($keySearch!='' && $keySearch!=' ') {
+			$this->db->like("p.namaPengguna",$keySearch);
+			$this->db->or_like("s.namaDepan",$keySearch);
+			$this->db->or_like("s.namaBelakang",$keySearch);
+
+		} 
 		$query=$this->db->get("tb_siswa s");
 		return $query->num_rows();
 	}
@@ -238,6 +269,20 @@ class Ortuback_model extends CI_Model{
 	public function in_data_ortu($ortu='')
 	{
 		$this->db->insert_batch('tb_orang_tua', $ortu);
+	}
+
+	public function up_status_ortu($id_pengguna){
+		$this->db->where("id",$id_pengguna);
+		$this->db->set("status",0);
+		$this->db->update("tb_pengguna");
+	}
+
+	// update katasandi pengguna ortu
+	public function up_kataSandi_ortu($id_pengguna,$new_pswd)
+	{	
+		$this->db->where("id",$id_pengguna);
+		$this->db->set("kataSandi",$new_pswd);
+		$this->db->update("tb_pengguna");
 	}
 }
 

@@ -28,16 +28,14 @@
     <div class="col-md-12">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Daftar Siswa</h4>
-                  <!--    Trigger the modal with a button -->
-                 
-                         <a href="<?= base_url('index.php/siswa/daftarsiswa') ?>" title="Tambah Data" type="button" class="btn btn-default pull-right " style="margin-top:-30px;" ><i class="ico-plus"></i></a>
-              
-                   <!--  <a data-toggle="modal" class="btn btn-default pull-right"  "  data-target="#myModal">Tambah</a> -->
+              <div class="panel-heading">
+                  <h3 class="panel-title">Daftar Siswa</h3>
+                  <!-- Start menu tambah siswa -->
+                  <div class="panel-toolbar text-right">
+                  <a class="btn btn-inverse btn-outline" href="<?= base_url('index.php/siswa/daftarsiswa') ?>" title="Tambah Data" ><i class="ico-plus"></i></a>
+                  </div>
+                  <!-- END menu tambah siswa -->
                 </div>
-                <!-- Funsi cari  -->
-                
 
          <!-- Funsi cari -->
             <div class="panel-body">
@@ -58,7 +56,6 @@
                             <th>Nama Pengguna</th>
                             <th>Sekolah</th>
                             <th>Email</th>
-                            <th>Cabang Neutron</th>
                             <th>Report Siswa</th>
                             <th>Aksi</th>
                         </tr>
@@ -74,7 +71,6 @@
                         <td><?=$key["namaPengguna"];?></td>
                         <td><?=$key["namaSekolah"];?></td>
                         <td><?=$key["eMail"];?></td>
-                        <td><?=$key["cabang"];?></td>
                         <td><?=$key["report"];?></td>
                         <td><?=$key["aksi"];?></td>
                         </tr>
@@ -137,8 +133,6 @@
                 error: function (jqXHR, textStatus, errorThrown)
                 {
                     alert('Error deleting data');
-                    // console.log(jqXHR);
-                    // console.log(textStatus);
                     console.log(errorThrown);
                 }
             });
@@ -148,57 +142,6 @@
     function reload_tblist() {
         tb_siswa.ajax.reload(null, false);
     }
-
-    // function resetPassword11(idsiswa, idpengguna) {
-    //     if (confirm('Apakah Anda yakin akan me-reset katasandi ini? ')) {
-    //         // ajax delete data to database
-    //         $.ajax({
-    //             url: base_url + "index.php/siswa/resetPassword/",
-    //             data: "idsiswa=" + idsiswa + "&idpengguna=" + idpengguna,
-    //             type: "POST",
-    //             dataType: "TEXT",
-    //             success: function (data, respone)
-    //             {
-    //                  window.location.href =page;
-    //             },
-    //             error: function (jqXHR, textStatus, errorThrown)
-    //             {
-    //                 alert('Error deleting data');
-    //                 console.log(errorThrown);
-    //             }
-    //         });
-    //     }
-    // }
-
-function resetPassword(idpengguna){
-  url = base_url + "index.php/siswa/resetPassword/";
-  swal({
-    title: "Yakin akan me-reset katasandi ini?",
-    text: "Anda tidak dapat membatalkan ini.",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "Ya,Tetap me-reset katasandi!",
-    closeOnConfirm: false
-  },
-  function(){
-    var datas = {idpengguna:idpengguna};
-    $.ajax({
-      dataType:"text",
-      data:datas,
-      type:"POST",
-      url:url,
-      success:function(){
-        swal("kata sandi baru : [namaPengguna]+[tgl sekarang] !", "katasandi lama: aa , tgl: 29 => katasandi: aa29 ", "success");
-       // window.location.href =base_url+"videoback/daftarvideo";
-      },
-      error:function(){
-        sweetAlert("Oops...", "Ktasandi gagal di reset!", "error");
-      }
-
-    });
-  });
-}
 
 function resetSandi(penggunaID='',namaPengguna='') {
          url = base_url + "index.php/guru/resetPassword/";
@@ -223,7 +166,6 @@ function resetSandi(penggunaID='',namaPengguna='') {
           success:function(data){
 
             swal("kata sandi baru : [namaPengguna]+[tgl sekarang] !", "Katasandi Baru = "+data, "success");
-           // window.location.href =base_url+"videoback/daftarvideo";
           },
           error:function(){
             sweetAlert("Oops...", "Ktasandi gagal di reset!", "error");
@@ -232,5 +174,45 @@ function resetSandi(penggunaID='',namaPengguna='') {
         });
       });
     }
+
+  function dropSiswa(id,namaPengguna){
+    swal({
+      title: "Yakin akan menghapus "+namaPengguna+"?",
+      text: "Anda tidak dapat membatalkan ini.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Ya,Tetap hapus!",
+      closeOnConfirm: false
+    },
+    function(){
+      var url = base_url+"ortuback/del_pengguna_ortu";
+      $.ajax({
+        url:url,
+        data:{id:id},
+        dataType:"text",
+        type:"post",
+        success:function(){
+          sweetAlert("Data berhasil di hapus","","success");
+          swal({
+          title: "Data berhasil di hapus",
+          type: "success",
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "OK",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            window.location.href = base_url+"siswa/listsiswa";
+          } 
+        });
+        },
+        error:function(){
+
+        }
+      });
+    });
+  }
 
 </script>

@@ -77,7 +77,7 @@
 	      type:"POST",
 	      url:base_url+"index.php/pengawas/deletePengawas/",
 	      success:function(){
-	        swal("Terhapus!", "Token berhasil dihapus.", "success");
+	        swal("Terhapus!", "Pengawas berhasil dihapus.", "success");
 	         reload_tblist();
 	      },
 	      error:function(){

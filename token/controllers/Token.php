@@ -314,12 +314,6 @@ public function ajax_data_siswa(){
 		//mengambil nilai list
 	$baseurl = base_url();
 	foreach ( $list as $list_siswa ) {
-		if ($list_siswa['namaCabang']=="") {
-			$namaCabang="non-neutron";
-		} else {
-			$namaCabang=$list_siswa['namaCabang'];
-		}
-
 		$tb_siswa.='
 		<tr>
 			<td><span class="checkbox custom-checkbox custom-checkbox-inverse">
@@ -330,7 +324,6 @@ public function ajax_data_siswa(){
 			<td>'.$list_siswa["namaDepan"].' '.$list_siswa["namaBelakang"].'</td>
 
 			<td>'. $list_siswa["namaPengguna"].'</td>
-			<td>'.$namaCabang.'</td>
 		</tr>
 		';
 		$n++;

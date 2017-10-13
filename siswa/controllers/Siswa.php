@@ -366,14 +366,11 @@ public function savesiswa()
       $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
       $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
       $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
-      $cabangID = htmlspecialchars($this->input->post('cabang'));
-      $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
 
     //data akun
       $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
       $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
       $email = htmlspecialchars($this->input->post('email'));
-      $id_kk=htmlspecialchars($this->input->post('kk'));
       $hakAkses = 'siswa';
 
     //data array akun
@@ -398,10 +395,7 @@ public function savesiswa()
         'namaSekolah' => $namaSekolah,
         'alamatSekolah' => $alamatSekolah,
         'penggunaID' => $penggunaID,
-        'tingkatID' => $tingkatID,
-        'cabangID' => $cabangID,
-        'noIndukNeutron' => $noIndukNeutron,
-        'id_kelompok_kelas'=>$id_kk
+        'tingkatID' => $tingkatID
       );
     //melempar data guru ke function insert_guru di kelas model
       $this->mregister->insert_siswabyadmin($data_siswa, $email, $namaPengguna);
@@ -455,7 +449,6 @@ function updateSiswa($idsiswa, $idpengguna) {
             echo 'kosong';
         } else {
          $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-         $data['cabang'] = $this->mcabang->get_all_cabang();
          $idsiswa = $idsiswa;
          $idpengguna = $idpengguna;
          $datSiswa = $this->msiswa->get_siswa_byid($idsiswa, $idpengguna);
@@ -465,22 +458,7 @@ function updateSiswa($idsiswa, $idpengguna) {
          $data['files'] = array(
             APPPATH . 'modules/siswa/views/v-update-siswa.php',
             );
-         $optionKk=null;
-         $id_cabang=$datSiswa[0]["cabangID"];
-         $id_kelompok_kelas=$datSiswa[0]["id_kelompok_kelas"];
-         $arrKk=$this->msiswa->get_kk_by_idCabang($id_cabang);
-         foreach ($arrKk as $val) {
-          if ($id_kelompok_kelas==$val->id_kk) {
-            $optionKk.='
-            <option value="'.$val->id_kk.'" selected>'.$val->kelompokKelas.'</option>';
-          } else {
-            $optionKk.='
-            <option value="'.$val->id_kk.'">'.$val->kelompokKelas.'</option>';
-          }
-          
-          
-         }
-         $data['kelompokKelas']=$optionKk;
+
          $this->parser->parse('admin/v-index-admin', $data);
      }
  }else{
@@ -657,14 +635,13 @@ public function tampSiswa($list,$jumlah_data=''){
 
               'namaSekolah'=> $list_siswa['namaSekolah'],
               'eMail'=>  $list_siswa['eMail'] ,
-              'cabang'=> $list_siswa['namaCabang'],
 
               'report'=>'<a href="' . base_url('index.php/siswa/reportSiswa/' .$list_siswa['idsiswa'] .'/'. $list_siswa['penggunaID']) . '" "> Lihat detail</a></i>',
               'aksi'=>'<a class="btn        btn-sm btn-warning"  title="Edit" href="' . base_url('index.php/siswa/updateSiswa/' . $list_siswa['idsiswa'] . '/' . $list_siswa['penggunaID']) . '" "><i class="ico-edit"></i></a> 
 
               <button class="btn btn-sm btn-danger" title="Reset Katasandi" onclick="resetSandi('.$list_siswa['penggunaID'].','.$namaPengguna.')"><i class=" ico-key"></i></button>
 
-              <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa(' . "" . $list_siswa['idsiswa'] . "," . $list_siswa['penggunaID'] . ')"><i class="ico-remove"></i></a>'
+              <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa('.$list_siswa['penggunaID'].','.$namaPengguna.')"><i class="ico-remove"></i></a>'
               );
         }
         $hakAkses=$this->session->userdata['HAKAKSES'];
@@ -819,9 +796,6 @@ public function editSiswa(){
             $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
             $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
             $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
-            $cabangID = htmlspecialchars($this->input->post('cabang'));
-            $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
-            $id_kelompok_kelas=htmlentities($this->input->post('kk'));
 
             //data array siswa
             $data_post = array(
@@ -831,10 +805,7 @@ public function editSiswa(){
                 'noKontak' => $noKontak,
                 'namaSekolah' => $namaSekolah,
                 'alamatSekolah' => $alamatSekolah,
-                'tingkatID' => $tingkatID,
-                'cabangID' => $cabangID,
-                'noIndukNeutron' => $noIndukNeutron,
-                'id_kelompok_kelas'=>$id_kelompok_kelas
+                'tingkatID' => $tingkatID
                 );
             $this->msiswa->update_siswa1($data_post,$idsiswa);
 
@@ -1114,6 +1085,14 @@ public function message()
             $optionKk='<option value="">Belum Terdapat Kelompok Kelas</option>';
         }
         echo json_encode($optionKk);
+    }
+
+    // delete siswa
+    public function del_pengguna_siswa(){
+        $id_pengguna=$this->input->post("id");
+        $this->msiswa->up_status_siswa($id_pengguna);
+        echo json_encode($id_pengguna);
+
     }
 
 }

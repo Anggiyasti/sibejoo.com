@@ -207,78 +207,7 @@
                             </div>
 
                         </div>
-                        <hr>
-                        <!-- Start form data bimbel -->
-                        <div  class="form-group">
-                             <div class="col-sm-10 col-md-offset-1">
-
-
-                                <p class="text-center">BIMBEL</p>
-
-                                <!-- list Bimbel -->
-                                <select class="form-control" name="bimbel">
-                                    <option value="">- Pilih Bimbel Kalian -</option>
-                                    <option value="Neutron">Neutron</option>
-                                    <option value="GO">GO</option>
-                                    <option value="1bimbel lainya">Bimbel lainya</option>
-                                </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('bimbel'); ?></span>
-                             
-                                <!--  -->
-
-                            </div>
-                        </div>
-                        <hr class="form-group Keaktivan hide ">
-   
-                        <!-- start from data siswa neon -->
-                            <div class="form-group Keaktivan hide " >
-                                 <div class="col-sm-10 col-md-offset-1">
-                                <p class="text-center">DATA NEON</p>
-                                </div>
-                            </div> 
-                            <div class="form-group Keaktivan hide ">
-                                <div class="col-sm-10 col-md-offset-1">
-                                    <select class="form-control" name="cabang">
-                                        <option value="">- Pilih Cabang -</option>
-                                        <?php foreach ($cabang as $cabang_item): ?>
-                                            <option value="<?=$cabang_item->id ?>"><?=$cabang_item->namaCabang ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('cabang'); ?></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group Keaktivan hide">
-                                <div class="col-sm-10 col-md-offset-1">
-                                    <select class="form-control" name="kk">
-                                        
-                                       
-                                    </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('cabang'); ?></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group Keaktivan hide">
-
-                                <div class="col-sm-10 col-md-offset-1">
-
-                                    <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control" name="noinduk" value="<?php echo set_value('noinduk'); ?>" data-parsley-required>
-
-                                    <i class="ico-tag9 form-control-icon"></i>
-
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-
-                                    <span class="text-danger"><?php echo form_error('noinduk'); ?></span>
-
-                                </div>
-
-                            </div>
-                        <!-- end from data siswa neon  -->
-       
-                        <!-- end form data bimbel -->
+                
                         <hr>
 
                         <div class="form-group">

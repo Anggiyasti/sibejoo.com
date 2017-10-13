@@ -331,9 +331,8 @@ class Msiswa extends CI_Model {
 
     // get data siswa per segment
     function data_siswa($number,$offset){
-        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail,cabang.namaCabang');
+        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail');
         $this->db->join('tb_pengguna p', 's.penggunaID = p.id');
-        $this->db->join('tb_cabang cabang','cabang.id = s.cabangID');
         $this->db->where('s.status','1');
         $this->db->where('p.status','1');
         $this->db->order_by('s.namaDepan', 'asc');
@@ -561,6 +560,13 @@ class Msiswa extends CI_Model {
         $this->db->where("k.cabangID",$id_cabang);
         $query=$this->db->get();
         return  $query->result();
+    }
+
+    // update status pengguna siswa menjadi 0 
+    public function up_status_siswa($id_pengguna){
+        $this->db->where("id",$id_pengguna);
+        $this->db->set("status",0);
+        $this->db->update("tb_pengguna");
     }
 }
 

@@ -1,7 +1,4 @@
-
-
-
-        <section class="id="main" role="main"">
+<section class="" id="main" role="main"">
     <div class="container-fluid">
         <!-- Start row -->
         <div class="row">
@@ -14,7 +11,7 @@
                     <h3 class="panel-title">List Passing Grade</h3>
                     <!-- Start menu tambah materi -->
                         <div class="panel-toolbar text-right">
-                            <a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/materi/form_materi" title="Tambah Data" ><i class="ico-plus"></i></a>
+                            <a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/passinggrade/t_pass" title="Tambah Data" ><i class="ico-plus"></i></a>
                         </div>
                          <!-- END menu tambah materi -->
 
@@ -26,12 +23,12 @@
                         <thead>
                             <tr>
                             <th>No</th>
-                                            <th>Kode</th>
-                                            <th>Wilayah</th>
-                                            <th>Universitas</th>
-                                            <th>Program Studi</th>
-                                            <th>Passing Grade</th>
-                                            <th width="20%">Aksi</th>
+                            <th>Kode</th>
+                            <th>Wilayah</th>
+                            <th>Universitas</th>
+                            <th>Program Studi</th>
+                            <th>Passing Grade</th>
+                            <th width="20%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,22 +65,31 @@
 
 
     function drop_passing(id_passing){
-        if(confirm('Are you sure delete this data?')){
-        $.ajax({
-            url : base_url+"index.php/Passinggrade/del_passing/"+id_passing,
-            type: "POST",
-            dataType: "TEXT",
-            success: function(data)
-            {
-                console.log('success');
+        url = base_url+"passinggrade/del_passing/"+id_passing;
+        swal({
+            title: "Yakin akan hapus passing grade?",
+            text: "Anda tidak dapat membatalkan ini.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya,Tetap hapus!",
+            closeOnConfirm: false
+        },
+        function(){
+            $.ajax({
+              dataType:"text",
+              type:"POST",
+              url:url,
+              success:function(){
+                swal("Terhapus!", "Passing grade berhasil dihapus.", "success");
                 reload_tblist();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                swal('Error deleting data');
-            }
+              },
+              error:function(){
+                sweetAlert("Oops...", "Data gagal terhapus!", "error");
+              }
+
+            });
         });
-    }
 
     }
 
