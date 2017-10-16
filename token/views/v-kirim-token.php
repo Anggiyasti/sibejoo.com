@@ -59,10 +59,8 @@
                   <label for="check-all">&nbsp;&nbsp;</label></span> 
                 </th>
                 <th>No</th>
-                <th>Nama Mahasiswa</th>
+                <th>Nama Siswa</th>
                 <th>Nama Pengguna</th>
-                <th>Cabang</th>
-                <th>Aksi</th>
               </tr>
             </thead>
             <tbody id="record_siswa">

@@ -34,58 +34,65 @@
 <script type="text/javascript">
 
     function updatea(id_testi) {
-//        var ischecked = $("input:checkbox.publish").is(':checked'); 
-        var pu = $("input:checkbox.publish").val();
-        console.log(pu);
-//        if (pu == 1) {
+        
+        var url = base_url+"testimoni/publishtestimoni/" + id_testi;
+        swal({
+            title: "Yakin akan publih testimoni pada tampilan utama?",
+            text: "Anda tidak dapat membatalkan ini.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya!",
+            closeOnConfirm: false
+        },
+        function(){
             $.ajax({
-                url: base_url + "index.php/testimoni/publishtestimoni/" + id_testi,
-                data: "id_testi=" + id_testi,
-                type: "POST",
-                dataType: "TEXT",
-                success: function (data, respone)
-                {
-                    alert('Testimoni dipublish pada tampilan utama');
-                    reload_tblist();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert('Error disable testimoni');
-                    // console.log(jqXHR);
-                    // console.log(textStatus);
-                    console.log(errorThrown);
-                }
+              dataType:"text",
+              data: "id_testi=" + id_testi,
+              type:"POST",
+              url:url,
+              success:function(){
+                swal("Berhasil", "Testimoni dipublish pada tampilan utama", "success");
+                reload_tblist();
+              },
+              error:function(){
+                sweetAlert("Oops...", "Gagal!", "error");
+              }
+
             });
-//        }
+        });
     }
 
 
     function droptea(id_testi) {
-//        var ischecked = $("input:checkbox.publish").is(':checked');   
         var nilai = $("input:checkbox.drop").val();
-        console.log(nilai);
-//        if (nilai == 1) {
+        var url = base_url+"testimoni/disabletestimoni/" + id_testi;
+        swal({
+            title: "Yakin akan menghilangkan testimoni dari tampilan utama?",
+            text: "Anda tidak dapat membatalkan ini.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya!",
+            closeOnConfirm: false
+        },
+        function(){
             $.ajax({
-                url: base_url + "index.php/testimoni/disabletestimoni/" + id_testi,
-                data: "id_testi=" + id_testi,
-                type: "POST",
-                dataType: "TEXT",
-                success: function (data, respone)
-                {
-                    swal('Testimoni dihilangkan dari tampilan utama');
-                    reload_tblist();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    swal('Error publish testimoni');
-                    // console.log(jqXHR);
-                    // console.log(textStatus);
-                    console.log(errorThrown);
-                }
-            });
-//        }
-    }
+              dataType:"text",
+              data: "id_testi=" + id_testi,
+              type:"POST",
+              url:url,
+              success:function(){
+                swal("!", "Testimoni dihilangkan dari tampilan utama", "success");
+                reload_tblist();
+              },
+              error:function(){
+                sweetAlert("Oops...", "Gagal!", "error");
+              }
 
+            });
+        });
+    }
 
 
     var tb_testimoni;
@@ -101,27 +108,33 @@
     });
 
     function dropTestimoni(id_testi) {
-        if (confirm('Apakah Anda yakin akan menghapus data ini?')) {
-            // ajax delete data to database
-//            console.log(base_url + "index.php/Testimoni/deletePesan/" + id_testi);
+
+        url = base_url+"index.php/testimoni/deleteTesti/" + id_testi;
+        swal({
+            title: "Yakin akan hapus testimoni?",
+            text: "Anda tidak dapat membatalkan ini.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya,Tetap hapus!",
+            closeOnConfirm: false
+        },
+        function(){
             $.ajax({
-                url: base_url + "index.php/testimoni/deleteTesti/" + id_testi,
-                data: "id_testi=" + id_testi,
-                type: "POST",
-                dataType: "TEXT",
-                success: function (data, respone)
-                {
-                    reload_tblist();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    swal('Error deleting data');
-                    // console.log(jqXHR);
-                    // console.log(textStatus);
-                    console.log(errorThrown);
-                }
+              dataType:"text",
+              data: "id_testi=" + id_testi,
+              type:"POST",
+              url:url,
+              success:function(){
+                swal("Terhapus!", "Testimoni berhasil dihapus.", "success");
+                reload_tblist();
+              },
+              error:function(){
+                sweetAlert("Oops...", "Data gagal terhapus!", "error");
+              }
+
             });
-        }
+        });
     }
 
     function reload_tblist() {

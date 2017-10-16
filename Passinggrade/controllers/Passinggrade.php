@@ -22,7 +22,7 @@ class Passinggrade extends MX_Controller {
     //form tambah passing grade
     public function t_pass()
     {  
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Tambah Passing Grade";
         $data['files'] = array(
             APPPATH . 'modules/passinggrade/views/add_passing.php',
             
@@ -49,7 +49,7 @@ class Passinggrade extends MX_Controller {
             $data['prodi']=$post['prodi'];
             $data['passinggrade']=$post['passinggrade'];
             $this->Mpassing->insert_passing($data);
-            $info="Data Team Berhasil disimpan dan foto berhasil di-upload ";
+            $info="Passing Grade Berhasil disimpan dan foto berhasil di-upload ";
            
         echo json_encode($info);    
     }
@@ -133,7 +133,7 @@ class Passinggrade extends MX_Controller {
         //hak akses bila admin
         // if ($this->session->userdata('id_admin')) {
         $data['data']   = $this->Mpassing->getpassing();
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Dashboard Passing Grade";
 
         $data['files'] = array(
             APPPATH . 'modules/passinggrade/views/daftar_passing.php',
@@ -207,7 +207,7 @@ class Passinggrade extends MX_Controller {
         $data['files'] = array(
             APPPATH . 'modules/passinggrade/views/edit_passing.php',
             );
-        $data['judul_halaman'] = "Form Update Materi";
+        $data['judul_halaman'] = "Form Update Passing Grade";
         
        $hakAkses=$this->session->userdata['HAKAKSES'];
                 // cek hakakses 

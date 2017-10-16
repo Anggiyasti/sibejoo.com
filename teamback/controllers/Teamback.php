@@ -107,7 +107,7 @@ class Teamback extends MX_Controller {
 		$config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
 		$config['max_size'] = 100;
 		$config['max_width'] = 1024;
-		$config['max_height'] = 768;
+		$config['max_height'] = 1024;
 	    
 	    //random name
 		$configLogo['encrypt_name'] = TRUE;
@@ -158,7 +158,7 @@ class Teamback extends MX_Controller {
 		$config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
 		$config['max_size'] = 100;
 		$config['max_width'] = 1024;
-		$config['max_height'] = 768;
+		$config['max_height'] = 1024;
 	    
 	    //random name
 		$configLogo['encrypt_name'] = TRUE;

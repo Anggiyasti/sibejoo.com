@@ -103,79 +103,6 @@
                         </div>
 
                      <hr>
-                     <!-- Start form data bimbel -->
-                        <div  class="form-group">
-                             <div class="col-sm-10 col-md-offset-1">
-
-
-                                <p class="text-center">BIMBEL</p>
-
-                                <!-- list Bimbel -->
-                                <select class="form-control" name="bimbel">
-                                    <option value="">- Pilih Bimbel Kalian -</option>
-                                    <option value="Neutron" id="opNeutron">Neutron</option>
-                                    <option value="GO">GO</option>
-                                    <option value="1bimbel lainya">Bimbel lainya</option>
-                                </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('bimbel'); ?></span>
-                             
-                                <!--  -->
-
-                            </div>
-                        </div>
-                       
-                        <hr class="Keaktivan hide" >
-                        <!-- start from data siswa neon -->
-                            <div class="form-group Keaktivan hide " >
-                                 <div class="col-sm-10 col-md-offset-1">
-                                <p class="text-center">DATA NEON</p>
-                                </div>
-                            </div> 
-                            <div class="form-group Keaktivan hide ">
-                                <div class="col-sm-10 col-md-offset-1">
-                                    <select class="form-control" name="cabang">
-                                        <option value="">- Pilih Cabang -</option>
-                                        <?php foreach ($cabang as $cabang_item): ?> 
-
-                                        <?php if ($cabang_item->id==$siswa['cabangID']): ?>
-                                            <option value="<?=$cabang_item->id ?>" selected><?=$cabang_item->namaCabang ?></option>
-                                        <?php endif ?>
-                                            <option value="<?=$cabang_item->id ?>" ><?=$cabang_item->namaCabang ?></option>
-                                            
-                                        <?php endforeach ?>
-                                    </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('cabang'); ?></span>
-                                </div>
-                            </div>
-
-                           <div class="form-group Keaktivan hide  ">
-                                <div class="col-sm-10 col-md-offset-1">
-                                  <select class="form-control" name="kk">
-                                         <?=$kelompokKelas?>
-                                  </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group Keaktivan hide">
-
-                                <div class="col-sm-10 col-md-offset-1">
-
-                                    <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control" name="noinduk" value="<?= $siswa['noIndukNeutron'] ?>" data-parsley-required>
-
-                                    <i class="ico-tag9 form-control-icon"></i>
-
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-
-                                    <span class="text-danger"><?php echo form_error('noinduk'); ?></span>
-
-                                </div>
-
-                            </div>
-                        <!-- end from data siswa neon  -->
-       
-                        <!-- end form data bimbel -->
                         
                     <div class="panel-footer">
                         <div class="col-md-4 pull-right">
@@ -192,39 +119,6 @@
     </div>
 </section>
 <!--/ END Template Main -->
- <script type="text/javascript">
-$('select[name=bimbel]').change(function(){
-    var bimbel = $('select[name=bimbel]').val();
-    if (bimbel=='Neutron') {
-        $('.Keaktivan').removeClass('hide');
-    }else{
-        $('.Keaktivan').addClass('hide animate');
-
-    }
-});
-//event cabang ketika ada perubahann pafa cabang maka 
-// dropdown kelompok keahlian akan menampilkan kelokmpok berdasakan cbang yg di pilh
-$('[name=cabang]').change(function(){
-  var id_cabang = $('[name=cabang]').val();
-  var url=base_url+"siswa/get_kk_siswa";
-  $.ajax({
-    url:url,
-    data:{id_cabang:id_cabang},
-    dataType:"text",
-    type:"post",
-    success:function(Data){
-      var optionKk=JSON.parse(Data);
-        $("[name=kk]").empty();
-       $("[name=kk]").append(optionKk);
-       $(".kelompok-kelas").removeClass("hide");
-
-    },
-    error:function(){
-
-    },
-  });
-});
-</script>
 <!-- ajax dropdown depedensi -->
 <script type="text/javascript">
   function loadTingkat() {

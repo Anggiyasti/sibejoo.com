@@ -17,7 +17,6 @@
 							<select  class="form-control" name="records_per_page_siswa" >
 								<!-- <option value="10" selected="true">records per page</option> -->
 								<option value="10" selected="true">10</option>
-								<option value="1">1</option>
 								<option value="25">25</option>
 								<option value="50" >50</option>
 								<option value="100">100</option>
@@ -44,6 +43,7 @@
 								<th>Nama Pengguna</th>
 								<th>Nama Siswa</th>
 								<th>Email</th>
+								<th>Cabang Neutron</th>
 							</tr>
 						</thead>
 
@@ -83,7 +83,6 @@
 							<select  class="form-control" name="records_per_page_ortu" >
 								<!-- <option value="10" selected="true">records per page</option> -->
 								<option value="10" selected="true">10</option>
-								<option value="1">1</option>
 								<option value="25">25</option>
 								<option value="50" >50</option>
 								<option value="100">100</option>
@@ -156,6 +155,7 @@
 	var tb_ortu;
 	var pagination_ortu;
 	$(document).ready(function(){
+		// set record siswa
 		function set_tb_siswa(){
 			var url = base_url+"ortuback/ajax_siswa_not_ortu"
 			var datas ={records_per_page_siswa:records_per_page_siswa,pageSelek_siswa:pageSelek_siswa,keySearch_siswa:keySearch_siswa};
@@ -165,12 +165,15 @@
 				dataType:"text",
 				type:"post",
 				success:function(Data){
-					 tb_siswa = JSON.parse(Data);
-        	$('#record_daftar_siswa').append(tb_siswa);
+					set_pagination_siswa();
+					$('#record_daftar_siswa').empty();
+					tb_siswa = JSON.parse(Data);
+        			$('#record_daftar_siswa').append(tb_siswa);
 				}
 			});
 		}
 		set_tb_siswa();
+		//set paginatiaon tabel siswa
 		function set_pagination_siswa(){
 			var url = base_url+"ortuback/pagination_siswa_not_ortu"
 			var datas ={records_per_page_siswa:records_per_page_siswa,pageSelek_siswa:pageSelek_siswa,keySearch_siswa:keySearch_siswa};
@@ -180,12 +183,13 @@
 				dataType:"text",
 				type:"post",
 				success:function(Data){
+					$('.pagination-siswa').empty();
 					 pagination_siswa = JSON.parse(Data);
         	$('.pagination-siswa').append(pagination_siswa);
 				}
 			});
 		}
-		set_pagination_siswa();
+		
 		function set_tb_ortu(){
 			var url = base_url+"ortuback/ajax_ortu"
 			var datas ={records_per_page_ortu:records_per_page_ortu,pageSelek_ortu:pageSelek_ortu,keySearch_ortu:keySearch_ortu};
@@ -195,13 +199,15 @@
 				dataType:"text",
 				type:"post",
 				success:function(Data){
+					$('#record_daftar_Ortu').empty();
 					 tb_ortu = JSON.parse(Data);
         	$('#record_daftar_Ortu').append(tb_ortu);
+        	set_pagination_ortu();
 				}
 			});
 		}
 		set_tb_ortu();
-			function set_pagination_ortu(){
+		function set_pagination_ortu(){
 				var url = base_url+"ortuback/pagination_ortu"
 			var datas ={records_per_page_ortu:records_per_page_ortu,pageSelek_ortu:pageSelek_ortu,keySearch_ortu:keySearch_ortu};
 			$.ajax({
@@ -211,12 +217,12 @@
 				type:"post",
 				success:function(Data){
 					 pagination_ortu = JSON.parse(Data);
-					 // pagination_ortu="ini gemes";
-        	$('.pagination-ortu').append(pagination_ortu);
+					 $('.pagination-ortu').empty();
+        			$('.pagination-ortu').append(pagination_ortu);
 				}
 			});
 		}
-		set_pagination_ortu();
+		
 		$("#add-ortu").click(function(){
 			$("#panel-ortu").removeClass("hidden");
 		});
@@ -224,7 +230,30 @@
 			$("#panel-ortu").addClass("hidden");
 		});
 
+		$("[name=records_per_page_siswa]").change(function(){
+			records_per_page_siswa=$("[name=records_per_page_siswa]").val();
+			set_tb_siswa();
+		});
 
+		$("[name=records_per_page_ortu]").change(function(){
+			records_per_page_ortu=$("[name=records_per_page_ortu]").val();
+			set_tb_ortu();
+		});
+
+		// event onclick cari siswa
+		$("#cariSiswa").click(function () {
+			keySearch_siswa = $("[name=cariSiswa]").val();
+			set_tb_siswa();
+		});
+
+
+		// event onclick cari ortu
+		$("#cariOrtu").click(function () {
+			keySearch_ortu = $("[name=cariOrtu]").val();
+			set_tb_ortu();
+		});
+		// $("[name=cariOrtu]").change(function () {
+		// });
 
 	});
 
@@ -310,8 +339,8 @@
       idPaginationhide--;
     }
   } 
-   prevSiswa=newMeridian-2;
-   nextSiswa=newMeridian;
+   prev_siswa=newMeridian-2;
+   next_siswa=newMeridian;
    meridian_siswa=newMeridian;
    $('#pageSiswa-'+meridian_siswa).addClass('active');
 }
@@ -331,23 +360,24 @@ function prevPageOrtu() {
 }
 
 function selectPageOrtu(pageValOrtu='0') {
-      page_ortu=pageValOrtu;
+  page_ortu=pageValOrtu;
   pageSelek_ortu=page_ortu*records_per_page_ortu;
-    $('#record_daftar_Ortu').empty();
-   var url = base_url+"ortuback/ajax_ortu"
-			var datas ={records_per_page_ortu:records_per_page_ortu,pageSelek_ortu:pageSelek_ortu,keySearch_ortu:keySearch_ortu};
-			$.ajax({
-				url:url,
-				data:datas,
-				dataType:"text",
-				type:"post",
-				success:function(Data){
-					 tb_ortu = JSON.parse(Data);
-        	$('#record_daftar_Ortu').append(tb_ortu);
-				}
-			});
+  $('#record_daftar_Ortu').empty();
+  var url = base_url+"ortuback/ajax_ortu"
+  var datas ={records_per_page_ortu:records_per_page_ortu,pageSelek_ortu:pageSelek_ortu,keySearch_ortu:keySearch_ortu};
+		$.ajax({
+			url:url,
+			data:datas,
+			dataType:"text",
+			type:"post",
+			success:function(Data){
+				tb_ortu = JSON.parse(Data);
+    		$('#record_daftar_Ortu').append(tb_ortu);
+    	
+			}
+		});
      //meridian adalah nilai tengah padination
- $('#pageSiswa-'+meridian_ortu).removeClass('active');
+  $('#pageSiswa-'+meridian_ortu).removeClass('active');
   var newMeridian=page_ortu+1;
   var loop;
   var hidePage;
@@ -374,7 +404,7 @@ function selectPageOrtu(pageValOrtu='0') {
       idPaginationhide--;
     }
   }else if( newMeridian>meridian_ortu){
-    $("#page-prev-siswa").removeClass('hide');
+    $("#page-prev-ortu").removeClass('hide');
         //banyak pagination yg akan di tampilkan dan sisembunyikan
         loop=newMeridian-meridian_ortu;
         // start id pagination yg akan ditampilkan
@@ -409,7 +439,7 @@ function selectPageOrtu(pageValOrtu='0') {
       //pagination baru yg ditampilkan
       $(hidePagination).addClass('hide');
             idPaginationshow++;
-      idPaginationhide--;
+      	idPaginationhide--;
     }
   } 
    prev_ortu=newMeridian-2;
@@ -423,31 +453,95 @@ function add_ortu(){
 	$('.daftarsiswa tbody td :checkbox:checked').each(function(i){
      id_siswa[i] = $(this).val();
    }); 
-	var url = base_url+"ortuback/set_ortu";
-	$.ajax({
-		url:url,
-		data:{id_siswa:id_siswa},
-		dataType:"text",
-		type:"post",
-		success:function(Data){
-			selectPageSiswa(pageValSiswa='0');
-			selectPageOrtu(pageValOrtu='0');
-			console.log(Data);
-			sweetAlert("oops","Yaya","success");
-		},
-		error:function(){
+	var jumlah_siswa=id_siswa.length;
+	if (jumlah_siswa==0) {
+		sweetAlert("Oops","Silahkan pilih siswa","error");
+	} else if(jumlah_siswa>0) {
+		var url = base_url+"ortuback/set_ortu";
+		console.log(id_siswa);
+			$.ajax({
+			url:url,
+			data:{id_siswa:id_siswa},
+			dataType:"text",
+			type:"post",
+			success:function(Data){
+				selectPageSiswa(pageValSiswa='0');
+				selectPageOrtu(pageValOrtu='0');
+				
+				sweetAlert("OK","Data Orang Tua Berhasil Ditambahkan.","success");
+			},
+			error:function(){
 
-		}
-	});
-	// console.log(id_siswa);
-}
-
-		$('[name="checkall_siswa"]:checkbox').click(function () {
-		 if($(this).attr("checked")){
-		 	console.log("inigeemes");
-		  $('table.daftarsiswa tbody input:checkbox').prop( "checked", true );
-			} else{ 
-			  $('table.daftarsiswa tbody input:checkbox').prop( "checked", false );
 			}
 		});
+	}
+}
+
+//reset katasandi pengguna ortu
+function reset_pswd_ortu(id,namaPengguna){
+	 swal({
+        title: "Yakin akan me-reset katasandi "+namaPengguna+"?",
+        text: "Anda tidak dapat membatalkan ini.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Ya,Tetap me-reset katasandi!",
+        closeOnConfirm: false
+      },
+      function(){
+      	var url = base_url+"ortuback/reset_kataSandi_ortu";
+      	$.ajax({
+      		url:url,
+      		data:{id:id,namaPengguna:namaPengguna},
+      		dataType:"text",
+      		type:"post",
+      		success:function(Data){
+      		swal("kata sandi baru : [namaPengguna]+[tgl sekarang] !", "Katasandi Baru = "+Data, "success");
+      		},
+      		error:function(){
+
+      		}
+      	});
+      });
+	
+}
+
+function del_ortu(id,namaPengguna){
+
+	swal({
+		title: "Yakin akan menghapus "+namaPengguna+"?",
+		text: "Anda tidak dapat membatalkan ini.",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Ya,Tetap hapus!",
+		closeOnConfirm: false
+	},
+	function(){
+		var url = base_url+"siswa/del_pengguna_siswa";
+		$.ajax({
+			url:url,
+			data:{id:id},
+			dataType:"text",
+			type:"post",
+			success:function(){
+				 selectPageOrtu(pageValOrtu='0');
+				sweetAlert("Data berhasil di hapus","","success");
+			},
+			error:function(){
+
+			}
+		});
+	});
+	
+}
+
+
+	$('[name="checkall_siswa"]:checkbox').click(function () {
+	 if($(this).attr("checked")){
+	  $('table.daftarsiswa tbody input:checkbox').prop( "checked", true );
+		} else{ 
+		  $('table.daftarsiswa tbody input:checkbox').prop( "checked", false );
+		}
+	});
 </script>

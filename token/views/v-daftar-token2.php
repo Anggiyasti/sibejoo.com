@@ -11,7 +11,7 @@
            <label class="col-sm-2 control-label">Jumlah Token</label>
            <div class="col-sm-3">
              <!-- stkt = soal tingkat -->
-             <input type="text" class="form-control" name="jumlah_token">
+             <input type="number" class="form-control" name="jumlah_token">
            </div>
 
            <label class="col-sm-2 control-label">Masa aktif</label>
@@ -54,7 +54,7 @@
 
          <!-- stkt = soal tingkat -->
          <select class="form-control" name="masa_aktif" id="masa_aktif_select">
- <option value="0">-- Pilih Masa Aktif --</option>
+              <option value="all">-- Pilih Masa Aktif --</option>
               <option value="365">Heroo Member</option>
               <option value="1095">Angel Member</option>
         </select>
@@ -334,19 +334,27 @@ $('.simpan_token').click(function(){
 // UDF //
 function addtoken(){
   var data = $('.form-step').serialize();
-  $.ajax({
-    url:base_url+"token/add_token",
-    data:data,
-    type:"POST",
-    dataType:"TEXT",
-    success:function(){
-      swal('Token Berhasil Di Tambahkan');
-      selectPage();
-      paginationToken();
-    },error:function(){
-      swal('Gagal membuat Token');
-    }
-  });
+  var jmlh_token = $('input[name=jumlah_token]').val();
+  var masa_aktif = $('select[name=masa_aktif]').val();
+  if (jmlh_token == "" || jmlh_token == 0) {
+    swal('Info','Jumlah token harus diisi','info');
+  } else if (masa_aktif=="0") {
+    swal("Info", "Harus memilih masa aktif terlebih dahulu", "info");
+  }else{
+    $.ajax({
+      url:base_url+"token/add_token",
+      data:data,
+      type:"POST",
+      dataType:"TEXT",
+      success:function(){
+        swal('Token Berhasil Di Tambahkan');
+        selectPage();
+        paginationToken();
+      },error:function(){
+        swal('Gagal membuat Token');
+      }
+    });
+  }
 }
 
 

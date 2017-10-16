@@ -130,14 +130,26 @@
                 type:"POST",
                 fileElementId :elementId,
                 success:function(Data){
-                    sweetAlert("Info",Data,"success");
-                    window.location = base_url+"teamback";
+                    swal({
+                        title: "Team berhasil ditambahkan",
+                        type: "warning",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Selesai",
+                        closeOnConfirm: false,
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = base_url+"teamback";
+                        } 
+                        else {
+                            swal("Tambah Data dibatalkan");
+                        }
+                     });
                 },
                 error:function(){
                     
                 }
             });
-
             
         }
     }
