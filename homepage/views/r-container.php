@@ -800,18 +800,18 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
       <div class="row multi-row-clearfix">
         <div class="owl-carousel-4col" data-dots="true" >
           <?php foreach ($teams as $team): ?>
-            <?php $link =base_url('/assets/image/team/'.$team['foto']); ?>
+            <?php $link =base_url('/assets/image/team/'.strtolower($team['foto'])); ?>
             <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="http://placehold.it/300x300" alt=""></div>
+              <div class="thumb"><img class="img-fullwidth" src="<?=$link ?>" alt=""></div>
               <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                 <h4 class="name mt-0 text-theme-color-2"><?=$team['nama']?> - <small><?=$team['posisi']?></small></h4>
                 <p class="mb-20"><?=$team['keterangan']?>.</p>
                 <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="<?=$team['instagram'] ?>"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:<?=$team['email'] ?>"><i class="fa fa-comment"></i></a></li>
+
                 </ul>
-                <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                <!-- <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a> -->
               </div>
             </div>
           <?php endforeach ?>
