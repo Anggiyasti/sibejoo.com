@@ -396,7 +396,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?=base_url('index.php/artikel/tambahartikel/1') ?>">
+                <a href="<?=base_url('index.php/artikel/tambahartikel') ?>">
                 <span class="text">Tambah Artikel</span>
                 </a>
               </li>
@@ -577,11 +577,11 @@
             </a>
             <ul id="konsultasi" class="submenu collapse ">
               <li class="submenu-header ellipsis">Konsultasi Forum/li>
-              <li>
+              <!-- <li>
                 <a href="javascript:void(0);">
                 <span class="text">Daftar Konsultasi Forum</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                 <a href="<?= base_url('index.php/konsulback/aq_konsul');?>">
                 <span class="text">Akumulasi Poin Konsultasi</span>
@@ -605,12 +605,12 @@
               <li class="submenu-header ellipsis">Materi</li>
               <li>
                 <a href="<?=base_url('index.php/materi/form_materi')?>" >
-                <span class="text">Form Materi</span> 
+                <span class="text">Tambah Materi</span> 
                 </a>
               </li>
               <li>
                 <a href="<?=base_url('index.php/materi/list_all_materi')?>">
-                <span class="text">Tambah Materi</span>
+                <span class="text">Daftar Materi</span>
                 </a>
               </li>
             </ul>
@@ -683,7 +683,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?=base_url('index.php/artikel/tambahartikel/2') ?>">
+                <a href="<?=base_url('index.php/artikel/tambahHeroo') ?>">
                 <span class="text">Tambah Report Heroo</span>
                 </a>
               </li>

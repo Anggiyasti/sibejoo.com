@@ -14,8 +14,7 @@ class m_artikel extends CI_Model
     // get daftar artikel
 	public function getDaftarslide(){
     	$this->db->distinct();
-		$this->db->select('*');
-        $this->db->from('tb_artikel');
+		$this->db->select()->from('tb_artikel');
 		$tampil=$this->db->get();
 		return $tampil->result_array();
     }
@@ -34,6 +33,8 @@ class m_artikel extends CI_Model
     public function get_gambarartikel($id)
 
 	{
+
+		// $id_siswa=$this->session->userdata['email'] ;	
 
 		$this->db->select('*');
 
@@ -166,21 +167,9 @@ class m_artikel extends CI_Model
     }
 
 
-
-    public function in_upload_artikel($data){
-        // $this->db->insert('tb_team', $data['data_upload_team']);
-        $this->db->insert('tb_artikel', $data);
-    }
-
-    public function edit_upload_artikel($data,$id) {
-        $this->db->where('id_artikel', $id);
-        $this->db->update('tb_artikel', $data);
-        
-    }
-
       // DELETE MATA PELAJARAN
     public function delete_artikel($id_artikel) {
-        $this->db->where('id_artikel', $id_artikel['id']);
+        $this->db->where('id_artikel', $id_artikel);
         $this->db->delete('tb_artikel');
     }
 

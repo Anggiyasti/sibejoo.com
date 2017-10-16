@@ -1,123 +1,111 @@
         <!-- START Template Main -->
         <section id="main" role="main">
-            <!-- START Template Container -->
-            <div class="container-fluid">
-                <!-- START row -->
-                <div class="row">
-                <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="page-header page-header-block">
-                    <div class="checkbox custom-checkbox pull-left">  
-                        <h3 class="panel-title"><span class="panel-icon mr5"><i class="ico-table22"></i></span> Daftar Artikel</h3>
-                    </div>
-                    <div class="page-header-section">
-                        <!-- Toolbar -->
-                        <div class="toolbar">
-                            <ol class="breadcrumb breadcrumb-transparent nm">
-                                
-                            </ol>
-                        </div>
-                        <!--/ Toolbar -->
-                    </div>
-                </div>  
+
 
 <div class="row">
-    <div class="col-lg-12">
-        <!-- /.panel-default -->
+    <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <div class="col-md-4">       
-                    </div>
-                    <!-- form search -->                
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="form-group input-group">
-                            
-                        </div>
-                    </div>
-                    <div class="table-responsive panel-collapse pull out">
-                    <?php echo $this->session->flashdata('msg'); ?>
-                    <?php echo $this->session->flashdata('info'); ?>
-                    <?php echo $this->session->flashdata('pesan2'); ?>
-                                <table class="table table-bordered" id="zero-configuration" style="font-size: 13px">
-
-                                    <thead>
-                                        <tr>
-                                            <!-- <th width="5%"></th> -->
-                                            <th>ID ARTIKEL </th>
-                                            <th>JUDUL ARTIKEL</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                     <?php foreach ($data as $ds):?>
-                                        <tr>
-                                            <td><?=$ds['id_artikel'];?></td>
-                                          <td><?=$ds['judul_artikel'];?></td>
-                                           
-                                          
-                                            
-                                            
-                                            <td class="text-center">
-                                                <!-- button toolbar -->
-                                                <div class="toolbar">
-                                                    <div class="btn-group">
-                                            
-                                    <a href="<?=base_url()?>index.php/artikel/view_artikel/<?=$ds['id_artikel']?>" class="btn btn-outline btn-info">Ubah</a> 
-                                    <a class="btn btn-outline btn-info" href="#deleteartikel" data-toggle="modal" data-target="#deleteartikel<?php echo $ds['id_artikel']?>">Hapus</a>
-
-                                     <div class="modal fade" id="deleteartikel<?php echo $ds['id_artikel']?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Delete</h4>
-                                        </div>
-                                            <div class="modal-body">
-                                                Are you sure?
-                                            </div>
-                                        <div class="modal-footer">
-                                            <a href="<?=base_url()?>index.php/artikel/hapus_artikel/<?=$ds['id_artikel']?>" class="btn btn-default" >Yes</a>
-                                            <a href="#"class="btn btn-default" data-dismiss="modal">No</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div> 
-
-                                    
-                                                                
-                                                </div>
-                                                <!--/ button toolbar -->
-                                            </td>
-                                        </tr>
-                                        <?php endforeach; ?>                  
-                    </tbody>
-                    </table>
-                                                </div>
-
+            <div class="panel-heading">
+                <h3 class="panel-title">Daftar Artikel 
+                </h3>
+                <div class="panel-toolbar text-right">
+                    <a class="btn btn-inverse btn-outline add-team" title="Tambah Team" href="<?=base_url('index.php/artikel/tambahartikel')?>" ><i class="ico-plus"></i></a>
                 </div>
-                <!-- /.table-hover -->
             </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-                <!--/ END row -->
 
+            <div class="panel-body">
               
+               <div class="col-md-12">
+                <table class="daftarartikel table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Judul Artikel</th>
+                      <th>Isi Artikel</th>
+                      <th>Gambar</th>
+                      <th width="15%">Aksi</th>
+                    </tr>
+                    <tbody>
 
-            <!-- START To Top Scroller -->
-            <a href="#" class="totop animation" data-toggle="waypoints totop" data-showanim="bounceIn" data-hideanim="bounceOut" data-offset="50%"><i class="ico-angle-up"></i></a>
-            <!--/ END To Top Scroller -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /div tabel daftar token -->
 
+                <!-- div pagination daftar token -->
+                <div class="col-md-12">
+                  <ul class="pagination pagination-token">
+
+                  </ul>
+                </div>
+                <!-- div pagination daftar token -->
+            </div>
+
+        </div>
+    </div>
+</div>
         </section>
         <!--/ END Template Main -->
 
         <!-- START Template Sidebar (right) -->
        
 
+    <script type="text/javascript">
+  var dataTableArtikel;
+    $(document).ready(function() {
+
+        dataTableArtikel = $('.daftarartikel').DataTable({
+              "ajax": {
+                "url": base_url+"artikel/ajaxListArtikel",
+                "type": "POST"
+              },
+              "emptyTable": "Tidak Ada Data Pesan",
+              "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+              "bDestroy": true,
+            });
+    });
+
+// onclick adda team action
+$('.add-team').click(function(){
+  window.location.href = base_url + "teamback/form_addteam";
+});
+
+function edit_artikel(id) {
+    window.location.href = base_url + "artikel/update_artikel/"+id;
+}
+
+function drop_artikel(id){
+  url = base_url+"artikel/drop_artikel";
+  swal({
+    title: "Yakin akan hapus Artikel?",
+    text: "Anda tidak dapat membatalkan ini.",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Ya,Tetap hapus!",
+    closeOnConfirm: false
+  },
+  function(){
+    var datas = {id:id};
+    $.ajax({
+      dataType:"text",
+      data:datas,
+      type:"POST",
+      url:url,
+      success:function(){
+        swal("Terhapus!", "Artikel berhasil dihapus.", "success");
+        reload();
+      },
+      error:function(){
+        sweetAlert("Oops...", "Data gagal terhapus!", "error");
+      }
+
+    });
+  });
+}
+
+function reload() {
+    dataTableArtikel.ajax.reload(null,false);
+}
     
+</script>

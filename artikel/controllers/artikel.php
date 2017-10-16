@@ -7,6 +7,7 @@
  */
  class artikel extends MX_Controller
  {
+    private $upload_path = "./assets/image/artikel";
 
  	 function __construct()
   {
@@ -48,13 +49,15 @@
     }
 
 
-  // fungsi view artikel masuk ke update
-    public function view_artikel($id){
-        $data['artikel'] = $this->m_artikel->get_gambarartikel($id);
+
+
+    // fungsi view artikel masuk ke update
+    public function update_artikel($id){
         $data['judul_halaman'] = "Dashboard Admin";
         $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_update_artikel.php',
             );
+         $data['artikel'] = $this->m_artikel->get_gambarartikel($id)[0];
         $this->parser->parse('admin/v-index-admin', $data);
         
         
@@ -71,25 +74,6 @@
         
         
     }  
-
-    // FUNGSI update artikel
-    public function gambar_artikel($id) {
-
-        $config['upload_path'] = './assets/image/artikel';
-        $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
-        $config['max_size'] = 2000;
-        $config['max_width'] = 700;
-        $config['max_height'] = 467;
-        $this->load->library('upload', $config);
-        // PENGECEKAN KETIKA UPDATE APAKAH ADA FOTO ATAU TIDAK
-        if (!$this->upload->do_upload('photo')) {
-            $this->m_artikel->gambar_artikel1($id);            
-        } else {
-            $file_data = $this->upload->data();
-            $photo = $file_data['file_name'];
-            $this->m_artikel->gambar_artikel($id,$photo);
-        }
-    }
 
 
     // FUNGSI update report heroo
@@ -112,77 +96,156 @@
     }
 
     // FUNGSI VIEW FORM ARTIKEL
-    function tambahartikel($index_artikel)
+    function tambahartikel()
     {
     $data['judul_halaman'] = "Dashboard Admin";
-        
-    if ($index_artikel == 1) {
-        $data['files'] = array(
+    $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_tambah_artikel.php',
             );
-    }else{
-        $data['files'] = array(
-            APPPATH . 'modules/artikel/views/v_tambah_reportheroo.php',
-            );
-
-    }
+        
         $this->parser->parse('admin/v-index-admin', $data);
        
     }
 
-    // FUNGSI INSERT ARTIKEL
-    public function insertartikel($index_artikel){
-        $status ="";
-        $msg ="";
-        $filename="gambar";
-        if ($status != "error") {
-            $config['upload_path']= './assets/image/artikel';
-            $config['allowed_types'] = 'jpeg|gif|jpg|png|mkv';
-            $config['max_size'] = 2000;
-            $config['max_width'] = 700;
-            $config['max_height'] = 467;
 
-            $this->load->library('upload',$config);
-            // PENGECEKAN UPLOAD ARTIKEL
-            if (!$this->upload->do_upload($filename))  {
-                $status = 'error';
-                $msg = $this->upload->display_errors('','');
+    function tambahHeroo()
+    {
+    $data['judul_halaman'] = "Dashboard Admin";
+    
+        $data['files'] = array(
+            APPPATH . 'modules/artikel/views/v_tambah_reportheroo.php',
+            );
+
+        $this->parser->parse('admin/v-index-admin', $data);
+       
+    }
+
+
+
+    
+
+    // ajax list Artikel
+    public function ajaxListArtikel() {
+        $data=array();
+        // code u/pagination
+        $list = $this->m_artikel->getDaftarslide();
+
+        $no=1;
+        //cacah data 
+        foreach ( $list as $item ) {
+            $foto=$item['gambar'];
+            $nama = $item['judul_artikel'];
+            if ($foto!=' ') {
+                $filefoto=base_url().'assets/image/artikel/'.$foto;
             } else {
-                if ($index_artikel == 1) {
-                $data= $this->upload->data();
-                $file_id = $this->m_artikel->insert_artikel($_POST['judul_artikel'],
-                                                            $_POST['editor1'],
-                                                            $data['file_name']);
-                if ($file_id) {
-                    $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
-                    redirect('artikel/tambahartikel/1');
-                }
-                else{
-                    unlink($data['full_path']);
-                        $status = "error";
-                        $msg = "Please Try Again";
-                }
-                    
-                }else{
-
-
-                $data= $this->upload->data();
-                $file_id = $this->m_artikel->insert_report_heroo($_POST['judul_artikel'],
-                                                            $_POST['editor1'],
-                                                            $_POST['kategori'],
-                                                            $data['file_name']);
-                if ($file_id) {
-                    $this->session->set_flashdata('msg','<div class="alert alert-success text-center">Berhasil</div>');
-                    redirect('artikel/tambahartikel/2');
-                }
-                else{
-                    unlink($data['full_path']);
-                        $status = "error";
-                        $msg = "Please Try Again";
-                }
+                $filefoto=$this->generateavatar->generate_first_letter_avtar_url($judul_artikel);;
             }
-            }
-            @unlink($_FILES[$filename]);
+            // $c = $item['isi_artikel']; echo substr($c, 0, 100)
+            $isiart = $item ['isi_artikel'];
+            $row = array();
+            $row[] = $no;
+            $row[] = $item ['judul_artikel'];
+            $row[] = substr($isiart, 0, 50);
+            $row[] = '<div class="media-object"><img src="'.$filefoto.'" alt="" class="img"></div>';
+            $row[] = '
+            <a class="btn btn-sm btn-primary"  title="Edit" onclick="edit_artikel('."'".$item['id_artikel']."'".')">
+            <i class="ico-pencil"></i></a>
+            
+            <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_artikel('."'".$item['id_artikel']."'".')">
+            <i class="ico-remove"></i></a>';
+        
+            
+            $data[] = $row;
+            $no++;
+        }
+
+        $output = array(
+            "data"=>$data,
+            );
+        echo json_encode( $output );
+    }
+
+    //ajax add Artikel
+    function ajax_add_artikel(){
+        $post=$this->input->post();
+        //konfigurasi upload
+        $config['upload_path'] = $this->upload_path;
+        $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
+        $config['max_size'] = 100;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+        
+        //random name
+        $configLogo['encrypt_name'] = TRUE;
+        $new_name = time()."-".$_FILES["foto"]['name'];
+        $config['file_name'] = $new_name;
+        $this->load->library('upload', $config);
+        $foto = 'foto';
+        $this->upload->initialize($config);
+        $file_foto=$post['foto'];
+            if (!$this->upload->do_upload($foto)) {
+                //jika tidak uplop file atau gagal upload file foto
+                $data['judul_artikel']=$post['jdlartikel'];
+                $data['isi_artikel']=$post['editor1'];
+                $this->m_artikel->in_upload_artikel($data);
+                $info="Data Artikel Berhasil disimpan";
+           }else {
+                $file_data = $this->upload->data();
+                //get nama file yg di upload
+                $file_name = $file_data['file_name'];
+                $data['judul_artikel']=$post['jdlartikel'];
+                $data['isi_artikel']=$post['editor1'];
+                $data['gambar']=$file_name;
+                $this->m_artikel->in_upload_artikel($data);
+                $info="Data Artikel Berhasil disimpan dan foto berhasil di-upload ";
+           }
+        echo json_encode($info);     
+    }
+
+    //ajax update team
+    function ajax_update_artikel(){
+        $post=$this->input->post();
+        $id = $post['id'];
+        //konfigurasi upload
+        $config['upload_path'] = $this->upload_path;
+        $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
+        $config['max_size'] = 100;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+        
+        //random name
+        $configLogo['encrypt_name'] = TRUE;
+        $new_name = time()."-".$_FILES["foto"]['name'];
+        $config['file_name'] = $new_name;
+        $this->load->library('upload', $config);
+        $foto = 'foto';
+        $this->upload->initialize($config);
+        $file_foto=$post['foto'];
+            if (!$this->upload->do_upload($foto)) {
+                //jika tidak uplop file atau gagal upload file foto
+                $data['judul_artikel']=$post['jdlartikel'];
+                $data['isi_artikel']=$post['editor1'];
+                $this->m_artikel->edit_upload_artikel($data,$id);
+                $info="Data Team Berhasil diubah";
+           }else {
+                $file_data = $this->upload->data();
+                //get nama file yg di upload
+                $file_name = $file_data['file_name'];
+                $data['judul_artikel']=$post['jdlartikel'];
+                $data['isi_artikel']=$post['editor1'];
+                $data['gambar']=$file_name;
+                $this->m_artikel->edit_upload_artikel($data,$id);
+                $info="Data Team Berhasil diubah dan foto berhasil di-upload ";
+           }
+            //
+        echo json_encode($info);
+    }
+
+    // ajax drop team
+    function drop_artikel(){
+        if ($this->input->post()) {
+            $post = $this->input->post();
+            $this->m_artikel->delete_artikel($post);
         }
     }
 

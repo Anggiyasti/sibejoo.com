@@ -16,7 +16,7 @@
 
             $alamatSekolah  = $row['alamatSekolah']; 
 
-            $photo=base_url().'assets/image/photo/siswa/'.$row['photo'];
+            $photo=$row['photo'];
 
             $oldphoto=$row['photo'];
 
