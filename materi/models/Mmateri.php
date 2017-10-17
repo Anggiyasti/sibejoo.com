@@ -54,7 +54,7 @@
  	}
  	public function drop_materi($UUID)
  	{
- 		   $this->db->where('UUID', $UUID);
+ 		   $this->db->where('UUID', $UUID['UUID']);
         $this->db->set('status', '0');
         $this->db->update('tb_line_materi');
  	}
