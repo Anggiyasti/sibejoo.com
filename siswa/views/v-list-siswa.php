@@ -51,7 +51,6 @@
       <!-- div pencarian  -->
       <div class="col-md-10 mb10 mt10 pr0">
         <div class="input-group">
-          <a onclick="tes()"> Tes</a>
          <span class="input-group-addon btn" id="cariSiswa"><i class="ico-search"></i></span>
          <input class="form-control" type="text" name="cariSiswa" placeholder="Cari Data">
        </div>
@@ -341,16 +340,4 @@ function selectPage(pageVal='0') {
         });
       });
     }
-
-    function tes() {
-      var Things= [];
-      var param = {};
-      for (var i =  1; i <= 2; i++) {
-        var x = Things[i];
-        param[x] = i;
-        console.log(param[x]);
-      } 
-      console.log('hello', param);
-    }
-
 </script>
