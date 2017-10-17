@@ -213,6 +213,13 @@ class Mkomen extends CI_Model
 		return $query->num_rows();
     }
 
+      // DELETE KOMEN 
+    public function delete_komen($id_komen) {
+        $this->db->where('id', $id_komen['id']);
+        $this->db->set('status', '0');
+        $this->db->update('tb_komen');
+    }
+
 }
 
 ?>

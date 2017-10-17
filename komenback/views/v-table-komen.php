@@ -4,7 +4,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button><br>
-                            <div class="modal-title"><h5 class="text-center">Isi Respon Untuk Komen</h5></div>
+                            <div class="modal-title"><h5 class="text-center">Isi Respon Untuk Komentar</h5></div>
                             <div class="info">
                                 <div class="sukses text-info text-center hide">
                                     <span>Respon telah terkirim</span>
@@ -21,8 +21,8 @@
                         <style>
                         </style>
                         <div class="modal-body">
-                            <form class="form-laporan"> 
-                                <label>Isi Respon komen<sup class="text-info">*Silahkan isi respon</sup></label>
+                            <form class="form-laporan" > 
+                                <label>Isi Respon Komentar<sup class="text-info">*Silahkan isi respon</sup></label>
                                 <textarea name="respon" placeholder="Isi respon"
                                 rows="5" aria-invalid="false" aria-required="true"  class="form-control"></textarea>
                             </form>
@@ -50,13 +50,13 @@
                         <div class="table-responsive">
                             <div class="panel panel-default table-responsive" style="padding: 10px;border: 1px solid #cfd9db">
                                 <div class="panel-heading" style="padding: 10px;border: 1px solid #cfd9db">
-                                    <h3 class="panel-title">Data Komen</h3>
+                                    <h3 class="panel-title">Data Komentar</h3>
                                 </div>
                                 <table class="table table-bordered" id="ajax-source-komen" style="padding: 10px;border: 1px solid #cfd9db;width: 100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th width="30%">Isi Komen</th>
+                                            <th width="30%">Isi Komentar</th>
                                             <th>Tanggal</th>
                                             <th>Judul video</th>
                                             <th width="18%">Aksi</th>
@@ -118,7 +118,11 @@
                     dataType:"TEXT",
                     type:'post',
                     success:function(){
-                        alert('sukses');
+                        swal("Terkirim!", "Respon Berhasil terkirim.", "success");
+                        $('#respon').modal('hide');
+                        $('.form-laporan')[0].reset();
+                        
+
                     }, error:function(){
                         alert('gagal');
                     }
@@ -126,8 +130,42 @@
                 });
             }
 
+                function drop_komen(id){
+                    url = base_url+"komenback/DelKomen";
+                    swal({
+                        title: "Yakin akan hapus Komentar?",
+                        text: "Anda tidak dapat membatalkan ini.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Ya,Tetap hapus!",
+                        closeOnConfirm: false
+                    },
+                function(){
+                    var datas = {id:id};
+                    $.ajax({
+                    dataType:"text",
+                    data:datas,
+                    type:"POST",
+                    url:url,
+                    success:function(){
+                        swal("Terhapus!", "Komentar berhasil dihapus.", "success");
+                        reload();
+                    },
+                    error:function(){
+                        sweetAlert("Oops...", "Data gagal terhapus!", "error");
+                    }
+
+                        });
+                    });
+                    }
+
             function check(videoID){
                 window.location=base_url+"komenback/seevideo/"+videoID;
+            }
+
+            function reload(){
+                tb_komen.ajax.reload(null,false);
             }
 
 
