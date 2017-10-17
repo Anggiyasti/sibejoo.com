@@ -454,7 +454,7 @@ function updateSiswa($idsiswa, $idpengguna) {
          $datSiswa = $this->msiswa->get_siswa_byid($idsiswa, $idpengguna);
          $data['siswa']=$datSiswa[0];
          $data['datKelas']=$this->msiswa->get_kelas();
-         $data['judul_halaman'] = "Rubah Data Siswa";
+         $data['judul_halaman'] = "Ubah Data Siswa";
          $data['files'] = array(
             APPPATH . 'modules/siswa/views/v-update-siswa.php',
             );
@@ -809,7 +809,7 @@ public function editSiswa(){
                 );
             $this->msiswa->update_siswa1($data_post,$idsiswa);
 
-            redirect('siswa/listsiswa');
+            // redirect('siswa/listsiswa');
 
         }else{
             redirect('siswa/listsiswa');
@@ -1094,6 +1094,25 @@ public function message()
         echo json_encode($id_pengguna);
 
     }
+    
+    // cek input nama pengguna 
+    public function cek_nama_pengguna() {
+        $this->form_validation->set_rules( 'namapengguna', 'namapengguna', 'required|is_unique[tb_pengguna.namaPengguna]' );
+        if ( $this->form_validation->run() == FALSE ) {
+            echo json_encode("FALSE");
+        }else{
+            echo json_encode("TRUE");
+        }
+    }
 
+      // cek input email
+    public function cek_email() {
+      $this->form_validation->set_rules( 'email', 'email', 'required|is_unique[tb_pengguna.eMail]' );
+      if ( $this->form_validation->run() == FALSE ) {
+        echo json_encode("FALSE");
+      }else{
+        echo json_encode("TRUE");
+      }
+    }
 }
 ?>
