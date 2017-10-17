@@ -19,9 +19,9 @@ class MYPDF extends TCPDF {
 	public function DrawHeader($header, $w) {
         // Colors, line width and bold font
         // Header
-		$this->SetFillColor(255, 0, 0);
-		$this->SetTextColor(255);
-		$this->SetDrawColor(128, 0, 0);
+		$this->SetFillColor(150,206,180);
+		$this->SetTextColor(0,0,0);
+		$this->SetDrawColor(0,0,0);
 		$this->SetLineWidth(0.3);
 		$this->SetFont('', 'B');        
 		$num_headers = count($header);
@@ -30,8 +30,8 @@ class MYPDF extends TCPDF {
 		}
 		$this->Ln();
         // Color and font restoration
-		$this->SetFillColor(224, 235, 255);
-		$this->SetTextColor(0);
+		$this->SetFillColor(150,206,180);
+		$this->SetTextColor(0,0,0);
 		$this->SetFont('');
     }
 
@@ -94,13 +94,13 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('Laporan_TO');
+$pdf->SetTitle('Laporan Tryout');
 $pdf->SetSubject('TCPDF Tutorial');
 $pdf->SetKeywords('TCPDF, PDF, a, test, guide');
 
 // set default header data
-$img=base_url().'/assets/back/img/logo.png';
-$pdf->SetHeaderData('logo.png', '10%', PDF_HEADER_TITLE." Cabang ".$cabang,PDF_HEADER_STRING);
+$img="http://sibejoo.com/img/logo-sibejoo.png";
+$pdf->SetHeaderData('logo-sibejoo.png', '50%', PDF_HEADER_TITLE." Cabang ",PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -143,7 +143,7 @@ $header = array('No','Nama Siswa','Jumlah Soal','
 
 // data loading
 //judul tabel
-$nameTbl='<h1>Hasil TryOUT Paket '.$paket.'</h1>';
+$nameTbl='<h1>Hasil Try Out Paket '.$paket.'</h1>';
 $pdf->writeHTML($nameTbl,false, false, false, false, '');
 // print colored table
 $pdf->ColoredTable($header, $all_report);
@@ -155,7 +155,7 @@ $tbl = '
 <table border="1" >
  <thead>
 
-	 <tr style="background-color:#FF0000;color:white;">
+	 <tr style="background-color:#96ceb4;color:black;">
 	    <th align="center"><b>Jumlah Siswa</b></th>
 	    <th align="center"><b>Rata</b></th>
 	    <th align="center"><b>Nilai Tertinggi</b></th>

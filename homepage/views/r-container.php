@@ -809,7 +809,6 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
                   <li><a href="<?=$team['instagram'] ?>"><i class="fa fa-instagram"></i></a></li>
                   <li><a href="mailto:<?=$team['email'] ?>"><i class="fa fa-comment"></i></a></li>
-
                 </ul>
                 <!-- <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a> -->
               </div>

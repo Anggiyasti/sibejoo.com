@@ -519,7 +519,7 @@ function addPaket(){
  },
  error: function (jqXHR, textStatus, errorThrown)
  {
-   alert('Error adding / update data');
+   swal('Oops','Error adding / update data','error');
  }
 });
 }else{
@@ -632,61 +632,86 @@ function lihatsoal(id){
 // function delete paket to to
 function dropPaket(idKey) {
  var id_to =$('#id_to').val();
- if (confirm('Apakah Anda yakin akan menghapus data paket? ')) {
-// ajax delete data to database
-$.ajax({
-  url : base_url+"index.php/toback/dropPaketTo/"+idKey,
-  type: "POST",
-  dataType: "TEXT",
-  success: function(data,respone){  
-    reload_tblist();
-  },
-  error: function (jqXHR, textStatus, errorThrown){
-    swal('Error deleting data');
-    console.log(errorThrown);
-  }
-});
-}
-}
-
-function dropSiswa(idKey) {
-  var id_to =$('#id_to').val();
-  if (confirm('Apakah Anda yakin akan menghapus data siswa? ')) {
-  // ajax delete data to database
+ swal({
+  title: "Yakin akan hapus Pengawas?",
+  text: "Jika anda menghapus Pengawas",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Ya,Tetap hapus!",
+  closeOnConfirm: false
+},
+function(){
   $.ajax({
-    url : base_url+"index.php/toback/dropSiswaTo/"+idKey,
+    url : base_url+"index.php/toback/dropPaketTo/"+idKey,
     type: "POST",
     dataType: "TEXT",
-    success: function(data,respone){  
+    success: function(data,respone){ 
+    sweetAlert('Yeah','Data paket berhasil di hapus','success');
       reload_tblist();
     },
     error: function (jqXHR, textStatus, errorThrown){
-      swal('Error deleting data');
+      swal('Oops','Error deleting data','error');
       console.log(errorThrown);
     }
   });
+});
+
 }
+
+function dropSiswa(idKey) {
+  url = base_url+"learningline/drop_topik";
+  swal({
+    title: "Yakin akan hapus Siswa?",
+    text: "Jika anda menghapus Siswa",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Ya,Tetap hapus!",
+    closeOnConfirm: false
+  },
+  function(){
+    $.ajax({
+      url : base_url+"index.php/toback/dropSiswaTo/"+idKey,
+      type: "POST",
+      dataType: "TEXT",
+      success:function(){
+        swal("Terhapus!", "Siswa berhasil dihapus.", "success");
+        reload_tblist();
+      },
+      error:function(){
+        sweetAlert("Oops...", "Data gagal terhapus!", "error");
+      }
+    })
+
+  });
 }
 
 function dropPengawas(idKey) {
-  var id_to =$('#id_to').val();
-  if (confirm('Apakah Anda yakin akan menghapus data siswa? ')) {
-    // ajax delete data to database
+  swal({
+    title: "Yakin akan hapus Pengawas?",
+    text: "Jika anda menghapus Pengawas",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Ya,Tetap hapus!",
+    closeOnConfirm: false
+  },
+  function(){
     $.ajax({
       url : base_url+"index.php/toback/dropPengawasTo/"+idKey,
       type: "POST",
       dataType: "TEXT",
-      success: function(data,respone)
-      {  
+      success:function(){
+        swal("Terhapus!", "Pengawas berhasil dihapus.", "success");
         reload_tblist();
       },
-      error: function (jqXHR, textStatus, errorThrown)
-      {
-        swal('Error deleting data');
-        console.log(errorThrown);
+      error:function(){
+        sweetAlert("Oops...", "Data gagal terhapus!", "error");
       }
-    });
-  }
+    })
+
+  });
 }
 
 
@@ -956,7 +981,7 @@ $('[name=nama_pengguna_search]').on('keyup', function (e) {
     properties.key_word = $('[name=nama_pengguna_search]').val();
     properties.key_single =  $('[name=nama_pengguna_search]').attr('name');
     properties.search_single =  true;
-     properties.key_search = '';
+    properties.key_search = '';
     selectPage(0);
     pagination_siswa();
   }
@@ -968,7 +993,7 @@ $('[name=cabang_search]').on('keyup', function (e) {
     properties.key_word = $('[name=cabang_search]').val();
     properties.key_single =  $('[name=cabang_search]').attr('name');
     properties.search_single =  true;
-     properties.key_search = '';
+    properties.key_search = '';
     selectPage(0);
     pagination_siswa();
   }
@@ -980,7 +1005,7 @@ $('[name=tingkat_search]').on('keyup', function (e) {
     properties.key_word = $('[name=tingkat_search]').val();
     properties.key_single =  $('[name=tingkat_search]').attr('name');
     properties.search_single =  true;
-     properties.key_search = '';
+    properties.key_search = '';
     selectPage(0);
     pagination_siswa();
   }
