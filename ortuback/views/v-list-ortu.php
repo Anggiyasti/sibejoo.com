@@ -518,7 +518,7 @@ function del_ortu(id,namaPengguna){
 		closeOnConfirm: false
 	},
 	function(){
-		var url = base_url+"siswa/del_pengguna_siswa";
+		var url = base_url+"ortuback/del_pengguna_ortu";
 		$.ajax({
 			url:url,
 			data:{id:id},

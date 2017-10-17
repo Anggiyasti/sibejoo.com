@@ -23,7 +23,7 @@
                             <p class="text-center">IDENTITAS PENGGUNA</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-12 control-label">Nama</label>
+                            <label class="col-md-12 control-label">Nama Lengkap</label>
                             <div class="col-md-6">
                                 <div class="has-icon pull-left">
                                     <input type="text" name="idsiswa" hidden="true" value="<?=$siswa['idsiswa'];?>" >

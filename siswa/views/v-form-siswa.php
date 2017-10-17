@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-11">
                 <!-- Siswa form -->
-                <form class="panel nm" name="form-register" action="javascript:void(0)" id="form-siswa" method="post">
+                <form class="panel nm" name="form-register" action="javascript:void(0)" id="form_siswa" method="post">
                     <ul class="list-table pa15">
                         <li>
                             <!-- Alert message -->
@@ -14,7 +14,7 @@
                             </div>
                             <!--/ Alert message -->
                         </li>
-                        <li class="text-right" style="width:50px;"><a href="javascript:void(0);">Kembali</a></li>
+                        <li class="text-right" style="width:20px;"><a href="<?= base_url('index.php/siswa/listSiswa')?>" title="Daftar Siswa"><i class="ico-list-ul fsize16"></i></a></li>
                     </ul>
                     <hr class="nm">
 
@@ -23,11 +23,10 @@
                             <p class="text-center">IDENTITAS PENGGUNA</p>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-12 control-label">Nama</label>
+                            <label class="col-md-12 control-label">Nama Lengkap</label>
                             <div class="col-md-6">
                                 <div class="has-icon pull-left">
-                                    <input type="text" name="idsiswa" hidden="true" value="<?=$siswa['idsiswa'];?>" >
-                                    <input type="text" name="namadepan" class="form-control" placeholder="Nama Depan" required="true" value="<?= $siswa['namaDepan'] ?>">
+                                    <input type="text" name="namadepan" class="form-control" placeholder="Nama Depan" required="true" value="<?php echo set_value('namadepan'); ?>">
                                     <i class="ico-user2 form-control-icon"></i>
                                     <!-- untuk menampilkan pesan kesalahan penginputan alamat -->
                                     <span class="text-danger"> <?php echo form_error('namadepan'); ?></span>
@@ -35,7 +34,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="has-icon pull-left">
-                                    <input type="text" name="namabelakang" class="form-control" placeholder="Nama Belakang"  value="<?= $siswa['namaBelakang'] ?>">
+                                    <input type="text" name="namabelakang" class="form-control" placeholder="Nama Belakang" required="true" value="<?php echo set_value('namabelakang'); ?>">
                                     <i class="ico-user2 form-control-icon"></i>
                                 </div>
                          </div>
@@ -43,7 +42,7 @@
                      <div class="col-md-12 form-group">
                         <label class="control-label">Alamat</label>
                         <div class="has-icon pull-left">
-                            <textarea class="form-control" placeholder="Alamat" name="alamat" required><?= $siswa['alamat'] ?></textarea>
+                            <textarea name="alamat" placeholder="Alamat" class="form-control" required></textarea>
                             <i class="ico-home10 form-control-icon"></i>
                             <span class="text-danger"> <?php echo form_error('alamat'); ?></span> 
                         </div>
@@ -51,7 +50,7 @@
                     <div class="col-md-12 form-group">
                         <label class="control-label">No Kontak</label>
                         <div class="has-icon pull-left">
-                            <input type="text" class="form-control" placeholder="No Kontak" name="nokontak" value="<?= $siswa['noKontak'] ?>" data-parsley-required required>
+                            <input type="text" class="form-control" placeholder="No Kontak" name="nokontak" value="<?php echo set_value('nokontak'); ?>" data-parsley-required required>
                             <i class="ico-phone3 form-control-icon"></i>
                             <span class="text-danger"> <?php echo form_error('alamat'); ?></span> 
                         </div>
@@ -63,8 +62,6 @@
                     <div class="panel-body">
                         <div class="">
                             <p class="text-center">IDENTITAS SEKOLAH</p>
-                            <input type="text" id="oldtkt" value="<?=$siswa['tingkatID'];?>" hidden >
-                            <input type="text" id="oldkelas" value="<?=$siswa['kelasID'];?>" hidden>
                         </div>
                         <div class="form-group">
                             <label class="col-md-12 control-label">Tingkat</label>
@@ -81,21 +78,77 @@
                      <div class="col-md-12 form-group">
                         <label class="control-label">Nama Sekolah</label>
                         <div class="has-icon pull-left">
-                            <input type="text" placeholder="Nama Sekolah" class="form-control" name="namasekolah" value="<?= $siswa['namaSekolah']?>" data-parsley-required required>
+                            <input type="text" placeholder="Nama Sekolah" class="form-control" name="namasekolah" value="<?php echo set_value('namasekolah'); ?>" data-parsley-required required>
                             <i class="ico-home6 form-control-icon"></i>
                         </div>
                     </div>
                     <div class="col-md-12 form-group">
                         <label class="control-label">Alamat</label>
                         <div class="has-icon pull-left">
-                            <textarea placeholder="Alamat Sekolah" class="form-control" name="alamatsekolah"><?=$siswa['alamatSekolah']?></textarea>
+                            <textarea name="alamatsekolah" placeholder="Alamat Sekolah" class="form-control" value="<?php echo set_value('alamatsekolah'); ?>" required></textarea>
                             <i class="ico-home10 form-control-icon"></i>
                         </div>
                     </div>
                 </div>
 
+                <hr class="nm">
+
+                <div class="panel-body">
+                    <div class="">
+                        <p class="text-center">IDENTITAS AKUN</p>
+                    </div>
+                    <div class="col-md-12 form-group fg-nmPengguna">
+                        <label class="control-label">Nama Pengguna</label>
+                        <div class="has-icon pull-left">
+                            <input placeholder="Nama Pengguna" type="text" class="form-control" name="namapengguna" value="<?php echo set_value('namapengguna'); ?>" onblur="cekNamaPengguna()" data-parsley-required required>
+                            <i class="ico-user form-control-icon"></i>
+                            <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
+                            <span class="text-danger msg-namaPengguna hidden ">*Nama pengguna sudah terpakai</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="control-label">Kata Sandi</label>
+                        <div class="has-icon pull-left">
+                            <input placeholder="Kata Sandi" type="password" class="form-control" name="katasandi" maxlength="20" onfocus="" id="password" required>
+                            <i class="ico-key form-control-icon"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label class="control-label">Ulangi Kata Sandi</label>
+                        <div class="has-icon pull-left">
+                             <input placeholder="Confirm Password" type="password" class="form-control" name="passconf" data-parsley-equalto="input[name=password]" maxlength="20" onkeyup="checkPass(); return false;" onfocus="" id="password2" required/>
+                            <i class="ico-key form-control-icon"></i>
+                            <span id="confirmMessage" class="confirmMessage"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="nm">
+
+                <div class="panel-body">
+                    <div class="col-md-12 form-group">
+                        <h5>Untuk konfirmasi dan pengaktifan akun siswa, akan dikirim kode aktivasi ke email ini.</h5>
+                    </div>
+                    <div class="col-md-12 form-group fg-email">
+                        <label class="control-label">Email</label>
+                        <div class="has-icon pull-left">
+                            <!-- Star form konfirmasi akun by email -->
+                            <input type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="xxx@mail.com" onblur="cekEmail()" required>
+                            <i class="ico-envelope form-control-icon"></i>
+                            <!-- untuk menampilkan pesan penginputan email sudah terpakai -->
+                            <span class="text-danger msg-email hidden ">*Email sudah terpakai</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <div class="checkbox custom-checkbox">  
+                            <input type="checkbox" name="agree" id="agree" value="1" required onclick="cekEmail()">  
+                            <label for="agree">&nbsp;&nbsp;Saya setuju dengan <a class="semibold" href="javascript:void(0);">Ketentuan Pelayanan</a></label>   
+                        </div>
+                    </div>
+                </div>
+
                 <div class="panel-footer">
-                    <input type="submit" value="Simpan" class="btn btn-block btn-primary" onclick="updateSiswa()">
+                    <input type="submit" name="" value="Simpan" onclick="simpanSiswa()" class="btn btn-block btn-info" id="kirimdata" disabled>
                 </div>
 
             </form>
