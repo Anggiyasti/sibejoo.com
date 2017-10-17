@@ -178,9 +178,14 @@ class Materi extends MX_Controller
 		redirect(site_url('materi/list_all_materi'));
 	}
 
-	public function del_materi($UUID)
+	public function del_materi()
 	{
-		$this->Mmateri->drop_materi($UUID);
+		if ($this->input->post()) {
+            $post = $this->input->post();
+		$this->Mmateri->drop_materi($post);
 	}
+	}
+
+	
 }
 ?>

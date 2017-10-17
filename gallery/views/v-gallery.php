@@ -120,8 +120,8 @@
           type:"POST",
           url:url,
           success:function(data,respone){
-          	swal("Terhapus!", "ambar soal berhasil dihapus.", "success");
-          	window.location = base_url();
+          	// swal("Terhapus!", "ambar soal berhasil dihapus.", "success");
+          	window.location = base_url+"gallery";
            
           },
           error:function(){
