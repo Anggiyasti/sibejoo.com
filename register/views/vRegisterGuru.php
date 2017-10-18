@@ -4,18 +4,12 @@
     <section class="container">
         <div class="row">
 
-            <div class="col-md-10">
+            <div class="col-md-12">
 
-                <div class="text-center" style="margin-bottom:20px;">
-
-                    <img src="<?=base_url('assets/back/img/logo-tara.png') ?>" > 
-
-                    <br><h5 class="semibold text-muted mt-5"><br>Membuat Akun Guru</h5>
-
-                </div>
+               
 
                 <!-- Register form -->
-                <form class="panel nm" name="form-register" action="<?=base_url()?>index.php/register/test" method="post">
+                <form class="panel nm" name="form-register" action="javascript:void(0)" id="form-guru" method="post">
 
                     <ul class="list-table pa15">
 
@@ -33,7 +27,7 @@
 
                         </li>
 
-                        <li class="text-right" style="width:20px;"><a href="javascript:void(0);"><i class="ico-question-sign fsize16"></i></a></li>
+                        <li class="text-right" style="width:20px;"><a href="javascript:void(0);"><i class="ico-list-ul fsize16"></i></a></li>
 
                     </ul>
                     <hr class="nm">
@@ -236,7 +230,7 @@
 
                 <div class="panel-footer">
 
-                    <button type="submit" class="btn btn-block btn-success" id="kirimdata"  disabled ><span class="semibold" >Sign up</span></button>
+                    <button type="submit" class="btn btn-block btn-success" id="kirimdata"  disabled ><span class="semibold" onclick="save()" >Sign up</span></button>
 
                 </div>
 
@@ -297,7 +291,6 @@
       var idMapel =$('#mataPelajaran').val();
       var mapel =$('#mataPelajaran option:selected').text();
       $("#keahlian-guru").append('<span class="note note-success mb15 mr15 mt15 pickMapel" id="mapelke-'+i+'"> <i class="ico-remove" onClick="removeMapel('+i+','+idMapel+')"></i> '+mapel+' </span> <input type="text" name="mapelIDke-'+i+'" value="'+idMapel+'" hidden="true" id="mapelIDke-'+i+'">');
-        // var ini = $("mapelke-"+i).text();
         // console.log(ini);
       $('[name=sumMapel]').val(i);
       //remove mapel dari dropdown
@@ -338,12 +331,12 @@
 
   });
 
-// function removeMapel(i,idMapel) {
-//   // $("#mapelke-"+i).remove();
-//   $("#id-"+idMapel).removeClass("hidden");  
-//       i=0;
-//       $('.pickMapel').remove();
-// }
+function removeMapel(i,idMapel) {
+  // $("#mapelke-"+i).remove();
+  $("#id-"+idMapel).removeClass("hidden");  
+      i=0;
+      $('.pickMapel').remove();
+}
 
 
 </script>
@@ -412,4 +405,65 @@
        $(".fg-email").addClass('has-error');
     }
   }
+
+
+  function save(){
+    var x =0;
+    sumMapel=$('input[name=sumMapel]').val();
+    for (var i = 1; i<= sumMapel; i++) {
+
+    // var i =0;
+    // i ++;
+        var datas = {
+            namadepan : $('input[name=namadepan]').val(),
+            namabelakang : $('input[name=namabelakang]').val(),
+            sumMapel:$('input[name=sumMapel]').val(),
+            alamat:$('input[name=alamat]').val(),
+            nokontak:$('input[name=nokontak]').val(),
+            namapengguna:$('input[name=namapengguna]').val(),
+            katasandi:$('input[name=katasandi]').val(),
+            email:$('input[name=email]').val(),
+            mapelIDke:$('input[name=mapelIDke-'+i+']').val(),
+
+        }
+      }
+
+        if (datas.namadepan == "" || datas.namabelakang == "" || datas.namabelakang == "" || datas.alamat == "" || datas.nokontak == "" || datas.namapengguna == "" || datas.katasandi == "" || datas.email == "") {
+            swal('Tidak boleh kosong');
+        }else{
+            url = base_url+"Register/test";
+            guru = $('#form-guru').serialize();
+            console.log(guru);
+            // do_upload
+            $.ajax({
+                url:url,
+                data:guru,
+                dataType:"TEXT",
+                type:"POST",
+                success:function(){
+            swal({
+                    title: "passinggrade berhasil ditambahkan!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Selesai",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+            function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href = base_url+"guru/daftar";
+                    } 
+                    else {
+                        swal("Tambah Data dibatalkan");
+                    }
+                });
+            },      error:function(){
+                    
+                }
+            });
+
+            
+        }
+    }
 </script>
