@@ -79,9 +79,9 @@
                   <?php if ($status_to=='doing'): ?>
                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
                   <?php elseif ($status_to=='done'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-times"></i></a>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-close"></i></a>
                   <?php else: ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-timess"></i></a>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-hourglass-half"></i></a>
                   <?php endif; ?>
                 </div>
                </div>
@@ -90,7 +90,7 @@
         <?php endif; ?>
 
         <div class="col-md-12">
-          <h4><b>Paket Soal yang Sudah Dikerjakan</b></h4>
+          <h4><b>Paket TO yang Sudah Dikerjakan</b></h4>
         </div>
         <?php if($paket_dikerjakan==array()): ?>
           <div class="col-md-12">

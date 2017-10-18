@@ -26,7 +26,7 @@ class Passinggradefront extends MX_Controller {
     //passing grade untuk universitas 
     function passinggrade_univ(){
          $data = array(
-            'judul_halaman' => 'Sibejoo - Passinggrade',
+            'judul_halaman' => 'Sibejoo - Passing Grade',
             'judul_header' =>'Universitas',
             'judul_header2' =>'Universitas'
             );
@@ -68,7 +68,7 @@ class Passinggradefront extends MX_Controller {
     function passinggrade_prodi(){
         $univ = $this->session->userdata['nama_univ'];
         $data = array(
-            'judul_halaman' => 'Sibejoo - Passing grade',
+            'judul_halaman' => 'Sibejoo - Passing Grade',
             'judul_header' =>$univ,
             'judul_header2' =>'Program Studi'
             );
@@ -124,7 +124,7 @@ class Passinggradefront extends MX_Controller {
 
         $univ = $this->session->userdata['nama_univ'];
         $data = array(
-            'judul_halaman' => 'Sibejoo - Passing grade',
+            'judul_halaman' => 'Sibejoo - Passing Grade',
             'judul_header' =>$univ,
             'judul_header2' =>'Program Studi'
             );

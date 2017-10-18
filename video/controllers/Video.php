@@ -219,7 +219,10 @@ class Video extends MX_Controller {
             // }else{
             //     $penulis = ['namaDepan'=>"Super",'namaBelakang'=>"Admin",'biografi'=>'Admin masih malu malu menceritakan dirinya','photo'=>'default.png'];
             // }
-
+        // get tanggal dan bulan
+        $timestamp = strtotime($onevideo[0]->date_created);
+        $tgl=date("d", $timestamp);
+        $bulan=date("M", $timestamp);
         
         $data = array(
             'judul_halaman' => 'Sibejoo - Video : ' . $onevideo[0]->judulVideo,
@@ -232,7 +235,9 @@ class Video extends MX_Controller {
             'photo' => $photo,
             'nama_sub' => $namasub,
             'sub_id' => base_url()."video/timeline/".$onevideo[0]->subBabID,
-            'videoID'=>$onevideo[0]->id
+            'videoID'=>$onevideo[0]->id,
+            'tgl' => $tgl,
+            'bulan' => $bulan
             );
         $subid = $onevideo[0]->subBabID;
 

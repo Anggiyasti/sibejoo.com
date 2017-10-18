@@ -91,43 +91,6 @@
   }
 </style>
 <hr class="divider-color" />
-<div class="row">
-  <!-- Start Div container -->
-  <div class="container">
-    <!-- Start div macy-container -->
-    <div id="macy-container">
-      <?php $i=0;   $cekjudulsubbab=null;?>
-      <?php foreach ($video_by_bab as $bab_video_items) {
-        $subbab=$bab_video_items['judulSubBab'];
-
-        if ($cekjudulsubbab != $subbab) { 
-          if($i=='1'){
-              // END div demo
-            ?></div> <?php
-          } ?>
-          <!-- Start div demo -->
-          <div class="demo">
-            <strong><?=$subbab ?></strong><br>
-            <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>#ini" title="Room" >
-             <?=$bab_video_items['judulVideo'];?>           
-           </a></span><br>
-           <?php }else{ ?>
-
-           <span><a href="<?=base_url('video/seevideo/')?><?=$bab_video_items['videoID']?>#ini" title="Room" >
-             <?=$bab_video_items['judulVideo'];?>           
-           </a></span><br>
-
-           <?php } ?>
-           <?php   $cekjudulsubbab=$subbab;
-           $i='1'; ?>
-           <?php } ?>
-         </div>
-         <!-- END DIV DEMO -->
-       </div>
-       <!-- END div macy-container -->
-       <!-- END Div container -->
-     </div>
-
      <section>
       <div class="container mt-30 mb-30 pt-30 pb-30">
         <div class="row">
@@ -161,8 +124,8 @@
                 <div class="entry-meta media no-bg no-border mt-15 pb-20">
                   <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                     <ul>
-                      <li class="font-16 text-white font-weight-600">28</li>
-                      <li class="font-12 text-white text-uppercase">Feb</li>
+                      <li class="font-16 text-white font-weight-600">{tgl}</li>
+                      <li class="font-12 text-white text-uppercase">{bulan}</li>
                     </ul>
                   </div>
                   <div class="media-body pl-15">

@@ -138,7 +138,7 @@ label:hover{ /* HIDE RADIO */
   <div class="">
    <div class="page-header-section text-center">
     <img src="<?= base_url('assets/back/img/logo.png') ?>" width="70px"  alt>
-    <p class="title font-alt">Tryout Online 
+    <p class="title font-alt">Try Out Online 
     </p>
     <?php foreach ($topaket as $key): ?>
      <div class="text-center"><div style="font-size:20px;"><span class="text-info jenis_penilaian"><?= $key['jenis_penilaian'] ?></span>: <?= $key['namato'] ?>/<?= $key['namapa'] ?></div></div>

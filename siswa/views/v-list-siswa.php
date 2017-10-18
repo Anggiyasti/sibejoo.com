@@ -287,24 +287,14 @@ function selectPage(pageVal='0') {
         dataType:"text",
         type:"post",
         success:function(){
-          sweetAlert("Data berhasil di hapus","","success");
-          swal({
-          title: "Data berhasil di hapus",
-          type: "success",
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "OK",
-          closeOnConfirm: false,
-          closeOnCancel: false
-        },
-        function(isConfirm){
-          if (isConfirm) {
-            window.location.href = base_url+"siswa/listsiswa";
-          } 
-        });
+            swal("Terhapus!", "Siswa berhasil dihapus.", "success");
+            selectPage(page);
+            paginationSiswa();
+          
         },
         error:function(){
-
-        }
+            sweetAlert("Oops...", "Data gagal terhapus!", "error");
+        } 
       });
     });
   }

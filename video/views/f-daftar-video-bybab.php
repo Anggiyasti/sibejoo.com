@@ -117,17 +117,17 @@
                     <strong><?=$judulbab ?></strong><br>
   
               <?php if ($bab_video_items->jenis_video == 1): ?>
-                <li class="room"><a href="<?=base_url('video/videosub/');?><?=$bab_video_items->videoID;?>#ini"><?php echo $bab_video_items->judulVideo ;?>(S)</a></li>
+                <li class="room"><a href="<?=base_url('video/videosub/');?><?=$bab_video_items->videoID;?>#ini"><?php echo $bab_video_items->judulVideo ;?>(R)</a></li>
               <?php else: ?>
-                <li class="screen"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini" ><?php echo $bab_video_items->judulVideo ;?>(R)</a></li>
+                <li class="screen"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini" ><?php echo $bab_video_items->judulVideo ;?>(S)</a></li>
               <?php endif ?>
 
 
               <?php }else{ ?>
               <?php if ($bab_video_items->jenis_video == 1): ?>
-                <li class="room"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini"><?php echo $bab_video_items->judulVideo ;?>(S)</a></li>
+                <li class="room"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini"><?php echo $bab_video_items->judulVideo ;?>(R)</a></li>
               <?php else: ?>
-                <li class="screen"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini" ><?php echo $bab_video_items->judulVideo ;?>(R)</a></li>
+                <li class="screen"><a href="<?=base_url('video/videosub/')?><?=$bab_video_items->videoID?>#ini" ><?php echo $bab_video_items->judulVideo ;?>(S)</a></li>
                 <?php endif ?>
                 <?php } ?>
                 <?php   $cekjudulbab=$judulbab;
@@ -152,13 +152,13 @@
       }
 
       function justroom(){
-        $('.room').hide("slow");
-        $('.screen').show("slow");
+        $('.screen').hide("slow");
+        $('.room').show("slow");
       }
 
       function justscreen(){
-        $('.room').show("slow");
-        $('.screen').hide("slow");
+        $('.screen').show("slow");
+        $('.room').hide("slow");
       }
 
       function semua(){

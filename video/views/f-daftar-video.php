@@ -52,26 +52,20 @@
 <div class="row">
   <div class="container">
     <div class="col-md-6">
-      <div class="radio">
-        <label>
-          <input type="radio" name="optionsRadios" id="optionsRadios5" checked="true" value="option2">
-          Video Berdasarkan Sub
-        </label>
+      <h5>Video : </h5>
+      <div class="btn-group" data-toggle="buttons" > 
+        <label class="btn cws-button  active btn-primary  small" id="in-soal"> 
+          <input type="radio" name="optionsRadios" id="optionsRadios5" checked="true" value="option2"> By Sub Bab
+        </label> 
+        <label class="btn cws-button  btn-primary  small" id="pr-rumus" onclick="direct()"> 
+          <input type="radio" name="optionsRadios" id="optionsRadios5" value="option2" name="bysub"  onclick="direct()"> All Video
+        </label> 
       </div>
-
-      <div class="radio">
-        <label>
-          <input type="radio" name="optionsRadios" id="optionsRadios5" value="option2" name="bysub"  onclick="direct()">
-          Semua Video
-
-        </label>
-      </div>
-
     </div>
   </div>
 </div>
-
-<section class="row">
+<hr>
+<section class="row" style="top: -60px;">
   <!-- Start Div container -->
   <div class="container">
     <!-- Start div macy-container -->

@@ -50,7 +50,7 @@
                     <div class="col-md-12 form-group">
                         <label class="control-label">No Kontak</label>
                         <div class="has-icon pull-left">
-                            <input type="text" class="form-control" placeholder="No Kontak" name="nokontak" value="<?php echo set_value('nokontak'); ?>" data-parsley-required required>
+                            <input type="number" class="form-control" placeholder="No Kontak" name="nokontak" value="<?php echo set_value('nokontak'); ?>" data-parsley-required required>
                             <i class="ico-phone3 form-control-icon"></i>
                             <span class="text-danger"> <?php echo form_error('alamat'); ?></span> 
                         </div>

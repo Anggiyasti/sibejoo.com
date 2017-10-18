@@ -32,11 +32,12 @@ class Subscribe extends MX_Controller {
         //mengambil nilai list
         $baseurl = base_url();
         foreach ($list as $list_subs) {
+            $datSubs=$list_subs['id'].",'".$list_subs['email']."'";
             $no++;
             $row = array();
             $row[] = $no;
             $row[] = $list_subs['email'];
-            $row[] = '<a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSubs(' . "" . $list_subs['id'] . ')"><i class="ico-remove"></i></a>';
+            $row[] = '<a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSubs(' . "" . $datSubs . ')"><i class="ico-remove"></i></a>';
             $data[] = $row;
         }
 

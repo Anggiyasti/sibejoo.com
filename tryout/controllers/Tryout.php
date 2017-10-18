@@ -34,8 +34,8 @@ class Tryout extends MX_Controller {
     public function index() {
         $this->session->unset_userdata('id_tryout');
         $data = array(
-            'judul_halaman' => 'Sibejoo - Tryout',
-            'judul_header' => 'Daftar Tryout',
+            'judul_halaman' => 'Sibejoo - Try Out',
+            'judul_header' => 'Daftar Try Out',
             'judul_tingkat' => '',
             );
 
@@ -110,7 +110,7 @@ class Tryout extends MX_Controller {
         if (isset($id_to)) {
             $data = array(
                 'judul_halaman' => 'Sibejoo - Daftar Paket',
-                'judul_header' => 'Tryout : ' . $data['nama_to'],
+                'judul_header' => 'Try Out : ' . $data['nama_to'],
                 'judul_tingkat' => '',
                 'nama_to' => $data_to['nm_tryout'],
                 );

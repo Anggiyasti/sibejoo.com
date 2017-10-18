@@ -42,29 +42,35 @@
         });
     });
 
-    function dropSubs(id_subs) {
-        if (confirm('Apakah Anda yakin akan menghapus data ini?')) {
-            // ajax delete data to database
-//            console.log(base_url + "index.php/Subscribe/deletePesan/" + id_subs);
-            $.ajax({
-                url: base_url + "index.php/subscribe/deletesubs/" + id_subs,
-                data: "id_subs=" + id_subs,
-                type: "POST",
-                dataType: "TEXT",
-                success: function (data, respone)
-                {
-                    reload_tblist();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    swal('Error deleting data');
-                    // console.log(jqXHR);
-                    // console.log(textStatus);
-                    console.log(errorThrown);
-                }
-            });
-        }
+    function dropSubs(id_subs,email) {
+        swal({
+          title: "Yakin akan menghapus "+email+"?",
+          text: "Anda tidak dapat membatalkan ini.",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Ya,Tetap hapus!",
+          closeOnConfirm: false
+        },
+        function(){
+          var url = base_url+"subscribe/deletesubs/"+ id_subs;
+          $.ajax({
+            url:url,
+            data:{id_subs:id_subs},
+            dataType:"text",
+            type:"post",
+            success:function(){
+                swal("Terhapus!", "Subscriber berhasil dihapus.", "success");
+                reload_tblist();
+              
+            },
+            error:function(){
+                sweetAlert("Oops...", "Data gagal terhapus!", "error");
+            } 
+          });
+        });
     }
+        
     function reload_tblist() {
         tb_subs.ajax.reload(null, false);
     }

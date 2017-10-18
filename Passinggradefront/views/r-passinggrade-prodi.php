@@ -40,12 +40,12 @@
           <div class="col-sm-12 col-md-3">
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
-                <h5 class="widget-title line-bottom">Search Prodi</h5>
+                <h5 class="widget-title line-bottom">Cari Prodi</h5>
                 <div class="search-form">
                   <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariprodi"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
                     <div class="input-group">
-                      <input type="search" class="form-control search-input" placeholder="Search"  name="keycari" title="Search for:" id="cariprodi">
+                      <input type="search" class="form-control search-input" placeholder="Cari Prodi"  name="keycari" title="Search for:" id="cariprodi">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>
