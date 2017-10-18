@@ -308,13 +308,20 @@ class Ortuback extends MX_Controller {
 	//get siswa yg belum ada akun orangtua
 	public function ajax_siswa_not_ortu($records_per_page='10',$pageSelek='0',$keySearch='')
 	{	
+		$records_per_page=$this->input->post("records_per_page_siswa");
 		$pageSelek=$this->input->post("pageSelek_siswa");
+		$keySearch=$this->input->post("keySearch_siswa");
 		$datArr=$this->Ortuback_model->get_siswa_not_ortu($records_per_page,$pageSelek,$keySearch);
 		$tb_siswa=null;
 		$n=1;
 		$no=$pageSelek+1;
 		foreach ($datArr as $value) {
 			$nama=$value->namaDepan." ".$value->namaBelakang;
+			if ($value->namaCabang=="") {
+				$namaCabang="non-neutron";
+			} else {
+				$namaCabang=$value->namaCabang;
+			}
 			 $tb_siswa.='<tr>
 			 	 <td><span class="checkbox custom-checkbox custom-checkbox-inverse">
 								<input type="checkbox" name='.'token'.$n.' id='.'soal'.$value->idSiswa.' value='.$value->idSiswa.'>
@@ -324,6 +331,7 @@ class Ortuback extends MX_Controller {
 						<td>'.$value->namaPengguna.'</td>
 						<td>'.$nama.'</td>
 						<td>'.$value->email.'</td>
+						<td>'.$namaCabang.'</td>
 			 </tr>
 			 ';
 			$n++;
@@ -343,6 +351,7 @@ class Ortuback extends MX_Controller {
 		$no=$pageSelek+1;
 		foreach ($datArr as $value) {
 			$nama=$value->namaDepan." ".$value->namaBelakang;
+			$param_reset_pswd_ortu=$value->id_np_ortu.",'".$value->np_ortu."'";
 		 	 // <td><span class="checkbox custom-checkbox custom-checkbox-inverse">
 					// 			<input type="checkbox" name='.'token'.$n.' id='.'soal'.$value->idSiswa.' value='.$value->idSiswa.'>
 					// 			<label for='.'soal'.$value->idSiswa.'>&nbsp;&nbsp;</label></span>
@@ -355,8 +364,8 @@ class Ortuback extends MX_Controller {
 						<td>'.$value->np_siswa.'</td>
 						<td>'.$nama.'</td>
 						<td>
-							<button class="btn btn-sm btn-danger"><i class="ico-key2"></i></button>
-							<button class="btn btn-sm btn-danger"><i class="ico-close3"></i></button>
+							<button class="btn btn-sm btn-danger" onclick="reset_pswd_ortu('.$param_reset_pswd_ortu.')"><i class="ico-key2"></i></button>
+							<button class="btn btn-sm btn-danger" title="Hapus" onclick="del_ortu('.$param_reset_pswd_ortu.')"><i class="ico-close3"></i></button>
 						</td>
 			 </tr>
 			 ';
@@ -368,16 +377,10 @@ class Ortuback extends MX_Controller {
 
 	public function pagination_siswa_not_ortu($records_per_page='10',$pageSelek='0',$keySearch='')
 	{
-		// $jumlah_data_per_page=$this->input->post("records_per_page_siswa");
-    //  		$keySearch=$this->input->post("keySearchSiswa");
-    //  		if ($keySearch!='' && $keySearch!=' ') {
-    //  				   $jumlah_data = $this->token_model->jumlah_cari_siswa_unvoucher($keySearch); 
-    //  		} else {
-    //  				   $jumlah_data = $this->token_model->jumlah_siswa_unvoucher(); 
-    //  		}
-     		 $jumlah_data = $this->Ortuback_model->jumlah_siswa_not_ortu($keySearch);
+     	$keySearch=$this->input->post("keySearch_siswa");
+     	$jumlah_data = $this->Ortuback_model->jumlah_siswa_not_ortu($keySearch);
 	
-    	 $pagination='<li class="hide" id="page-prev-siswa"><a href="javascript:void(0)" onclick="prevPageSiswa()" aria-label="Previous">
+    	$pagination='<li class="hide" id="page-prev-siswa"><a href="javascript:void(0)" onclick="prevPageSiswa()" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a></li>';
     	 $pagePagination=1;
@@ -408,9 +411,12 @@ class Ortuback extends MX_Controller {
     	 echo json_encode ($pagination);
 	}
 
+
 		public function pagination_ortu($records_per_page='10',$pageSelek='0',$keySearch='')
 	{
-			 $jumlah_data = $this->Ortuback_model->jumlah_ortu_siswa($keySearch);
+		$records_per_page=$this->input->post("records_per_page_ortu");
+		$keySearch=$this->input->post("keySearch_ortu");
+		$jumlah_data = $this->Ortuback_model->jumlah_ortu_siswa($keySearch);
 	
     	 $pagination='<li class="hide" id="page-prev-Ortu"><a href="javascript:void(0)" onclick="prevPageOrtu()" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
@@ -478,6 +484,26 @@ class Ortuback extends MX_Controller {
 		$this->Ortuback_model->in_data_ortu($ortu);
 		echo json_encode($ortu);
 	}
-}
 
+	// delete pengguna ortu
+	public function del_pengguna_ortu(){
+		$id_pengguna=$this->input->post("id");
+		$this->Ortuback_model->up_status_ortu($id_pengguna);
+		echo json_encode($id_pengguna);
+
+	}
+
+	// resest kata sandi ortu
+	public function reset_kataSandi_ortu(){
+		$id_pengguna=$this->input->post("id");
+		$namaPengguna=$this->input->post("namaPengguna");
+		// katasandi baru
+		$date=date("d");
+		$new_pswd=md5($namaPengguna.$date);
+		$this->Ortuback_model->up_kataSandi_ortu($id_pengguna,$new_pswd);
+		echo json_encode($namaPengguna.$date);
+		
+	}
+
+}
 ?>

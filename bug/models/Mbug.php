@@ -15,6 +15,7 @@ class Mbug extends CI_Model
 		$this->db->select( 'bug.id, isiError, bug.date_created, halaman, bug.status, aksi, pengguna.namaPengguna');
 		$this->db->from( 'tb_laporan_bug bug' );
 		$this->db->join('tb_pengguna pengguna','pengguna.id=bug.penggunaID');
+		$this->db->order_by('bug.date_created', 'desc');
 
 		$query = $this->db->get();
 		return $query->result();

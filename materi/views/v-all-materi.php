@@ -113,14 +113,27 @@ function detail(id){
 
 //# fungsi menghapus video
 function drop_materi(UUID){
-	if(confirm('Are you sure delete this data?')){
+	// if(confirm('Are you sure delete this data?')){
+		url = base_url+"materi/del_materi";
+		swal({
+    		title: "Yakin akan hapus Materi?",
+    		text: "Anda tidak dapat membatalkan ini.",
+    		type: "warning",
+    		showCancelButton: true,
+    		confirmButtonColor: "#DD6B55",
+    		confirmButtonText: "Ya,Tetap hapus!",
+    		closeOnConfirm: false
+  },
+  function(){
+  	var datas = {UUID:UUID};
 		$.ajax({
-			url : base_url+"index.php/materi/del_materi/"+UUID,
-			type: "POST",
 			dataType: "TEXT",
+			data:datas,
+			type: "POST",
+			url:url,
 			success: function(data)
 			{
-				console.log('success');
+				swal("Terhapus!", "Materi berhasil dihapus.", "success");
 				reload_tblist();
 			},
 			error: function (jqXHR, textStatus, errorThrown)
@@ -128,7 +141,8 @@ function drop_materi(UUID){
 				swal('Error deleting data');
 			}
 		});
-	}
+	});
+	// }
 }
 // fungsi updt
 

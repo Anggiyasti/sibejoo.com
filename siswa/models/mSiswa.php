@@ -331,9 +331,8 @@ class Msiswa extends CI_Model {
 
     // get data siswa per segment
     function data_siswa($number,$offset){
-        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail,cabang.namaCabang');
+        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail');
         $this->db->join('tb_pengguna p', 's.penggunaID = p.id');
-        $this->db->join('tb_cabang cabang','cabang.id = s.cabangID');
         $this->db->where('s.status','1');
         $this->db->where('p.status','1');
         $this->db->order_by('s.namaDepan', 'asc');
@@ -562,6 +561,48 @@ class Msiswa extends CI_Model {
         $query=$this->db->get();
         return  $query->result();
     }
+
+    // update status pengguna siswa menjadi 0 
+    public function up_status_siswa($id_pengguna){
+        $this->db->where("id",$id_pengguna);
+        $this->db->set("status",0);
+        $this->db->update("tb_pengguna");
+    }
+
+    // get data siswa baru
+    function data_siswa_ajax($number,$offset){
+        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail');
+        $this->db->join('tb_pengguna p', 's.penggunaID = p.id');
+        $this->db->where('s.status','1');
+        $this->db->where('p.status','1');
+        $this->db->order_by('s.namaDepan', 'asc');
+        return $query = $this->db->get('tb_siswa s',$number,$offset)->result();        
+    }
+
+    // get data siswa baru
+    function data_jumlah_siswa(){
+        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail');
+        $this->db->join('tb_pengguna p', 's.penggunaID = p.id');
+        $this->db->where('s.status','1');
+        $this->db->where('p.status','1');
+        $this->db->order_by('s.namaDepan', 'asc');
+        return $query = $this->db->get('tb_siswa s')->num_rows();        
+    }
+
+    // get data siswa baru
+    function data_cari_siswa_ajax($number,$offset,$keySearch){
+        $this->db->select('s.id as idsiswa,s.namaDepan,s.namaBelakang,s.alamat,s.noKontak,s.namaSekolah,s.alamatSekolah,s.penggunaID,p.namaPengguna,p.eMail');
+        $this->db->join('tb_pengguna p', 's.penggunaID = p.id');
+        $this->db->where('s.status','1');
+        $this->db->where('p.status','1');
+        $this->db->like('s.namaDepan',$keySearch);
+        $this->db->or_like('s.namaBelakang',$keySearch);
+        $this->db->or_like('p.namaPengguna',$keySearch);
+        $this->db->order_by('s.namaDepan', 'asc');
+        return $query = $this->db->get('tb_siswa s',$number,$offset)->result();        
+    }
+
+    
 }
 
 ?>

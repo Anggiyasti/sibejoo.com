@@ -5,29 +5,12 @@
         <section id="main" role="main">
             <!-- START Template Container -->
             <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="page-header page-header-block">
-                    <div class="page-header-section">
-                        <h4 class="title semibold">Passing Grade</h4>
-                    </div>
-                    <div class="page-header-section">
-                        <!-- Toolbar -->
-                        <div class="toolbar">
-                            <ol class="breadcrumb breadcrumb-transparent nm">
-                                <li><a href="javascript:void(0);">Form Passing Grade</a></li>
-                                <li class="active">Elements</li>
-                            </ol>
-                        </div>
-                        <!--/ Toolbar -->
-                    </div>
-                </div>
-                <!-- Page Header -->
 
                 <!-- START row -->
                 <div class="row">
                     <div class="col-md-12">
                         <!-- START panel -->
-                        <div class="panel panel-default">
+                        <div class="panel panel-teal">
                             <!-- panel heading/header -->
 
                             <div class="panel-heading">
@@ -41,37 +24,41 @@
                             
                                    
                                     <div class="form-group">
-                                        <label class="col-sm-2">Kode</label>
-                                        <div class="input-group">
-                                            <input class="form-control" name="kode" placeholder="Kode" type="text" value="<?php echo set_value('kode'); ?>" />
+                                        <label class="col-md-12">Kode</label>
+                                        <div class="col-md-12">
+                                            <input class="form-control" name="kode" type="text" value="<?php echo set_value('kode'); ?>" />
                                             <span class="text-danger"><?php echo form_error('kode'); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2">Wilayah</label>
-                                        <div class="input-group">
-                                            <input type="text" name="wilayah" class="form-control"value="<?php echo set_value('wilayah'); ?>" >
-                                            <span class="text-danger"><?php echo form_error('wilayah'); ?></span>
+                                        <label class="col-md-12">Wilayah</label>
+                                        <div class="col-md-12">
+                                            <select class="form-control" name="wilayah">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Universitas</label>
-                                        <div class="input-group">
+                                        <div class="col-md-12">
                                             <input type="text" name="universitas" class="form-control" value="<?php echo set_value('universitas'); ?>" >
                                             <span class="text-danger"><?php echo form_error('universitas'); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Program studi</label>
-                                        <div class="input-group">
+                                        <div class="col-md-12">
                                             <input type="text" name="prodi" class="form-control" >
                                             <span class="text-danger"><?php echo form_error('prodi'); ?></span>
                                             </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2">Passing Grade</label>
-                                        <div class="input-group">
-                                            <input type="text" name="passinggrade" class="form-control" >
+                                        <div class="col-md-12">
+                                            <input type="number" name="passinggrade" class="form-control" step="0.01" >
                                             <span class="text-danger"><?php echo form_error('passinggrade'); ?></span>
                                             </div>
                                     </div>
@@ -79,10 +66,8 @@
                                     
                                     <div class="panel-footer">
                                         <div class="form-group no-border">
-                                            <!-- <label class="col-sm-3 control-label">Button</label> -->
                                             <div class="col-sm-9">
                                                 <button type="submit" class="btn btn-primary" onclick="save()">Simpan</button>
-                                                <!-- <button type="reset" class="btn btn-danger">Reset button</button> -->
                                             </div>
                                         </div> 
                                     </div>
@@ -119,13 +104,11 @@
 
 <script>
 
-CKEDITOR.replace( 'editor1' );
-
 
 function save(){
         var datas = {
             kode : $('input[name=kode]').val(),
-            wilayah : $('input[name=wilayah]').val(),
+            wilayah : $('select[name=wilayah]').val(),
             universitas:$('input[name=universitas]').val(),
             prodi:$('input[name=prodi]').val(),
             passinggrade:$('input[name=passinggrade]').val(),

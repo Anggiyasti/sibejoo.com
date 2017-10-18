@@ -202,7 +202,6 @@ class Token_model extends CI_Model{
 			$this->db->like('namaDepan',$keySearchSiswa);
 			$this->db->or_like('namaBelakang',$keySearchSiswa);
 			$this->db->or_like('nama_lengkap',$keySearchSiswa);
-			$this->db->or_like('namaCabang',$keySearchSiswa);
 			$this->db->or_like('namaPengguna',$keySearchSiswa);
 		}
 		
@@ -215,7 +214,6 @@ class Token_model extends CI_Model{
 		$this->db->like('namaDepan',$keySearchSiswa);
 		$this->db->or_like('namaBelakang',$keySearchSiswa);
 		$this->db->or_like('nama_lengkap',$keySearchSiswa);
-		$this->db->or_like('namaCabang',$keySearchSiswa);
 		$this->db->or_like('namaPengguna',$keySearchSiswa);
 		return $this->db->get('view_siswa_unvoucher')->num_rows();
 	}

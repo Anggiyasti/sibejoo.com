@@ -314,12 +314,6 @@ public function ajax_data_siswa(){
 		//mengambil nilai list
 	$baseurl = base_url();
 	foreach ( $list as $list_siswa ) {
-		if ($list_siswa['namaCabang']=="") {
-			$namaCabang="non-neutron";
-		} else {
-			$namaCabang=$list_siswa['namaCabang'];
-		}
-
 		$tb_siswa.='
 		<tr>
 			<td><span class="checkbox custom-checkbox custom-checkbox-inverse">
@@ -330,7 +324,6 @@ public function ajax_data_siswa(){
 			<td>'.$list_siswa["namaDepan"].' '.$list_siswa["namaBelakang"].'</td>
 
 			<td>'. $list_siswa["namaPengguna"].'</td>
-			<td>'.$namaCabang.'</td>
 		</tr>
 		';
 		$n++;
@@ -442,21 +435,39 @@ function ajax_rekap_penggunaan_token($masaAktif="all", $status="1",$jumlah_data_
 			$sisa_aktif =$date2->diff($date1)->days;
 		}
 
-		$tb_token.='
-		<tr>
-			<td>'.$no.'</td>
-			<td>'.$nama.'</td>
-			<td>'.$namaPengguna.'</td>
-			<td>'.$type.'</td>
-			<td>'.$token_item->nomorToken.'</td>
-			<td>'.$masa_aktif.'</td>
-			<td>'.$date_diaktifkan.'</td>
-			<td>'.$date_kadaluarsa.'</td>
-			<td>'.$sisa_aktif.' Hari</td>
-			<td>'.$tokenStatus.'</td>
-			<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
-		</tr>
-		';
+		if ($tokenStatus=="Aktif") {
+			$tb_token.='
+			<tr>
+				<td>'.$no.'</td>
+				<td>'.$nama.'</td>
+				<td>'.$namaPengguna.'</td>
+				<td>'.$type.'</td>
+				<td>'.$token_item->nomorToken.'</td>
+				<td>'.$masa_aktif.'</td>
+				<td>'.$date_diaktifkan.'</td>
+				<td>'.$date_kadaluarsa.'</td>
+				<td>'.$sisa_aktif.' Hari</td>
+				<td>'.$tokenStatus.'</td>
+				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
+			</tr>
+			';	
+		} else { 
+			$tb_token.='
+			<tr>
+				<td>'.$no.'</td>
+				<td>'.$nama.'</td>
+				<td>'.$namaPengguna.'</td>
+				<td>'.$type.'</td>
+				<td>'.$token_item->nomorToken.'</td>
+				<td>'.$masa_aktif.'</td>
+				<td>'.$date_diaktifkan.'</td>
+				<td>'.$date_kadaluarsa.'</td>
+				<td>'.$sisa_aktif.' Hari</td>
+				<td>'.$tokenStatus.'</td>
+				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
+			</tr>
+			';
+		}
 		$no++;
 	}
 

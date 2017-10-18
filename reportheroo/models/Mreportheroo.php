@@ -3,7 +3,7 @@
 /**
 * 
 */
-class m_artikel extends CI_Model
+class Mreportheroo extends CI_Model
 {
 
 	function __construct()
@@ -25,21 +25,21 @@ class m_artikel extends CI_Model
         $this->db->distinct();
         $this->db->select('*');
         $this->db->from('tb_report_heroo art');
-        $this->db->join('tb_kategori kat', '`kat`.`id_kategori` = `art`.`kategori`');
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
 
     // get gambar artikel
-    public function get_gambarartikel($id)
+    public function get_reportH($id)
 
 	{
 
 		$this->db->select('*');
 
-		$this->db->from('tb_artikel');
+		$this->db->from('tb_report_heroo rh');
+        $this->db->join('tb_kategori kat', '`kat`.`id_kategori` = `rh`.`kategori`');
 
-		$this->db->where('id_artikel',$id); 
+		$this->db->where('id_art',$id); 
 
 		$query = $this->db->get();
 
@@ -167,21 +167,21 @@ class m_artikel extends CI_Model
 
 
 
-    public function in_upload_artikel($data){
+    public function in_upload_reportH($data){
         // $this->db->insert('tb_team', $data['data_upload_team']);
-        $this->db->insert('tb_artikel', $data);
+        $this->db->insert('tb_report_heroo', $data);
     }
 
-    public function edit_upload_artikel($data,$id) {
-        $this->db->where('id_artikel', $id);
-        $this->db->update('tb_artikel', $data);
+    public function edit_upload_reportH($data,$id) {
+        $this->db->where('id_art', $id);
+        $this->db->update('tb_report_heroo', $data);
         
     }
 
       // DELETE MATA PELAJARAN
-    public function delete_artikel($id_artikel) {
-        $this->db->where('id_artikel', $id_artikel['id']);
-        $this->db->delete('tb_artikel');
+    public function delete_reportH($id_report) {
+        $this->db->where('id_art', $id_report['id']);
+        $this->db->delete('tb_report_heroo');
     }
 
       // DELETE MATA PELAJARAN

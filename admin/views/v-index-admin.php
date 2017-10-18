@@ -362,7 +362,7 @@
             <span class="text">Dashboard</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="javascript:void(0);" data-target="#admincabang" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-bubble-user"></i></span>
             <span class="text">Admincabang</span>
@@ -381,7 +381,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li>
             <a href="javascript:void(0);" data-target="#artikel" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-bubble-user"></i></span>
@@ -396,7 +396,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?=base_url('index.php/artikel/tambahartikel/1') ?>">
+                <a href="<?=base_url('index.php/artikel/tambahartikel') ?>">
                 <span class="text">Tambah Artikel</span>
                 </a>
               </li>
@@ -431,7 +431,7 @@
             <ul id="banksoal" class="submenu collapse ">
               <li class="submenu-header ellipsis">Bank Soal</li>
               <li>
-                <a href="javascript:void(0);" onclick="add_soal()">
+                <a href="<?= base_url(); ?>index.php/banksoal/formsoal" >
                 <span class="text">Tambahkan Bank Soal</span> 
                 </a>
               </li>
@@ -458,13 +458,13 @@
               </li>
             </ul>
           </li>
-          <li>
+        <!--   <li>
             <a href="<?=base_url('cabang') ?>" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-home11"></i></span>
             <span class="text">Cabang</span>
             <span class="arrow"></span>
             </a>
-          </li>
+          </li> -->
 
           <li>
             <a href="javascript:void(0);" data-target="#gallery" data-toggle="submenu" data-parent=".topmenu">
@@ -577,11 +577,11 @@
             </a>
             <ul id="konsultasi" class="submenu collapse ">
               <li class="submenu-header ellipsis">Konsultasi Forum/li>
-              <li>
+              <!-- <li>
                 <a href="javascript:void(0);">
                 <span class="text">Daftar Konsultasi Forum</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                 <a href="<?= base_url('index.php/konsulback/aq_konsul');?>">
                 <span class="text">Akumulasi Poin Konsultasi</span>
@@ -605,12 +605,12 @@
               <li class="submenu-header ellipsis">Materi</li>
               <li>
                 <a href="<?=base_url('index.php/materi/form_materi')?>" >
-                <span class="text">Form Materi</span> 
+                <span class="text">Tambah Materi</span> 
                 </a>
               </li>
               <li>
                 <a href="<?=base_url('index.php/materi/list_all_materi')?>">
-                <span class="text">Tambah Materi</span>
+                <span class="text">Daftar Materi</span>
                 </a>
               </li>
             </ul>
@@ -678,12 +678,12 @@
             <ul id="artikelkat" class="submenu collapse ">
               <li class="submenu-header ellipsis">Report Heroo</li>
               <li>
-                <a href="<?=base_url('index.php/artikel/index/2')?>">
+                <a href="<?=base_url('index.php/Reportheroo')?>">
                 <span class="text">Daftar Report Heroo</span>
                 </a>
               </li>
               <li>
-                <a href="<?=base_url('index.php/artikel/tambahartikel/2') ?>">
+                <a href="<?=base_url('index.php/Reportheroo/tambahHeroo') ?>">
                 <span class="text">Tambah Report Heroo</span>
                 </a>
               </li>

@@ -105,6 +105,7 @@ function load_matapelajaran(tingkatID){
      var babID;
      $.ajax({
       type: "POST",
+      dataType:"JSON",
       url: "<?php echo base_url() ?>index.php/matapelajaran/get_bab_by_tingpel_id/" + tingPelId,
       success: function (data) {
        $.each(data, function (i, data) {

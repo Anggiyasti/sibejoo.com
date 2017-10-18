@@ -43,7 +43,7 @@
      <li><i class="fa fa-phone-square text-theme-colored font-36 mt-5 sm-display-block"></i></li>
      <li>
       <a href="#" class="font-12 text-gray text-uppercase">Hubungi Kami Sekarang!</a>
-      <h5 class="font-14 m-0"> +(022) 87805676</h5>
+      <h5 class="font-14 m-0"> +(022)0662395</h5>
     </li>
   </ul>
 </div>
@@ -96,7 +96,7 @@
          <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
           <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
         <?php endif ?></a>
-        <ul class="dropdown" style="right: auto; display: none;">++
+        <ul class="dropdown" style="right: auto; display: none;">
          <li><a href="<?=base_url('siswa') ?>">Dashboard<span class="indicator"></span></a></li>
          <li><a href="<?=base_url('siswa/profilesetting') ?>">Pengaturan Profile<span class="indicator"></span></a></li>
          <li><a href="<?=base_url('donasi') ?>">Donasi<span class="indicator"></span></a></li>

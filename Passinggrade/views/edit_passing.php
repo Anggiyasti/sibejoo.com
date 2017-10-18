@@ -5,40 +5,23 @@
         <section id="main" role="main">
             <!-- START Template Container -->
             <div class="container-fluid">
-                <!-- Page Header -->
-                <div class="page-header page-header-block">
-                    <div class="page-header-section">
-                        <h4 class="title semibold">Passinggrade</h4>
-                    </div>
-                    <div class="page-header-section">
-                        <!-- Toolbar -->
-                        <div class="toolbar">
-                            <ol class="breadcrumb breadcrumb-transparent nm">
-                                <li><a href="javascript:void(0);">Form Passinggrade</a></li>
-                                <li class="active">Elements</li>
-                            </ol>
-                        </div>
-                        <!--/ Toolbar -->
-                    </div>
-                </div>
-                <!-- Page Header -->
 
                 <!-- START row -->
                 <div class="row">
                     <div class="col-md-12">
                         <!-- START panel -->
-                        <div class="panel panel-default">
+                        <div class="panel panel-teal">
                             <!-- panel heading/header -->
                             <div class="panel-heading">
-                                <h3 class="panel-title">Form Passinggrade</h3>
+                                <h3 class="panel-title">Form Passing Grade</h3>
                             </div>
                             <!--/ panel heading/header -->
+                            <form class="form-horizontal form-bordered" action="<?=base_url()?>index.php/Passinggrade/up_passinggrade" method="post">
                             <!-- panel body -->
                             <div class="panel-body">
                             <?php echo $this->session->flashdata('msg'); ?>
-                                <form class="form-horizontal form-bordered" action="<?=base_url()?>index.php/Passinggrade/up_passinggrade" method="post">
                                     
-                                   <div class="form-group">
+                                   <div class="form-group" hidden="true">
                                         <label class="col-sm-2">ID Passing</label>
                                         <div class="col-sm-5">
                                             <input class="form-control" name="id_passing" type="text" value="<?=$editdata['id_passing']; ?>" disabled/>
@@ -55,7 +38,13 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Wilayah</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="wilayah" class="form-control" value="<?=$editdata['wilayah']; ?>" >
+                                            <input type="text" name="wilayah" value="<?=$editdata['wilayah']; ?>" id='tampwilayah' hidden="true">
+                                            <select class="form-control" name="wilayah">
+                                                <option value="1" id="satu">1</option>
+                                                <option value="2" id="dua">2</option>
+                                                <option value="3" id="tiga">3</option>
+                                                <option value="4" id="empat">4</option>
+                                            </select>
                                             <span class="text-danger"><?php echo form_error('wilayah'); ?></span>
                                         </div>
                                     </div>
@@ -76,24 +65,22 @@
                                     <div class="form-group">
                                         <label class="col-sm-2">Passing Grade</label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="passinggrade" class="form-control" value="<?=$editdata['passinggrade']; ?>" >
+                                            <input type="number" name="passinggrade" class="form-control" value="<?=$editdata['passinggrade']; ?>" step="0.01">
                                             <span class="text-danger"><?php echo form_error('passinggrade'); ?></span>
                                             </div>
                                     </div>
                                     
-                                    
-                                    <div class="panel-footer">
-                                        <div class="form-group no-border">
-                                            <!-- <label class="col-sm-3 control-label">Button</label> -->
-                                            <div class="col-sm-9">
-                                            <input type="hidden" name="id_passing" value="<?=$editdata['id_passing'];?>">
-                                            <input type="submit" class="btn" name="update"  value="Update" class="btn btn-primary">
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </form>
                             </div>
                             <!-- panel body -->
+                            <div class="panel-footer">
+                                <div class="form-group no-border">
+                                    <div class="col-sm-9">
+                                        <input type="hidden" name="id_passing" value="<?=$editdata['id_passing'];?>">
+                                        <input type="submit" value="Update" class="btn btn-primary">
+                                    </div>
+                                </div> 
+                            </div>
+                            </form>
                         </div>
                         <!--/ END form panel -->
                     </div>
@@ -120,6 +107,16 @@
 
 <script>
 
-CKEDITOR.replace( 'editor1' );
+// set option wilayah ################
+var tw =$('#tampwilayah').val();
+if (tw == '1') {
+    $('#satu').attr('selected','selected');
+} else if (tw == '2') {
+    $('#dua').attr('selected','selected');
+} else if (tw == '3') {
+    $('#tiga').attr('selected','selected');
+} else {
+    $('#empat').attr('selected','selected');
+}
 
 </script>

@@ -5,13 +5,13 @@
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
             <img class="mt-5 mb-20" alt="" src="http://sibejoo.com/img/logo-sibejoo.png">
-            <p>2017, Sibejoo, Melbourne, Australia.</p>
+            <p>PT VORTEX BUANA EDUMEDIA</p>
             <ul class="list-inline mt-5">
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">022-0662395</a> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">contact@sibejoo.com</a> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="https://sibejoo.com/">https://sibejoo.com/</a> </li>
               <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Line: @wuf2783p (Sibejoo)</a></li>
-              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Komplek Permata Cimahi, Jalan Ruby, Blok R9, No.16. Ngamprah, Kab. Bandung Barat.</a></li>
+              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Komplek Taman Mutiara Blok C1 No 11 Cibabat, Cimahi.</a></li>
             </ul>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="widget dark">
             <h5 class="widget-title mb-10">Hubungi kami</h5>
             <div class="text-gray">
-             022-87805676 <br>
+             022-0662395 <br>
             </div>
           </div>
         </div>

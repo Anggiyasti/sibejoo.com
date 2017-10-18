@@ -192,6 +192,8 @@ function daftarbab() {
 
     $id = $this->uri->segment(4);
     $data['babs'] = $this->mmatapelajaran->daftarBab($id);
+    $data['kt'] = $this->mmatapelajaran->get_keterangan($id)[0]['keterangan'];
+
     $data['file'] = 'v-bab.php';
 
     $this->parser->parse('v-index-admin', $data);
