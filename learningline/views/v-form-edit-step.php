@@ -64,7 +64,7 @@
   </div>
 
   <div  class="form-group">
-    <label class="col-sm-3 control-label">Jenis Step</label>
+    <label class="col-sm-3 control-label">Jenis Steppppp</label>
     <div class="col-sm-8">
       <select class="form-control" name="select_jenis">
         <option value="0">-- Pilih Jenis Step --</option>
@@ -84,7 +84,7 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-11">
      <a class="btn btn-primary update_step">Update</a>
-     <button type="reset" class="btn btn-danger reset">Reset</button>
+     <button type="reset" class="btn btn-danger reset" onclick = "reset()">Reset</button>
    </div>
  </div>
 </form>

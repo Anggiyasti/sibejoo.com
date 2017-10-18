@@ -154,7 +154,7 @@ class Learning_model extends CI_Model{
 
 	/*GET META DATA UNTUK update STEP*/
 	function meta_step_update($data){
-		$query = "SELECT jenisStep, step.id, namaTopik, step.urutan, namaStep, bab.id as babid, materiID, latihanID, videoID FROM  (SELECT * FROM  `tb_line_step` WHERE id =  $data ) AS step
+		$query = "SELECT jenisStep, step.id, namaTopik, step.urutan, namaStep, bab.id as babid, materiID, latihanID, videoID, step.jumlah_benar, step.jumlah_soal, step.jumlah_soal_sedang, step.jumlah_soal_mudah, step.jumlah_soal_sulit FROM  (SELECT * FROM  `tb_line_step` WHERE id =  $data ) AS step
 		JOIN `tb_line_topik` topik ON topik.id = step.topikID
 		JOIN `tb_bab` AS bab ON
 		topik.babID = bab.id

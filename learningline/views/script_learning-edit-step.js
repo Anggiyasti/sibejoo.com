@@ -11,27 +11,40 @@ $(document).ready(function(){
 	value = $('input[name=jenis_step]').val();
 
 	if (value==1) {
-	$('select[name=select_jenis]').html("<option value='1'>Video</option>");
+	$('select[name=select_jenis]').html("<option value='1'>Video</option>"+"<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>");
 	}else if(value==2){
-	$('select[name=select_jenis]').html("<option value='2'>Materi</option>");
+	$('select[name=select_jenis]').html("<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>"+"<option value='1'>Video</option>");
 	}else{
-	$('select[name=select_jenis]').html("<option value='3'>Latihan</option>");
+	$('select[name=select_jenis]').html("<option value='3'>Latihan</option>"+"<option value='2'>Materi</option>"+"<option value='1'>Video</option>");
 
 	}
-
-
-	// 
 	if (value==1) {
 		load_video();
 	}else if(value==2){
 		load_materi();
 		// $('.jenis').html("<h4 class='text-center animation animating pulse'>Materi</h4>");
 	}else if(value==3){
-		$('.jenis').html("<h4 class='text-center animation animating pulse'>Latihan</h4>");		
+		load_soal();
+		// $('.jenis').html("<h4 class='text-center animation animating pulse'>Latihan</h4>");		
 	}else{
 		$('.jenis').html("<h4 class='text-center animation animating pulse'>Error</h4>");
 	}
 })
+$('select[name=select_jenis]').change(function(){
+	value = $('select[name=select_jenis]').val();
+	if (value==1) {
+		load_video();
+	}else if(value==2){
+		load_materi();
+	}else if(value==3){
+		load_soal();	
+	}else{
+		$('.jenis').html("<h4 class='text-center animation animating pulse'>Silahkan pilih jenis</h4>");
+	}
+});
+
+
+
 
 function update(data){
 	var url = base_url+"learningline/ajax_update_learning_step/";
@@ -79,7 +92,7 @@ $('.update_step').click(function(){
 	var form = {
 		urutan:$('input[name=urutan]').val(),
 		namastep:$('input[name=namastep]').val(),
-		select_jenis:$('select[name=select_jenis]').val()
+		select_jenis:$('select[name=select_jenis]').val(),
 	};
 	var data;
 	if (value==1) {
@@ -102,11 +115,15 @@ $('.update_step').click(function(){
 		update(data);
 	}else if(value==3){
 		data = {
-			materiID:$('input[name=materi]:checked').val(),
+			latihanID:$('input[name=]:checked').val(),
 			urutan:form.urutan,
 			namastep:form.namastep,
 			select_jenis:form.select_jenis,
-			id:$('input[name=id]').val()
+			id:$('input[name=id]').val(),
+			jumlah_soal_mudah:$('input[name=mudah]').val(),
+			jumlah_soal_sedang:$('input[name=sedang]').val(),
+			jumlah_soal_sulit:$('input[name=sulit]').val(),
+			jumlah_benar:$('input[name=jumlahBenar]').val()
 		};
 		update(data);
 	}else{
@@ -170,7 +187,7 @@ function load_video(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"learningline/ajax_get_video_edit/"+babID+"/"+relasi;
+	var url = base_url+"learningline/ajax_get_video_edit/"+babID+"/"+value;
 	console.log(url);	
 
 	tabel = $('.daftarvideo').DataTable({
@@ -252,4 +269,126 @@ $(".video_checkbox").change(function(){
     $box.prop("checked", false);
   }
 });*/
+function reset(){
+	$('input[name=namastep]').val("");
+	$('input[name=urutan]').val("");
+}
+function load_soal(){
+	var tabel;
+	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Soal</h4>");
+	$('.jenis').append('<div  class="form-group">'+
+		'<label class="col-sm-3 control-label">Minimal Jumlah Benar</label>'+
+		'<div class="col-sm-8">'+
+		'<input type="number" value = "{jumlah_benar}" placeholder="Jumlah Soal Benar" class="form-control nomor" name="jumlahBenar">'+
+		'</div>'+
+		'</div>');
+
+	$('.jenis').append('<div  class="form-group">'+
+		'<label class="col-sm-3 control-label">Pemilihan Soal</label>'+
+		'<div class="col-sm-3">'+
+		'<input type="number" value = "{jumlah_soal_mudah}" placeholder="Jumlah Soal Mudah" class="form-control nomor" name="mudah">'+
+		'</div>'+
+
+		'<div class="col-sm-3">'+
+		'<input type="number" value = "{jumlah_soal_sedang}" placeholder="Jumlah Soal Sedang" class="form-control nomor" name="sedang">'+
+		'</div>'+
+
+		'<div class="col-sm-3">'+
+		'<input type="number" value = "{jumlah_soal_sulit}"  placeholder="Jumlah Soal Sulit" class="form-control nomor" name="sulit">'+
+		'</div>'+
+		'</div>');
+
+	$('.jenis').append('<div class="panel panel-default">'+
+		'<div class="panel-heading">'+
+		'<h3 class="panel-title"><center>Tabel Soal</center></</h3> '+
+		'<div class="panel-toolbar text-right">'+
+		'</div>'+
+
+		'</div>'+
+		'<div class="panel-body">'+
+		'<table class="daftarsoal table table-striped display responsive nowrap" style="font-size: 13px" width=100%>'+
+		'<thead>'+
+		'<tr>'+
+		'<th></th>'+
+		'<th>Judul Soal</th>'+
+		'<th>Sumber</th>'+
+		'<th width="10%">Soal</th>'+
+		'<th width="10%">Kesulitan</th>'+
+		'<th width="5%">Aksi</th>'+
+
+		'</tr>'+
+		'</thead>'+
+
+		'<tbody>'+
+
+		'</tbody>'+
+		'</table>'+
+		'<div class="panel-footer">'+
+		'<div class="form-group no-border">'+
+		'<label class="col-sm-1 control-label"></label>'+
+		'<div class="col-sm-9">'+
+		'<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+
+		'</div>'
+		
+
+
+		);
+
+	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
+	babID = $('input[name=babID]').val();	
+	var url = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+relasi;
+	tabel = $('.daftarsoal').DataTable({
+		"ajax": {
+			"url": url,
+			"type": "POST"
+		},
+		"emptyTable": "Tidak Ada Data Pesan",
+		"info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+		"pageLength": 5,
+	});
+}
+
+function tambahkan_soal(){
+	latSession = "";
+	var idsoal = [];
+
+	$(':checkbox:checked').each(function(i){
+		idsoal[i] = $(this).val();
+	}); 
+	var idsoal = [];
+	babID = $('input[name=babID]').val();
+	$(':checkbox:checked').each(function(i){
+		idsoal[i] = $(this).val();
+	}); 
+	
+	data = {
+		bab:babID,id_soal:idsoal
+	};
+	if (idsoal.length > 0) {
+		var url = base_url+"index.php/latihan/tambah_latihan_ajax_bab_step";
+		$.ajax({
+			url : url,
+			type: "POST",
+			dataType:'TEXT',
+			data: data,
+			success: function()
+			{   
+				swal('Berhasil menambahkan soal');
+
+			},
+			error: function ()
+			{
+				swal('Error adding / update data');
+			}
+		});
+	} else {
+		swal('Silahkan Pilih Soal!');
+	}
+}
+
 </script>

@@ -69,4 +69,74 @@ function detail_topik(data){
 	});
 
 }
+//update data
+function updatestatus(id,status){
+	var url;
+	if (status==1) {
+		url = base_url+"learningline/updatepasive/"+id;
+	}else{
+		url = base_url+"learningline/updateaktiv/"+id;		
+	}
+
+	swal({
+		title: "Anda Akan Merubah status learning?",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Ya, update",
+		cancelButtonText: "Tidak, batalan",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm){
+		if (isConfirm) {
+			$.ajax({
+				url:url,
+				dataType:"TEXT",
+				type:'POST',
+				success:function(){
+					swal("Berhasil diupdate!", "status learning diaktifkan.", "success");
+					tabel.ajax.reload(null,false);
+				},
+				error:function(){
+					swal('gagal');
+				}}
+				);
+		} else {
+			swal("Dibatalkan", "Data batal diperbaharui", "error");
+			tabel.ajax.reload(null,false);
+		}
+	});
+}
+function drop_step(idstep){
+	url = base_url+"learningline/drop_step";
+	swal({
+		title: "Yakin akan hapus Step?",
+		text: "Jika anda menghapus Step",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Ya,Tetap hapus!",
+		closeOnConfirm: false
+	},
+	function(){
+		var datas = {id:idstep};
+		$.ajax({
+			dataType:"text",
+			data:datas,
+			type:"POST",
+			url:url,
+			success:function(){
+				swal("Terhapus!", "Step berhasil dihapus.", "success");
+				location.reload();
+			},
+			error:function(){
+				sweetAlert("Oops...", "Data gagal terhapus!", "error");
+			dataTableLearning.ajax.reload(null,false);
+
+			}
+
+		});
+	});
+}
 </script>

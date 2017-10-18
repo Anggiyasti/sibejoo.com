@@ -237,28 +237,28 @@ function load_soal(){
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Minimal Jumlah Benar</label>'+
 		'<div class="col-sm-8">'+
-		'<input type="text" placeholder="Jumlah Soal Benar" class="form-control nomor" name="jumlahBenar">'+
+		'<input type="number" placeholder="Jumlah Soal Benar" class="form-control nomor" name="jumlahBenar">'+
 		'</div>'+
 		'</div>');
 
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Pemilihan Soal</label>'+
 		'<div class="col-sm-3">'+
-		'<input type="text" placeholder="Jumlah Soal Mudah" class="form-control nomor" name="mudah">'+
+		'<input type="number" placeholder="Jumlah Soal Mudah" class="form-control nomor" name="mudah">'+
 		'</div>'+
 
 		'<div class="col-sm-3">'+
-		'<input type="text" placeholder="Jumlah Soal Sedang" class="form-control nomor" name="sedang">'+
+		'<input type="number" placeholder="Jumlah Soal Sedang" class="form-control nomor" name="sedang">'+
 		'</div>'+
 
 		'<div class="col-sm-3">'+
-		'<input type="text" placeholder="Jumlah Soal Sulit" class="form-control nomor" name="sulit">'+
+		'<input type="number" placeholder="Jumlah Soal Sulit" class="form-control nomor" name="sulit">'+
 		'</div>'+
 		'</div>');
 
 	$('.jenis').append('<div class="panel panel-default">'+
 		'<div class="panel-heading">'+
-		'<h3 class="panel-title">Tabel Soal</h3> '+
+		'<h3 class="panel-title"><center>Tabel Soal</center></</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
@@ -392,5 +392,11 @@ function detail_soal(data){
 
 	$('.mdetailsoal p#dsoal').html(meta.soal);
 	$('.mdetailsoal p#djawaban').html(meta.jawaban);
+}
+
+function reset(){
+	$('input[name=namastep]').val("");
+	$('input[name=urutan]').val("");
+	$('select[name=select_jenis]').val(0);
 }
 </script>

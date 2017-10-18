@@ -205,6 +205,10 @@ class Learningline extends MX_Controller {
 			'urutan'=>$metadata['urutan'],
 			'namastep'=>$metadata['namaStep'],
 			'id_relasi'=>$metadata['jenisStep'],
+			'jumlah_soal_mudah'=>$metadata['jumlah_soal_mudah'],
+			'jumlah_soal_sedang'=>$metadata['jumlah_soal_sedang'],
+			'jumlah_soal_sulit'=>$metadata['jumlah_soal_sulit'],
+			'jumlah_benar'=>$metadata['jumlah_benar'],
 			'relasi_step'=>$id
 			);
 		$data['files'] = array(
@@ -575,10 +579,14 @@ function ajax_update_learning_step(){
 		'jenisStep'=>$this->input->post('select_jenis'),
 		'videoID'=>$this->input->post('videoID'),
 		'MateriID'=>$this->input->post('materiID'),
-		'latihanID'=>$this->input->post('namaTopik'),
+		'latihanID'=>$this->session->userdata('id_latihan'),
 		'status'=>1,
 		'urutan'=>$this->input->post('urutan'),
 		'id'=>$this->input->post('id'),
+		'jumlah_benar'=>$this->input->post('jumlah_benar'),
+		'jumlah_soal_sedang'=>$this->input->post('jumlah_soal_sedang'),
+		'jumlah_soal_mudah'=>$this->input->post('jumlah_soal_mudah'),
+		'jumlah_soal_sulit'=>$this->input->post('jumlah_soal_sulit'),
 		);
 	$this->learning_model->update_learning_step($data);
 
@@ -626,6 +634,50 @@ function ajax_detail_materi($id){
 
 	echo json_encode( $output );	
 }
+function ajax_get_soal_edit($bab) {
+
+	$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
+	$data = array();
+
+
+		//mengambil nilai list
+	$baseurl = base_url();
+	foreach ( $list as $list_soal ) {
+		$n='1';
+		$row = array();
+
+		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
+		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
+		<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
+	</span>";
+	$row[] = $list_soal['judul_soal'];
+	$row[] = $list_soal['sumber'];
+
+	$row[] = $list_soal['soal'];
+
+	if ($list_soal['kesulitan']=='0') {
+		$row[] = "Mudah";
+	} else if($list_soal['kesulitan']=='1'){
+		$row[] = "Sedang";
+	}else{
+		$row[] = "Sulit";
+	}
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_soal'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_soal'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$data[] = $row;
+	$n++;
+
+}
+
+$output = array(
+	"data"=>$data,
+	);
+echo json_encode( $output );
+
+}
+
+
+
+#
 function ajax_detail_latihan($id){
 	$list = $soal=$this->mlatihan->get_soal_by_id_latihan($id);
 	$data = array();

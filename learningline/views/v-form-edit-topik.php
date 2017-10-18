@@ -66,7 +66,7 @@
   <label class="col-sm-3 control-label">Urutan</label>
   <div class="col-sm-8">
 
-   <input type="text" class="form-control" name="urutan" value="{urutan}">
+   <input type="number" class="form-control nomor" name="urutan" value="{urutan}">
  </div>
 </div>
 

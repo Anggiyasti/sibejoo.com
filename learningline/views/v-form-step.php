@@ -173,7 +173,7 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-11">
      <a class="btn btn-primary simpan_step">Simpan</a>
-     <button type="reset" class="btn btn-danger reset">Reset</button>
+     <button type="reset" class="btn btn-danger" onclick = "reset()">Reset</button>
    </div>
  </div>
 </form>
