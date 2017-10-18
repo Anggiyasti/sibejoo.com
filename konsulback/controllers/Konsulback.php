@@ -63,7 +63,7 @@
     
 
     // get data untuk pertanyaan yang ditujukan pada guru tersebut.
-    $id_guru = 37;
+    $id_guru = $this->session->userdata('id_guru');
     $jumlah_postingan = $this->mkonsultasi->get_pertanyaan_punya_mentor_number_search($id_guru,$key='');
     $data['question_to_teacher']=$this->mkonsultasi->get_pertanyaan_punya_mentor($id_guru,'all','all',0,$jumlah_postingan);
 
@@ -81,7 +81,7 @@
       // get jumlah komen yg belum di baca
       $data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
       //## Notification komen videosss
-      $this->parser->parse('templating/index-b-guru', $data);
+       $this->parser->parse('templating/index-b-guru', $data);
     }else{
         // jika siswa redirect ke welcome
       redirect(site_url('login'));

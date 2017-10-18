@@ -100,11 +100,11 @@
         <?php foreach ($respon as $value): ?>
          <tr>
           <td><?=$no;?></td>
-          <td>><?=$value['judulPertanyaan']?></td>
+          <td><?=$value['judulPertanyaan']?></td>
           <td><?=$value['isiPertanyaan']?></td>
           <td><?=htmlspecialchars(substr($value['isiJawaban'], 0, 100))?>...</td>
           <td><?=$value['tgl']?></td>
-          <td><a class="btn btn-sm bgcolor-success text-center"  title="Detail" href=""><i class="ico-bubble11 fsize23"></i></a></td>
+          <td><a class="btn btn-sm bgcolor-success text-center"  title="Detail" onclick="singlekonsultasi(<?=$value['pertanyaanID'] ?>)"><i class="ico-bubble11 fsize23"></i></a></td>
         </tr>
         <?php $no++; ?>
       <?php endforeach ?>
@@ -178,8 +178,9 @@
         <?php $no='1'; ?>
         <?php foreach ($question_to_teacher as $rows ): ?>
           <tr>
+
             <td><?=$no;?></td>
-            <td><a title="kunjungi <?=$rows['judulPertanyaan'] ?>" href="<?=base_url('konsultasi/singlekonsultasi/'.$rows['pertanyaanID']) ?>"><?=$rows['judulPertanyaan'];?></a></td>
+            <td><a title="kunjungi <?=ucfirst($rows['judulPertanyaan']) ?>" class='btn btn-primary' onclick="singlekonsultasi(<?=$rows ['pertanyaanID'] ?>)"><?=ucfirst($rows['judulPertanyaan']);?></a></td>
             <td><?=$rows['isiPertanyaan'];?></td>
             <td><?=$rows['namaMataPelajaran'];?></td>
             <td><?=$rows['judulBab'];?></td>
@@ -211,4 +212,26 @@ $(document).ready(function(){
     $('.respon').dataTable();
     $('.respon').dataTable();
 });
+
+
+  function single_konsul(pertanyaanID) {
+    url_ajax = base_url+"konsultasi/tamp_single";
+
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
 </script>

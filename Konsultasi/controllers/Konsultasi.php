@@ -158,7 +158,7 @@ public function pertanyaan_all() {
     APPPATH.'modules/homepage/views/r-header-login.php',
     APPPATH.'modules/konsultasi/views/r-daftar-konsultasi_all.php',
     APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
-    APPPATH.'modules/templating/views/r-footer.php',
+    APPPATH.'modules/homepage/views/r-footer.php',
     );
 
   ##KONFIGURASI UNTUUK PAGINATION
@@ -631,7 +631,7 @@ function ajax_update_jawaban(){
 
 # function show single konsultasi
 function show_post(){
-  $id = $this->session->userdata['idjawab'];
+  $id = $this->session->userdata('jawab_id');
   $data = array(
     'judul_halaman' => 'Sibejoo - Single Post',
     );
@@ -689,7 +689,8 @@ function singlekonsultasi(){
     'tanggal'=>date("d", $timestamp),
     'bulan'=>date("M", $timestamp),
     'photo'=>base_url("assets/image/photo/siswa/".$single_pertanyaan['photo']),
-    'statusRespon'=>$single_pertanyaan['statusRespon']
+    'statusRespon'=>$single_pertanyaan['statusRespon'],
+    'namaPengguna'=>$single_pertanyaan['namaPengguna']
     );
 
   $data['username'] = $single_pertanyaan['namaPengguna'];
@@ -1400,8 +1401,13 @@ function get_last_jawaban(){
   public function tamp_single() {   
     $id = $this->input->post('pertanyaanID');
     $this->session->set_userdata('pertanyaanID', $id);
-    echo json_encode($id);
-        
+    echo json_encode($id);   
+  }
+
+    public function tamp_single_jawab() {   
+    $id = $this->input->post('jawab_id');
+    $this->session->set_userdata('jawab_id', $id);
+    echo json_encode($id);   
   }
 
   // tampung keyword search

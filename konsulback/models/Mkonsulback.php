@@ -46,7 +46,7 @@
  	}
  	public function get_respone_by_guru($penggunaID)
  	{
- 		$this->db->select('jawab.id as jawabID,jawab.date_created as tgl, isiJawaban, isiPertanyaan,judulPertanyaan ');
+ 		$this->db->select('jawab.id as jawabID,jawab.date_created as tgl, isiJawaban, isiPertanyaan,judulPertanyaan,ask.id as pertanyaanID');
  		$this->db->from('tb_k_jawab jawab');
  		$this->db->join('tb_k_pertanyaan ask','jawab.pertanyaanID=ask.id');
  		$this->db->where('jawab.penggunaID',$penggunaID);

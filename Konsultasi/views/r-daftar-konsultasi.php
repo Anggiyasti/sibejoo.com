@@ -184,7 +184,6 @@ $('.cari-btn').click(function(){
 
 // redirect ke single konsultasi
   function single_konsul(pertanyaanID) {
-    console.log(pertanyaanID);
     url_ajax = base_url+"konsultasi/tamp_single";
 
     var global_properties = {

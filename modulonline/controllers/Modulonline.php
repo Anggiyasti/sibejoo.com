@@ -545,7 +545,7 @@ public function update_modul() {
         //call fungsi insert soal
     $this->Mmodulonline->ch_soal($data);
     $this->ch_img_soal($UUID);
-    redirect(site_url('modulonline/allsoal'));
+    redirect(site_url('modulonline/daftar_modul'));
 }
 
 public function delete_modul($data) {
