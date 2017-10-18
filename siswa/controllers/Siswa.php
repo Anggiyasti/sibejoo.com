@@ -454,7 +454,7 @@ function updateSiswa($idsiswa, $idpengguna) {
          $datSiswa = $this->msiswa->get_siswa_byid($idsiswa, $idpengguna);
          $data['siswa']=$datSiswa[0];
          $data['datKelas']=$this->msiswa->get_kelas();
-         $data['judul_halaman'] = "Rubah Data Siswa";
+         $data['judul_halaman'] = "Ubah Data Siswa";
          $data['files'] = array(
             APPPATH . 'modules/siswa/views/v-update-siswa.php',
             );
@@ -809,7 +809,7 @@ public function editSiswa(){
                 );
             $this->msiswa->update_siswa1($data_post,$idsiswa);
 
-            redirect('siswa/listsiswa');
+            // redirect('siswa/listsiswa');
 
         }else{
             redirect('siswa/listsiswa');
@@ -1093,6 +1093,107 @@ public function message()
         $this->msiswa->up_status_siswa($id_pengguna);
         echo json_encode($id_pengguna);
 
+    }
+    
+    // cek input nama pengguna 
+    public function cek_nama_pengguna() {
+        $this->form_validation->set_rules( 'namapengguna', 'namapengguna', 'required|is_unique[tb_pengguna.namaPengguna]' );
+        if ( $this->form_validation->run() == FALSE ) {
+            echo json_encode("FALSE");
+        }else{
+            echo json_encode("TRUE");
+        }
+    }
+
+      // cek input email
+    public function cek_email() {
+      $this->form_validation->set_rules( 'email', 'email', 'required|is_unique[tb_pengguna.eMail]' );
+      if ( $this->form_validation->run() == FALSE ) {
+        echo json_encode("FALSE");
+      }else{
+        echo json_encode("TRUE");
+      }
+    }
+
+    // ajax list siswa
+    public function ajax_list_siswa()
+    {
+        $tb_siswa=null;
+        // code u/pagination
+        $this->load->database();
+        $jumlah_data_per_page=$this->input->post("records_per_page");
+        $page=$this->input->post("pageSelek");
+        $keySearch=$this->input->post("keySearch");
+
+        if ($keySearch != '' && $keySearch !=' ' ) {
+            $list = $this->msiswa->data_cari_siswa_ajax($jumlah_data_per_page,$page,$keySearch);
+        }else{
+            $list = $this->msiswa->data_siswa_ajax($jumlah_data_per_page,$page);
+        }
+
+        $no=$page+1;
+
+        //cacah data 
+        foreach ( $list as $list_siswa ) {
+            $nama=$list_siswa->namaDepan." ".$list_siswa->namaBelakang;
+            $datReset=$list_siswa->penggunaID.",'".$list_siswa->namaPengguna."'";
+            $tb_siswa.='
+            <tr>
+                <td>'.$no.'</td>
+                <td>'.$nama.'</td>
+                <td>'.$list_siswa->namaPengguna.'</td>
+                <td>'.$list_siswa->namaSekolah.'</td>
+                <td>'.$list_siswa->eMail.'</td>
+                <td><a class="btn btn-sm btn-info"  title="Lihat Detail" href="' . base_url('index.php/siswa/reportSiswa/' .$list_siswa->idsiswa.'/'. $list_siswa->penggunaID) . '" >Lihat Detail</a></td>
+                <td><a class="btn btn-sm btn-warning"  title="Edit" href="' . base_url('index.php/siswa/updateSiswa/' . $list_siswa->idsiswa. '/' . $list_siswa->penggunaID) . '" "><i class="ico-edit"></i></a>
+                    <button class="btn btn-sm btn-danger" title="Reset Katasandi" onclick="resetSandi('.$datReset.')"><i class=" ico-key"></i></button>
+                    <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa('.$datReset.')"><i class="ico-remove"></i></a>
+                </td>
+            </tr>
+            ';
+            $no++;
+        }
+        echo json_encode( $tb_siswa );
+    }
+
+    // pagination siswa
+    public function pagination_siswa()
+    {
+        $records_per_page=$this->input->post('records_per_page');
+        $keySearch=$this->input->post('keySearch');
+        if ($keySearch != '' && $keySearch !=' ') {
+                $jumlah_data =$this->msiswa->sum_cari_siswa($keySearch);
+        }else{
+            $jumlah_data = $this->msiswa->data_jumlah_siswa(); 
+        }
+        $pagination='<li class="hide" id="page-prev"><a href="javascript:void(0)" onclick="prevPage()" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+        </a></li>';
+        $pagePagination=1;
+
+        $sumPagination=($jumlah_data/$records_per_page);
+        for ($i=0; $i < $sumPagination; $i++) { 
+            if ($pagePagination<=7) {
+                $pagination.='<li ><a href="javascript:void(0)" onclick="selectPage('.$i.')" id="page-'.$pagePagination.'">'.$pagePagination.'</a></li>';
+            }else{
+                $pagination.='<li class="hide" id="page-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPage('.$i.')" >'.$pagePagination.'</a></li>';
+            }
+
+            $pagePagination++;
+        }
+        if ($pagePagination>7) {
+            $pagination.='<li class="" id="page-next">
+            <a href="javascript:void(0)" onclick="nextPage()" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>';
+        }
+        // cek jika halaman pagination hanya satu set pagination menjadi null
+        if ($sumPagination<=1) {
+            $pagination='';
+        }
+
+        echo json_encode ($pagination);
     }
 
 }

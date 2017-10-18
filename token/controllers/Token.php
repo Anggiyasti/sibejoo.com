@@ -435,21 +435,39 @@ function ajax_rekap_penggunaan_token($masaAktif="all", $status="1",$jumlah_data_
 			$sisa_aktif =$date2->diff($date1)->days;
 		}
 
-		$tb_token.='
-		<tr>
-			<td>'.$no.'</td>
-			<td>'.$nama.'</td>
-			<td>'.$namaPengguna.'</td>
-			<td>'.$type.'</td>
-			<td>'.$token_item->nomorToken.'</td>
-			<td>'.$masa_aktif.'</td>
-			<td>'.$date_diaktifkan.'</td>
-			<td>'.$date_kadaluarsa.'</td>
-			<td>'.$sisa_aktif.' Hari</td>
-			<td>'.$tokenStatus.'</td>
-			<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
-		</tr>
-		';
+		if ($tokenStatus=="Aktif") {
+			$tb_token.='
+			<tr>
+				<td>'.$no.'</td>
+				<td>'.$nama.'</td>
+				<td>'.$namaPengguna.'</td>
+				<td>'.$type.'</td>
+				<td>'.$token_item->nomorToken.'</td>
+				<td>'.$masa_aktif.'</td>
+				<td>'.$date_diaktifkan.'</td>
+				<td>'.$date_kadaluarsa.'</td>
+				<td>'.$sisa_aktif.' Hari</td>
+				<td>'.$tokenStatus.'</td>
+				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
+			</tr>
+			';	
+		} else { 
+			$tb_token.='
+			<tr>
+				<td>'.$no.'</td>
+				<td>'.$nama.'</td>
+				<td>'.$namaPengguna.'</td>
+				<td>'.$type.'</td>
+				<td>'.$token_item->nomorToken.'</td>
+				<td>'.$masa_aktif.'</td>
+				<td>'.$date_diaktifkan.'</td>
+				<td>'.$date_kadaluarsa.'</td>
+				<td>'.$sisa_aktif.' Hari</td>
+				<td>'.$tokenStatus.'</td>
+				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a>'.' <a class="btn btn-sm btn-info"  title="Aktifkan" onclick="update_token('."'".$token_item->tokenid."'".')"><i class="ico-file-check"></i></a></td>
+			</tr>
+			';
+		}
 		$no++;
 	}
 

@@ -34,7 +34,7 @@ class Komenback extends MX_Controller
   $id_guru = $this->session->userdata['id_guru'];
   // get jumlah komen yg belum di baca
   $data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
-    $data['judul_halaman'] = "Dashboard Guru : Komen";
+    $data['judul_halaman'] = "Dashboard Guru : Komentar";
   $data['files'] = array(
    APPPATH . 'modules/komenback/views/v-table-komen.php',
    );
@@ -69,7 +69,7 @@ function ajax_data_komen(){
     $row[] = $komen_item->judulVideo;
     $row[] = "
     <a class='btn btn-primary' onclick='respon(".$komen_item->komenID.")'><i class='icon ico-pencil' title='Respon'></i></a> 
-    <a class='btn btn-danger' onclick='spam(".$komen_item->komenID.")'><i class='icon ico-remove3' title='Hapus'></i></a>
+    <a class='btn btn-danger' onclick='drop_komen(".$komen_item->komenID.")'><i class='icon ico-remove3' title='Hapus'></i></a>
     <a class='btn btn-success' onclick='check(".$komen_item->videoID.")'><i class='ico-bubble-video-chat' title='Check Video'></i></a>
     ";
     $data[] = $row;
@@ -263,6 +263,13 @@ function seevideo($idvideo){
       }
 
       return $listKomen;
+  }
+
+  function DelKomen(){
+    if ($this->input->post()) {
+            $post = $this->input->post();
+            $this->mkomen->delete_komen($post);
+        }
   }
 }
 ?>

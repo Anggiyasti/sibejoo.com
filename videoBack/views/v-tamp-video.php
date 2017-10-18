@@ -216,8 +216,18 @@ function drop_video(videoID){
       type:"POST",
       url:url,
       success:function(){
-        swal("Terhapus!", "Soal berhasil dihapus.", "success");
-       window.location.href =base_url+"videoback/daftarvideo";
+                    swal({
+                        title: "Video berhasil dihapus",
+                        type: "success",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "OK",
+                        closeOnConfirm: false,
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            window.location.href = base_url+"videoback/daftarvideo";
+                        } 
+                     });
       },
       error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");

@@ -25,7 +25,7 @@
   }
 
  	function index()
- 	{    //untuk daftar artikel
+ 	{    //untuk daftar report heroo
         $data['judul_halaman'] = "Dashboard Admin";
     
             $data['files'] = array(
@@ -70,7 +70,7 @@
 
 
 
-    // ajax list Artikel
+    // ajax list report heroo
     public function ajaxListReportH() {
         $data=array();
         // code u/pagination
@@ -86,7 +86,6 @@
             } else {
                 $filefoto=$this->generateavatar->generate_first_letter_avtar_url($judul_artikel);;
             }
-            // $c = $item['isi_artikel']; echo substr($c, 0, 100)
             $kat= $item ['kategori'];
             if ($kat ==1) {
                 $isikat = 'Past Project';
@@ -123,7 +122,7 @@
         echo json_encode( $output );
     }
 
-    //ajax add Artikel
+    //ajax add Report Heroo
     function ajax_add_ReportH(){
         $post=$this->input->post();
         //konfigurasi upload
@@ -162,7 +161,7 @@
         echo json_encode($info);     
     }
 
-    //ajax update team
+    //ajax update report heroo
     function ajax_update_reportH(){
         $post=$this->input->post();
         $id = $post['id'];
@@ -187,7 +186,7 @@
                 $data['isi_art_kategori']=$post['editor1'];
                 $data['kategori']=$post['kategori'];
                 $this->Mreportheroo->edit_upload_reportH($data,$id);
-                $info="Data Team Berhasil diubah";
+                $info="Data Report Heroo Berhasil diubah";
            }else {
                 $file_data = $this->upload->data();
                 //get nama file yg di upload
@@ -197,7 +196,7 @@
                 $data['kategori']=$post['kategori'];
                 $data['gambar']=$file_name;
                 $this->Mreportheroo->edit_upload_reportH($data,$id);
-                $info="Data Team Berhasil diubah dan foto berhasil di-upload ";
+                $info="Data Report Heroo Berhasil diubah dan foto berhasil di-upload ";
            }
             //
         echo json_encode($info);
