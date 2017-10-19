@@ -4,9 +4,15 @@
     <section class="container">
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-11">
 
-               
+                <div class="text-center" style="margin-bottom:20px;">
+
+                    <img src="<?=base_url('assets/back/img/logo-tara.png') ?>" > 
+
+                    <br><h5 class="semibold text-muted mt-5"><br>Membuat Akun Guru</h5>
+
+                </div>
 
                 <!-- Register form -->
                 <form class="panel nm" name="form-register" action="javascript:void(0)" id="form-guru" method="post">
@@ -27,7 +33,7 @@
 
                         </li>
 
-                        <li class="text-right" style="width:20px;"><a href="javascript:void(0);"><i class="ico-list-ul fsize16"></i></a></li>
+                        <li class="text-right" style="width:20px;"><a href="<?=base_url('guru/daftar') ?>"><i class="ico-list-ul fsize16"></i></a></li>
 
                     </ul>
                     <hr class="nm">
@@ -190,9 +196,9 @@
 
                 <div class="panel-body">
 
-                    <p class="semibold text-muted">Untuk konfirmasi dan pengaktifan akun baru anda, kita akan mengirim aktivasi code ke email anda.</p>
+                    <p class="col-md-12 semibold text-muted">Untuk konfirmasi dan pengaktifan akun baru anda, kita akan mengirim aktivasi code ke email anda.</p>
 
-                    <div class="form-group fg-email">
+                    <div class="col-md-12 form-group fg-email">
 
                         <label class="control-label">Email</label>
 
@@ -210,7 +216,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="col-md-12 form-group">
 
                         <div class="checkbox custom-checkbox">  
 
@@ -230,7 +236,7 @@
 
                 <div class="panel-footer">
 
-                    <button type="submit" class="btn btn-block btn-success" id="kirimdata"  disabled ><span class="semibold" onclick="save()" >Sign up</span></button>
+                    <button type="submit" class="btn btn-block btn-info " id="kirimdata"  disabled ><span class="semibold" onclick="save()" >Sign up</span></button>
 
                 </div>
 
@@ -331,12 +337,12 @@
 
   });
 
-function removeMapel(i,idMapel) {
-  // $("#mapelke-"+i).remove();
-  $("#id-"+idMapel).removeClass("hidden");  
-      i=0;
-      $('.pickMapel').remove();
-}
+// function removeMapel(i,idMapel) {
+//   // $("#mapelke-"+i).remove();
+//   $("#id-"+idMapel).removeClass("hidden");  
+//       i=0;
+//       $('.pickMapel').remove();
+// }
 
 
 </script>
@@ -408,29 +414,26 @@ function removeMapel(i,idMapel) {
 
 
   function save(){
-    var x =0;
-    sumMapel=$('input[name=sumMapel]').val();
-    for (var i = 1; i<= sumMapel; i++) {
 
-    // var i =0;
-    // i ++;
-        var datas = {
-            namadepan : $('input[name=namadepan]').val(),
-            namabelakang : $('input[name=namabelakang]').val(),
-            sumMapel:$('input[name=sumMapel]').val(),
-            alamat:$('input[name=alamat]').val(),
-            nokontak:$('input[name=nokontak]').val(),
-            namapengguna:$('input[name=namapengguna]').val(),
-            katasandi:$('input[name=katasandi]').val(),
-            email:$('input[name=email]').val(),
-            mapelIDke:$('input[name=mapelIDke-'+i+']').val(),
+        pola_username=new RegExp(/^[a-z A-Z 0-9 \_\-]+$/);
+        
+            namadepan =$('input[name=namadepan]').val();
+            namabelakang = $('input[name=namabelakang]').val();
+            sumMapel=$('input[name=sumMapel]').val();
+            alamat=$('input[name=alamat]').val();
+            nokontak=$('input[name=nokontak]').val();
+            namapengguna=$('input[name=namapengguna]').val();
+            katasandi=$('input[name=katasandi]').val();
+            email=$('input[name=email]').val();
 
-        }
-      }
+        
 
-        if (datas.namadepan == "" || datas.namabelakang == "" || datas.namabelakang == "" || datas.alamat == "" || datas.nokontak == "" || datas.namapengguna == "" || datas.katasandi == "" || datas.email == "") {
+        if (namadepan == "" || namabelakang == "" || namabelakang == "" || alamat == "" || nokontak == "" || namapengguna == "" || katasandi == "" || email == "") {
             swal('Tidak boleh kosong');
-        }else{
+        }else if (!pola_username.test(namapengguna)){
+            swal ('Oops','Username hanya boleh Huruf atau Angka!','warning');
+        }
+        else{
             url = base_url+"Register/test";
             guru = $('#form-guru').serialize();
             console.log(guru);
@@ -448,7 +451,6 @@ function removeMapel(i,idMapel) {
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Selesai",
                     closeOnConfirm: false,
-                    closeOnCancel: false
                 },
             function(isConfirm){
                     if (isConfirm) {

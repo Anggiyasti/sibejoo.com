@@ -237,6 +237,8 @@
 
     }
 
+
+
     function post(){
         var isiKomen = $('textarea[name=comment]').val();
         var videoID = <?= $this->uri->segment(3) ?>;
@@ -256,6 +258,9 @@
              $('#info .lengkapi').addClass('hide');
              $('#info .sukses').removeClass('hide');
              $('#info .gagal').addClass('hide');
+             swal("Berhasil","Komen anda telah terkirim","success");
+             
+           
              // set data ke server.js
              if(data.success == true){
 

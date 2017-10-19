@@ -192,7 +192,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
  <section id="main" role="main">
 
   <!-- START Template Container -->
-  <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+  <script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
   <!--js buat menampilakan priview video sebelum di upload  -->
   <script type="text/javascript" src="<?= base_url('assets/javascript/components/button.js') ?>"></script>
 

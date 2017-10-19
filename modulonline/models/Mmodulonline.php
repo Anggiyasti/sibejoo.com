@@ -67,7 +67,7 @@ public function get_oldgambar_soal($UUID)
 
 
 public function del_banksoal($data) {
-  $this->db->where('id', $data);
+  $this->db->where('id', $data['id']);
   $this->db->set('status', '0');
   $this->db->update('tb_modul');
 }
@@ -80,6 +80,7 @@ public function get_all_moduls()
   $this->db->select('mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');
   $this->db->from('tb_modul as mdl');
   $this->db->where('mdl.status','1');
+  $this->db->order_by('mdl.id','desc');
   $query = $this->db->get();
   return $query->result_array();
 }

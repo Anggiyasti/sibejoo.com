@@ -85,13 +85,26 @@
     });
 
     function drop_modul(id) {
-        if (confirm('Apakah Anda yakin akan menghapus data ini? ')) {               
+        url = base_url+"index.php/modulonline/delete_modul";   
+        swal({
+            title: "Yakin akan hapus Artikel?",
+            text: "Anda tidak dapat membatalkan ini.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya,Tetap hapus!",
+            closeOnConfirm: false
+        },
+        function(){ 
+        var datas = {id:id};            
                $.ajax({
-                   url : base_url+"index.php/modulonline/delete_modul/"+id,
+                   url :url,
                    type: "POST",
                    dataType: "TEXT",
+                   data :datas,
                    success: function(data,respone)
                    {  
+                    swal("Terhapus!","Modul Berhasil Dihapus","success");
                     reload_tblist();
                 },
                 error: function (jqXHR, textStatus, errorThrown)
@@ -99,7 +112,7 @@
                     swal('Error deleting data');
                         }
                     });
-           }
+                });
        }
 
        function reload_tblist(){

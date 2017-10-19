@@ -315,6 +315,7 @@ class Modulonline extends MX_Controller {
 function ajax_listAllSoal() {
     $modul = $this->Mmodulonline->get_all_moduls();
     $data = array();
+    $no = 1;
 
     $baseurl = base_url();
     foreach ($modul as $modul_list ) {
@@ -331,7 +332,7 @@ function ajax_listAllSoal() {
         } 
 
         $row = array();
-        $row[] = $id;
+        $row[] = $no;
         $row[] = $modul_list['judul'];
         $row[] = $modul_list['deskripsi'];
         $row[] ='
@@ -355,6 +356,7 @@ function ajax_listAllSoal() {
     <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_modul('."'".$modul_list['id']."'".')"><i class="ico-remove"></i></a>';
 
     $data[] = $row;
+    $no++;
 
 }
 
@@ -548,8 +550,9 @@ public function update_modul() {
     redirect(site_url('modulonline/daftar_modul'));
 }
 
-public function delete_modul($data) {
-    $this->Mmodulonline->del_banksoal($data);
+public function delete_modul() {
+    $post= $this->input->post();
+    $this->Mmodulonline->del_banksoal($post);
 }
     // fungsi untuk memfilter video yang akan di tampilkan
 public function filtermodul()

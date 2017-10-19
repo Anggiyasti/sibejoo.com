@@ -177,6 +177,7 @@
 </div>
 <!-- TABEL TOKEN -->
 <script type="text/javascript">
+  var $list_passing;
   var dataTableGUru;
   var meridian=4;
   var prev=1;
@@ -224,7 +225,13 @@
 	      url:url,
 	      success:function(data){
 	      	swal("Data Guru berhasil diperbaharui!","--","success");
-	        window.location.href =base_url+"guru/daftar/";
+	        // window.location.href =base_url+"guru/daftar/";
+          selectPage(page);
+          paginationGuru();
+          $('#modal-chguru').modal('hide');
+          $("#formUpdateGuru")[0].reset();
+          resetUlangMapel();
+
 	      },
 	      error:function(){
 	        sweetAlert("Oops...", "Email gagal diperbaharui!", "error");
@@ -471,8 +478,13 @@ function resetSandi(penggunaID='',namaPengguna='') {
 	      	var ret= JSON.parse(data);
 	      	if (ret=="FALSE") {
 	      		sweetAlert("Oops...", "Email anda sudah terpakai!", "error");
+
 	      	} else {
 	      		swal("Email berhasil diperbaharui !", "Email Baru = "+data, "success");
+            selectPage(page);
+            paginationGuru();
+            $('#modal-chEmail').modal('hide');
+
 	      	}
 	        
 	       // window.location.href =base_url+"videoback/daftarvideo";
@@ -539,6 +551,7 @@ function resetSandi(penggunaID='',namaPengguna='') {
 					$("#mataPelajaran").removeClass("hidden");
 
 				}
+
 			},
 			error:function(){
 				swal("Oops..","ada Kesalahan!","error");
@@ -567,9 +580,11 @@ function resetSandi(penggunaID='',namaPengguna='') {
 	      type:"POST",
 	      url:url,
 	      success:function(data){
-	      	console.log(datas);
+	      	// console.log(datas);
 	        swal("Data Guru berhasil diperbaharui!","--","success");
-	        window.location.href =base_url+"guru/daftar/";
+	        selectPage(page);
+          paginationGuru();
+
 	      },
 	      error:function(){
 	        sweetAlert("Oops...", "Data Guru gagal diperbaharui!", "error");
@@ -604,7 +619,8 @@ function resetSandi(penggunaID='',namaPengguna='') {
 	      url:url,
 	      success:function(data){
 	      	swal("Data Guru "+namaPengguna+" Behasil Dihapus !", "", "success");
-	      	window.location.href =base_url+"guru/daftar/";
+	      	selectPage(page);
+          paginationGuru();
 	      },
 	      error:function(){
 	        sweetAlert("Oops...", "Data Guru "+namaPengguna+" Gagal Dihapus!", "error");
@@ -619,5 +635,7 @@ function resetSandi(penggunaID='',namaPengguna='') {
 		$('.pickMapel').remove();
 		$('.op').remove();
 	}
+
+
 
 </script>
