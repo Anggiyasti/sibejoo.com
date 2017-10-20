@@ -13,7 +13,7 @@ class Learning_model extends CI_Model{
 		$this->db->join('`tb_tingkat-pelajaran` tp ',' b.`tingkatPelajaranID` = tp.`id`');
 		$this->db->join('`tb_tingkat` tn',' tn.`id` = tp.`tingkatID`');
 		$this->db->join('tb_mata-pelajaran` m',' m.`id` = tp.`mataPelajaranID`');
-		$this->db->order_by('t.urutan asc');
+		$this->db->order_by('t.id desc');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -22,15 +22,13 @@ class Learning_model extends CI_Model{
 	public function get_topik_by_babid($data){
 		$this->db->select('t.urutan,t.id,t.statusLearning, tn.`namaTingkat`, b.`judulBab`, t.`namaTopik`, m.`namaMataPelajaran`,');
 		
-		$this->db->from('`tb_line_topik` t');
-		$this->db->where('t.status',1);
-		
+		$this->db->from('`tb_line_topik` t');		
 		$this->db->join('`tb_bab` b',' t.`babID` = b.`id` ');
 		$this->db->join('`tb_tingkat-pelajaran` tp ',' b.`tingkatPelajaranID` = tp.`id`');
 		$this->db->join('`tb_tingkat` tn',' tn.`id` = tp.`tingkatID`');
 		$this->db->join('tb_mata-pelajaran` m',' m.`id` = tp.`mataPelajaranID`');
 		$this->db->where('b.id',$data);
-		$this->db->order_by('t.urutan asc');
+		$this->db->order_by('t.id','desc');
 
 		$query = $this->db->get();
 		return $query->result_array();
@@ -67,7 +65,7 @@ class Learning_model extends CI_Model{
 	function get_topik_byid($data){
 		$query = "
 		SELECT 
-		tingkat.id tingkatID,topik.id AS TopikID,bab.id as babID,tingpel.id as tingpelID, mapel.id as mapelID, namaTopik, statusLearning,topik.urutan,
+		tingkat.id tingkatID,topik.id AS TopikID,bab.id as babID,topik.status AS stat,tingpel.id as tingpelID, mapel.id as mapelID, namaTopik, statusLearning,topik.urutan,
 		deskripsi,`namaTingkat`, `namaMataPelajaran`, `judulBab`
 		FROM
 		(SELECT  *  FROM  `tb_line_topik` WHERE  id =  $data ) AS topik
@@ -115,8 +113,8 @@ class Learning_model extends CI_Model{
 	# drop topik
 	function drop_topik($data){
 		$this->db->where('id', $data['id']);
-		$this->db->set('status', 0);
-		$this->db->update('tb_line_topik');
+		$this->db->delete('tb_line_topik');
+		
 	}
 	#dropstep
 	function drop_step($data){
@@ -196,7 +194,7 @@ class Learning_model extends CI_Model{
 
 	/*GET META DATA UNTUK STEP*/
 	function get_materi_babID_edit($data){
-		$this->db->select('m.id, judulMateri, isiMateri');
+		$this->db->select('m.id as materiID, judulMateri, isiMateri');
 		$this->db->from('tb_line_materi m');
 		$this->db->JOIN('tb_subbab s','s.id = m.subBabID'); 
 		$this->db->JOIN('tb_bab b','b.id = s.babID'); 

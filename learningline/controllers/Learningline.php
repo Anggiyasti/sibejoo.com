@@ -163,6 +163,7 @@ class Learningline extends MX_Controller {
 				'judul'=>$metatopik['namaTopik'],
 				'statusLearning'=>$metatopik['statusLearning'],
 				'urutan'=>$metatopik['urutan'],
+				'status'=>$metatopik['stat'],
 				'deskripsi'=>$metatopik['deskripsi'],
 				'tingkat'=>$metatopik['namaTingkat'],
 				'mapel'=>$metatopik['namaMataPelajaran'],
@@ -232,6 +233,7 @@ class Learningline extends MX_Controller {
 		foreach ( $list as $list_item ) {
 			// $no++;
 			$row = array();
+			// $row[] = $list_item['id'];
 			$row[] = $list_item['namaTopik'];
 			$row[] = $list_item['urutan'];
 			if ($list_item['statusLearning']==1) {
@@ -375,13 +377,15 @@ class Learningline extends MX_Controller {
 
 	}
 
-	function ajax_get_video_edit($babid, $videoID){
+	function ajax_get_video_edit($babid, $videoID,$relasi){
 		$list = $this->mvideos->get_all_video_by_bab($babid);
 		$data = array();
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
 			// $no++;
+			
+			
 			$row = array();
 			$row[] = $list_item['videoID'];	
 
@@ -390,12 +394,9 @@ class Learningline extends MX_Controller {
 			$row[] = $list_item['judulVideo'].' <a class="video-'.$list_item['videoID'].'" title="Preview" 
 			data-todo='."'".json_encode($list_item)."'".'
 			onclick="play('."'".$list_item['videoID']."'".') "><i class="ico-play"></i></a>';
-			$status_check = ($list_item['videoID']==$videoID) ? "checked" : "unchecked" ;
-			$row[] = "<input type='radio' ".$status_check." name='video' value=".$list_item['videoID'].">";
+			$status_check = ($list_item['videoID']==$relasi) ? "checked" : "unchecked" ;
 
-
-
-			
+			$row[] = "<input type='radio'  name='video' value=".$list_item['videoID']." ".$status_check.">";
 
 			$data[] = $row;
 
@@ -441,7 +442,7 @@ class Learningline extends MX_Controller {
 }
 
 
-function ajax_get_materi_edit($topikid, $materiID){
+function ajax_get_materi_edit($topikid,$relasi){
 	$list = $this->learning_model->get_materi_babID_edit($topikid);
 	$data = array();
 
@@ -450,11 +451,11 @@ function ajax_get_materi_edit($topikid, $materiID){
 			// $no++;
 		$row = array();
 
-		$row[] = $list_item['id'];			
+		$row[] = $list_item['materiID'];			
 		$row[] = $list_item['judulMateri'];
-		$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['id'].'" title="Lihat" data-id='."'".json_encode($list_item)."'".' onclick="detail('."'".$list_item['id']."'".')"><i class=" ico-eye "></i></a> ';
-		$status_check = ($list_item['id']==$materiID) ? "checked" : "unchecked" ;
-		$row[] = "<input type='radio' ".$status_check." name='materi' value=".$list_item['id'].">";
+		$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['materiID'].'" title="Lihat" data-id='."'".json_encode($list_item)."'".' onclick="detail('."'".$list_item['materiID']."'".')"><i class=" ico-eye "></i></a> ';
+		$status_check = ($list_item['materiID']==$relasi) ? "checked" : "unchecked" ;
+		$row[] = "<input type='radio' name='materi' value=".$list_item['materiID']." ".$status_check.">";
 		// $row[] = "<input type='radio' name='imgsel' value='' checked=true";
 
 		$data[] = $row;
