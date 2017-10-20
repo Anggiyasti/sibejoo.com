@@ -420,6 +420,7 @@ public function cek_option_update()
   $data['deskripsi'] = htmlspecialchars($this->input->post('deskripsi'));
   $data['subBabID'] = htmlspecialchars($this->input->post('subBab'));
   $data['published'] = htmlspecialchars($this->input->post('publish'));
+  $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
   $data['UUID']=$this->input->post('UUID');
   $UUID=$data['UUID'];
   $link=$this->input->post('link_video');
@@ -428,7 +429,7 @@ public function cek_option_update()
     $this-> formUpdateVideo($data['UUID']);
   }else{
    if ($option_up =='link') {
-    $this->dropVideoServer($UUID);
+    // $this->dropVideoServer($UUID);
     // $penggunaID = $this->session->userdata['id'];
     // $data['tb_guru'] = $this->Mvideoback->getIDguru($penggunaID)[0];
     // $guruID = $data['tb_guru']['id'];
@@ -444,10 +445,8 @@ public function cek_option_update()
       );
 
     $this->Mvideoback->ch_video($data);
-    redirect(site_url('videoback/daftarvideo'));
+    echo json_encode($data);
   }else{
-
-
     $this->updateVideo($data);
   }
 }
@@ -469,7 +468,7 @@ public function updateVideo($data) {
     $file_data = $this->upload->data();
     $video = $file_data['file_name'];
     $UUID=$data['UUID'];
-    $thumbnail = $this->chThumbnail($UUID);
+    $thumbnail =$data['thumbnail'];
                 //data yg akan di masukan ke tabel video
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
@@ -483,7 +482,7 @@ public function updateVideo($data) {
       );
   } else {
     $UUID=$data['UUID'];
-     $thumbnail = $this->chThumbnail($UUID);
+     $thumbnail = $data['thumbnail'];
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
       'thumbnail' => $thumbnail,
@@ -495,20 +494,22 @@ public function updateVideo($data) {
       );
   }
   $this->Mvideoback->ch_video($data);
-  redirect(site_url('videoback/daftarvideo'));
 }
-//  Thumbnail
-public function chThumbnail($UUID)
-{
-      $oldthumbnail = $this->Mvideoback->get_onethumbnail($UUID)[0]['thumbnail'];
+
+  // update  Thumbnail
+  public function chThumbnail() {
+      $post=$this->input->post();
+      $uuid = $post['UUID'];
+      $oldthumbnail = $this->Mvideoback->get_onethumbnail($uuid)[0]['thumbnail'];
+      // echo json_encode($oldthumbnail);
       $configChTmbl['upload_path'] = './assets/image/thumbnail/';
       $configChTmbl['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
       $configChTmbl['max_size'] = 100;
       $configChTmbl['max_width'] = 1024;
-      $configChTmbl['max_height'] = 768;
+      $configChTmbl['max_height'] = 1024;
       //random name
       $configChTmbl['encrypt_name'] = TRUE;
-      $new_name = time().$_FILES["thumbnail"]['name'];
+      $new_name = time()."-".$_FILES["thumbnail"]['name'];
       $configChTmbl['file_name'] = $new_name;
       $this->load->library('upload', $configChTmbl);
       $gambar = "thumbnail";
@@ -519,9 +520,9 @@ public function chThumbnail($UUID)
           }
          $file_data = $this->upload->data();
          $file_name = $file_data['file_name'];
-         return $file_name;
+         echo json_encode($file_name);
       }else{
-        return $oldthumbnail;
+        echo json_encode($oldthumbnail);
       }
 
 
