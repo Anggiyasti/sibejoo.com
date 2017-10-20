@@ -187,8 +187,8 @@ function load_video(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"learningline/ajax_get_video_edit/"+babID+"/"+value;
-	console.log(url);	
+	var url = base_url+"learningline/ajax_get_video_edit/"+babID+"/"+value+"/"+relasi;
+	// console.log(relasi);	
 
 	tabel = $('.daftarvideo').DataTable({
 		"ajax": {
@@ -235,7 +235,7 @@ function load_materi(){
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_materi_edit/"+babID+"/"+relasi;
-	console.log(url);
+	// console.log(relasi);
 
 	tabel = $('.daftarvideo').DataTable({
 		"ajax": {

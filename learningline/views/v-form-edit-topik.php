@@ -73,12 +73,13 @@
 <div  class="form-group">
   <label class="col-sm-3 control-label">Status</label>
   <div class="col-sm-8">
+    <input type="text" name="status" value="{status}" id='tampstatus'  hidden="true">
    <span class="radio custom-radio-primary">  
-    <input type="radio" id="radio1" value="1" name="status"checked>  
+    <input type="radio" id="radio1" value="1" name="status">  
     <label for="radio1">&nbsp;&nbsp;Published</label>   
   </span>
   <span class="radio custom-radio-primary">  
-    <input type="radio" id="radio2" value="0" name="status">  
+    <input type="radio" id="radio2" value="0"  name="status">  
     <label for="radio2">&nbsp;&nbsp;Non Published</label>   
   </span>
 </div>
@@ -246,6 +247,15 @@
       });
     });
   }
+
+
+  var tw =$('#tampstatus').val();
+
+  if (tw == '1') {
+    $('#radio1').attr('checked','checked');
+} else if (tw == '0') {
+    $('#radio2').attr('checked','checked');
+} 
 
   loadTingkat();
   loadPelajaran($('#oldtkt').val());
