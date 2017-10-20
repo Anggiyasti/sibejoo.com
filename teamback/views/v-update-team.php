@@ -52,6 +52,22 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-sm-2">Email</label>
+                            <div class="col-sm-10 mb10">
+                                <input class="form-control" type="email" name="email" value="<?= $team['email'] ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Instagram</label>
+                            <div class="col-sm-10 mb10">
+                                <input class="form-control" type="text" name="instagram" value="<?= $team['instagram'] ?>">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
                             <label class="control-label col-sm-2">Foto</label>
                             <div class="col-sm-10">
                                 <label for="filefoto" class="btn btn-sm btn-default filefoto">
@@ -130,7 +146,10 @@
             nama : $('input[name=nama]').val(),
             posisi : $('input[name=posisi]').val(),
             keterangan:$('input[name=keterangan]').val(),
-            foto: $('[name=foto]').val()
+            email:$('input[name=email]').val(),
+            instagram:$('input[name=instagram]').val(),
+
+            foto: $('[name=foto]').val(),
         }
         //id fileinput
         var elementId = "filefoto";

@@ -47,6 +47,22 @@
                                 <input class="form-control" type="text" name="keterangan">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Email</label>
+                            <div class="col-sm-8 mb10">
+                                <input class="form-control" type="email" name="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Instagram</label>
+                            <div class="col-sm-8 mb10">
+                                <input class="form-control" type="text" name="instagram">
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label class="control-label col-sm-4">Foto</label>
                             <div class="col-sm-8">
@@ -114,6 +130,8 @@
             nama : $('input[name=nama]').val(),
             posisi : $('input[name=posisi]').val(),
             keterangan:$('input[name=keterangan]').val(),
+            email:$('input[name=email]').val(),
+            instagram:$('input[name=instagram]').val(),
             foto: $('[name=foto]').val(),
         }
         //id fileinput

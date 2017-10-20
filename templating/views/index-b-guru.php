@@ -45,9 +45,9 @@
 
  <link rel="stylesheet" href="<?= base_url('assets/plugins/steps/css/jquery-steps.min.css') ?>">
 
-<!-- css aoutocomplate -->
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+ <!-- css aoutocomplate -->
+ <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+ <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
 
  <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
  <script src="<?= base_url('assets//library/modernizr/js/modernizr.min.js') ?>"></script>
@@ -516,6 +516,28 @@
 
   </ul>
 </li>
+
+<li>
+  <a href="javascript:void(0);" data-target="#mapel" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-notebook"></i></span>
+    <span class="text">Atribut</span>
+    <span class="arrow"></span>
+  </a>
+  <ul id="mapel" class="submenu collapse ">
+    <li class="submenu-header ellipsis">Atribut</li>
+    <li>
+      <a href="<?=base_url('index.php/admin/daftarmatapelajaran')?>">
+        <span class="text">Mata Pelajaran</span>
+      </a>
+    </li>
+    <li>
+      <a href="<?=base_url('index.php/admin/daftartingkatpelajaran')?>">
+        <span class="text">Tingkat</span>
+      </a>
+    </li>
+  </ul>
+</li>
+
 <li>
  <a href="javascript:void(0);" data-target="#banksoal" data-toggle="submenu" data-parent=".topmenu">
   <span class="figure"><i class="ico-clipboard2"></i></span>
@@ -526,7 +548,7 @@
 <ul id="banksoal" class="submenu collapse ">
   <li class="submenu-header ellipsis">Bank Soal</li>
 
-  <li >
+  <li>
    <a href="<?= base_url(); ?>index.php/banksoal/formsoal" >
     <span class="text">Tambahkan Bank Soal</span> 
   </a>
@@ -546,14 +568,11 @@
   </a></li>
   <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
   </a></li>
-
-
 </ul>
 </li>
 
 </ul>
 </li>
-
 <li>
  <a href="javascript:void(0);" data-target="#tryout" data-toggle="submenu" data-parent=".topmenu">
   <span class="figure"><i class="ico-clipboard"></i></span>
@@ -619,12 +638,12 @@
 <li>
  <a href="javascript:void(0);" data-target="#modulonline" data-toggle="submenu" data-parent=".topmenu">
   <span class="figure"><i class="ico-clipboard2"></i></span>
-  <span class="text">Modul Online</span>
+  <span class="text">Edu Drive</span>
   <span class="arrow"></span>
 </a>
 
 <ul id="modulonline" class="submenu collapse ">
-  <li class="submenu-header ellipsis">Modul Online</li>
+  <li class="submenu-header ellipsis">Edu Drive</li>
 
   <li>
    <a href="<?=base_url('index.php/modulonline/daftar_modul')?>" data-target="#submodul" data-toggle="submenu"  >
@@ -633,6 +652,27 @@
 </li>
 
 </ul>
+</li>
+
+<li>
+  <a href="javascript:void(0);" data-target="#materi" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-files"></i></span>
+    <span class="text">Materi</span>
+    <span class="arrow"></span>
+  </a>
+  <ul id="materi" class="submenu collapse ">
+    <li class="submenu-header ellipsis">Materi</li>
+    <li>
+      <a href="<?=base_url('index.php/materi/form_materi')?>" >
+        <span class="text">Tambah Materi</span> 
+      </a>
+    </li>
+    <li>
+      <a href="<?=base_url('index.php/materi/list_all_materi')?>">
+        <span class="text">Daftar Materi</span>
+      </a>
+    </li>
+  </ul>
 </li>
 <li>
  <a href="<?= base_url('learningline') ?>">

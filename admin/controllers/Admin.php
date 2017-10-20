@@ -1,7 +1,9 @@
 <?php
-
 class Admin extends MX_Controller {
 
+    function get_hak_akses(){
+        return $this->session->userdata('HAKAKSES');
+    }
     public function __construct() {
         parent::__construct();
         $this->load->model('video/mvideos');
@@ -10,8 +12,8 @@ class Admin extends MX_Controller {
         $this->load->model('Templating/mtemplating');
         $this->load->model('madmin');
         $this->load->library('parser');
-            $this->load->library('sessionchecker');
-         $this->sessionchecker->checkloggedin();
+        $this->load->library('sessionchecker');
+        $this->sessionchecker->checkloggedin();
     }
 
     public function get_avatar_ajax(){
@@ -25,7 +27,7 @@ class Admin extends MX_Controller {
 
         $data['files'] = array(
             APPPATH . 'modules/admin/views/v-container.php',
-            );
+        );
 
         $hakAkses = $this->session->userdata['HAKAKSES'];
 
@@ -61,10 +63,10 @@ class Admin extends MX_Controller {
 
 
     function daftarmatapelajaran() {
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Daftar Mata Pelajaran";
         $data['files'] = array(
             APPPATH . 'modules/admin/views/v-daftar-mapel.php',
-            );
+        );
         $data['mapels'] = $this->mmatapelajaran->daftarMapel();
 
         $hakAkses = $this->session->userdata['HAKAKSES'];
@@ -73,81 +75,83 @@ class Admin extends MX_Controller {
             $this->parser->parse('v-index-admin', $data);
         } elseif ($hakAkses == 'guru') {
         // jika guru
-            redirect(site_url('guru/dashboard/'));
-        } elseif ($hakAkses == 'siswa') {
+          $this->parser->parse('templating/index-b-guru', $data);
+            // redirect(site_url('guru/dashboard/'));
+      } elseif ($hakAkses == 'siswa') {
             // jika siswa redirect ke siswa
-            redirect(site_url('welcome'));
-        } else {
+        redirect(site_url('welcome'));
+    } else {
             //jika belum login
-            redirect(site_url('login'));
-        }
-
+        redirect(site_url('login'));
     }
 
-
-    function tambahMP() {
-        $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
-        $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
-        $this->mmatapelajaran->tambahMP($data);
-        redirect(base_url('index.php/admin/daftarmatapelajaran'));
-    }
+}
 
 
-
-    function hapusMP() {
-        $id = $this->input->post('idMP');
-        $this->mmatapelajaran->hapusMP($id);
-        redirect(base_url('index.php/admin/daftarmatapelajaran'));
-    }
+function tambahMP() {
+    $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
+    $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
+    $this->mmatapelajaran->tambahMP($data);
+    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+}
 
 
 
-    function rubahMP() {
-        $id = $this->input->post('idMP');
-        $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
-        $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
-        $this->mmatapelajaran->rubahMP($id, $data);
-        redirect(base_url('index.php/admin/daftarmatapelajaran'));
-    }
+function hapusMP() {
+    $id = $this->input->post('idMP');
+    $this->mmatapelajaran->hapusMP($id);
+    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+}
 
 
 
-    function daftartingkatpelajaran() {
-        $data['judul_halaman'] = "Tingkat Mata Pelajaran";
-
-        $data['files'] = array(
-            APPPATH . 'modules/admin/views/v-daftar-tingkat.php',
-            );
-
-
-
-        $data['mapels'] = $this->mmatapelajaran->daftarMapel();
-        $data['mapelsd'] = $this->madmin->daftarMapelbyTingkat($tingkatID='1');
-        $data['mapelsmp'] = $this->madmin->daftarMapelbyTingkat($tingkatI='2');
-        $data['mapelsma'] = $this->madmin->daftarMapelbyTingkat($tingkatI='3');
-        $data['mapelsmaipa'] = $this->madmin->daftarMapelbyTingkat($tingkatI='4');
-        $data['mapelsmaips'] = $this->madmin->daftarMapelbyTingkat($tingkatI='5');
-
-        $hakAkses = $this->session->userdata['HAKAKSES'];
+function rubahMP() {
+    $id = $this->input->post('idMP');
+    $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
+    $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
+    $this->mmatapelajaran->rubahMP($id, $data);
+    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+}
 
 
-        if ($hakAkses == 'admin') {
+
+function daftartingkatpelajaran() {
+    $data['judul_halaman'] = "Tingkat Mata Pelajaran";
+
+    $data['files'] = array(
+        APPPATH . 'modules/admin/views/v-daftar-tingkat.php',
+    );
+
+
+
+    $data['mapels'] = $this->mmatapelajaran->daftarMapel();
+    $data['mapelsd'] = $this->madmin->daftarMapelbyTingkat($tingkatID='1');
+    $data['mapelsmp'] = $this->madmin->daftarMapelbyTingkat($tingkatI='2');
+    $data['mapelsma'] = $this->madmin->daftarMapelbyTingkat($tingkatI='3');
+    $data['mapelsmaipa'] = $this->madmin->daftarMapelbyTingkat($tingkatI='4');
+    $data['mapelsmaips'] = $this->madmin->daftarMapelbyTingkat($tingkatI='5');
+
+    $hakAkses = $this->session->userdata['HAKAKSES'];
+
+
+    if ($hakAkses == 'admin') {
         // jika admin
-            $this->parser->parse('v-index-admin', $data);
-        } elseif ($hakAkses == 'guru') {
-            // jika guru
-            redirect(site_url('guru/dashboard/'));
-        } elseif ($hakAkses == 'siswa') {
+        $this->parser->parse('v-index-admin', $data);
+    } elseif ($hakAkses == 'guru') {
+      $this->parser->parse('templating/index-b-guru', $data);
+      $this->parser->parse('templating/index-b-guru', $data);
+
+  } elseif ($hakAkses == 'siswa') {
             // jika siswa redirect ke welcome
-           redirect(site_url('welcome'));
-       } else {
-           redirect(site_url('login'));
-       }
-   }
+   redirect(site_url('welcome'));
+} else {
+   redirect(site_url('login'));
+}
+}
 
 
 
-   function tambahtingkatMP() {
+function tambahtingkatMP() {
     $data['tingkatID'] = htmlspecialchars($this->input->post('idTingkatMP'));
     $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
     $data['keterangan'] = htmlspecialchars($this->input->post('keterangan'));
@@ -188,15 +192,20 @@ function daftarbab() {
     $data['judul_halaman'] = "BAB Mata Pelajaran";
     $data['files'] = array(
         APPPATH . 'modules/admin/views/v-bab.php',
-        );
+    );
 
     $id = $this->uri->segment(4);
     $data['babs'] = $this->mmatapelajaran->daftarBab($id);
     $data['kt'] = $this->mmatapelajaran->get_keterangan($id)[0]['keterangan'];
 
     $data['file'] = 'v-bab.php';
-
-    $this->parser->parse('v-index-admin', $data);
+    if ($this->session->userdata('HAKAKSES')=='admin') {
+        $this->parser->parse('v-index-admin', $data);
+    }else if($this->session->userdata('HAKAKSES')=='guru'){
+      $this->parser->parse('templating/index-b-guru', $data);
+  }else{
+    redirect('welcome');
+}
 }
 
 
@@ -244,12 +253,18 @@ function daftarsubbab() {
 
     $data['files'] = array(
         APPPATH . 'modules/admin/views/v-subbab.php',
-        );
+    );
 
     $id = $this->uri->segment(5);
     $data['babs'] = $this->mmatapelajaran->daftarsubBab($id);
 
-    $this->parser->parse('v-index-admin', $data);
+    if ($this->session->userdata('HAKAKSES')=='admin') {
+        $this->parser->parse('v-index-admin', $data);
+    }else if($this->session->userdata('HAKAKSES')=='guru'){
+      $this->parser->parse('templating/index-b-guru', $data);
+  }else{
+    redirect('welcome');
+}
 
 }
 

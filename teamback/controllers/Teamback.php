@@ -122,6 +122,8 @@ class Teamback extends MX_Controller {
 		   		$data['nama']=$post['nama'];
 		   		$data['posisi']=$post['posisi'];
 		   		$data['keterangan']=$post['keterangan'];
+		   		$data['email']=$post['email'];
+	 			$data['instagram']=$post['instagram'];
 	 			$this->Mteamback->in_upload_team($data);
 	 			$info="Data Team Berhasil disimpan";
 		   }else {
@@ -130,6 +132,9 @@ class Teamback extends MX_Controller {
 	      		$file_name = $file_data['file_name'];
 	 			$data['nama']=$post['nama'];
 	 			$data['posisi']=$post['posisi'];
+	 			$data['email']=$post['email'];
+	 			$data['instagram']=$post['instagram'];
+
 	 			$data['keterangan']=$post['keterangan'];
 	 			$data['foto']=$file_name;
 	 			$this->Mteamback->in_upload_team($data);
@@ -173,6 +178,10 @@ class Teamback extends MX_Controller {
 		   		$data['nama']=$post['nama'];
 		   		$data['posisi']=$post['posisi'];
 		   		$data['keterangan']=$post['keterangan'];
+	 			$data['email']=$post['email'];
+
+	 			$data['instagram']=$post['instagram'];
+		   		
 	 			$this->Mteamback->edit_upload_team($data,$id);
 	 			$info="Data Team Berhasil diubah";
 		   }else {
@@ -182,6 +191,10 @@ class Teamback extends MX_Controller {
 	 			$data['nama']=$post['nama'];
 	 			$data['posisi']=$post['posisi'];
 	 			$data['keterangan']=$post['keterangan'];
+	 			$data['email']=$post['email'];
+
+	 			$data['instagram']=$post['instagram'];
+	 			
 	 			$data['foto']=$file_name;
 	 			$this->Mteamback->edit_upload_team($data,$id);
 	 			$info="Data Team Berhasil diubah dan foto berhasil di-upload ";

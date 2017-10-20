@@ -24,18 +24,6 @@ class Mlinetopik extends CI_Model
   }
 
   public function get_line_topik($babID){
-   // $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, bab.judulBab,tp.keterangan, tkt.aliasTingkat, step.latihanID,step.id as stepID, step.urutan');
-   // $this->db->from('tb_line_topik topik');
-   // $this->db->join('tb_line_step step','step.topikID=topik.id');
-   // $this->db->join('tb_bab bab','bab.id=topik.babID');
-   // $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
-   // $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
-   // $this->db->where('bab.id',$babID);
-   // $this->db->where('step.status',1);
-   // $this->db->where('topik.status',1);
-   // $this->db->order_by('topik.urutan');
-   // $this->db->order_by('step.urutan', 'asc');
-
     $query = "SELECT 
     topik.id topikId, `namaTopik`, stp.`namaStep`,
     `stp`.`UUID` AS `stepUUID`, `namaStep`, `jenisStep`, 
@@ -49,7 +37,7 @@ class Mlinetopik extends CI_Model
     JOIN `tb_bab` `bab` ON `bab`.`id`=`topik`.`babID` 
     JOIN `tb_tingkat-pelajaran` `tp` ON `tp`.`id`=`bab`.`tingkatPelajaranID` 
     JOIN `tb_tingkat` `tkt` ON `tkt`.`id`=`tp`.`tingkatID` 
-
+    WHERE stp.status=1
     ORDER BY topik.`urutan` , stp.`urutan`
     ";
     $result = $this->db->query($query);
@@ -58,10 +46,6 @@ class Mlinetopik extends CI_Model
     } else {
       return $result->result_array();
     }
-
-
-   // $query=$this->db->get();
-   // return  $query->result_array();
 
   }
 
