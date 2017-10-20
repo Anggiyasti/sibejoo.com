@@ -228,18 +228,18 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
      <?php $UUID=$banksoal['UUID']?>
      <!-- MODAL EDITOR -->
 <div class="modal fade" id="m-editor" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" style="width: 65%;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-center text-danger"></h2>
+        <h2 class="modal-title text-center"></h2>
       </div>
       <div class="modal-body">
         <textarea class="editor1 " name="m_editor" id="editor3" cols="60" rows="10"  ></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <a href="javascript:void(0)" type="button" class="btn btn-default" onclick="send_val()">OK</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <a href="javascript:void(0)" type="button" class="btn btn-primary" onclick="send_val()">OK</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -689,7 +689,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
   <!-- Start input text A -->
   <div class="col-sm-8 piltext">
     <textarea name="a"  class="form-control hide" > <?=$piljawaban['0']['jawaban'];?></textarea>
-     <div  class="panel pl10 pt10 pr10 pb10 mb0" id="view-a" style="background:#F1EEEE; min-height: 40px;" data-toggle="tooltip" data-placement="top" title="Klik Pilihan A">
+     <div  class="panel pl10 pt10 pr10 pb10 mb0" id="view-a" style="background:#F1EEEE; min-height: 40px;" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban A')">
        <?=$piljawaban['0']['jawaban'];?>
      </div>
   </div>
@@ -732,7 +732,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
   <!-- Start input text B -->
   <div class="col-sm-8 piltext">
     <textarea name="b" class="form-control hide"> <?=$piljawaban['1']['jawaban'];?></textarea>
-      <div class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-b" data-toggle="tooltip" data-placement="top" title="Klik Pilihan B">
+      <div class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-b" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban B')">
        <?=$piljawaban['1']['jawaban'];?>
      </div>
   </div>
@@ -773,7 +773,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
   <!-- Start input text C -->
   <div class="col-sm-8 piltext" >
     <textarea name="c" class="form-control hide"> <?=$piljawaban['2']['jawaban'];?></textarea>
-     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-c" data-toggle="tooltip" data-placement="top" title="Klik Pilihan C">
+     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-c" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban C')">
        <?=$piljawaban['2']['jawaban'];?>
      </div>
   </div>
@@ -816,7 +816,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
   <!-- Start input text D -->
   <div class="col-sm-8 piltext" >
     <textarea name="d" class="form-control hide"> <?=$piljawaban['3']['jawaban'];?></textarea>
-     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-d" data-toggle="tooltip" data-placement="top" title="Klik Pilihan D">
+     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-d" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban D')">
        <?=$piljawaban['3']['jawaban'];?>
      </div>
   </div>
@@ -859,7 +859,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
   <!-- Start input text E -->
   <div class="col-sm-8 piltext" >
     <textarea name="e" class="form-control hide"> <?=$piljawaban['4']['jawaban'];?></textarea>
-     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-e" data-toggle="tooltip" data-placement="top" title="Silahkan Klik Pilihan E">
+     <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-e" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban E')">
        <?=$piljawaban['4']['jawaban'];?>
      </div>
   </div>

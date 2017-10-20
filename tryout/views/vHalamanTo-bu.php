@@ -224,7 +224,7 @@ label:hover{ /* HIDE RADIO */
                 ) ?>
 
                 <?php $param_send = html_entity_decode(json_encode($param)); ?>
-                <input type="hidden" name="pilsoal-<?=$key['soalid'].$indexpil;?>" value="<?=$row['piljaw'] ?>">
+                <input type="hidden" name="pilsoal-<?=$key['soalid'].$indexpil;?>" value="<?=htmlspecialchars($row['piljaw']); ?>">
                 <label id="<?=$key['soalid'].$indexpil;?>" 
 
                   onclick='changeColor(<?=$param_send ?>)' 
