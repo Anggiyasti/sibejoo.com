@@ -735,12 +735,14 @@ function resetVideo(){
     function updateVideo(y='') {
       var option_up =$('[name=option_up'+y+']').val();
       var thumbnail =$('[name=thumbnail'+y+']').val();
+      console.log(thumbnail);
       // cek data video
       if (thumbnail == '') {
-        // console.log('maksimal');
-        updateData(y,thumbnail);
+        console.log('maksimal');
+        // updateData(y);
       } else {
         updateThumbnail(y);
+        // updateData(y);
       }
     }
 
@@ -760,9 +762,10 @@ function resetVideo(){
         dataType: "TEXT", 
         success: function(data)
         {
+        
           var thumbnails = JSON.parse(data);
-          console.log(thumbnails);
-          // updateData(y,thumbnails);
+          // console.log(thumbnails);
+          updateData(y,thumbnails);
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -772,7 +775,8 @@ function resetVideo(){
     }
 
     //post data form
-    function updateData(y,thumbnails) {
+    function updateData(y,$thumbnails) {
+        console.log('masuk');
       var subBab =$('[name=subBab'+y+']').val();
       var option_up = $('[name=option_up'+y+']:checked').val();
       var video ='video'+y;
