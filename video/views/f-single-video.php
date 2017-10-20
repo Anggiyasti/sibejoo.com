@@ -190,7 +190,7 @@
                 </section>
                 <section class="clear-fix">  
                     <!-- comments for post -->
-                    <div class="comments">
+                   <!--  <div class="comments">
                         <div id="comments">
 
                             <div class="comment-title" id="new_count_komen">Komentar <span>(<?=count($comments) ?>)</span></div>
@@ -215,7 +215,7 @@
 
                             </ol>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- / comments for post -->
 
                 </section>

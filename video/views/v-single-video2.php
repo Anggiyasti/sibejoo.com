@@ -47,7 +47,7 @@
 
                                     <div class="media">
 
-                                    <video preload controls src="<?=base_url('assets/video/');?><?=$video['namaFile'] ?>"></video>
+                                    <video preload controls controlsList="nodownload" src="<?=base_url('assets/video/');?><?=$video['namaFile'] ?>"></video>
 
                                 </div>
 
