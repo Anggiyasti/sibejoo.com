@@ -23,26 +23,50 @@ class Mlinetopik extends CI_Model
     return $query->result_array();
   }
 
-  public function get_line_topik($babID)
+  public function get_line_topik($babID){
+   // $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, bab.judulBab,tp.keterangan, tkt.aliasTingkat, step.latihanID,step.id as stepID, step.urutan');
+   // $this->db->from('tb_line_topik topik');
+   // $this->db->join('tb_line_step step','step.topikID=topik.id');
+   // $this->db->join('tb_bab bab','bab.id=topik.babID');
+   // $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
+   // $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
+   // $this->db->where('bab.id',$babID);
+   // $this->db->where('step.status',1);
+   // $this->db->where('topik.status',1);
+   // $this->db->order_by('topik.urutan');
+   // $this->db->order_by('step.urutan', 'asc');
+
+    $query = "SELECT 
+    topik.id topikId, `namaTopik`, stp.`namaStep`,
+    `stp`.`UUID` AS `stepUUID`, `namaStep`, `jenisStep`, 
+    `topik`.`deskripsi`, `bab`.`judulBab`, `tp`.`keterangan`, `tkt`.`aliasTingkat`,
+    `stp`.`latihanID`, `stp`.`id` 
+    AS `stepID`, `stp`.`urutan`
+
+    FROM (SELECT * FROM tb_line_topik t WHERE t.babID = ".$babID." AND t.status = 1) topik
+    JOIN `tb_line_step` stp ON stp.`topikID` = topik.`id`
+
+    JOIN `tb_bab` `bab` ON `bab`.`id`=`topik`.`babID` 
+    JOIN `tb_tingkat-pelajaran` `tp` ON `tp`.`id`=`bab`.`tingkatPelajaranID` 
+    JOIN `tb_tingkat` `tkt` ON `tkt`.`id`=`tp`.`tingkatID` 
+
+    ORDER BY topik.`urutan` , stp.`urutan`
+    ";
+    $result = $this->db->query($query);
+    if ($result->result_array()==array()) {
+      return false;
+    } else {
+      return $result->result_array();
+    }
+
+
+   // $query=$this->db->get();
+   // return  $query->result_array();
+
+  }
+
+  public function get_datVideo($UUID)
   {
-   $this->db->select('namaTopik,step.UUID as stepUUID, namaStep, jenisStep, topik.deskripsi, bab.judulBab,tp.keterangan, tkt.aliasTingkat, step.latihanID,step.id as stepID, step.urutan');
-   $this->db->from('tb_line_topik topik');
-   $this->db->join('tb_line_step step','step.topikID=topik.id');
-   $this->db->join('tb_bab bab','bab.id=topik.babID');
-   $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
-   $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
-   $this->db->where('bab.id',$babID);
-   $this->db->where('step.status',1);
-   $this->db->where('topik.status',1);
-   $this->db->order_by('topik.urutan');
-   $this->db->order_by('step.urutan', 'asc');
-   $query=$this->db->get();
-   return  $query->result_array();
-
- }
-
- public function get_datVideo($UUID)
- {
    $this->db->select('namaStep,namaTopik,judulVideo,namaFile,video.deskripsi as deskripsiVideo, link, video.date_created,topik.UUID');
    $this->db->from('tb_line_topik topik');
    $this->db->join('tb_line_step step','step.topikID=topik.id');
@@ -73,7 +97,7 @@ class Mlinetopik extends CI_Model
   $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
   $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
   $this->db->where('topik.UUID',$UUID
-    );
+);
   $this->db->order_by('topik.namaTopik');
   $this->db->order_by('step.urutan', 'asc');
   $query=$this->db->get();
@@ -90,7 +114,7 @@ public function get_topic_step2($UUID)
  $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
  $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
  $this->db->where('topik.UUID',$UUIDTopik
-  );
+);
  $this->db->where('step.status',1);
  $this->db->order_by('topik.namaTopik');
  $this->db->order_by('step.urutan', 'asc');
@@ -107,7 +131,7 @@ public function get_cariTopik($kunciCari)
   $this->db->join('tb_tingkat-pelajaran tp','tp.id=bab.tingkatPelajaranID');
   $this->db->join('tb_tingkat tkt','tkt.id=tp.tingkatID');
   $this->db->like('topik.namaTopik',$kunciCari
-    );
+);
   $this->db->where('step.status',1);
   $this->db->where('topik.status',1);
   $this->db->order_by('topik.namaTopik');
@@ -188,7 +212,7 @@ public function get_soal($id_latihan) {
   return array(
     'soal' => $soal,
     'pil' => $pil,
-    );
+  );
 }
 
 
@@ -313,7 +337,7 @@ public function get_soqlQuiz($data)
   return array(
     'soal' => $soal,
     'pil' => $pil,
-    );
+  );
 }
 
 

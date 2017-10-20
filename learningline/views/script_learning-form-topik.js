@@ -112,7 +112,7 @@ console.log("data", data);
         },
         function(isConfirm){
           if (isConfirm) {
-            swal("selesai", "Anda akan dialihkan ke daftar topik", "success");
+            
             link = base_url+"learningline/topik/"+data.babID;
             window.location.href = link;
             console.log(link);

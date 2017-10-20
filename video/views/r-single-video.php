@@ -9,6 +9,12 @@
     margin-left: 80px;
 
   }
+  video{
+    width:760px; 
+    height:430px;
+    overflow: hidden;
+    /*display:none;*/
+  }
   blockquote:before {
     color: #ccc;
     content: open-quote;f
@@ -114,7 +120,7 @@
             <article class="post clearfix mb-0">
               <div class="entry-header">
                 <div class="post-thumb thumb"> 
-                  <iframe width="760" height="430" src="{file}"></iframe>
+                  <video src="{file}" controlsList="nodownload" controls></video>
 
                 </div>
 

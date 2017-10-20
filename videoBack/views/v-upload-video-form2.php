@@ -1,6 +1,6 @@
 <!-- konten  --> 
 <section id="main" role="main" class="mt10 ml10 mr10">
-	<div class="row">
+  <div class="row">
     <div class="control-group" id="fields">
         <div class="controls"> 
           <form class=" form-horizontal form-bordered upload-video" role="form" action="" autocomplete="off" enctype="multipart/form-data">
@@ -99,7 +99,7 @@
                             <label for="filevideo" class="btn btn-sm btn-default filevideo">
                                 Pilih Video
                             </label>
-                            <input style="display:none;" type="file" id="filevideo" name="video" onchange="fileVideo(this,z='');"/>
+                            <input style="display:none;" type="file" id="filevideo" name="video" onchange="ValidateInputVideo(this,z='');"/>
                         </div>
                     </div>
                     <!-- /upload ke server -->
@@ -128,7 +128,7 @@
                             <label for="filethumbnail" class="btn btn-sm btn-default filethumbnail">
                                 Pilih gambar
                             </label>
-                            <input style="display:none;" type="file" id="filethumbnail" name="thumbnail" onchange="fileThumbnail(this,z='');"/>
+                            <input style="display:none;" type="file" id="filethumbnail" name="thumbnail" onchange="ValidateInputThumbnail(this,z='');"/>
                         </div>
                     </div>
                     <!-- /Upload thumbnail -->
@@ -210,7 +210,7 @@
           <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another form field :)</small>
         </div>
     </div>
-	</div>
+  </div>
 </section>
 <!-- /konten -->
 <!-- Script ajax upload -->
@@ -533,7 +533,7 @@
     var reader = new FileReader();
     var size=Math.round(file.size/1024);
      if (size>=90000) {
-        $('#e_size_video').modal('show');
+        swal('Silahkan cek file size video!', 'File size video maksimal 90Mb', 'warning');
       }else{
         $(".prv_video"+z).show();
         reader.onload = viewer.load;
@@ -558,8 +558,8 @@
       var reader = new FileReader();
       var size=Math.round(file.size/1024);
       // start pengecekan ukuran file
-      if (size>=90000) {
-        // $('#e_size_video').modal('show');
+      if (size>=100) {
+        swal('Silahkan cek file size thumbnail!', 'File size thumbnail maksimal 100 Kb', 'warning');
       }else{
         $(".prv_thumbnail"+z).show();
         reader.onload = viewer.load;
@@ -567,49 +567,104 @@
         viewer.setProperties(file);
       }
   }
+
+  var _validFileExtensions = [".mp4"];    
+  function ValidateInputVideo(oInput,z='') {
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+
+                if (!blnValid) {
+                    swal('Silahkan cek type extension video! ', 'Type yang bisa di upload hanya .mp4', 'warning');
+                    $('.prv_video').hide();
+                  return false;
+              } else {
+                fileVideo(oInput,z='');
+              }
+          }
+      }
+    return true;
+  }
+
+  //cek dulu type file thumbnail
+  function ValidateInputThumbnail(oInput,z='') {
+    var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+
+            if (!blnValid) {
+                swal('Silahkan cek type extension thumbnail! ', 'Type yang bisa di upload hanya ".jpg", ".jpeg", ".bmp", ".gif", ".png', 'warning');
+                return false;
+        }else{
+            fileThumbnail(oInput,z='');
+        }
+      }
+    }
+          return true;
+  }
 </script>
 
 <script type="text/javascript">
     //get data vidio dan cek data video
     function upvideo(y='') {
       var subBab =$('[name=subBab'+y+']').val();
-      var option_up = $('[name=option_up'+y+']:checked').val();
-      var video ='video'+y;
-      var link_video =$('[name=link_video'+y+']').val();
       var tumbnail = 'tumbnail'+y;
-      var jenis_video =$('[name=jenis_video'+y+']').val();
       var judulvideo =$('[name=judulvideo'+y+']').val();
-      var deskripsi =$('[name=deskripsi'+y+']').val();
-      var publish =$('[name=publish'+y+']').val();
 
-      // testing data
       // ajax adding data to database
       if (subBab && judulvideo) {
-      var datas = {
-            subBab:subBab,
-            option_up:option_up,
-            video:video,
-            link_video:link_video,
-            tumbnail:tumbnail,
-            jenis_video:jenis_video,
-            judulvideo:judulvideo,
-            deskripsi:deskripsi,
-            publish:publish
-      };
-       postData(datas,y);
+        postThumbnail(tumbnail,y);
       } else {
         sweetAlert("Oops...", "Harap data subbab dan judul Video diisi !", "warning");
       }
     }
 
     //post data form
-    function postData(datas,y) {
+    function postData(y,thumbnails) {
+      var subBab =$('[name=subBab'+y+']').val();
+      var option_up = $('[name=option_up'+y+']:checked').val();
+      var video ='video'+y;
+      var link_video =$('[name=link_video'+y+']').val();
+      var jenis_video =$('[name=jenis_video'+y+']').val();
+      var judulvideo =$('[name=judulvideo'+y+']').val();
+      var deskripsi =$('[name=deskripsi'+y+']').val();
+      var publish =$('[name=publish'+y+']').val();
+
+      var datas = {
+            subBab:subBab,
+            option_up:option_up,
+            video:video,
+            link_video:link_video,
+            tumbnail:thumbnails,
+            jenis_video:jenis_video,
+            judulvideo:judulvideo,
+            deskripsi:deskripsi,
+            publish:publish
+      };
+
       var url = base_url+"index.php/videoback/cek_option_upload";
-        var filevideo = "filevideo"+y;
+      var filevideo = "filevideo"+y;
       var filethumbnail = "filethumbnail"+y;
-        var bar = $('.prog'+y);
-        $('.F'+y).attr("hidden","true");
-        $('.indiF'+y).addClass('show');
+      var bar = $('.prog'+y);
+      $('.F'+y).attr("hidden","true");
+      $('.indiF'+y).addClass('show');
       $.ajaxFileUpload({
         url : url,
         type: "POST",
@@ -618,20 +673,39 @@
         dataType: "TEXT",
         onChange: function()
         {
-         console.log('testing ini budiss'); 
         },
         uploadProgress: function ( event, position, total,percentComplete)         {
-         console.log('testing ini budi');
          var percentVal = percentComplete + '%';
          bar.width(percentVal);
           console.log(percentComplete);
         },
-    // 
         success: function(data)
         {
           var percentVal = '100%';
           bar.width(percentVal);
           swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          sweetAlert("Oops...", "Data gagal tersimpan!", "error");
+        }
+      });
+    }
+
+    //post data thumbnail
+    function postThumbnail(thumbnail,y) {
+      var url = base_url+"index.php/videoback/upload_thumbnail";
+      var filethumbnail = "filethumbnail"+y;
+      $.ajaxFileUpload({
+        url : url,
+        type: "POST",
+        data: thumbnail,
+        fileElementId :filethumbnail,
+        dataType: "TEXT", 
+        success: function(data)
+        {
+          var thumbnails = JSON.parse(data);
+          postData(y,thumbnails);
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
