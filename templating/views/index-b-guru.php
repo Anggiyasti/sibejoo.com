@@ -45,10 +45,9 @@
 
  <link rel="stylesheet" href="<?= base_url('assets/plugins/steps/css/jquery-steps.min.css') ?>">
 
- <!-- css aoutocomplate -->
- <link href='<?php echo base_url();?>assets/css/jquery.autocomplete.css' rel='stylesheet' />
- <!-- JS aoutocomplate -->
- <script type='text/javascript' src='<?php echo base_url();?>assets/js/jquery.autocomplete.js'></script>
+<!-- css aoutocomplate -->
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
 
  <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
  <script src="<?= base_url('assets//library/modernizr/js/modernizr.min.js') ?>"></script>
