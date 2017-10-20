@@ -158,17 +158,12 @@
               <br>
               <input id="n" type="text"  value="<?=$i;?>" hidden="true">
               <?php if ($datline!= array()): ?>
-                
                 <div class="tags" style="margin-left: 20px;">
                   <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['tingkat']?></a></i>
                   <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['mapel']?></a></i>
                   <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['bab']?></a></i>
                 </div>
-                
-
               </div>
-              
-
             </article>
             
             <hr class="divider-color" />

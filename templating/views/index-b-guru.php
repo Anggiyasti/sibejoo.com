@@ -61,114 +61,51 @@
 
   <!-- sound notification -->
   <audio id="notif_audio"><source src="<?php echo base_url('sounds/notify.ogg');?>" type="audio/ogg"><source src="<?php echo base_url('sounds/notify.mp3');?>" type="audio/mpeg"><source src="<?php echo base_url('sounds/notify.wav');?>" type="audio/wav"></audio>
-  <!-- /sound notification -->
+    <!-- /sound notification -->
 
-  <!-- START Modal ADD BANK SOAL -->
-  <div class="modal fade" id="modalmodul" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-     <div class="modal-content">
-      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-       <h4 class="modal-title">Form Modul</h4>
-     </div>
-
-
-     <!-- Start Body modal -->
-     <div class="modal-body">
-      <!--      <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/listsoal" method="get" > -->
-      <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/modulonline/filtermodul" method="post" >
-        <div  class="form-group">
-         <label class="col-sm-3 control-label">Tingkat</label>
-         <div class="col-sm-8">
-           <!-- stkt = soal tingkat -->
-           <select class="form-control gettkt" name="tingkat" id="stkt">
-             <option>-Pilih Tingkat-</option>
-           </select>
-         </div>
+    <!-- START Modal ADD BANK SOAL -->
+    <div class="modal fade" id="modalmodul" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+       <div class="modal-content">
+        <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title">Form Modul</h4>
        </div>
 
-       <div  class="form-group">
-         <label class="col-sm-3 control-label">Mata Pelajaran</label>
-         <div class="col-sm-8">
-          <select class="form-control getpel" name="mataPelajaran" id="spel">
 
-          </select>
+       <!-- Start Body modal -->
+       <div class="modal-body">
+        <!--      <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/listsoal" method="get" > -->
+          <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/modulonline/filtermodul" method="post" >
+            <div  class="form-group">
+             <label class="col-sm-3 control-label">Tingkat</label>
+             <div class="col-sm-8">
+               <!-- stkt = soal tingkat -->
+               <select class="form-control gettkt" name="tingkat" id="stkt">
+                 <option>-Pilih Tingkat-</option>
+               </select>
+             </div>
+           </div>
+
+           <div  class="form-group">
+             <label class="col-sm-3 control-label">Mata Pelajaran</label>
+             <div class="col-sm-8">
+              <select class="form-control getpel" name="mataPelajaran" id="spel">
+
+              </select>
+            </div>
+          </div>
+
+
         </div>
-      </div>
+        <!-- END BODY modla-->
+        <div class="modal-footer">
+          <button type="submit" id="myFormSubmit" class="btn btn-primary">Proses</button>                
+        </div>
+      </form> 
+    </div><!-- /.modal-content -->
 
-
-    </div>
-    <!-- END BODY modla-->
-    <div class="modal-footer">
-      <button type="submit" id="myFormSubmit" class="btn btn-primary">Proses</button>                
-    </div>
-  </form> 
-</div><!-- /.modal-content -->
-
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- END  Modal ADD BANK SOAL-->
-
-<!-- START Modal ADD BANK SOAL -->
-<div class="modal fade" id="modalsoal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-   <div class="modal-content">
-    <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-     <h4 class="modal-title">Form Soal</h4>
-   </div>
-
-
-   <!-- Start Body modal -->
-   <div class="modal-body">
-    <!--      <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/listsoal" method="get" > -->
-    <form  class="panel panel-default form-horizontal form-bordered" action="<?=base_url();?>index.php/banksoal/filtersoal2" method="get" >
-      <div  class="form-group">
-       <label class="col-sm-3 control-label">Tingkat</label>
-       <div class="col-sm-8">
-         <!-- stkt = soal tingkat -->
-         <select class="form-control gettkt" name="tingkat" id="stkt2">
-           <option>-Pilih Tingkat-</option>
-         </select>
-       </div>
-     </div>
-
-     <div  class="form-group">
-       <label class="col-sm-3 control-label">Mata Pelajaran</label>
-       <div class="col-sm-8">
-        <select class="form-control getpel2" name="mataPelajaran" id="spel2">
-
-        </select>
-      </div>
-    </div>
-
-    <div  class="form-group">
-     <label class="col-sm-3 control-label">Bab</label>
-     <div class="col-sm-8">
-      <select class="form-control getbb2" name="bab" id="sbab2">
-
-      </select>
-    </div>
-  </div>
-
-  <div class="form-group">
-   <label class="col-sm-3 control-label">Subab</label>
-   <div class="col-sm-8">
-    <select class="form-control subb2" name="subbab" id="ssub2">
-
-    </select>
-  </div>
-</div>
-
-</div>
-<!-- END BODY modla-->
-<div class="modal-footer">
-  <button type="submit" id="myFormSubmit" class="btn btn-primary"  >Proses</button>                
-</div>
-</form> 
-</div><!-- /.modal-content -->
-
-</div><!-- /.modal-dialog -->
+  </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- END  Modal ADD BANK SOAL-->
 
@@ -340,7 +277,7 @@
 <!-- START Template Header -->
 <header id="header" class="navbar navbar-fixed-top">
   <!-- START navbar header -->
-  <div class="navbar-header" style="background:#f27c66;">
+  <div class="navbar-header" style="background:rgba(135,125,125,.3);">
    <!-- Brand -->
    <a class="navbar-brand" href="javascript:void(0);">
     <span class="logo-figure"></span>
@@ -384,73 +321,73 @@
      <i class="ico-bell"></i></span> -->
 
      <!-- <?php if ($count_komen!=0): ?>
-     <?php echo $count_komen ?> -->
-     <!-- <span class="hasnotification hasnotification-danger"></span> -->
-     <!-- <?php endif ?> -->
+       <?php echo $count_komen ?> -->
+       <!-- <span class="hasnotification hasnotification-danger"></span> -->
+       <!-- <?php endif ?> -->
    <!-- </span>
- </a> -->
+   </a> -->
 
 
- <!-- Dropdown menu -->
- <div class="dropdown-menu" role="menu">
-  <div class="dropdown-header">
-   <span class="title">Notification <?=$count_komen ?><span class="count"></span></span>
-   <span class="option text-right"><a href="javascript:void(0);" title="Close Notifikasi"><i class="ico-close3"></i></a></span>
- </div>
- <div class="dropdown-body slimscroll">
-   <!-- indicator -->
-   <!-- <div class="indicator inline"><span class="spinner"></span></div> -->
-   <!--/ indicator -->
+   <!-- Dropdown menu -->
+   <div class="dropdown-menu" role="menu">
+    <div class="dropdown-header">
+     <span class="title">Notification <?=$count_komen ?><span class="count"></span></span>
+     <span class="option text-right"><a href="javascript:void(0);" title="Close Notifikasi"><i class="ico-close3"></i></a></span>
+   </div>
+   <div class="dropdown-body slimscroll">
+     <!-- indicator -->
+     <!-- <div class="indicator inline"><span class="spinner"></span></div> -->
+     <!--/ indicator -->
 
-   <!-- Message list -->
-   <div class="media-list" id="message-tbody">
+     <!-- Message list -->
+     <div class="media-list" id="message-tbody">
 
-    <?php foreach ($datKomen as $key ): ?>
-      <a href="<?=base_url()?>komenback/seevideo/<?=$key['videoID']?>/<?=$key['UUID']?>" class="media border-dotted read">
-        <span class="pull-left">
-          <img src="<?=base_url()?>assets\image\photo\siswa\<?=$key['siswa_photo']?>" class="media-object img-circle" alt="">
-        </span>
-        <span class="media-body">
-          <span class="media-heading"><?=$key['namaPengguna']?></span>
-          <span class="media-text ellipsis nm"><?=$key['isiKomen']?></span>
-          <!-- meta icon -->
-          <span class="media-meta pull-right"><?=$key['date_created']?></span>
-          <!--/ meta icon -->
-        </span>
-      </a>
-    <?php endforeach ?>
+      <?php foreach ($datKomen as $key ): ?>
+        <a href="<?=base_url()?>komenback/seevideo/<?=$key['videoID']?>/<?=$key['UUID']?>" class="media border-dotted read">
+          <span class="pull-left">
+            <img src="<?=base_url()?>assets\image\photo\siswa\<?=$key['siswa_photo']?>" class="media-object img-circle" alt="">
+          </span>
+          <span class="media-body">
+            <span class="media-heading"><?=$key['namaPengguna']?></span>
+            <span class="media-text ellipsis nm"><?=$key['isiKomen']?></span>
+            <!-- meta icon -->
+            <span class="media-meta pull-right"><?=$key['date_created']?></span>
+            <!--/ meta icon -->
+          </span>
+        </a>
+      <?php endforeach ?>
 
-    <?php foreach ($konsultasi as $value ): ?>
-      <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
-      <a 
-      onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
-      class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
-      <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
-      <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Ditujukan Pada Anda"><i class="ico-star"></i></span>
-      <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
-      | 
-    </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
-  <?php endforeach ?>
+      <?php foreach ($konsultasi as $value ): ?>
+        <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
+        <a 
+        onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
+        class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
+          <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
+          <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Ditujukan Pada Anda"><i class="ico-star"></i></span>
+          <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
+            | 
+          </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
+        <?php endforeach ?>
 
-  <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
-    <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
-    <a 
-    onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
-    class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
-    <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
-    <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Pelajaran <?=$value['namaMataPelajaran'] ?>"><i class="ico-star-empty"></i></span>
-    <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
-    | 
-  </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
-<?php endforeach ?>
+        <?php foreach ($notif_pertanyaan_mentor as $value ): ?>
+          <?php $photos = base_url('assets/image/photo/siswa/'.$value['photo']) ?>
+          <a 
+          onclick="singlekonsultasi(<?=$value['id'] ?>)" href="javascript:void(0)"
+          class="media border-dotted read pertanyaan-<?=$value['id']?>"><span class="pull-left">
+            <img src='<?=$photos ?>' class="media-object img-circle" alt=""></span><span class="media-body"><span class="media-heading"><?=$value['nama_lengkap'] ?></span>
+            <span class="media-text ellipsis nm"><span>Konsultasi :</span> <?=$value['judulPertanyaan'] ?></span><span title="Pelajaran <?=$value['namaMataPelajaran'] ?>"><i class="ico-star-empty"></i></span>
+            <!-- meta icon --><span class="media-meta pull-right"><span class="text-info">Status Belum Direspon
+              | 
+            </span><?=$value['date_created'] ?></span><!--/ meta icon --></span></a>
+          <?php endforeach ?>
 
-</div>
-<!--/ Message list -->
-</div>
-</div>
-<!--/ Dropdown menu -->
-</li>
-<!--/ Notification dropdown -->
+        </div>
+        <!--/ Message list -->
+      </div>
+    </div>
+    <!--/ Dropdown menu -->
+  </li>
+  <!--/ Notification dropdown -->
 
 
 </ul>
@@ -481,9 +418,9 @@
    </span>
  </a>
  <ul class="dropdown-menu" role="menu">
-  <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li>
+  <!-- <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li> -->
   <li><a href="<?=base_url('index.php/guru/pengaturanProfileguru');?>"><span class="icon"><i class="ico-cog4"></i></span> Profile Setting</a></li>
-  <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li>
+  <!-- <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li> -->
   <li class="divider"></li>
   <li><a href="<?=base_url('index.php/logout');?>"><span class="icon"><i class="ico-exit"></i></span> Sign Out</a></li>
 </ul>
@@ -875,11 +812,6 @@
 $('#modalmodul').modal('show'); // show bootstrap modal
 }
 
-//panggil modal
-function add_soal() {
-$('#modalsoal').modal('show'); // show bootstrap modal
-}
-
 function filter_video() {
 $('#modalvideo').modal('show'); // show bootstrap modal
 }
@@ -1154,7 +1086,7 @@ function filter_gallery() {
            <script type="text/javascript">
              // fungsi membuat session id pertanyaan
              function singlekonsultasi(pertanyaanID){
-              
+
               url_ajax = base_url+"konsultasi/tamp_single";
 
               var global_properties = {

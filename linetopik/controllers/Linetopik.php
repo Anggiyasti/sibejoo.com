@@ -125,6 +125,7 @@ public function learningLine(){
 
     $dat=$this->Mlinetopik->get_line_topik($babID);
 
+
  //list topik side bar
     $data['topik']=$this->Mlinetopik->get_topik($babID);
     $data['datline']=array(); 
@@ -188,7 +189,8 @@ $data['datline'][]=array(
     'icon' =>$icon,
     'link' => $link,
     'status'=>$status,
-    'uuid' => $UUID
+    'uuid' => $UUID,
+    'urutan'=>$rows['urutan']
     );
 $log=$this->Mlinetopik->get_log($stepID);
 $step = $log;
@@ -199,6 +201,13 @@ $data['files'] = array(
             // APPPATH . 'modules/homepage/views/v-footer.php',
     );
 $this->parser->parse('templating/r-index', $data);
+//     var_dump($dat);
+// echo "<hr>";
+// print_r($data['datline']);
+// echo "<hr>";
+// print_r($data['topik']);
+
+
 }
 
 
