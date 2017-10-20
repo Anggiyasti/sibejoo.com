@@ -196,8 +196,12 @@ function daftarbab() {
 
     $id = $this->uri->segment(4);
     $data['babs'] = $this->mmatapelajaran->daftarBab($id);
-    $data['kt'] = $this->mmatapelajaran->get_keterangan($id)[0]['keterangan'];
+    $data['kt'] = null;
+    $temp_keterangan = $this->mmatapelajaran->get_keterangan($id);
 
+    if ($temp_keterangan!=array()) {
+        $data['kt'] = $temp_keterangan[0]['keterangan'];
+    }
     $data['file'] = 'v-bab.php';
     if ($this->session->userdata('HAKAKSES')=='admin') {
         $this->parser->parse('v-index-admin', $data);
