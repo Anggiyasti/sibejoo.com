@@ -303,7 +303,7 @@
 
             <div class="panel-footer">
 
-                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateThumbnail()"><span class="ladda-label">Simpan</span></button>
+                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateVideo()"><span class="ladda-label">Simpan</span></button>
 
             </div>
 
@@ -321,7 +321,9 @@
 
 </section>
 
-
+<!-- Script ajax upload -->
+ <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
+<!-- /Script ajax upload -->
 
 
 
@@ -729,34 +731,48 @@ function resetVideo(){
       $('#filesize').text("");
   }
 
+    //get data video dan cek data video
+    function updateVideo(y='') {
+      var option_up =$('[name=option_up'+y+']').val();
+      var thumbnail =$('[name=thumbnail'+y+']').val();
+      // cek data video
+      if (thumbnail == '') {
+        // console.log('maksimal');
+        updateData(y,thumbnail);
+      } else {
+        updateThumbnail(y);
+      }
+    }
+
+
     //update data thumbnail
     function updateThumbnail(y='') {
       var tumbnail = 'tumbnail'+y;
       var UUID =$('[name=UUID'+y+']').val();
-      var datas = {tumbnail:tumbnail, UUID:UUID}
+      var datas = {tumbnail:tumbnail, UUID:UUID};
       var url = base_url+"index.php/videoback/chThumbnail";
-      var filethumbnail = "filethumbnail"+y;
-      console.log(datas);
-      // $.ajaxFileUpload({
-      //   url : url,
-      //   type: "POST",
-      //   data: tumbnail,
-      //   fileElementId :filethumbnail,
-      //   dataType: "TEXT", 
-      //   success: function(data)
-      //   {
-      //     var thumbnails = JSON.parse(data);
-      //     // postData(y,thumbnails);
-      //   },
-      //   error: function (jqXHR, textStatus, errorThrown)
-      //   {
-      //     sweetAlert("Oops...", "Data gagal tersimpan!", "error");
-      //   }
-      // });
+      var filethumbnail = "thumbnail"+y;
+      $.ajaxFileUpload({
+        url : url,
+        type: "POST",
+        data: {UUID:UUID},
+        fileElementId :filethumbnail,
+        dataType: "TEXT", 
+        success: function(data)
+        {
+          var thumbnails = JSON.parse(data);
+          console.log(thumbnails);
+          // updateData(y,thumbnails);
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          sweetAlert("Oops...", "Data gagal tersimpan!", "error");
+        }
+      });
     }
 
     //post data form
-    function updateVideo(y,thumbnails) {
+    function updateData(y,thumbnails) {
       var subBab =$('[name=subBab'+y+']').val();
       var option_up = $('[name=option_up'+y+']:checked').val();
       var video ='video'+y;
@@ -765,22 +781,24 @@ function resetVideo(){
       var judulvideo =$('[name=judulvideo'+y+']').val();
       var deskripsi =$('[name=deskripsi'+y+']').val();
       var publish =$('[name=publish'+y+']').val();
+      var UUID =$('[name=UUID'+y+']').val();
 
       var datas = {
             subBab:subBab,
             option_up:option_up,
             video:video,
             link_video:link_video,
-            tumbnail:thumbnails,
+            thumbnail:thumbnails,
             jenis_video:jenis_video,
             judulvideo:judulvideo,
             deskripsi:deskripsi,
-            publish:publish
+            publish:publish,
+            UUID:UUID
       };
 
-      var url = base_url+"index.php/videoback/cek_option_upload";
+      console.log(datas);
+      var url = base_url+"index.php/videoback/cek_option_update";
       var filevideo = "filevideo"+y;
-      var filethumbnail = "filethumbnail"+y;
       var bar = $('.prog'+y);
       $('.F'+y).attr("hidden","true");
       $('.indiF'+y).addClass('show');
@@ -800,6 +818,7 @@ function resetVideo(){
         },
         success: function(data)
         {
+            console.log(data);
           var percentVal = '100%';
           bar.width(percentVal);
           swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
