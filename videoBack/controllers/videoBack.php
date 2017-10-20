@@ -445,7 +445,6 @@ public function cek_option_update()
       );
 
     $this->Mvideoback->ch_video($data);
-    echo json_encode($data);
   }else{
     $this->updateVideo($data);
   }
@@ -508,9 +507,10 @@ public function updateVideo($data) {
       $configChTmbl['max_width'] = 1024;
       $configChTmbl['max_height'] = 1024;
       //random name
-      $configChTmbl['encrypt_name'] = TRUE;
-      $new_name = time()."-".$_FILES["thumbnail"]['name'];
-      $configChTmbl['file_name'] = $new_name;
+      // $configChTmbl['encrypt_name'] = TRUE;
+      // $new_name = time()."-".$_FILES["thumbnail"]['name'];
+      // $new_name = $oldthumbnail;
+      $configChTmbl['file_name'] = $oldthumbnail;
       $this->load->library('upload', $configChTmbl);
       $gambar = "thumbnail";
       $this->upload->initialize($configChTmbl);
@@ -520,6 +520,13 @@ public function updateVideo($data) {
           }
          $file_data = $this->upload->data();
          $file_name = $file_data['file_name'];
+         // $file_name=$oldthumbnail;
+         $data['UUID'] = $uuid;
+         $data['video'] = array(
+              'thumbnail' => $file_name,
+              );
+          
+          $this->Mvideoback->ch_video($data);
          echo json_encode($file_name);
       }else{
         echo json_encode($oldthumbnail);
