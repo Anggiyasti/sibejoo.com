@@ -402,16 +402,16 @@ public function get_linkembed($link)
   return $linkembed;
 }
 
+// fungsi update video
 public function cek_option_update()
 {
-           //load library n helper
+  //load library n helper
   $this->load->helper(array('form', 'url'));
   $this->load->library('form_validation');
 
-        //set role
+  //set role
   $this->form_validation->set_rules('judulvideo', 'Judul Video', 'required');
   $this->form_validation->set_rules('subBab', 'Subbab', 'required');
-         // $this->form_validation->set_rules('video', 'Video', 'required');
 
         //pesan error atau pesan kesalahan pengisian form upload video
   $this->form_validation->set_message('required', '*Data tidak boleh kosong!');
@@ -433,10 +433,6 @@ public function cek_option_update()
     $this-> formUpdateVideo($data['UUID']);
   }else{
    if ($option_up =='link') {
-    // $this->dropVideoServer($UUID);
-    // $penggunaID = $this->session->userdata['id'];
-    // $data['tb_guru'] = $this->Mvideoback->getIDguru($penggunaID)[0];
-    // $guruID = $data['tb_guru']['id'];
     $linkembed=$this->get_linkembed($link);
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
@@ -444,17 +440,15 @@ public function cek_option_update()
       'link' => $linkembed,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
-      // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
 
     $this->Mvideoback->ch_video($data);
-  }else{
-    // $this->tesedit($data);
-    $this->updateVideo($data);
-    echo json_encode("server");
+    }else{
+      $this->updateVideo($data);
+      echo json_encode("server");
+    }
   }
-}
 }
 
 // fungsi untuk Update video server
@@ -1312,14 +1306,14 @@ public function tampVideo($list='')
       // pengecekan file video atau link video
       if ($namaFile != '' && $namaFile != ' ' && $thumbnail !=' ' && $thumbnail !='' && $thumbnail !='default' ) {
         
-        $video = '<img data-toggle="unveil" src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" data-src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" alt="Cover" width="250px" height="150px" style="background:#E6E2E2;"></img>';
+        $video = '<img data-toggle="unveil" src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" data-src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" alt="Cover" width="100%" height="160px" style="background:#E6E2E2;"></img>';
       }elseif($namaFile != '' && $namaFile != ' '){
         
         $mapel=$key['mapel'];
         //generate avatar
         $thumbnail=$this->generateavatar->generate_first_letter_avtar_url($mapel);
         $video = '
-        <div class="jumbotron jumbotron-bg7 nm"  data-stellar-background-ratio="0.4" style="width:100%; height:150px;">
+        <div class="jumbotron jumbotron-bg7 nm"  data-stellar-background-ratio="0.4" style="width:100%; height:160px;">
         <div class="pattern pattern2 overlay overlay-primary"></div>
           <div class="container text-center" style="padding-top:8%;">
               <img class=" img-circle img-bordered" data-toggle="unveil" src="'. $thumbnail.'" data-src="" alt="Cover" style=" margin: 0 auto;" ></img>

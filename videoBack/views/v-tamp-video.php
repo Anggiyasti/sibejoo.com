@@ -22,6 +22,47 @@
  */
 // var_dump($list);
 ?>
+<style type="text/css">
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+  float: left;
+  padding: 10px;
+}
+  
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+
+</style>
+<script src="<?=base_url('assets/js/masonry.pkgd.js')?>"></script>
+<!-- or -->
+<script src="<?=base_url('assets/js/masonry.pkgd.min.js')?>"></script>
 <!-- Start Modal Detail Video dari server -->
     <div class="modal fade" id="mdetailvideo">
 
@@ -38,10 +79,10 @@
                 <div class="modal-body ">
                     <p class="semibold text-justify mt0 mb5 mr10 ml10">Deskripsi</p>
                     <p class="text-justify deskripsi mt0 mb5 mr10 ml10 "></p>
-                    <p class="tag ellipsis">
+<!--                     <p class="tag ellipsis">
                                     <a href="javascript:void(0);">#a</a>&nbsp;
                                     <a href="javascript:void(0);">#ss</a>
-                                </p>
+                                </p> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="closePlayer" >Close</button>
@@ -120,61 +161,60 @@
 
                 <!-- START row -->
                 <div class="row">
-                <!-- STRAT PENGULANGAN LIST VIDEO -->
-                <?php foreach ($list as $key): ?>
-                    <div class="col-md-3 ml0">
-                        <!-- thumbnail -->
-                        <div class="thumbnail thumbnail-album animation animating delay fadeInLeft">
-                            <!-- media -->
-                            <div class="media">
-                                <!-- indicator -->
-                                <!-- <div class="indicator"><span class="spinner"></span></div> -->
-                                <!--/ indicator -->
-                                <!-- toolbar overlay -->
-                                <div class="overlay">
-                                    <div class="toolbar">
-                                        <?=$key['lihat']; ?>
-                                        <?=$key['ubah']; ?>
-                                        <?=$key['hapus']; ?>
+                    <!-- <div class="col-md-12 ml0"> -->
+                        <div class="grid">
+                            <div class="grid-sizer"></div>
+                            <!-- START PENGULANGAN LIST VIDEO -->
+                            <?php foreach ($list as $key): ?>
+                            <div class="grid-item">
+                                <!-- thumbnail -->
+                                <div class="thumbnail thumbnail-album animation animating delay fadeInLeft">
+                                    <!-- media -->
+                                    <div class="media">
+                                        <!-- indicator -->
+                                        <!-- <div class="indicator"><span class="spinner"></span></div> -->
+                                        <!--/ indicator -->
+                                        <!-- toolbar overlay -->
+                                        <div class="overlay">
+                                            <div class="toolbar">
+                                                <?=$key['lihat']; ?>
+                                                <?=$key['ubah']; ?>
+                                                <?=$key['hapus']; ?>
+                                            </div>
+                                        </div>
+                                        <!--/ toolbar overlay -->
+                                       <div>
+                                           <?=$key['video'];?>
+                                       </div>
+                                        
                                     </div>
+                                    <!--/ media -->
+                                    <!-- caption -->
+                                    <div class="caption">
+                                        <h5 class="semibold mt0 mb5"><?=$key['judulVideo']?></h5>
+                                        <p class="text-muted mb5 ellipsis"><?=$key['deskripsi']?></p>
+                                        <p class="tag ellipsis">
+                                            <a href="javascript:void(0);">#<?=$key['mapel']?></a>&nbsp;
+                                            <a href="javascript:void(0);">#<?=$key['bab']?></a>
+                                        </p>
+                                    </div>
+                                    <!--/ caption -->
+                                    <hr class="mt5 mb5">
+                                    <ul class="meta">
+                                        <li>
+                                            <div class="img-group img-group-stack">
+                                            <p class="nm">sub:<?=$key['subbab']?></p>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <!--/ toolbar overlay -->
-                               <div>
-                                   <?=$key['video'];?>
-                               </div>
-                                
+                                <!--/ thumbnail -->
                             </div>
-                            <!--/ media -->
-                            <!-- caption -->
-                            <div class="caption">
-                                <h5 class="semibold mt0 mb5"><?=$key['judulVideo']?></h5>
-                                <p class="text-muted mb5 ellipsis"><?=$key['deskripsi']?></p>
-                                <p class="tag ellipsis">
-                                    <a href="javascript:void(0);">#<?=$key['mapel']?></a>&nbsp;
-                                    <a href="javascript:void(0);">#<?=$key['bab']?></a>
-                                </p>
-                            </div>
-                            <!--/ caption -->
-                            <hr class="mt5 mb5">
-                            <ul class="meta">
-                                <li>
-                                    <div class="img-group img-group-stack">
-                                    <p class="nm">sub:<?=$key['subbab']?></p>
-                                    </div>
-                                </li>
-                                <!-- <li>
-                                    <p class="nm"><a href="javascript:void(0);" class="semibold">,</a><?=$key['date_created']?></p>
-                                </li> -->
-                            </ul>
+                            <?php endforeach ?>
                         </div>
-                        <!--/ thumbnail -->
                     </div>
-
-                <?php endforeach ?>
-                <!--/ END Pengulangan List Video  -->
-                </div>
                 <!--/ END row -->
-            </div>
+                </div>
             <!--/ END Template Container -->
 
             <!-- START To Top Scroller -->
@@ -219,7 +259,7 @@ function drop_video(videoID){
                     swal({
                         title: "Video berhasil dihapus",
                         type: "success",
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#8CD4F5",
                         confirmButtonText: "OK",
                         closeOnConfirm: false,
                     },
@@ -298,4 +338,19 @@ var site = "<?php echo site_url();?>";
                 }
     });
 });
+
+// init Masonry
+var grid = document.querySelector('.grid');
+
+var msnry = new Masonry( grid, {
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+});
+
+imagesLoaded( grid ).on( 'progress', function() {
+  // layout Masonry after each image loads
+  msnry.layout();
+});
+
 </script>

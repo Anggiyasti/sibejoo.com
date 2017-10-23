@@ -681,10 +681,18 @@
         },
         success: function(data)
         {
-          console.log(data);
           var percentVal = '100%';
           bar.width(percentVal);
-          swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+          // swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+          setTimeout(function() {
+                swal({
+                    title: "Wow!",
+                    text: "Data Form ke-"+y+" Berhasil Terupload",
+                    type: "success"
+                }, function() {
+                    window.location = base_url+"videoback/daftarvideo";
+                });
+            }, 1000);
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
