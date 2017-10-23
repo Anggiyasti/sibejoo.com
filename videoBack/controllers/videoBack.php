@@ -450,63 +450,15 @@ public function cek_option_update()
 
     $this->Mvideoback->ch_video($data);
   }else{
-    $this->tesedit($data);
-    // $this->updateVideo($data);
+    // $this->tesedit($data);
+    $this->updateVideo($data);
     echo json_encode("server");
   }
 }
 }
 
-     // fungsi untuk Update video server
+// fungsi untuk Update video server
 public function updateVideo($data) {
-
-  $config['upload_path'] = './assets/video';
-  $config['allowed_types'] = 'mp4';
-  $config['max_size'] = 90000;
-  $this->load->library('upload', $config);
-  $UUID=$data['UUID'];
-  $video=$data['video'];
-             // pengecekan upload
-  if ($this->upload->do_upload('video')) {
-    $this->dropVideoServer($UUID);
-                // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
-    $file_data = $this->upload->data();
-    $video = $file_data['file_name'];
-    // $UUID=$data['UUID'];
-    $data['UUID'] = $UUID;
-    // $thumbnail =$data['thumbnail'];
-                //data yg akan di masukan ke tabel video
-    $data['video'] = array(
-      'judulVideo' => $data['judulVideo'] ,
-      'namaFile' => $video,
-      // 'thumbnail' => $thumbnail,
-      'link' => null,
-      'deskripsi' => $data['deskripsi'],
-      'published' => $data['published'],
-      // 'guruID' => $guruID,
-      'subBabID' => $data['subBabID'],
-      );
-    echo json_encode($data['video']);
-  } else {
-    $UUID=$data['UUID'];
-    $data['UUID'] = $UUID;
-
-     // $thumbnail = $data['thumbnail'];
-    $data['video'] = array(
-      'judulVideo' => $data['judulVideo'] ,
-      // 'thumbnail' => $thumbnail,
-      'link' => null,
-      'deskripsi' => $data['deskripsi'],
-      'published' => $data['published'],
-      // 'guruID' => $guruID,
-      'subBabID' => $data['subBabID'],
-      );
-    echo json_encode($data['video']);
-  }
-  $this->Mvideoback->ch_video($data);
-}
-
-public function tesedit($data) {
 
   $config['upload_path'] = './assets/video';
   $config['allowed_types'] = 'mp4';
@@ -522,8 +474,15 @@ public function tesedit($data) {
   // pengecekan upload
   if (!$this->upload->do_upload($video)) {
     // jika upload video gagal
-    $error = array('error' => $this->upload->display_errors());
-    echo json_encode("gagal");
+    $UUID=$data['UUID'];
+    $data['UUID'] = $UUID;
+    $data['video'] = array(
+      'judulVideo' => $data['judulVideo'] ,
+      'link' => null,
+      'deskripsi' => $data['deskripsi'],
+      'published' => $data['published'],
+      'subBabID' => $data['subBabID'],
+      );
 
   } else {
     $this->dropVideoServer($UUID);
@@ -537,17 +496,13 @@ public function tesedit($data) {
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
       'namaFile' => $video,
-      // 'thumbnail' => $thumbnail,
       'link' => null,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
-      // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
-    
-    $this->Mvideoback->ch_video($data);
-    echo json_encode("upload");
   }
+   $this->Mvideoback->ch_video($data);
 }
 
   // update  Thumbnail
@@ -562,10 +517,10 @@ public function tesedit($data) {
       $configChTmbl['max_width'] = 1024;
       $configChTmbl['max_height'] = 1024;
       //random name
-      // $configChTmbl['encrypt_name'] = TRUE;
-      // $new_name = time()."-".$_FILES["thumbnail"]['name'];
+      $configChTmbl['encrypt_name'] = TRUE;
+      $new_name = time()."-".$_FILES["thumbnail"]['name'];
       // $new_name = $oldthumbnail;
-      $configChTmbl['file_name'] = $oldthumbnail;
+      $configChTmbl['file_name'] = $new_name;
       $this->load->library('upload', $configChTmbl);
       $gambar = "thumbnail";
       $this->upload->initialize($configChTmbl);

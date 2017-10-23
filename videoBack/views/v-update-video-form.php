@@ -303,7 +303,7 @@
 
             <div class="panel-footer">
 
-                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateVideo()"><span class="ladda-label">Simpan</span></button>
+                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateData()"><span class="ladda-label">Simpan</span></button>
 
             </div>
 
@@ -731,23 +731,6 @@ function resetVideo(){
       $('#filesize').text("");
   }
 
-    //get data video dan cek data video
-    function updateVideo(y='') {
-      var option_up =$('[name=option_up'+y+']').val();
-      var thumbnail =$('[name=thumbnail'+y+']').val();
-      console.log(thumbnail);
-      updateData(y);
-      // cek data video
-      // if (thumbnail == '') {
-      //   console.log('maksimal');
-      //   // updateData(y);
-      // } else {
-      //   updateThumbnail(y);
-      //   // updateData(y);
-      // }
-    }
-
-
     //update data thumbnail
     function updateThumbnail(y='') {
       var tumbnail = 'tumbnail'+y;
@@ -764,9 +747,7 @@ function resetVideo(){
         success: function(data)
         {
         
-          var thumbnails = JSON.parse(data);
-          // console.log(thumbnails);
-          updateData(y,thumbnails);
+          swal("success!", "Video Berhasil Terupdate", "success");
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -776,8 +757,7 @@ function resetVideo(){
     }
 
     //post data form
-    function updateData(y) {
-      console.log('masuk');
+    function updateData(y='') {
       var subBab =$('[name=subBab'+y+']').val();
       var option_up = $('[name=option_up'+y+']:checked').val();
       var video ='video'+y;
@@ -793,7 +773,6 @@ function resetVideo(){
             option_up:option_up,
             video:video,
             link_video:link_video,
-            // thumbnail:thumbnails,
             jenis_video:jenis_video,
             judulvideo:judulvideo,
             deskripsi:deskripsi,
@@ -801,7 +780,6 @@ function resetVideo(){
             UUID:UUID
       };
 
-      console.log(datas);
       var url = base_url+"index.php/videoback/cek_option_update";
       var filevideo = "file"+y;
       var bar = $('.prog'+y);
@@ -816,17 +794,17 @@ function resetVideo(){
         onChange: function()
         {
         },
-        uploadProgress: function ( event, position, total,percentComplete)         {
-         var percentVal = percentComplete + '%';
-         bar.width(percentVal);
-          console.log(percentComplete);
+            uploadProgress: function ( event, position, total,percentComplete)         {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+
         },
         success: function(data)
         {
-            console.log(data);
-          var percentVal = '100%';
-          bar.width(percentVal);
-          swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+            var percentVal = '100%';
+            bar.width(percentVal);
+            updateThumbnail(y);
+            
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
