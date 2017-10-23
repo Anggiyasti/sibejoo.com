@@ -681,6 +681,7 @@
         },
         success: function(data)
         {
+          console.log(data);
           var percentVal = '100%';
           bar.width(percentVal);
           swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");

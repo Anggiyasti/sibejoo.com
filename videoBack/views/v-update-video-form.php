@@ -736,14 +736,15 @@ function resetVideo(){
       var option_up =$('[name=option_up'+y+']').val();
       var thumbnail =$('[name=thumbnail'+y+']').val();
       console.log(thumbnail);
+      updateData(y);
       // cek data video
-      if (thumbnail == '') {
-        console.log('maksimal');
-        // updateData(y);
-      } else {
-        updateThumbnail(y);
-        // updateData(y);
-      }
+      // if (thumbnail == '') {
+      //   console.log('maksimal');
+      //   // updateData(y);
+      // } else {
+      //   updateThumbnail(y);
+      //   // updateData(y);
+      // }
     }
 
 
@@ -775,8 +776,8 @@ function resetVideo(){
     }
 
     //post data form
-    function updateData(y,$thumbnails) {
-        console.log('masuk');
+    function updateData(y) {
+      console.log('masuk');
       var subBab =$('[name=subBab'+y+']').val();
       var option_up = $('[name=option_up'+y+']:checked').val();
       var video ='video'+y;
@@ -792,7 +793,7 @@ function resetVideo(){
             option_up:option_up,
             video:video,
             link_video:link_video,
-            thumbnail:thumbnails,
+            // thumbnail:thumbnails,
             jenis_video:jenis_video,
             judulvideo:judulvideo,
             deskripsi:deskripsi,
@@ -802,7 +803,7 @@ function resetVideo(){
 
       console.log(datas);
       var url = base_url+"index.php/videoback/cek_option_update";
-      var filevideo = "filevideo"+y;
+      var filevideo = "file"+y;
       var bar = $('.prog'+y);
       $('.F'+y).attr("hidden","true");
       $('.indiF'+y).addClass('show');

@@ -262,7 +262,7 @@ public function upvideo($data) {
   $config['upload_path'] = './assets/video';
   $config['allowed_types'] = 'mp4';
   $config['max_size'] = 90000;
-$video=$data['video'];
+  $video=$data['video'];
   $config['encrypt_name'] = TRUE;
   $new_name = time().$_FILES[$video]['name'];
   $config['file_name'] = $new_name;
@@ -420,7 +420,11 @@ public function cek_option_update()
   $data['deskripsi'] = htmlspecialchars($this->input->post('deskripsi'));
   $data['subBabID'] = htmlspecialchars($this->input->post('subBab'));
   $data['published'] = htmlspecialchars($this->input->post('publish'));
-  $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
+
+  //val file 
+  $data['video'] = htmlspecialchars($this->input->post('video'));
+
+  // $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
   $data['UUID']=$this->input->post('UUID');
   $UUID=$data['UUID'];
   $link=$this->input->post('link_video');
@@ -446,7 +450,9 @@ public function cek_option_update()
 
     $this->Mvideoback->ch_video($data);
   }else{
-    $this->updateVideo($data);
+    $this->tesedit($data);
+    // $this->updateVideo($data);
+    echo json_encode("server");
   }
 }
 }
@@ -459,40 +465,89 @@ public function updateVideo($data) {
   $config['max_size'] = 90000;
   $this->load->library('upload', $config);
   $UUID=$data['UUID'];
-
+  $video=$data['video'];
              // pengecekan upload
   if ($this->upload->do_upload('video')) {
     $this->dropVideoServer($UUID);
                 // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
     $file_data = $this->upload->data();
     $video = $file_data['file_name'];
-    $UUID=$data['UUID'];
-    $thumbnail =$data['thumbnail'];
+    // $UUID=$data['UUID'];
+    $data['UUID'] = $UUID;
+    // $thumbnail =$data['thumbnail'];
                 //data yg akan di masukan ke tabel video
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
       'namaFile' => $video,
-      'thumbnail' => $thumbnail,
+      // 'thumbnail' => $thumbnail,
       'link' => null,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
       // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
+    echo json_encode($data['video']);
   } else {
     $UUID=$data['UUID'];
-     $thumbnail = $data['thumbnail'];
+    $data['UUID'] = $UUID;
+
+     // $thumbnail = $data['thumbnail'];
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
-      'thumbnail' => $thumbnail,
+      // 'thumbnail' => $thumbnail,
       'link' => null,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
       // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
+    echo json_encode($data['video']);
   }
   $this->Mvideoback->ch_video($data);
+}
+
+public function tesedit($data) {
+
+  $config['upload_path'] = './assets/video';
+  $config['allowed_types'] = 'mp4';
+  $config['max_size'] = 90000;
+  $video=$data['video'];
+  $config['encrypt_name'] = TRUE;
+  $new_name = time().$_FILES[$video]['name'];
+  $config['file_name'] = $new_name;
+  $UUID=$data['UUID'];
+  $this->load->library('upload', $config);
+  $this->upload->initialize($config);
+  
+  // pengecekan upload
+  if (!$this->upload->do_upload($video)) {
+    // jika upload video gagal
+    $error = array('error' => $this->upload->display_errors());
+    echo json_encode("gagal");
+
+  } else {
+    $this->dropVideoServer($UUID);
+    // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
+    $file_data = $this->upload->data();
+    $video = $file_data['file_name'];
+    $thumbnail=$data['tumbnail'];
+    $penggunaID = $this->session->userdata['id'];
+    $data['UUID'] = $UUID;
+    //data yg akan di masukan ke tabel video
+    $data['video'] = array(
+      'judulVideo' => $data['judulVideo'] ,
+      'namaFile' => $video,
+      // 'thumbnail' => $thumbnail,
+      'link' => null,
+      'deskripsi' => $data['deskripsi'],
+      'published' => $data['published'],
+      // 'guruID' => $guruID,
+      'subBabID' => $data['subBabID'],
+      );
+    
+    $this->Mvideoback->ch_video($data);
+    echo json_encode("upload");
+  }
 }
 
   // update  Thumbnail
