@@ -3,49 +3,12 @@
     <!-- js untuk progres bar file yg di upload -->
     <script type="text/javascript" src="<?= base_url('assets/library/jquery/js/upbar.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/library/jquery/js/jequery.form.js') ?>"></script>
-<!-- Start Modal salah upload video -->
-<div class="modal fade" id="warningupload" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-center text-danger">Peringatan</h2>
-      </div>
-      <div class="modal-body">
-        <h3 class="text-center">Silahkan cek type extension video!</h3>
-        <h5 class="text-center">Type yang bisa di upload hanya .mp4</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- Start Modal salah upload file size video -->
-<div class="modal fade" id="e_size_video" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-center text-danger">Peringatan</h2>
-      </div>
-      <div class="modal-body">
-        <h3 class="text-center">Silahkan cek file size video!</h3>
-        <h5 class="text-center">File size video maksimal 90Mb</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 
     <div class="col-md-12">
 
         <!-- START Form panel -->
 
-        <form  class="panel panel-teal form-horizontal form-bordered" action="<?= base_url() ?>index.php/videoback/cek_option_update" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <form  class="panel panel-teal form-horizontal form-bordered" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
             <div class="panel-heading"><h5 class="panel-title">Form Update Video</h5>
                                         <!-- Start old info data soal -->
@@ -133,6 +96,9 @@
             <div class="form-group">
 
             <label class="control-label col-sm-2">Pilihan Upload Video</label>
+
+            <!-- <input type="text" name="cek_option_up" value="<?=$infovideo['namaFile'];?>" id='tamppilihan' hidden="true">
+            <input type="text" name="cek_option_up" value="<?=$infovideo['link'];?>" id='tamppilihan' hidden="true"> -->
 
               <div class="col-sm-8">
 
@@ -258,7 +224,7 @@
                 <label for="thumbnail" class="btn btn-sm btn-default">
                     Pilih gambar
                 </label>
-                <input style="display:none;" type="file" id="thumbnail" name="thumbnail" onchange="Validatethumbnail(this);"/>
+                <input style="display:none;" type="file" id="thumbnail" name="thumbnail" onchange="ValidateInputThumbnail(this);"/>
             </div>
         </div>
          <!-- /Upload thumbnail -->
@@ -337,7 +303,7 @@
 
             <div class="panel-footer">
 
-                <button type="submit" class="btn btn-primary" data-style="zoom-in"><span class="ladda-label">Simpan</span></button>
+                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateVideo()"><span class="ladda-label">Simpan</span></button>
 
             </div>
 
@@ -355,7 +321,9 @@
 
 </section>
 
-
+<!-- Script ajax upload -->
+ <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
+<!-- /Script ajax upload -->
 
 
 
@@ -651,35 +619,6 @@
 
 <!-- start script js validation extension -->
 <script type="text/javascript">
-// prev Thumbnail 
-        $(function () {
-        $('#thumbnail').on('change',function () {
-            var file = this.files[0];
-            var reader = new FileReader();
-            var size=Math.round(file.size/1024);
-        // start pengecekan ukuran file
-        if (size>=90000) {
-            // $('#e_size_video').modal('show');
-            $('.prv_thumbnail').hide();
-        }else{
-            reader.onload = viewer.load;
-            reader.readAsDataURL(file);
-            viewer.setProperties(file);
-        }
-        
-    });
-        var viewer = {
-            load : function(e){
-                $('#prevthumbnail').attr('src', e.target.result);
-            },
-            setProperties : function(file){
-                $('#namethumbnail').text(file.name);
-                $('#typethumbnail').text(file.type);
-                $('#sizethumbnail').text(Math.round(file.size/1024));
-            },
-        }
-    });
-
  var _validFileExtensions = [".mp4"];    
 function ValidateSingleInput(oInput) {
     if (oInput.type == "file") {
@@ -695,44 +634,95 @@ function ValidateSingleInput(oInput) {
             }
              
             if (!blnValid) {
-                $('#warningupload').modal('show');
-                 $('.prv_video').hide();
-                resetVideo();
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
+                swal('Silahkan cek type extension video! ', 'Type yang bisa di upload hanya .mp4', 'warning');
+                // resetVideo();
                 return false;
+            } else {
+                fileVideo(oInput,z='');
             }
         }
     }
     return true;
 }
-$(function () {
-    $('#file').on('change',function () {
-        var file = this.files[0];
-        var reader = new FileReader();
-        var size=Math.round(file.size/1024);
-        // start pengecekan ukuran file
-        if (size>=90000) {
-            $('#e_size_video').modal('show');
-            $('.prv_video').hide();
-        }else{
-            reader.onload = viewer.load;
-            reader.readAsDataURL(file);
-            viewer.setProperties(file);
-        }
-        
-    });
+    // show preview video
+  function fileVideo(oInput,z='') {
     var viewer = {
         load : function(e){
-            $('#preview').attr('src', e.target.result);
+          $('#preview'+z).attr('src', e.target.result);
         },
         setProperties : function(file){
-            $('#filename').text(file.name);
-            $('#filetype').text(file.type);
-            $('#filesize').text(Math.round(file.size/1024));
+          $('#filename'+z).text(file.name);
+          $('#filetype'+z).text(file.type);
+          $('#filesize'+z).text(Math.round(file.size/1024));
         },
+      }
+
+    var file = oInput.files[0];
+    var reader = new FileReader();
+    var size=Math.round(file.size/1024);
+     if (size>=90000) {
+        swal('Silahkan cek file size video!', 'File size video maksimal 90Mb', 'warning');
+      }else{
+        $(".prv_video"+z).show();
+        reader.onload = viewer.load;
+        reader.readAsDataURL(file);
+        viewer.setProperties(file);
+      }
+  }
+
+  //cek dulu type file thumbnail
+  function ValidateInputThumbnail(oInput,z='') {
+    var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+
+            if (!blnValid) {
+                swal('Silahkan cek type extension thumbnail! ', 'Type yang bisa di upload hanya ".jpg", ".jpeg", ".bmp", ".gif", ".png', 'warning');
+                return false;
+        }else{
+            fileThumbnail(oInput,z='');
+        }
+      }
     }
-});
+          return true;
+  }
+
+  // show preview Thumbnail
+  function fileThumbnail(oInput,z='') {
+    var viewer = {
+          load : function(e){
+              $('#prevthumbnail'+z).attr('src', e.target.result);
+          },
+          setProperties : function(file){
+              $('#namethumbnail'+z).text(file.name);
+              $('#typethumbnail'+z).text(file.type);
+              $('#sizethumbnail'+z).text(Math.round(file.size/1024));
+          },
+        }
+
+      var file = oInput.files[0];
+      var reader = new FileReader();
+      var size=Math.round(file.size/1024);
+      // start pengecekan ukuran file
+      if (size>=100) {
+        swal('Silahkan cek file size thumbnail!', 'File size thumbnail maksimal 100 Kb', 'warning');
+      }else{
+        $(".prv_thumbnail"+z).show();
+        reader.onload = viewer.load;
+        reader.readAsDataURL(file);
+        viewer.setProperties(file);
+      }
+  }
+
 function resetVideo(){
       $("input[name=video]").val("");
       $('#previewAudio').attr('src', "");
@@ -740,5 +730,120 @@ function resetVideo(){
       $('#filetype').text("");
       $('#filesize').text("");
   }
+
+    //get data video dan cek data video
+    function updateVideo(y='') {
+      var option_up =$('[name=option_up'+y+']').val();
+      var thumbnail =$('[name=thumbnail'+y+']').val();
+      console.log(thumbnail);
+      // cek data video
+      if (thumbnail == '') {
+        console.log('maksimal');
+        // updateData(y);
+      } else {
+        updateThumbnail(y);
+        // updateData(y);
+      }
+    }
+
+
+    //update data thumbnail
+    function updateThumbnail(y='') {
+      var tumbnail = 'tumbnail'+y;
+      var UUID =$('[name=UUID'+y+']').val();
+      var datas = {tumbnail:tumbnail, UUID:UUID};
+      var url = base_url+"index.php/videoback/chThumbnail";
+      var filethumbnail = "thumbnail"+y;
+      $.ajaxFileUpload({
+        url : url,
+        type: "POST",
+        data: {UUID:UUID},
+        fileElementId :filethumbnail,
+        dataType: "TEXT", 
+        success: function(data)
+        {
+        
+          var thumbnails = JSON.parse(data);
+          // console.log(thumbnails);
+          updateData(y,thumbnails);
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          sweetAlert("Oops...", "Data gagal tersimpan!", "error");
+        }
+      });
+    }
+
+    //post data form
+    function updateData(y,$thumbnails) {
+        console.log('masuk');
+      var subBab =$('[name=subBab'+y+']').val();
+      var option_up = $('[name=option_up'+y+']:checked').val();
+      var video ='video'+y;
+      var link_video =$('[name=link_video'+y+']').val();
+      var jenis_video =$('[name=jenis_video'+y+']').val();
+      var judulvideo =$('[name=judulvideo'+y+']').val();
+      var deskripsi =$('[name=deskripsi'+y+']').val();
+      var publish =$('[name=publish'+y+']').val();
+      var UUID =$('[name=UUID'+y+']').val();
+
+      var datas = {
+            subBab:subBab,
+            option_up:option_up,
+            video:video,
+            link_video:link_video,
+            thumbnail:thumbnails,
+            jenis_video:jenis_video,
+            judulvideo:judulvideo,
+            deskripsi:deskripsi,
+            publish:publish,
+            UUID:UUID
+      };
+
+      console.log(datas);
+      var url = base_url+"index.php/videoback/cek_option_update";
+      var filevideo = "filevideo"+y;
+      var bar = $('.prog'+y);
+      $('.F'+y).attr("hidden","true");
+      $('.indiF'+y).addClass('show');
+      $.ajaxFileUpload({
+        url : url,
+        type: "POST",
+        data: datas,
+        fileElementId :filevideo,
+        dataType: "TEXT",
+        onChange: function()
+        {
+        },
+        uploadProgress: function ( event, position, total,percentComplete)         {
+         var percentVal = percentComplete + '%';
+         bar.width(percentVal);
+          console.log(percentComplete);
+        },
+        success: function(data)
+        {
+            console.log(data);
+          var percentVal = '100%';
+          bar.width(percentVal);
+          swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+          sweetAlert("Oops...", "Data gagal tersimpan!", "error");
+        }
+      });
+    }
+
+    // set pilihan video ################
+    // var pilihan =$('#tamppilihan').val();
+    // if (tw == '1') {
+    //     $('#satu').attr('selected','selected');
+    // } else if (tw == '2') {
+    //     $('#dua').attr('selected','selected');
+    // } else if (tw == '3') {
+    //     $('#tiga').attr('selected','selected');
+    // } else {
+    //     $('#empat').attr('selected','selected');
+    // }
 </script>
 <!-- END -->

@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>"/>
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5">
   <div class="container pt-60 pb-60">
     <!-- Section Content -->
     <div class="section-content">
@@ -57,26 +57,23 @@
             <div class="blog-post single-post" id="topik<?=$noTopik;?>">
               <?php $noTopik++; ?>
               <article class="post clearfix mb-0">
-                
+
                 <div class="entry-content" >
                   <div class="entry-meta media no-bg no-border mt-15 pb-20">
                     <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                       <ul>
-                        <li class="font-12 text-white font-weight-600" ><i class="fa fa-comment"></i>Line</li>
+                        <li class="font-12 text-white font-weight-600" ><i class="fa fa-comment"></i>Topik</li>
                       </ul>
                     </div>
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip ">
-                        <h5 class="entry-title text-uppercase pt-0 mt-0 ">nama Topik: <?=$key['namaTopik']?></h5>
+                        <h3 class="entry-title pt-0 mt-0 ">Nama Topik: <?=$key['namaTopik']?></h3>
                       </div>
                     </div>
                     
                   </div>
                   
                   <p style="padding-left: 15px;">Deskripsi:' <?=$key['deskripsi']?> '</p>
-                  
-                  
-                  <h4 style="padding-left: 15px;">Time Line</h4>
                   <hr>
                   <ul class="media-list media-list-feed " >
                     <!-- end header line-->
@@ -85,9 +82,9 @@
                   </ul>
                   <br>
                   <div class="tags" style="margin-left: 20px;">
-                    <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['tingkat']?></a></i>
-                    <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['mapel']?></a></i>
-                    <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['bab']?></a></i>
+                  <i class="fa fa-graduation-cap text-theme-color-4 ml10"><b>Tingkat :</b> <?=$key['tingkat']?> | </i>
+                  <i class="fa fa-tags text-theme-color-4 ml10"><b>Mata Pelajaran :</b> <?=$key['mapel']?> | </i>
+                  <i class="fa fa-tags text-theme-color-4 ml10"><b>Bab :</b> <?=$key['bab']?> | </i>
                   </div>
 
                 </div>
@@ -99,24 +96,21 @@
               <div class="blog-post single-post" id="topik<?=$noTopik;?>">
                 <?php $noTopik++; ?>
                 <article class="post clearfix mb-0">
-                  
+
                   <div class="entry-content">
                     <div class="entry-meta media no-bg no-border mt-15 pb-20"> 
                       <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                         <ul>
-                          <li class="font-12 text-white font-weight-600"><i class="fa fa-comment"></i>Line</li>
+                          <li class="font-12 text-white font-weight-600"><i class="fa fa-comment"></i>Topik</li>
                         </ul>
                       </div>                
                       <div class="media-body pl-15">
                         <div class="event-content pull-left flip">
-                          <h5 class="entry-title text-uppercase pt-0 mt-0 ">nama Topik:<?=$key['namaTopik']?></h5>
+                          <h3 class="entry-title pt-0 mt-0 ">Nama Topik : <?=$key['namaTopik']?></h3>
                         </div>
                       </div>
                     </div>
-                    
                     <p style="padding-left: 15px;">Deskripsi:' <?=$key['deskripsi']?> '</p>
-                    
-                    <h4 style="padding-left: 15px;">Time Line</h4>
                     <hr>
                     <ul class="media-list media-list-feed " >
                       <!-- end header line-->
@@ -141,8 +135,8 @@
                       <?php elseif ($key['icon'] == "ico-folder" ): ?>
                         <a onclick="getmateri('<?=$u;?>')" href="javascript:void(0);" class="media-heading" id="font-<?=$i;?>" style="padding-left: 20px;"><?=$key['namaStep']?></a>
                       <?php else: ?>
-                      <!-- // Untuk menampung staus step disable or enable  -->
-                       <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:  20px;"><?=$key['namaStep']?></a> 
+                        <!-- // Untuk menampung staus step disable or enable  -->
+                        <a  href="<?=$key['link'];?>" class="media-heading" id="font-<?=$i;?>" style="padding-left:  20px;"><?=$key['namaStep']?></a> 
                       <?php endif ?>
                     </div>
                   </li> 
@@ -158,17 +152,12 @@
               <br>
               <input id="n" type="text"  value="<?=$i;?>" hidden="true">
               <?php if ($datline!= array()): ?>
-                
                 <div class="tags" style="margin-left: 20px;">
-                  <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['tingkat']?></a></i>
-                  <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['mapel']?></a></i>
-                  <i class="fa fa-tags text-theme-color-2"><a href="#" ><?=$key['bab']?></a></i>
+                  <i class="fa fa-graduation-cap text-theme-color-4 ml10"><b>Tingkat :</b> <?=$key['tingkat']?> | </i>
+                  <i class="fa fa-tags text-theme-color-4 ml10"><b>Mata Pelajaran :</b> <?=$key['mapel']?> | </i>
+                  <i class="fa fa-tags text-theme-color-4 ml10"><b>Bab :</b> <?=$key['bab']?> | </i>
                 </div>
-                
-
               </div>
-              
-
             </article>
             
             <hr class="divider-color" />
@@ -184,7 +173,7 @@
           <div class="tagline p-0 pt-20 mt-5">
             <div class="row">
               <div class="col-md-8">
-                
+
               </div>
               
             </div>
@@ -213,46 +202,46 @@
     function getvideo(uuid) {
       // uuid =$('input[name=uuid]').val();
       // console.log(uuid);
-        url_ajax = base_url+"linetopik/tampunguuid";
+      url_ajax = base_url+"linetopik/tampunguuid";
 
-        var global_properties = {
-          uuid: uuid
-        };
+      var global_properties = {
+        uuid: uuid
+      };
 
-        $.ajax({
-          type: "POST",
-          dataType: "JSON",
-          url: url_ajax,
-          data: global_properties,
-          success: function(data){
-            window.location.href = base_url + "linetopik/step_video";  
-          },error:function(data){
-            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-          }
+      $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: url_ajax,
+        data: global_properties,
+        success: function(data){
+          window.location.href = base_url + "linetopik/step_video";  
+        },error:function(data){
+          sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+        }
 
-        });
+      });
     }
 
     function getmateri(uuid) {
-        url_ajax = base_url+"linetopik/tampunguuid";
+      url_ajax = base_url+"linetopik/tampunguuid";
 
-        var global_properties = {
-          uuid: uuid
-        };
+      var global_properties = {
+        uuid: uuid
+      };
 
-        $.ajax({
-          type: "POST",
-          dataType: "JSON",
-          url: url_ajax,
-          data: global_properties,
-          success: function(data){
-            window.location.href = base_url + "linetopik/step_materi";  
-          },error:function(data){
-            sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-          }
+      $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: url_ajax,
+        data: global_properties,
+        success: function(data){
+          window.location.href = base_url + "linetopik/step_materi";  
+        },error:function(data){
+          sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+        }
 
-        });
+      });
     }
     
-</script>
+  </script>
 

@@ -313,7 +313,17 @@ class Modulonline extends MX_Controller {
 
     // function untuk mengambil data soal
 function ajax_listAllSoal() {
-    $modul = $this->Mmodulonline->get_all_moduls();
+    $hakAkses=$this->session->userdata['HAKAKSES'];
+    if($hakAkses=='admin'){
+     $modul = $this->Mmodulonline->get_all_moduls();
+    }elseif($hakAkses=='guru'){
+    //tampil modul by guru//
+    $create_by = $this->session->userdata['id'];
+    $modul = $this->Mmodulonline->modul_guruid($create_by);
+    }else{
+        redirect(site_url('welcome'));
+    }
+
     $data = array();
     $no = 1;
 

@@ -141,14 +141,14 @@ class Mvideos extends CI_Model
 
   //ambil semua video yang dibuat oleh guru
 
-  function get_all_video_by_teacher( $guru_id ) {
+  function get_all_video_by_teacher( $penggunaID ) {
     $this->db->select( '*, video.id as videoID,namaDepan,namaBelakang,judulSubBab,judulBab, tp.keterangan as matapelajaran' );
     $this->db->from( 'tb_video video' );
-    $this->db->join( 'tb_guru guru', 'video.guruID=guru.id' );
+    $this->db->join( 'tb_guru guru', 'video.penggunaID=guru.id' );
     $this->db->join('tb_subbab subbab','video.subBabID=subbab.id');
     $this->db->join('tb_bab bab','subbab.babID=bab.id');
     $this->db->join('tb_tingkat-pelajaran tp','bab.tingkatPelajaranID=tp.id');
-    $this->db->where( 'guru.id', $guru_id );
+    $this->db->where( 'video.penggunaID', $penggunaID );
     $this->db->where('video.status', '1');
     $query = $this->db->get();
     return $query->result_array();

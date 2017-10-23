@@ -1,14 +1,14 @@
 <style>
-  .canvasjs-chart-credit {
-   display: none;
- }
- .table th:hover{
-   cursor: hand;
- }
+.canvasjs-chart-credit {
+ display: none;
+}
+.table th:hover{
+ cursor: hand;
+}
 
- .pagination li:before{
-   color:white;
- }
+.pagination li:before{
+ color:white;
+}
 </style>
 <!-- MODAL LATIHAN PERSENTASE-->
 <div class="modal fade" tabindex="-1" role="dialog" id="latihan_persentase">
@@ -150,23 +150,23 @@
     <!-- PESAN -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
       <div class="row">
-     <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
+       <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
 
-      <span class="text-theme-color-1"> Pesan</span></h2>
-      <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
-      <?php foreach ($pesan as $key ) : ?>
-        <div class="col-md-4">
-          <blockquote>
-            <p><?php $c = $key['isi']; echo substr($c, 0, 30) ?></p>
-            <footer><i class="fa fa-date"></i> <?=$key['date_created'] ?></footer>
-          </blockquote>
-        </div>
-      <?php endforeach ?>
-      <br><br><br>
-      
+        <span class="text-theme-color-1"> Pesan</span></h2>
+        <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
+        <?php foreach ($pesan as $key ) : ?>
+          <div class="col-md-4">
+            <blockquote>
+              <p><?php $c = $key['isi']; echo substr($c, 0, 30) ?></p>
+              <footer><i class="fa fa-date"></i> <?=$key['date_created'] ?></footer>
+            </blockquote>
+          </div>
+        <?php endforeach ?>
+        <br><br><br>
 
-    </div>
-    <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br>
+
+      </div>
+      <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br>
     </div>
     <!-- PESAN -->
 
@@ -193,11 +193,11 @@
                 <h5 class="font-16 title"><a href="#"><a onclick="getlearning(<?=$item['babID'] ?>)"><?=$item['namaTopik'] ?></a></a></h5>
                 
                 <div class="progress-item">
-                <div class="progress">
-                 <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
-                   <span class="percent"><?=ceil($persentasi) ?>%</span>
+                  <div class="progress">
+                   <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
+                     <span class="percent"><?=ceil($persentasi) ?>%</span>
+                   </div>
                  </div>
-               </div>
                </div>
 
                <div class="day"><?=$item['stepDone'] ?> / <?=$item['jumlah_step'] ?> Step Line Dikerjakan</div>
@@ -240,22 +240,22 @@
        <div class="progress-item">
         <div class="progress">
          <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
-         <span class="percent"><?=ceil($persentasi) ?>%</span>
-        </div>
-      </div>
+           <span class="percent"><?=ceil($persentasi) ?>%</span>
+         </div>
+       </div>
 
-      <div class="progress-title">
-       <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
-       <h6><?=$item['total_benar'] ?> Benar dari <?=$item['total_soal'] ?> soal</h6>
-       <h6><?=(int)$persentasi ?>% Benar</h6>
-       <h6>Nilai : <bold><i><?=(int)$item['total_benar'] / (int)$item['total_soal'] * 100 ?><bold></i></h6>
+       <div class="progress-title">
+         <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
+         <h6><?=$item['total_benar'] ?> Benar dari <?=$item['total_soal'] ?> soal</h6>
+         <h6><?=(int)$persentasi ?>% Benar</h6>
+         <h6>Nilai : <bold><i><?=(int)$item['total_benar'] / (int)$item['total_soal'] * 100 ?><bold></i></h6>
+         </div>
+       </div>
      </div>
-   </div>
+     <?php $no++; ?>
+   <?php endforeach ?>
  </div>
- <?php $no++; ?>
-<?php endforeach ?>
-</div>
-<a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a>
+ <a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a>
 </div>
 <!-- LATIHAn -->
 </div>
@@ -317,23 +317,26 @@
           <div class="link-cont">
            <span></span>
            <?php $url =  base_url()."video/seevideo/".$item['videoid']?>
-
+           <?php $url_thumbnail =  base_url()."assets/image/thumbnail/".$item['thumbnail']?>
          </div>
          <center>
           <?php if ($item['link']=='' || $item['link']==' '): ?>
-            <iframe width="250" src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>"></iframe>
+            <!-- <img src="<?=$url_thumbnail?>"> -->
+            <video width="250" controls controlsList="nodownload">
+                <source src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>" type="video/mp4" >
+            </video> 
           <?php endif ?>
           <?php if ($item['namaFile']=='' || $item['namaFile']==' '): ?>
-            <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
+             <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
           <?php endif ?>
-         </center>
+        </center>
 
-       </div>
-       <a href="<?=$url ?>" class="cws-right"><h3><?=$item['judulVideo'] ?></h3></a>
-       <p><?=$item['deskripsi'] ?></p>
-     </div>
-   </div>
- <?php endforeach ?>
+      </div>
+      <a href="<?=$url ?>" class="cws-right"><h3><?=$item['judulVideo'] ?></h3></a>
+      <p><?=$item['deskripsi'] ?></p>
+    </div>
+  </div>
+<?php endforeach ?>
 
 
 </div>
@@ -474,17 +477,17 @@ $('.tryout_select').change(function () {
     judulBab: id_bab
   };
 
-    $.ajax({
-      type: "POST",
-      dataType: "JSON",
-      url: url_ajax,
-      data: global_properties,
-      success: function(data){
-        window.location.href = base_url + "linetopik/learningline";  
-      },error:function(data){
-        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-      }
+  $.ajax({
+    type: "POST",
+    dataType: "JSON",
+    url: url_ajax,
+    data: global_properties,
+    success: function(data){
+      window.location.href = base_url + "linetopik/learningline";  
+    },error:function(data){
+      sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+    }
 
-    });
+  });
 }
 </script>

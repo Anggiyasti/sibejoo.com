@@ -53,8 +53,8 @@ class Videoback extends MX_Controller {
 
     # ajax mengambil video by id guru
   function ajax_get_video_by_id_guru(){
-    $guru_id = $this->session->userdata['id_guru'];
-    $data['videos_uploaded'] = $this->load->mvideos->get_all_video_by_teacher($guru_id);
+    $penggunaID = $this->session->userdata['id'];
+    $data['videos_uploaded'] = $this->load->mvideos->get_all_video_by_teacher($penggunaID);
        // var_dump($data['videos_uploaded']);
     $list = $data['videos_uploaded'];
     $data = array();
@@ -81,7 +81,10 @@ class Videoback extends MX_Controller {
       $row[] = $list_video['matapelajaran'];
       $row[] = $list_video['judulBab'];
       $row[] = $list_video['judulSubBab'];
-      $row[] = substr($list_video['deskripsi'], 0, 100)." <a href=''>Read More</a>";
+      $row[] = substr($list_video['deskripsi'], 0, 100).' <a class="detaildeskripsi-'.$list_video['videoID'].'"  title="Read More"
+      data-id='."'".json_encode($list_video)."'".'
+      onclick="detailDeskripsi('."'".$list_video['videoID']."'".')"
+      >Read More</a> ';
       $row[] = $list_video['namaDepan']." ".$list_video['namaBelakang'];
       $row[] =  $publish;
       $row[] = ' 
@@ -151,7 +154,7 @@ public function index() {
 
 public function formupvideo() {
 
-  $data['judul_halaman'] = "upload Video";
+  $data['judul_halaman'] = "Upload Video";
   $data['files'] = array(
     APPPATH . 'modules/videoback/views/v-upload-video-form2.php',
     );
@@ -185,7 +188,7 @@ public function formUpdateVideo($UUID) {
  $data['video']=$this->Mvideoback->get_video_by_UUID($UUID)[0];
  $subBabID=$data['video']['subBabID'];
  $data['infovideo']=$this->Mvideoback->get_info_video($subBabID);
- $data['judul_halaman'] = "update Video";
+ $data['judul_halaman'] = "Update Video";
  $data['files'] = array(
   APPPATH . 'modules/videoback/views/v-update-video-form.php',
   );
@@ -221,8 +224,9 @@ public function managervideo() {
   $id_guru = $this->session->userdata['id_guru'];
   // get jumlah komen yg belum di baca
   $data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
-  //
-  // $data['paket_soal'] = $this->load->MPaketsoal->getpaketsoal();
+  // get keahlian detail
+  $data['keahlian_detail']=json_encode($this->mguru->get_m_keahlianGuru($id_guru));
+
   $data['judul_halaman'] = "My Video";
   $data['files'] = array(
     APPPATH.'modules/videoback/views/v-container-video.php',
@@ -275,17 +279,14 @@ $video=$data['video'];
     // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
     $file_data = $this->upload->data();
     $video = $file_data['file_name'];
-    // $thumbnail=$data['thumbnail'];
-    // $filethumbnail = $this->upThumbnail($thumbnail);
-     $filethumbnail = "";
+    $thumbnail=$data['tumbnail'];
     $penggunaID = $this->session->userdata['id'];
-    // $guruID = $data['tb_guru']['id'];
     $UUID=uniqid();
-                //data yg akan di masukan ke tabel video
+    //data yg akan di masukan ke tabel video
     $data_video = array(
       'judulVideo' => $data['judulVideo'] ,
       'namaFile' => $video,
-      'thumbnail' => $filethumbnail,
+      'thumbnail' => $thumbnail,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
       'penggunaID' => $penggunaID,
@@ -295,35 +296,35 @@ $video=$data['video'];
       );
 
     $this->Mvideoback->insertVideo($data_video);
-    // redirect(site_url('videoback/daftarvideo'));
   }
 }
 
-public function upThumbnail($thumbnail)
-{
-    $configTmbl['upload_path'] = './assets/image/thumbnail/';
-        $configTmbl['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $configTmbl['max_size'] = 100;
-        $configTmbl['max_width'] = 1024;
-        $configTmbl['max_height'] = 768;
-        //random name
-        $configTmbl['encrypt_name'] = TRUE;
-        $new_name = time().$_FILES["thumbnail"]['name'];
-        $configTmbl['file_name'] = $new_name;
-        $this->load->library('upload', $configTmbl);
-        $gambar = $thumbnail;
-        $this->upload->initialize($configTmbl);
-        if ($this->upload->do_upload($gambar)) {
-           $file_data = $this->upload->data();
-           $file_name = $file_data['file_name'];
-           return $file_name;
-        }else{
-          return null;
-        }
-
-
-}
-
+// upload thumbnail yang dipake
+  function upload_thumbnail(){
+    $post=$this->input->post();
+    //konfigurasi upload
+    $config['upload_path'] = './assets/image/thumbnail/';
+    $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
+    $config['max_size'] = 100;
+    $config['max_width'] = 1024;
+    $config['max_height'] = 1024;
+    //random name
+    $config['encrypt_name'] = TRUE;
+    $new_name = time()."-".$_FILES["thumbnail"]['name'];
+    $config['file_name'] = $new_name;
+    $this->load->library('upload', $config);
+    $thumbnail = 'thumbnail';
+    $this->upload->initialize($config);
+      if (!$this->upload->do_upload($thumbnail)) {
+         echo json_encode("");
+       }else {
+          $file_data = $this->upload->data();
+          //get nama file yg di upload
+          $file_name = $file_data['file_name'];
+          $data['thumbnail']=$file_name;
+          echo json_encode($file_name);
+       }
+  }
 
 public function cek_option_upload()
 {
@@ -419,6 +420,7 @@ public function cek_option_update()
   $data['deskripsi'] = htmlspecialchars($this->input->post('deskripsi'));
   $data['subBabID'] = htmlspecialchars($this->input->post('subBab'));
   $data['published'] = htmlspecialchars($this->input->post('publish'));
+  $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
   $data['UUID']=$this->input->post('UUID');
   $UUID=$data['UUID'];
   $link=$this->input->post('link_video');
@@ -427,7 +429,7 @@ public function cek_option_update()
     $this-> formUpdateVideo($data['UUID']);
   }else{
    if ($option_up =='link') {
-    $this->dropVideoServer($UUID);
+    // $this->dropVideoServer($UUID);
     // $penggunaID = $this->session->userdata['id'];
     // $data['tb_guru'] = $this->Mvideoback->getIDguru($penggunaID)[0];
     // $guruID = $data['tb_guru']['id'];
@@ -443,10 +445,7 @@ public function cek_option_update()
       );
 
     $this->Mvideoback->ch_video($data);
-    redirect(site_url('videoback/daftarvideo'));
   }else{
-
-
     $this->updateVideo($data);
   }
 }
@@ -468,7 +467,7 @@ public function updateVideo($data) {
     $file_data = $this->upload->data();
     $video = $file_data['file_name'];
     $UUID=$data['UUID'];
-    $thumbnail = $this->chThumbnail($UUID);
+    $thumbnail =$data['thumbnail'];
                 //data yg akan di masukan ke tabel video
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
@@ -482,7 +481,7 @@ public function updateVideo($data) {
       );
   } else {
     $UUID=$data['UUID'];
-     $thumbnail = $this->chThumbnail($UUID);
+     $thumbnail = $data['thumbnail'];
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
       'thumbnail' => $thumbnail,
@@ -494,21 +493,24 @@ public function updateVideo($data) {
       );
   }
   $this->Mvideoback->ch_video($data);
-  redirect(site_url('videoback/daftarvideo'));
 }
-//  Thumbnail
-public function chThumbnail($UUID)
-{
-    $oldthumbnail = $this->Mvideoback->get_onethumbnail($UUID)[0]['thumbnail'];
-    $configChTmbl['upload_path'] = './assets/image/thumbnail/';
+
+  // update  Thumbnail
+  public function chThumbnail() {
+      $post=$this->input->post();
+      $uuid = $post['UUID'];
+      $oldthumbnail = $this->Mvideoback->get_onethumbnail($uuid)[0]['thumbnail'];
+      // echo json_encode($oldthumbnail);
+      $configChTmbl['upload_path'] = './assets/image/thumbnail/';
       $configChTmbl['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
       $configChTmbl['max_size'] = 100;
       $configChTmbl['max_width'] = 1024;
-      $configChTmbl['max_height'] = 768;
+      $configChTmbl['max_height'] = 1024;
       //random name
-      $configChTmbl['encrypt_name'] = TRUE;
-      $new_name = time().$_FILES["thumbnail"]['name'];
-      $configChTmbl['file_name'] = $new_name;
+      // $configChTmbl['encrypt_name'] = TRUE;
+      // $new_name = time()."-".$_FILES["thumbnail"]['name'];
+      // $new_name = $oldthumbnail;
+      $configChTmbl['file_name'] = $oldthumbnail;
       $this->load->library('upload', $configChTmbl);
       $gambar = "thumbnail";
       $this->upload->initialize($configChTmbl);
@@ -518,9 +520,16 @@ public function chThumbnail($UUID)
           }
          $file_data = $this->upload->data();
          $file_name = $file_data['file_name'];
-         return $file_name;
+         // $file_name=$oldthumbnail;
+         $data['UUID'] = $uuid;
+         $data['video'] = array(
+              'thumbnail' => $file_name,
+              );
+          
+          $this->Mvideoback->ch_video($data);
+         echo json_encode($file_name);
       }else{
-        return $oldthumbnail;
+        echo json_encode($oldthumbnail);
       }
 
 
@@ -1341,7 +1350,8 @@ public function tampVideo($list='')
           $id_guru = $this->session->userdata['id_guru'];
            // get jumlah komen yg belum di baca
           $data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
-          //
+          // get keahlian detail
+          $data['keahlian_detail']=json_encode($this->mguru->get_m_keahlianGuru($id_guru));
           $this->parser->parse('templating/index-b-guru', $data);
         }else{
             // jika siswa redirect ke welcome

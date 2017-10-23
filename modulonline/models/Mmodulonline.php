@@ -6,7 +6,13 @@ class Mmodulonline extends CI_Model {
   $this->db->insert('tb_modul', $dataSoal);
 }
 
-
+  public function modul_guruid($id){
+   $this->db->select('*');
+   $this->db->where('create_by', $id);
+   $this->db->from('tb_modul');
+  $query = $this->db->get();
+  return $query->result_array();
+  }
 public function get_info_modul($tingkatID)
 {
   $this->db->select('tkt.id as id_tingkat ,aliasTingkat,tp.id as id_mp,tp.keterangan as mp');

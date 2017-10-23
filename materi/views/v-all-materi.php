@@ -1,38 +1,23 @@
 <!-- Start Modal Detail Video dari server -->
 	<div class="modal fade" id="mdetailvideo">
-
 		<div class="modal-dialog" role="document">
-
 			<div class="modal-content">
-
 				<div class="modal-header">
-
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
 						<span aria-hidden="true">&times;</span>
-
 					</button>
-
 					<h3 class="semibold mt0 text-accent text-center"></h3>
-
 				</div>
-
 				<div class="modal-body">
 					<p id="isicontent">
 						
 					</p>
 				</div>
-
 				<div class="modal-footer">
-
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 	<!-- End Modal Detail Video -->
 <section class="id="main" role="main"">
@@ -84,11 +69,17 @@
 <script type="text/javascript">
 	var  $list_materi;
 	$(document).ready(function() {
+		hak_akses = "<?=$this->session->userdata('HAKAKSES') ?>";
+		if (hak_akses=="guru") {
+				url=base_url+"index.php/materi/ajax_get_all_materi";
+		}else{
+				url=base_url+"index.php/materi/get_materi_by_user";
+		}
 		//#get list by id guru
 		$list_materi = $('#zero-configuration').DataTable({ 
 			"processing": true,
 			"ajax": {
-				"url": base_url+"index.php/materi/ajax_get_all_materi",
+				"url": url,
 				"type": "POST"
 			},
 		});
@@ -145,8 +136,6 @@ function drop_materi(UUID){
 	// }
 }
 // fungsi updt
-
-
 //fungsi reload table
 function  reload_tblist(){
 	$list_materi.ajax.reload(null,false);

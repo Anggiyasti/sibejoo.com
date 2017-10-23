@@ -67,6 +67,45 @@
 
 	</div>
 	<!-- End Modal Detail Video -->
+	<!-- Start Modal Detail Detail Deskripsi -->
+	<div class="modal fade" id="mdetaildeskripsi">
+
+		<div class="modal-dialog" role="document">
+
+			<div class="modal-content">
+
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+						<span aria-hidden="true">&times;</span>
+
+					</button>
+
+					<h3 class="modal-title text-center"></h3>
+
+				</div>
+
+				<div class="modal-body">
+                	<label>Deskripsi :</label>
+                	<p class="text-justify" id="deskripsi">
+                    
+                	</p>                    
+                </div>
+
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<!-- End Modal Detail Video -->
+
 	<div class="panel panel-teal">
 		<div class="panel-heading">
 			<h5 class="panel-title">Video Yang Telah Anda Upload</h5>
@@ -114,7 +153,7 @@
 	});
 
 //# ketika tombol di klik
-function detail(id){console.log(id);
+function detail(id){
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
@@ -133,6 +172,16 @@ function detail(id){console.log(id);
 
 	}
 
+}
+//##
+
+//# ketika tombol read more di klik
+function detailDeskripsi(id){
+	var kelas ='.detaildeskripsi-'+id;
+	var data = $(kelas).data('id');
+	$('h3.modal-title').html(data.judulVideo);
+	$('p#deskripsi').html(data.deskripsi);
+	$('#mdetaildeskripsi').modal('show');
 }
 //##
 

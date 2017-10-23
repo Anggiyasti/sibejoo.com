@@ -465,7 +465,24 @@
             <span class="arrow"></span>
             </a>
           </li> -->
+<li>
+ <a href="javascript:void(0);" data-target="#modulonline" data-toggle="submenu" data-parent=".topmenu">
+  <span class="figure"><i class="ico-clipboard2"></i></span>
+  <span class="text">Edu Drive</span>
+  <span class="arrow"></span>
+</a>
 
+<ul id="modulonline" class="submenu collapse ">
+  <li class="submenu-header ellipsis">Edu Drive</li>
+
+  <li>
+   <a href="<?=base_url('index.php/modulonline/daftar_modul')?>" data-target="#submodul" data-toggle="submenu"  >
+    <span class="text">Daftar Modul</span>
+  </a>
+</li>
+
+</ul>
+</li>
           <li>
             <a href="javascript:void(0);" data-target="#gallery" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-images"></i></span>
