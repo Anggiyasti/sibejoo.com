@@ -187,7 +187,7 @@ function drop_step(idstep){
 			url:url,
 			success:function(){
 				swal("Terhapus!", "Step berhasil dihapus.", "success");
-				reload();
+				dataTableLearning.ajax.reload(null,false);
 			},
 			error:function(){
 				sweetAlert("Oops...", "Data gagal terhapus!", "error");

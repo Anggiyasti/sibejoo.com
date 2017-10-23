@@ -103,7 +103,7 @@ $('.simpan_step').click(function(){
 				},
 				function(isConfirm){
 					if (isConfirm) {
-						swal("selesai", "Anda akan dialihkan ke daftar step", "success");
+						// swal("selesai", "Anda akan dialihkan ke daftar step", "success");
 						window.location.href = base_url+"learningline/step/"+data.topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");

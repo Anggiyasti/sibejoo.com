@@ -201,6 +201,7 @@ class Learningline extends MX_Controller {
 		$data = array(
 			'judul_halaman' => 'Dashboard '.$this->hakakses." - Edit Learning Line Step untuk ".$metadata['namaTopik'],
 			'namaTopik' => $metadata['namaTopik'],
+			'topikID' => $metadata['topikID'],
 			'id'=>$metadata['id'],
 			'babid'=>$metadata['babid'],
 			'urutan'=>$metadata['urutan'],
@@ -238,10 +239,10 @@ class Learningline extends MX_Controller {
 			$row[] = $list_item['urutan'];
 			if ($list_item['statusLearning']==1) {
 				$row[] = "<input type='checkbox' 
-				class='switchery' checked onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")'>";
+				class='switchery' onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")' checked>";
 			} else {
 				$row[] = "<input type='checkbox' 
-				class='switchery' unchecked onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")'>";
+				class='switchery' onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")' unchecked>";
 			}			
 			
 			
@@ -396,7 +397,7 @@ class Learningline extends MX_Controller {
 			onclick="play('."'".$list_item['videoID']."'".') "><i class="ico-play"></i></a>';
 			$status_check = ($list_item['videoID']==$relasi) ? "checked" : "unchecked" ;
 
-			$row[] = "<input type='radio'  name='video' value=".$list_item['videoID']." ".$status_check.">";
+			$row[] = "<input type='radio' ".$status_check."  name='video' value=".$list_item['videoID']." >";
 
 			$data[] = $row;
 

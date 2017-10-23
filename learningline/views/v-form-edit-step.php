@@ -23,6 +23,7 @@
   <input type="hidden" name="babID" value={babid}>
   <input type="hidden" name="jenis_step" value="{id_relasi}">
   <input type="hidden" name="relasi" value="{relasi_step}">
+   <input type="hidden" name="topikID" value="{topikID}">
 
   <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
   <div class="row">
@@ -32,7 +33,7 @@
       <h3 class="panel-title">Edit Learning Step</h3>
       <div class="panel-toolbar text-right">
         <a class="btn btn-success" 
-        href="<?= base_url(); ?>index.php/learningline" 
+        href="<?= base_url(); ?>index.php/learningline/step/{topikID}" 
         title="Lihat Topik" ><i class="ico-th-list"></i></a>
       </div> 
     </div>

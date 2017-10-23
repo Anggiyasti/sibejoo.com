@@ -84,7 +84,7 @@ function updatestatus(id,status){
 		showCancelButton: true,
 		confirmButtonColor: "#DD6B55",
 		confirmButtonText: "Ya, update",
-		cancelButtonText: "Tidak, batalan",
+		// cancelButtonText: "Tidak, batalan",
 		closeOnConfirm: false,
 		closeOnCancel: false
 	},

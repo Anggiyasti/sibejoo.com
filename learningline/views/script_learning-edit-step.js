@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 	relasi = $('input[name=relasi]').val();
 	value = $('input[name=jenis_step]').val();
+	topikID = $('input[name=topikID]').val();
 
 	if (value==1) {
 	$('select[name=select_jenis]').html("<option value='1'>Video</option>"+"<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>");
@@ -62,19 +63,19 @@ function update(data){
 				// $('.form-line')[0].reset();
 				swal({
 					title: "step berhasil Diperbaharui!",
-					text: "Tambahkan baru, atau selesai?",
+					text: "edit lagi atau selesai?",
 					type: "warning",
 					showCancelButton: true,
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "Selesai",
-					cancelButtonText: "Tambah",
+					cancelButtonText: "Edit",
 					closeOnConfirm: false,
-					closeOnCancel: false
+					// closeOnCancel: false
 				},
 				function(isConfirm){
 					if (isConfirm) {
-						swal("selesai", "Anda akan dialihkan ke daftar step", "success");
-						// window.location.href = base_url+"learningline";
+						// swal("selesai", "Anda akan dialihkan ke daftar step", "success");
+						window.location.href = base_url+"learningline/step/"+topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");
 						$('.jenis').html("<h4 class='text-center animation animating pulse'>Pilih Jenis Terlebih Dahulu</h4>");	
