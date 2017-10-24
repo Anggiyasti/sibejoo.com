@@ -375,5 +375,24 @@ class Tryout extends MX_Controller {
       echo json_encode($array);
 
     }
+
+    // fungsi untuk detail layanan try out
+    public function layanan_tryout()
+    {
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Try Out',
+            'judul_header' => 'Layanan Try Out',
+            );
+
+        $konten = 'modules/tryout/views/r-to-detail.php';
+
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
+            APPPATH . 'modules/tryout/views/r-to-detail.php',
+            APPPATH . 'modules/homepage/views/r-footer.php',
+            );
+
+        $this->parser->parse('templating/r-index-login', $data);
+    }
 }
 ?>
