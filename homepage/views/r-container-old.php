@@ -410,68 +410,71 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </div>
 </section>
 
+
 <!-- Section: About -->
-<section>
+<section class="" id="about">
   <div class="container">
     <div class="section-content">
       <div class="row">
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/1.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Soalnya Terus Up To Date!</a></h4>
-            <p class="text-left">Kumpulan soal-soal terlama hingga terbaru akan terus diupdate di sibejoo..banyak soal UN, SBMPTN, SIMAK
-              Saringan PTN dan masih banyak soal-soal yang lainya..
-            </p>
+        <div class="col-md-6">
+          <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">About Us</h6>
+          <h2 class="font-weight-600 mt-0 font-28 line-bottom">Kenapa <span class="text-theme-color-2">Harus Sibejoo?</span></h2>
+          <h4 class="text-theme-colored">Dibawah ini adalah kenggulan dari neon. Yuk cek dulu</h4>
+          <div id="accordion1" class="panel-group accordion">
+            <div class="panel">
+              <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span>Video Pembelajaran Lengkap, Asyik dan Mudah dimengerti</a> </div>
+              <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
+                <div class="panel-content">
+                  <p>Puluhan ribu video bisa kalian akses. Ada 2 jenis video, video screen recording untuk kebutuhan akses low bandwith dan file kecil dan video teacher recording untuk akses dengan bandwith besar dan ukuran file yang besar, jenis ini kalian bisa lihat guru yang mengajar.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span>Terdapat puluhan ribu latihan soal yang bisa di akses kapanpun</a> </div>
+              <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                <div class="panel-content">
+                  <p>Soal-soal tahun terlama dan terbaru, dari soal latihan, UN sampai dengan SBMPTN terbaru Neon hadirkan untuk kalian. Kalian bisa latihan sesuka dan sepuasnya.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span>Bisa Konsultasi 24 jam</a> </div>
+              <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                <div class="panel-content">
+                  <p>Neon menyediakan guru-guru piket yang khusus akan menjawab pertanyaan dan curhatan kalian dalam proses belajar. Rasanya kalian seperti punya mentor pribadi bersama Neon. Bisa kalian akses lewat website atau smartphone.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion14" class="" aria-expanded="true"> <span class="open-sub"></span>Belajar Toefl Full Free</a> </div>
+              <div id="accordion14" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                <div class="panel-content">
+                  <p>Kapan lagi bisa belajar online dan dapat gratis belajar TOEFL, ya Cuma di NEON... Temen-temen bisa merasakan belajar TOEFL secara asyik dan mudah disini.</p>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/desktop.png') ?>" width="90" alt="">
+        <div class="col-md-6">
+          <div class="video-popup">                
+            <a href="https://youtu.be/zqju4Baw-Fs" data-lightbox-gallery="youtube-video" title="Video">
+              <!-- <iframe width="420" height="315" src="https://www.youtube.com/v/zqju4Baw?autoplay=1"></iframe> -->
             </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Video Pembelajaran</a></h4>
-            <p class="text-left">Video pembelajaran bakalan asyik, mudah dipahami dan gak <i>ngebosenin</i>.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/5.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Edu Drive</a></h4>
-            <p class="text-left">Akan banyak modul-modul belajar, kumpulan soal yang bisa temen-temen download secara bebas. yay!</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/lecture.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Konsultasi Langsung</a></h4>
-            <p class="text-left">Untuk temen-temen yang kebingungan dengan materi yang disampaikan atau ada tugas sekolah yang tidak paham?
-            boleh dikonsultasikan dengan mentor-mentor sibejoo..Para mentor dengan senang hati akan membantu temen-temen. jadi, gak usah khawatir lagi!</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- Section: About -->
-
-
-
-
-
-
 <!-- Section: Tryout Online -->
 <section data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url(<?=base_url("assets/back/img/pattern/1.png") ?>);">
   <div class="container pb-0">
     <div class="row">
       <div class="col-md-5">
-        <h2 class="text-theme-colored mt-10 mt-10"><br><br><br><br>Tryout Dan Latihan Online</h2>
-        <p class="font-weight-600">Temen-temen bisa menikmati tryout dan lamtihan semester, tryout UN, tryout SBMPTN atau Try Out yang lain secara online.</p>
+        <h2 class="text-theme-colored mt-10 mt-10"><br><br><br><br>Tryout Online</h2>
+        <p class="font-weight-600">Temen-temen bisa menikmati tryout semester, tryout UN, tryout SBMPTN atau Try Out yang lain secara online.</p>
         <p class="mt-20"> Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan dan pemahaman temen-temen..</p>
       </div>
 
@@ -484,22 +487,93 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 <!-- Section: Tryout Online -->
 
-<!-- Section: video -->
-<section data-bg-img="<?=base_url("assets/image/background/green-girl.png") ?>" style="background-image: url(<?=base_url("assets/image/background/green-girl.png") ?>);background-position: right;background-position: bottom;background-repeat: no-repeat;">
-  <div class="container pb-0">
-    <div class="row">
-      <div class="col-md-5">
-        <h2 class="text-theme-colored mt-10 mt-10"><br><br><br><br>Edu Drive</h2>
-        <p class="font-weight-600">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar.</p>
-        <p class="mt-20">Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
+
+<!-- Section: SERVICE -->
+<section id="service" class="bg-lighter">
+  <div class="container pb-60">
+    <div class="section-title mb-10">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Layanan <span class="text-theme-color-2 font-weight-400">Kita</span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row mt-30 text-center">
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-file-video-o"></i>
+            </a>
+            <h5 class="icon-box-title">Video Belajar</h5>
+            <p class="text-gray">Neon Menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami. Tidak hanya itu Neon juga memberikan 2 jenis video yang bisa kalian sesuaiank dengan kecepatan akses internet kalian.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-file-text-o"></i>
+            </a>
+            <h5 class="icon-box-title">Tryout Online</h5>
+            <p class="text-gray">Kalian bisa menikmati latihan semester, latihan UN, Latian SBMPTN atau TryOut yang lain secara online. Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan kalian..</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-sticky-note"></i>
+            </a>
+            <h5 class="icon-box-title">Raport Online</h5>
+            <p class="text-gray">Rapor online akan merekam semua kegiatan kalian selama menjadi member.Informasi tentang video pembelajaran yang kalian akses, latihan dan TO yang kalian kerjakan akan bisa kalian lihat dalam rapor online..</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-child"></i>
+            </a>
+            <h5 class="icon-box-title">Latihan Online</h5>
+            <p class="text-gray">Rapor online akan merekam semua kegiatan kalian selama menjadi member.Informasi tentang video pembelajaran yang kalian akses, latihan dan TO yang kalian kerjakan akan bisa kalian lihat dalam rapor online..</p>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-7">
+
+      <div class="row mt-30 text-center">
+        <div class="col-sm-6 col-md-3">
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-cloud-download"></i>
+            </a>
+            <h5 class="icon-box-title">Edu Drive</h5>
+            <p class="text-gray">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar. Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="icon-box iconbox-theme-colored">
+            <a class="icon icon-dark icon-border-effect effect-flat">
+              <i class="fa fa-group"></i>
+            </a>
+            <h5 class="icon-box-title">Konsultasi</h5>
+            <p class="text-gray">Neon menyediakan tentor-tentor piket yang setiap saat akan menjawab pertanyaan-pertanyaan kalian ni guys, so jangan kuatir kalo tiba2 kalian mendaadak ada pertanyaan yang harus segera diselesaikan, kalian bisa langsung hubungi tentor neon.</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+        </div>
+        
       </div>
+
     </div>
   </div>
 </section>
-<!-- Section: video -->
 
 <!-- Section: SERVICE -->
 <section id="blog" class="bg-white">
