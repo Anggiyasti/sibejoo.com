@@ -367,7 +367,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
       </div>
       <div class="modal-body">
         <h3 class="text-center">Silahkan cek file size Gambar!</h3>
-        <h5 class="text-center">File size audio maksimal 100kb</h5>
+        <h5 class="text-center">File size audio maksimal 500kb</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1313,7 +1313,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                   // $('.hidden-audio').hide();
                 }else{
@@ -1375,7 +1375,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerPembahasan.load;
@@ -1403,7 +1403,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerA.load;
@@ -1434,7 +1434,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                  reader.onload = viewerB.load;
@@ -1465,7 +1465,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                  reader.onload = viewerC.load;
@@ -1493,7 +1493,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerD.load;
@@ -1525,7 +1525,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=100) {
+                 if (size>=500) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerE.load;

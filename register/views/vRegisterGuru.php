@@ -445,7 +445,7 @@
                 type:"POST",
                 success:function(){
             swal({
-                    title: "passinggrade berhasil ditambahkan!",
+                    title: "Guru berhasil ditambahkan!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
