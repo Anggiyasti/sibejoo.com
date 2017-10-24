@@ -262,7 +262,7 @@ public function upvideo($data) {
   $config['upload_path'] = './assets/video';
   $config['allowed_types'] = 'mp4';
   $config['max_size'] = 90000;
-$video=$data['video'];
+  $video=$data['video'];
   $config['encrypt_name'] = TRUE;
   $new_name = time().$_FILES[$video]['name'];
   $config['file_name'] = $new_name;
@@ -402,16 +402,16 @@ public function get_linkembed($link)
   return $linkembed;
 }
 
+// fungsi update video
 public function cek_option_update()
 {
-           //load library n helper
+  //load library n helper
   $this->load->helper(array('form', 'url'));
   $this->load->library('form_validation');
 
-        //set role
+  //set role
   $this->form_validation->set_rules('judulvideo', 'Judul Video', 'required');
   $this->form_validation->set_rules('subBab', 'Subbab', 'required');
-         // $this->form_validation->set_rules('video', 'Video', 'required');
 
         //pesan error atau pesan kesalahan pengisian form upload video
   $this->form_validation->set_message('required', '*Data tidak boleh kosong!');
@@ -420,7 +420,11 @@ public function cek_option_update()
   $data['deskripsi'] = htmlspecialchars($this->input->post('deskripsi'));
   $data['subBabID'] = htmlspecialchars($this->input->post('subBab'));
   $data['published'] = htmlspecialchars($this->input->post('publish'));
-  $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
+
+  //val file 
+  $data['video'] = htmlspecialchars($this->input->post('video'));
+
+  // $data['thumbnail'] = htmlspecialchars($this->input->post('thumbnail'));
   $data['UUID']=$this->input->post('UUID');
   $UUID=$data['UUID'];
   $link=$this->input->post('link_video');
@@ -429,10 +433,6 @@ public function cek_option_update()
     $this-> formUpdateVideo($data['UUID']);
   }else{
    if ($option_up =='link') {
-    // $this->dropVideoServer($UUID);
-    // $penggunaID = $this->session->userdata['id'];
-    // $data['tb_guru'] = $this->Mvideoback->getIDguru($penggunaID)[0];
-    // $guruID = $data['tb_guru']['id'];
     $linkembed=$this->get_linkembed($link);
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
@@ -440,59 +440,63 @@ public function cek_option_update()
       'link' => $linkembed,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
-      // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
 
     $this->Mvideoback->ch_video($data);
-  }else{
-    $this->updateVideo($data);
+    }else{
+      $this->updateVideo($data);
+      echo json_encode("server");
+    }
   }
 }
-}
 
-     // fungsi untuk Update video server
+// fungsi untuk Update video server
 public function updateVideo($data) {
 
   $config['upload_path'] = './assets/video';
   $config['allowed_types'] = 'mp4';
   $config['max_size'] = 90000;
-  $this->load->library('upload', $config);
+  $video=$data['video'];
+  $config['encrypt_name'] = TRUE;
+  $new_name = time().$_FILES[$video]['name'];
+  $config['file_name'] = $new_name;
   $UUID=$data['UUID'];
+  $this->load->library('upload', $config);
+  $this->upload->initialize($config);
+  
+  // pengecekan upload
+  if (!$this->upload->do_upload($video)) {
+    // jika upload video gagal
+    $UUID=$data['UUID'];
+    $data['UUID'] = $UUID;
+    $data['video'] = array(
+      'judulVideo' => $data['judulVideo'] ,
+      'link' => null,
+      'deskripsi' => $data['deskripsi'],
+      'published' => $data['published'],
+      'subBabID' => $data['subBabID'],
+      );
 
-             // pengecekan upload
-  if ($this->upload->do_upload('video')) {
+  } else {
     $this->dropVideoServer($UUID);
-                // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
+    // jika uplod video berhasil jalankan fungsi penyimpanan data video ke db
     $file_data = $this->upload->data();
     $video = $file_data['file_name'];
-    $UUID=$data['UUID'];
-    $thumbnail =$data['thumbnail'];
-                //data yg akan di masukan ke tabel video
+    $thumbnail=$data['tumbnail'];
+    $penggunaID = $this->session->userdata['id'];
+    $data['UUID'] = $UUID;
+    //data yg akan di masukan ke tabel video
     $data['video'] = array(
       'judulVideo' => $data['judulVideo'] ,
       'namaFile' => $video,
-      'thumbnail' => $thumbnail,
       'link' => null,
       'deskripsi' => $data['deskripsi'],
       'published' => $data['published'],
-      // 'guruID' => $guruID,
-      'subBabID' => $data['subBabID'],
-      );
-  } else {
-    $UUID=$data['UUID'];
-     $thumbnail = $data['thumbnail'];
-    $data['video'] = array(
-      'judulVideo' => $data['judulVideo'] ,
-      'thumbnail' => $thumbnail,
-      'link' => null,
-      'deskripsi' => $data['deskripsi'],
-      'published' => $data['published'],
-      // 'guruID' => $guruID,
       'subBabID' => $data['subBabID'],
       );
   }
-  $this->Mvideoback->ch_video($data);
+   $this->Mvideoback->ch_video($data);
 }
 
   // update  Thumbnail
@@ -507,10 +511,10 @@ public function updateVideo($data) {
       $configChTmbl['max_width'] = 1024;
       $configChTmbl['max_height'] = 1024;
       //random name
-      // $configChTmbl['encrypt_name'] = TRUE;
-      // $new_name = time()."-".$_FILES["thumbnail"]['name'];
+      $configChTmbl['encrypt_name'] = TRUE;
+      $new_name = time()."-".$_FILES["thumbnail"]['name'];
       // $new_name = $oldthumbnail;
-      $configChTmbl['file_name'] = $oldthumbnail;
+      $configChTmbl['file_name'] = $new_name;
       $this->load->library('upload', $configChTmbl);
       $gambar = "thumbnail";
       $this->upload->initialize($configChTmbl);
@@ -1302,14 +1306,14 @@ public function tampVideo($list='')
       // pengecekan file video atau link video
       if ($namaFile != '' && $namaFile != ' ' && $thumbnail !=' ' && $thumbnail !='' && $thumbnail !='default' ) {
         
-        $video = '<img data-toggle="unveil" src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" data-src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" alt="Cover" width="250px" height="150px" style="background:#E6E2E2;"></img>';
+        $video = '<img data-toggle="unveil" src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" data-src="'.base_url().'assets/image/thumbnail/'.$thumbnail.'" alt="Cover" width="100%" height="160px" style="background:#E6E2E2;"></img>';
       }elseif($namaFile != '' && $namaFile != ' '){
         
         $mapel=$key['mapel'];
         //generate avatar
         $thumbnail=$this->generateavatar->generate_first_letter_avtar_url($mapel);
         $video = '
-        <div class="jumbotron jumbotron-bg7 nm"  data-stellar-background-ratio="0.4" style="width:100%; height:150px;">
+        <div class="jumbotron jumbotron-bg7 nm"  data-stellar-background-ratio="0.4" style="width:100%; height:160px;">
         <div class="pattern pattern2 overlay overlay-primary"></div>
           <div class="container text-center" style="padding-top:8%;">
               <img class=" img-circle img-bordered" data-toggle="unveil" src="'. $thumbnail.'" data-src="" alt="Cover" style=" margin: 0 auto;" ></img>

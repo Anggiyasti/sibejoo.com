@@ -11,11 +11,12 @@
         <form  class="panel panel-teal form-horizontal form-bordered" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
             <div class="panel-heading"><h5 class="panel-title">Form Update Video</h5>
-                                        <!-- Start old info data soal -->
+                                        <!-- Start old info data video -->
                         <input type="text" id="oldtkt" value="<?=$infovideo['id_tingkat'];?>" hidden="true">
                         <input type="text"  id="oldmp"  value="<?=$infovideo['id_mp'];?>" hidden="true">
                         <input type="text" id="oldbab"  value="<?=$infovideo['id_bab'];?>" hidden="true">
                         <input type="text" id="oldsub"  value="<?=$infovideo['id_subbab'];?>" hidden="true">
+                        <input type="text" name="pilihan" value="<?=$video['namaFile'];?>" hidden>
                         <!-- END old info data soal -->
             <input type="text" name="UUID" value="<?=$video['UUID']?>" hidden="true" >
 
@@ -97,22 +98,19 @@
 
             <label class="control-label col-sm-2">Pilihan Upload Video</label>
 
-            <!-- <input type="text" name="cek_option_up" value="<?=$infovideo['namaFile'];?>" id='tamppilihan' hidden="true">
-            <input type="text" name="cek_option_up" value="<?=$infovideo['link'];?>" id='tamppilihan' hidden="true"> -->
-
               <div class="col-sm-8">
 
                 <div class="btn-group" data-toggle="buttons" >
 
-                  <label class="btn btn-teal btn-outline " id="up_server">
+                  <label class="btn btn-teal btn-outline" id="up_server">
 
-                    <input type="radio" name="option_up" value="server" autocomplete="off" > Upload Video Ke server
+                    <input type="radio" name="option_up" value="server" autocomplete="off" id="radio_server"> Upload Video Ke server
 
                   </label>
 
-                  <label class="btn btn-teal btn-outline active " id="up_link">
+                  <label class="btn btn-teal btn-outline " id="up_link">
 
-                    <input type="radio" name="option_up"  value="link" autocomplete="off" checked="true"> Link
+                    <input type="radio" name="option_up"  value="link" autocomplete="off" id="radio_link"> Link
 
                   </label>
 
@@ -228,12 +226,9 @@
             </div>
         </div>
          <!-- /Upload thumbnail -->
-
+         <div class="form-group link2" hidden="true"></div>
 
             <!-- upload video by link -->
-
-
-
             <div class="form-group link" >
 
               <label class="col-sm-2 control-label">Link Video</label>
@@ -303,7 +298,7 @@
 
             <div class="panel-footer">
 
-                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateVideo()"><span class="ladda-label">Simpan</span></button>
+                <button type="submit" class="btn btn-primary" data-style="zoom-in" onclick="updateData()"><span class="ladda-label">Simpan</span></button>
 
             </div>
 
@@ -332,7 +327,8 @@
                 // Script for getting the dynamic values from database using jQuery and AJAX
 
                 $(document).ready(function () {
-
+                    // set option pilihan jenis video
+                    set_pilihan();
                    // set opton dropdown mp
                       loadPelajaran($('#oldtkt').val());
                     // #########################
@@ -396,7 +392,9 @@
 
                         $(".server").show();
 
-                         $(".link").hide();
+                        $(".link").hide();
+                        $(".prv_thumbnail").show();
+
 
                     });
 
@@ -406,7 +404,8 @@
 
                         $(".server").hide();
 
-                        $(".prv_video").hide();     
+                        $(".prv_video").hide(); 
+                        $(".prv_thumbnail").hide();
 
                     });
 
@@ -547,13 +546,7 @@
                         url: "<?php echo base_url() ?>index.php/videoback/getBab/" + mapelID,
 
                         success: function (data) {
-
-
-
                             $('#bab').html('<option value="">-- Pilih Bab Pelajaran  --</option>');
-
-                            //console.log(data);
-
                             $.each(data, function (i, data) {
 
                              if (data.id==oldbab) {
@@ -588,9 +581,6 @@
                         success: function (data) {
 
                             $('#subbab').html('<option value="">-- Pilih Sub Bab Pelajaran  --</option>');
-
-                            console.log(data);
-
                             $.each(data, function (i, data) {
 
                               if (data.id==oldsub) {
@@ -607,10 +597,6 @@
                     });
 
                 }
-
-
-
-
 
                 loadTingkat();
 
@@ -731,22 +717,6 @@ function resetVideo(){
       $('#filesize').text("");
   }
 
-    //get data video dan cek data video
-    function updateVideo(y='') {
-      var option_up =$('[name=option_up'+y+']').val();
-      var thumbnail =$('[name=thumbnail'+y+']').val();
-      console.log(thumbnail);
-      // cek data video
-      if (thumbnail == '') {
-        console.log('maksimal');
-        // updateData(y);
-      } else {
-        updateThumbnail(y);
-        // updateData(y);
-      }
-    }
-
-
     //update data thumbnail
     function updateThumbnail(y='') {
       var tumbnail = 'tumbnail'+y;
@@ -763,9 +733,15 @@ function resetVideo(){
         success: function(data)
         {
         
-          var thumbnails = JSON.parse(data);
-          // console.log(thumbnails);
-          updateData(y,thumbnails);
+          setTimeout(function() {
+                swal({
+                    title: "Wow!",
+                    text: "Video Berhasil Terupdate!",
+                    type: "success"
+                }, function() {
+                    window.location = base_url+"videoback/daftarvideo";
+                });
+            }, 1000);
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -775,8 +751,7 @@ function resetVideo(){
     }
 
     //post data form
-    function updateData(y,$thumbnails) {
-        console.log('masuk');
+    function updateData(y='') {
       var subBab =$('[name=subBab'+y+']').val();
       var option_up = $('[name=option_up'+y+']:checked').val();
       var video ='video'+y;
@@ -792,7 +767,6 @@ function resetVideo(){
             option_up:option_up,
             video:video,
             link_video:link_video,
-            thumbnail:thumbnails,
             jenis_video:jenis_video,
             judulvideo:judulvideo,
             deskripsi:deskripsi,
@@ -800,9 +774,8 @@ function resetVideo(){
             UUID:UUID
       };
 
-      console.log(datas);
       var url = base_url+"index.php/videoback/cek_option_update";
-      var filevideo = "filevideo"+y;
+      var filevideo = "file"+y;
       var bar = $('.prog'+y);
       $('.F'+y).attr("hidden","true");
       $('.indiF'+y).addClass('show');
@@ -815,17 +788,17 @@ function resetVideo(){
         onChange: function()
         {
         },
-        uploadProgress: function ( event, position, total,percentComplete)         {
-         var percentVal = percentComplete + '%';
-         bar.width(percentVal);
-          console.log(percentComplete);
+            uploadProgress: function ( event, position, total,percentComplete)         {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+
         },
         success: function(data)
         {
-            console.log(data);
-          var percentVal = '100%';
-          bar.width(percentVal);
-          swal("success!", "Data Form ke-"+y+" Berhasil Terupload", "success");
+            var percentVal = '100%';
+            bar.width(percentVal);
+            updateThumbnail(y);
+            
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -835,15 +808,24 @@ function resetVideo(){
     }
 
     // set pilihan video ################
-    // var pilihan =$('#tamppilihan').val();
-    // if (tw == '1') {
-    //     $('#satu').attr('selected','selected');
-    // } else if (tw == '2') {
-    //     $('#dua').attr('selected','selected');
-    // } else if (tw == '3') {
-    //     $('#tiga').attr('selected','selected');
-    // } else {
-    //     $('#empat').attr('selected','selected');
-    // }
+    // set pilihan video ################
+    function set_pilihan() {
+        pil=$('input[name=pilihan]').val();
+        if (pil!='') {
+            // hide input pilihan E
+            $("#up_server").addClass('active');
+            $("#radio_server").attr('checked',true);
+            $(".server").show();
+            $(".link").hide();
+        }else{
+            $("#up_link").addClass('active');
+            $("#radio_link").attr('checked',true);
+            $(".link").show();
+            $(".server").hide();
+            $(".prv_video").hide(); 
+            $(".prv_thumbnail").hide();
+        }
+    }
+
 </script>
 <!-- END -->

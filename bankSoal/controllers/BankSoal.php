@@ -1085,9 +1085,9 @@ class Banksoal extends MX_Controller {
      public function up_img_soal($UUID) {
         $config['upload_path'] = './assets/image/soal/';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 100;
+        $config['max_size'] = 500;
         $config['max_width'] = 1024;
-        $config['max_height'] = 768;
+        $config['max_height'] = 1024;
         //random name
         $config['encrypt_name'] = TRUE;
         $new_name = time().$_FILES["gambarSoal"]['name'];
@@ -1113,9 +1113,9 @@ class Banksoal extends MX_Controller {
          // echo "img pembahasan";
          $configpmb['upload_path'] = './assets/image/pembahasan/';
         $configpmb['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $configpmb['max_size'] = 100;
+        $configpmb['max_size'] = 500;
         $configpmb['max_width'] = 1024;
-        $configpmb['max_height'] = 768;
+        $configpmb['max_height'] = 1024;
                 //random name
         $configpmb['encrypt_name'] = TRUE;
         $new_name = time().$_FILES["gambarPembahasan"]['name'];

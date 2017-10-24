@@ -199,8 +199,6 @@
       var idMapel =$('#mataPelajaran').val();
       var mapel =$('#mataPelajaran option:selected').text();
       $("#listGuruMapel").append('<span class="note note-success mb15 mr15 mt15 pickMapel" id="mapelke-'+i+'"> <i class="ico-remove" onClick="removeMapel('+i+','+idMapel+')"></i> '+mapel+' </span> <input type="text" name="mapelIDke-'+i+'" value="'+idMapel+'" hidden="true" id="mapelIDke-'+i+'">');
-      // var ini = $("mapelke-"+i).text();
-      // console.log(ini);
       $('[name=sumMapel]').val(i);
       //remove mapel dari dropdown
       $("#id-"+idMapel).addClass("hidden");
@@ -225,7 +223,6 @@
 	      url:url,
 	      success:function(data){
 	      	swal("Data Guru berhasil diperbaharui!","--","success");
-	        // window.location.href =base_url+"guru/daftar/";
           selectPage(page);
           paginationGuru();
           $('#modal-chguru').modal('hide');
@@ -274,15 +271,6 @@
  
 
   paginationGuru();
-  // di konen dulu karena koneksi tidak mendukung Lol
-  // // event pencarian ketika tekan enter
-  // $('[name=cariToken]').on('keydown',function(e){
-  //   //get value dari input name cariToken
-  //   keySearch=$('[name=cariToken]').val();
-  //   selectPage(pageVal='0',keySearch);
-  //   paginationToken();
-  //   //
-  // });
 
   $('#cariGuru').click(function(e){
       //get value dari input name cariToken
@@ -335,7 +323,6 @@ function selectPage(pageVal='0') {
     },
     error:function(e,jqXHR, textStatus, errorThrown)
     {
-         // sweetAlert("Oops...", e, "error");
        }
      });
   //meridian adalah nilai tengah padination
@@ -435,7 +422,6 @@ function resetSandi(penggunaID='',namaPengguna='') {
 	      success:function(data){
 
 	        swal("kata sandi baru : [namaPengguna]+[tgl sekarang] !", "Katasandi Baru = "+data, "success");
-	       // window.location.href =base_url+"videoback/daftarvideo";
 	      },
 	      error:function(){
 	        sweetAlert("Oops...", "Ktasandi gagal di reset!", "error");
@@ -487,7 +473,6 @@ function resetSandi(penggunaID='',namaPengguna='') {
 
 	      	}
 	        
-	       // window.location.href =base_url+"videoback/daftarvideo";
 	      },
 	      error:function(){
 	        sweetAlert("Oops...", "Email gagal diperbaharui!", "error");
@@ -580,7 +565,6 @@ function resetSandi(penggunaID='',namaPengguna='') {
 	      type:"POST",
 	      url:url,
 	      success:function(data){
-	      	// console.log(datas);
 	        swal("Data Guru berhasil diperbaharui!","--","success");
 	        selectPage(page);
           paginationGuru();
