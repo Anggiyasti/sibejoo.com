@@ -113,7 +113,7 @@ class Banksoal extends MX_Controller {
           foreach ( $list as $list_soal ) {
             $id_soal=$list_soal['id_soal'];
             $jawaban=$list_soal['jawaban'];
-            $tingkat=$list_soal['kesulitan'];
+            $tingkat_kesulitan=$list_soal['kesulitan'];
             $id_soal=$list_soal['id_soal'];
             $random=$list_soal['random'];
             $publish=$list_soal['publish'];
@@ -170,9 +170,9 @@ class Banksoal extends MX_Controller {
             } 
 
 
-            if ($tingkat == '3') {
+            if ($tingkat_kesulitan == "2") {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat_kesulitan == "1") {
                 $kesulitan = 'Sedang';
             }else {
                $kesulitan = 'Mudah';
@@ -201,8 +201,8 @@ class Banksoal extends MX_Controller {
                 'isiJawaban'=>$isiJawaban,
                 'imgJawaban'=>$imgJawaban,
                 'create_by'=>$create_by
-
                 );
+
           }
         // 
 

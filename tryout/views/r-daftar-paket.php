@@ -4,9 +4,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
+        <h3 class="text-center mt-0 mb-0"><b>Nama Paket</b></h3>
       </div>
       <div class="modal-body">
-        <div id="chartContainer" style="height: 400px; width: 100%;">
+          <canvas id="myChart" width="100" height="100"></canvas>
         </div>
       </div>
     </div>
@@ -35,32 +36,32 @@
         <div class="col-md-12">
           <?php if ($this->session->userdata['HAKAKSES']=='ortu'): ?>
             <div class="col-md-12">
-          <h4><b>Paket Soal yang Sudah Dikerjakan</b></h4>
-        </div>
-        <?php if($paket_dikerjakan==array()): ?>
-          <div class="col-md-12">
-            <h5>Tidak ada paket soal.</h5>
-          </div>
-        <?php else: ?>
-          <?php foreach ($paket_dikerjakan as $paketitem): ?>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
-                  <div class="media-body">
-                    <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
-                    <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
+              <h4><b>Paket Soal yang Sudah Dikerjakan</b></h4>
+            </div>
+            <?php if($paket_dikerjakan==array()): ?>
+              <div class="col-md-12">
+                <h5>Tidak ada paket soal.</h5>
+              </div>
+            <?php else: ?>
+              <?php foreach ($paket_dikerjakan as $paketitem): ?>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
+                    <div class="media-body">
+                      <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
+                      <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
 
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
-                    <?php if ($status_to=="done"): ?>
-                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
-                    <?php endif; ?>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
+                      <?php if ($status_to=="done"): ?>
+                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
+                      <?php endif; ?>
+                    </div>
                   </div>
                 </div>
-              </div>
-          <?php endforeach ?>
-        <?php endif; ?>
-        
-      </div>
-    <?php else: ?>
+              <?php endforeach ?>
+            <?php endif; ?>
+
+          </div>
+        <?php else: ?>
 
           <h4><b>Daftar Paket TO yang Belum Dikerjakan</b></h4>
         </div>
@@ -84,7 +85,7 @@
                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-hourglass-half"></i></a>
                   <?php endif; ?>
                 </div>
-               </div>
+              </div>
             </div>
           <?php endforeach ?>
         <?php endif; ?>
@@ -99,28 +100,81 @@
         <?php else: ?>
           <?php foreach ($paket_dikerjakan as $paketitem): ?>
             <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
-                  <div class="media-body">
-                    <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
-                    <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
+              <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
+                <div class="media-body">
+                  <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
+                  <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
 
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
-                    <?php if ($status_to=="done"): ?>
-                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
-                    <?php endif; ?>
-                  </div>
+                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
+                  <?php if ($status_to=="done"): ?>
+                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
+                  <?php endif; ?>
                 </div>
               </div>
+            </div>
           <?php endforeach ?>
         <?php endif; ?>
         
       </div>
-      <?php endif; ?>
-    </div>
+    <?php endif; ?>
   </div>
+</div>
 </section>
+<!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+<script src="<?=base_url("assets/plugins/plugins/Chart.js-master/samples/utils.js") ?>"></script>
+<script src="<?=base_url("assets/plugins/plugins/Chart.js-master/samples/chart_bundles.js") ?>"></script>
+<script>
+  // // CHART DONNUT
+  // var ctx = document.getElementById("myChart").getContext('2d');
+  // var myDoughnutChart = new Chart(ctx, {
+  //    type: 'doughnut',
+  //       data: {
+  //           datasets: [{
+  //               data: [
+  //                   randomScalingFactor(),
+  //                   randomScalingFactor(),
+  //                   randomScalingFactor(),
+  //               ],
+  //               backgroundColor: [
+  //                   window.chartColors.red,
+  //                   window.chartColors.orange,
+  //                   window.chartColors.yellow,
+  //               ],
+  //               label: 'Dataset 1'
+  //           }],
+  //           labels: [
+  //               "Benar",
+  //               "Salah",
+  //               "Kosong",
+  //           ]
+  //       },
+  //       options: {
+  //           responsive: true,
+  //           legend: {
+  //               position: 'top',
+  //           },
+  //           title: {
+  //               display: true,
+  //               text: 'Chart.js Doughnut Chart'
+  //           },
+  //           animation: {
+  //               animateScale: true,
+  //               animateRotate: true
+  //           }
+  //       }
+
+  // });
+  // CHART DONNUT
+</script>
+
+
+
 
 <script type="text/javascript"> 
+  // jQuery(document).ready(function () {
+  //   var ctx = document.getElementById("myChart").getContext('2d');
+  // });
+
   function kerjakan(id_to){
     var kelas = ".modal-on"+id_to;
     var data_to = $(kelas).data('todo');
@@ -140,10 +194,10 @@
       success: function(data)
       {
        window.location.href = base_url + "index.php/tryout/mulaitest";
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-      }
-    });
+     },
+     error: function (jqXHR, textStatus, errorThrown) {
+     }
+   });
   }
 
   function pembahasanto(id_to){
@@ -166,7 +220,7 @@
       {
         window.location.href = base_url + "index.php/tryout/mulaipembahasan";
       },
-        error: function (jqXHR, textStatus, errorThrown)
+      error: function (jqXHR, textStatus, errorThrown)
       {
         swal("gagal");
       }
@@ -184,25 +238,69 @@
   }
 
   function load_grafik(data) {
+    $('.modal-header h3 b').text(data.nm_paket);
   // nilai =data.jmlh_benar/ data.jumlah_soal * 100;
-   if (data.jenis_penilaian == 'SBMPTN') {
-      nilai =((data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0)) / ( data.jumlah_soal*4) * 100;
-    }
+  if (data.jenis_penilaian == 'SBMPTN') {
+    nilai =((data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0)) / ( data.jumlah_soal*4) * 100;
+  }
   else {
-      nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+    nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+  }
+
+  // CHART DONNUT
+
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myDoughnutChart = new Chart(ctx, {
+   type: 'doughnut',
+   data: {
+    datasets: [{
+      data: [
+      data.jmlh_benar,
+      data.jmlh_salah,
+      data.jmlh_kosong,
+      ],
+      backgroundColor: [
+      window.chartColors.blue,
+      window.chartColors.red,
+      window.chartColors.green,
+      ],
+      label: 'Dataset 1'
+    }],
+    labels: [
+    "Benar",
+    "Salah",
+    "Kosong",
+    ]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: "Nilai : "+nilai,
+      fontSize: 25
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
     }
+  }
 
-
+});
+  // CHART DONNUT
+/*
   var chart = new CanvasJS.Chart("chartContainer", {
 
-     title: {
-      text: data.nm_paket,
-      fontSize: 30
-      
-    },
-    subtitles:[
-    {
-      text: "Nilai : "+nilai.toFixed(2),
+   title: {
+    text: data.nm_paket,
+    fontSize: 30
+
+  },
+  subtitles:[
+  {
+    text: "Nilai : "+nilai.toFixed(2),
       //Uncomment properties below to see how they behave
       //fontColor: "red",
       fontSize: 30
@@ -228,8 +326,8 @@
     }
     ]
   });
-   chart.render();
- }
+  chart.render();*/
+}
 
 function lihat_grafik(id){
   var kelas = ".modal-on"+id;

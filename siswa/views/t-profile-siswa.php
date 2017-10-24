@@ -1,3 +1,28 @@
+  <!-- PERKEMBANGAN TO -->
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
+
+        <div class="panel-toolbar text-right">
+              <div class="col-sm-4 mt5"></div>
+              <div class="col-sm-8 mt1">
+               <select class="form-control tryout_select" name="tryout_select">
+                <option value="">-- Cari Berdasarkan Tryout --</option>
+              </select>
+            </div>
+          </div>
+
+      </div>
+      <div class="panel-body">
+        <div class="panel-body pt0" id="resizeble" style="height:430px">
+
+          </div>       
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PERKEMBANGAN TO -->
 
 <div class="row">
     <!-- WELCOME -->
