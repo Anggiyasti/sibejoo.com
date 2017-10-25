@@ -1172,9 +1172,9 @@ class Banksoal extends MX_Controller {
          // echo "img pembahasan";
          $configpmb['upload_path'] = './assets/image/pembahasan/';
         $configpmb['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $configpmb['max_size'] = 100;
+        $configpmb['max_size'] = 500;
         $configpmb['max_width'] = 1024;
-        $configpmb['max_height'] = 768;
+        $configpmb['max_height'] = 1024;
                         //random name
         $configpmb['encrypt_name'] = TRUE;
         $new_name = time().$_FILES["gambarPembahasan"]['name'];
@@ -1186,9 +1186,10 @@ class Banksoal extends MX_Controller {
         if ($this->upload->do_upload($gambar)) {
              // unlink
             // unlink(FCPATH . "./assets/image/pembahasan/" . $oldImgPembahasan);
-                if ($oldImgPembahasan!='' && $oldImgPembahasan!=' ') {
-                   unlink(FCPATH . "./assets/image/pembahasan/" . $oldImgPembahasan);
-                 }
+                if ($oldImgPembahasan=="" && $oldImgPembahasan==" ") {
+                } else {
+                    unlink(FCPATH . "./assets/image/pembahasan/" . $oldImgPembahasan);
+                }
              $file_data = $this->upload->data();
             $file_name = $file_data['file_name'];
             $data['UUID']=$UUID;
@@ -1237,9 +1238,9 @@ class Banksoal extends MX_Controller {
         // config upload file img soal
         $config['upload_path'] = './assets/image/soal/';
         $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 100;
+        $config['max_size'] = 500;
         $config['max_width'] = 1024;
-        $config['max_height'] = 768;
+        $config['max_height'] = 1024;
         //config random name
         $config['encrypt_name'] = TRUE;
         $new_name = time().$_FILES["gambarSoal"]['name'];
@@ -1570,9 +1571,9 @@ class Banksoal extends MX_Controller {
         // unlink( FCPATH . "./assets/image/jawaban/".$xxxx );
         $config2['upload_path'] = './assets/image/jawaban/';
         $config2['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config2['max_size'] = 100;
+        $config2['max_size'] = 500;
         $config2['max_width'] = 1024;
-        $config2['max_height'] = 768;
+        $config2['max_height'] = 1024;
          //random name
         $config2['encrypt_name'] = TRUE;
         $oldgambar = $this->Mbanksoal->get_oldgambar($soalID);
@@ -1593,8 +1594,9 @@ class Banksoal extends MX_Controller {
             // pengecekan upload
             if ($this->upload->do_upload($gambar)) {
               // jika upload berhasil hapus gambar sebelumnya
-                if ($oldImg!='' || $oldImg != ' ') {
-                   unlink(FCPATH . "./assets/image/jawaban/" . $oldImg);
+                if ($oldImg=="" || $oldImg == " ") {
+                } else {
+                    unlink(FCPATH . "./assets/image/jawaban/" . $oldImg);
                 }
                 $file_data = $this->upload->data();
                 $file_name = $file_data['file_name'];

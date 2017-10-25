@@ -389,7 +389,7 @@ class Tryout extends MX_Controller {
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . 'modules/tryout/views/r-to-detail.php',
-            APPPATH . 'modules/homepage/views/r-footer.php',
+            APPPATH . 'modules/templating/views/r-footer.php',
             );
 
         $this->parser->parse('templating/r-index-login', $data);

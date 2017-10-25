@@ -236,7 +236,7 @@ body { font-family: sans-serif; }
 <script type="text/javascript" src="http://www.youtube.com/player_api">
 </script>
 <script type="text/javascript">
-	//# fungsi menghapus video
+    //# fungsi menghapus video
 function drop_video(videoID){
   url = base_url+"index.php/videoback/del_file_video/";
   swal({
