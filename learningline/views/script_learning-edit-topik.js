@@ -30,13 +30,14 @@ if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
 				confirmButtonText: "Selesai",
 				cancelButtonText: "Edit",
 				closeOnConfirm: false,
+				closeOnCancel: false
 			},
 			function(isConfirm){
 				if (isConfirm) {
 					// swal("selesai", "Anda akan dialihkan ke daftar topik", "success");
 					window.location.href = base_url+"learningline/topik/"+data.babID;
 				} else {
-          // swal("Cancelled", "Your imaginary file is safe :)", "error");
+          			swal("Silakan edit data kembali");
       }
   });
 

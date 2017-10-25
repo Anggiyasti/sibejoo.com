@@ -136,7 +136,7 @@
                 fileElementId :elementId,
                 success:function(Data){
                     swal({
-                    title: "Artikel Berhasil Ditambahkan!",
+                    title: "Report Heroo Berhasil Ditambahkan!",
                     type: "warning",
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Selesai",

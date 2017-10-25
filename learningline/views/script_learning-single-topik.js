@@ -77,36 +77,18 @@ function updatestatus(id,status){
 	}else{
 		url = base_url+"learningline/updateaktiv/"+id;		
 	}
-
-	swal({
-		title: "Anda Akan Merubah status learning?",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Ya, update",
-		// cancelButtonText: "Tidak, batalan",
-		closeOnConfirm: false,
-		closeOnCancel: false
-	},
-	function(isConfirm){
-		if (isConfirm) {
 			$.ajax({
 				url:url,
 				dataType:"TEXT",
 				type:'POST',
 				success:function(){
 					swal("Berhasil diupdate!", "status learning diaktifkan.", "success");
-					tabel.ajax.reload(null,false);
+					dataTableLearning.ajax.reload(null,false);
 				},
 				error:function(){
 					swal('gagal');
 				}}
 				);
-		} else {
-			swal("Dibatalkan", "Data batal diperbaharui", "error");
-			tabel.ajax.reload(null,false);
-		}
-	});
 }
 function drop_step(idstep){
 	url = base_url+"learningline/drop_step";

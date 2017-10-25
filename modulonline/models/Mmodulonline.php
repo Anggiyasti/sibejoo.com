@@ -9,6 +9,7 @@ class Mmodulonline extends CI_Model {
   public function modul_guruid($id){
    $this->db->select('*');
    $this->db->where('create_by', $id);
+   $this->db->where('status', 1);
    $this->db->from('tb_modul');
   $query = $this->db->get();
   return $query->result_array();
