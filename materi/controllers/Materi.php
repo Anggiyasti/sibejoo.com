@@ -251,22 +251,54 @@ public function form_update_materi($UUID)
 	// update materi
 public function updateMateri()
 {	
-	$data['UUID'] = $this->input->post('UUID');
-	$judulMateri=htmlspecialchars($this->input->post('judul'));
-	$subBabID = htmlspecialchars($this->input->post('subBabID'));
-	$isiMateri = $this->input->post('editor1');
-	$publish= htmlspecialchars($this->input->post('stpublish'));
-	$penggunaID = $this->session->userdata['id'];
-	$data['datMateri']=array(
-		'judulMateri'=>$judulMateri,
-		'isiMateri'=>$isiMateri,
-		'subBabID'=>$subBabID,
-		'penggunaID'=>$penggunaID,
-		'publish'=>$publish);
+	$post=$this->input->post();
+	$UUID = $post['UUID'];
+	$opupload =$post['opupload'];
 
+		$config['upload_path'] = $this->upload_path;
+        $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
+        $config['max_size'] = 10000;
 
-	$this->Mmateri->ch_materi($data);
-	redirect(site_url('materi/list_all_materi'));
+        $configLogo['encrypt_name'] = TRUE;
+        $new_name = time()."-".$_FILES["gambarSoal"]['name'];
+        $config['file_name'] = $new_name;
+        $this->load->library('upload', $config);
+        $foto = 'gambarSoal';
+        $this->upload->initialize($config);
+        $file_foto=$post['gambarSoal'];
+
+		$penggunaID = $this->session->userdata['id'];
+		
+		if ($opupload =="text") {
+			$data['judulMateri']=$post['judul'];
+        	$data['isiMateri']=$post['editor1'];
+            $data['subBabID']=$post['subBabID'];
+            $data['penggunaID']=$penggunaID;
+        	$data['publish']=$post['stpublish'];
+            $data['UUID']=$UUID;
+            $data['url_file']='';
+            echo json_encode("upload materi"); 
+			$this->Mmateri->ch_materi($data,$UUID);
+		}
+		else{
+			$this->upload->do_upload($foto);
+			$file_data = $this->upload->data();
+			$file_name = $file_data['file_name'];
+			$data['judulMateri']=$post['judul'];
+			$data['isiMateri']='';
+            $data['subBabID']=$post['subBabID'];
+            $data['penggunaID']=$penggunaID;
+        	$data['publish']=$post['stpublish'];
+            $data['UUID']=$UUID;
+            $data['url_file']=$file_name;
+			$this->Mmateri->ch_materi($data,$UUID);
+			 echo json_encode($data); 
+		}
+		
+		$info="Materi Berhasil dirubah";
+        echo json_encode($info); 
+	// $this->Mmateri->ch_materi($data);
+	// redirect(site_url('materi/list_all_materi'));
 }
 
 public function del_materi()

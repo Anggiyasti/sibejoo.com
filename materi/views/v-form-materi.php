@@ -85,7 +85,7 @@
 
 						<div id="uploadMateri">
 						<div class="form-group">
-    						<label class="control-label col-sm-2">File Modul</label>
+    						<label class="control-label col-sm-2">File Materi</label>
     						<div class="col-sm-8 " >                                            
         						<div class="col-sm-12">
             						<div class="col-md-5 left"> 
@@ -196,6 +196,7 @@
 
 	$("#uploadMateri").hide();
     // Script for getting the dynamic values from database using jQuery and AJAX
+    opupload : $('input[name=opupload]:checked').val(),
 
     $(document).ready(function () {
 
@@ -253,9 +254,7 @@
 
     function upload(){
     	url = base_url+"materi/uploadMateri";
-    	datas = $('#formmateri').serialize();
-    	// var editor = {
-        // }
+    	
         var datas = {
             judul : $('input[name=judul]').val(),
             editor1 : CKEDITOR.instances.editor1.getData(),

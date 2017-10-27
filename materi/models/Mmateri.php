@@ -44,7 +44,7 @@ public function get_materi_by_user()
  	// get materi berdasarkan UUID
     public function get_single_materi($UUID)
     {
-        $this->db->select('id,UUID,judulMateri,isiMateri,publish,subBabID');
+        $this->db->select('id,UUID,judulMateri,isiMateri,publish,subBabID,url_file');
         $this->db->from('tb_line_materi');
         $this->db->where('UUID',$UUID);
         $query= $this->db->get();
@@ -62,14 +62,12 @@ public function get_materi_by_user()
     }
 
 
-    public function ch_materi($data)
+    public function ch_materi($data,$UUID)
     {
-     $this->db->set($data['datMateri']);
-     $this->db->where('UUID',$data['UUID']);
-     $this->db->update('tb_line_materi');
+     $this->db->where('UUID',$UUID);
+     $this->db->update('tb_line_materi',$data);
+    }
 
-
- }
  public function drop_materi($UUID)
  {
   $this->db->where('UUID', $UUID['UUID']);

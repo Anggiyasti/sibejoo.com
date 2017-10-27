@@ -5,7 +5,7 @@
 			
 			<div class="col-md-12">
 				<!-- Start Panel -->
-				<form class="form-horizontal form-bordered  panel panel-teal" action="<?=base_url()?>index.php/materi/updateMateri" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+				<form class="form-horizontal form-bordered  panel panel-teal" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<!-- Start HEading Panel -->
 					<div class="panel-heading">
 						<h3 class="panel-title">Form Update Materi</h3>
@@ -59,8 +59,35 @@
 								<input class="form-control" type="text" name="judul" required="" value="<?=$singleMateri['judulMateri']?>" >
 							</div>
 						</div>
-						<!-- Start field input materi -->
+
 						<div class="form-group">
+							<label class="control-label col-sm-2">Jenis Upload</label>
+							<div class="col-sm-8">
+                               <?php if ($singleMateri['url_file'] == NULL): ?>
+                                <div class="btn-group" data-toggle="buttons" >
+                                    <label class="btn btn-teal btn-outline active " id="in-text">
+                                        <input type="radio" autocomplete="off" name="opupload" value="text" checked="true"> Text 
+                                    </label>
+                                    <label class="btn btn-teal btn-outline" id="in-upload">
+                                        <input type="radio" name="opupload" value="file" autocomplete="off"> File
+                                    </label>
+                                </div>
+                                   
+                              <?php else: ?>
+								<div class="btn-group" data-toggle="buttons" >
+									<label class="btn btn-teal btn-outline" id="in-text">
+										<input type="radio" autocomplete="off" name="opupload" value="text" > Text 
+									</label>
+									<label class="btn btn-teal btn-outline active" id="in-upload">
+										<input type="radio" name="opupload" value="file" autocomplete="off" checked="true"> File
+									</label>
+								</div>
+                            <?php endif ?>
+							</div>
+						</div>
+
+						<!-- Start field input materi -->
+						<div class="form-group"  id="jenis-editor">
 							<label class="control-label col-sm-2">Jenis Editor</label>
 							<div class="col-sm-8">
 								<div class="btn-group" data-toggle="buttons" >
@@ -73,6 +100,52 @@
 								</div>
 							</div>
 						</div>
+
+
+						<div id="uploadMateri">
+						<div class="form-group">
+    						<label class="control-label col-sm-2">File Materi Lama</label>
+    						<div class="col-sm-8 " >                                            
+        						<div class="col-md-5 left"> 
+        							<h6><span id="filename"><?=$singleMateri['url_file'];?></span></h6> 
+    							</div> 
+    							<br>
+        						<a href="<?= base_url('assets/file_materi/'.$singleMateri['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
+
+
+    						</div>
+						</div>
+
+						
+						<div class="form-group">
+    						<label class="control-label col-sm-2">File Matei Baru</label>
+    						<div class="col-sm-8 " >                                            
+        						<div class="col-sm-12">
+            						<div class="col-md-5 left"> 
+                						<h6>Name: <span id="filenameSoal"></span></h6> 
+            						</div> 
+            						<div class="col-md-4 left"> 
+                						<h6>Size: <span id="filesizeSoal"></span>Kb</h6> 
+            						</div> 
+            						<div class="col-md-3 bottom"> 
+                						<h6>Type: <span id="filetypeSoal"></span></h6> 
+            						</div>
+        						</div>
+
+        						<div class="col-sm-12">
+            						<label for="fileSoal" class="btn btn-sm btn-default">
+                					Pilih File
+           						</label>
+            						<input style="display:none;" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
+        						</div>
+
+
+
+    						</div>
+						</div>
+						</div>
+
+						<div id="textmateri">
 						<div class="form-group">
 							<!-- Start Editor Soal -->
 							<div id="editor-soal">
@@ -118,6 +191,7 @@
 							<!-- End MathJax -->
 						</div>
 						<!-- END  field input materi -->
+						</div>
 
 						<div class="form-group">
 							<div class="col-sm-8 col-sm-offset-2">
@@ -130,10 +204,11 @@
 
 					</div>
 					<!-- End Panel Body -->
+					
 					<!-- Start Penl Footer -->
 					<div class="panel-footer">
 						<div class="col-sm-7">
-							<button type="submit" class="btn btn-primary">Simpan</button>
+							<button type="submit" class="btn btn-primary" onclick="ubahmateri()">Simpan Perubahan</button>
 						</div>
 					</div>
 					<!-- End Panel Footer -->
@@ -143,7 +218,8 @@
 		</div>
 	</div>
 </section>
-<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript">
 	// Replace the <textarea id="editor1"> with a CKEditor
    // instance, using default configuration.
@@ -152,6 +228,19 @@
 
 
     // Script for getting the dynamic values from database using jQuery and AJAX
+   
+    // var materi = CKEDITOR
+    var opupload = $('input[name=opupload]:checked').val();
+    if (opupload == 'text') {
+        $("#textmateri").show();
+            $("#uploadMateri").hide();
+            $("#jenis-editor").show();
+
+    }else{
+        $("#uploadMateri").show();
+            $("#textmateri").hide();
+            $("#jenis-editor").hide();
+    }
 
     $(document).ready(function () {
     	//set opton dropdown mp
@@ -180,6 +269,23 @@
     	$("#pr-rumus").click(function(){
     		$("#editor-rumus").show();
     		$("#editor-soal").hide();
+    	});
+
+        if (true) {}
+
+    	// $("#uploadMateri").hide();
+    	// Start event untuk jenis upload
+    	$("#in-text").click(function(){
+    		$("#textmateri").show();
+    		$("#uploadMateri").hide();
+    		$("#jenis-editor").show();
+    	});
+
+    	$("#in-upload").click(function(){
+    		$("#uploadMateri").show();
+    		$("#textmateri").hide();
+    		$("#jenis-editor").hide();
+
     	});
            // End event untuk jenis editor
 	// Strt dropp down depeden
@@ -323,6 +429,167 @@
     }
 
 
+    function ubahmateri(){
+    	url = base_url+"materi/updateMateri";
+    	
+        var datas = {
+        	UUID : $('input[name=UUID]').val(),
+            judul : $('input[name=judul]').val(),
+            editor1 : CKEDITOR.instances.editor1.getData(),
+            subBabID : $('select[name=subBabID]').val(),
+            stpublish : $('input[name=stpublish]').val(),
+            opupload : $('input[name=opupload]:checked').val(),
+            gambarSoal: $('[name=gambarSoal]').val(),
+        }
+        var elementId = "fileSoal";
+
+        // console.log(datas);
+            // do_upload
+            $.ajaxFileUpload({
+                url:url,
+                data:datas,
+                dataType:"TEXT",
+                type:"POST",
+                fileElementId :elementId,
+                success:function(data){
+                	// console.log(data);
+                    swal({
+                    title: "Materi Berhasil di ubah!",
+                    type: "success",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Selesai",
+                    closeOnConfirm: false,
+                },
+
+            function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href = base_url+"materi/list_all_materi";
+                    } 
+                    else {
+                        swal("Ubah Data dibatalkan");
+                    }
+                });
+                },
+                error:function(){
+                	swal("gagal merubah data!");
+                    
+                }
+            });
+    }
+
+
+  function ValidateSingleInput(oInput) {
+  var _validFileExtensions = [".doc", ".docx", ".ppt", ".pptx", ".pdf"]; 
+  if (oInput.type == "file") {
+    var sFileName = oInput.value;
+    if (sFileName.length > 0) {
+        var blnValid = false;
+        for (var j = 0; j < _validFileExtensions.length; j++) {
+            var sCurExtension = _validFileExtensions[j];
+            if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                blnValid = true;
+                break;
+            }
+        }
+
+        if (!blnValid) {
+           $('#warningupload').modal('show');
+                swal('Silahkan cek type extension file! ', 'Type yang bisa di upload hanya ".doc", ".docx", ".ppt", ".pptx", ".pdf', 'warning');
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+
     loadTingkat();
 	// End Drop down depeden
 </script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+
+
+            // Start event priview gambar Soal
+
+            $('#fileSoal').on('change',function () {
+
+                var file = this.files[0];
+
+                var reader = new FileReader();
+
+                reader.onload = viewerSoal.load;
+
+                reader.readAsDataURL(file);
+
+                viewerSoal.setProperties(file);
+
+            });
+
+            var viewerSoal = {
+
+                load : function(e){
+
+                    // $('#previewSoal').attr('src', e.target.result);
+
+                },
+
+                setProperties : function(file){
+
+                    $('#filenameSoal').text(file.name);
+
+                    $('#filetypeSoal').text(file.type);
+
+                    $('#filesizeSoal').text(Math.round(file.size/1024));
+
+                },
+
+            }
+
+            // End event priview gambar Soal
+
+            // Start event priview gambar Pembahasan
+
+            $('#filePembahasan').on('change',function () {
+
+              console.log('pembahasan');
+              var file = this.files[0];
+
+              var reader = new FileReader();
+
+              reader.onload = viewerPembahasan.load;
+
+              reader.readAsDataURL(file);
+
+              viewerPembahasan.setProperties(file);
+
+          });
+
+            var viewerPembahasan = {
+
+                load : function(e){
+
+                    $('#previewPembahasan').attr('src', e.target.result);
+
+                },
+
+                setProperties : function(file){
+
+                    $('#filenamePembahasan').text(file.name);
+
+                    $('#filetypePembahasan').text(file.type);
+
+                    $('#filesizePembahasan').text(Math.round(file.size/1024));
+
+                },
+
+            }
+
+            // End event priview gambar Soal
+        });
+
+    </script>
