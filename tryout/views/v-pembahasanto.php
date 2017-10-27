@@ -103,16 +103,16 @@
                <!-- <h1>Selamat datang</h1> -->
                               <?php 
                  if ($key['status_koreksi']==1) {
-                  $status_color = ['ico'=>'ico-checkmark3','kelas'=>'btn-success','title'=>'Jawaban Benar'];
+                  $status_color = ['ico'=>'ico-checkmark3','kelas'=>'btn-success','title'=>'Benar','kelas_txt'=>'text-success'];
                  }else if($key['status_koreksi']==2){
-                  $status_color = ['ico'=>'ico-close4','kelas'=>'btn-danger','title'=>'Jawaban Salah'];
+                  $status_color = ['ico'=>'ico-close4','kelas'=>'btn-danger','title'=>'Salah','kelas_txt'=>'text-danger'];
                  }else{
-                  $status_color = ['ico'=>'ico-check-empty','kelas'=>'btn-warning','title'=>'Jawaban Kosong'];
+                  $status_color = ['ico'=>'ico-check-empty','kelas'=>'btn-warning','title'=>'Kosong','kelas_txt'=>'text-warning'];
                  }
                 ?>
                <div class="row" title="<?=$status_color['title'] ?>">
 
-                <div class="col-md-6 center"><h4 class=""><h4 class="">ID Soal : <small> <?= $key['judul'] ?> </small><i class="<?=$status_color['ico'] ?> text-right"></i></h4></div>
+                <div class="col-md-6 center"><h4 class=""><h4 class="">ID Soal : <small> <?= $key['judul'] ?> </small></h4></div>
                
                </div>
               </div>
@@ -124,7 +124,7 @@
                  </div>
                  <div class="col-md-11">
                   <?php if (!empty($key['gambar'])) { ?>       
-                  <img src="<?= base_url('./assets/image/soal/' . $key['gambar']) ?>">   
+                  <img src="<?= base_url('./assets/image/soal/' . $key['gambar']) ?>" style="max-width: 100%">   
                   <?php } ?>
                   <h5><?= $key['soal'] ?></h5>
                   <br>
@@ -132,6 +132,7 @@
                 </div>
                 <div class="row">
                  <div class="col-md-10 col-md-offset-1">
+                  <h5 class="<?=$status_color['kelas_txt'] ?>">Jawaban anda : <?=$status_color['title'] ?></h5><br>
                   <?php
                   $k = $key['soalid'];
                   $pilihan = array("A", "B", "C", "D", "E");
@@ -144,27 +145,29 @@
                    <?php if ($row['pilid'] == $k) { ?>
                    <div class="mb10">
                     <!-- <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid #63d3e9; padding: 5px;width:100% "> -->
-                    <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid #63d3e9; padding: 5px;width:100%; <?php 
+                      <span style="font-weight: bolder;position: absolute; left: -2px;"><?=$pilihan[$indexpil];?>.</span>
+                    <label id="pil[<?= $row['pilid']; ?>]" onclick="changeColor('pil[<?= $row['pilid']; ?>]')" style="border:1px solid #63d3e9; padding: 5px;width:100%; 
+                    <?php 
                      if ($jawaban == $row['pilpil']) {
-                      echo "background-color:#63d3e9";
+                      echo "background-color:#8dcf8a";
                      }else{
 
                      }
                      ?>">
                      <input type="radio" id="<?= $i ?>" value="<?= $row['pilpil'].$pilihan[$indexpil]; ?>" name="pil[<?= $row['pilid']; ?>]" onclick="updateColor(<?= $i ?>)">
-                     <div class ="btn"><?=  $pilihan[$indexpil];?>.
-                     </div>
+                     <!-- <div class ="btn"><?=  $pilihan[$indexpil];?>.
+                     </div> -->
                      <?php
                      if (empty($row['pilgam'])) {
                       echo '';
                      } else {
                       ?>
-                      <img src="<?= base_url('./assets/image/soal/' . $row['pilgam']) ?>">
+                      <img src="<?= base_url('./assets/image/soal/' . $row['pilgam']) ?>" style="max-width: 100%">
                       <?php } ?>
                       <?= $row['piljaw'] ?>
                       <?php 
                       if ($jawaban == $row['pilpil']) {
-                       echo "&nbsp&nbsp&nbsp&nbsp<i class='fa fa-check fa-2x' aria-hidden='true'></i>";
+                       // echo "<i class='fa fa-check fa-2x' aria-hidden='true'></i>";
                       }else{
 
                       }
@@ -173,18 +176,17 @@
                      </label>  
                     </div>
                     <?php
-                   } else {
-                                                                                // $indexpil=0;
+                   } else {                                                                               // $indexpil=0;
                    }
                    ?>
+
                   <?php endforeach ?>
                  </div>
                 </div>
                 <hr>
                 <div class="row">      
                  <div class="col-md-10 col-md-offset-1">
-                  <?php
-                                                                            // if ($key['status_pembahasan'] == 0) {
+                  <?php                                                                            // if ($key['status_pembahasan'] == 0) {
                   if ($key['gambar_pembahasan'] == null && $key['pembahasan'] == null && $key['video_pembahasan'] == null && $key['link'] == null) {
                    echo "<h5><strong>Tidak ada pembahasan pada soal ini</strong></h5>";
                   }else{
@@ -197,7 +199,7 @@
                   <div class="col-md-10 col-md-offset-1" style="border: 1px solid #63d3e9;min-height: 100px;padding:10px;text-align:justify">
                    <!-- CEK ADA GAMBAR PEMBAHASAN -->
                    <?php if ($key['gambar_pembahasan'] != null) { ?>
-                   <img src="<?= base_url('assets/image/pembahasan/'.$key['gambar_pembahasan']) ?>" width=100% >
+                   <img src="<?= base_url('assets/image/pembahasan/'.$key['gambar_pembahasan']) ?>" style="max-width: 100%" >
                    <?php
                   } 
 
@@ -274,6 +276,7 @@
              $nojwb = 1;
              foreach ($soal as $jwb) {
               ?>
+              
               <div id="flex-item" >
               <?php if ($jwb['status_koreksi']==1): ?>
                <a id ="nom_sisS" class ="go_slide btn btn-success"  alt="<?= $nojwb ?>" title="Jawaban Benar"><?= $nojwb ?></a>               

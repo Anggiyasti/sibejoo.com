@@ -198,8 +198,9 @@ label:hover{ /* HIDE RADIO */
 
              <div class="col-md-11">
                <?php $gambar=$key['gambar']; ?>
-               <?php if (!empty($gambar) && $gambar!="" && $gambar!=' ') { ?>  
-               <img src="<?= base_url('./assets/image/soal/' . $gambar) ?>">   
+               <?php if (!empty($gambar) && $gambar!="" && $gambar!=' ') { ?>
+               masuk  
+               <img src="<?= base_url('/assets/image/soal/' . $gambar) ?>" style="max-width: 100%">   
                <?php } ?>
                <h5><?= $key['soal'] ?></h5>
                <br>
@@ -225,13 +226,16 @@ label:hover{ /* HIDE RADIO */
 
                 <?php $param_send = html_entity_decode(json_encode($param)); ?>
                 <input type="hidden" name="pilsoal-<?=$key['soalid'].$indexpil;?>" value="<?=htmlspecialchars($row['piljaw']); ?>">
-                <label id="<?=$key['soalid'].$indexpil;?>" 
+<!--                 pilsoal-<?=$key['soalid'].$indexpil;?>
+                <?= $row['pilpil'].$pilihan[$indexpil]; ?> -->
+
+                  <span style="font-weight: bolder;position: absolute; left: -2px;"><?=$pilihan[$indexpil];?>.</span><label id="<?=$key['soalid'].$indexpil;?>" 
 
                   onclick='changeColor(<?=$param_send ?>)' 
 
                   alt="<?=$key['soalid'];?>" 
-                  style="border:1px solid #63d3e9; padding: 5px;width:100% ">
-
+                  style="border:1px solid #63d3e9; padding: 5px;width:95% ">
+                 
                   <input type="radio" 
                   id="<?= $i ?>" 
                   value="<?= $row['pilpil'].$pilihan[$indexpil]; ?>" 
@@ -239,16 +243,14 @@ label:hover{ /* HIDE RADIO */
                   onclick="updateColor(<?= $i ?>)">
 
                   <!-- INDEX PILIHAN -->
-                  <div class ="btn">
-                   <?=  $pilihan[$indexpil];?>.
-                 </div>
+                  
                  <!-- INDEX PILIHAN -->
 
                  <!-- INDEX PILIHAN KALO ADA GAMBAR-->
                  <?php if (empty($row['pilgam'])) {
                    echo '';
                  } else { ?>
-                 <img src="<?= base_url('./assets/image/jawaban/' . $row['pilgam']) ?>">
+                 <img src="<?= base_url('./assets/image/jawaban/' . $row['pilgam']) ?>" style="max-width: 100%">
                  <?php } ?>
                  <!-- INDEX PILIHAN KALO ADA GAMBAR-->
 
@@ -384,6 +386,8 @@ function changeColor(data){
   var d = document.getElementById(data.value);
   d.className = "terpilih";
   pilihan_jawaban = $('input[name=pilsoal-'+data.value+']').val();
+
+
    // simpan di local storage
    backup_jawaban = {id:data.soalid,pilihan:pilihan_jawaban};
    localStorage.setItem('soal-'+data.soalid, JSON.stringify(backup_jawaban));

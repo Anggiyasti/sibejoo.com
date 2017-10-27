@@ -29,7 +29,7 @@
             <!-- panel-toolbar -->
             <div class="panel-heading ">
                 <div class="panel-toolbar">
-                    <h5 class="semibold nm ellipsis">Sumber Soal : <?=$key['sumber'];?></h5>
+                    <h5 class="semibold nm ellipsis text-black"><i class="ico-files black"></i> Nama Soal : <?=$key['judulSoal'] ?> - <i class="ico-folder-upload black"></i>  Sumber Soal : <?=$key['sumber'];?></h5>
                 </div>
                 <div class="panel-toolbar text-right">
                     <div class="btn-group">
@@ -40,7 +40,7 @@
                             <li ><a href="javascript:void(0)" data-toggle="panelcollapse">Pembahasan (hide/unhide)</a></li>
                             <?php 
                             $idPengguna = $this->session->userdata['id'];
-                              $hakakses = $this->session->userdata['HAKAKSES'];
+                            $hakakses = $this->session->userdata['HAKAKSES'];
                             $create_by = $key['create_by'];
                              ?>
                             <?php if ($idPengguna == $create_by || $hakakses == 'admin' ): ?>

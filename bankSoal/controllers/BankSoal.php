@@ -103,7 +103,7 @@ class Banksoal extends MX_Controller {
     //tampung list semua soal u/ ke view
     public function tampSoal($list)
     {
-         $data['judul_halaman'] = 'Bank Soal <a class="btn btn-sm  btn-inverse btn-outline" href="formsoal" title="Tambah Data Soal" ><i class="ico-plus"></i></a>' ;
+         $data['judul_halaman'] = 'Bank Soal' ;
         $data['files'] = array(
             APPPATH . 'modules/banksoal/views/v-soal-all2.php',
             );
@@ -174,8 +174,10 @@ class Banksoal extends MX_Controller {
                 $kesulitan = 'Sulit';
             } elseif ($tingkat_kesulitan == "1") {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat_kesulitan=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined,Pls Edit';
             }
 
             $data['datSoal'][]=array(
@@ -396,12 +398,14 @@ class Banksoal extends MX_Controller {
 
             
              // menentukan tingkat kesulitan dengan indeks 1 - 3
-            if ($tingkat == '3') {
+            if ($tingkat == '2') {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat == '1') {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined';
             }
             // menentukan jawaban benar
             foreach ( $pilihan as $piljawaban ) {
@@ -493,12 +497,14 @@ class Banksoal extends MX_Controller {
             $ckPublish="";
 
              // menentukan tingkat kesulitan dengan indeks 1 - 3
-            if ($tingkat == '3') {
+            if ($tingkat == '2') {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat == '1') {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined';
             }
             // menentukan jawaban benar
             foreach ( $pilihan as $piljawaban ) {
@@ -590,12 +596,14 @@ class Banksoal extends MX_Controller {
             $ckPublish="";
 
              // menentukan tingkat kesulitan dengan indeks 1 - 3
-            if ($tingkat == '3') {
+            if ($tingkat == '2') {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat == '1') {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined';
             }
             // menentukan jawaban benar
             foreach ( $pilihan as $piljawaban ) {
@@ -686,12 +694,14 @@ class Banksoal extends MX_Controller {
             $ckPublish="";
 
              // menentukan tingkat kesulitan dengan indeks 1 - 3
-            if ($tingkat == '3') {
+           if ($tingkat_kesulitan == "2") {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat_kesulitan == "1") {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat_kesulitan=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined,Pls Edit';
             }
             // menentukan jawaban benar
             foreach ( $pilihan as $piljawaban ) {
@@ -823,12 +833,14 @@ class Banksoal extends MX_Controller {
             // pengecekan soal jika ada tabel
             $valSoal=$this->cek_soal_tabel($soal);
              // menentukan tingkat kesulitan dengan indeks 1 - 3
-            if ($tingkat == '3') {
+            if ($tingkat == '2') {
                 $kesulitan = 'Sulit';
-            } elseif ($tingkat == '2') {
+            } elseif ($tingkat == '1') {
                 $kesulitan = 'Sedang';
-            }else {
+            }elseif($tingkat=='0') {
                $kesulitan = 'Mudah';
+            }else{
+                $kesulitan = 'Undefined';
             }
             // menentukan jawaban benar
             foreach ( $pilihan as $piljawaban ) {
@@ -1515,7 +1527,7 @@ class Banksoal extends MX_Controller {
 
 
            #END pengecekan media pembahasan
-        redirect(site_url('banksoal/listsoal/'. $page));
+        redirect(site_url('banksoal/mysoal/'. $page));
     }
 
 
@@ -2085,9 +2097,9 @@ class Banksoal extends MX_Controller {
        $this->load->database();
            $keyword = $this->input->post('keyword');
            if ($keyget!='') {
-               $keyword=$keyget;
+               $keyword=urldecode($keyget);
            }
-      $datCari = $this->Mbanksoal->get_cari2($keyword);
+        $datCari = $this->Mbanksoal->get_cari2($keyword);
         $jumlah_data = $this->Mbanksoal->jumlah_soalCari($keyword);
        
         $config['base_url'] = base_url().'index.php/banksoal/cari/';

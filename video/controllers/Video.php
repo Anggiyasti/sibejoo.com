@@ -180,13 +180,18 @@ class Video extends MX_Controller {
      }else{
         $this->sessionchecker->cek_token();
     }
-        //data untuk templating
+
     $data['videosingle'] = $this->load->Mvideos->get_single_video($idvideo);
-    $metaMapel = $this->Mvideos->get_meta_mapel($data['videosingle'][0]->subBabID);
-    $judul_header = ($metaMapel['namaMataPelajaran']."->".$metaMapel['judulBab']);
+    
+        //data untuk templating
     if ($data['videosingle'] == array()) {
         $data['title'] = "Video yang anda pilih tidak ada, mohon kirimi kami laporan";
     } else {
+
+    $metaMapel = $this->Mvideos->get_meta_mapel($data['videosingle'][0]->subBabID);
+
+    $judul_header = ($metaMapel['namaMataPelajaran']."->".$metaMapel['judulBab']);
+
             //ambil id bab.
         $idbab = $this->load->Mvideos->get_nama_sub_by_id_video($idvideo)['babID'];
         $video_by_bab = $this->Mvideos->get_all_video_by_bab($idbab);
@@ -197,28 +202,29 @@ class Video extends MX_Controller {
         $onevideo = $data['videosingle'];
         $penggunaID = $onevideo[0]->penggunaID;
         $penulis = $this->load->mguru->get_penulis($penggunaID);
-
         if ($penulis != array()) {
+            if ($penulis[0]['photo']=="default.jpg") {
+            $photo= $this->generateavatar->generate_first_letter_avtar_url($penulis[0]['namaDepan']);
+            }else{
             $photo=base_url().'assets/image/photo/guru/'.$penulis[0]['photo'];
+            }
 
+            if ($penulis[0]['biografi']=="") {
+                $bio = 'Kakak tutor masih malu malu menceritakan dirinya';
+            }else{
+                $bio = $penulis[0]['biografi']; 
+            }            
+            $penulis = ['namaDepan'=>$penulis[0]['namaDepan'],'namaBelakang'=>$penulis[0]['namaBelakang'],'biografi'=>$bio];
         }else{
-
             $photo= $this->generateavatar->generate_first_letter_avtar_url("Admin");
             $penulis = ['namaDepan'=>"Super",'namaBelakang'=>"Admin",'biografi'=>'Admin masih malu malu menceritakan dirinya'];
         }
-
         if($onevideo[0]->namaFile==NULL){
             $judul = $onevideo[0]->link;
         }else{
             $link = "assets/video/".$onevideo[0]->namaFile;
             $judul = base_url($link);
         }
-            // if ($onevideo[0]->guruID!="") {
-            //     $guruID = $onevideo[0]->guruID;
-            //     $penulis = $this->load->mguru->get_penulis($guruID)[0];
-            // }else{
-            //     $penulis = ['namaDepan'=>"Super",'namaBelakang'=>"Admin",'biografi'=>'Admin masih malu malu menceritakan dirinya','photo'=>'default.png'];
-            // }
         // get tanggal dan bulan
         $timestamp = strtotime($onevideo[0]->date_created);
         $tgl=date("d", $timestamp);

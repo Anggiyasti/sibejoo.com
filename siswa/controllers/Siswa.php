@@ -898,13 +898,34 @@ function persentase_json($id=""){
     if ($this->get_status_login()){
         $datas = $this->mtryout->get_report_paket($id);
         $array = [];
-
         foreach ($datas as $key) {
             $point = $key['jmlh_benar'] + $key['jmlh_salah'] + $key['jmlh_kosong'] / $key['jumlah_soal']*100;
-            $array[] = ['y'=>$point,'indexLabel'=>$key['nm_paket'],'label'=>'Point'];
+            // $array[] = ['y'=>$point,'indexLabel'=>$key['nm_paket'],'label'=>'Point'];
+            $tempt = [$key['nm_paket'],$point];
+            array_push($array, $tempt);
+            // $array[] = [['Shanghai', 23.7],
+            // ['Lagos', 16.1],
+            // ['Istanbul', 14.2],
+            // ['Karachi', 14.0],
+            // ['Mumbai', 12.5],
+            // ['Moscow', 12.1],
+            // ['São Paulo', 11.8],
+            // ['Beijing', 11.7],
+            // ['Guangzhou', 11.1],
+            // ['Delhi', 11.1],
+            // ['Shenzhen', 10.5],
+            // ['Seoul', 10.4],
+            // ['Jakarta', 10.0],
+            // ['Kinshasa', 9.3],
+            // ['Tianjin', 9.3],
+            // ['Tokyo', 9.0],
+            // ['Cairo', 8.9],
+            // ['Dhaka', 8.9],
+            // ['Mexico City', 8.9],
+            // ['Lima', 8.9]];
+
         }
         echo json_encode($array);
-
     }else{
         redirect('login');
     }

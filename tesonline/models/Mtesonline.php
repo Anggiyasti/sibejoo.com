@@ -77,6 +77,14 @@ class Mtesonline extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_report_latihan($id){
+        $this->db->select('*');
+        $this->db->from('tb_report-latihan rp');
+        $this->db->where('id_latihan',$id);
+        $query = $this->db->get(); 
+        return $query->result()[0]; 
+    }
 }
 
 ?>

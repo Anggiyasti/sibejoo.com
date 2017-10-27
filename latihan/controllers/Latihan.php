@@ -207,10 +207,9 @@ class Latihan extends MX_Controller {
             $array = [];
 
             foreach ($datas as $key) {
-                $array[] = ['y'=>(int)$key['skore'],'indexLabel'=>$key['nm_latihan'],'label'=>'Point'];
+                $array[] = [$key['nm_latihan'], (int)$key['skore']];
             }
             echo json_encode($array);
-
         }else{
             redirect('login');
         }

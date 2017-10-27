@@ -1,31 +1,6 @@
-  <!-- PERKEMBANGAN TO -->
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
-
-        <div class="panel-toolbar text-right">
-              <div class="col-sm-4 mt5"></div>
-              <div class="col-sm-8 mt1">
-               <select class="form-control tryout_select" name="tryout_select">
-                <option value="">-- Cari Berdasarkan Tryout --</option>
-              </select>
-            </div>
-          </div>
-
-      </div>
-      <div class="panel-body">
-        <div class="panel-body pt0" id="resizeble" style="height:430px">
-
-          </div>       
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- PERKEMBANGAN TO -->
 
 <div class="row">
-    <!-- WELCOME -->
+  <!-- WELCOME -->
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -114,65 +89,62 @@
       </div>
     </div>
   </div>
-    <!-- WELCOME -->
+  <!-- WELCOME -->
 
-  <!-- PERKEMBANGAN TO -->
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
+<!-- PERKEMBANGAN TO -->
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
 
-        <div class="panel-toolbar text-right">
-              <div class="col-sm-4 mt5"></div>
-              <div class="col-sm-8 mt1">
-               <select class="form-control tryout_select" name="tryout_select">
-                <option value="">-- Cari Berdasarkan Tryout --</option>
-              </select>
-            </div>
-          </div>
-
-      </div>
-      <div class="panel-body">
-        <div class="panel-body pt0" id="resizeble" style="height:430px">
-          <div class="container" id="chartContainer" style="width:100%">
-
-          </div>
-          </div       
-        </div>
+      <div class="panel-toolbar text-right">
+        <div class="col-sm-4 mt5"></div>
+        <div class="col-sm-8 mt1">
+         <select class="form-control tryout_select" name="tryout_select">
+          <option value="">-- Cari Berdasarkan Tryout --</option>
+        </select>
       </div>
     </div>
+
   </div>
-  <!-- PERKEMBANGAN TO -->
+  <div class="panel-body">
+    <div class="panel-body pt0" id="resizeble" style="height:430px">
+      <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+    </div>       
+  </div>
+</div>
+</div>
+<!-- PERKEMBANGAN TO -->
 
 
-  <!-- PERKEMBANGAN LATIHAN -->
+<!-- PERKEMBANGAN LATIHAN -->
 
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="ico-stats-up">  </i> Grafik Perkembangan Latihan</h3> 
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="ico-stats-up">  </i> Grafik Perkembangan Latihan</h3> 
 
-        <div class="panel-toolbar text-right">
-              <div class="col-sm-4 mt5"></div>
-              <div class="col-sm-8 mt1">
-               <select class="form-control bab_select" name="bab_select">
-                <option value="">-- Cari Berdasarkan Bab --</option>
-              </select>
-            </div>
-          </div>
-
-    </div>
-    <div class="panel-body">
-      <div class="panel-body pt0" id="resizeble2" style="height:430px">
-        <div class="container" id="chartContainer2" style="width:100%">
-
-        </div>
-        </div       
+      <div class="panel-toolbar text-right">
+        <div class="col-sm-4 mt5"></div>
+        <div class="col-sm-8 mt1">
+         <select class="form-control bab_select" name="bab_select">
+          <option value="">-- Cari Berdasarkan Bab --</option>
+        </select>
       </div>
+    </div>
+
+  </div>
+  <div class="panel-body">
+    <div class="panel-body pt0" id="resizeble2" style="height:430px">
+      <div class="container" id="chartContainer2" style="width:100%">
+
+      </div>
+      </div       
     </div>
   </div>
 </div>
-  <!-- PERKEMBANGAN LATIHAN -->
+</div>
+<!-- PERKEMBANGAN LATIHAN -->
 
 <!-- LAPORAN SEMUA PAKET TRYOUT -->
 <div class="col-md-12">
@@ -300,53 +272,53 @@
 
     </div>
   </div>
-  </div>
+</div>
 <!-- DAFTAR KONSULTASI -->
 
 
 <!-- PRODRESS LEARNING LINE -->
-  <!-- Browser Breakpoint -->
-  <div class="col-lg-12">
-    <!-- START panel -->
-    <div class="panel panel-default">
-      <!-- panel heading/header -->
-      <div class="panel-heading">
-        <h3 class="panel-title ellipsis"><i class="ico-files mr5"></i>Progress learning Line</h3>
-        <!-- panel toolbar -->
-        <div class="panel-toolbar text-right">
-          <!-- option -->
-          <div class="option">
-            <button class="btn up" data-toggle="panelcollapse"><i class="arrow"></i></button>
-            <button class="btn" data-toggle="panelremove" data-parent=".col-md-12"><i class="remove"></i></button>
-          </div>
-          <!--/ option -->
+<!-- Browser Breakpoint -->
+<div class="col-lg-12">
+  <!-- START panel -->
+  <div class="panel panel-default">
+    <!-- panel heading/header -->
+    <div class="panel-heading">
+      <h3 class="panel-title ellipsis"><i class="ico-files mr5"></i>Progress learning Line</h3>
+      <!-- panel toolbar -->
+      <div class="panel-toolbar text-right">
+        <!-- option -->
+        <div class="option">
+          <button class="btn up" data-toggle="panelcollapse"><i class="arrow"></i></button>
+          <button class="btn" data-toggle="panelremove" data-parent=".col-md-12"><i class="remove"></i></button>
         </div>
-        <!--/ panel toolbar -->
+        <!--/ option -->
       </div>
-      <!--/ panel heading/header -->
-      <!-- panel body with collapse capabale -->
-      <div class="table-responsive panel-collapse pull out">
-        <table class="table rpersentase" style="font-size: 13px" width=100%>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama topik</th>
-              <th>Dikerjakan</th>
-              <th>Jumlah Step</th>
-              <th>Belum Dikerjakan</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-      <!--/ panel body with collapse capabale -->
+      <!--/ panel toolbar -->
     </div>
-    <!--/ END panel -->
+    <!--/ panel heading/header -->
+    <!-- panel body with collapse capabale -->
+    <div class="table-responsive panel-collapse pull out">
+      <table class="table rpersentase" style="font-size: 13px" width=100%>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama topik</th>
+            <th>Dikerjakan</th>
+            <th>Jumlah Step</th>
+            <th>Belum Dikerjakan</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+    <!--/ panel body with collapse capabale -->
   </div>
-  <!-- Browser Breakpoint -->
+  <!--/ END panel -->
+</div>
+<!-- Browser Breakpoint -->
 <!-- PRODRESS LEARNING LINE -->
 
 
@@ -443,7 +415,6 @@ dataTableReportPaket = $('.rpersentase').DataTable({
 function lihat_laporan_latihan(data){
  var kelas ='.latihan-'+data;
  var data = $(kelas).data('todo');
- console.log(data);
 }
 //  lihat laporan to
 
@@ -481,54 +452,6 @@ function lihat_konsultasi(id){
 }
 
 </script>
-
-
-
-<!-- LOAD GRAFIK PERSENTASE TO -->
-<script type="text/javascript">
-
-  $.getJSON(base_url+"siswa/persentase_json", function(data) {
-    load_grafik(data);
-  });
-
-  function load_grafik(data){
-    var chart = new CanvasJS.Chart("chartContainer", {
-      title:{
-        text:"Grafik Perkembangan Paket Tryout"        
-      },
-      animationEnabled: true,
-      axisX:{
-        interval: 1,
-        gridThickness: 0,
-        labelFontSize: 10,
-        labelFontStyle: "normal",
-        labelFontWeight: "normal",
-        labelFontFamily: "Lucida Sans Unicode"
-
-      },
-      axisY2:{
-        interlacedColor: "rgba(1,77,101,.2)",
-        gridColor: "rgba(1,77,101,.1)"
-
-      },
-
-      data: [
-      {     
-        type: "bar",
-        name: "companies",
-        axisYType: "secondary",
-        color: "#4dcde6",       
-        dataPoints: data
-      }
-
-      ]
-    });
-    chart.render();
-  }
-</script>
-<!-- LOAD GRAFIK PERSENTASE TO -->
-
-
 
 <!-- LOAD GRAFIK PERSENTASE LATIHAN -->
 <script type="text/javascript">
@@ -579,23 +502,23 @@ function lihat_konsultasi(id){
 <!-- FILTER PENCARIAN BAB -->
 <script type="text/javascript">
  $.getJSON(base_url+"latihan/get_bab_to_option", function(data) {
-    $('.bab_select').html('<option value="">-- Cari Berdasarkan Bab --</option>');
-    $.each(data, function (i, data) {
-      $('.bab_select').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
-    });
+  $('.bab_select').html('<option value="">-- Cari Berdasarkan Bab --</option>');
+  $.each(data, function (i, data) {
+    $('.bab_select').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
   });
+});
 
 // KETIKA BAB CHANGE, LOOAD GRAFIK
- $('.bab_select').change(function () {
+$('.bab_select').change(function () {
   id_bab = $(this).val();
   if (id_bab!="") {
     $.getJSON(base_url+"latihan/get_repot_latihan_to_grafik/"+id_bab, function(data) {
-    load_grafik_latihan(data);
-  });
+      load_grafik_latihan(data);
+    });
   }else{
     $.getJSON(base_url+"latihan/get_repot_latihan_to_grafik/", function(data) {
-    load_grafik_latihan(data);
-  });
+      load_grafik_latihan(data);
+    });
   }
 });
 // KETIKA BAB CHANGE, LOOAD GRAFIK
@@ -607,49 +530,179 @@ function lihat_konsultasi(id){
 <!-- FILTER PENCARIAN TO -->
 <script type="text/javascript">
  $.getJSON(base_url+"siswa/get_tryout_for_select", function(data) {
-    $('.tryout_select').html('<option value="">-- Cari Berdasarkan Tryout --</option>');
-    $.each(data, function (i, data) {
-      $('.tryout_select').append("<option value='" + data.id_tryout + "'>" + data.nm_tryout + "</option>");
-    });
+  $('.tryout_select').html('<option value="">-- Cari Berdasarkan Tryout --</option>');
+  $.each(data, function (i, data) {
+    $('.tryout_select').append("<option value='" + data.id_tryout + "'>" + data.nm_tryout + "</option>");
   });
+});
 
+$.getJSON(base_url+"siswa/persentase_json/", function(data) {
+      load_grafik_tryout(data);
+    });
 // KETIKA BAB CHANGE, LOOAD GRAFIK
- $('.tryout_select').change(function () {
+$('.tryout_select').change(function () {
   id_to = $(this).val();
   if (id_to!="") {
     $.getJSON(base_url+"siswa/persentase_json/"+id_to, function(data) {
-    load_grafik(data);
-  });
+      load_grafik_tryout(data);
+    });
   }else{
     $.getJSON(base_url+"siswa/persentase_json/", function(data) {
-    load_grafik(data);
-  });
+      load_grafik_tryout(data);
+    });
   }
 });
 // KETIKA BAB CHANGE, LOOAD GRAFIK
 
 
 function konsultasi(pertanyaanID){
-   url_ajax = base_url+"konsultasi/tamp_single";
+ url_ajax = base_url+"konsultasi/tamp_single";
 
-    var global_properties = {
-      pertanyaanID: pertanyaanID
-    };
+ var global_properties = {
+  pertanyaanID: pertanyaanID
+};
 
-    $.ajax({
-      type: "POST",
-      dataType: "JSON",
-      url: url_ajax,
-      data: global_properties,
-      success: function(data){
-        window.location.href = base_url + "konsultasi/singlekonsultasi";  
-      },error:function(data){
-        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-      }
+$.ajax({
+  type: "POST",
+  dataType: "JSON",
+  url: url_ajax,
+  data: global_properties,
+  success: function(data){
+    window.location.href = base_url + "konsultasi/singlekonsultasi";  
+  },error:function(data){
+    sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+  }
 
-    });
+});
 }
 </script>
 <!-- FILTER PENCARIAN TO -->
 
 <script src="<?= base_url('assets/back/plugins/canvasjs.min.js') ?>"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+  function load_grafik_tryout(data){
+    Highcharts.chart('container', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Grafik Perkembangan Tryout '+"<?=ucfirst($this->session->userdata('USERNAME')) ?>"
+      },
+      subtitle: {
+        text: 'Source: Rapor Online Sibejoo'
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -45,
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Nilai : Max 100'
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Nilai Tryout Terbaru'
+      },
+      series: [{
+        name: 'Nilai',
+        data: [
+        data[0],
+        data[1],
+        data[2],
+        data[3],
+        data[4],
+        data[5],
+        data[6],
+        data[7],         
+        ],
+        dataLabels: {
+          enabled: true,
+          rotation: -90,
+          color: '#FFFFFF',
+          align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+              fontSize: '13px',
+              fontFamily: 'Verdana, sans-serif'
+            }
+          }
+        }]
+      });
+  }
+</script>
+
+<script type="text/javascript">
+  function load_grafik_latihan(data){
+    Highcharts.chart('chartContainer2', {
+      chart: {
+        type: 'line'
+      },
+      title: {
+        text: 'Grafik Perkembangan Latihan '+"<?=ucfirst($this->session->userdata('USERNAME')) ?>"
+      },
+      subtitle: {
+        text: 'Source: Rapor Online Sibejoo'
+      },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -45,
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Point'
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Nilai Tryout Terbaru'
+      },
+      series: [{
+        name: 'Nilai',
+        data: [
+        data[0],
+        data[1],
+        data[2],
+        data[3],
+        data[4],
+        data[5],
+        data[6],
+        data[7],         
+        ],
+        dataLabels: {
+          enabled: true,
+          rotation: -90,
+          color: '#FFFFFF',
+          align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+              fontSize: '13px',
+              fontFamily: 'Verdana, sans-serif'
+            }
+          }
+        }]
+      });
+  }
+</script>

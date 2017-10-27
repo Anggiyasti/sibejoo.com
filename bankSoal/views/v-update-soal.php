@@ -526,10 +526,10 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
       <div class="col-sm-8">
         <input type="text" name="tampkesulitan" value="<?=$banksoal['kesulitan'];?>" id='tampkesulitan' hidden="true">
         <select name="kesulitan" class="form-control">
-          <option value="">--Silahkan Pilih Tingkat Kesulitan--</option>
-          <option value="1" id="lvl1">Mudah</option>
-          <option value="2" id="lvl2">Sedang</option>
-          <option value="3" id="lvl3">Sulit</option>
+          <option value="" id="pls_edit">--Silahkan Pilih Tingkat Kesulitan--</option>
+          <option value="0" id="lvl0">Mudah</option>
+          <option value="1" id="lvl1">Sedang</option>
+          <option value="2" id="lvl2">Sulit</option>
         </select>
       </div>
     </div>
@@ -1157,14 +1157,18 @@ true">
 
           // set option kesulitan ################
           var tampkesulitan=$('#tampkesulitan').val();
-          if (tampkesulitan ==3) {
-            $('#lvl3').attr('selected','selected');
-          }else if (tampkesulitan==2) {
+          if (tampkesulitan=="") {
+          console.log(1);          
+
+          }
+          if (tampkesulitan==2) {
             $('#lvl2').attr('selected','selected');
           }else if (tampkesulitan==1) {
             $('#lvl1').attr('selected','selected');
+          }else if (tampkesulitan==0) {
+            $('#lvl0').attr('selected','selected');
           }else{
-
+            $('#pls_edit').attr('selected','selected');
           }
           // ########################
 

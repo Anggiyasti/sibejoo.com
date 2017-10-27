@@ -18,7 +18,7 @@ class Mlatihan extends CI_Model
 	//random buat bab
 	public function get_random_for_latihan_bab( $param ) {
 		$this->db->where( 'bab.id', $param['id_bab'] );
-		$this->db->where('status','1');
+		$this->db->where('b.status','1');
 		$this->db->where('publish','1');
 		// $this->db->where( 'kesulitan', $param['kesulitan'] );
 		$this->db->order_by( 'rand()' );
@@ -180,6 +180,7 @@ class Mlatihan extends CI_Model
 			";
 		## TANPA FILTER BAB, TAMPILIN SEMUA ##
 		}else{
+
 		## TANPA FILTER BAB, TAMPILIN SEMUA ##
 			$query = "SELECT hasil.id_latihan,hasil.nm_latihan,skore FROM 
 			(SELECT * FROM `tb_latihan` l

@@ -76,8 +76,7 @@
   <div id="wrapper" class="clearfix">
     <script type="text/javascript">var base_url = "<?= base_url() ?>"</script>
     <?php
-    
-    foreach ($files as $key) {
+    foreach($files as $key) {
       include ($key);
     }
     ?>
@@ -86,7 +85,7 @@
 
   <!-- Footer Scripts -->
   <!-- JS | Custom script for all pages -->
-  <script src="<?=base_url('assets/retemplate/js/custom.js')?>"></script>
+   <script src="<?=base_url('assets/retemplate/js/custom.js')?>"></script>
 
       <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
       (Load Extensions only on Local File Systems ! 

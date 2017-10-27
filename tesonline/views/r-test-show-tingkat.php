@@ -232,12 +232,6 @@
         url: "<?php echo base_url() ?>index.php/matapelajaran/memberzone_get_bab_by_tingpel_id/" + tingPel,
         success: function (data) {
           $('#babSelect').append(data);
-
-          console.log(data);
-          // $.each(data, function (i, data) {
-          //   $('#babSelect').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
-          //   babid = data.id;
-          // });
         }
       });
 
@@ -284,7 +278,6 @@
 
             if (data.subab==0) {
               url = "<?php echo base_url() ?>index.php/latihan/tambah_latihan_ajax_bab";
-              console.log(data);
             }else{
               url = "<?php echo base_url() ?>index.php/latihan/tambah_latihan_ajax";
             }
@@ -306,9 +299,9 @@
                       window.location.href = base_url + "index.php/tesonline/daftarlatihan";
                     }
                   },
-                  error: function (respone, jqXHR, textStatus, errorThrown)
+                  error: function (respone, jqXHR, textStatus, errorThrown,data)
                   {
-                    swal('Error adding / update data');
+                    swal('Oops','Gagal Membuat latihan');
                   }
                 });
           }
