@@ -146,7 +146,7 @@
             </article>
 
             <div class="author-details media-post mt-10">
-              <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{photo}" style="width: 106px; height: 106px;"></a>
+              <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{photo}"></a>
               <div class="post-right">
                 <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">{nama_penulis}</a></h5>
                 <p><i>{biografi}</i></p>

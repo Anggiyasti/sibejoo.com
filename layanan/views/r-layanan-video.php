@@ -1,48 +1,196 @@
 <!-- Start main-content -->
 <div class="main-content"> 
 
-  <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-70 pb-20">
+    <!-- Section: inner-header versi 0 -->
+   <!--  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+      <div class="container pt-70 pb-20"> -->
         <!-- Section Content -->
-        <div class="section-content">
+        <!-- <div class="section-content">
           <div class="row">
             <div class="col-md-12">
               <h2 class="title text-white text-center">VIDEO PEMBELAJARAN</h2>
               <h2 class="title text-white text-center">#BELAJARJADILEBIHSERU</h2>
             </div>
           </div>
+        </div> -->
+      <!-- </div>
+    </section> -->
+
+    <!-- Section: inner-header versi 1 -->
+    <section class="inner-header" data-bg-img="<?=base_url('assets/back/img/illustrasi/slide_2.jpg') ?>">
+      <div class="container pt-90 pb-80">
+        <!-- Section Content -->
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <h2 class="title text-white text-center">Video Pembelajaran</h2>
+              <h4 class="text-white text-center">Sibejoo menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami.</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <h4 class="text-white text-center">Tidak hanya itu Sibejoo juga memberikan 2 jenis video yang bisa kalian sesuaikan dengan kecepatan akses internet kalian.</h4>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-<h2 class="text-center">Semakin Paham Materi Pelajaran dengan video pembelajaran</h2>
-<!-- Section: Pricing Table -->
-<section class="bg-white" id="pricing">
-  <div class="container">
-  <div class="section-content">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
-        
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-8 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-center pr-20 pt-20"><sup>Video Pembelajaran</sup>
+    <h2 class="text-center">Semakin Paham Materi Pelajaran dengan video pembelajaran</h2>
+    <!-- Section: Video -->
+    <section class="bg-white">
+      <div class="container">
+      <div class="section-content">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
+            
           </div>
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <iframe width="563" height="300" src="https://www.youtube.com/embed/eQlveAt9e88" frameborder="0" allowfullscreen></iframe>
-            <h4>Sibejoo Heroo Menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami. Tidak hanya itu Sibejoo juga memberikan 2 jenis video yang bisa kalian sesuaikan dengan kecepatan akses internet kalian.</h4>
+          <div class="col-xs-12 col-sm-6 col-md-8 hvr-float-shadow mb-sm-30">
+            <div class="pricing-table maxwidth400">
+              <div class="font-36 pl-20 bg-theme-colored text-white text-center pr-20 pt-20"><sup>Video Pembelajaran</sup>
+              </div>
+              <div class=" bg-white border-1px p-30 pt-20 pb-20">
+                <iframe width="563" height="300" src="https://www.youtube.com/embed/eQlveAt9e88" frameborder="0" allowfullscreen></iframe>
+                <h4>Sibejoo Heroo Menyediakan Video Belajar yang lengkap, asyik dan mudah dipahami. Tidak hanya itu Sibejoo juga memberikan 2 jenis video yang bisa kalian sesuaikan dengan kecepatan akses internet kalian.</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
-      </div>
     </div>
-  </div>
-</div>
-</section>
+    </section>
 
-<!-- Divider: testimonials -->
+<!-- Section: Testimonials versi 1 -->
+    <section class="">
+      <div class="container">
+        <div class="section-title">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="text-center text-theme-colored font line-height-1 mt-0 mb-10">Ulasan Dari Teman-teman</h2>
+              <p class="text-center">Lebih dari 10.000 telah mendownload Aplikasi Sibejoo Heroo. Ayo download sekarang!</p>
+            </div>
+          </div>
+        </div>
+        <div class="row mtli-row-clearfix">
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="icon-box iconbox-theme-colored bg-white p-15 mb-30 border-1px">
+              <a href="#" class="icon pull-left sm-pull-none flip">
+                <img src="<?=base_url('assets/image/user-male.png') ?>">
+              </a>
+              <div class="icon-box-details">
+                <div class="star-rating pull-right" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
+                <h4 class="icon-box-title font-16 font-weight-600 m-0 mb-5">Your Name</h4>
+                <p class="text-gray font-13 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non null</p>
+              </div>
+            </div>    
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+
+<!-- Divider: testimonials versi 0 -->
     <section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="http://placehold.it/1920x1280">
       <div class="container pb-50">
         <div class="section-title">

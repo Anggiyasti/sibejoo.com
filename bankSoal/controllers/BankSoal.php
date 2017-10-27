@@ -2150,7 +2150,7 @@ class Banksoal extends MX_Controller {
         $this->tampSoal($list);
 
   }
-  //function upload gambar soal
+  //function upload audio soal
      public function up_listening($UUID) {
         // echo "masuk listening";
         $configvoice['upload_path'] = './assets/audio/soal/';

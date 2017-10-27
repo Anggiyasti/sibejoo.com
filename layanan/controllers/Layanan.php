@@ -20,12 +20,12 @@ class Layanan extends MX_Controller {
         $konten = 'modules/layanan/views/r-layanan-to.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header-detail.php',
+            APPPATH . 'modules/homepage/views/r-header.php',
             APPPATH . $konten,
-            APPPATH . 'modules/templating/views/r-footer.php',
+            APPPATH . 'modules/homepage/views/r-footer.php',
             );
 
-        $this->parser->parse('templating/r-index-login', $data);
+        $this->parser->parse('r-index-layanan', $data);
     }
 
     // fungsi untuk detail layanan video
@@ -71,7 +71,7 @@ class Layanan extends MX_Controller {
     public function learningline()
     {
         $data = array(
-            'judul_halaman' => 'Edu Drive | Sibejoo Heroo',
+            'judul_halaman' => 'Learning Line | Sibejoo Heroo',
             'judul_header' => 'Layanan Edu Drive',
             );
 

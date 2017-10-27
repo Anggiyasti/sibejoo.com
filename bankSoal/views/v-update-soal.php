@@ -222,7 +222,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
 <!-- START Template Main -->
 <section id="main" role="main">
   <!-- START Template Container -->
-  <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+  <script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 
   <div class="container-fluid">
      <?php $UUID=$banksoal['UUID']?>
@@ -273,7 +273,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
           </div>
           <div class="modal-body">
             <h3 class="text-center">Silahkan cek file size Gambar!</h3>
-            <h5 class="text-center">File size audio maksimal 500kb</h5>
+            <h5 class="text-center">File size audio maksimal 100kb</h5>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -371,13 +371,13 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
        <!-- End heading -->
        <!-- Start body preview -->
        <div class="panel-body ">
-       <div  class="hidden-audio" hidden="true">
+       <div  class="hidden-audio" >
           <audio class="col-sm-12" id="prevAudio" src="<?=base_url();?>assets/audio/soal/<?=$banksoal['audio'];?>" type="audio/mpeg" controls >
           </audio>
        </div>
        <hr>
         <label class="ml10">Sumber :</label> <a id="prevSumber"  ></a> <br>
-          <label class="ml10">Judul  :</label> <a id="prevJudul" ></a> <br>
+          <label class="ml10">judul  :</label> <a id="prevJudul" ></a> <br>
           <label class="ml10">Soal   : </label>
           <div class="panel row ml10 mr10 mt5 mb2 pt5">
             <!-- img -->
@@ -853,7 +853,6 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
 
 <!-- Start input jawaban E -->
 <div class="form-group" id="pilihan">
-  <input type="text" name="tampE" value="<?=$piljawaban['4']['jawaban'];?>" hidden="true" id="pilE">
   <label class="control-label col-sm-2">
     <a href="javascript:void(0);" class="btn btn-sm btn-inverse btn-pilihan" onclick="my_editor('Pilihan Jawaban E')" data-toggle="tooltip" data-placement="top" title="Klik">Pilihan E</a>
   </label>
@@ -1300,7 +1299,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                   // $('.hidden-audio').hide();
                 }else{
@@ -1312,6 +1311,7 @@ true">
             var viewerSoal = {
               load : function(e){
                 $('#previewSoal').attr('src', e.target.result);
+                //untuk preview soal
                 $('#previewSoal2').attr('src', e.target.result);
               },
               setProperties : function(file){
@@ -1355,7 +1355,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerPembahasan.load;
@@ -1382,7 +1382,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerA.load;
@@ -1411,7 +1411,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                  reader.onload = viewerB.load;
@@ -1440,7 +1440,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                  reader.onload = viewerC.load;
@@ -1469,7 +1469,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerD.load;
@@ -1498,7 +1498,7 @@ true">
               var reader = new FileReader();
               var size=Math.round(file.size/1024);
                  // start pengecekan ukuran file
-                 if (size>=500) {
+                 if (size>=100) {
                   $('#e_size_img').modal('show');
                 }else{
                   reader.onload = viewerE.load;
@@ -2060,30 +2060,17 @@ function ValidateInputVideo(oInput) {
       var c  =$("textarea[name=c]").val();
       var d  =$("textarea[name=d]").val();
       var e  =$("textarea[name=e]").val();
-      // cek jumlah pilihan jawaban
-      if (e==' ' || e=='') {
-        $("#prevSumber").text(sumber);
-        $("#prevJudul").text(judul);
-        $('li#a').html(a);
-        $('li#b').html(b);
-        $('li#c').html(c);
-        $('li#d').html(d);
-        $('li#e').hide();
-        $('a#prevJawaban').text(jawaban);
+      $("#prevSumber").text(sumber);
+      $("#prevJudul").text(judul);
+      $('li#a').html(a);
+      $('li#b').html(b);
+      $('li#c').html(c);
+      $('li#d').html(d);
+      $('li#e').html(e);
+      $('a#prevJawaban').text(jawaban);
         $('#modalpreview').modal('show'); // show bootstrap modal
-      } else {
-        $("#prevSumber").text(sumber);
-        $("#prevJudul").text(judul);
-        $('li#a').html(a);
-        $('li#b').html(b);
-        $('li#c').html(c);
-        $('li#d').html(d);
-        $('li#e').html(e);
-        $('a#prevJawaban').text(jawaban);
-        $('#modalpreview').modal('show'); // show bootstrap modal
-      }
 
-    }
+      }
       var ckeditor_type;
   var pilihanA 
   //show modal ck editor
