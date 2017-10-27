@@ -1866,17 +1866,32 @@ function ValidateAudioInput(oInput){
       var c  =$("textarea[name=c]").val();
       var d  =$("textarea[name=d]").val();
       var e  =$("textarea[name=e]").val();
-      $("#prevSumber").text(sumber);
-      $("#prevJudul").text(judul);
-      $('li#a').html(a);
-      $('li#b').html(b);
-      $('li#c').html(c);
-      $('li#d').html(d);
-      $('li#e').html(e);
-      // $('div.prevSoal').text(soal2);
-      $('a#prevJawaban').text(jawaban);
+
+      // cek jumlah pilihan jawaban
+      if (e==' ' || e=='') {
+        $("#prevSumber").text(sumber);
+        $("#prevJudul").text(judul);
+        $('li#a').html(a);
+        $('li#b').html(b);
+        $('li#c').html(c);
+        $('li#d').html(d);
+        $('li#e').hide();
+        // $('div.prevSoal').text(soal2);
+        $('a#prevJawaban').text(jawaban);
+        $('#modalpreview').modal('show'); // show bootstrap modal
+      } else {
+        $("#prevSumber").text(sumber);
+        $("#prevJudul").text(judul);
+        $('li#a').html(a);
+        $('li#b').html(b);
+        $('li#c').html(c);
+        $('li#d').html(d);
+        $('li#e').html(e);
+        // $('div.prevSoal').text(soal2);
+        $('a#prevJawaban').text(jawaban);
         $('#modalpreview').modal('show'); // show bootstrap modal
       }
+    }
       //
       // CKEDITOR.instances.editor1.on('keyup', function() {
       // // $("#editor1").keyup(function(){

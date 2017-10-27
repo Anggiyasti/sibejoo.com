@@ -124,7 +124,7 @@
       <form  class="panel panel-default form-horizontal form-bordered form-line"  method="post" >
        <div  class="form-group">
         <label class="col-sm-3 control-label">Nama Topik</label>
-        <div class="col-sm-8">
+        <div class="col-sm-7">
          <!-- stkt = soal tingkat -->
          <input type="text" class="form-control" value="{namaTopik}" disabled="true">
          <input type="hidden" class="form-control" name="id" value="{id}" disabled="true">
@@ -133,20 +133,20 @@
      </div>
 
      <div  class="form-group">
-      <label class="col-sm-3 control-label">Urutan</label>
-      <div class="col-sm-8">
-       <!-- stkt = soal tingkat -->
-       <input type="text" class="form-control nomor" name="urutan">
-     </div>
-   </div>
-
-   <div  class="form-group">
     <label class="col-sm-3 control-label">Nama Step</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="namastep">
     </div>
     <a title="Lihat Daftar Step" class="btn btn-success lihat_step"><i class="ico-list-alt"></i></a>
   </div>
+
+     <div  class="form-group">
+      <label class="col-sm-3 control-label">Urutan</label>
+      <div class="col-sm-7">
+       <!-- stkt = soal tingkat -->
+       <input type="text" class="form-control nomor" name="urutan">
+     </div>
+   </div>
 
   <div  class="form-group">
     <label class="col-sm-3 control-label">Jenis Step</label>

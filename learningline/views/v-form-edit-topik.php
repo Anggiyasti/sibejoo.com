@@ -73,7 +73,7 @@
 <div  class="form-group">
   <label class="col-sm-3 control-label">Status</label>
   <div class="col-sm-8">
-    <input type="text" name="status" value="{status}" id='tampstatus'  hidden="true">
+    <input type="text" name="status" value="{statusLearning}" id='tampstatus'  hidden="true">
    <span class="radio custom-radio-primary">  
     <input type="radio" id="radio1" value="1" name="status">  
     <label for="radio1">&nbsp;&nbsp;Published</label>   

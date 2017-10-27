@@ -21,15 +21,13 @@ class Learning_model extends CI_Model{
 		//fungsi ambil topik by id bab
 	public function get_topik_by_babid($data){
 		$this->db->select('t.urutan,t.id,t.statusLearning, tn.`namaTingkat`, b.`judulBab`, t.`namaTopik`, m.`namaMataPelajaran`,');
-		
 		$this->db->from('`tb_line_topik` t');
-		$this->db->where('t.status',1);
-		
 		$this->db->join('`tb_bab` b',' t.`babID` = b.`id` ');
 		$this->db->join('`tb_tingkat-pelajaran` tp ',' b.`tingkatPelajaranID` = tp.`id`');
 		$this->db->join('`tb_tingkat` tn',' tn.`id` = tp.`tingkatID`');
 		$this->db->join('tb_mata-pelajaran` m',' m.`id` = tp.`mataPelajaranID`');
 		$this->db->where('b.id',$data);
+		$this->db->where('t.status', 1);
 		$this->db->order_by('t.urutan asc');
 
 		$query = $this->db->get();
@@ -63,11 +61,29 @@ class Learning_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+
+
+	// ambil semua bab
+	public function get_bab_for_topik_G($id_mapel){
+		// var_dump($id_mapel);
+		
+		$this->db->select('b.id, namaTingkat, namaMataPelajaran,judulBab,statusLearningLine');
+		$this->db->from('`tb_bab` b');
+		$this->db->where('b.status',1);
+		$this->db->where_in('m.id',$id_mapel);
+		$this->db->join('`tb_tingkat-pelajaran` tp ',' b.`tingkatPelajaranID` = tp.`id`');
+		$this->db->join('`tb_tingkat` tn',' tn.`id` = tp.`tingkatID`');
+		$this->db->join('tb_mata-pelajaran` m',' m.`id` = tp.`mataPelajaranID`');
+		$this->db->order_by('namaTingkat');
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 	//ambil topik  berdasarkkan id topik
 	function get_topik_byid($data){
 		$query = "
 		SELECT 
-		tingkat.id tingkatID,topik.id AS TopikID,bab.id as babID,tingpel.id as tingpelID, mapel.id as mapelID, namaTopik, statusLearning,topik.urutan,
+		tingkat.id tingkatID,topik.id AS TopikID,bab.id as babID,topik.status AS stat,tingpel.id as tingpelID, mapel.id as mapelID, namaTopik, statusLearning,topik.urutan,
 		deskripsi,`namaTingkat`, `namaMataPelajaran`, `judulBab`
 		FROM
 		(SELECT  *  FROM  `tb_line_topik` WHERE  id =  $data ) AS topik
@@ -289,6 +305,18 @@ class Learning_model extends CI_Model{
 			return $result->result_array();
 		}
 	}
+
+	public function get_mapel_guru($data){
+		$this->db->select('gm.`mapelID` as id_mapel');
+		$this->db->from('`tb_guru` g');
+		$this->db->JOIN('`tb_mm-gurumapel` gm','g.`id` = gm.`guruID`'); 
+		$this->db->where('g.`id`', $data);
+		$query = $this->db->get();
+		return $query->result_array();
+
+	}
+
+	
 
 	
 }

@@ -237,6 +237,7 @@ class Learningline extends MX_Controller {
 			// $row[] = $list_item['id'];
 			$row[] = $list_item['namaTopik'];
 			$row[] = $list_item['urutan'];
+			
 			if ($list_item['statusLearning']==1) {
 				$row[] = "<input type='checkbox' 
 				class='switchery' onclick='updatestatus(".$list_item['id'].",".$list_item['statusLearning'].")' checked>";
@@ -312,12 +313,30 @@ class Learningline extends MX_Controller {
 
 		// GET LIST STEP BERDASARKAN ID TOPIK
 	public function ajax_get_list_bab(){
-		$list = $this->learning_model->get_bab_for_topik();
+
+
+		if ($this->hakakses == 'admin') {
+			$list = $this->learning_model->get_bab_for_topik();
+		}
+		else if ($this->hakakses=='guru') {
+			$id_guru = $this->session->userdata['id_guru'];
+			$id_mapel2= array();
+			$id_mapel = $this->learning_model->get_mapel_guru($id_guru);
+			foreach ($id_mapel as $key ) {
+				$id_mapel2[]= $key['id_mapel'];
+			}
+			
+			$list = $this->learning_model->get_bab_for_topik_G($id_mapel2);
+			
+		}
+		// $list = $this->learning_model->get_bab_for_topik();
 		$data = array();
+
 
 		$baseurl = base_url();
 		foreach ( $list as $list_item ) {
 			// $no++;
+
 			$row = array();
 			$row[] = $list_item['id'];			
 			$row[] = $list_item['namaTingkat'];
@@ -506,7 +525,7 @@ function ajax_update_line_topik(){
 		'statusLearning'=>$this->input->post('statusLearning'),
 		'deskripsi'=>$this->input->post('deskripsi'),
 		'namaTopik'=>$this->input->post('namaTopik'),
-		'status'=>$this->input->post('status'),
+		'statusLearning'=>$this->input->post('status'),
 		'urutan'=>$this->input->post('urutan'),
 		'id'=>$this->input->post('topikID'),
 		);

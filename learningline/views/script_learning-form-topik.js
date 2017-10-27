@@ -77,7 +77,9 @@ $('input[name=urutan]').keyup(function () {
     }
 });
 
+
 $('.simpanlearning').click(function(){
+  pola_namatopik=new RegExp(/^[a-z A-Z 0-9 \_\-]+$/);
   data = 
   {babID:$('input[name=select_bab]').val(),
   statusLearning:1,
@@ -86,10 +88,13 @@ $('.simpanlearning').click(function(){
   urutan:$('input[name=urutan]').val(),
   status:$('input[name=status]:checked  ').val()
 };
-console.log("data", data);
-  if (data.statusLearning=="kosongundefined" || data.namaTopik=="") {
+  if (data.statusLearning=="kosongundefined" || data.namaTopik=="" || data.urutan=="") {
     swal('Silahkan lengkapi data');
-  }else{
+  }
+  else if (!pola_namatopik.test(data.namaTopik)){
+            swal ('Oops','Nama Topik hanya boleh Huruf, Angka, dan karakter - atau _!','warning');
+  }
+  else{
     var url = base_url+"learningline/ajax_insert_line_topik";
     $.ajax({
       data:data,
@@ -115,8 +120,8 @@ console.log("data", data);
             
             link = base_url+"learningline/topik/"+data.babID;
             window.location.href = link;
-            console.log(link);
           } else {
+            swal("Tambah Data", "silahkan ambahkan data");
           // swal("Cancelled", "Your imaginary file is safe :)", "error");
         }
       });

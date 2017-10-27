@@ -209,7 +209,7 @@ function load_materi(){
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Materi</h4>");
 	$('.jenis').append('<div class="panel panel-default">'+
 		'<div class="panel-heading">'+
-		'<h3 class="panel-title">Tabel Topik Line</h3> '+
+		'<h3 class="panel-title">Tabel Materi</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
@@ -232,7 +232,6 @@ function load_materi(){
 		'</div>'+
 
 		'</div>');
-
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_materi_edit/"+babID+"/"+relasi;

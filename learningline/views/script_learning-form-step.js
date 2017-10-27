@@ -243,15 +243,15 @@ function load_soal(){
 
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Pemilihan Soal</label>'+
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" placeholder="Jumlah Soal Mudah" class="form-control nomor" name="mudah">'+
 		'</div>'+
 
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" placeholder="Jumlah Soal Sedang" class="form-control nomor" name="sedang">'+
 		'</div>'+
 
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" placeholder="Jumlah Soal Sulit" class="form-control nomor" name="sulit">'+
 		'</div>'+
 		'</div>');
