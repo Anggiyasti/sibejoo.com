@@ -65,6 +65,26 @@ class Layanan extends MX_Controller {
 
         $this->parser->parse('r-index-layanan', $data);
     }
+
+
+    // fungsi untuk detail layanan video
+    public function learningline()
+    {
+        $data = array(
+            'judul_halaman' => 'Edu Drive | Sibejoo Heroo',
+            'judul_header' => 'Layanan Edu Drive',
+            );
+
+        $konten = 'modules/layanan/views/r-layanan-learning.php';
+
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . $konten,
+            APPPATH . 'modules/homepage/views/r-footer.php',
+            );
+
+        $this->parser->parse('r-index-layanan', $data);
+    }
 }
 
 ?>

@@ -20,6 +20,7 @@ class Mmateri extends CI_Model
     $this->db->join('tb_tingkat-pelajaran tp','bab.tingkatPelajaranID=tp.id');
     $this->db->join('tb_tingkat tkt','tp.tingkatID=tkt.id');
     $this->db->where('m.status','1');
+    $this->db->order_by('m.id','desc');
     $query = $this->db->get();
     return $query->result_array();
 }
@@ -88,4 +89,11 @@ public function get_tingkat_info($subBabID)
     $query = $this->db->get();
     return $query->result_array()[0];
 }
+
+public function up_file($data) {
+  $this->db->set($data['datamateri']);
+  $this->db->where('uuid', $data['uuid']);
+  $this->db->update('tb_line_materi');
+}
+
 } ?>

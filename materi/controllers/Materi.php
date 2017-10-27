@@ -4,6 +4,7 @@
 */
 class Materi extends MX_Controller
 {
+	private $upload_path = "./assets/file_materi";
 	
 	function __construct()
 	{
@@ -35,23 +36,69 @@ class Materi extends MX_Controller
 	// upload materi
 	public function uploadMateri()
 	{
-		$judulMateri=htmlspecialchars($this->input->post('judul'));
-		$subBabID = htmlspecialchars($this->input->post('subBabID'));
-		$isiMateri = $this->input->post('editor1');
-		$publish= htmlspecialchars($this->input->post('stpublish'));
+		$post=$this->input->post();
+		$config['upload_path'] = $this->upload_path;
+        $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
+        $config['max_size'] = 10000;
+
+        $configLogo['encrypt_name'] = TRUE;
+        $new_name = time()."-".$_FILES["gambarSoal"]['name'];
+        $config['file_name'] = $new_name;
+        $this->load->library('upload', $config);
+        $foto = 'gambarSoal';
+        $this->upload->initialize($config);
+        $file_foto=$post['gambarSoal'];
+
 		$penggunaID = $this->session->userdata['id'];
 		$UUID = uniqid();
-		$datMateri=array(
-			'judulMateri'=>$judulMateri,
-			'isiMateri'=>$isiMateri,
-			'subBabID'=>$subBabID,
-			'penggunaID'=>$penggunaID,
-			'publish'=>$publish,
-			'UUID'=>$UUID);
+		$opupload =$post['opupload'];
 
-		// var_dump($datMateri);
-		$this->Mmateri->in_materi($datMateri);
-		redirect(site_url('materi/list_all_materi'));
+
+		if ($opupload =="text") {
+			$data['judulMateri']=$post['judul'];
+        	$data['isiMateri']=$post['editor1'];
+            $data['subBabID']=$post['subBabID'];
+            $data['penggunaID']=$penggunaID;
+        	$data['publish']=$post['stpublish'];
+            $data['UUID']=$UUID;
+			$this->Mmateri->in_materi($data);
+		}
+		else{
+			$this->upload->do_upload($foto);
+			$file_data = $this->upload->data();
+			$file_name = $file_data['file_name'];
+			$data['judulMateri']=$post['judul'];
+            $data['subBabID']=$post['subBabID'];
+            $data['penggunaID']=$penggunaID;
+        	$data['publish']=$post['stpublish'];
+            $data['UUID']=$UUID;
+            $data['url_file']=$file_name;
+			$this->Mmateri->in_materi($data);
+		
+		}
+		
+		$info="Materi Berhasil disimpan";
+        echo json_encode($info); 
+	}
+
+
+	    //function upload gambar soal
+	public function up_file_materi($UUID) {
+    $config['upload_path'] = './assets/file_materi/';
+    $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
+    $config['max_size'] = 10000;
+
+    $this->load->library('upload', $config);
+    $gambar = "gambarSoal";
+    $this->upload->do_upload($gambar);
+    $file_data = $this->upload->data();
+    $file_name = $file_data['file_name'];
+    $data['uuid']=$UUID;
+    $data['datamateri']=  array(
+        'url_file' => $file_name);
+
+        // print_r($data);
+    $this->Mmateri->up_file($data);
 	}
 
 	// tampil list materi

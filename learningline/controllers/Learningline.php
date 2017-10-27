@@ -475,7 +475,7 @@ function ajax_get_materi_edit($topikid,$relasi){
 		$row[] = $list_item['judulMateri'];
 		$row[] = '<a class="btn btn-sm btn-primary btn-outline detail-'.$list_item['materiID'].'" title="Lihat" data-id='."'".json_encode($list_item)."'".' onclick="detail('."'".$list_item['materiID']."'".')"><i class=" ico-eye "></i></a> ';
 		$status_check = ($list_item['materiID']==$relasi) ? "checked" : "unchecked" ;
-		$row[] = "<input type='radio' name='materi' value=".$list_item['materiID']." ".$status_check.">";
+		$row[] = "<input type='radio' ".$status_check." name='materi'  value=".$list_item['materiID']." >";
 		// $row[] = "<input type='radio' name='imgsel' value='' checked=true";
 
 		$data[] = $row;
