@@ -19,6 +19,7 @@ class Madmin extends CI_Model
         $this->db->where('tingkatID', $tingkatID);
         $this->db->where('mp.status', '1');
         $this->db->where('tp.status', '1');
+        $this->db->order_by('tp.id', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

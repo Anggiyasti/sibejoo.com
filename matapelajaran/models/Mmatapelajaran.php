@@ -17,6 +17,7 @@ class Mmatapelajaran extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_mata-pelajaran');
         $this->db->where('status', 1);
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
