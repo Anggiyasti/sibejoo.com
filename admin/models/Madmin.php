@@ -20,7 +20,18 @@ class Madmin extends CI_Model
         $this->db->where('mp.status', '1');
         $this->db->where('tp.status', '1');
         $query = $this->db->get();
-        return $query->result();
+        return $query->result_array();
+    }
+        public function editMapelbyTingkat($id) {
+        $this->db->distinct();
+        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran', 'tp.status');
+        $this->db->from('tb_tingkat-pelajaran tp');
+        $this->db->join('tb_mata-pelajaran mp','mp.id = tp.mataPelajaranID');
+        $this->db->where('tp.id', $id);
+        $this->db->where('mp.status', '1');
+        $this->db->where('tp.status', '1');
+        $query = $this->db->get();
+        return $query->row();
     }
 
 }

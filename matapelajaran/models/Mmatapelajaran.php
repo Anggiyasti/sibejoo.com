@@ -13,7 +13,20 @@ class Mmatapelajaran extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+    function get_ajax_daftarMapel(){
+        $this->db->select('*');
+        $this->db->from('tb_mata-pelajaran');
+        $this->db->where('status', 1);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function ajax_get_edit_mapel($id){
+        $this->db->select('*');
+        $this->db->from('tb_mata-pelajaran');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
     public function daftarMapelSD() {
         $this->db->distinct();
         $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');

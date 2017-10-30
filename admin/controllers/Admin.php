@@ -45,9 +45,35 @@ class Admin extends MX_Controller {
         }
 
     }
+    public function get_list_mapel(){
+        $list = $this->mmatapelajaran->get_ajax_daftarMapel();
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['aliasMataPelajaran'];
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit(".$list_item['id'].")'><i class='ico-file5'></i></button>
 
 
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'hapus(".$list_item['id'].")'><i class='ico-remove'></i></button>";
 
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
+    function ajax_edit_mapel($id){
+        $data = $this->mmatapelajaran->ajax_get_edit_mapel($id);
+        echo json_encode($data);
+    }
     function daftarvideo() {
         $data['videos'] = $this->mvideos->get_all_videos_admin();
         $this->load->view('templating/t-header');
@@ -89,28 +115,34 @@ class Admin extends MX_Controller {
 
 
 function tambahMP() {
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('namaMP', 'Harap Isi Nama Mata Pelajaran', 'required');
+    $this->form_validation->set_rules('aliasMP', 'Harap Isi Alias', 'required');
+    if($this->form_validation->run() == TRUE){
     $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
     $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
     $this->mmatapelajaran->tambahMP($data);
-    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+    echo json_encode(array("status" => TRUE));
+}
 }
 
 
 
-function hapusMP() {
-    $id = $this->input->post('idMP');
+function hapusMP($id) {
     $this->mmatapelajaran->hapusMP($id);
-    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+    echo json_encode(array("status" => TRUE));
 }
 
 
 
 function rubahMP() {
     $id = $this->input->post('idMP');
-    $data['namaMataPelajaran'] = htmlspecialchars($this->input->post('namaMP'));
-    $data['aliasMataPelajaran'] = htmlspecialchars($this->input->post('aliasMP'));
+    $data = array(
+    'namaMataPelajaran' => $this->input->post('namaMP1'),
+    'aliasMataPelajaran' => $this->input->post('aliasMP1'),
+    );
     $this->mmatapelajaran->rubahMP($id, $data);
-    redirect(base_url('index.php/admin/daftarmatapelajaran'));
+    echo json_encode(array('status' => TRUE));
 }
 
 
@@ -148,7 +180,136 @@ function daftartingkatpelajaran() {
    redirect(site_url('login'));
 }
 }
+ public function daftar_sd(){
+        $list = $this->madmin->daftarMapelbyTingkat($tingkatID='1');
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['keterangan'];
+            $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit_tingkat(".$list_item['id'].")'><i class='ico-file5'></i></button>
 
+
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'ajax_hapus_tingkat(".$list_item['id'].")'><i class='ico-remove'></i></button>";
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
+ public function daftar_smp(){
+        $list = $this->madmin->daftarMapelbyTingkat($tingkatID='2');
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['keterangan'];
+            $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit_tingkat(".$list_item['id'].")'><i class='ico-file5'></i></button>
+
+
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'ajax_hapus_tingkat(".$list_item['id'].")'><i class='ico-remove'></i></button>";
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
+public function daftar_sma(){
+        $list = $this->madmin->daftarMapelbyTingkat($tingkatID='3');
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['keterangan'];
+            $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit_tingkat(".$list_item['id'].")'><i class='ico-file5'></i></button>
+
+
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'ajax_hapus_tingkat(".$list_item['id'].")'><i class='ico-remove'></i></button>";
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
+public function daftar_smaipa(){
+        $list = $this->madmin->daftarMapelbyTingkat($tingkatID='4');
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['keterangan'];
+            $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit_tingkat(".$list_item['id'].")'><i class='ico-file5'></i></button>
+
+
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'ajax_hapus_tingkat(".$list_item['id'].")'><i class='ico-remove'></i></button>";
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
+public function daftar_smaips(){
+        $list = $this->madmin->daftarMapelbyTingkat($tingkatID='5');
+        $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['id'];
+            $row[] = $list_item['namaMataPelajaran'];
+            $row[] = $list_item['keterangan'];
+            $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
+            $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit_tingkat(".$list_item['id'].")'><i class='ico-file5'></i></button>
+
+
+                                <button type='button' id='hapusBtn' class='btn btn-default' 
+                                onclick = 'ajax_hapus_tingkat(".$list_item['id'].")'><i class='ico-remove'></i></button>";
+
+
+            $data[] = $row;
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode( $output );
+
+    }
 
 
 function tambahtingkatMP() {
@@ -158,32 +319,34 @@ function tambahtingkatMP() {
 
 
     $this->mmatapelajaran->tambahtingkatMP($data);
-    redirect(base_url('index.php/admin/daftartingkatpelajaran'));
+    echo json_encode(array('status' => TRUE));
 }
 
 
 
-function hapustingkatMP() {
-    $id = $this->input->post('tingkatMP');
+function hapustingkatMP($id) {
     $this->mmatapelajaran->hapustingkatMP($id);
-    redirect(base_url('index.php/admin/daftartingkatpelajaran'));
+      echo json_encode(array('status' => TRUE));
+}
+function get_edit_tingkat($id){
+    $data = $this->madmin->editMapelbyTingkat($id);
+    echo json_encode($data);
 }
 
 
-
-function rubahtingkatMP() {
-    $id = $this->input->post('idtingkatMP');
-    $data['keterangan'] = htmlspecialchars($this->input->post('keterangan'));
-    $data['tingkatID'] = htmlspecialchars($this->input->post('tingkatMP'));
-    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
-    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
-    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
-    $data['mataPelajaranID'] = htmlspecialchars($this->input->post('idMP'));
-
+function edittingkatMP() {
+    $id = $this->input->post('id1');
+    $data = array(
+    'keterangan' => $this->input->post('keterangan1'),
+    'tingkatID' => $this->input->post('idTingkatMP1'),
+    'mataPelajaranID' => $this->input->post('idMP1'),
+    // 'mataPelajaranID' => $this->input->post('idMP'),
+    // 'mataPelajaranID' =>$this->input->post('idMP'),
+    // 'mataPelajaranID' => $this->input->post('idMP'),
+    );
 
     $this->mmatapelajaran->rubahtingkatMP($id, $data);
-
-    redirect(base_url('index.php/admin/daftartingkatpelajaran'));
+    echo json_encode("berhasil");
 }
 
 
