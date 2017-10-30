@@ -90,7 +90,7 @@
     }
 
     // model hasil dari passing grade yang dipilih oleh siswa
-    public function hasil_passing($awal,$akhir) {
+    public function filter_grade($awal,$akhir) {
 		$query = "SELECT * FROM `tb_passing_grade` WHERE (passinggrade BETWEEN '$awal' AND '$akhir')";
     
         $result = $this->db->query($query);

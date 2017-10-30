@@ -376,23 +376,43 @@ class Tryout extends MX_Controller {
 
     }
 
-    // fungsi untuk detail layanan try out
-    public function layanan_tryout()
+    // fungsi tampung idpaket
+    public function tamp_paket($id_paket)
     {
+        $this->session->set_userdata('id_paket', $id_paket);
+        redirect(base_url('tryout/info_pengerjaan'));
+    }
+
+    // fungsi in fo pengerjaan try out
+    public function info_pengerjaan()
+    {
+        $id_to = $this->session->userdata('id_tryout');
+        $datas['id_tryout'] = $id_to;
+        $datas['id_pengguna'] = $this->session->userdata('id');
+        if ($this->session->userdata('HAKAKSES')=='ortu') {
+            //untuk mengambil id siswa jika ortu yang login 
+            $datas['id_siswa'] = $this->Mtryout->get_id_siswa_by_ortu();
+
+        }else{
+            $datas['id_siswa'] = $this->msiswa->get_siswaid();
+        }
+
+        $datas['id_paket'] = $this->session->userdata('id_paket');
+
         $data = array(
-            'judul_halaman' => 'Sibejoo - Try Out',
-            'judul_header' => 'Layanan Try Out',
+            'judul_halaman' => 'Sibejoo - Info Pengerjaan',
+            'judul_header' => 'Info Pengerjaan Try Out',
             );
 
-        $konten = 'modules/tryout/views/r-to-detail.php';
+        $konten = 'modules/tryout/views/r-info-pengerjaan.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header-detail.php',
-            APPPATH . 'modules/tryout/views/r-to-detail.php',
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . $konten,
             APPPATH . 'modules/templating/views/r-footer.php',
             );
-
-        $this->parser->parse('templating/r-index-login', $data);
+        $data['paket'] = $this->Mtryout->get_paket_for_info($datas);
+        $this->parser->parse('templating/r-index', $data);
     }
 }
 ?>

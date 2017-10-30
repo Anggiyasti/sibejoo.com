@@ -64,6 +64,16 @@
                   </ul>
                 </div>
               </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Passing Grade</h5>
+                <div class="categories">
+                  <ul class="list list-border angle-double-right">
+                    <?php for ($i=21; $i <=  81  ; $i+=5) : ?>
+                      <li><a href="javascript:void(0);" onclick="pass_grade(<?=$i;?>,<?=$i+4;?>)"><?=$i;?>% - <?=$i+4;?>%</a></li>
+                    <?php endfor ?>
+                  </ul>
+                </div>
+              </div>
              
               
             </div>
@@ -93,6 +103,26 @@
         window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
         sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
+
+  function pass_grade(grade1, grade2) {
+    var url_ajax = base_url+"passinggradefront/passgrade";
+    var datas = {
+                  awal:grade1, 
+                  akhir:grade2
+                };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: datas,
+      success: function(data){
+        window.location.href = base_url + "passinggradefront/grade";  
+      },error:function(data){
       }
 
     });

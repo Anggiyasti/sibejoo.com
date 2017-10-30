@@ -78,7 +78,7 @@
                   <p>Status : Belum Dikerjakan</p>
                   <p><?=$paketitem['jenis_penilaian'] ?></p>
                   <?php if ($status_to=='doing'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="kerjakan(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
+                    <a href="<?=base_url()?>tryout/tamp_paket/<?=$paketitem['id_paket']?>" class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>"><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
                   <?php elseif ($status_to=='done'): ?>
                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-close"></i></a>
                   <?php else: ?>
@@ -175,30 +175,30 @@
   //   var ctx = document.getElementById("myChart").getContext('2d');
   // });
 
-  function kerjakan(id_to){
-    var kelas = ".modal-on"+id_to;
-    var data_to = $(kelas).data('todo');
-    url = base_url+"index.php/tryout/buatto";
+  // function kerjakan(id_to){
+  //   var kelas = ".modal-on"+id_to;
+  //   var data_to = $(kelas).data('todo');
+  //   url = base_url+"index.php/tryout/buatto";
 
-    var datas = {
-      id_paket:data_to.id_paket,
-      id_tryout:data_to.id_tryout,
-      id_mm_tryoutpaket:data_to.mmid
-    }
+  //   var datas = {
+  //     id_paket:data_to.id_paket,
+  //     id_tryout:data_to.id_tryout,
+  //     id_mm_tryoutpaket:data_to.mmid
+  //   }
 
-    $.ajax({
-      url : url,
-      type: "POST",
-      data: datas,
-      dataType: "TEXT",
-      success: function(data)
-      {
-       window.location.href = base_url + "index.php/tryout/mulaitest";
-     },
-     error: function (jqXHR, textStatus, errorThrown) {
-     }
-   });
-  }
+  //   $.ajax({
+  //     url : url,
+  //     type: "POST",
+  //     data: datas,
+  //     dataType: "TEXT",
+  //     success: function(data)
+  //     {
+  //      window.location.href = base_url + "index.php/tryout/mulaitest";
+  //    },
+  //    error: function (jqXHR, textStatus, errorThrown) {
+  //    }
+  //  });
+  // }
 
   function pembahasanto(id_to){
     var kelas = ".modal-on"+id_to;

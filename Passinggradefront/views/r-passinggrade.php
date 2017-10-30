@@ -24,12 +24,8 @@
               <?php foreach ($data as $key): ?>
                 <div class="col-sm-6 col-md-4">
                   <div class="service-block bg-white">
-                    <div class="thumb"> 
-                    <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                    </div>
                     <div class="content text-left flip p-25 pt-0">
-                      <h4 class="line-bottom mb-5" style="height: 100px;"><?=$key['universitas'] ?></h4>
-                      <p>Passing Grade: <?=$key['passinggrade'] ?>%</p>
+                      <h4 class="line-bottom mb-5" style="height: 60px;"><?=$key['universitas'] ?></h4>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
                     </div>
                   </div>
@@ -64,6 +60,16 @@
                   </ul>
                 </div>
               </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Passing Grade</h5>
+                <div class="categories">
+                  <ul class="list list-border angle-double-right">
+                    <?php for ($i=21; $i <=  81  ; $i+=5) : ?>
+                      <li><a href="javascript:void(0);" onclick="pass_grade(<?=$i;?>,<?=$i+4;?>)"><?=$i;?>% - <?=$i+4;?>%</a></li>
+                    <?php endfor ?>
+                  </ul>
+                </div>
+              </div>
              
               
             </div>
@@ -72,7 +78,6 @@
         
       </div>
     </section>
-  </div>
 
 
   <script type="text/javascript">
@@ -113,7 +118,26 @@
       success: function(data){
         window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
-        // sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
+
+  function pass_grade(grade1, grade2) {
+    var url_ajax = base_url+"passinggradefront/passgrade";
+    var datas = {
+                  awal:grade1, 
+                  akhir:grade2
+                };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: datas,
+      success: function(data){
+        window.location.href = base_url + "passinggradefront/grade";  
+      },error:function(data){
       }
 
     });

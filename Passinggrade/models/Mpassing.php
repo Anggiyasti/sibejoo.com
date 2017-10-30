@@ -132,7 +132,7 @@
         return $tampil->result_array();
     }
 
-     // tampil passing grade
+     // tampil passing grade by wilayah
     public function getpassingwilayah($wil) {
         $this->db->distinct();
 		$this->db->select()->from('tb_passing_grade');
