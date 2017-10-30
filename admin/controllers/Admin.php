@@ -171,7 +171,6 @@ function daftartingkatpelajaran() {
         $this->parser->parse('v-index-admin', $data);
     } elseif ($hakAkses == 'guru') {
       $this->parser->parse('templating/index-b-guru', $data);
-      $this->parser->parse('templating/index-b-guru', $data);
 
   } elseif ($hakAkses == 'siswa') {
             // jika siswa redirect ke welcome
