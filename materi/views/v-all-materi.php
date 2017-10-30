@@ -71,9 +71,10 @@
 	$(document).ready(function() {
 		hak_akses = "<?=$this->session->userdata('HAKAKSES') ?>";
 		if (hak_akses=="guru") {
-				url=base_url+"index.php/materi/ajax_get_all_materi";
-		}else{
 				url=base_url+"index.php/materi/get_materi_by_user";
+				
+		}else{
+				url=base_url+"index.php/materi/ajax_get_all_materi";
 		}
 		//#get list by id guru
 		$list_materi = $('#zero-configuration').DataTable({ 

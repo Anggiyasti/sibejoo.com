@@ -42,12 +42,12 @@ class Materi extends MX_Controller
         $config['max_size'] = 10000;
 
         $configLogo['encrypt_name'] = TRUE;
-        $new_name = time()."-".$_FILES["gambarSoal"]['name'];
+        $new_name = time()."-".$_FILES["filemateri"]['name'];
         $config['file_name'] = $new_name;
         $this->load->library('upload', $config);
-        $foto = 'gambarSoal';
+        $foto = 'filemateri';
         $this->upload->initialize($config);
-        $file_foto=$post['gambarSoal'];
+        $file_foto=$post['filemateri'];
 
 		$penggunaID = $this->session->userdata['id'];
 		$UUID = uniqid();
@@ -290,7 +290,11 @@ public function updateMateri()
             $data['penggunaID']=$penggunaID;
         	$data['publish']=$post['stpublish'];
             $data['UUID']=$UUID;
-            $data['url_file']=$file_name;
+            if ($file_foto != Null) {
+            	$data['url_file']=$file_name;
+            }else{
+
+            }
 			$this->Mmateri->ch_materi($data,$UUID);
 			 echo json_encode($data); 
 		}

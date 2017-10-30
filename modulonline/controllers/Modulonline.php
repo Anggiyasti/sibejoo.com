@@ -1,6 +1,7 @@
 <?php
 class Modulonline extends MX_Controller {
 
+    private $upload_path = "./assets/modul";
     function __construct() {
         parent::__construct();
         $this->load->model('Mmodulonline');
@@ -383,7 +384,7 @@ public function formmodul() {
 
     $data['judul_halaman'] = "Modul Online";
     $data['files'] = array(
-        APPPATH . 'modules/modulonline/views/v-form-soal.php',
+        APPPATH . 'modules/modulonline/views/v-form-edudrive.php',
         );
          #START cek hakakses#
     $hakAkses=$this->session->userdata['HAKAKSES'];
@@ -412,32 +413,37 @@ public function formmodul() {
 
 public function uploadmodul() {
         //load library n helper
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
-    $mapelID = htmlspecialchars($this->input->post('mataPelajaran'));
+    $post=$this->input->post();
+    $config['upload_path'] = $this->upload_path;
+    $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
+    $config['max_size'] = 10000;
 
-
-    $this->form_validation->set_rules('judul', 'Judul Modul', 'trim|required|is_unique[tb_modul.judul]');
+    $configLogo['encrypt_name'] = TRUE;
+    $new_name = time()."-".$_FILES["gambarSoal"]['name'];
+    $config['file_name'] = $new_name;
+    $this->load->library('upload', $config);
+    $foto = 'gambarSoal';
+    $this->upload->initialize($config);
+    $file_foto=$post['gambarSoal'];
     $UUID = uniqid();
-    $judul = htmlspecialchars($this->input->post('judul'));
-    $publish = htmlspecialchars($this->input->post('publish'));
-    $deskripsi = $this->input->post('deskripsi');
+
     $create_by = $this->session->userdata['id'];
-           //kesulitan indks 1-3
-    $data_modul = array(
-       'judul' => $judul,
-       'deskripsi' => $deskripsi,
-       'publish' => $publish,
-       'UUID' => $UUID,
-       'create_by' => $create_by,
-       'id_tingkatpelajaran' => $mapelID,
-       'statusAksesFile'=>$this->input->post('statusAksesFile')
-       );
 
-    $this->Mmodulonline->insert_modul($data_modul);
-    $this->up_img_soal($UUID);  
+        $this->upload->do_upload($foto);
+        $file_data = $this->upload->data();
+        $file_name = $file_data['file_name'];
+        $data['judul']=$post['judul'];
+        $data['deskripsi']=$post['deskripsi'];
+        $data['create_by']=$create_by;
+        $data['publish']=$post['publish'];
+        $data['UUID']=$UUID;
+        $data['id_tingkatpelajaran']=$post['mapel'];
+        $data['url_file']=$file_name;
 
-    redirect(site_url('modulonline/daftar_modul'));
+    $this->Mmodulonline->insert_modul($data);
+    
+    $info="Edu Drive Berhasil disimpan";
+    echo json_encode($info); 
 }
 
     //function upload gambar soal
@@ -548,7 +554,7 @@ public function update_modul() {
     $data['dataSoal'] = array(
         'judul' => $judul,
         'deskripsi' => $deskripsi,
-            // 'jawaban' => $jawaban,
+        // 'jawaban' => $jawaban,
         'publish' => $publish,
         'create_by' => $create_by,
         'id_tingkatpelajaran' =>  $id_tingkatpelajaran

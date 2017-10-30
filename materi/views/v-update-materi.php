@@ -107,10 +107,11 @@
     						<label class="control-label col-sm-2">File Materi Lama</label>
     						<div class="col-sm-8 " >                                            
         						<div class="col-md-5 left"> 
-        							<h6><span id="filename"><?=$singleMateri['url_file'];?></span></h6> 
+        							<h6><span id="filename" ><?=$singleMateri['url_file'];?></span></h6> 
     							</div> 
     							<br>
         						<a href="<?= base_url('assets/file_materi/'.$singleMateri['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
+                                <input style="display:none;" type="file" id="fileSoal" name="gambarSoal" value="<?=$singleMateri['url_file']?>" />
 
 
     						</div>
@@ -432,13 +433,13 @@
             judul : $('input[name=judul]').val(),
             editor1 : CKEDITOR.instances.editor1.getData(),
             subBabID : $('select[name=subBabID]').val(),
-            stpublish : $('input[name=stpublish]').val(),
+            stpublish : $('input[name=stpublish]:checked').val(),
             opupload : $('input[name=opupload]:checked').val(),
             gambarSoal: $('[name=gambarSoal]').val(),
         }
         var elementId = "fileSoal";
 
-        // console.log(datas);
+        console.log(datas);
             // do_upload
             $.ajaxFileUpload({
                 url:url,

@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- Form horizontal layout bordered -->
-        <form class="form-horizontal form-bordered panel panel-teal" action="<?=base_url()?>index.php/modulonline/uploadmodul" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
+        <form class="form-horizontal form-bordered panel panel-teal" id="edudrive" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
             <div class="panel-heading">
                 <h3 class="panel-title">Form Upload Modul</h3>
                 <!-- untuk menampung bab id -->
@@ -46,7 +46,7 @@
 
             <label class="col-sm-2 control-label">Mata Pelajaran</label>
             <div class="col-sm-4">
-              <select class="form-control" name="mataPelajaran" id="pelajaran">
+              <select class="form-control" name="pelajaran" id="pelajaran">
               </select>
           </div>
       </div>
@@ -123,7 +123,7 @@
 
 <div class="panel-footer">
     <div class="col-sm-1 col-sm-offset-2 ">
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary" onclick="simpan()">Simpan</button>
     </div>
 </div>
 </form>
@@ -135,6 +135,7 @@
 <!--/ END row -->
 </div>
 <!-- start script js validation extension -->
+<script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 <script type="text/javascript">
 // validasi upload gambar 
 function ValidateSingleInput(oInput) {
@@ -171,6 +172,55 @@ function ValidateSingleInput(oInput) {
 <script>
 
     // Script for getting the dynamic values from database using jQuery and AJAX
+
+    function simpan(){
+        // edu = $('#edudrive').serialize();
+        url = base_url+"modulonline/uploadmodul";
+
+        
+        var datas = {
+            mapel : $('select[name=pelajaran]').val(),
+            judul : $('input[name=judul]').val(),
+            deskripsi : $('textarea[name=deskripsi]').val(),
+            gambarSoal: $('[name=gambarSoal]').val(),
+            publish : $('input[name=publish]:checked').val(),
+            statusAksesFile : $('input[name=statusAksesFile]:checked').val(),
+        }
+        var elementId = "fileSoal";
+
+        console.log(datas);
+            // do_upload
+            $.ajaxFileUpload({
+                url:url,
+                data:datas,
+                dataType:"TEXT",
+                type:"POST",
+                fileElementId :elementId,
+                success:function(data){
+                    // console.log(data);
+                    swal({
+                    title: "Edu Drive Berhasil Ditambahkan!",
+                    type: "success",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Selesai",
+                    closeOnConfirm: false,
+                },
+
+            function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href = base_url+"modulonline/daftar_modul";
+                    } 
+                    else {
+                        swal("Tambah Data dibatalkan");
+                    }
+                });
+                },
+                error:function(){
+                    
+                }
+            });
+
+    }
 
     $(document).ready(function () {
 

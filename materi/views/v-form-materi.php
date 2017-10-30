@@ -89,21 +89,21 @@
     						<div class="col-sm-8 " >                                            
         						<div class="col-sm-12">
             						<div class="col-md-5 left"> 
-                						<h6>Name: <span id="filenameSoal"></span></h6> 
+                						<h6>Name: <span id="filenamemateri"></span></h6> 
             						</div> 
             						<div class="col-md-4 left"> 
-                						<h6>Size: <span id="filesizeSoal"></span>Kb</h6> 
+                						<h6>Size: <span id="filesizemateri"></span>Kb</h6> 
             						</div> 
             						<div class="col-md-3 bottom"> 
-                						<h6>Type: <span id="filetypeSoal"></span></h6> 
+                						<h6>Type: <span id="filetypemateri"></span></h6> 
             						</div>
         						</div>
 
         						<div class="col-sm-12">
-            						<label for="fileSoal" class="btn btn-sm btn-default">
+            						<label for="filemateri" class="btn btn-sm btn-default">
                 					Pilih File
            						</label>
-            						<input style="display:none;" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
+            						<input style="display:none;" type="file" id="filemateri" name="filemateri" onchange="ValidateSingleInput(this);"/>
         						</div>
 
 
@@ -116,7 +116,7 @@
 						<div id="textmateri">
 						<div class="form-group">
 							<!-- Start Editor Soal -->
-							<div id="editor-soal">
+							<div id="editor-materi">
 								<label class="control-label col-sm-2">Materi</label>
 								<div class="col-sm-10">
 									<textarea  name="editor1" class="form-control" id="">
@@ -202,13 +202,13 @@
 
     	// Start event untuk jenis editor
     	$("#in-materi").click(function(){
-    		$("#editor-soal").show();
+    		$("#editor-materi").show();
     		$("#editor-rumus").hide();
     	});
 
     	$("#pr-rumus").click(function(){
     		$("#editor-rumus").show();
-    		$("#editor-soal").hide();
+    		$("#editor-materi").hide();
     	});
 
 
@@ -259,11 +259,11 @@
             judul : $('input[name=judul]').val(),
             editor1 : CKEDITOR.instances.editor1.getData(),
             subBabID : $('select[name=subBabID]').val(),
-            stpublish : $('input[name=stpublish]').val(),
+            stpublish : $('input[name=stpublish]:checked').val(),
             opupload : $('input[name=opupload]:checked').val(),
-            gambarSoal: $('[name=gambarSoal]').val(),
+            filemateri: $('[name=filemateri]').val(),
         }
-        var elementId = "fileSoal";
+        var elementId = "filemateri";
 
         // console.log(datas);
             // do_upload
@@ -429,7 +429,7 @@ function ValidateSingleInput(oInput) {
 
             // Start event priview gambar Soal
 
-            $('#fileSoal').on('change',function () {
+            $('#filemateri').on('change',function () {
 
                 var file = this.files[0];
 
@@ -453,11 +453,11 @@ function ValidateSingleInput(oInput) {
 
                 setProperties : function(file){
 
-                    $('#filenameSoal').text(file.name);
+                    $('#filenamemateri').text(file.name);
 
-                    $('#filetypeSoal').text(file.type);
+                    $('#filetypemateri').text(file.type);
 
-                    $('#filesizeSoal').text(Math.round(file.size/1024));
+                    $('#filesizemateri').text(Math.round(file.size/1024));
 
                 },
 
