@@ -248,7 +248,7 @@ public function form_update_materi($UUID)
 	}
 }
 
-	// update materi
+// update materi
 public function updateMateri()
 {	
 	$post=$this->input->post();

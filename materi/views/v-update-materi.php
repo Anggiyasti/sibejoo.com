@@ -255,10 +255,7 @@
             // ###############
             //set pub
             var oldpub=$('#oldpub').val();
-          if (oldpub ==1) {
-             $('#giftcheckbox').attr('checked','checked');
-          }else{
-          }
+          
             //
     	// Start event untuk jenis editor
     	$("#in-materi").click(function(){
@@ -270,8 +267,6 @@
     		$("#editor-rumus").show();
     		$("#editor-soal").hide();
     	});
-
-        if (true) {}
 
     	// $("#uploadMateri").hide();
     	// Start event untuk jenis upload
