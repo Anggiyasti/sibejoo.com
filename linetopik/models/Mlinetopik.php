@@ -62,7 +62,7 @@ class Mlinetopik extends CI_Model
 
  public function get_datMateri($UUID)
  {
-   $this->db->select('namaStep,namaTopik,judulMateri,isiMateri,materi.date_created,topik.UUID');
+   $this->db->select('namaStep,namaTopik,judulMateri,isiMateri,materi.date_created,topik.UUID,url_file');
    $this->db->from('tb_line_topik topik');
    $this->db->join('tb_line_step step','step.topikID=topik.id');
    $this->db->join('tb_line_materi materi','materi.id=step.materiID');

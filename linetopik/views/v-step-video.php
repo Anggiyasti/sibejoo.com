@@ -98,7 +98,7 @@
                   <div class="post-thumb thumb">
                     <?php if ($datVideo['link']=='' || $datVideo['link']==' '): ?>
                       <div class="container-video color-palette bg-color-6alt">
-                        <video class="" width="100%" height="100%"  controls>
+                        <video class="" width="100%" height="100%"  controls controlsList="nodownload">
                           <source src="<?=base_url();?>assets/video/<?=$datVideo['namaFile'];?>" >
                             Your browser does not support the video tag.
                         </video>

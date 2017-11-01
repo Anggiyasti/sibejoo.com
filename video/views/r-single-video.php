@@ -1,81 +1,81 @@
 <style type="text/css">
-  blockquote {
-    background: #f9f9f9;
-    /*margin: 1.5em 10px;*/
-    padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
-    /*border: 1px solid black;*/
-    border-right: 10px solid #ccc;
-    margin-left: 80px;
+blockquote {
+  background: #f9f9f9;
+  /*margin: 1.5em 10px;*/
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  /*border: 1px solid black;*/
+  border-right: 10px solid #ccc;
+  margin-left: 80px;
 
-  }
-  video{
-    width:760px; 
-    height:430px;
-    overflow: hidden;
-    /*display:none;*/
-  }
-  blockquote:before {
-    color: #ccc;
-    content: open-quote;f
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 10px;
-    vertical-align: -0.4em;
-  }
-  blockquote p {
-    display: inline;
-  }
+}
+video{
+  width:760px; 
+  height:430px;
+  overflow: hidden;
+  /*display:none;*/
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;f
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 10px;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
 
-  .section {
-    padding: 50px 0
-  }
-  .section:not(:last-child) {
-    border-bottom: 1px solid #e5e5e5
-  }
-  #macy-container::before {
-    content: "";
-    display: table;
-    clear: both
-  }
-  #macy-container {
-    margin-top: 22px
-  }
-  #macy-container::after {
-    content: "";
-    display: table;
-    clear: both
-  }
-  .demo {
-    margin-bottom: 24px;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid #eee;
-    padding:5px;
-  }
-  .demo-image {
-    width: 100%;
-    display: block;
-    height: auto
-  }
-  .feature-list {
-    margin-bottom: 0;
-    margin-left: 0;
-    width: 100%;
-    list-style: none
-  }
-  .feature-list li {
-    display: inline-block;
-    width: 25%;
-    text-align: center
-  }
-  .feature-list li::before {
-    color: inherit;
-    content: "•";
-    color: #54b9cb;
-    margin-right: 7px
-  }
-  .btn {
+.section {
+  padding: 50px 0
+}
+.section:not(:last-child) {
+  border-bottom: 1px solid #e5e5e5
+}
+#macy-container::before {
+  content: "";
+  display: table;
+  clear: both
+}
+#macy-container {
+  margin-top: 22px
+}
+#macy-container::after {
+  content: "";
+  display: table;
+  clear: both
+}
+.demo {
+  margin-bottom: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  padding:5px;
+}
+.demo-image {
+  width: 100%;
+  display: block;
+  height: auto
+}
+.feature-list {
+  margin-bottom: 0;
+  margin-left: 0;
+  width: 100%;
+  list-style: none
+}
+.feature-list li {
+  display: inline-block;
+  width: 25%;
+  text-align: center
+}
+.feature-list li::before {
+  color: inherit;
+  content: "•";
+  color: #54b9cb;
+  margin-right: 7px
+}
+.btn {
    /* background-color: #54b9cb;
     line-height: 53px;
     padding: 0 18px 0 0;
@@ -97,191 +97,194 @@
   }
 </style>
 <hr class="divider-color" />
-     <section>
-      <div class="container mt-30 mb-30 pt-30 pb-30">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="sidebar sidebar-left mt-sm-30">
-              <div class="widget">
-                <h5 class="widget-title line-bottom">{nama_sub}  <a title="" href="{sub_id}"><i class="glyphicon glyphicon-calendar"></i></a></h5>
+<section>
+  <div class="container mt-30 mb-30 pt-30 pb-30">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="sidebar sidebar-left mt-sm-30">
+          <div class="widget">
+            <h5 class="widget-title line-bottom">{nama_sub}  <a title="" href="{sub_id}"><i class="glyphicon glyphicon-calendar"></i></a></h5>
 
-                <ul class="list list-divider list-border">
-                 <?php foreach ($videobysub as $videobysub_item): ?>
-                   <li ><i class="fa fa-play mr-10 text-black-light"></i><a href="<?= base_url('index.php/video/seevideo/') ?><?= $videobysub_item->id ?>#ini"><?= $videobysub_item->judulVideo ?></a></li>
-                 <?php endforeach ?>
-               </ul>
-             </div>
-           </div>
+            <ul class="list list-divider list-border">
+             <?php foreach ($videobysub as $videobysub_item): ?>
+               <li ><i class="fa fa-play mr-10 text-black-light"></i><a href="<?= base_url('index.php/video/seevideo/') ?><?= $videobysub_item->id ?>#ini"><?= $videobysub_item->judulVideo ?></a></li>
+             <?php endforeach ?>
+           </ul>
          </div>
+       </div>
+     </div>
 
 
-         <div class="col-md-8">
-          <div class="blog-posts single-post">
-            <article class="post clearfix mb-0">
-              <div class="entry-header">
-                <div class="post-thumb thumb"> 
-                  <video src="{file}" controlsList="nodownload" controls></video>
-
-                </div>
-
-              </div>
-
-              <div class="entry-content">
-                <div class="entry-meta media no-bg no-border mt-15 pb-20">
-                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                    <ul>
-                      <li class="font-16 text-white font-weight-600">{tgl}</li>
-                      <li class="font-12 text-white text-uppercase">{bulan}</li>
-                    </ul>
-                  </div>
-                  <div class="media-body pl-15">
-                    <div class="event-content pull-left flip">
-                      <h3 class="entry-title text-white text-uppercase pt-0 mt-0"><a href="blog-single-right-sidebar.html">{judul_video}</a></h3>
-                      <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> (<?=count($comments) ?>) Comments</span>                       
-                    </div>
-                  </div>
-                </div>
-                <p class="mb-15">{deskripsi}</p><br><br>
-              </div>
-            </article>
-
-            <div class="author-details media-post mt-10">
-              <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{photo}" style="width: 106px; height: 106px;"></a>
-              <div class="post-right">
-                <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">{nama_penulis}</a></h5>
-                <p><i>{biografi}</i></p>
-                <hr>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="comments-area">
-              <h5 class="comments-title">Comments</h5>
-              <ul class="comment-list">
-
-               <?php foreach ($comments as $comment): ?>   
-                <li>
-                  <div class="media comment-author"> <a class="media-left" href="#"><img class="media-object img-thumbnail" src="http://placehold.it/75x75" alt=""></a>
-                    <div class="media-body">
-                      <h5 class="media-heading comment-heading"><?=$comment->namaPengguna ?> says:</h5>
-                      <div class="comment-date">23/06/2014</div>
-                      <p><?=$comment->isiKomen ?></p>
-                    </div>
-                  </li><br>
-                <?php endforeach ?>
-
-              </ul>
-            </div>
-
-            <div class="comment-box">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h5>Leave a Comment</h5>
-                  <div class="row">
-                    <section class="clear-fix">
-                      <form class="login-form" action ="" id="formkomen" method = "post">
-                        <div id="info">
-                          <div class="sukses text-info text-center hide">
-                            <span>Komen anda telah terkirim, tunggu moderisasi dari guru yang bersangkutan</span>
-                          </div>
-                          <div class="gagal text-danger text-center hide">
-                            <span>Gagal memberikan komen !</span>
-                          </div> 
-                          <div class="lengkapi text-danger text-center hide">
-                            <span>Tolong isi komentar</span>
-                          </div>
-                        </div>
-
-                      </form>
-                    </section>
-
-                    <form role="form" id="comment-form">
-                      <div class="col-sm-12 pt-0 pb-0">
-                        <div class="form-group">
-                          <input type="text" class="form-control" required="" name="contact_name" id="contact_name" placeholder="<?=$this->session->userdata('USERNAME') ?>" disabled>
-                        </div>
-                      </div>
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <textarea id="isiKomen" name="isiKomen"  class="form-control" placeholder="Enter Message" rows="7"></textarea>
-                        </div>
-                        <div class="form-group">
-                          <button type="submit" href="#" class="btn btn-default btn-theme-colored btn-sm">Kirim</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+     <div class="col-md-8">
+      <div class="blog-posts single-post">
+        <article class="post clearfix mb-0">
+          <div class="entry-header">
+            <div class="post-thumb thumb"> 
+              <?php if (strpos($file, 'http') !==true) { ?>
+              <iframe width="420" height="315" src="{file}"></iframe>
+              <?php }else{ ?>
+              <video src="{file}" controlsList="nodownload" controls></video> 
+              <?php } ?>
             </div>
 
           </div>
+
+          <div class="entry-content">
+            <div class="entry-meta media no-bg no-border mt-15 pb-20">
+              <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                <ul>
+                  <li class="font-16 text-white font-weight-600">{tgl}</li>
+                  <li class="font-12 text-white text-uppercase">{bulan}</li>
+                </ul>
+              </div>
+              <div class="media-body pl-15">
+                <div class="event-content pull-left flip">
+                  <h3 class="entry-title text-white text-uppercase pt-0 mt-0"><a href="blog-single-right-sidebar.html">{judul_video}</a></h3>
+                  <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> (<?=count($comments) ?>) Comments</span>                       
+                </div>
+              </div>
+            </div>
+            <p class="mb-15">{deskripsi}</p><br><br>
+          </div>
+        </article>
+
+        <div class="author-details media-post mt-10">
+          <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="{photo}" style="width: 106px; height: 106px;"></a>
+          <div class="post-right">
+            <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">{nama_penulis}</a></h5>
+            <p><i>{biografi}</i></p>
+            <hr>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="comments-area">
+          <h5 class="comments-title">Comments</h5>
+          <ul class="comment-list">
+
+           <?php foreach ($comments as $comment): ?>   
+            <li>
+              <div class="media comment-author"> <a class="media-left" href="#"><img class="media-object img-thumbnail" src="http://placehold.it/75x75" alt=""></a>
+                <div class="media-body">
+                  <h5 class="media-heading comment-heading"><?=$comment->namaPengguna ?> says:</h5>
+                  <div class="comment-date">23/06/2014</div>
+                  <p><?=$comment->isiKomen ?></p>
+                </div>
+              </li><br>
+            <?php endforeach ?>
+
+          </ul>
         </div>
 
-      </section>
+        <div class="comment-box">
+          <div class="row">
+            <div class="col-sm-12">
+              <h5>Leave a Comment</h5>
+              <div class="row">
+                <section class="clear-fix">
+                  <form class="login-form" action ="" id="formkomen" method = "post">
+                    <div id="info">
+                      <div class="sukses text-info text-center hide">
+                        <span>Komen anda telah terkirim, tunggu moderisasi dari guru yang bersangkutan</span>
+                      </div>
+                      <div class="gagal text-danger text-center hide">
+                        <span>Gagal memberikan komen !</span>
+                      </div> 
+                      <div class="lengkapi text-danger text-center hide">
+                        <span>Tolong isi komentar</span>
+                      </div>
+                    </div>
 
-      <!-- sound notification -->
-      <audio id="notif_audio"><source src="<?php echo base_url('sounds/notify.ogg');?>" type="audio/ogg"><source src="<?php echo base_url('sounds/notify.mp3');?>" type="audio/mpeg"><source src="<?php echo base_url('sounds/notify.wav');?>" type="audio/wav"></audio>
-      <!-- /sound notification -->
-      <script src="http://macyjs.com/assets/js/macy.min.js"></script>
-      <script src="<?php echo base_url('node_modules/socket.io/node_modules/socket.io-client/socket.io.js');?>"></script>
-      <script>
-        $(document).ready(function () {
-          Macy.init({
-            container: '#macy-container',
-            trueOrder: false,
-            waitForImages: false,
-            margin: 24,
-            columns: 3,
-            breakAt: {
-              1200: 5,
-              940: 3,
-              520: 2,
-              400: 1
-            }
-          });
+                  </form>
+                </section>
 
-          $("#comment-form").submit(function (e) {
-            e.preventDefault();
-            var isiKomen = $("#isiKomen").val();
-            var videoID = <?= $this->uri->segment(3) ?>;
-            if (isiKomen=="") {
-              $('#info .lengkapi').removeClass('hide');
-              $('#info .sukses').addClass('hide');
-              $('#info .gagal').addClass('hide');
-            }else{
-             $.ajax({
-              type: "POST",
-              url: '<?php echo base_url() ?>index.php/video/addkomen',
-              data: {isiKomen: isiKomen, videoID: videoID},
-              dataType: "json",
-              cache : false,
-              success: function (data)
-              {
+                <form role="form" id="comment-form">
+                  <div class="col-sm-12 pt-0 pb-0">
+                    <div class="form-group">
+                      <input type="text" class="form-control" required="" name="contact_name" id="contact_name" placeholder="<?=$this->session->userdata('USERNAME') ?>" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <textarea id="isiKomen" name="isiKomen"  class="form-control" placeholder="Enter Message" rows="7"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" href="#" class="btn btn-default btn-theme-colored btn-sm">Kirim</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- sound notification -->
+  <audio id="notif_audio"><source src="<?php echo base_url('sounds/notify.ogg');?>" type="audio/ogg"><source src="<?php echo base_url('sounds/notify.mp3');?>" type="audio/mpeg"><source src="<?php echo base_url('sounds/notify.wav');?>" type="audio/wav"></audio>
+    <!-- /sound notification -->
+    <script src="http://macyjs.com/assets/js/macy.min.js"></script>
+    <script src="<?php echo base_url('node_modules/socket.io/node_modules/socket.io-client/socket.io.js');?>"></script>
+    <script>
+      $(document).ready(function () {
+        Macy.init({
+          container: '#macy-container',
+          trueOrder: false,
+          waitForImages: false,
+          margin: 24,
+          columns: 3,
+          breakAt: {
+            1200: 5,
+            940: 3,
+            520: 2,
+            400: 1
+          }
+        });
+
+        $("#comment-form").submit(function (e) {
+          e.preventDefault();
+          var isiKomen = $("#isiKomen").val();
+          var videoID = <?= $this->uri->segment(3) ?>;
+          if (isiKomen=="") {
+            $('#info .lengkapi').removeClass('hide');
+            $('#info .sukses').addClass('hide');
+            $('#info .gagal').addClass('hide');
+          }else{
+           $.ajax({
+            type: "POST",
+            url: '<?php echo base_url() ?>index.php/video/addkomen',
+            data: {isiKomen: isiKomen, videoID: videoID},
+            dataType: "json",
+            cache : false,
+            success: function (data)
+            {
               $('#info .sukses').addClass('show');
 
-                if(data.success == true){
+              if(data.success == true){
 
-                  var socket = io.connect( 'http://'+window.location.hostname+':3000' );
+                var socket = io.connect( 'http://'+window.location.hostname+':3000' );
 
-                  socket.emit('new_count_komen', { 
-                    new_count_komen: data.new_count_komen
-                  });
+                socket.emit('new_count_komen', { 
+                  new_count_komen: data.new_count_komen
+                });
 
-                  socket.emit('new_komen', { 
-                   isiKomen: data.isiKomen,
-                   videoID: data.videoID,
-                   userID: data.userID,
-                   UUID: data.UUID,
-                   namaPengguna:data.namaPengguna,
-                   date_created:data.date_created,
-                   videoID:data.videoID,
-                   photo:data.photo,
-                   mapelID:data.mapelID
-                 });
+                socket.emit('new_komen', { 
+                 isiKomen: data.isiKomen,
+                 videoID: data.videoID,
+                 userID: data.userID,
+                 UUID: data.UUID,
+                 namaPengguna:data.namaPengguna,
+                 date_created:data.date_created,
+                 videoID:data.videoID,
+                 photo:data.photo,
+                 mapelID:data.mapelID
+               });
 
-                } else if(data.success == false){
-                  console.log("gagal");
-                }
+              } else if(data.success == false){
+                console.log("gagal");
+              }
                     // IO
                   },
                   error: function ()
@@ -291,14 +294,14 @@
                     $('#info .gagal').removeClass('hide');
                   }
                 }); 
-           }
+         }
 
-         });
-        });
+       });
+      });
 
-      </script>
-      <script type="text/javascript">
-        var socket = io.connect( 'http://'+window.location.hostname+':3000' );
+    </script>
+    <script type="text/javascript">
+      var socket = io.connect( 'http://'+window.location.hostname+':3000' );
 
           // socket.on( 'new_count_komen', function( data ) {
           //   console.log(data);
