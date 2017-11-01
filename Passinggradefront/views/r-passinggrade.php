@@ -16,19 +16,18 @@
  <section>
       <div class="container">
         <div class="row">
-         
             
-          
           <div class="col-md-9 blog-pull-right">
+            <h1>Wil 1</h1>
              <div class="row">
               <?php foreach ($data as $key): ?>
                 <div class="col-sm-6 col-md-4">
-                  <div class="service-block bg-white">
-                    <div class="content text-left flip p-25 pt-0">
-                      <h4 class="line-bottom mb-5" style="height: 60px;"><?=$key['universitas'] ?></h4>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
-                    </div>
-                  </div>
+                  <!-- <div class="service-block bg-white"> -->
+                    <!-- <div class="content text-left flip p-25 pt-0"> -->
+                      <h4 class="line-bottom mb-5"><?=$key['universitas'] ?></h4>
+                     <!-- <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
                 </div>
                 <?php endforeach ?>
              </div>
@@ -42,6 +41,19 @@
                   <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariuniv"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
                       <input type="search" class="form-control search-input" placeholder="Cari Universitas"  name="keycari" title="Search for:" id="cariuniv">
+                      <span class="input-group-btn">
+                      <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom">Cari Prodi</h5>
+                <div class="search-form">
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariuniv"  accept-charset="utf-8" enctype="multipart/form-data">
+                    <div class="input-group">
+                      <input type="search" class="form-control search-input" placeholder="Cari Prodi"  name="keycari" title="Search for:" id="cariuniv">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>

@@ -11,7 +11,7 @@ class Konsultasi extends MX_Controller{
     $this->load->model('guru/mguru');
 
     $this->load->library('Ajax_pagination');
-    $this->perPage = 5;
+    $this->perPage = 1;
 
     $this->load->model('tryout/mtryout');
     $this->load->model('tingkat/mtingkat');
@@ -161,34 +161,12 @@ public function pertanyaan_all() {
     APPPATH.'modules/homepage/views/r-footer.php',
     );
 
-  ##KONFIGURASI UNTUUK PAGINATION
-  $config = array();
-  $config["base_url"] = base_url() . "konsultasi/pertanyaan_all/";
-  $config["total_rows"] = $this->mkonsultasi->get_all_questions_number($key);
-  $config["per_page"] = 10;
-  $config["uri_segment"] = 3;
-
-  $config['cur_tag_open'] = "<a style='background:#f27c66;color:white'>";
-  $config['cur_tag_close'] = '</a>';
-
-
-
-  $config['first_link'] = "<span title='Page Awal'> << </span>"; 
-  $config['last_link'] = "<span title='Page Akhir'> >> </span>";
-  $this->pagination->initialize($config);
-  $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-  ##KONFIGURASI UNTUUK PAGINATION
-
-
   // pertanyaan saya.
-  $data['my_questions']=$this->mkonsultasi->get_all_questions($config["per_page"], $page,$key);
-  $data["links"] = $this->pagination->create_links();
-  $data['jumlah_postingan'] = $config["total_rows"];
   $hakAkses = $this->session->userdata('HAKAKSES');
   if ($hakAkses=='guru') {
     $data['mapel'] = $this->mmatapelajaran->get_mapel_by_guruID(37);      
   }else{
-    $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
+    $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());
   }
 
   $this->parser->parse( 'templating/r-index', $data );
@@ -688,7 +666,7 @@ function singlekonsultasi(){
     'id_pengguna'=>$this->session->userdata('id'),
     'tanggal'=>date("d", $timestamp),
     'bulan'=>date("M", $timestamp),
-    'photo'=>base_url("assets/image/photo/siswa/".$single_pertanyaan['photo']),
+    'photo'=>$single_pertanyaan['photo'],
     'statusRespon'=>$single_pertanyaan['statusRespon'],
     'namaPengguna'=>$single_pertanyaan['namaPengguna']
     );
@@ -761,7 +739,6 @@ public function pertanyaan_ku_search(){
 
 public function filter(){
   $matapelajaran = $this->session->userdata['mapel'];
-  var_dump($matapelajaran);
   $bab = $this->session->userdata['bab'];
   if (!empty($matapelajaran)) {
     $data = array(
@@ -777,31 +754,8 @@ public function filter(){
       APPPATH.'modules/templating/views/r-footer.php'
       );
   // jika gada yang di search, key di set kosong
-  ##KONFIGURASI UNTUUK PAGINATION
-    $config = array();
-
-
-
-    $config["base_url"] = base_url() . "konsultasi/filter/".$matapelajaran."/".$bab;
-    $config["uri_segment"] = 5;
-    $page = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-
-
-    $config["total_rows"] = $this->mkonsultasi->get_all_questions_number_filter($bab, $matapelajaran);
-    $config["per_page"] = 10;
-  # konfig link
-    $config['cur_tag_open'] = "<a style='background:#f27c66;color:white'>";
-    $config['cur_tag_close'] = '</a>';
-    $config['first_link'] = "<span title='Page Awal'> << </span>"; 
-    $config['last_link'] = "<span title='Page Akhir'> >> </span>";
-  # konfig link
-    $this->pagination->initialize($config);
-  ##KONFIGURASI UNTUUK PAGINATION
-
-    // $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());
 
   // pertanyaan saya.
-    $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($bab, $matapelajaran,$config["per_page"],$page);
     $hakAkses = $this->session->userdata('HAKAKSES');
     
     if ($hakAkses=='guru') {
@@ -1437,7 +1391,7 @@ function get_last_jawaban(){
   }
 
   #########################################################################################################################
-  # FUNGSI PAGINATION DAN SEARCH AJAX VERSI MOBILE                                                                                   #
+  # FUNGSI PAGINATION DAN SEARCH AJAX VERSI TERBARU                                                                                   #
   #########################################################################################################################
 
   // fungsi untuk pagination ajax pertanyaan all
@@ -1447,10 +1401,19 @@ function get_last_jawaban(){
       if(!empty($key)){
         $key = $key;
       }
-    ## kalo gak ada yang di cari
-   
-    //total rows count
-    $totalRec = $this->mkonsultasi->get_all_questions_number($key);
+    ## kalo  ada yang di cari
+    ## kalo ada yang di cari
+    $id_tingpel = $this->input->post('id_tingpel');
+    $id_bab = $this->input->post('id_bab');
+
+    // jika ada yag difilter
+    if ($id_tingpel!=0) {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_all_questions_number_filter($id_bab, $id_tingpel);
+    } else {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_all_questions_number($key);
+    }
 
     # CONFIG AJAX PAGINATION #
     $page = $this->input->post('page');
@@ -1459,39 +1422,53 @@ function get_last_jawaban(){
       $offset = 0;
     }else{
       $offset = $page;
-    }
+    } 
+
+     // link function
+      $link = $this->input->post('link');
     
     //pagination configuration
     $config['target']      = '#konsulList';
     $config['base_url']    = base_url().'konsultasi/ajaxPaginationAll';
     $config['total_rows']  = $totalRec;
     $config['per_page']    = $this->perPage;
-    $config['link_func']   = 'search_all';
+    $config['link_func']   = $link;
     $this->ajax_pagination->initialize($config);
 
     # END CONFIG AJAX PAGINATION #
-                
-    $hakAkses = $this->session->userdata('HAKAKSES');
-    if ($hakAkses=='guru') {
-      $data['mapel'] = $this->mmatapelajaran->get_mapel_by_guruID(37);      
-    }else{
-      $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
-    }
+
+    // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($id_bab, $id_tingpel,$config["per_page"],$page);
+    } else {
     // get data pertanyaan saya.
       $data['my_questions']=$this->mkonsultasi->get_all_questions($config["per_page"], $page,$key);
-    
+    }    
+
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
 
   // fungsi untuk pagination ajax pertanyaan saya
   function ajaxPaginationKu(){
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
     $key = $this->input->post('keyword');
       if(!empty($key)){
         $key = $key;
       }
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
+
+    $id_tingpel = $this->input->post('id_tingpel');
+    $id_bab = $this->input->post('id_bab');
+
+    // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_my_questions_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab);
+    } else {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_my_questions_number($this->get_id_siswa(),$key);
+    }
 
     # CONFIG AJAX PAGINATION #
     $page = $this->input->post('page');
@@ -1501,16 +1478,16 @@ function get_last_jawaban(){
     }else{
       $offset = $page;
     }
-
-    //total rows count
-    $totalRec = $this->mkonsultasi->get_my_questions_number($this->get_id_siswa(),$key);
     
+    // link function
+    $link = $this->input->post('link');
+
     //pagination configuration
     $config['target']      = '#konsulList';
     $config['base_url']    = base_url().'konsultasi/ajaxPaginationKu';
     $config['total_rows']  = $totalRec;
     $config['per_page']    = $this->perPage;
-    $config['link_func']   = 'my_search';
+    $config['link_func']   = $link;
     $this->ajax_pagination->initialize($config);
 
     # END CONFIG AJAX PAGINATION #
@@ -1521,20 +1498,40 @@ function get_last_jawaban(){
       }else{
         $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
       }
+    // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      // get data pertanyaan saya.
+      $data['my_questions']=$this->mkonsultasi->get_my_questions_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel);
+    } else {
     // get data pertanyaan saya.
-    $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page, $key);
+      $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page,$key);
+    }    
+
+    
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
 
   // fungsi untuk pagination ajax pertanyaan grade
   function ajaxPaginationGrade(){
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
     $key = $this->input->post('keyword');
       if(!empty($key)){
         $key = $key;
       }
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
+
+    $id_tingpel = $this->input->post('id_tingpel');
+    $id_bab = $this->input->post('id_bab');
+
+    // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_my_question_level_number_filter($this->get_tingkat_for_konsultasi_array(), $id_tingpel, $id_bab);
+    } else {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_my_question_level_number($this->get_tingkat_for_konsultasi_array(),$key);
+    }
 
     # CONFIG AJAX PAGINATION #
     $page = $this->input->post('page');
@@ -1545,15 +1542,15 @@ function get_last_jawaban(){
       $offset = $page;
     }
 
-    //total rows count
-    $totalRec = $this->mkonsultasi->get_my_question_level_number($this->get_tingkat_for_konsultasi_array(),$key);
+    // link function
+    $link = $this->input->post('link');
     
     //pagination configuration
     $config['target']      = '#konsulList';
     $config['base_url']    = base_url().'konsultasi/ajaxPaginationGrade';
     $config['total_rows']  = $totalRec;
     $config['per_page']    = $this->perPage;
-    $config['link_func']   = 'search_grade';
+    $config['link_func']   = $link;
     $this->ajax_pagination->initialize($config);
 
     # END CONFIG AJAX PAGINATION #
@@ -1564,20 +1561,39 @@ function get_last_jawaban(){
       }else{
         $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
       }
-    // get data pertanyaan saya.
-    $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page,$key);
+     // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      // get data pertanyaan grade.
+      $data['my_questions']=$this->mkonsultasi->get_my_question_level_filter($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page, $id_bab, $id_tingpel);
+    } else {
+    // get data pertanyaan grade.
+      $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page,$key);
+    }   
+
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
 
   // fungsi untuk pagination ajax pertanyaan mentor
   function ajaxPaginationMentor(){
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
     $key = $this->input->post('keyword');
       if(!empty($key)){
         $key = $key;
       }
-    ## kalo gak ada yang di cari
+    ## kalo ada yang di cari
+
+    $id_tingpel = $this->input->post('id_tingpel');
+    $id_bab = $this->input->post('id_bab');
+
+    // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_question_mentor_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab);
+    } else {
+      //total rows count
+      $totalRec = $this->mkonsultasi->get_question_mentor_number($this->get_id_siswa(),$key);
+    }
 
     # CONFIG AJAX PAGINATION #
     $page = $this->input->post('page');
@@ -1588,15 +1604,15 @@ function get_last_jawaban(){
       $offset = $page;
     }
 
-    //total rows count
-    $totalRec = $this->mkonsultasi->get_question_mentor_number($this->get_id_siswa(),$key);
+    // link function
+    $link = $this->input->post('link');
     
     //pagination configuration
     $config['target']      = '#konsulList';
     $config['base_url']    = base_url().'konsultasi/ajaxPaginationMentor';
     $config['total_rows']  = $totalRec;
     $config['per_page']    = $this->perPage;
-    $config['link_func']   = 'search_mentor';
+    $config['link_func']   = $link;
     $this->ajax_pagination->initialize($config);
 
     # END CONFIG AJAX PAGINATION #
@@ -1607,24 +1623,28 @@ function get_last_jawaban(){
       }else{
         $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
       }
-    // get data pertanyaan saya.
-    $data['my_questions']=$this->mkonsultasi->get_question_m($this->get_id_siswa(),$config["per_page"], $page, $key);
+
+     // jika ada yang difilter
+    if ($id_tingpel!=0) {
+      // get data pertanyaan mentor.
+      $data['my_questions']=$this->mkonsultasi->get_question_m_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel);
+    } else {
+    // get data pertanyaan mentor.
+      $data['my_questions']=$this->mkonsultasi->get_question_m($this->get_id_siswa(),$config["per_page"], $page,$key);
+    }   
+
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
 
   // fungsi untuk pagination ajax FILTER pertanyaan all
   function ajaxFilterAll(){
-    ## kalo gak ada yang di cari
-    $matapelajaran = $this->input->post('mapel');
-    $bab = $this->input->post('bab');
-    ## kalo gak ada yang di cari
-    if (!empty($matapelajaran)) {
-      $matapelajaran = str_replace(' ', '_', $matapelajaran);
-      $bab = str_replace(' ', '_', $bab);
-    }
+    ## kalo ada yang di cari
+    $id_tingpel = $this->input->post('id_tingpel');
+    $id_bab = $this->input->post('id_bab');
+
       //total rows count
-      $totalRec = $this->mkonsultasi->get_all_questions_number_filter($bab, $matapelajaran);
+      $totalRec = $this->mkonsultasi->get_all_questions_number_filter($id_bab, $id_tingpel);
 
       # CONFIG AJAX PAGINATION #
       $page = $this->input->post('page');
@@ -1634,13 +1654,16 @@ function get_last_jawaban(){
       }else{
         $offset = $page;
       }
+
+      // link function
+      $link = $this->input->post('link');
       
       //pagination configuration
       $config['target']      = '#konsulList';
       $config['base_url']    = base_url().'konsultasi/ajaxFilterAll';
       $config['total_rows']  = $totalRec;
       $config['per_page']    = $this->perPage;
-      $config['link_func']   = 'cariBtn';
+      $config['link_func']   = 'filter_by_tag';
       $this->ajax_pagination->initialize($config);
 
       # END CONFIG AJAX PAGINATION #
@@ -1652,7 +1675,7 @@ function get_last_jawaban(){
         $data['mapel'] = $this->mmatapelajaran->get_mapel_by_tingkatID($this->get_tingkat_siswa());     
       }
       // get data pertanyaan saya.
-      $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($bab, $matapelajaran,$config["per_page"],$page);
+      $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($id_bab, $id_tingpel,$config["per_page"],$page);
       
       //load the view
       $this->load->view('r-ajax-data', $data, false);
@@ -1661,6 +1684,7 @@ function get_last_jawaban(){
     // }
 
    }
+
 
   
 }

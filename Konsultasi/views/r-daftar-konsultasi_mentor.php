@@ -34,19 +34,15 @@
 						<h4><b>Filter Pertanyaan</b></h4>
 						<div class="row">
 		                    <div class="form-group col-md-4">
-		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;">
-									<option value="0">-Pilih Matapelajaran-</option>
-									<?php foreach ($mapel as $mapel_item): ?>
-										<option value=<?=$mapel_item['tingpelID'] ?>><?=$mapel_item['napel'] ?></option>  
-									<?php endforeach ?>
-								</select>
+		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_konsul_all()">
+  									
+								          </select>
 		                    </div>
 		                    <div class="form-group col-md-4">
-		                      <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" ><option value=0>-Pilih Bab-</option></select>
+		                      <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" onchange="ajax_konsul_all()"><option value=0>-Pilih Bab-</option></select>
 		                    </div>
 		                    <div class="form-group col-md-4">
 		                    	<a href="#" class="btn btn-default buat-btn"><i class="fa fa-plus"></i> Buat</a>
-		                    	<a href="#" class="btn btn-default cari-btn"><i class="fa fa-search"></i> Cari</a>
 		                    </div>
 	                  	</div>
 					</form>
@@ -67,7 +63,7 @@
 				                <div class="search-form">
 				                  <form>
 				                    <div class="input-group">
-				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="search_mentor()">
+				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
 				                      <span class="input-group-btn">
 				                      <a href="#" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
@@ -94,6 +90,12 @@
               
                   </div>
                   <!-- / konsulList -->
+                  <!-- loader -->
+                  <div class="widget loading border-1px p-50" hidden="true">
+                    <div class="preloader-whirlpool">
+                        <div class="whirlpool"></div>
+                    </div>
+                  </div>
 			
       		</div>
       	</div>
@@ -110,45 +112,80 @@
 <script type="text/javascript">
 	window.onload = function() {
       page_num=0;
-      keyword = $('#search1').val().replace(/ /g,"-"); 
-      var properties_load = {
-          page:page_num,
-          keyword: keyword
-       };
+      ajax_konsul_all(page_num);
+  }
 
+	function ajax_konsul_all(page_num) {
+    page_num = page_num?page_num:0;
+    keyword = $('#search1').val();
+    datas =[];
+    id_bab = $('#babSelect').find(":selected").val();
+    id_tingpel = $('#mapelSelect').find(":selected").val();
+    if (id_bab == 0) {
+      datas = { 
+        id_tingpel:id_tingpel, 
+        id_bab:'all',
+        keyword: keyword,
+            page: page_num,
+          link:'ajax_konsul_all'};
+    } else {  
+      datas = { 
+        id_tingpel:id_tingpel, 
+        id_bab:id_bab,
+        keyword: keyword,
+            page: page_num,
+          link:'ajax_konsul_all'};
+    }
       $.ajax({
           type: 'POST',
           url: base_url + 'konsultasi/ajaxPaginationMentor/'+page_num,
-          data: properties_load,
-          beforeSend: function () {
-            $('.loading').show();
-          },
-          success: function (html) {
-            $('#konsulList').html(html);
-          }
-      });
-  }
-
-	function search_mentor(page_num) {
-    page_num = page_num?page_num:0;
-    keyword = $('#search1').val().replace(/ /g,"-");    
-          
-    var properties_search = {
-      keyword: keyword,
-      page: page_num
-    };
-
-    $.ajax({
-          type: 'POST',
-          url: base_url + 'konsultasi/ajaxPaginationMentor/'+page_num,
-          data: properties_search,
+          data: datas,
           beforeSend: function () {
               $('.loading').show();
           },
           success: function (html) {
               $('#konsulList').html(html);
+              $('.loading').hide();
+              load_bab(id_tingpel);
           }
       });
+
+  }
+  function filter(page_num) {
+    page_num = page_num?page_num:0;
+    keyword = $('#search1').val();
+    datas =[];
+    id_tingpel = $('input[name=tamp_tingpel]').val();
+    id_bab = $('input[name=tamp_bab]').val();
+    if (id_bab == 0) {
+      datas = { 
+        id_tingpel:id_tingpel, 
+        id_bab:'all',
+        keyword: keyword,
+            page: page_num,
+            link:'filter'};
+    } else {  
+      datas = { 
+        id_tingpel:id_tingpel, 
+        id_bab:id_bab,
+        keyword: keyword,
+            page: page_num,
+          link:'filter'};
+    }
+      $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/ajaxPaginationMentor/'+page_num,
+          data: datas,
+          beforeSend: function () {
+              $('.loading').show();
+          },
+          success: function (html) {
+              $('#konsulList').html(html);
+              $('.loading').hide();
+              load_bab(id_tingpel);
+          }
+      });
+
   }
 
 	 	// redirect ke single konsultasi

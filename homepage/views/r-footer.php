@@ -2,20 +2,20 @@
   <footer class="footer divider layer-overlay overlay-dark-9" data-bg-img="http://placehold.it/1920x1280">
     <div class="container">
       <div class="row border-bottom">
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
           <div class="widget dark">
             <img class="mt-5 mb-20" alt="" src="http://sibejoo.com/img/logo-sibejoo.png">
             <p>PT VORTEX BUANA EDUMEDIA</p>
             <ul class="list-inline mt-5">
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">022-0662395</a> </li>
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">contact@sibejoo.com</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">022-0662395</a> </li><br>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">contact@sibejoo.com</a> </li> <br>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="https://sibejoo.com/">https://sibejoo.com/</a> </li>
               <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Line: @wuf2783p (Sibejoo)</a></li>
               <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Komplek Taman Mutiara Blok C1 No 11 Cibabat, Cimahi.</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
           <div class="widget dark">
             <h4 class="widget-title line-bottom-theme-colored-2">Jam Kerja</h4>
             <div class="opening-hours">
@@ -25,6 +25,18 @@
                 </li>
               </ul>
             </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="widget dark">
+            <h4 class="widget-title">Useful Links</h4>
+            <ul class="list angle-double-right list-border">
+              <li><a href="page-about-style1.html">About Us</a></li>
+              <li><a href="page-course-list.html">Layanan</a></li>
+              <li><a href="page-pricing-style1.html">Price List</a></li>
+              <li><a href="page-gallery-3col.html">Gallery</a></li>
+              <li><a href="shop-category.html">Shop</a></li>              
+            </ul>
           </div>
         </div>
       </div>

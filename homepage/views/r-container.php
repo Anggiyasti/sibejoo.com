@@ -731,7 +731,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 
 <!-- Section: team -->
-<section>
+<section id="team">
   <div class="container">
     <div class="section-title mb-10">
       <div class="row">
@@ -747,14 +747,15 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
             <?php $link =base_url('/assets/image/team/'.strtolower($team['foto'])); ?>
             <div class="team maxwidth400">
               <div class="thumb"><img class="img-fullwidth" src="<?=$link ?>" alt=""></div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
                 <h4 class="name mt-0 text-theme-color-2"><?=$team['nama']?> - <small><?=$team['posisi']?></small></h4>
                 <p class="mb-20"><?=$team['keterangan']?>.</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                 <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
                   <li><a href="<?=$team['instagram'] ?>"><i class="fa fa-instagram"></i></a></li>
                   <li><a href="mailto:<?=$team['email'] ?>"><i class="fa fa-comment"></i></a></li>
                 </ul>
-                <!-- <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a> -->
               </div>
             </div>
           <?php endforeach ?>
@@ -801,7 +802,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 
 <!-- Divider: Clients -->
-<section class="clients bg-theme-color-1">
+<section class="clients bg-theme-color-1" hidden="true">
   <div class="container pt-10 pb-0">
     <div class="row">
       <div class="col-md-12">
@@ -826,7 +827,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 <!-- end main-content -->
 
-<section id="subs" class="bg-lighter text-center">
+<section id="subs" class="bg-lighter text-center" hidden="true">
   <div class="container pt-30">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">

@@ -72,7 +72,6 @@
 
   $('#mapel_select_guru').change(function () {
     var mapel_id = $(this).val();
-    console.log('masuk');
     load_bab_mapelid(mapel_id);
   });
 

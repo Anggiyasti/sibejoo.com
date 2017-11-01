@@ -464,7 +464,6 @@ a, button {
 			}
 
 			function point(data){
-				console.log('masuk');
 				elemen = "<textarea class='form-control' name='komentar'></textarea>";
 				$('.modal-body').html(elemen);
 				$('.modal-header .modal-title').html("Berikan Komentar");
@@ -509,7 +508,6 @@ a, button {
 					swal('Ooops',"Anda Sudah Pernah Memberikan Point Pada Postingan ini",'success');
 					$('#myModal').modal('toggle');
 				}else{
-					console.log(postingan.idJawaban);
 					url = base_url+"konsultasi/ajax_add_point/"+postingan.idJawaban;
 					$.ajax({
 						url : url,
