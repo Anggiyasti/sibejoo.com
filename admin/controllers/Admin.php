@@ -393,7 +393,7 @@ function ajax_get_bab($id_bab){
      $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['idbab'];
+            $row[] = $n;
             $row[] = $list_item["judulBab"];
             $row[] = $list_item["babket"];
             $row[] = '<a href="'.$base_url.'index.php/admin/daftarsubbab/' . $id_bab . '/' . $list_item["judulBab"] . '/' . $list_item['idbab'].'" class="btn btn-default">Lihat</a>';
@@ -471,12 +471,13 @@ function hapusbabMP() {
     echo json_encode(array("status" => TRUE));
 }
 function ajax_get_subbab($id_sub_bab){
+    $n=1;
      $list = $this->mmatapelajaran->daftarsubBab($id_sub_bab);
       $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['subID'];
+            $row[] = $n;
             $row[] = $list_item["judulSubBab"];
             $row[] = $list_item["sbket"];
             $row[] = '    <button type="button" onclick = "rubah_subbab('.$list_item["subID"].')" id="rubahBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["subID"].'" data-judul="'.$list_item["judulSubBab"].'" data-ket="'.$list_item["sbket"].'" title="Rubah Data"><i class="ico-file5"></i></button>
@@ -484,7 +485,7 @@ function ajax_get_subbab($id_sub_bab){
 
                                 <button type="button" id="hapusBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["subID"].'" data-nama="'.$list_item["judulSubBab"].'" title="Hapus Data"><i class="ico-remove"></i></button>';
             $data[] = $row;
-          
+            $n++;
         }
         $output = array(
             "data"=>$data,

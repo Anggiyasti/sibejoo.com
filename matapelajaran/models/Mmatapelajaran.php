@@ -187,6 +187,7 @@ class Mmatapelajaran extends CI_Model {
         $this->db->join('tb_tingkat-pelajaran as tbtipe','tbbab.tingkatPelajaranID = tbtipe.id');
         $this->db->where('tingkatPelajaranID', $id_bab);
         $this->db->where('tbbab.status', 1);
+        $this->db->order_by('idbab', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -239,6 +240,7 @@ class Mmatapelajaran extends CI_Model {
         $this->db->join('tb_bab b','b.id = sb.babID');
         $this->db->where('sb.babID', $id_sub_bab);
         $this->db->where('sb.status', 1);
+        $this->db->order_by('sb.id', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
