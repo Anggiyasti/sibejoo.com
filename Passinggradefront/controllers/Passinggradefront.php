@@ -30,9 +30,9 @@ class Passinggradefront extends MX_Controller {
             APPPATH.'modules/passinggradefront/views/r-passinggrade.php',
             APPPATH.'modules/testimoni/views/r-footer.php',
             );
-        $wil = $this->session->userdata['id_wil'];
-        $data['data']   = $this->Mpassingfront->getpassingwilayah($wil);
-
+        for ($i=1; $i <= 4; $i++) { 
+            $data['wilayah'.$i] = $this->Mpassingfront->getpassingwilayah($i);
+        }
 
         $this->parser->parse('templating/r-index', $data);
     }
@@ -92,7 +92,11 @@ class Passinggradefront extends MX_Controller {
             );
         $kunciCari=htmlspecialchars($this->input->get('keycari'));
         $wil = $this->session->userdata['id_wil'];
-        $data['data']=$this->Mpassingfront->get_cariuniv($wil,$kunciCari);
+        $data['wilayah1']   = $this->Mpassingfront->get_cariuniv(1,$kunciCari);
+        $data['wilayah2']   = $this->Mpassingfront->get_cariuniv(2,$kunciCari);
+        $data['wilayah3']   = $this->Mpassingfront->get_cariuniv(3,$kunciCari);
+        $data['wilayah4']   = $this->Mpassingfront->get_cariuniv(4,$kunciCari);
+        // $data['data']=$this->Mpassingfront->get_cariuniv($wil,$kunciCari);
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . 'modules/passinggradefront/views/r-passinggrade.php',
@@ -226,7 +230,7 @@ class Passinggradefront extends MX_Controller {
         
         $data['files'] = array( 
             APPPATH.'modules/homepage/views/r-header-login.php',
-            APPPATH.'modules/passinggradefront/views/r-passinggrade-prodi.php',
+            APPPATH.'modules/passinggradefront/views/r-passinggrade-grade.php',
             APPPATH.'modules/testimoni/views/r-footer.php',
             );
 
@@ -234,5 +238,24 @@ class Passinggradefront extends MX_Controller {
 
         $this->parser->parse('templating/r-index', $data);
     }
+
+    // cari prodi
+    public function cariprodi_all(){
+        $kunciCari=htmlspecialchars($this->input->get('prodi'));
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Passing Grade',
+            'judul_header' =>$kunciCari,
+            'judul_header2' =>'Program Studi'
+            );
+        $data['data']=$this->Mpassingfront->get_cariprodi_all($kunciCari);
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . 'modules/passinggradefront/views/r-passinggrade-grade.php',
+            APPPATH.'modules/testimoni/views/r-footer.php',
+        );
+
+        $this->parser->parse('templating/r-index', $data);
+    }
+
 }
 ?>

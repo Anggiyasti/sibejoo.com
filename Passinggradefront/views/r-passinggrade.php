@@ -18,18 +18,77 @@
         <div class="row">
             
           <div class="col-md-9 blog-pull-right">
-            <h1>Wil 1</h1>
+            <div class="border-bottom-theme-color-2-2px mb-15">
+              <h3><b>Wilayah 1</b></h3>
+            </div>
              <div class="row">
-              <?php foreach ($data as $key): ?>
-                <div class="col-sm-6 col-md-4">
-                  <!-- <div class="service-block bg-white"> -->
-                    <!-- <div class="content text-left flip p-25 pt-0"> -->
-                      <h4 class="line-bottom mb-5"><?=$key['universitas'] ?></h4>
-                     <!-- <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a> -->
-                    <!-- </div> -->
-                  <!-- </div> -->
+              <?php 
+              if ($wilayah1==array()) : ?>
+              <h5 class="text-center">Not Found.</h5>
+              <?php else : 
+              foreach ($wilayah1 as $key): ?>
+                <div class="col-sm-4 col-md-4" style="height: 100px;">
+                  <h4 class="mb-5"><?=$key['universitas'] ?></h4>
                 </div>
-                <?php endforeach ?>
+                <div class="col-md-2">
+                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
+                </div>
+                <?php endforeach;
+                  endif; ?>
+             </div>
+             <div class="border-bottom-theme-color-2-2px mb-15">
+              <h3><b>Wilayah 2</b></h3>
+            </div>
+             <div class="row">
+              <?php 
+              if ($wilayah2==array()) : ?>
+              <h5 class="text-center">Not Found.</h5>
+              <?php else : 
+              foreach ($wilayah2 as $key): ?>
+                <div class="col-sm-4 col-md-4" style="height: 100px;">
+                  <h4 class="mb-5"><?=$key['universitas'] ?></h4>
+                </div>
+                <div class="col-md-2">
+                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
+                </div>
+                <?php endforeach;
+                  endif; ?>
+             </div>
+             <div class="border-bottom-theme-color-2-2px mb-15">
+              <h3><b>Wilayah 3</b></h3>
+            </div>
+             <div class="row">
+              <?php 
+              if ($wilayah3==array()) : ?>
+              <h5 class="text-center">Not Found.</h5>
+              <?php else : 
+              foreach ($wilayah3 as $key): ?>
+                <div class="col-sm-4 col-md-4" style="height: 100px;">
+                  <h4 class="mb-5"><?=$key['universitas'] ?></h4>
+                </div>
+                <div class="col-md-2">
+                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
+                </div>
+                <?php endforeach;
+                  endif; ?>
+             </div>
+             <div class="border-bottom-theme-color-2-2px mb-15">
+              <h3><b>Wilayah 4</b></h3>
+            </div>
+             <div class="row">
+              <?php 
+              if ($wilayah4==array()) : ?>
+              <h5 class="text-center">Not Found.</h5>
+              <?php else : 
+              foreach ($wilayah4 as $key): ?>
+                <div class="col-sm-4 col-md-4" style="height: 100px;">
+                  <h4 class="mb-5"><?=$key['universitas'] ?></h4>
+                </div>
+                <div class="col-md-2">
+                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="javascript:void(0);" onclick="getuniv('<?=$key['universitas'] ?>')">Lihat Prodi</a>
+                </div>
+                <?php endforeach;
+                  endif; ?>
              </div>
           </div>
           
@@ -51,9 +110,9 @@
               <div class="widget">
                 <h5 class="widget-title line-bottom">Cari Prodi</h5>
                 <div class="search-form">
-                  <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariuniv"  accept-charset="utf-8" enctype="multipart/form-data">
+                  <form method="get" class="search-form" action="<?=base_url()?>index.php/passinggradefront/cariprodi_all"  accept-charset="utf-8" enctype="multipart/form-data">
                     <div class="input-group">
-                      <input type="search" class="form-control search-input" placeholder="Cari Prodi"  name="keycari" title="Search for:" id="cariuniv">
+                      <input type="search" class="form-control search-input" placeholder="Cari Prodi"  name="prodi" title="Search for:" id="cariuniv">
                       <span class="input-group-btn">
                       <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
                       </span>
@@ -62,23 +121,13 @@
                 </div>
               </div>
               <div class="widget">
-                <h5 class="widget-title line-bottom">Pilih Wilayah</h5>
+                <h5 class="widget-title line-bottom">List Passing Grade</h5>
                 <div class="categories">
                   <ul class="list list-border angle-double-right">
-                    <li><a href="javascript:void(0);" onclick="pilihwilayah(1)">Wilayah 1</a></li>
-                    <li><a href="javascript:void(0);" onclick="pilihwilayah(2)">Wilayah 2</a></li>
-                    <li><a href="javascript:void(0);" onclick="pilihwilayah(3)">Wilayah 3</a></li>
-                    <li><a href="javascript:void(0);" onclick="pilihwilayah(4)">Wilayah 4</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="widget">
-                <h5 class="widget-title line-bottom">Passing Grade</h5>
-                <div class="categories">
-                  <ul class="list list-border angle-double-right">
-                    <?php for ($i=21; $i <=  81  ; $i+=5) : ?>
-                      <li><a href="javascript:void(0);" onclick="pass_grade(<?=$i;?>,<?=$i+4;?>)"><?=$i;?>% - <?=$i+4;?>%</a></li>
+                    <?php for ($i=20; $i <=  55  ; $i+=5) : ?>
+                      <li><a href="javascript:void(0);" onclick="pass_grade(<?=$i;?>,<?=$i+5;?>)"><?=$i;?>% - <?=$i+5;?>%</a></li>
                     <?php endfor ?>
+                    <li><a href="javascript:void(0);" onclick="pass_grade(60,100)">>60%</a></li>
                   </ul>
                 </div>
               </div>

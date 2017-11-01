@@ -18,13 +18,13 @@
     <div class="section-content">
       <div class="row">
 
-      		<div class="col-md-6">
+      		<div class="col-md-4">
       			<h3>Daftar Pesan</h3>
 	      		<select class="form-control" name="jenis">
 	              <option value="all">Semua Jenis</option>
-	              <option value="nilai">Nilai</option>
-	              <option value="absen">Absen</option>
-	              <option value="umum">Umum</option>
+	              <option value="info">Info</option>
+	              <option value="promo">Promo</option>
+	              <option value="token">Token</option>
 	            </select>
 	        </div>
 	        <div class="col-md-12">
@@ -59,6 +59,7 @@ $(document).ready(function(){
     "emptyTable": "Tidak Ada Data Pesan",
     "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
     "bDestroy": true,
+    "oLanguage": {"sLengthMenu": "\_MENU_"}
   });
 
 

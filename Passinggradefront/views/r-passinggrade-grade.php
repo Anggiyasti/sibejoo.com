@@ -23,16 +23,14 @@
               <?php 
               if ($data==array()) : ?>
               <h5 class="text-center">Not Found.</h5>
-              <?php foreach ($data as $key): ?>
+              <?php else : 
+              foreach ($data as $key): ?>
                 <div class="col-sm-6 col-md-4">
                   <div class="service-block bg-white">
-                    <div class="thumb"> 
-                    <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                    </div>
                     <div class="content text-left flip p-25 pt-0">
+                      <h4 style="height: 50px;"><?=$key['universitas'] ?></h4>
                       <h4 class="line-bottom mb-5" style="height: 100px;"><?=$key['prodi'] ?></h4>
                       <p>Passing Grade: <?=$key['passinggrade'] ?>%</p>
-                     <!-- <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="<?=base_url()?>index.php/passinggradefront/ubahprofilesiswa/<?=$key['prodi']?>/<?=$key['universitas']?>">Set Prodi</a> -->
                     </div>
                   </div>
                 </div>
@@ -72,7 +70,7 @@
                 </div>
               </div>
               <div class="widget">
-                <h5 class="widget-title line-bottom">ListPassing Grade</h5>
+                <h5 class="widget-title line-bottom">List Passing Grade</h5>
                 <div class="categories">
                   <ul class="list list-border angle-double-right">
                     <?php for ($i=20; $i <=  55  ; $i+=5) : ?>

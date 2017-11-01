@@ -296,6 +296,7 @@
       success: function(data){
         window.location.href = base_url + "passinggradefront/passinggrade_univ";  
       },error:function(data){
+        console.log(data);
         sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
       }
 
