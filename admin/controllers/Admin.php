@@ -47,11 +47,12 @@ class Admin extends MX_Controller {
     }
     public function get_list_mapel(){
         $list = $this->mmatapelajaran->get_ajax_daftarMapel();
+        $n = 1;
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['aliasMataPelajaran'];
             $row[] =   "<button type='button' id='rubahBtn' class='btn btn-default' onclick = 'ajax_edit(".$list_item['id'].")'><i class='ico-file5'></i></button>
@@ -62,6 +63,7 @@ class Admin extends MX_Controller {
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -180,12 +182,13 @@ function daftartingkatpelajaran() {
 }
 }
  public function daftar_sd(){
+        $n = 1;
         $list = $this->madmin->daftarMapelbyTingkat($tingkatID='1');
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['keterangan'];
             $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
@@ -197,6 +200,7 @@ function daftartingkatpelajaran() {
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -206,12 +210,13 @@ function daftartingkatpelajaran() {
 
     }
  public function daftar_smp(){
+        $n =1;
         $list = $this->madmin->daftarMapelbyTingkat($tingkatID='2');
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['keterangan'];
             $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
@@ -223,6 +228,7 @@ function daftartingkatpelajaran() {
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -232,12 +238,13 @@ function daftartingkatpelajaran() {
 
     }
 public function daftar_sma(){
+        $n =1;
         $list = $this->madmin->daftarMapelbyTingkat($tingkatID='3');
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['keterangan'];
             $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
@@ -249,6 +256,7 @@ public function daftar_sma(){
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -258,12 +266,13 @@ public function daftar_sma(){
 
     }
 public function daftar_smaipa(){
+        $n = 1;
         $list = $this->madmin->daftarMapelbyTingkat($tingkatID='4');
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['keterangan'];
             $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
@@ -275,6 +284,7 @@ public function daftar_smaipa(){
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -284,12 +294,13 @@ public function daftar_smaipa(){
 
     }
 public function daftar_smaips(){
+        $n =1;
         $list = $this->madmin->daftarMapelbyTingkat($tingkatID='5');
         $data = array();
         $base_url = base_url();
         foreach ($list as $list_item){
             $row = array();
-            $row[] = $list_item['id'];
+            $row[] = $n;
             $row[] = $list_item['namaMataPelajaran'];
             $row[] = $list_item['keterangan'];
             $row[] = '<td><a href="'.$base_url.'index.php/admin/daftarbab/' . $list_item["namaMataPelajaran"] . '/' . $list_item["id"].'" class="btn btn-default">Lihat</a></td>';
@@ -301,6 +312,7 @@ public function daftar_smaips(){
 
 
             $data[] = $row;
+            $n++;
         }
         $output = array(
             "data"=>$data,
@@ -373,7 +385,49 @@ function daftarbab() {
     redirect('welcome');
 }
 }
+function ajax_get_bab($id_bab){
+     $id_bab;
+     $list = $this->mmatapelajaran->daftarBab($id_bab);
+     $n = 1;
+     $data = array();
+     $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['idbab'];
+            $row[] = $list_item["judulBab"];
+            $row[] = $list_item["babket"];
+            $row[] = '<a href="'.$base_url.'index.php/admin/daftarsubbab/' . $id_bab . '/' . $list_item["judulBab"] . '/' . $list_item['idbab'].'" class="btn btn-default">Lihat</a>';
+           $data_kons = $list_item['statusAksesKonsultasi'];
+           if($data_kons == 1){
+            $row[] = "Member only";
+           }else{
+            $row[] = "Free";
+           }
+           $data_latihan = $list_item['statusAksesLatihan'];
+           if($data_latihan == 1){
+            $row[] = "Member only";
+           }else{
+            $row[] = "Free";
+           }
+            $data_latihan = $list_item['statusAksesLearningLine'];
+            if($data_latihan == 1){
+                $row[] = "Member only";
+            }else{
+                $row[] = "Free";
+            }
+            $row[] = ' <button type="button" onclick = "rubah_bab('.$list_item["idbab"].')" id="rubahBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["idbab"].'" data-judul="'.$list_item["judulBab"].'" data-ket="'.$list_item["keterangan"].'" title="Rubah Data"><i class="ico-file5"></i></button>
+        <button type="button"  id="hapusBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["idbab"].'" data-nama="'.$list_item["judulBab"].'" title="Hapus Data"><i class="ico-remove"></i></button>';
+            $data[] = $row;
+            $n++;
+                }
+        $output = array(
+            "data"=>$data,
+            );
 
+        echo json_encode( $output );
+
+
+}
 
 
 function tambahbabMP() {
@@ -385,9 +439,12 @@ function tambahbabMP() {
     $data['statusAksesLearningLine']=htmlspecialchars($this->input->post('statusAksesLearningLine'));
     $data['statusAksesLatihan']=htmlspecialchars($this->input->post('statusAksesLatihan'));
     $this->mmatapelajaran->tambahbabMP($data);
-    redirect(base_url('index.php/admin/daftarbab/' . $nmmp . '/' . $data['tingkatPelajaranID']));
+    echo json_encode(array('status' => TRUE));
 }
-
+function getbabMP($id){
+    $list = $this->mmatapelajaran->getBab($id);
+    echo json_encode($list);
+}
 
 
 function rubahbabMP() {
@@ -396,11 +453,11 @@ function rubahbabMP() {
     $data['tingkatPelajaranID'] = htmlspecialchars($this->input->post('idtmp'));
     $data['judulBab'] = htmlspecialchars($this->input->post('judulBab'));
     $data['keterangan'] = htmlspecialchars($this->input->post('deskbab'));
-
-
-
-    $this->mmatapelajaran->rubahbabMP($id, $data);
-    redirect(base_url('index.php/admin/daftarbab/' . $nmmp . '/' . $data['tingkatPelajaranID']));
+    $data['statusAksesKonsultasi'] = htmlspecialchars($this->input->post('statusAksesKonsultasi'));
+    $data['statusAksesLearningLine'] = htmlspecialchars($this->input->post('statusAksesLearningLine'));
+    $data['statusAksesLatihan'] = htmlspecialchars($this->input->post('statusAksesLatihan'));
+     $this->mmatapelajaran->rubahbabMP($id, $data);
+    echo json_encode(array('status' => TRUE));
 }
 
 
@@ -411,9 +468,34 @@ function hapusbabMP() {
     $data['tingkatPelajaranID'] = htmlspecialchars($this->input->post('idtmp'));
 
     $this->mmatapelajaran->hapusbabMP($id, $data);
-    redirect(base_url('index.php/admin/daftarbab/' . $nmmp . '/' . $data['tingkatPelajaranID']));
+    echo json_encode(array("status" => TRUE));
 }
+function ajax_get_subbab($id_sub_bab){
+     $list = $this->mmatapelajaran->daftarsubBab($id_sub_bab);
+      $data = array();
+        $base_url = base_url();
+        foreach ($list as $list_item){
+            $row = array();
+            $row[] = $list_item['subID'];
+            $row[] = $list_item["judulSubBab"];
+            $row[] = $list_item["sbket"];
+            $row[] = '    <button type="button" onclick = "rubah_subbab('.$list_item["subID"].')" id="rubahBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["subID"].'" data-judul="'.$list_item["judulSubBab"].'" data-ket="'.$list_item["sbket"].'" title="Rubah Data"><i class="ico-file5"></i></button>
 
+
+                                <button type="button" id="hapusBtn" class="btn btn-default" data-toggle="modal" data-id="'.$list_item["subID"].'" data-nama="'.$list_item["judulSubBab"].'" title="Hapus Data"><i class="ico-remove"></i></button>';
+            $data[] = $row;
+          
+        }
+        $output = array(
+            "data"=>$data,
+            );
+
+        echo json_encode($output);
+}
+function get_edit_sb($id){
+     $data = $this->mmatapelajaran->get_sb($id);
+     echo json_encode($data);
+}
 function daftarsubbab() {
     $data['judul_halaman'] = "SUB BAB Mata Pelajaran";
 
@@ -433,7 +515,6 @@ function daftarsubbab() {
 }
 
 }
-
 function tambahsubbabMP() {
     $nmmp = htmlspecialchars($this->input->post('nmmp'));
     $jdlbab = htmlspecialchars($this->input->post('jdlbab'));
@@ -442,22 +523,19 @@ function tambahsubbabMP() {
     $data['keterangan'] = htmlspecialchars($this->input->post('desksubbab'));
 
     $this->mmatapelajaran->tambahsubbabMP($data);
-    redirect(base_url('index.php/admin/daftarsubbab/' . $nmmp . '/' . $jdlbab . '/' . $data['babID']));
+    echo json_encode(array("Status" => TRUE));
 }
 
 
 
 function rubahsubbabMP() {
-    $nmmp = htmlspecialchars($this->input->post('nmmp'));
-    $jdlbab = htmlspecialchars($this->input->post('jdlbab'));
-    $id = htmlspecialchars($this->input->post('idsubBab'));
-
-    $data['babID'] = htmlspecialchars($this->input->post('idbab'));
-    $data['judulsubBab'] = htmlspecialchars($this->input->post('judulsubBab'));
-    $data['keterangan'] = htmlspecialchars($this->input->post('desksubBab'));
-
+    $id =$this->input->post('idsubBab');
+    $data = array(
+        'judulsubBab' => $this->input->post('judulsubBab'),
+        'keterangan' => $this->input->post('desksubBab'),
+        );
     $this->mmatapelajaran->rubahsubbabMP($id, $data);
-    redirect(base_url('index.php/admin/daftarsubbab/' . $nmmp . '/' . $jdlbab . '/' . $data['babID']));
+    echo json_encode(array('status' => TRUE));
 }
 
 
@@ -469,7 +547,7 @@ function hapussubbabMP() {
 
     $data['babID'] = htmlspecialchars($this->input->post('idbab'));
     $this->mmatapelajaran->hapussubbabMP($id, $data);
-    redirect(base_url('index.php/admin/daftarsubbab/' . $nmmp . '/' . $jdlbab . '/' . $data['babID']));
+    echo json_encode(array("status" => TRUE));
 }
 
 }

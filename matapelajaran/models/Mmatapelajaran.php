@@ -180,17 +180,25 @@ class Mmatapelajaran extends CI_Model {
 
 
 
-    public function daftarBab($id) {
-        $this->session->set_userdata('id_mp', $id);
+    public function daftarBab($id_bab) {
+        $this->session->set_userdata('id_mp', $id_bab);
         $this->db->select('*, tbbab.id as idbab, tbbab.keterangan as babket');
         $this->db->from('tb_bab as tbbab');
         $this->db->join('tb_tingkat-pelajaran as tbtipe','tbbab.tingkatPelajaranID = tbtipe.id');
-        $this->db->where('tingkatPelajaranID', $id);
+        $this->db->where('tingkatPelajaranID', $id_bab);
         $this->db->where('tbbab.status', 1);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result_array();
     }
-
+      public function getBab($id) {
+        $this->db->select('*, tbbab.id as idbab, tbbab.keterangan as babket');
+        $this->db->from('tb_bab as tbbab');
+        $this->db->join('tb_tingkat-pelajaran as tbtipe','tbbab.tingkatPelajaranID = tbtipe.id');
+        $this->db->where('tbbab.status', 1);
+        $this->db->where('tbbab.id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
     function get_keterangan($id){
         $this->session->set_userdata('id_mp', $id);
         $this->db->select('*, tbbab.id as idbab');
@@ -225,16 +233,24 @@ class Mmatapelajaran extends CI_Model {
 
 
 
-    public function daftarsubBab($id) {
+    public function daftarsubBab($id_sub_bab) {
         $this->db->select('*,sb.id as subID,sb.keterangan as sbket');
         $this->db->from('tb_subbab sb');
         $this->db->join('tb_bab b','b.id = sb.babID');
-        $this->db->where('sb.babID', $id);
+        $this->db->where('sb.babID', $id_sub_bab);
         $this->db->where('sb.status', 1);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result_array();
     }
-
+    public function get_sb($id){
+         $this->db->select('*,sb.id as subID,sb.keterangan as sbket');
+        $this->db->from('tb_subbab sb');
+        $this->db->join('tb_bab b','b.id = sb.babID');
+        $this->db->where('sb.id', $id);
+        $this->db->where('sb.status', 1);
+        $query = $this->db->get();
+        return $query->row();
+    }
 
 
 
@@ -248,6 +264,7 @@ class Mmatapelajaran extends CI_Model {
     function rubahsubbabMP($id, $data) {
         $this->db->where('id', $id);
         $this->db->update('tb_subbab', $data);
+        echo json_encode(array("status" => TRUE));
     }
 
 
