@@ -28,26 +28,22 @@
     <div class="section-content">
       <div class="row">
       	<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-      		<div class="widget border-1px p-30">
-      			<?php if ($this->session->userdata('HAKAKSES')=='siswa'): ?>
+           			<?php if ($this->session->userdata('HAKAKSES')=='siswa'): ?>
       				<!-- MENU UNTUK SISWA -->
-					<form class="form-group">
+					<form class="form-group" action="javascript:void(0)">
 						<h4><b>Filter Pertanyaan</b></h4>
 						<div class="row">
 		                    <div class="form-group col-md-4">
-		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;">
+		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_konsul_all()">
 									<option value="0">-Pilih Matapelajaran-</option>
-									<?php foreach ($mapel as $mapel_item): ?>
-										<option value=<?=$mapel_item['tingpelID'] ?>><?=$mapel_item['napel'] ?></option>  
-									<?php endforeach ?>
 								</select>
 		                    </div>
 		                    <div class="form-group col-md-4">
-		                      <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" ><option value=0>-Pilih Bab-</option></select>
+		                      <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" onchange="ajax_konsul_all()"><option value=0>-Pilih Bab-</option></select>
 		                    </div>
 		                    <div class="form-group col-md-4">
 		                    	<a href="#" class="btn btn-default buat-btn"><i class="fa fa-plus"></i> Buat</a>
-		                    	<a href="#" class="btn btn-default cari-btn"><i class="fa fa-search"></i> Cari</a>
+		                    	<!-- <a href="#" class="btn btn-default cari-btn"><i class="fa fa-search"></i> Cari</a> -->
 		                    </div>
 	                  	</div>
 					</form>
@@ -68,7 +64,7 @@
 				                <div class="search-form">
 				                  <form>
 				                    <div class="input-group">
-				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="search_all()">
+				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
 				                      <span class="input-group-btn">
 				                      <a href="#" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
@@ -95,7 +91,12 @@
               
                   </div>
                   <!-- / konsulList -->
-
+    	      			<!-- loader -->
+    	      			<div class="widget loading border-1px p-50" hidden="true">
+    		      			<div class="preloader-whirlpool">
+    		              	<div class="whirlpool"></div>
+    		            </div>
+                  </div>
       		</div>
       	</div>
       </div>
@@ -114,82 +115,136 @@
 
 	var hakAkses = "<?=$this->session->userdata('HAKAKSES') ?>";
 
-	// fungsi on key up input search
-  function search_all(page_num) {
+  function ajax_konsul_all(page_num) {
     page_num = page_num?page_num:0;
-    keyword = $('#search1').val().replace(/ /g,"-");  
-    var properties_search = {
-          keyword: keyword,
-          page: page_num
-    };
+    keyword = $('#search1').val();
+    datas =[];
+   	id_bab = $('#babSelect').find(":selected").val();
+   	id_tingpel = $('#mapelSelect').find(":selected").val();
+    if (id_bab == 0) {
+    	datas = { 
+    		id_tingpel:id_tingpel, 
+    		id_bab:'all',
+    		keyword: keyword,
+          	page: page_num,
+          link:'ajax_konsul_all'};
+    } else { 	
+    	datas = { 
+    		id_tingpel:id_tingpel, 
+    		id_bab:id_bab,
+    		keyword: keyword,
+          	page: page_num,
+          link:'ajax_konsul_all'};
+    }
+
       $.ajax({
           type: 'POST',
           url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
-          data: properties_search,
+          data: datas,
           beforeSend: function () {
               $('.loading').show();
           },
           success: function (html) {
               $('#konsulList').html(html);
+              $('.loading').hide();
+              load_bab(id_tingpel);
           }
       });
+
+  }
+  function filter(page_num) {
+    page_num = page_num?page_num:0;
+    keyword = $('#search1').val();
+    datas =[];
+   	id_tingpel = $('input[name=tamp_tingpel]').val();
+  	id_bab = $('input[name=tamp_bab]').val();
+    if (id_bab == 0) {
+    	datas = { 
+    		id_tingpel:id_tingpel, 
+    		id_bab:'all',
+    		keyword: keyword,
+          	page: page_num,
+          	link:'filter'};
+    } else { 	
+    	datas = { 
+    		id_tingpel:id_tingpel, 
+    		id_bab:id_bab,
+    		keyword: keyword,
+          	page: page_num,
+          link:'filter'};
+    }
+      $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
+          data: datas,
+          beforeSend: function () {
+              $('.loading').show();
+          },
+          success: function (html) {
+              $('#konsulList').html(html);
+              $('.loading').hide();
+              load_bab(id_tingpel);
+          }
+      });
+
   }
 
-	$('.cari-btn').click(function(){
-		var mapel;
-		var bab;
-		url_ajax = base_url+"konsultasi/tamp_cari";
+	// $('.cari-btn').click(function(){
+	// 	var mapel;
+	// 	var bab;
+	// 	url_ajax = base_url+"konsultasi/tamp_cari";
 
-		if (hakAkses=='guru') {
-			mapel= $('#mapel_select_guru').find(":selected").text().replace(/ /g,"_");
-			bab= $('#bab_select_guru').find(":selected").text().replace(/ /g,"_");
-		}else{
-			mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
-			bab= $('#babSelect').find(":selected").text().replace(/ /g,"_");
+	// 	if (hakAkses=='guru') {
+	// 		mapel= $('#mapel_select_guru').find(":selected").text().replace(/ /g,"_");
+	// 		bab= $('#bab_select_guru').find(":selected").text().replace(/ /g,"_");
+	// 	}else{
+	// 		// mapel= $('#mapelSelect').find(":selected").text().replace(/ /g,"_");
+	// 		mapel = $('#mapelSelect').find(":selected").val();
+	// 		bab= $('#babSelect').find(":selected").val();
 
-		}
-		if (mapel == 'Pilih Mata Pelajaran') {
-			sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
-		}else{
-			if (bab=='Bab_Pelajaran') {
-				var global_properties = {
-			      mapel: mapel,
-			      bab: 'all'
-			    };
+	// 	}
+	// 	if (mapel == 'Pilih Mata Pelajaran') {
+	// 		sweetAlert("Oops...", "Silahkan Pilih Pelajaran Atau Bab Terlebih Dahulu", "error");
+	// 	}else{
+	// 		if (bab=='Bab_Pelajaran') {
+	// 			var global_properties = {
+	// 		      mapel: mapel,
+	// 		      bab: 'all'
+	// 		    };
 
-				$.ajax({
-			      type: "POST",
-			      dataType: "JSON",
-			      url: url_ajax,
-			      data: global_properties,
-			      success: function(data){
-			        document.location = base_url+"konsultasi/filter"; 
-			      },error:function(data){
-			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-			      }
+	// 			$.ajax({
+	// 		      type: "POST",
+	// 		      dataType: "JSON",
+	// 		      url: url_ajax,
+	// 		      data: global_properties,
+	// 		      success: function(data){
+	// 		        document.location = base_url+"konsultasi/filter"; 
+	// 		      },error:function(data){
+	// 		        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+	// 		      }
 
-			    });
-			}else if(bab!='Bab_Pelajaran'){
-				var global_properties2 = {
-			      mapel: mapel,
-			      bab: bab
-			    };
+	// 		    });
+	// 		}else if(bab!='Bab_Pelajaran'){
+	// 			var global_properties2 = {
+	// 		      mapel: mapel,
+	// 		      bab: bab
+	// 		    };
 
-			    $.ajax({
-			      type: "POST",
-			      dataType: "JSON",
-			      url: url_ajax,
-			      data: global_properties2,
-			      success: function(data){
-			        document.location = base_url+"konsultasi/filter"; 
-			      },error:function(data){
-			        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-			      }
+	// 		    $.ajax({
+	// 		      type: "POST",
+	// 		      dataType: "JSON",
+	// 		      url: url_ajax,
+	// 		      data: global_properties2,
+	// 		      success: function(data){
+	// 		        document.location = base_url+"konsultasi/filter"; 
+	// 		      },error:function(data){
+	// 		        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+	// 		      }
 
-			    });
-			}
-		}
-	});
+	// 		    });
+	// 		}
+	// 	}
+	// });
 
 	// redirect ke single konsultasi
   function single_konsul(pertanyaanID) {
@@ -215,22 +270,79 @@
 
   window.onload = function() {
       page_num=0;
-      keyword = $('#search1').val().replace(/ /g,"-"); 
-      var properties_load = {
-          page:page_num,
-          keyword: keyword
-       };
-
-      $.ajax({
-          type: 'POST',
-          url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
-          data: properties_load,
-          beforeSend: function () {
-            $('.loading').show();
-          },
-          success: function (html) {
-            $('#konsulList').html(html);
-          }
-      });
+      ajax_konsul_all(page_num);
   }
+
+  // // fungsi filter pertanyaan onchange
+  // function filter_pertanyaan(page_num) {
+  // 	page_num = page_num?page_num:0;
+  //  	datas =[];
+  //  	id_bab = $('#babSelect').find(":selected").val();
+  //  	id_tingpel = $('#mapelSelect').find(":selected").val();
+  //   if (id_bab == 0) {
+  //   	datas = { 
+  //   		id_tingpel:id_tingpel, 
+  //   		id_bab:'all',
+  //   		link:'filter_pertanyaan'};
+  //   } else { 	
+  //   	datas = { 
+  //   		id_tingpel:id_tingpel, 
+  //   		id_bab:id_bab,
+  //   		link:'filter_pertanyaan'};
+  //   }
+  //   console.log(page_num);
+    
+	 //   $.ajax({
+  //         type: 'POST',
+  //         url: base_url + 'konsultasi/ajaxFilterAll/'+page_num,
+  //         data: datas,
+  //         beforeSend: function () {
+  //             $('.loading').show();
+  //         },
+  //         success: function (html) {
+  //         	console.log(html);
+  //             $('#konsulList').html(html);
+  //             $('.loading').hide();
+  //         }
+  //     });
+  // }	
+
+
+  // // fungsi filter by tag onclick
+  // function filter_by_tag(page) {
+  // 	id_tingpel = $('input[name=tamp_tingpel]').val();
+  // 	id_bab = $('input[name=tamp_bab]').val();
+  // 	console.log('tingpel',id_tingpel);
+  // 	page_num = page_num?page_num:0;
+  // 	// id_tingpel=id_tingpel;
+  // 	// id_tingpel = $('#mapelSelect').find(":selected").val();
+  //  	datas =[];
+  //   if (id_bab == 'all') {
+  //   	datas = { 
+  //   		id_tingpel:id_tingpel, 
+  //   		id_bab:'all',
+  //   		link:'filter_by_tag',
+  //   		page_num:page_num};
+  //   } else {
+  //   	datas = { 
+  //   		id_tingpel:id_tingpel, 
+  //   		id_bab:id_bab,
+  //   		link:'filter_by_tag'};
+  //   }
+  //   console.log(datas);	
+	 //   $.ajax({
+  //         type: 'POST',
+  //         url: base_url + 'konsultasi/ajaxFilterAll/'+page_num,
+  //         data: datas,
+  //         beforeSend: function () {
+  //             $('.loading').show();
+  //         },
+  //         success: function (html) {
+  //         	console.log('berhasil');
+  //             $('#konsulList').html(html);
+  //             $('.loading').hide();
+  //             // tamp_tingpel(id_tingpel,id_bab);
+  //         }
+  //     });
+  // }
 </script>

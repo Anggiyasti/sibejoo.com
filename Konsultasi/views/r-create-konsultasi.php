@@ -154,7 +154,6 @@
 	}
 	jQuery(document).ready(function() { 
 		jQuery('#form-gambar').on('submit', function(e) {
-			console.log('masuk');
 			e.preventDefault();
 			jQuery('#submit-button').attr('disabled', ''); 
 			jQuery("#output").html('<div style="padding:10px"><img src="<?php echo base_url('assets/image/loading/spinner11.gif'); ?>" alt="Please Wait"/> <span>Mengunggah...</span></div>');
@@ -222,7 +221,6 @@
 			namapertanyaan : $('input[name=namaPertanyaan]').val(),
 			isi : desc,
 		}
-		console.log(data);
 
 		$('.modal-body .judul').html("<h5>Judul</h5>");		
 		$('.modal-body .judul').append(data.namapertanyaan);

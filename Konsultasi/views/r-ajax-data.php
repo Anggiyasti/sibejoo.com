@@ -54,14 +54,14 @@ div.pagination span.disabled {
       	<hr class="divider-color">
 
       	<div class="author-details media-post">
-				           <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="http://placehold.it/110x110" data-at2x="<?=base_url("assets/image/photo/siswa/".$question['photo'])?>"></a>
+				           <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="<?=$question['photo'] ?>" data-at2x="<?=$question['photo'] ?>" style="width: 100px;height: 100px;"></a>
 				           <div class="post-right">
 				             <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5>
 				             <div class="comment-date">(<?=$question['date_created'] ?>)</div>
 
 				             <div class="col-md-10">
 				              <a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)">
-					             <blockquote class="gray pt-20 pb-20" >
+					             <blockquote class="gray pt-20 pb-20">
 						           <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
 						           <footer><?=$question['isiPertanyaan'] ?></footer>
 
@@ -74,16 +74,19 @@ div.pagination span.disabled {
 						             <div class="col-md-8">
 						               <div class="share text-right">
 						                 <p>
-						                  <a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/all') ?>"><i class="fa fa-tags text-theme-color-2"></i> <?=$question['namaMataPelajaran'] ?></a> | 
-						                  <a href="<?=base_url('konsultasi/filter/'.str_replace(' ', '_', $question['namaMataPelajaran']).'/'.str_replace(' ', '_', $question['judulBab'])) ?>	">
-								<i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?></a> |
-								<span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
-								<?php if (!empty($question['namaGuru'])): ?>
-									<a ><span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
-								<?php else: ?>
-									<span>Tanpa Mentor</span>
-								<?php endif ?>
-							</p>
+						                  <a onclick="filter()" ><i class="fa fa-tags text-theme-color-2"></i> <?=$question['keterangan'] ?>
+                                <input type="text" name="tamp_tingpel" value="<?=$question['tingpel']?>" hidden="true">
+                              </a> | 
+						                  <a onclick="filter()">
+    								            <i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?>
+                                <input type="text" name="tamp_bab" value="<?=$question['babID']?>" hidden="true"></a> |
+    								            <span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
+    								            <?php if (!empty($question['namaGuru'])): ?>
+    									           <a ><span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
+    								            <?php else: ?>
+    									           <span>Tanpa Mentor</span>
+    								            <?php endif ?>
+    							           </p>
 						               </div>
 						             </div>
 						           </div>

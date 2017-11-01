@@ -369,7 +369,6 @@ function get_data(data, datas){
 	if (status==1) {
 		swal("Tidak Dapat Memberikan Point")
 	}else{
-		console.log(postingan.idJawaban);
 		url = base_url+"konsultasi/ajax_add_point/"+postingan.idJawaban;
 		$.ajax({
 			url : url,
