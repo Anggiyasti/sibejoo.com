@@ -349,7 +349,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
       </div>
       <div class="modal-body">
         <h3 class="text-center">Silahkan cek type extension video!</h3>
-        <h5 class="text-center">Type yang bisa di upload hanya .mp4</h5>
+        <h5 class="text-center">Type yang bisa di upload hanya .mp4<, .swf/h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>

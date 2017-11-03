@@ -474,6 +474,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
         <input type="text"  id="oldmp"  value="<?=$infosoal['id_mp'];?>" hidden="true">
         <input type="text" id="oldbab"  value="<?=$infosoal['id_bab'];?>" hidden="true">
         <input type="text" id="oldsub"  value="<?=$infosoal['id_subbab'];?>" hidden="true">
+        
         <!-- END old info data soal -->
         <!-- Untuk menampung page -->
         <input type="text" name="page" value="<?=$page?>" hidden="true">
@@ -862,6 +863,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
      <div   class="panel pl10 pt10 pr10 pb10 mb0" style="background:#F1EEEE; min-height: 40px;" id="view-e" data-toggle="tooltip" data-placement="top" title="Klik" onclick="my_editor('Pilihan Jawaban E')">
        <?=$piljawaban['4']['jawaban'];?>
      </div>
+     <input type="text" id="pilE"  value="<?=$piljawaban['4']['jawaban'];?>" hidden="true">
   </div>
   <!-- END input text E -->
   <!-- Start input gambar E -->
@@ -971,15 +973,15 @@ true">
 
         <div class="btn-group" data-toggle="buttons" >
 
-          <label class="btn btn-teal btn-outline active " id="m-tex">
+          <label class="btn btn-teal btn-outline" id="m-tex">
 
-            <input type="radio" name="opmedia" value="text"  autocomplete="off" checked="true"> Text
+            <input type="radio" id="radio6" name="opmedia" value="text"  autocomplete="off" checked="true"> Text
 
           </label>
 
           <label class="btn btn-teal btn-outline" id="m-vido">
 
-            <input type="radio" name="opmedia" value="video" autocomplete="off"> Video
+            <input type="radio" id="radio7" name="opmedia" value="video" autocomplete="off"> Video
 
           </label>
 
@@ -1061,7 +1063,21 @@ true">
 
                   <div class="col-md-12">
                    <input type="text" id="name_video" value="<?=$banksoal['video_pembahasan']?>" hidden="true">
-                   <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls >
+                   <!-- dicek dulu jenis videonya -->
+                    <?php 
+                    $myvideo = $banksoal['video_pembahasan'];
+                    $findswf   = '.swf';
+                    $pos = strpos($myvideo, $findswf);
+
+                    // to false.
+                    if ($pos !== false) : ?>
+                      <embed class=" modal-body img-tumbnail image" id="preview" src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="270" >
+                    <?php else : ?>
+                      <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls >
+                    </video>
+                    <?php endif ?>
+
+                   <!-- <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls > -->
                    </video>
                  </div>
                  <div class="col-md-5 left"> 
@@ -1158,7 +1174,6 @@ true">
           // set option kesulitan ################
           var tampkesulitan=$('#tampkesulitan').val();
           if (tampkesulitan=="") {
-          console.log(1);          
 
           }
           if (tampkesulitan==2) {
@@ -1207,6 +1222,30 @@ true">
           }else{
             $("#limapil").addClass('active');
             $("#radio5").attr('checked',true);
+          }
+          // ########################
+
+          // set option pembahasan################
+          var pembahasan=$('#name_video').val();
+          if (pembahasan=='') {
+            // set option text
+            $("#m-tex").addClass('active');
+            $("#radio6").attr('checked',true);
+            $(".vido").hide();
+            $(".tex").show();
+            $(".link").hide();
+            $(".server").hide();
+            $(".prv_video").hide();
+            
+          }else{
+            $("#m-vido").addClass('active');
+            $("#radio7").attr('checked',true);
+            $(".tex").hide();
+            if ($('#name_video').val()!='' && $('#name_video').val()!=' ') {
+              $(".prv_video").show();
+            }
+            $(".vido").show();
+            $(".server").show();
           }
           // ########################
 
@@ -1552,7 +1591,7 @@ true">
         }
 // validation upload video   
 function ValidateInputVideo(oInput) {
-  var _validFileExtensions = [".mp4"]; 
+  var _validFileExtensions = [".mp4", ".swf"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
     if (sFileName.length > 0) {
@@ -2060,15 +2099,28 @@ function ValidateInputVideo(oInput) {
       var c  =$("textarea[name=c]").val();
       var d  =$("textarea[name=d]").val();
       var e  =$("textarea[name=e]").val();
-      $("#prevSumber").text(sumber);
-      $("#prevJudul").text(judul);
-      $('li#a').html(a);
-      $('li#b').html(b);
-      $('li#c').html(c);
-      $('li#d').html(d);
-      $('li#e').html(e);
-      $('a#prevJawaban').text(jawaban);
+      // cek jumlah pilihan jawaban
+      if (e==' ' || e=='') {
+        $("#prevSumber").text(sumber);
+        $("#prevJudul").text(judul);
+        $('li#a').html(a);
+        $('li#b').html(b);
+        $('li#c').html(c);
+        $('li#d').html(d);
+        $('li#e').hide();
+        $('a#prevJawaban').text(jawaban);
         $('#modalpreview').modal('show'); // show bootstrap modal
+      } else {
+        $("#prevSumber").text(sumber);
+        $("#prevJudul").text(judul);
+        $('li#a').html(a);
+        $('li#b').html(b);
+        $('li#c').html(c);
+        $('li#d').html(d);
+        $('li#e').html(e);
+        $('a#prevJawaban').text(jawaban);
+        $('#modalpreview').modal('show');
+      }
 
       }
       var ckeditor_type;

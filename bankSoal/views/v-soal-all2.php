@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-sm-5">
        <form class="mb15" action="<?=base_url()?>index.php/banksoal/cari" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
@@ -93,9 +92,19 @@
                 <!-- Start Video Pembahasan -->
                 <?php $video = $key['videoBahas']; ?>
                 <?php if ($video != '' && $video != ' '): ?>
-                    <video class=" modal-body img-tumbnail image" src="<?=$video;?>" width="100%" height="50%" controls="" id="video-ply" style="background:grey;" type="video/swf">
+                    <!-- dicek dulu jenis videonya -->
+                    <?php 
+                    $myvideo = $video;
+                    $findswf   = '.swf';
+                    $pos = strpos($myvideo, $findswf);
+
+                    // to false.
+                    if ($pos !== false) : ?>
+                    <embed class=" modal-body img-tumbnail image" src="<?=$video;?>?autoplay=0" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="270" id="video-ply" controls="">
+                    <?php else : ?>
+                    <video class=" modal-body img-tumbnail image" src="<?=$video;?>" width="100%" height="50%" controls="" id="video-ply" style="background:grey;">
                     </video>
-                    <embed src="<?=$video;?>" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="690" height="430">
+                    <?php endif ?>
 
                 <?php endif ?>
                 <!-- END Video Pembahasan -->
