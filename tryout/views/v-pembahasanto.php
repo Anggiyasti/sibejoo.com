@@ -305,7 +305,7 @@
 
            <div class="col-md-12" style="">
             <hr> 
-            <a href="<?=base_url('tryout')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
+            <a href="<?=base_url('tryout/daftarpaket')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
            </div>
 
           </div>

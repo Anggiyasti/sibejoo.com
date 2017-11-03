@@ -132,9 +132,9 @@
    <div class="row">
     <div class="col-md-12">
      <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-       <h1 class="text-center text-white">Halo <?=$this->session->userdata['USERNAME']?> , orang tua dari <?=$siswa?>  </h1>
+       <h1 class="text-center text-white">H<?=$this->session->userdata['USERNAME']?> Orang Tua Dari <?=$siswa?>  </h1>
      <?php else: ?>
-      <h1 class="text-center text-white">Halo, <?=$this->session->userdata['USERNAME']?> !  </h1>
+      <h1 class="text-center text-white"><?=$this->session->userdata['USERNAME']?> </h1>
     <?php endif ?>
   </div>
 </div>
@@ -149,11 +149,12 @@
    <div class="row">
     <!-- PESAN -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-      <div class="row">
+      
        <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
 
         <span class="text-theme-color-1"> Pesan</span></h2>
         <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
+        <div class="row">
         <?php foreach ($pesan as $key ) : ?>
           <div class="col-md-4">
             <blockquote>
@@ -166,9 +167,13 @@
 
 
       </div>
-      <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br>
+      <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br><br>
     </div>
     <!-- PESAN -->
+
+      <div class="separator separator-rouned">
+          <i class="fa fa-cog fa-spin"></i>
+      </div>
 
     <!-- TOPIK -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
@@ -214,10 +219,14 @@
  <br>
  <a onclick="show_modal_learning()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a>
  <br>
- <br>
+ <br><br>
 
 </div>
 <!-- TOPIK -->
+
+<div class="separator separator-rouned">
+          <i class="fa fa-cog fa-spin"></i>
+      </div>
 
 <!-- LATIHAN -->
 <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
@@ -246,16 +255,18 @@
 
        <div class="progress-title">
          <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
-         <h6><?=$item['total_benar'] ?> Benar dari <?=$item['total_soal'] ?> soal</h6>
          <h6><?=(int)$persentasi ?>% Benar</h6>
-         <h6>Nilai : <bold><i><?=(int)$item['total_benar'] / (int)$item['total_soal'] * 100 ?><bold></i></h6>
          </div>
        </div>
      </div>
      <?php $no++; ?>
    <?php endforeach ?>
  </div>
- <a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a>
+ <a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a><br><br><br>
+</div>
+
+<div class="separator separator-rouned">
+      <i class="fa fa-cog fa-spin"></i>
 </div>
 <!-- LATIHAn -->
 </div>
@@ -265,6 +276,8 @@
 
 
 </div>
+
+
 
 
 <!-- PERKEMBANGAN TO -->
@@ -291,12 +304,17 @@
       <div class="container" id="chartContainer" style="width:100%">
 
       </div>
-    </div>      
+    </div>  
+    <br>
+    <br>    
   </div>
 </div> 
 </div>
 <!-- PERKEMBANGAN TO -->
 
+<div class="separator separator-rouned">
+      <i class="fa fa-cog fa-spin"></i>
+</div>
 <!-- video random -->
 <section class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10" style="padding-bottom: : 0;">
  <div class="container">

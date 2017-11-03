@@ -393,7 +393,7 @@
     }
 
 function ValidateSingleInput(oInput) {
-  var _validFileExtensions = [".doc", ".docx", ".ppt", ".pptx", ".pdf"]; 
+  var _validFileExtensions = [".pdf"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
     if (sFileName.length > 0) {
@@ -408,7 +408,7 @@ function ValidateSingleInput(oInput) {
 
         if (!blnValid) {
            $('#warningupload').modal('show');
-                swal('Silahkan cek type extension file! ', 'Type yang bisa di upload hanya ".doc", ".docx", ".ppt", ".pptx", ".pdf', 'warning');
+                swal('Silahkan cek type extension file! ', 'Type yang bisa di upload hanya ".pdf', 'warning');
                 return false;
             }
         }

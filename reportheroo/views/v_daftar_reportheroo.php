@@ -20,8 +20,8 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Judul Artikel</th>
-                      <th>Isi Artikel</th>
+                      <th>Judul Report Heroo</th>
+                      <th>Isi Report Heroo</th>
                       <th>Kategori</th>
                       <th>Gambar</th>
                       <th width="15%">Aksi</th>

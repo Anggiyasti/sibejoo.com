@@ -33,7 +33,7 @@ class Materi extends MX_Controller
 		}
 	}
 
-	// upload materi
+	// fungsi upload materi
 	public function uploadMateri()
 	{
 		$post=$this->input->post();
@@ -248,7 +248,7 @@ public function form_update_materi($UUID)
 	}
 }
 
-// update materi
+// fungsi update materi
 public function updateMateri()
 {	
 	$post=$this->input->post();
@@ -290,6 +290,7 @@ public function updateMateri()
             $data['penggunaID']=$penggunaID;
         	$data['publish']=$post['stpublish'];
             $data['UUID']=$UUID;
+            //fungsi jika file di ubah atau tidak 
             if ($file_foto != Null) {
             	$data['url_file']=$file_name;
             }else{
@@ -301,8 +302,7 @@ public function updateMateri()
 		
 		$info="Materi Berhasil dirubah";
         echo json_encode($info); 
-	// $this->Mmateri->ch_materi($data);
-	// redirect(site_url('materi/list_all_materi'));
+
 }
 
 public function del_materi()

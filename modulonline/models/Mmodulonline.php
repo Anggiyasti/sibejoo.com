@@ -48,10 +48,10 @@ public function get_soal_tkt($tingkatID) {
   return $query->result_array();
 
 }
-public function ch_soal($data) {
-  $this->db->set($data['dataSoal']);
-  $this->db->where('uuid', $data['uuid']);
-  $this->db->update('tb_modul');
+public function ch_edudrive($data,$UUID) {
+  // $this->db->set($data['dataSoal']);
+  $this->db->where('uuid', $UUID);
+  $this->db->update('tb_modul',$data);
 }
 
 public function get_onesoal($uuid) {

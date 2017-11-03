@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- Form horizontal layout bordered -->
-        <form class="form-horizontal form-bordered panel panel-teal" action="<?=base_url()?>index.php/modulonline/update_modul" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
+        <form class="form-horizontal form-bordered panel panel-teal" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
             <div class="panel-heading">
                 <h3 class="panel-title">Form Update Soal</h3>
                 <!-- untuk menampung bab id -->
@@ -51,7 +51,7 @@
 
             <label class="col-sm-2 control-label">Mata Pelajaran</label>
             <div class="col-sm-4">
-              <select class="form-control" name="mataPelajaran" id="pelajaran">
+              <select class="form-control" name="pelajaran" id="pelajaran">
               </select>
           </div>
       </div>
@@ -68,7 +68,7 @@
         <label class="control-label col-sm-2">Deskripsi Modul</label>
         <!-- Start input text A -->
         <div class="col-sm-8 piltext">
-           <textarea name="deskripsi"  class="form-control">  <?=$banksoal['deskripsi'];?> </textarea>
+           <textarea name="deskripsi"  class="form-control"><?=$banksoal['deskripsi'];?> </textarea>
        </div>
    </div>
 
@@ -113,6 +113,7 @@ if ($banksoal['url_file'] == null) { ?>
     </div> 
     <div class="col-md-4 left"> 
         <a href="<?= base_url('assets/modul/'.$banksoal['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
+
     </div> 
 </div>
 </div>
@@ -133,14 +134,17 @@ if ($banksoal['url_file'] == null) { ?>
             </div>
         </div>
         <div class="col-sm-12">
-            <input class="btn btn-default" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
+            <label for="fileSoal" class="btn btn-sm btn-default">
+                Pilih File
+            </label>
+            <input style="display:none;" type="file" id="fileSoal" name="gambarSoal" onchange="ValidateSingleInput(this);"/>
         </div>                                                            
     </div>
 </div>
 
 </div>
 <div class="panel-footer">
-    <button type="submit" class="btn btn-primary">Simpan</button>
+    <button type="submit" class="btn btn-primary" onclick="update()">Simpan Perubahan</button>
 
 </div>
 </form>
@@ -150,6 +154,7 @@ if ($banksoal['url_file'] == null) { ?>
 </div>
 <!--/ END row -->
 </div>
+<script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 
 <!-- script untuk option hide and show -->
 <script type="text/javascript">
@@ -316,6 +321,52 @@ function loadTingkat() {
               });
             }
         });
+    }
+
+    //fungsi untuk update edu drive
+    function update(){
+        url = base_url+"modulonline/update_modul";
+        
+        var datas = {
+            UUID : $('input[name=UUID]').val(),
+            mapel : $('select[name=pelajaran]').val(),
+            judul : $('input[name=judul]').val(),
+            deskripsi : $('textarea[name=deskripsi]').val(),
+            gambarSoal: $('[name=gambarSoal]').val(),
+            publish : $('input[name=publish]:checked').val(),
+        }
+        var elementId = "fileSoal";
+
+            // do_upload
+            $.ajaxFileUpload({
+                url:url,
+                data:datas,
+                dataType:"TEXT",
+                type:"POST",
+                fileElementId :elementId,
+                success:function(data){
+                    swal({ 
+                    title: "Edu Drive Berhasil Diubah!",
+                    type: "success",
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Selesai",
+                    closeOnConfirm: false,
+                },
+
+            function(isConfirm){
+                    if (isConfirm) {
+                        window.location.href = base_url+"modulonline/daftar_modul";
+                    } 
+                    else {
+                        swal("Ubah Data dibatalkan");
+                    }
+                });
+                },
+                error:function(){
+                    swal("gagal merubah data!");
+                    
+                }
+            });
     }
 
     //buat load bab

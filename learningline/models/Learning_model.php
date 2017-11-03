@@ -199,7 +199,7 @@ class Learning_model extends CI_Model{
 
 	/*GET META DATA UNTUK STEP*/
 	function get_materi_babID($data){
-		$this->db->select('m.id, judulMateri, isiMateri');
+		$this->db->select('m.id, judulMateri, isiMateri,url_file');
 		$this->db->from('tb_line_materi m');
 		$this->db->JOIN('tb_subbab s','s.id = m.subBabID'); 
 		$this->db->JOIN('tb_bab b','b.id = s.babID'); 

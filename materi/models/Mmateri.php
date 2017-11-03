@@ -13,7 +13,7 @@ class Mmateri extends CI_Model
     // get data materi unutuk halaman list materi
  public function get_all_materi()
  {
-    $this->db->select('m.id as materiID,judulMateri,isiMateri,publish,m.date_created as tgl,judulSubBab,judulBab, tp.keterangan as mapel,aliasTingkat,UUID');
+    $this->db->select('m.id as materiID,judulMateri,isiMateri,publish,m.date_created as tgl,judulSubBab,judulBab, tp.keterangan as mapel,aliasTingkat,UUID,url_file');
     $this->db->from('tb_line_materi m');
     $this->db->join('tb_subbab sub','m.subBabID=sub.id');
     $this->db->join('tb_bab bab','sub.babID=bab.id');
@@ -28,7 +28,7 @@ class Mmateri extends CI_Model
         // get data materi unutuk halaman list materi
 public function get_materi_by_user()
 {
-    $this->db->select('m.id as materiID,judulMateri,isiMateri,publish,m.date_created as tgl,judulSubBab,judulBab, tp.keterangan as mapel,aliasTingkat,UUID');
+    $this->db->select('m.id as materiID,judulMateri,isiMateri,publish,m.date_created as tgl,judulSubBab,judulBab, tp.keterangan as mapel,aliasTingkat,UUID,url_file');
     $this->db->from('tb_line_materi m');
     $this->db->join('tb_subbab sub','m.subBabID=sub.id');
     $this->db->join('tb_bab bab','sub.babID=bab.id');
@@ -36,6 +36,7 @@ public function get_materi_by_user()
     $this->db->join('tb_tingkat tkt','tp.tingkatID=tkt.id');
     $this->db->where('m.status','1');
     $this->db->where('m.penggunaID',$this->session->userdata('id'));
+    $this->db->order_by('m.id','desc');
         $query = $this->db->get();
         return $query->result_array();
     }

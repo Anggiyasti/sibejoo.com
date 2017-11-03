@@ -131,10 +131,18 @@ function detail(id){
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
+	var url = base_url+"assets/file_materi/"+data.url_file;
 
 	$('h3.semibold').html(data.judulMateri);
 		// links = '<?=base_url();?>assets/video/' + data.namaFile;
+	if (data.isiMateri == null || data.isiMateri == '') {
+		$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
+	//jika data url file
+	}else{
 		$('#isicontent').html(data.isiMateri); 
+		 
+		}
+		
 		$('.detail_materi').modal('show');
 
 

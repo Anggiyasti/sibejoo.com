@@ -12,6 +12,7 @@
 					<p id="isicontent">
 						
 					</p>
+					<!-- <embed src="<?= base_url('assets/file_materi/1509332842-LAPISAN_ATMOSFER.pdf')?>" type="application/pdf"   height="300px" width="100%"> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -88,24 +89,33 @@
 
 	});
 
-//# ketika tombol di klik
+//# ketika tombol di klik detail
 function detail(id){
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
+	var url = base_url+"assets/file_materi/"+data.url_file;
 
 	$('h3.semibold').html(data.judulMateri);
-		// links = '<?=base_url();?>assets/video/' + data.namaFile;
+	//jika data materi
+	if (data.isiMateri == null || data.isiMateri == '') {
+		$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
+	//jika data url file
+	}else{
 		$('#isicontent').html(data.isiMateri); 
+
+		 
+	}
+
+
 		$('#mdetailvideo').modal('show');
 	
 	
 }
 //##
 
-//# fungsi menghapus video
+//# fungsi menghapus materi
 function drop_materi(UUID){
-	// if(confirm('Are you sure delete this data?')){
 		url = base_url+"materi/del_materi";
 		swal({
     		title: "Yakin akan hapus Materi?",

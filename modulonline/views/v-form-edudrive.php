@@ -64,7 +64,7 @@
         <label class="control-label col-sm-2">Deskripsi Modul</label>
         <!-- Start input text A -->
         <div class="col-sm-10 piltext">
-         <textarea name="deskripsi"  class="form-control"> </textarea>
+         <textarea name="deskripsi"  class="form-control"></textarea>
      </div>
  </div>
  <div class="form-group">

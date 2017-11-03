@@ -450,7 +450,7 @@
                 success:function(data){
                 	// console.log(data);
                     swal({
-                    title: "Materi Berhasil di ubah!",
+                    title: "Materi Berhasil Diubah!",
                     type: "success",
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Selesai",

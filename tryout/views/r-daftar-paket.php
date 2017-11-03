@@ -63,57 +63,125 @@
           </div>
         <?php else: ?>
 
-          <h4><b>Daftar Paket TO yang Belum Dikerjakan</b></h4>
+          <h3>Daftar Paket TO yang Belum Dikerjakan</h3>
         </div>
         <?php if ($paket==array()): ?>
           <div class="col-md-12">
             <h5>Belum ada paket Try Out.</h5>
           </div>
         <?php else: ?>
-          <?php foreach ($paket as $paketitem):?>
-            <div class="col-sm-6 col-md-3">
-              <div class="service-block bg-white">
-                <div class="content text-left flip p-25 pt-0">
-                  <h4 class="line-bottom mb-10"><?=$paketitem['nm_paket'] ?></h4>
-                  <p>Status : Belum Dikerjakan</p>
-                  <p><?=$paketitem['jenis_penilaian'] ?></p>
-                  <?php if ($status_to=='doing'): ?>
-                    <a href="<?=base_url()?>tryout/tamp_paket/<?=$paketitem['id_paket']?>" class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>"><i class="fa fa-pencil-square-o"></i> Kerjakan</a>
-                  <?php elseif ($status_to=='done'): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-close"></i></a>
-                  <?php else: ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'><i class="fa fa-hourglass-half"></i></a>
-                  <?php endif; ?>
-                </div>
-              </div>
-            </div>
-          <?php endforeach ?>
-        <?php endif; ?>
 
-        <div class="col-md-12">
-          <h4><b>Paket TO yang Sudah Dikerjakan</b></h4>
-        </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+            <table class="table table-hover daftarpaket" style="font-size: 13px" id="zero-configuration">
+              <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama Paket</th>
+                    <th>Status</th>
+                    <th>Jenis Penilaian</th>
+                    <th width="2%">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $no=1;
+                  foreach ($paket as $paketitem): ?>
+                    <tr>
+                      <td><?= $no; ?></td>
+                      <td><?=$paketitem['nm_paket'] ?></td>
+                      <td>Belum Dikerjakan</td>
+                      <td><?=$paketitem['jenis_penilaian'] ?></td>
+                      <td>
+                        <?php if ($status_to=='doing'): ?>
+                        <a href="<?=base_url()?>tryout/tamp_paket/<?=$paketitem['id_paket']?>" class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
+                          title="Kerjakan">
+                          <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <?php elseif ($status_to=='done'): ?>
+                        <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
+                          title="Waktu Habis" 
+                          onclick="habis()" disable data-todo='<?=json_encode($paketitem)?>'>
+                          <i class="fa fa-close"></i>
+                        </a>
+                        <?php else: ?>
+                          <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
+                          title="Waktu Habis" 
+                          onclick="forbiden()" disable data-todo='<?=json_encode($paketitem)?>'>>
+                          <i class="fa fa-hourglass-half"></i>
+                        </a>
+                         <?php endif; ?>
+                      </td>
+                    </tr>
+                  <?php 
+                  $no++;
+                  endforeach ?>
+                </tbody>
+            </table>
+              </div>
+
+       
+        <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+        <h3>Paket TO yang Sudah Dikerjakan</h3>
         <?php if($paket_dikerjakan==array()): ?>
           <div class="col-md-12">
             <h5>Tidak ada paket soal.</h5>
           </div>
         <?php else: ?>
-          <?php foreach ($paket_dikerjakan as $paketitem): ?>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <div class="icon-box media bg-deep p-30 mb-20"> <a class="media-left pull-left flip" href="#"> <i class="fa fa-file-text-o text-theme-colored"></i></a>
-                <div class="media-body">
-                  <h5 class="mt-0"><?=$paketitem['nm_paket'] ?></h5>
-                  <h5 class="mt-0"><?=$paketitem['jenis_penilaian'] ?></h5>
-
-                  <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10 modal-on<?=$paketitem['id_paket']?>" onclick="detail_paket(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Lihat Score">Score</a>
-                  <?php if ($status_to=="done"): ?>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>' title="Pembahasan">Pembahasan</a>
-                  <?php endif; ?>
-                </div>
-              </div>
-            </div>
-          <?php endforeach ?>
+          <table class="table-hover daftarpaket table 2" style="font-size: 13px">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Paket</th>
+                <th>Jenis Penilaian</th>
+                <th>Benar</th>
+                <th>Salah</th>
+                <th>Kosong</th>
+                <th>Score</th>
+                <th>Tanggal Dibuat</th>
+                <th width="2%">Pembahasan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php 
+              $no=1;
+              foreach ($paket_dikerjakan as $paketitem): ?>
+                <tr>
+                  <td><?=$no;?></td>
+                  <td><?= $paketitem['nm_paket'] ?></td>
+                  <td><?= $paketitem['jenis_penilaian'] ?></td>
+                  <td><?= $paketitem['jmlh_benar'] ?></td>
+                  <td><?= $paketitem['jmlh_salah'] ?></td>
+                  <td><?= $paketitem['jmlh_kosong'] ?></td>
+                  <td><?= $paketitem['jmlh_benar'] ?></td>
+                  <td><?= $paketitem['tgl_pengerjaan'] ?></td>
+                  <td>
+                    <?php if ($status_to=="done"): ?>
+                    <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
+                      title="Lihat pembahasan" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'>
+                      <i class="glyphicon glyphicon-book"></i>
+                    <?php endif; ?>
+                    </a>
+                  </td>
+                </tr>
+              <?php 
+              $no++;
+              endforeach ?>
+            </tbody>
+          </table>
         <?php endif; ?>
+
+      </div>
+
+
+        <?php endif; ?>
+
+        
+        
+          <!-- <?php foreach ($paket_dikerjakan as $paketitem): ?> -->
+            
+          <!-- <?php endforeach ?> -->
+       
         
       </div>
     <?php endif; ?>
@@ -171,6 +239,23 @@
 
 
 <script type="text/javascript"> 
+
+
+  $(document).ready(function(){
+    $('.daftarpaket').DataTable({
+      "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+      "bDestroy": true,
+      "bLengthChange": false,
+      "oLanguage": {"sLengthMenu": "\_MENU_"},
+      "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ "_all" ] }
+        ],
+    });
+
+    $('.daftarpaket').find("thead th").removeClass("sorting_asc");
+  });
+
+
   // jQuery(document).ready(function () {
   //   var ctx = document.getElementById("myChart").getContext('2d');
   // });

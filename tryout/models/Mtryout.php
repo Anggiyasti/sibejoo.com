@@ -119,6 +119,7 @@ class Mtryout extends MX_Controller {
         $this->db->where('hakAkses.id_siswa', $data['id_siswa']);
         //published
         $this->db->where('to.publish', 1);
+        $this->db->order_by('to.id_tryout','desc');
         //rentang waktu
         // $this->db->where("BETWEEN to.tgl_mulai AND to.stgl_berhenti");
 

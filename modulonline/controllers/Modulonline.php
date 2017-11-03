@@ -288,7 +288,7 @@ class Modulonline extends MX_Controller {
     public function daftar_modul(){
         $data['judul_halaman'] = "Sibejoo - Modul Online";
         $data['files'] = array(
-            APPPATH . 'modules/modulonline/views/v-soal-all.php',
+            APPPATH . 'modules/modulonline/views/v-edu-all.php',
             );
         #START cek hakakses#
         $hakAkses=$this->session->userdata['HAKAKSES'];
@@ -411,6 +411,7 @@ public function formmodul() {
                 #END Cek USer#
 }
 
+//fungsi untuk upload modul edu drive
 public function uploadmodul() {
         //load library n helper
     $post=$this->input->post();
@@ -501,7 +502,7 @@ public function form_update() {
 
     $data['judul_halaman'] = "Modul Online";
     $data['files'] = array(
-        APPPATH . 'modules/modulonline/views/v-update-soal.php',
+        APPPATH . 'modules/modulonline/views/v-update-edudrive.php',
         );
 
     $hakAkses=$this->session->userdata['HAKAKSES'];
@@ -538,32 +539,41 @@ public function form_update() {
 }
 }
 
+//fungsi untuk update modul edu drive
 public function update_modul() {
-        #Start post data soal#
-    $id_tingkatpelajaran = htmlspecialchars($this->input->post('mataPelajaran'));
-    $judul = htmlspecialchars($this->input->post('judul'));
-    $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
-    $publish = htmlspecialchars($this->input->post('publish'));
 
-    $UUID = htmlspecialchars($this->input->post('UUID'));
-    $create_by = $this->session->userdata['id'];
+    $post=$this->input->post();
+    $UUID = $post['UUID'];
 
-        #END post data soal#
-    $data['uuid'] = $UUID;
+        $config['upload_path'] = $this->upload_path;
+        $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
+        $config['max_size'] = 10000;
 
-    $data['dataSoal'] = array(
-        'judul' => $judul,
-        'deskripsi' => $deskripsi,
-        // 'jawaban' => $jawaban,
-        'publish' => $publish,
-        'create_by' => $create_by,
-        'id_tingkatpelajaran' =>  $id_tingkatpelajaran
-        );
+        $configLogo['encrypt_name'] = TRUE;
+        $new_name = time()."-".$_FILES["gambarSoal"]['name'];
+        $config['file_name'] = $new_name;
+        $this->load->library('upload', $config);
+        $foto = 'gambarSoal';
+        $this->upload->initialize($config);
+        $file_foto=$post['gambarSoal'];
 
-        //call fungsi insert soal
-    $this->Mmodulonline->ch_soal($data);
-    $this->ch_img_soal($UUID);
-    redirect(site_url('modulonline/daftar_modul'));
+
+        $this->upload->do_upload($foto);
+        $file_data = $this->upload->data();
+        $file_name = $file_data['file_name'];
+        //data yang akan di update
+        $data['judul']=$post['judul'];
+        $data['deskripsi']=$post['deskripsi'];
+        $data['publish']=$post['publish'];
+        $data['id_tingkatpelajaran']=$post['mapel'];
+        //jika file diupdate dan tidak
+        if ($file_foto != NULL) {
+            $data['url_file']=$file_name;
+        }
+        //model untuk update data
+    $this->Mmodulonline->ch_edudrive($data,$UUID);
+    $info="Edu Drive Berhasil diubah";
+    echo json_encode($info); 
 }
 
 public function delete_modul() {
