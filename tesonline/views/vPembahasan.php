@@ -105,6 +105,37 @@ label:hover{ /* HIDE RADIO */
         <!-- START Register Content -->
         <section class="section bgcolor-white">
             <div class="container-fluid">
+              <div class="col-md-1" style="margin-right: 45px;"></div>
+              <div class="col-md-9" style="width: 1060px;">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                  </div>
+                  <div class="panel-body">
+                    <div class="col-md-2">
+                      <b>Benar</b> <br>
+                      <b ><?=$score['jmlh_benar']?></b>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Salah</b> <br>
+                      <b ><?=$score['jmlh_salah']?></b>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Kosong</b> <br>
+                      <b ><?=$score['jmlh_kosong']?></b>
+                    </div>
+                    <div class="col-md-2">
+                      <b>Score</b> <br>
+                      <b ><?=$score['jmlh_benar']?></b>
+                    </div>
+                    <div class="col-md-4" style="">
+                      <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-danger btn-block" >Kembali</a>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-md-offset-3">
+                
+              </div>
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1" style="">
                         <!--<div class="clear-fix"></div>-->
@@ -279,6 +310,39 @@ label:hover{ /* HIDE RADIO */
 </div>
 
 <div class="col-md-4">
+  <div class="panel panel-default"  style="min-height:170px;">
+    <!--panel heading/header--> 
+    <div class="panel-heading">
+      <div class="row">
+      <div class="text-center"> <h4><span>Keterangan</span></h4></div>
+      </div>
+    </div>
+    <!--/ panel heading/header--> 
+    <!--panel body with collapse capabale--> 
+    <div class="panel-collapse">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <h5><b>Benar </b></h5>
+            <h5><b>Salah </b></h5>
+            <h5><b>Kosong  </b></h5>
+            <h5><b>Score  </b></h5>
+          </div>
+          <div class="col-md-1">
+            <h5><b><?=$score['jmlh_benar']?></b></h5>
+            <h5><b><?=$score['jmlh_salah']?></b></h5>
+            <h5><b><?=$score['jmlh_kosong']?></b></h5>
+            <h5><b><?=$score['jmlh_benar']?></b></h5>
+          </div>
+          <div class="col-md-12" style="">
+            <hr>
+            <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-danger btn-block" >Kembali</a>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
        <div class="panel panel-default"  style="min-height:170px;">
         <!--panel heading/header--> 
         <div class="panel-heading">
@@ -292,6 +356,7 @@ label:hover{ /* HIDE RADIO */
         <!--panel body with collapse capabale--> 
         <div class="panel-collapse">
          <div class="panel-body">
+          <div></div>
           <div class="row">
            <div class="col-md-10 col-md-offset-1">
             <!--<li class="pageNumbers"></li>-->
@@ -329,7 +394,7 @@ label:hover{ /* HIDE RADIO */
 
            <div class="col-md-12" style="">
             <hr> 
-            <a href="<?=base_url('tryout')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
+            <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
            </div>
 
           </div>

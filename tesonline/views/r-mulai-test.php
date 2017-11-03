@@ -91,7 +91,7 @@
               <table class="table 2" style="font-size: 13px">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>No</th>
                     <th>Nama Latihan</th>
                     <th>Tingkat Kesulitan</th>
                     <th>Tanggal Dibuat</th>
@@ -99,9 +99,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($report as $reportitem): ?>
+                  <?php 
+                  $no=1;
+                  foreach ($report as $reportitem): ?>
                     <tr>
-                      <td><?= $reportitem['id_latihan'] ?></td>
+                      <td><?= $no; ?></td>
                       <td><?= $reportitem['nm_latihan'] ?></td>
                       <td><?= $reportitem['tingkatKesulitan'] ?></td>
                       <td><?= $reportitem['tgl_pengerjaan'] ?></td>
@@ -119,7 +121,9 @@
                         </a>
                       </td>
                     </tr>
-                  <?php endforeach ?>
+                  <?php 
+                  $no++;
+                  endforeach ?>
                 </tbody>
               </table>
             <?php endif; ?>
@@ -129,12 +133,12 @@
             <?php if ($latihan == array()): ?>
               <h4>Tidak ada latihan.</h4>
             <?php else: ?>
-             <table class="table" style="font-size: 13px" id="zero-configuration">
+             <table class="table table-hover daftarlatihan" style="font-size: 13px" id="zero-configuration">
               <thead>
                 <tr>
-                  <th>Id</th>
+                  <th>No</th>
                   <th>Nama Latihan</th>
-                  <th>Tingkat Kesulitan</th>
+                  <th>Level</th>
                   <th>Status Pengerjaan</th>
                   <th>Jumlah Soal</th>
                   <th>Tanggal Dibuat</th>
@@ -142,23 +146,32 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($latihan as $latihanitem): ?>
+                <?php 
+                $no=1;
+                foreach ($latihan as $latihanitem): ?>
                   <tr>
-                    <td><?= $latihanitem['id_latihan'] ?></td>
+                    <td><?= $no; ?></td>
                     <td><?= $latihanitem['nm_latihan'] ?></td>
                     <td><?= $latihanitem['tingkatKesulitan'] ?></td>
-                    <td><?= $latihanitem['status_pengerjaan'] ?></td>
+                    <?php $status_pengerjaan=$latihanitem['status_pengerjaan'];
+                    if ($status_pengerjaan==1) : ?>
+                      <td>Belum Dikerjakan</td>
+                    <?php else : ?>
+                      <td>Sudah Dikerjakan</td>
+                    <?php endif ?>
                     <td><?= $latihanitem['jumlahSoal'] ?></td>
                     <td><?= $latihanitem['date_created'] ?></td>
                     <td>
                       <a class="btn btn-dark btn-theme-colored btn-sm detail-<?= $latihanitem['id_latihan'] ?>" 
                         title="Kerjakan" 
-                        onclick="mulai_test(<?= $latihanitem['id_latihan'] ?>)">
+                        onclick="konfirmasi_test(<?= $latihanitem['id_latihan']?>)" data-todo='<?= json_encode($latihanitem) ?>'>
                         <i class="glyphicon glyphicon-pencil"></i>
                       </a>
                     </td>
                   </tr>
-                <?php endforeach ?>
+                <?php 
+                $no++;
+                endforeach ?>
               </tbody>
             </table>
           <?php endif; ?>
@@ -170,30 +183,34 @@
         <?php if ($report == array()): ?>
           <h4>Tidak ada Report Latihan.</h4>
         <?php else: ?>
-          <table class="table 2" style="font-size: 13px">
+          <table class="table-hover daftarlatihan table 2" style="font-size: 13px">
             <thead>
               <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Nama Latihan</th>
-                <th>Tingkat Kesulitan</th>
+                <th>Level</th>
+                <th>Benar</th>
+                <th>Salah</th>
+                <th>Kosong</th>
+                <th>Score</th>
                 <th>Tanggal Dibuat</th>
-                <th width="2%">Aksi</th>
+                <th width="2%">Pembahasan</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($report as $reportitem): ?>
+              <?php 
+              $no=1;
+              foreach ($report as $reportitem): ?>
                 <tr>
-                  <td><?= $reportitem['id_latihan'] ?></td>
+                  <td><?=$no;?></td>
                   <td><?= $reportitem['nm_latihan'] ?></td>
                   <td><?= $reportitem['tingkatKesulitan'] ?></td>
+                  <td><?= $reportitem['jmlh_benar'] ?></td>
+                  <td><?= $reportitem['jmlh_salah'] ?></td>
+                  <td><?= $reportitem['jmlh_kosong'] ?></td>
+                  <td><?= $reportitem['jmlh_benar'] ?></td>
                   <td><?= $reportitem['tgl_pengerjaan'] ?></td>
                   <td>
-                    <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?= $reportitem['id_latihan'] ?>" 
-                      title="Lihat score" 
-                      onclick="lihat_grafik(<?= $reportitem['id_latihan'] ?>)" 
-                      data-todo='<?= json_encode($reportitem) ?>'>
-                      <i class="glyphicon glyphicon-list-alt"></i>
-                    </a>
                     <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?= $reportitem['id_latihan'] ?>" 
                       title="Lihat pembahasan" 
                       onclick="mulai_pembahasan(<?= $reportitem['id_latihan'] ?>)">
@@ -201,7 +218,9 @@
                     </a>
                   </td>
                 </tr>
-              <?php endforeach ?>
+              <?php 
+              $no++;
+              endforeach ?>
             </tbody>
           </table>
         <?php endif; ?>
@@ -215,6 +234,51 @@
 </section>
 
 <script type="text/javascript">
+
+  $(document).ready(function(){
+    $('.daftarlatihan').DataTable({
+      "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+      "bDestroy": true,
+      "bLengthChange": false,
+      "oLanguage": {"sLengthMenu": "\_MENU_"},
+      "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ "_all" ] }
+        ],
+    });
+
+    $('.daftarlatihan').find("thead th").removeClass("sorting_asc");
+  });
+
+  function konfirmasi_test(id_latihan) {
+    var kelas = ".detail-" + id_latihan;
+    var data = $(kelas).data('todo');
+    swal({
+      title: "Apakah anda yakin akan mengerjakan latihan "+data.nm_latihan+"?",
+      text: "Anda  tidak dapat kembali",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Ya, Saya Yakin!",
+      cancelButtonText: "Tidak!",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+        mulai_test(id_latihan);
+      } else {
+        swal("Cancelled", "Latihan dibatalkan", "error");
+      }
+    });
+  }
+
+  function mulai_test(id_latihan) {
+    window.location.href = base_url + "index.php/latihan/create_session_id_latihan/" + id_latihan;
+  }
+
+  function mulai_pembahasan(id_pembahasan) {
+    window.location.href = base_url + "index.php/latihan/create_session_id_pembahasan/" + id_pembahasan;
+  }
 
   function load_grafik(data) {
     var report = {
@@ -283,16 +347,6 @@
                   }
 
 
-
-                  function mulai_test(id_latihan) {
-                    window.location.href = base_url + "index.php/latihan/create_session_id_latihan/" + id_latihan;
-
-                  }
-
-                  function mulai_pembahasan(id_pembahasan) {
-                    window.location.href = base_url + "index.php/latihan/create_session_id_pembahasan/" + id_pembahasan;
-
-                  }
 
 
                   $(document).ready(function () {

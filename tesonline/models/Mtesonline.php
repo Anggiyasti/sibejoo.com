@@ -85,6 +85,15 @@ class Mtesonline extends CI_Model {
         $query = $this->db->get(); 
         return $query->result()[0]; 
     }
+
+    public function get_info_score($id)
+    {
+        $this->db->select('jmlh_benar, jmlh_salah, jmlh_kosong');
+        $this->db->from('tb_report-latihan');
+        $this->db->where('id_latihan',$id);
+        $query = $this->db->get();
+        return $query->result_array()[0];
+    }
 }
 
 ?>

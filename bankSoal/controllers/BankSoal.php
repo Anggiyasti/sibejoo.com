@@ -1154,7 +1154,7 @@ class Banksoal extends MX_Controller {
     {
         // echo "video pembahasan";
           $configvideo['upload_path'] = './assets/video/videoPembahasan';
-        $configvideo['allowed_types'] = 'mp4';
+        $configvideo['allowed_types'] = 'mp4|swf';
         $configvideo['max_size'] = 90000;
         $this->load->library('upload', $configvideo);
         $this->upload->initialize($configvideo);

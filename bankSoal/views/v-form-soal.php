@@ -1609,7 +1609,7 @@ function ValidateSingleInput(oInput) {
 // validation upload video
 
 function ValidateInputVideo(oInput) {
-  var _validFileExtensions = [".mp4"]; 
+  var _validFileExtensions = [".mp4",".swf"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
     if (sFileName.length > 0) {

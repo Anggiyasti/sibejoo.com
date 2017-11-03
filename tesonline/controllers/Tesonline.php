@@ -262,6 +262,8 @@ class Tesonline extends MX_Controller {
                     $data['soal'][$i]['status_koreksi'] = $data['rekap_jawaban'][$i]->status_koreksi;
                 }
             }
+            // get info score
+            $data['score']=$this->mtesonline->get_info_score($id_latihan);
             $this->load->view('vPembahasan.php', $data);
             $this->load->view('footerpembahasan.php');
         } else {

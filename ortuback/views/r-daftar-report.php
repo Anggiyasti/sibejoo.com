@@ -59,6 +59,7 @@ $(document).ready(function(){
     "emptyTable": "Tidak Ada Data Pesan",
     "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
     "bDestroy": true,
+    "bLengthChange": false,
     "oLanguage": {"sLengthMenu": "\_MENU_"}
   });
 
