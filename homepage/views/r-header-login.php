@@ -93,7 +93,7 @@
         <li><a href="javascript:void(0);" onclick="pilihwilayah(1)">Passing Grade<span class="indicator"></a></li>
         
         <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
-         <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span class="indicator"><?php if ($this->session->userdata('member')==1): ?>
+         <li><a href="#home">Halo, <?=$this->session->userdata('NAMASISWA') ?>!<span><?php if ($this->session->userdata('member')==1): ?>
           <span class="label label-info" title="Member"><i class="fa fa-user"></i> </span>
         <?php endif ?></a>
         <ul class="dropdown" style="right: auto; display: none;">

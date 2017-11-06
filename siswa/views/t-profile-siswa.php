@@ -1,329 +1,340 @@
-
-<div class="row">
-  <!-- WELCOME -->
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Selamat datang, {namaDepan} {namaBelakang} !</h3> 
-      </div>
-      <div class="panel-body">
+<style type="text/css">
+  .percent {
+    display: none;
+  }
+</style>
+<section>
+  <div class="container">
+      <div class="section-content">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="panel-body bgcolor-info">
-              <ul class="list-unstyled mt15 mb15">
-                <li class="text-center">
-                  <img class="img-circle img-bordered" src="{photo}" alt="" width="165px" height="165px">
-                </li>
-                <li class="text-center">
-                  <h5 class="semibold mb0">{namaDepan} {namaBelakang}</h5>
-                  <span><?=$this->session->userdata('HAKAKSES') ?></span>
-                </li>
-              </ul>
-            </div><br>
-          </div>
-          <div class="col-sm-3">
-            <!-- START Statistic Widget -->
-            <div class="table-layout animation delay animating fadeInDown">
-              <div class="col-xs-4 panel bgcolor-info">
-                <div class="ico-book3 fsize24 text-center"></div>
+          <!-- WELCOME -->
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Selamat datang, {namaDepan} {namaBelakang} !</h3> 
               </div>
-              <div class="col-xs-8 panel">
-                <div class="panel-body text-center">
-                  <h4 class="semibold nm">{jumlah_paket}</h4>
-                  <p class="semibold text-muted mb0 mt5">Paket Soal</p>
-                </div>
-              </div>
-            </div>
-            <!--/ END Statistic Widget -->
-          </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="panel-body bgcolor-info">
+                      <ul class="list-unstyled mt15 mb15">
+                        <li class="text-center">
+                          <img class="img-circle img-bordered" src="{photo}" alt="" width="165px" height="165px">
+                        </li>
+                        <li class="text-center">
+                          <h5 class="semibold mb0">{namaDepan} {namaBelakang}</h5>
+                          <span><?=$this->session->userdata('HAKAKSES') ?></span>
+                        </li>
+                      </ul>
+                    </div><br>
+                  </div>
+                  <div class="col-sm-3">
+                    <!-- START Statistic Widget -->
+                    <div class="table-layout animation delay animating fadeInDown border-1px">
+                      <div class="col-xs-4 panel bgcolor-info">
+                        <div class="ico-book3 fsize24 text-center"></div>
+                      </div>
+                      <div class="col-xs-8 panel">
+                        <div class="panel-body text-center">
+                          <h4 class="semibold nm">{jumlah_paket}</h4>
+                          <p class="semibold text-muted mb0 mt5">Paket Soal</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--/ END Statistic Widget -->
+                  </div>
 
-          <div class="col-sm-3">
-            <!-- START Statistic Widget -->
-            <div class="table-layout animation delay animating fadeInUp">
-              <div class="col-xs-4 panel bgcolor-info">
-                <div class="ico-notebook fsize24 text-center"></div>
-              </div>
-              <div class="col-xs-8 panel">
-                <div class="panel-body text-center">
-                  <h4 class="semibold nm">{jumlah_latihan}</h4>
-                  <p class="semibold text-muted mb0 mt5">Latihan</p>
-                </div>
-              </div>
-            </div>
-            <!--/ END Statistic Widget -->
-          </div>
+                  <div class="col-sm-3">
+                    <!-- START Statistic Widget -->
+                    <div class="table-layout animation delay animating fadeInUp border-1px">
+                      <div class="col-xs-4 panel bgcolor-info">
+                        <div class="ico-notebook fsize24 text-center"></div>
+                      </div>
+                      <div class="col-xs-8 panel">
+                        <div class="panel-body text-center">
+                          <h4 class="semibold nm">{jumlah_latihan}</h4>
+                          <p class="semibold text-muted mb0 mt5">Latihan</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--/ END Statistic Widget -->
+                  </div>
 
-          <div class="col-sm-3">
-            <!-- START Statistic Widget -->
-            <div class="table-layout animation delay animating fadeInUp">
-              <div class="col-xs-4 panel bgcolor-info">
-                <div class="ico-list-alt fsize24 text-center"></div>
-              </div>
-              <div class="col-xs-8 panel">
-                <div class="panel-body text-center">
-                  <h4 class="semibold nm">{jumlah_line} Step</h4>
-                  <p class="semibold text-muted mb0 mt5">Learning Line</p>
-                </div>
-              </div>
-            </div>
-            <!--/ END Statistic Widget -->
-          </div>
+                  <div class="col-sm-3">
+                    <!-- START Statistic Widget -->
+                    <div class="table-layout animation delay animating fadeInUp border-1px">
+                      <div class="col-xs-4 panel bgcolor-info">
+                        <div class="ico-list-alt fsize24 text-center"></div>
+                      </div>
+                      <div class="col-xs-8 panel">
+                        <div class="panel-body text-center">
+                          <h4 class="semibold nm">{jumlah_line} Step</h4>
+                          <p class="semibold text-muted mb0 mt5">Learning Line</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--/ END Statistic Widget -->
+                  </div>
 
-          <div class="col-sm-3">
-            <!-- START Statistic Widget -->
-            <div class="table-layout animation delay animating fadeInDown">
-              <div class="col-xs-4 panel bgcolor-info">
-                <div class="ico-qrcode2 fsize24 text-center"></div>
-              </div>
-              <div class="col-xs-8 panel">
-                <div class="panel-body text-center">
-                  <h4 class="semibold nm">{sisa} Hari</h4>
-                  <p class="semibold text-muted mb0 mt5">Masa Aktif Token</p>
+                  <div class="col-sm-3">
+                    <!-- START Statistic Widget -->
+                    <div class="table-layout animation delay animating fadeInDown border-1px">
+                      <div class="col-xs-4 panel bgcolor-info">
+                        <div class="ico-qrcode2 fsize24 text-center"></div>
+                      </div>
+                      <div class="col-xs-8 panel">
+                        <div class="panel-body text-center">
+                          <h4 class="semibold nm">{sisa} Hari</h4>
+                          <p class="semibold text-muted mb0 mt5">Masa Aktif Token</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--/ END Statistic Widget -->
+                  </div>
+
                 </div>
               </div>
             </div>
-            <!--/ END Statistic Widget -->
           </div>
+          <!-- WELCOME -->
+
+        <!-- PERKEMBANGAN TO -->
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
+
+              <div class="panel-toolbar text-right">
+                <div class="col-sm-4 mt5"></div>
+                <div class="col-sm-8 mt1">
+                 <select class="form-control tryout_select" name="tryout_select">
+                  <option value="">-- Cari Berdasarkan Tryout --</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="panel-body">
+            <div class="panel-body pt0" id="resizeble" style="height:430px">
+              <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+            </div>       
+          </div>
+        </div>
+        </div>
+        <!-- PERKEMBANGAN TO -->
+
+
+        <!-- PERKEMBANGAN LATIHAN -->
+
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="ico-stats-up">  </i> Grafik Perkembangan Latihan</h3> 
+
+              <div class="panel-toolbar text-right">
+                <div class="col-sm-4 mt5"></div>
+                <div class="col-sm-8 mt1">
+                 <select class="form-control bab_select" name="bab_select">
+                  <option value="">-- Cari Berdasarkan Bab --</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="panel-body">
+            <div class="panel-body pt0" id="resizeble2" style="height:430px">
+              <div class="container" id="chartContainer2" style="width:100%">
+
+              </div>
+              </div       
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- PERKEMBANGAN LATIHAN -->
+
+        <!-- LAPORAN SEMUA PAKET TRYOUT -->
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="ico-book">  </i> Laporan Semua Paket Tryout</h3> 
+            </div>
+            <div class="panel-body">
+              <table class="rpaket table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+                <thead>
+                  <tr>
+
+                    <th>No</th>
+                    <th>Nama Paket</th>
+                    <th>Jumlah Soal</th>
+                    <th>Benar</th>
+                    <th>Salah</th>
+                    <th>Kosong</th>
+                    <th>Nilai</th>
+                    <th>Waktu Mengerjakan</th>
+                    <th>Aksi</th>
+
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- LAPORAN SEMUA PAKET TRYOUT -->
+
+        <!-- LAPORAN SEMUA LATIHAN -->
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><i class="ico-book">  </i> Laporan Semua Latihan</h3> 
+            </div>
+            <div class="panel-body">
+              <table class="rlatihan table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+                <thead>
+                  <tr>
+
+
+                    <th>No</th>
+                    <th>Nama Latihan</th>
+                    <th>Jumlah Soal</th>
+                    <th>Benar</th>
+                    <th>Salah</th>
+                    <th>Kosong</th>
+                    <th>Nilai</th>
+                    <th>Waktu Mengerjakan</th>
+                    <!-- <th>Aksi</th>  -->
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- LAPORAN SEMUA LATIHAN -->
+
+        <!-- LAPORAN SEMUA LEARNING LINE -->
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Laporan Semua Learning Line</h3> 
+            </div>
+            <div class="panel-body">
+              <table class="rline_log table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Topik</th>
+                    <th>Jenis Step</th>
+                    <th>Status</th>
+                    <th>Jumlah Soal</th>
+                    <th>Nama Step</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- LAPORAN SEMUA LEARNING LINE -->
+
+        <!-- DAFTAR KONSULTASI -->
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Daftar Konsultasi</h3> 
+            </div>
+            <div class="panel-body">
+              <table class="rkonstultasi table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th>Isi Pertanyaan</th>
+                    <th>Tanggal Dibuat</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- DAFTAR KONSULTASI -->
+
+
+        <!-- PRODRESS LEARNING LINE -->
+        <!-- Browser Breakpoint -->
+        <div class="col-lg-12">
+          <!-- START panel -->
+          <div class="panel panel-default">
+            <!-- panel heading/header -->
+            <div class="panel-heading">
+              <h3 class="panel-title ellipsis"><i class="ico-files mr5"></i>Progress Learning Line</h3>
+              <!-- panel toolbar -->
+              <div class="panel-toolbar text-right">
+                <!-- option -->
+               <!--  <div class="option">
+                  <button class="btn up" data-toggle="panelcollapse"><i class="arrow"></i></button>
+                  <button class="btn" data-toggle="panelremove" data-parent=".col-md-12"><i class="remove"></i></button>
+                </div> -->
+                <!--/ option -->
+              </div>
+              <!--/ panel toolbar -->
+            </div>
+            <!--/ panel heading/header -->
+            <!-- panel body with collapse capabale -->
+            <!-- <div class="table-responsive panel-collapse pull out"> -->
+            <div class="panel-body">
+              <table class="table rpersentase" style="font-size: 13px" width=100%>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Nama topik</th>
+                    <th>Dikerjakan</th>
+                    <th>Jumlah Step</th>
+                    <th>Belum Dikerjakan</th>
+                    <th>Progress</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+            <!--/ panel body with collapse capabale -->
+          </div>
+          <!--/ END panel -->
+        </div>
+        <!-- Browser Breakpoint -->
+        <!-- PRODRESS LEARNING LINE -->
+
+
 
         </div>
-      </div>
     </div>
   </div>
-  <!-- WELCOME -->
-
-<!-- PERKEMBANGAN TO -->
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><i class="ico-stats-up"></i> Grafik Perkembangan Tryout</h3> 
-
-      <div class="panel-toolbar text-right">
-        <div class="col-sm-4 mt5"></div>
-        <div class="col-sm-8 mt1">
-         <select class="form-control tryout_select" name="tryout_select">
-          <option value="">-- Cari Berdasarkan Tryout --</option>
-        </select>
-      </div>
-    </div>
-
-  </div>
-  <div class="panel-body">
-    <div class="panel-body pt0" id="resizeble" style="height:430px">
-      <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
-    </div>       
-  </div>
-</div>
-</div>
-<!-- PERKEMBANGAN TO -->
-
-
-<!-- PERKEMBANGAN LATIHAN -->
-
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><i class="ico-stats-up">  </i> Grafik Perkembangan Latihan</h3> 
-
-      <div class="panel-toolbar text-right">
-        <div class="col-sm-4 mt5"></div>
-        <div class="col-sm-8 mt1">
-         <select class="form-control bab_select" name="bab_select">
-          <option value="">-- Cari Berdasarkan Bab --</option>
-        </select>
-      </div>
-    </div>
-
-  </div>
-  <div class="panel-body">
-    <div class="panel-body pt0" id="resizeble2" style="height:430px">
-      <div class="container" id="chartContainer2" style="width:100%">
-
-      </div>
-      </div       
-    </div>
-  </div>
-</div>
-</div>
-<!-- PERKEMBANGAN LATIHAN -->
-
-<!-- LAPORAN SEMUA PAKET TRYOUT -->
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><i class="ico-book">  </i> Laporan Semua Paket Tryout</h3> 
-    </div>
-    <div class="panel-body">
-      <table class="rpaket table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-
-            <th>no</th>
-            <th>Nama Paket</th>
-            <th>Jumlah Soal</th>
-            <th>Benar</th>
-            <th>Salah</th>
-            <th>Kosong</th>
-            <th>Nilai</th>
-            <th>Waktu Mengerjakan</th>
-            <th>Aksi</th>
-
-          </tr>
-        </thead>
-
-        <tbody>
-
-        </tbody>
-      </table>
-
-
-    </div>
-  </div>
-</div>
-<!-- LAPORAN SEMUA PAKET TRYOUT -->
-
-<!-- LAPORAN SEMUA LATIHAN -->
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><i class="ico-book">  </i> Laporan Semua Latihan</h3> 
-    </div>
-    <div class="panel-body">
-      <table class="rlatihan table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-
-
-            <th>no</th>
-            <th>Nama Latihan</th>
-            <th>Jumlah Soal</th>
-            <th>Benar</th>
-            <th>Salah</th>
-            <th>Kosong</th>
-            <th>Nilai</th>
-            <th>Waktu Mengerjakan</th>
-            <!-- <th>Aksi</th>  -->
-          </tr>
-        </thead>
-
-        <tbody>
-
-        </tbody>
-      </table>
-
-
-    </div>
-  </div>
-</div>
-<!-- LAPORAN SEMUA LATIHAN -->
-
-<!-- LAPORAN SEMUA LEARNING LINE -->
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Laporan Semua Learning Line</h3> 
-    </div>
-    <div class="panel-body">
-      <table class="rline_log table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-            <th>no</th>
-            <th>Topik</th>
-            <th>Jenis Step</th>
-            <th>Status</th>
-            <th>Jumlah Soal</th>
-            <th>Nama Step</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-        </tbody>
-      </table>
-
-
-    </div>
-  </div>
-</div>
-<!-- LAPORAN SEMUA LEARNING LINE -->
-
-<!-- DAFTAR KONSULTASI -->
-<div class="col-md-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Daftar Konsultasi</h3> 
-    </div>
-    <div class="panel-body">
-      <table class="rkonstultasi table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-            <th>no</th>
-            <th>Judul</th>
-            <th>Isi Pertanyaan</th>
-            <th>Tanggal Dibuat</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-        </tbody>
-      </table>
-
-
-    </div>
-  </div>
-</div>
-<!-- DAFTAR KONSULTASI -->
-
-
-<!-- PRODRESS LEARNING LINE -->
-<!-- Browser Breakpoint -->
-<div class="col-lg-12">
-  <!-- START panel -->
-  <div class="panel panel-default">
-    <!-- panel heading/header -->
-    <div class="panel-heading">
-      <h3 class="panel-title ellipsis"><i class="ico-files mr5"></i>Progress learning Line</h3>
-      <!-- panel toolbar -->
-      <div class="panel-toolbar text-right">
-        <!-- option -->
-        <div class="option">
-          <button class="btn up" data-toggle="panelcollapse"><i class="arrow"></i></button>
-          <button class="btn" data-toggle="panelremove" data-parent=".col-md-12"><i class="remove"></i></button>
-        </div>
-        <!--/ option -->
-      </div>
-      <!--/ panel toolbar -->
-    </div>
-    <!--/ panel heading/header -->
-    <!-- panel body with collapse capabale -->
-    <div class="table-responsive panel-collapse pull out">
-      <table class="table rpersentase" style="font-size: 13px" width=100%>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama topik</th>
-            <th>Dikerjakan</th>
-            <th>Jumlah Step</th>
-            <th>Belum Dikerjakan</th>
-            <th>Progress</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-      </table>
-    </div>
-    <!--/ panel body with collapse capabale -->
-  </div>
-  <!--/ END panel -->
-</div>
-<!-- Browser Breakpoint -->
-<!-- PRODRESS LEARNING LINE -->
-
-
-
-</div>
+</section>
 
 <!--datatable-->
 <script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables.min.js') ?>"></script>

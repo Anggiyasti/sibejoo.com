@@ -19,16 +19,16 @@
       <div class="container">
         <div class="row">
         <div class="col-sm-12 col-md-3">
-        
-          
-        
             <div class="sidebar sidebar-left mt-sm-30">
               <div class="widget">
                 <h5 class="widget-title line-bottom">Artikel Lain</h5>
                 <div class="latest-posts">
                 <?php foreach ($listheroo as $key): ?>
                   <article class="post media-post clearfix pb-0 mb-10">
-                    <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt=""></a>
+                    <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)">
+                      <img src="http://placehold.it/75x75" style="height: 75px; width: 75px;" alt="">
+                      <!-- <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt=""> -->
+                    </a>
                     <div class="post-right">
                       <h5 class="post-title mt-0"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><b><?=$key['judul_art_katagori'] ?></b></a></h5>
                       <p><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 20) ?>...</p>
@@ -44,7 +44,7 @@
           </div>
           
 
-      <div class="container mt-30 mb-30 pt-30 pb-30">
+      <div class="container mb-30 pb-30">
 
         <div class="row">
           <div class="col-md-9">

@@ -20,6 +20,7 @@
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-144x144.png')?>" rel="apple-touch-icon" sizes="144x144">
   <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
   <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+  <link rel="stylesheet" href="<?= base_url('assets/stylesheet/uielement.min.css') ?>">
 
 
   <!-- Stylesheet -->

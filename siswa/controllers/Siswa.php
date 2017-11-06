@@ -63,7 +63,7 @@ class Siswa extends MX_Controller {
                 $bio = $data['siswa']['biografi'];
             }
             $data = array(
-                'judul_halaman' => 'Neon - Dashboard Siswa',
+                'judul_halaman' => 'Sibejoo - Dashboard Siswa',
                 'judul_header' =>'Dashboard Siswa',
                 'judul_header2' =>'Dashboard Siswa',
                 'namaDepan' => $data['siswa']['namaDepan'],
@@ -73,20 +73,25 @@ class Siswa extends MX_Controller {
                 'biografi' => $bio,
                 'namaSekolah' => $data['siswa']['namaSekolah'],
                 'alamatSekolah'  =>$data['siswa']['alamatSekolah'],
-                'photo'=>base_url().'assets/image/photo/siswa/'.$data['siswa']['photo'],
+                'photo'=>$data['siswa']['photo'],
                 'sisa'=>$this->session->userdata('sisa_token'),
                 'jumlah_paket' =>$this->mtryout->get_jumlah_report_paket(),
                 'jumlah_latihan' =>count($this->mtryout->get_report_latihan()),
                 'jumlah_line'=>count($this->learning_model->get_line_log_step_line_by_user())
                 );
 
-            $data['files'] = array( 
+            // $data['files'] = array( 
+            //     APPPATH.'modules/siswa/views/t-profile-siswa.php',
+            //     );
+            $data['files'] = array(
+                APPPATH.'modules/homepage/views/r-header-login.php',
                 APPPATH.'modules/siswa/views/t-profile-siswa.php',
+                APPPATH.'modules/templating/views/r-footer.php'
                 );
             $data['count_laporan'] = $this->msiswa->get_count();
             $data['datLapor'] = $this->msiswa->get_daftar_pesan();
 
-            $this->parser->parse( 'templating/index-d-siswa', $data );
+            $this->parser->parse( 'templating/r-index', $data );
         }else{
             redirect('login');
         }        
@@ -872,9 +877,9 @@ function async_persentase_learning($data="belakang"){
             $test = $list_item['jumlah_step'] - $list_item['stepDone'];
             $row[] = $test;
             $step =  $list_item['stepDone'] / $list_item['jumlah_step']  * 100;
-
+            $a=10;
             $row[] = "<div class='progress' title='Progress :". (int)$step. "%'>
-            <div class='progress-bar progress-bar-success' style='width: ". $step."%'>
+            <div class='progress-bar progress-bar-success' style='width: ".(int)$step."%'>
                 <span class='sr-only'>10% Complete (success)</span>
             </div>
         </div>";

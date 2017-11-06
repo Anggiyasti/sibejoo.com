@@ -27,7 +27,7 @@
                       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <a class="modal-on" data-todo='<?=json_encode($paket)?>'></a>
-                      <a class="col-sm-12 btn btn-colored btn-theme-colored btn-lg font-13 mt-30" onclick="kerjakan()">Mulai Try Out</a> <br>
+                      <a class="col-sm-12 btn btn-colored btn-theme-colored btn-lg font-13 mt-30" onclick="konfirmasi_to()">Mulai Try Out</a> <br>
                       <div class="clearfix"></div>
                     </div>
                   </article>
@@ -42,6 +42,27 @@
     </section> 
 
 <script type="text/javascript">
+  function konfirmasi_to() {
+    swal({
+      title: "Apakah anda yakin akan mengerjakan Try Out?",
+      text: "Anda  tidak dapat kembali",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Ya, Saya Yakin!",
+      cancelButtonText: "Tidak!",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+        kerjakan();
+      } else {
+        swal("Cancelled", "Try Out dibatalkan", "error");
+      }
+    });
+  }
+
   function kerjakan(){
     var kelas = ".modal-on";
     var data_to = $(kelas).data('todo');

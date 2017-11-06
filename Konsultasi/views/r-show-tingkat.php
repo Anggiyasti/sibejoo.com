@@ -85,7 +85,7 @@ function load_matapelajaran(tingkatID){
     data: tingkatID.tingkat_id,
     url: "<?php echo base_url() ?>index.php/videoback/getPelajaran/" + tingkatID,
     success: function (data) {
-      $('#mapelSelect').html('<option value="">Pilih Mata Pelajaran</option>');
+      $('#mapelSelect').html('<option value="">Semua Mata Pelajaran</option>');
       $.each(data, function (i, data) {
         $('#mapelSelect').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
       });

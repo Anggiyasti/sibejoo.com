@@ -58,6 +58,20 @@ class Pesan extends MX_Controller {
         $this->Mpesan->hapus_pesan($idpesan);
     }
 
+    public function unavailable()
+    {
+        $data['judul_halaman'] = "Pengelolaan Pesan";
+        $data['files'] = array( 
+        // APPPATH.'modules/homepage/views/r-header-login.php',
+        APPPATH.'modules/pesan/views/v-soc.php',
+        );
+        // $data['files'] = array(
+        //     APPPATH . 'modules/pesan/views/v-soc.php',
+        // );
+
+        $this->parser->parse('templating/r-index', $data);
+    }
+
 }
 
 ?>

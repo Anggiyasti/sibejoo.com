@@ -743,7 +743,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
     <div class="section-content">
       <div class="row multi-row-clearfix">
         <div class="owl-carousel-4col" data-dots="true" >
-          <?php foreach ($teams as $team): ?>
+          <!-- <?php foreach ($teams as $team): ?>
             <?php $link =base_url('/assets/image/team/'.strtolower($team['foto'])); ?>
             <div class="team maxwidth400">
               <div class="thumb"><img class="img-fullwidth" src="<?=$link ?>" alt=""></div>
@@ -758,7 +758,122 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 </ul>
               </div>
             </div>
-          <?php endforeach ?>
+          <?php endforeach ?> -->
+
+          <!-- ini buat dilokal aja, request by andri roll -->
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_5.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Andri Nurul Akbar - <small>Mobile Developer</small></h4>
+                <p class="mb-20">Katakanlah sekarang
+                  Bahwa kau tak bahagia
+                  Aku punya ragamu
+                  Tapi tidak hatimu..
+
+                  Kau tak perlu berbohong
+                  Kau masih menginginkannya
+                  Ku rela kau dengannya
+                  Asalkan kau bahagia.</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_2.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Anggiyasti Yaktining Putri - <small>Web Developer</small></h4>
+                <p class="mb-20">maklumi teman hadapi perbedaan
+                  persahabatan bagai kepompong
+                  na na na na na...</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_4.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Aziz Firmansyah - <small>Web Developer</small></h4>
+                <p class="mb-20">Terserah kali ini
+                Sungguh aku tak ‘kan perduli
+                Ku tak sanggup lagi
+                Jalani cinta denganmu
+                Biarkan ku sendiri
+                Tanpa bayang-bayangmu lagi.</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_6.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Bagus Aditia - <small>Web Developer</small></h4>
+                <p class="mb-20">Jujurlah padaku bila kau tak lagi cinta
+                  Tinggalkan aku
+                  Bila tak mungkin bersama
+                  Jauhi diriku lupakanlah aku
+                  O... Ho... O... Ho....</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_3.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Nur Sofia Malikhah - <small>Web Developer</small></h4>
+                <p class="mb-20">Sampai kapan kau gantung
+                Cerita cintaku memberi harapan
+                Hingga mungkin ku tak sanggup lagi
+                Dan meninggalkan dirimu.</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="team maxwidth400">
+              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_1.jpg" alt=""></div>
+              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
+                <h4 class="name mt-0 text-theme-color-2">Opik Sutisna Putra - <small>Web Developer</small></h4>
+                <p class="mb-20">aku jarang dicocol
+                  aku jarang dicocol
+                  katanya abang sayang, owow
+
+                  katanya abang cinta
+
+                  kini abang t’lah pergi
+                  tinggalkanku sendiri
+                  aku tak dicocol lagi
+                  aku tak dijamah lagi
+
+                  (cocol ah, cocol ah, cocol keperawananku).</p>
+              </div>
+              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          <!-- akhir team lokal -->
+
         </div>
       </div>
     </div>

@@ -125,8 +125,15 @@ class Token extends MX_Controller {
 
 	function settoken(){
 		$token = $this->session->userdata('token');
+		$info_item = $this->token_model->info_token();
+		// foreach ($info as $info_item) {
+			$date1 = new DateTime($info_item->tanggal_diaktifkan);
+			$date_diaktifkan = $date1->format('d-M-Y');
+			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$info_item->masaAktif));
+		// }
 		if ($token=='Aktif') {
-			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$this->session->userdata('sisa_token')." Hari<br> Tambah token ?";
+			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$this->session->userdata('sisa_token')." Hari.<br> 
+						<span>Aktif hingga tanggal ".$date_kadaluarsa.".</span><br> Tambah token ?";
 		}else{
 			if ($token=='non-aktif') {
 				$pesan = "<span>Maaf Token belum aktif,</span><br> silahkan aktifkan dengan cara memasukan nomor token yang sudah dikirim admin";
@@ -140,7 +147,7 @@ class Token extends MX_Controller {
 
 		
 		$data = array(
-			'judul_halaman' => 'sibejoo - Halaman Token',
+			'judul_halaman' => 'Sibejoo - Halaman Token',
 			'judul_header' =>'Welcome',
 			'judul_header2' =>'Video Belajar',
 			'pesan'=>$pesan
