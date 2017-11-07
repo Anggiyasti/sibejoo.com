@@ -120,10 +120,10 @@
                      
                       <div class="tags">
                       <p class="mb-0"> 
-                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
-                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
-                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
-                      <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$namaTopik;?></a>  
+                      <a ><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
+                      <a ><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
+                      <a ><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
+                      <a ><i class="fa fa-tags text-theme-color-2"></i><?=$namaTopik;?></a>  
                       </p>
                     </div>
 
