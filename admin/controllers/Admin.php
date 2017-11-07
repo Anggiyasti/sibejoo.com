@@ -540,12 +540,8 @@ function rubahsubbabMP() {
 
 
 function hapussubbabMP() {
-    $nmmp = htmlspecialchars($this->input->post('nmmp'));
-    $jdlbab = htmlspecialchars($this->input->post('jdlbab'));
-    $id = htmlspecialchars($this->input->post('idsubBab'));
-
-    $data['babID'] = htmlspecialchars($this->input->post('idbab'));
-    $this->mmatapelajaran->hapussubbabMP($id, $data);
+    $id = htmlspecialchars($this->input->post('id'));
+    $this->mmatapelajaran->hapussubbabMP($id);
     echo json_encode(array("status" => TRUE));
 }
 

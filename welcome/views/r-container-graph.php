@@ -340,7 +340,7 @@
          <center>
           <?php if ($item['link']=='' || $item['link']==' '): ?>
             <!-- <img src="<?=$url_thumbnail?>"> -->
-            <video width="250" controls controlsList="nodownload">
+            <video width="250" height="170" controls controlsList="nodownload">
                 <source src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>" type="video/mp4" >
             </video> 
           <?php endif ?>
@@ -369,8 +369,9 @@
 
 
 
-
-
+<script src="<?=base_url()?>assets/plugins/highcharts/highcharts.js"></script>
+<script src="<?=base_url()?>assets/plugins/highcharts/data.js"></script>
+<script src="<?=base_url()?>assets/plugins/highcharts/drilldown.js"></script>
 <script src="<?= base_url('assets/back/plugins/canvasjs.min.js') ?>"></script>
 <script>
   $(document).ready(function(){
@@ -423,34 +424,78 @@ dataTableReportPaket = $('.rpaket').DataTable({
 
   $.getJSON(base_url+"tryout/report_to", function(data) {
    load_grafik(data);
+   console.log('hello');
  });
 
   function load_grafik(data){
-   var chart = new CanvasJS.Chart("chartContainer", {
-    //   title:{
-    //     text:"Grafik Perkembangan Paket Tryout"        
-    // },
-    theme: "theme1",
-    animationEnabled: true,
-    axisX:{
-     interval: 1,
-     gridThickness: 0,
-     labelFontSize: 10,
-     labelFontStyle: "normal",
-     labelFontWeight: "normal",
-     labelFontFamily: "Lucida Sans Unicode"
-   },
-   data: [
-   {     
-     type: "column",
-     name: "companies",
-     axisYType: "secondary",   
-     dataPoints: data
-   }
+    // Create the chart
+    Highcharts.chart('chartContainer', {
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Grafik Try Out'
+      },
+      subtitle: {
+          text: 'Source: Raport Online Sibejoo'
+      },
+      xAxis: {
+          type: 'category'
+      },
+      yAxis: {
+          title: {
+              text: 'Total percent try out'
+          }
 
-   ]
- });
-   chart.render();
+      },
+      legend: {
+          enabled: false
+      },
+      plotOptions: {
+          series: {
+              borderWidth: 0,
+              dataLabels: {
+                  enabled: true,
+                  format: '{point.y:.1f}%'
+              }
+          }
+      },
+
+      tooltip: {
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+      },
+
+      series: [{
+          name: 'Brands',
+          colorByPoint: true,
+          colorByPoint: true,
+          data: [
+                  data[0],
+                  data[1],
+                  data[2],
+                  data[3],
+                  data[4],
+                  data[5],
+              ]
+      }],
+      drilldown: {
+          series: [{
+              name: 'Raport',
+              id: 'Microsoft Internet Explorer',
+              data: [
+                  data[0],
+                  data[1],
+                  data[2],
+                  data[3],
+                  data[4],
+                  data[5],
+              ]
+          }, {
+              
+          }]
+      }
+  });
  }
 </script>
 <!-- FILTER PENCARIAN TO -->

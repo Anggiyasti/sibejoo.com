@@ -369,7 +369,7 @@ class Tryout extends MX_Controller {
         $array = [];
         foreach ($list as $item ) {
 
-            $tempt = ['label'=>$item['nm_tryout'],'y'=> (int)number_format($item['nilai'],1)];
+            $tempt = ['name'=>$item['nm_tryout'],'y'=> (int)number_format($item['nilai'],1),'drilldown'=>$item['nm_tryout']];
             $array[] = $tempt;
         }
       echo json_encode($array);

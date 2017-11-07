@@ -394,7 +394,7 @@ public function get_laporan_to(){
             $id = $this->session->userdata('USERNAME');  
         } 
 
-    $query = "SELECT t.`nm_tryout` 
+    $query = "SELECT t.`m_tryout` 
     
     ,SUM(report_paket.jmlh_benar) AS jumlah_benar
     ,SUM(report_paket.jmlh_salah) AS jumlah_salah
