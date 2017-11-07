@@ -14,7 +14,7 @@ class Video extends MX_Controller {
         
         $data['files'] = array( 
             APPPATH.'modules/homepage/views/r-header-login.php',
-            APPPATH.'modules/welcome/views/v-welcome.php',
+            APPPATH.'modules/video/views/r-video.php',
             // APPPATH.'modules/welcome/views/v-tampil-tes.php',
             APPPATH.'modules/testimoni/views/r-footer.php',
             );
