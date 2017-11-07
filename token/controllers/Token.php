@@ -126,11 +126,14 @@ class Token extends MX_Controller {
 	function settoken(){
 		$token = $this->session->userdata('token');
 		$info_item = $this->token_model->info_token();
+		// pengecekan jika hasil return null
+		if ($info_item != null) {
 		// foreach ($info as $info_item) {
 			$date1 = new DateTime($info_item->tanggal_diaktifkan);
 			$date_diaktifkan = $date1->format('d-M-Y');
 			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$info_item->masaAktif));
 		// }
+		}
 		if ($token=='Aktif') {
 			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$this->session->userdata('sisa_token')." Hari.<br> 
 						<span>Aktif hingga tanggal ".$date_kadaluarsa.".</span><br> Tambah token ?";
@@ -161,6 +164,7 @@ class Token extends MX_Controller {
 
 		$this->parser->parse( 'templating/r-index', $data );
 	}
+
 
 	function drop_token(){
 		if ($this->input->post()) {

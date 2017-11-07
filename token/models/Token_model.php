@@ -196,7 +196,6 @@ class Token_model extends CI_Model{
 	}
 	//get mahasiswa yang belum memiliki voucher
 	function get_siswa_unvoucher($number,$offset,$keySearchSiswa){
-
 		$this->db->select('*');
 		if ($keySearchSiswa!='' && $keySearchSiswa!=' ') {
 			$this->db->like('namaDepan',$keySearchSiswa);
@@ -204,7 +203,6 @@ class Token_model extends CI_Model{
 			$this->db->or_like('nama_lengkap',$keySearchSiswa);
 			$this->db->or_like('namaPengguna',$keySearchSiswa);
 		}
-		
 		return $query = $this->db->get('view_siswa_unvoucher',$number,$offset)->result_array(); 
 	}
 	function jumlah_siswa_unvoucher(){
@@ -226,7 +224,13 @@ class Token_model extends CI_Model{
 		$this->db->join('tb_siswa siswa', 'token.siswaID=siswa.id');
 		$this->db->where('siswa.penggunaID', $id_pengguna);
 		$query = $this->db->get(); 
-		return $query->result()[0];
+		if($query->num_rows() > 0){
+   		return $query->result()[0];
+		} else {
+		   return null;
+		}
+
+	
 	}
 
 
