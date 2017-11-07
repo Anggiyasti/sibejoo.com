@@ -122,10 +122,10 @@
                     </div>
                     <br>
                     <div class="tags-post">
-                        <a href="#" rel="tag"><?=$tingkat;?></a>
-                        <a href="#" rel="tag"><?=$mapel;?></a>
-                        <a href="#" rel="tag"><?=$bab;?></a>
-                        <a href="#" rel="tag"><?=$namaTopik;?> </a>
+                        <a rel="tag"><?=$tingkat;?></a>
+                        <a rel="tag"><?=$mapel;?></a>
+                        <a rel="tag"><?=$bab;?></a>
+                        <a rel="tag"><?=$namaTopik;?> </a>
                     </div>
                 </article>
 

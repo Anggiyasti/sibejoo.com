@@ -479,6 +479,7 @@ public function step_quiz($UUID)
 
 }
 
+
     // Cek jawaban quiz
 public function cekJawaban() {
   $data = $this->input->post('pil');
@@ -501,7 +502,7 @@ public function cekJawaban() {
       $kosong++;
       $koreksi[] = $result[$i]['soalid'];
       $idSalah[] = $i;
-    } else if ($data[$id] == $result[$i]['jawaban']) {
+    } else if ($data[$id][0] == $result[$i]['jawaban']) {
       $benar++;
     } else {
       $salah++;
@@ -527,7 +528,6 @@ public function cekJawaban() {
     $data['hasil'] = "Selamat Anda Gagal, Silahkan Coba Lagi";
   }
 
-         // redirect('/linetopik/timeLine/'.$UUID);
   $this->laporanQuiz($data);
 }
 

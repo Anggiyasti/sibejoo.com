@@ -86,7 +86,7 @@
                  <!--    <div class="post-thumb thumb"> <img src="http://placehold.it/1920x1280" alt="" class="img-responsive img-fullwidth"> </div> -->
                </div>  
                <div class="entry-title pt-10 pl-15">
-                <h4><a class="text-uppercase" href="#"> <?= $datMateri['judulMateri']; ?> </a></h4>
+                <h4><a class="text-uppercase"> <?= $datMateri['judulMateri']; ?> </a></h4>
               </div>
               <div class="entry-meta pl-15">
                 <ul class="list-inline">
@@ -107,10 +107,10 @@
                     <h5 class="pull-left mt-10 mr-20 text-theme-color-2"></h5>
                     <div class="tags">
                       <p class="mb-0"> 
-                        <a href="#"><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
-                        <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
-                        <a href="#"><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
-                        <a href="#"><i class="fa fa-tags text-theme-color-2"></i>Topik : <?=$topik;?></a>  
+                        <a ><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
+                        <a ><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
+                        <a ><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
+                        <a ><i class="fa fa-tags text-theme-color-2"></i>Topik : <?=$topik;?></a>  
                       </p>
                     </div>
                   </div>
