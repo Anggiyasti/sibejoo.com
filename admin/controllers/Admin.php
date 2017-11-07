@@ -463,11 +463,9 @@ function rubahbabMP() {
 
 
 function hapusbabMP() {
-    $nmmp = htmlspecialchars($this->input->post('nmmp'));
     $id = htmlspecialchars($this->input->post('id'));
-    $data['tingkatPelajaranID'] = htmlspecialchars($this->input->post('idtmp'));
 
-    $this->mmatapelajaran->hapusbabMP($id, $data);
+    $this->mmatapelajaran->hapusbabMP($id);
     echo json_encode(array("status" => TRUE));
 }
 function ajax_get_subbab($id_sub_bab){

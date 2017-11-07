@@ -23,6 +23,7 @@
               <?php 
               if ($data==array()) : ?>
               <h5 class="text-center">Not Found.</h5>
+              <?php else: ?>
               <?php foreach ($data as $key): ?>
                 <div class="col-sm-6 col-md-4">
                   <div class="service-block bg-white">

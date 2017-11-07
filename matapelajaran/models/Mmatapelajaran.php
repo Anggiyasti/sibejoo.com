@@ -225,7 +225,7 @@ class Mmatapelajaran extends CI_Model {
     }
 
 
-    function hapusbabMP($id, $data) {
+    function hapusbabMP($id) {
         $this->db->set('status', 0);
         $this->db->where('id', $id);
         $this->db->update('tb_bab');
@@ -271,7 +271,7 @@ class Mmatapelajaran extends CI_Model {
 
 
 
-    function hapussubbabMP($id, $data) {
+    function hapussubbabMP($id) {
         $this->db->set('status', 0);
         $this->db->where('id', $id);
         $this->db->update('tb_subbab');
