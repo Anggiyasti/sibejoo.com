@@ -11,7 +11,7 @@ class Konsultasi extends MX_Controller{
     $this->load->model('guru/mguru');
 
     $this->load->library('Ajax_pagination');
-    $this->perPage = 1;
+    $this->perPage = 10;
 
     $this->load->model('tryout/mtryout');
     $this->load->model('tingkat/mtingkat');

@@ -1,4 +1,4 @@
-<!-- Start pengecekan jika pilihan 5 atau 4 pilihan -->
+Start pengecekan jika pilihan 5 atau 4 pilihan -->
 <?php 
 
 if (!isset($piljawaban['0']['id_pilihan'])) {
@@ -1078,7 +1078,7 @@ true">
                     <?php endif ?>
 
                    <!-- <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls > -->
-                   </video>
+                   <!-- </video> -->
                  </div>
                  <div class="col-md-5 left"> 
                   <h6>Name: <span id="filename"></span></h6> 
@@ -2219,4 +2219,4 @@ function ValidateInputVideo(oInput) {
     </script> -->
     <!-- ## PROGRES BAR -->
   </section>
-  <!-- END Template Main -->
+  <!-- END Template Main
