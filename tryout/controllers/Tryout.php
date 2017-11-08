@@ -44,7 +44,7 @@ class Tryout extends MX_Controller {
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-login.php',
             APPPATH . $konten,
-            APPPATH . 'modules/templating/views/r-footer.php',
+            APPPATH . 'modules/testimoni/views/r-footer.php',
             
             );
         if ($this->session->userdata('HAKAKSES')=='ortu') {
@@ -120,7 +120,7 @@ class Tryout extends MX_Controller {
             $data['files'] = array(
                 APPPATH . 'modules/homepage/views/r-header-login.php',
                 APPPATH . $konten,
-                APPPATH . 'modules/templating/views/r-footer.php',
+                APPPATH . 'modules/testimoni/views/r-footer.php',
                 );
             // DAFTAR PAKET
             $data['paket_dikerjakan'] = $this->Mtryout->get_paket_reported($datas);

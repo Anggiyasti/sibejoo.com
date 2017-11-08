@@ -66,7 +66,7 @@
 				                    <div class="input-group">
 				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
 				                      <span class="input-group-btn">
-				                      <a href="#" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
+				                      <a onclick="ajax_konsul_all()" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
 				                    </div>
 				                  </form>
@@ -136,7 +136,6 @@
           	page: page_num,
           link:'ajax_konsul_all'};
     }
-
       $.ajax({
           type: 'POST',
           url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
@@ -188,7 +187,39 @@
       });
 
   }
+    // redirect ke single konsultasi
+  function single_konsul(pertanyaanID) {
+    url_ajax = base_url+"konsultasi/tamp_single";
 
+    var global_properties = {
+      pertanyaanID: pertanyaanID
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "konsultasi/singlekonsultasi";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
+
+  window.onload = function() {
+      page_num=0;
+      ajax_konsul_all(page_num);
+
+      $("#search1").keydown(function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            // ajax_konsul_all(page_num);
+        }
+      });
+  }
 	// $('.cari-btn').click(function(){
 	// 	var mapel;
 	// 	var bab;
@@ -246,32 +277,7 @@
 	// 	}
 	// });
 
-	// redirect ke single konsultasi
-  function single_konsul(pertanyaanID) {
-    url_ajax = base_url+"konsultasi/tamp_single";
 
-    var global_properties = {
-      pertanyaanID: pertanyaanID
-    };
-
-    $.ajax({
-      type: "POST",
-      dataType: "JSON",
-      url: url_ajax,
-      data: global_properties,
-      success: function(data){
-        window.location.href = base_url + "konsultasi/singlekonsultasi";  
-      },error:function(data){
-        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
-      }
-
-    });
-  }
-
-  window.onload = function() {
-      page_num=0;
-      ajax_konsul_all(page_num);
-  }
 
   // // fungsi filter pertanyaan onchange
   // function filter_pertanyaan(page_num) {

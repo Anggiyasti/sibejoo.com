@@ -11,7 +11,7 @@ class Konsultasi extends MX_Controller{
     $this->load->model('guru/mguru');
 
     $this->load->library('Ajax_pagination');
-    $this->perPage = 10;
+    $this->perPage = 1;
 
     $this->load->model('tryout/mtryout');
     $this->load->model('tingkat/mtingkat');
@@ -1409,7 +1409,7 @@ function get_last_jawaban(){
     // jika ada yag difilter
     if ($id_tingpel!=0) {
       //total rows count
-      $totalRec = $this->mkonsultasi->get_all_questions_number_filter($id_bab, $id_tingpel);
+      $totalRec = $this->mkonsultasi->get_all_questions_number_filter($id_bab, $id_tingpel,$key);
     } else {
       //total rows count
       $totalRec = $this->mkonsultasi->get_all_questions_number($key);
@@ -1439,12 +1439,11 @@ function get_last_jawaban(){
 
     // jika ada yang difilter
     if ($id_tingpel!=0) {
-      $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($id_bab, $id_tingpel,$config["per_page"],$page);
+      $data['my_questions']=$this->mkonsultasi->get_all_questions_filter($id_bab, $id_tingpel,$config["per_page"],$page,$key);
     } else {
     // get data pertanyaan saya.
       $data['my_questions']=$this->mkonsultasi->get_all_questions($config["per_page"], $page,$key);
     }    
-
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
@@ -1464,7 +1463,7 @@ function get_last_jawaban(){
     // jika ada yang difilter
     if ($id_tingpel!=0) {
       //total rows count
-      $totalRec = $this->mkonsultasi->get_my_questions_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab);
+      $totalRec = $this->mkonsultasi->get_my_questions_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab,$key);
     } else {
       //total rows count
       $totalRec = $this->mkonsultasi->get_my_questions_number($this->get_id_siswa(),$key);
@@ -1501,7 +1500,7 @@ function get_last_jawaban(){
     // jika ada yang difilter
     if ($id_tingpel!=0) {
       // get data pertanyaan saya.
-      $data['my_questions']=$this->mkonsultasi->get_my_questions_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel);
+      $data['my_questions']=$this->mkonsultasi->get_my_questions_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel,$key);
     } else {
     // get data pertanyaan saya.
       $data['my_questions']=$this->mkonsultasi->get_my_questions($this->get_id_siswa(),$config["per_page"], $page,$key);
@@ -1527,7 +1526,7 @@ function get_last_jawaban(){
     // jika ada yang difilter
     if ($id_tingpel!=0) {
       //total rows count
-      $totalRec = $this->mkonsultasi->get_my_question_level_number_filter($this->get_tingkat_for_konsultasi_array(), $id_tingpel, $id_bab);
+      $totalRec = $this->mkonsultasi->get_my_question_level_number_filter($this->get_tingkat_for_konsultasi_array(), $id_tingpel, $id_bab,$key);
     } else {
       //total rows count
       $totalRec = $this->mkonsultasi->get_my_question_level_number($this->get_tingkat_for_konsultasi_array(),$key);
@@ -1564,7 +1563,7 @@ function get_last_jawaban(){
      // jika ada yang difilter
     if ($id_tingpel!=0) {
       // get data pertanyaan grade.
-      $data['my_questions']=$this->mkonsultasi->get_my_question_level_filter($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page, $id_bab, $id_tingpel);
+      $data['my_questions']=$this->mkonsultasi->get_my_question_level_filter($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page, $id_bab, $id_tingpel,$key);
     } else {
     // get data pertanyaan grade.
       $data['my_questions']=$this->mkonsultasi->get_my_question_level($this->get_tingkat_for_konsultasi_array(),$config["per_page"], $page,$key);
@@ -1589,7 +1588,7 @@ function get_last_jawaban(){
     // jika ada yang difilter
     if ($id_tingpel!=0) {
       //total rows count
-      $totalRec = $this->mkonsultasi->get_question_mentor_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab);
+      $totalRec = $this->mkonsultasi->get_question_mentor_number_filter($this->get_id_siswa(), $id_tingpel, $id_bab,$key);
     } else {
       //total rows count
       $totalRec = $this->mkonsultasi->get_question_mentor_number($this->get_id_siswa(),$key);
@@ -1627,7 +1626,7 @@ function get_last_jawaban(){
      // jika ada yang difilter
     if ($id_tingpel!=0) {
       // get data pertanyaan mentor.
-      $data['my_questions']=$this->mkonsultasi->get_question_m_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel);
+      $data['my_questions']=$this->mkonsultasi->get_question_m_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel,$key);
     } else {
     // get data pertanyaan mentor.
       $data['my_questions']=$this->mkonsultasi->get_question_m($this->get_id_siswa(),$config["per_page"], $page,$key);
