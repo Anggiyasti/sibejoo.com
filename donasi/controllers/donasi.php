@@ -22,6 +22,7 @@ class Donasi extends Crud_groceries
 }
 function get_info_donasi(){
     $data['status'] = $this->load->m_donasi->get_id_donasi();
+
     if ($data['status']==false) {
         $respon = ['status'=>0];
         echo json_encode($respon);
@@ -50,7 +51,7 @@ function get_info_donasi(){
     </ul>
     <p>'.$deskripsi.'</p>
 </div>';
-$respon = ['status'=>1,'message'=>$string_konten,'id_donasi'=>$data['status']['id']];
+$respon = ['status'=>1,'message'=>$string_konten,'id_donasi'=>$data['status']['id'],'status_donasi'=>$data['status']['status']];
 echo json_encode($respon);
 }
 

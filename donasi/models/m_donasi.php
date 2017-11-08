@@ -24,8 +24,9 @@ class M_donasi extends CI_Model
         $this->db->select('*');
         $this->db->from('tb_donasi');
         $this->db->where('penggunaID',$id_pengguna);
+        $this->db->order_by("id","DESC");
         $query = $this->db->get();
-
+        // var_dump($query);
         if ($query->result_array()==array()) {
           return false;
       } else {

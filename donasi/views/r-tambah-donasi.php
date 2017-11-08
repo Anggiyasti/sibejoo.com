@@ -33,7 +33,7 @@
           </div>
 
           <div class="form-group">
-            <a onclick="simpan()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpandonasi">Daftar Donasi</a>
+            <a class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpandonasi" onclick="simpan()" >Daftar Donasi</a>
           </div>
         </form>
 
@@ -218,14 +218,20 @@
     }
 
     function load_status_donasi(){
+      $(".simpandonasi").off('click');
       $.post(base_url+"donasi/get_info_donasi", function(data, textStatus) {
         if (data.status==1) {
           console.log(data.id_donasi);
           konten_button = '<a onclick="form_aksi_konfirmasi()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpan_konfirmasi" data-loading-text="Please wait...">Simpan</a> ';
           $('.info-status-donasi').fadeIn("slow").html(data.message);
-          $("#donasi_form").attr('onclick','peringatan_sudah_donasi()');
-          $("#donasi_form a, #donasi_form select").attr('readonly',true);
+         
           $('input[name=id_donasi]').val(data.id_donasi);
+          if (data.status_donasi !=4) {
+            $("#donasi_form").attr('onclick','peringatan_sudah_donasi()');
+            $("#donasi_form a, #donasi_form select").attr('readonly',true);
+          }else{
+            $(".simpandonasi").off('click');
+          }
         }else{
           konten_button = '<span class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 " data-loading-text="Please wait..." onclick="peringatan_belum_daftar()">Konfirmasi Donasi</span>';
         }
