@@ -34,6 +34,7 @@ class Login extends MX_Controller {
     $data['files'] = array(
         APPPATH . 'modules/templating/views/r-navbar-login.php',
         APPPATH . 'modules/login/views/r-login.php',
+        // APPPATH . 'modules/login/views/r-maintenance.php',
         // APPPATH . 'modules/homepage/views/v-footer.php',
         );
 

@@ -348,7 +348,7 @@ public function modulsd() {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/edudrive/views/v-edudrive.php',
+        APPPATH.'modules/edudrive/views/v-edusd.php',
         APPPATH.'modules/testimoni/views/r-footer.php',
         );
     $data['member'] = $this->session->userdata('member');
@@ -365,7 +365,7 @@ public function modulsd() {
     }
     //pagination configuration
     $config['target']      = '#postList';
-    $config['base_url']    = base_url().'index.php/edudrive/modulsd/ajaxPaginationData';
+    $config['base_url']    = base_url().'index.php/edudrive/modulsd/ajaxPaginationDataSD';
     $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
@@ -385,7 +385,7 @@ public function modulsmp() {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/edudrive/views/v-edudrive.php',
+        APPPATH.'modules/edudrive/views/v-edusmp.php',
         APPPATH.'modules/testimoni/views/r-footer.php',
         );
 
@@ -403,7 +403,7 @@ public function modulsmp() {
     }
     //pagination configuration
     $config['target']      = '#postList';
-    $config['base_url']    = base_url().'index.php/edudrive/modulsmp/ajaxPaginationData';
+    $config['base_url']    = base_url().'index.php/edudrive/modulsmp/ajaxPaginationDataSMP';
     $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
@@ -422,7 +422,7 @@ public function modulsma() {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/edudrive/views/v-edudrive.php',
+        APPPATH.'modules/edudrive/views/v-edusma.php',
         APPPATH.'modules/testimoni/views/r-footer.php',
         );
     $data['modul'] = $this->Medudrive->modulsma();
@@ -439,7 +439,7 @@ public function modulsma() {
     }
     //pagination configuration
     $config['target']      = '#postList';
-    $config['base_url']    = base_url().'index.php/edudrive/modulsma/ajaxPaginationData';
+    $config['base_url']    = base_url().'index.php/edudrive/modulsma/ajaxPaginationDataSMA';
     $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
@@ -458,7 +458,7 @@ public function modulsmaipa() {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/edudrive/views/v-edudrive.php',
+        APPPATH.'modules/edudrive/views/v-edusmaipa.php',
         APPPATH.'modules/testimoni/views/r-footer.php',
         );
 
@@ -477,7 +477,7 @@ public function modulsmaipa() {
     }
         //pagination configuration
     $config['target']      = '#postList';
-    $config['base_url']    = base_url().'index.php/edudrive/modulsmaipa/ajaxPaginationData';
+    $config['base_url']    = base_url().'index.php/edudrive/modulsmaipa/ajaxPaginationDataSMAIPA';
     $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';
@@ -499,7 +499,7 @@ public function modulsmaips() {
 
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
-        APPPATH.'modules/edudrive/views/v-edudrive.php',
+        APPPATH.'modules/edudrive/views/v-edusmaips.php',
         APPPATH.'modules/testimoni/views/r-footer.php',
         );
 
@@ -520,7 +520,7 @@ public function modulsmaips() {
     }
     //pagination configuration
     $config['target']      = '#postList';
-    $config['base_url']    = base_url().'index.php/edudrive/modulsmaips/ajaxPaginationData';
+    $config['base_url']    = base_url().'index.php/edudrive/modulsmaips/ajaxPaginationDataSMAIPS';
     $config['total_rows']  = $jumlah_row;
     $config['per_page']    = $this->perPage;
     $config['link_func']   = 'searchFilter';

@@ -171,14 +171,14 @@ div.pagination span.disabled {
                       
                     <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/acrobat.png') ?>" width="170px">
                     </div>
-                    <div class="content text-left flip p-25 pt-0" style="height: 200px;">
+                    <div class="content text-left flip p-25 pt-0" style="height: 250px;">
                       <h4 class="border-bottom-theme-color-2-2px mb-10 text-center"><?= $post['judul']?></h4>
                       <p ><?= $post['deskripsi']?></p> 
                      
                     </div>
                     <div class="content text-left flip p-25 pt-0 text-center" >
                       
-                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" title="Download"  <?=$status_akses ?> <?=$url ?> target="_blank" style="padding:8" <?=$onclick ?>>view details</a>
+                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" title="Download"  <?=$status_akses ?> <?=$url ?> target="_blank" style="padding:8" <?=$onclick ?>>Download</a>
                     </div>
                     
                   </div>

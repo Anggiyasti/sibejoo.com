@@ -119,7 +119,7 @@
         var sortBy = $('#sortBy').val();
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url(); ?>index.php/modulonline/ajaxPaginationData/'+page_num,
+            url: '<?php echo base_url(); ?>index.php/edudrive/ajaxPaginationDataSMAIPA/'+page_num,
             data:'page='+page_num+'&keywords='+keywords+'&sortBy='+sortBy,
             beforeSend: function () {
                 $('.loading').show();
@@ -131,101 +131,107 @@
         });
     }
 </script>
-<div class="row">
-    <div class="container">
+<section>
 
-        <div class="col-md-9">
-            <h3>Modul Sekolah Menengah Atas - IPA</h3>
-            <!-- Shop -->
-            <div id="page-meta" class="group">
+     <div id="page-meta" class="group">
 
-                <div class="woocommerce-result-count">
-                    <div class="col-md-6"><form>
-                        <input type="text" id="keywords" placeholder="Masukan judul file yang dicari" onkeyup="searchFilter()" class="form-control"/>
-                    </form></div>
-                    <div class="col-md-6"> <form class="woocommerce-ordering" method="get">
-                        <select id="sortBy" onchange="searchFilter()" class="orderby form-control">
-                            <option value="">Urutkan</option>
-                            <option value="asc">Judul A-Z</option>
-                            <option value="desc">Judul Z-A</option>
-                            <option value="date_created">Terbaru</option>
-                        </select>
-                    </form></div>
+    <div class="woocommerce-result-count">
+     <div class="col-md-6"></div>
+    <div class="col-md-6"> </div>
+
+
+
+ </div>
+</div>
+      <div class="container">
+        <div class="row">
+          
+          <div id="postList">
+
+          <div class="col-md-9 blog-pull-right" >
+
+
+             <div class="row">
+              <?php if(!empty($posts)): foreach($posts as $post): ?>
+                      <?php $status_akses = ($post['statusAksesFile']==1 && $member==0) ? 'disabled' : 'enabled' ; ?>
+                      <?php $url_download =  'href="'.base_url("assets/modul/".$post['url_file']).'"' ?>
+                      <?php $url = ($post['statusAksesFile']==1 && $member==0) ? 'disabled' : $url_download; ?>
+                      <?php $onclick =  ($post['statusAksesFile']==1 && $member==0) ? 'onclick="go_token()"' : 'onclick="Approved('.$post['id'].')"';  ?>
+                <div class="col-sm-6 col-md-4">
+                  <div class="service-block bg-white">
+                      
+                    <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/acrobat.png') ?>" width="170px">
+                    </div>
+                    <div class="content text-left flip p-25 pt-0" style="height: 250px;">
+                      <h4 class="border-bottom-theme-color-2-2px mb-10 text-center"><?= $post['judul']?></h4>
+                      <p ><?= $post['deskripsi']?></p> 
+                     
+                    </div>
+                    <div class="content text-left flip p-25 pt-0 text-center" >
+                      
+                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" title="Download"  <?=$status_akses ?> <?=$url ?> target="_blank" style="padding:8" <?=$onclick ?>>Download</a>
+                    </div>
                     
-
-
+                  </div>
                 </div>
+                <?php endforeach;  ?>
+              <?php else: ?>
+
+
+                <h4 class="text-center" style="margin-top: 30px;" >Post(s) not available.</h4>
+                <?php endif; ?>
+                
+             </div>
+             <?php echo $this->ajax_pagination->create_links(); ?>
+          </div>
+          </div>
+          <div class="col-sm-12 col-md-3">
+            <div class="sidebar sidebar-left mt-sm-30">
+              
+              <div class="widget" style="margin-top: 30px;">
+                <h5 class="widget-title line-bottom" >SEARCH</h5>
+                <div class="search-form">
+                  <form>
+                    <input type="text" id="keywords" placeholder="Masukan judul file yang dicari" onkeyup="searchFilter()" class="form-control"/>
+                  </form>
+                </div>
+              </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom">KATEGORI</h5>
+                <div class="categories">
+                  <ul class="list list-border angle-double-right">
+                    <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsd') ?>">Sekolah Dasar<span> (SD) </span></a></li>
+                    <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmp') ?>">Sekolah Menengah Pertama<span> (SMP) </span></a></li>
+                    <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsma') ?>">Sekolah Menengah Atas <span> (SMA) </span></a></li>
+                    <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmaipa') ?>">Sekolah Menengah Atas - IPA</a></li>
+                    <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmaips') ?>">Sekolah Menengah Atas - IPS</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="widget">
+                <h5 class="widget-title line-bottom">DOWNLOAD TERATAS</h5>
+                <div class="latest-posts" >
+                  <?php foreach($downloads as $post){ ?>
+                  <?php $status_akses = ($post['statusAksesFile']==1 && $member==0) ? 'disabled' : 'enabled' ; ?>
+                  <?php $url_download =  'href="'.base_url("assets/modul/".$post['url_file']).'"' ?>
+                  <?php $url = ($post['statusAksesFile']==1 && $member==0) ? 'disabled' : $url_download; ?>
+                  <?php $onclick =  ($post['statusAksesFile']==1 && $member==0) ? 'onclick="go_token()"' : 'onclick="Approved('.$post['id'].')"';  ?>
+                  <article class="post media-post clearfix pb-0 mb-10">
+                    <div class="post-right" >
+                      <a title="Download" <?=$url ?> class="cws-button icon-left alt <?=$status_akses ?>" <?=$onclick ?> <?=$url ?> target="_blank" style="padding:8;"> <i class="fa fa-download btn <?=$status_akses ?>"></i></a>
+                      <?=$post['judul'] ?>
+                    </div>
+                  </article>
+                   <?php }; ?>
+                </div>
+              </div>
+            
             </div>
-
-            <div id="postList">
-                <ul class="products">
-                    <?php if(!empty($posts)): foreach($posts as $post): ?>
-                        <li class="col-sm-6">
-                            <div class="list-item">
-                                <div class="center">
-                                   <i class="fa fa-file-pdf-o fa-5x"></i>
-                               </div>
-                               <div class="product-name">
-                                <a href="#"><?= $post['judul']?></a>
-                            </div>
-                            <div class="product-description">
-                                <div class="short-description">
-                                    <p><?= $post['deskripsi']?></p>
-                                </div>
-                            </div>
-                            <a title="Download" href="<?= base_url("assets/modul/".$post['url_file'])?>" class="cws-button icon-left alt" target="_blank" style="padding:8" onclick="Approved('<?=$post['id']?>')"> <i class="fa fa-download"></i></a>
-                        </div>
-                    </li>
-                <?php endforeach; else: ?>
-                <p>Post(s) not available.</p>
-            <?php endif; ?>
-        </ul>
-        <div class="clear"></div>
-        <?php echo $this->ajax_pagination->create_links(); ?>
-    </div>
-
-
-</div>
-
-
-
-<div class="col-md-3">
-    <!-- widget search -->
-    <!-- widget categories -->
-    <aside class="widget-categories">
-        <h3>Kategori</h3>
-        <hr class="divider-big" />
-        <ul>
-            <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsd') ?>">Sekolah Dasar<span> (SD) </span></a></li>
-            <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmp') ?>">Sekolah Menengah Pertama<span> (SMP) </span></a></li>
-            <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsma') ?>">Sekolah Menengah Atas <span> (SMA) </span></a></li>
-            <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmaipa') ?>">Sekolah Menengah Atas - IPA</a></li>
-            <li class="cat-item cat-item-1 current-cat"><a href="<?= base_url('index.php/edudrive/modulsmaips') ?>">Sekolah Menengah Atas - IPS</a></li>
-        </ul>
-    </aside>
-    <!-- widget categories -->
-    <!-- widget best seller -->
-    <aside class="widget-selers">
-        <h3>Download Teratas</h3>
-        <hr class="divider-big"/>
-        <div>
-            <?php foreach($downloads as $post){ ?>
-            <article class="clear-fix" style="">
-                    
-                <div style="width:90%;background:black:posisition:relative">
-                    <!-- <h4><?= $post['judul']?></h4> -->
-                    <!-- <i title="PDF File" class="fa fa-file-pdf-o"></i>  -->
-                    <a title="Download" href="<?= base_url("assets/modul/".$post['url_file'])?>" class="cws-button icon-left alt" target="_blank" style="padding:8" onclick="Approved('<?=$post['id']?>')"> <i class="fa fa-download btn"></i></a>
-                    <?=$post['judul'] ?>
-                </div>
-            </article>
-            <?php }; ?>
+          </div>
         </div>
-    </aside>
-    <!-- / widget best seller -->
-</div>
-</div>
-</div>
+        
+      </div>
+    </section>
 <hr class="divider-color">
 
 <script>
@@ -243,5 +249,9 @@
           }
       });
     }
+
+    function go_token(){
+  swal('Oops','Maaf anda harus menjadi member untuk mengunduh file ini','warning');
+}
 </script>
 
