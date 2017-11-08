@@ -92,7 +92,15 @@ div.pagination span.disabled {
 .pagination ul li a.active{opacity: .5;}
 
 /* loading */
-.loading{position: absolute;left: 0; top: 0; right: 0; bottom: 0;z-index: 2;background: rgba(255,255,255,0.7);}
+.loading{
+  position: absolute;
+  left: 0; 
+  top: 0; 
+  right: 0; 
+  bottom: 0;
+  z-index: 2;
+  background: rgba(255,255,255,0.7);
+}
 .loading .content {
   position: absolute;
   transform: translateY(-50%);
@@ -260,5 +268,28 @@ div.pagination span.disabled {
 function go_token(){
   swal('Oops','Maaf anda harus menjadi member untuk mengunduh file ini','warning');
 }
+
+
+
+function edudrivesd(id_edu) {
+    url_ajax = base_url+"edudrive/ambiledu";
+
+    var global_properties = {
+      id_edu: id_edu
+    };
+
+    $.ajax({
+      type: "POST",
+      dataType: "JSON",
+      url: url_ajax,
+      data: global_properties,
+      success: function(data){
+        window.location.href = base_url + "edudrive/allmodul";  
+      },error:function(data){
+        sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
+      }
+
+    });
+  }
 </script>
 

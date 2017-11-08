@@ -78,7 +78,7 @@
         <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
         <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
         <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
-        <li><a href="<?=base_url('modulonline/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
+        <li><a href="<?=base_url('edudrive/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
 
         <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
           <li><a href="#home"> Learning Line<span class="indicator"></a>

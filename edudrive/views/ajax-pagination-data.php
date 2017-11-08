@@ -27,8 +27,12 @@
                     
                   </div>
                 </div>
-                <?php endforeach; else: ?>
-                <h4 class="text-center">Post(s) not available.</h4>
+
+                <?php endforeach;  ?>
+              <?php else: ?>
+
+
+                <h4 class="text-center" style="margin-top: 30px;" >Post(s) not available.</h4>
                 <?php endif; ?>
              </div>
 
