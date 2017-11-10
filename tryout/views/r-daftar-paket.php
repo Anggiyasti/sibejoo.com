@@ -146,6 +146,12 @@
               <?php 
               $no=1;
               foreach ($paket_dikerjakan as $paketitem): ?>
+
+              <?php if ($paketitem['jp'] == 'SBMPTN'): ?>
+                <?php $score = (($paketitem['jmlh_benar'] * 4) + ($paketitem['jmlh_salah'] *(-1)) + ($paketitem['jmlh_kosong'] * 0)) / ( $paketitem['jumlah_soal']*4) * 100 ?>
+                <?php else: ?>
+                  <?php $score = $paketitem['jmlh_benar']/ $paketitem['jumlah_soal'] * 100 ?>
+              <?php endif ?>
                 <tr>
                   <td><?=$no;?></td>
                   <td><?= $paketitem['nm_paket'] ?></td>
@@ -153,7 +159,7 @@
                   <td><?= $paketitem['jmlh_benar'] ?></td>
                   <td><?= $paketitem['jmlh_salah'] ?></td>
                   <td><?= $paketitem['jmlh_kosong'] ?></td>
-                  <td><?= $paketitem['jmlh_benar'] ?></td>
+                  <td><?= (int)$score ?></td>
                   <td><?= $paketitem['tgl_pengerjaan'] ?></td>
                   <td>
                     <?php if ($status_to=="done"): ?>

@@ -233,7 +233,9 @@ class Tryout extends MX_Controller {
             $query = $this->load->Mtryout->get_pembahasan($id_paket);
             $data['soal'] = $query['soal'];
             $data['pil'] = $query['pil'];
-            
+                
+            $data['score'] = $this->Mtryout->get_info_score($id);
+
             for ($i=0; $i <$jumlah_soal ; $i++) { 
                 $rekap_id = $data['rekap_jawaban'][$i]->id_soal;
                 $soal_id = $data['soal'][$i]['soalid'];

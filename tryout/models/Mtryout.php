@@ -452,6 +452,16 @@ public function get_laporan_to(){
     //##
 
 
+     public function get_info_score($id)
+    {
+        $this->db->select('jmlh_benar, jmlh_salah, jmlh_kosong');
+        $this->db->from('tb_report-paket');
+        $this->db->where('id_mm-tryout-paket',$id);
+        $query = $this->db->get();
+        return $query->result_array()[0];
+    }
+
+
 }
 
 ?>

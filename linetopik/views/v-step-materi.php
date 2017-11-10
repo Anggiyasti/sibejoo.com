@@ -106,11 +106,11 @@
                   <div class="mt-30 mb-0">
                     <h5 class="pull-left mt-10 mr-20 text-theme-color-2"></h5>
                     <div class="tags">
-                      <p class="mb-0"> 
-                        <a ><i class="fa fa-tags text-theme-color-2"></i><span><?=$tingkat;?>|</span></a> 
-                        <a ><i class="fa fa-tags text-theme-color-2"></i><?=$mapel;?>|</a> 
-                        <a ><i class="fa fa-tags text-theme-color-2"></i><?=$bab;?>|</a>
-                        <a ><i class="fa fa-tags text-theme-color-2"></i>Topik : <?=$topik;?></a>  
+                      <p class="mb-0" > 
+                        <i class="fa fa-tags text-theme-color-4 ml10"><b><?=$tingkat;?></b> |</i>
+                        <i class="fa fa-tags text-theme-color-4 ml10"><b><?=$mapel;?></b> |</i>
+                        <i class="fa fa-tags text-theme-color-4 ml10"><b><?=$bab;?></b> |</i>
+                        <i class="fa fa-tags text-theme-color-4 ml10"><b><?=$topik;?></b> |</i>
                       </p>
                     </div>
                   </div>

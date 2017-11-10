@@ -253,6 +253,41 @@
        </div>
       </div>
 
+      <div class="col-md-4">
+  <div class="panel panel-default"  style="min-height:170px;">
+    <!--panel heading/header--> 
+    <div class="panel-heading">
+      <div class="row">
+      <div class="text-center"> <h4><span>Keterangan</span></h4></div>
+      </div>
+    </div>
+    <!--/ panel heading/header--> 
+    <!--panel body with collapse capabale--> 
+    <div class="panel-collapse">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <h5><b>Benar </b></h5>
+            <h5><b>Salah </b></h5>
+            <h5><b>Kosong  </b></h5>
+            <h5><b>Score  </b></h5>
+          </div>
+          <div class="col-md-1">
+            <h5><b><?=$score['jmlh_benar']?></b></h5>
+            <h5><b><?=$score['jmlh_salah']?></b></h5>
+            <h5><b><?=$score['jmlh_kosong']?></b></h5>
+            <h5><b><?=$score['jmlh_benar']?></b></h5>
+          </div>
+          <div class="col-md-12" style="">
+            <hr> 
+            <a href="<?=base_url('tryout/daftarpaket')?>" class="btn btn-info btn-block" >Kembali</a>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
       <!--<div style="clear: both"></div>-->
       <div class="col-md-4">
        <div class="panel panel-default"  style="min-height:170px;">
@@ -303,10 +338,7 @@
 
            <div class="clear" style="clear:both"></div>
 
-           <div class="col-md-12" style="">
-            <hr> 
-            <a href="<?=base_url('tryout/daftarpaket')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
-           </div>
+         
 
           </div>
          </div> 
