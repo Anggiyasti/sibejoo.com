@@ -1102,11 +1102,10 @@ true">
 
                   <div class="col-md-12">
 
-                    <video id="preview" class="img-tumbnail image" src="" width="100%" height="50%" controls >
-
-
-
+                    <video id="" class="img-tumbnail image prev_mp4" src="" width="100%" height="50%" controls >
                     </video>
+
+                    <embed id="" class="img-tumbnail image prev_swf" src="" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="400" controls>
 
                   </div>
 
@@ -1623,17 +1622,22 @@ function ValidateInputVideo(oInput) {
       }
 
       if (!blnValid) {
-
         $('#warningupload2').modal('show');
-
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
-                return false;
-              }
-            }
-          }
-          return true;
-        }
+          return false;
+      }
+      var type = sFileName.split('.').pop();
+      if (type=='swf') {
+        // $('.prev_swf').attr('id', 'preview');
+        $('.prev_swf').hide();
+        $('.prev_mp4').hide();
+      } else {
+        $('.prev_mp4').attr('id', 'preview');
+        $('.prev_swf').hide();
+      }
+    }
+  }
+  return true;
+}
 //validasi upload audio
 function ValidateAudioInput(oInput){
   var _validFileExtensions = [".mp3"]; 

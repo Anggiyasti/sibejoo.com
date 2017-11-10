@@ -106,33 +106,6 @@ label:hover{ /* HIDE RADIO */
         <section class="section bgcolor-white">
             <div class="container-fluid">
               <div class="col-md-1" style="margin-right: 45px;"></div>
-              <div class="col-md-9" style="width: 1060px;">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                  </div>
-                  <div class="panel-body">
-                    <div class="col-md-2">
-                      <b>Benar</b> <br>
-                      <b ><?=$score['jmlh_benar']?></b>
-                    </div>
-                    <div class="col-md-2">
-                      <b>Salah</b> <br>
-                      <b ><?=$score['jmlh_salah']?></b>
-                    </div>
-                    <div class="col-md-2">
-                      <b>Kosong</b> <br>
-                      <b ><?=$score['jmlh_kosong']?></b>
-                    </div>
-                    <div class="col-md-2">
-                      <b>Score</b> <br>
-                      <b ><?=$score['jmlh_benar']?></b>
-                    </div>
-                    <div class="col-md-4" style="">
-                      <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-danger btn-block" >Kembali</a>
-                     </div>
-                  </div>
-                </div>
-              </div>
               <div class="col-md-3 col-md-offset-3">
                 
               </div>
@@ -261,9 +234,22 @@ label:hover{ /* HIDE RADIO */
                   }
 
                   if ($key['video_pembahasan'] != null) { ?>
-                  <video width=100% controls>
+                   <!-- dicek dulu jenis videonya -->
+                    <?php 
+                    $myvideo = $key['video_pembahasan'];
+                    $findswf   = '.swf';
+                    $pos = strpos($myvideo, $findswf);
+
+                    // to false.
+                    if ($pos !== false) : ?>
+                        <embed class=" modal-body img-tumbnail image" src="<?=base_url('assets/video/videoPembahasan/'.$key['video_pembahasan'])?>?autoplay=0" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="500" controls>
+                    <?php else : ?>
+                    <video class=" modal-body img-tumbnail image" src="<?=base_url('assets/video/videoPembahasan/'.$key['video_pembahasan'])?>" width="100%" controls="" id="video-ply" style="background:grey;">
+                    </video>
+                    <?php endif ?>
+                <!--   <video width=100% controls>
                    <source src="<?=base_url('assets/video/'.$key['video_pembahasan'])?>" type="video/mp4">
-                   </video>
+                   </video> -->
                    <?php
                   }
                   if ($key['link'] != null) {
@@ -336,7 +322,7 @@ label:hover{ /* HIDE RADIO */
           </div>
           <div class="col-md-12" style="">
             <hr>
-            <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-danger btn-block" >Kembali</a>
+            <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-info btn-block" >Kembali</a>
            </div>
         </div>
       </div>
@@ -393,8 +379,6 @@ label:hover{ /* HIDE RADIO */
            <div class="clear" style="clear:both"></div>
 
            <div class="col-md-12" style="">
-            <hr> 
-            <a href="<?=base_url('tesonline/daftarlatihan')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
            </div>
 
           </div>

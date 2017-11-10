@@ -29,42 +29,43 @@
       <div class="row">
       	<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
            			<?php if ($this->session->userdata('HAKAKSES')=='siswa'): ?>
-      				<!-- MENU UNTUK SISWA -->
-					<form class="form-group" action="javascript:void(0)">
-						<h4><b>Filter Pertanyaan</b></h4>
-						<div class="row">
+      				      <!-- MENU UNTUK SISWA -->
+  					        <form class="form-group" action="javascript:void(0)">
+  						        <h4><b>Filter Pertanyaan</b></h4>
+  						        <div class="row">
 		                    <div class="form-group col-md-4">
 		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_konsul_all()">
-									<option value="0">-Pilih Matapelajaran-</option>
-								</select>
+          									<option value="0">-Pilih Matapelajaran-</option>
+          								</select>
 		                    </div>
 		                    <div class="form-group col-md-4">
 		                      <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" onchange="ajax_konsul_all()"><option value=0>-Pilih Bab-</option></select>
 		                    </div>
 		                    <div class="form-group col-md-4">
-		                    	<a href="#" class="btn btn-default buat-btn"><i class="fa fa-plus"></i> Buat</a>
-		                    	<!-- <a href="#" class="btn btn-default cari-btn"><i class="fa fa-search"></i> Cari</a> -->
+		                    	<a href="#" class="btn btn-default buat-btn"><i class="fa fa-plus"></i> Buat Pertanyaan</a>
 		                    </div>
 	                  	</div>
-					</form>
+					          </form>
 
-					<form class="form-group">
-						<h4><b>Pencarian Pertanyaan</b></h4>
-						<div class="row">
+          					<form class="form-group">
+          						<h4><b>Pencarian Pertanyaan</b></h4>
+          						<div class="row">
 		                    <div class="form-group col-md-4">
-		                     	<select class="form-control" style="height: 35px;" name="" id="" onchange="location = this.value";>
-									<option value="<?=base_url('konsultasi/pertanyaan_ku') ?>"  class="center-text">Pertanyaan Saya</option>
-									<option selected value="<?=base_url('konsultasi/pertanyaan_all')?>">Semua Pertanyaan</option>
-									<option value="<?=base_url('konsultasi/pertanyaan_grade')?>">Pertanyaan Setingkat</option>
-									<option value="<?=base_url('konsultasi/pertanyaan_mento')?>r">Pertanyaan Sementor</option>
-								</select>
+		                     	<!-- <select class="form-control" style="height: 35px;" name="" id="" onchange="location = this.value";> -->
+                          <select class="form-control" style="height: 35px;" id="pencarian_pertanyaan" name="pencarian_pertanyaan">
+          									<!-- <option value="<?=base_url('konsultasi/pertanyaan_ku') ?>"  class="center-text">Pertanyaan Saya</option> -->
+                            <option value="pertanyaan_ku" class="center-text">Pertanyaan Saya</option>
+          									<option selected value="pertanyaan_all">Semua Pertanyaan</option>
+          									<option value="pertanyaan_grade">Pertanyaan Setingkat</option>
+          									<option value="pertanyaan_mentor">Pertanyaan Sementor</option>
+          								</select>
 		                    </div>
 		                    <div class="form-group col-md-4">
 		                    	<div class="widget">
 				                <div class="search-form">
 				                  <form>
 				                    <div class="input-group">
-				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
+				                      <input type="text" placeholder="Cari pertanyaanmu disini ..." class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
 				                      <span class="input-group-btn">
 				                      <a onclick="ajax_konsul_all()" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
@@ -77,7 +78,7 @@
 		                    	<a href="<?=base_url('konsultasi/pertanyaan_all') ?>" class="btn btn-default"><i class="fa fa-times"></i> Reset</a>
 		                    </div>
 	                  	</div>
-					</form>
+					          </form>
 					<!-- END MENU UNTUK SISWA -->
 
 				<?php else: ?>
@@ -115,7 +116,7 @@
 
 	var hakAkses = "<?=$this->session->userdata('HAKAKSES') ?>";
 
-  function ajax_konsul_all(page_num) {
+  function ajax_konsul_all(page_num,jenis) {
     page_num = page_num?page_num:0;
     keyword = $('#search1').val();
     datas =[];
@@ -126,19 +127,28 @@
     		id_tingpel:id_tingpel, 
     		id_bab:'all',
     		keyword: keyword,
-          	page: page_num,
-          link:'ajax_konsul_all'};
+        page: page_num,
+        link:'ajax_konsul_all'};
     } else { 	
     	datas = { 
     		id_tingpel:id_tingpel, 
     		id_bab:id_bab,
     		keyword: keyword,
-          	page: page_num,
-          link:'ajax_konsul_all'};
+        page: page_num,
+        link:'ajax_konsul_all'};
+    }
+    if (jenis==1) {
+      f_name = "ajaxPaginationAll";
+    } else if (jenis==2)  {
+      f_name = "ajaxPaginationKu"; 
+    } else if (jenis==3) {
+      f_name = "ajaxPaginationGrade";
+    } else {
+      f_name = "ajaxPaginationMentor";
     }
       $.ajax({
           type: 'POST',
-          url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
+          url: base_url + 'konsultasi/'+f_name+'/'+page_num,
           data: datas,
           beforeSend: function () {
               $('.loading').show();
@@ -146,7 +156,7 @@
           success: function (html) {
               $('#konsulList').html(html);
               $('.loading').hide();
-              load_bab(id_tingpel);
+              // load_bab(id_tingpel);
           }
       });
 
@@ -162,15 +172,15 @@
     		id_tingpel:id_tingpel, 
     		id_bab:'all',
     		keyword: keyword,
-          	page: page_num,
-          	link:'filter'};
+        page: page_num,
+        link:'filter'};
     } else { 	
     	datas = { 
     		id_tingpel:id_tingpel, 
     		id_bab:id_bab,
     		keyword: keyword,
-          	page: page_num,
-          link:'filter'};
+        page: page_num,
+        link:'filter'};
     }
       $.ajax({
           type: 'POST',
@@ -211,15 +221,29 @@
 
   window.onload = function() {
       page_num=0;
-      ajax_konsul_all(page_num);
+      ajax_konsul_all(page_num,1);
 
       $("#search1").keydown(function(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
-            // ajax_konsul_all(page_num);
+        }
+      });
+
+      // event pencarian pertanyaan
+      $('#pencarian_pertanyaan').change(function() {
+        value=$(this).val(); // get the current value of the input field.
+        if (value=="pertanyaan_all") {
+          ajax_konsul_all(page_num, 1);
+        } else if(value=="pertanyaan_ku") {
+          ajax_konsul_all(page_num, 2);
+        } else if(value=="pertanyaan_grade") {
+          ajax_konsul_all(page_num, 3);
+        } else {
+          ajax_konsul_all(page_num, 4);
         }
       });
   }
+
 	// $('.cari-btn').click(function(){
 	// 	var mapel;
 	// 	var bab;

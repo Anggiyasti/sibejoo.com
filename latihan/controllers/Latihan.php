@@ -28,7 +28,6 @@ class Latihan extends MX_Controller {
     public function tambah_latihan_ajax() {
         //uuid untuk soal
         $uuid_latihan = uniqid();
-        //var_dump($uuid_latihan);
         $idsub = $_POST['subab'];
         $jumlah_soal = $_POST['jumlahsoal'];
         $kesulitan = $_POST['kesulitan'];
@@ -50,7 +49,6 @@ class Latihan extends MX_Controller {
             "nm_latihan" => $nama_matapelajaran . "-" . $nama_subab,
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
-            // "id_subbab" => $idsub
             );
 
         $param = array(
@@ -65,37 +63,37 @@ class Latihan extends MX_Controller {
         $this->session->set_userdata('id_latihan', $id_latihan);
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan($param);
-        // $data['mm_sol']=array();
-        //ngecacah teru dimasukin ke relasi
-        foreach ($data['soal_random'] as $row) {
-            $data['mm_sol'] = array(
-                "id_latihan" => $id_latihan,
-                "id_soal" => $row['id_soal']
-                );
-            $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
-        };
-
+        
+        // hitug jumlah soal random
+        $jumlah_random = count($data['soal_random']);
+        if ($data['soal_random']==array() || $jumlah_random<$jumlah_soal) {
+            // decode the JSON data
+            // set second parameter boolean TRUE for associative array output.
+            echo json_decode("0");
+        } else {
+            // kalo ada soalnya baru diinsert
+            //ngecacah terus dimasukin ke relasi
+            foreach ($data['soal_random'] as $row) {
+                $data['mm_sol'] = array(
+                    "id_latihan" => $id_latihan,
+                    "id_soal" => $row['id_soal']
+                    );
+                $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
+            };
+            echo json_encode($data['soal_random']);
+        }
     }
 
     public function tambah_latihan_ajax_bab() {
         //uuid untuk soal
         $uuid_latihan = uniqid();
         $bab = $_POST['bab'];
-        // $bab = 82;
 
         $jumlah_soal = $_POST['jumlahsoal'];
         $kesulitan = $_POST['kesulitan'];
 
-        // $jumlah_soal = 1;
-        // $kesulitan = 1;
-
         //get nama mata pelajaran untuk nama paket
         $nama_matapelajaran = $this->mlatihan->get_nama_bab($bab)[0]['judulBab'];
-        // var_dump($nama_matapelajaran);
-        // $nama_matapelajaran = "Pelajaran";
-        //get nama sub bab untuk digabungkan jadi Nama Matapelajaran - Nama Subab
-        // $nama_subab = $this->Mmatapelajaran->sc_sub_by_subid($idsub)[0]['judulSubBab'];
-        // $nama_bab = "Bab";
 
         $data['post'] = array(
             "jumlahSoal" => $jumlah_soal,
@@ -103,7 +101,6 @@ class Latihan extends MX_Controller {
             "nm_latihan" => "Latihan - ".$nama_matapelajaran,
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
-            // "id_subbab" => $idsub
             );
 
         $param = array(
@@ -118,15 +115,24 @@ class Latihan extends MX_Controller {
         $this->session->set_userdata('id_latihan', $id_latihan);
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan_bab($param);
-        // $data['mm_sol']=array();
-        //ngecacah teru dimasukin ke relasi
-        foreach ($data['soal_random'] as $row) {
-            $data['mm_sol'] = array(
-                "id_latihan" => $id_latihan,
-                "id_soal" => $row['id_soal']
-                );
-            $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
-        };
+        // hitug jumlah soal random
+        $jumlah_random = count($data['soal_random']);
+        if ($data['soal_random']==array() || $jumlah_random<$jumlah_soal) {
+            // decode the JSON data
+            // set second parameter boolean TRUE for associative array output.
+            echo json_decode("0");
+        } else {
+            // kalo ada soalnya baru diinsert
+            //ngecacah terus dimasukin ke relasi
+            foreach ($data['soal_random'] as $row) {
+                $data['mm_sol'] = array(
+                    "id_latihan" => $id_latihan,
+                    "id_soal" => $row['id_soal']
+                    );
+                $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
+            };
+            echo json_encode($data['soal_random']);
+        }
 
     }
 

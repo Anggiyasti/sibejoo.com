@@ -93,7 +93,7 @@
                   <tr>
                     <th>No</th>
                     <th>Nama Latihan</th>
-                    <th>Tingkat Kesulitan</th>
+                    <th>Level</th>
                     <th>Tanggal Dibuat</th>
                     <th width="2%">Aksi</th>
                   </tr>
@@ -105,7 +105,14 @@
                     <tr>
                       <td><?= $no; ?></td>
                       <td><?= $reportitem['nm_latihan'] ?></td>
-                      <td><?= $reportitem['tingkatKesulitan'] ?></td>
+                      <?php $level = $latihanitem['tingkatKesulitan']; ?>
+                      <?php if ($level=="0") : ?>
+                        <td>Mudah</td>
+                      <?php elseif ($level=="1") : ?>
+                        <td>Sedang</td>
+                      <?php else : ?>
+                        <td>Sulit</td>
+                      <?php endif ?>
                       <td><?= $reportitem['tgl_pengerjaan'] ?></td>
                       <td>
                         <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
@@ -152,7 +159,14 @@
                   <tr>
                     <td><?= $no; ?></td>
                     <td><?= $latihanitem['nm_latihan'] ?></td>
-                    <td><?= $latihanitem['tingkatKesulitan'] ?></td>
+                    <?php $level = $latihanitem['tingkatKesulitan']; ?>
+                    <?php if ($level=="0") : ?>
+                      <td>Mudah</td>
+                    <?php elseif ($level=="1") : ?>
+                      <td>Sedang</td>
+                    <?php else : ?>
+                      <td>Sulit</td>
+                    <?php endif ?>
                     <?php $status_pengerjaan=$latihanitem['status_pengerjaan'];
                     if ($status_pengerjaan==1) : ?>
                       <td>Belum Dikerjakan</td>
@@ -204,7 +218,14 @@
                 <tr>
                   <td><?=$no;?></td>
                   <td><?= $reportitem['nm_latihan'] ?></td>
-                  <td><?= $reportitem['tingkatKesulitan'] ?></td>
+                  <?php $level = $reportitem['tingkatKesulitan']; ?>
+                    <?php if ($level=="0") : ?>
+                      <td>Mudah</td>
+                    <?php elseif ($level=="1") : ?>
+                      <td>Sedang</td>
+                    <?php else : ?>
+                      <td>Sulit</td>
+                    <?php endif ?>
                   <td><?= $reportitem['jmlh_benar'] ?></td>
                   <td><?= $reportitem['jmlh_salah'] ?></td>
                   <td><?= $reportitem['jmlh_kosong'] ?></td>
@@ -254,7 +275,7 @@
     var data = $(kelas).data('todo');
     swal({
       title: "Apakah anda yakin akan mengerjakan latihan "+data.nm_latihan+"?",
-      text: "Anda  tidak dapat kembali",
+      // text: "Anda  tidak z kembali",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-danger",
