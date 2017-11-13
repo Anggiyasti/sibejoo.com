@@ -1,4 +1,4 @@
-Start pengecekan jika pilihan 5 atau 4 pilihan -->
+<!-- Start pengecekan jika pilihan 5 atau 4 pilihan  -->
 <?php 
 
 if (!isset($piljawaban['0']['id_pilihan'])) {
@@ -1071,14 +1071,16 @@ true">
 
                     // to false.
                     if ($pos !== false) : ?>
-                      <embed class=" modal-body img-tumbnail image" id="preview" src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="270" >
+                      <embed class=" modal-body img-tumbnail image tamp_swf" id="" src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="400" >
                     <?php else : ?>
-                      <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls >
+                      <video id="" class="img-tumbnail image tamp_mp4"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls >
                     </video>
                     <?php endif ?>
 
-                   <!-- <video id="preview" class="img-tumbnail image"  src="<?=base_url();?>assets/video/videoPembahasan/<?=$banksoal['video_pembahasan'];?>" width="100%" height="50%" controls > -->
-                   <!-- </video> -->
+                    <video id="preview" class="img-tumbnail image prev_mp4"  src="" width="100%" height="50%" controls hidden="true" >
+                    </video>
+                    <embed id="" class="img-tumbnail image prev_swf" src="" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="400" controls hidden="true">
+                   
                  </div>
                  <div class="col-md-5 left"> 
                   <h6>Name: <span id="filename"></span></h6> 
@@ -1606,14 +1608,27 @@ function ValidateInputVideo(oInput) {
 
       if (!blnValid) {
         $('#warningupload2').modal('show');
-                // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
-                // oInput.value = "";
-                return false;
-              }
-            }
-          }
-          return true;
-        }
+        return false;
+      }
+      var type = sFileName.split('.').pop();
+      if (type=='swf') {
+        // $('.prev_swf').attr('id', 'preview');
+        $('.prev_swf').show();
+        $('.prev_swf').hide();
+        $('.prev_mp4').hide();
+        $('.tamp_swf').hide();
+        $('.tamp_mp4').hide();
+      } else {
+        $('.prev_mp4').attr('id', 'preview');
+        $('.prev_mp4').show();
+        $('.prev_swf').hide();
+        $('.tamp_swf').hide();
+        $('.tamp_mp4').hide();
+      }
+    }
+  }
+  return true;
+}
       </script>
       <!-- END -->
       <!--Start  Script drop down depeden -->

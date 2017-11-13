@@ -3,14 +3,17 @@ class Mlatihan extends CI_Model
 {
 	//random buat subbab
 	public function get_random_for_latihan( $param ) {
-		$this->db->where( 'id_subbab', $param['id_subab'] );
-		$this->db->where('status','1');
-		$this->db->where('publish','1');
-		// $this->db->where( 'kesulitan', $param['kesulitan'] );
+
+		$this->db->where( 'b.id_subbab', $param['id_subab'] );
+		$this->db->where('b.status','1');
+		$this->db->where('b.publish','1');
+		$this->db->where( 'b.kesulitan', $param['kesulitan'] );
 		$this->db->order_by( 'rand()' );
 		$this->db->limit( $param['jumlah_soal'] );
 		$this->db->select( '*' );
-		$this->db->from( 'tb_banksoal' );
+		$this->db->from( 'tb_banksoal b' );
+		$this->db->join('tb_piljawaban p', 'b.id_soal=p.id_soal');
+        $this->db->group_by('b.id_soal');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -19,17 +22,18 @@ class Mlatihan extends CI_Model
 	public function get_random_for_latihan_bab( $param ) {
 		$this->db->where( 'bab.id', $param['id_bab'] );
 		$this->db->where('b.status','1');
-		$this->db->where('publish','1');
-		// $this->db->where( 'kesulitan', $param['kesulitan'] );
+		$this->db->where('b.publish','1');
+		$this->db->where( 'b.kesulitan', $param['kesulitan'] );
 		$this->db->order_by( 'rand()' );
 		$this->db->limit( $param['jumlah_soal'] );
 		$this->db->select( '*' );
 		$this->db->from( 'tb_banksoal b' );
 		$this->db->join('tb_subbab sub',
 			'b.id_subbab = sub.id');
-
 		$this->db->join('tb_bab bab',
 			'bab.id = sub.babID');
+		$this->db->join('tb_piljawaban p', 'b.id_soal=p.id_soal');
+        $this->db->group_by('b.id_soal');
 
 
 		$query = $this->db->get();

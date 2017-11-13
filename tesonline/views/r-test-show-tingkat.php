@@ -44,10 +44,10 @@
           <p class="has-success">
             <label>Tingkat Kesulitan</label>
             <select class="form-control" name="kesulitan" id="kesulitan">
-              <option value=0>-Pilih Tingkat Kesulitan-</option>
-              <option value="mudah">Mudah</option>
-              <option value="sedang">Sedang</option>
-              <option value="sulit">Sulit</option>    
+              <option value="all">-Pilih Tingkat Kesulitan-</option>
+              <option value="0">Mudah</option>
+              <option value="1">Sedang</option>
+              <option value="2">Sulit</option>    
             </select>                       
 
           </p>
@@ -270,7 +270,9 @@
         bab:babid
       };
 
-      if (data.kesulitan == 0 || data.jumlahsoal == 0) {
+      console.log(data);
+
+      if (data.kesulitan == "all" || data.jumlahsoal == 0) {
         $('#info').show();
       }else{
             $('.mulai-btn').text('Proses...'); //change button text
@@ -289,15 +291,23 @@
               data: data,
               success: function (data, respone)
               {
-                $('#myModal').modal('hide');
-                    $('.mulai-btn').text('save'); //change button text
-                    $('.mulai-btn').attr('disabled', false); //set button enable 
-                    $('#formlatihan')[0].reset(); // reset form on modals
-                    if (test == 'mulai') {
-                      window.location.href = base_url + "index.php/tesonline/mulaitest";
-                    } else {
-                      window.location.href = base_url + "index.php/tesonline/daftarlatihan";
-                    }
+                // pengecekan apakah soal tersedia atau tidak?
+                if (data==0) {
+                  swal("OOPS!", "Soal Belum Tersedia", "warning")
+                  $('.mulai-btn').text('Mulai Latihan'); //change button text
+                  $('.mulai-btn').removeAttr('disabled'); //set button enable 
+                } else {
+                  $('#myModal').modal('hide');
+                  $('.mulai-btn').text('save'); //change button text
+                  $('.mulai-btn').attr('disabled', false); //set button disabled 
+                  $('#formlatihan')[0].reset(); // reset form on modals
+                  if (test == 'mulai') {
+                    // window.location.href = base_url + "index.php/tesonline/mulaitest";
+                  } else {
+                    window.location.href = base_url + "index.php/tesonline/daftarlatihan";
+                  }
+                }
+                $('#formlatihan')[0].reset(); // reset form on modals
                   },
                   error: function (respone, jqXHR, textStatus, errorThrown,data)
                   {

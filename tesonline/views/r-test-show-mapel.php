@@ -52,11 +52,11 @@
 
                                 <option value=0>-Pilih Tingkat Kesulitan-</option>
 
-                                <option value="mudah">Mudah</option>
+                                <option value="0">Mudah</option>
 
-                                <option value="sedang">Sedang</option>
+                                <option value="1">Sedang</option>
 
-                                <option value="sulit">Sulit</option>
+                                <option value="2">Sulit</option>
 
                             </select>                       
 

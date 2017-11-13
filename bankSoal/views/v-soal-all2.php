@@ -100,7 +100,7 @@
 
                     // to false.
                     if ($pos !== false) : ?>
-                    <embed class=" modal-body img-tumbnail image" src="<?=$video;?>?autoplay=0" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="270" id="video-ply" controls="">
+                        <embed class=" modal-body img-tumbnail image" src="<?=$video;?>?autoplay=0" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="600" controls>
                     <?php else : ?>
                     <video class=" modal-body img-tumbnail image" src="<?=$video;?>" width="100%" height="50%" controls="" id="video-ply" style="background:grey;">
                     </video>
