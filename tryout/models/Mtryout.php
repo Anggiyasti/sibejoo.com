@@ -454,8 +454,10 @@ public function get_laporan_to(){
 
      public function get_info_score($id)
     {
-        $this->db->select('jmlh_benar, jmlh_salah, jmlh_kosong');
-        $this->db->from('tb_report-paket');
+        $this->db->select('`jmlh_benar`, `jmlh_salah`, `jmlh_kosong`, jumlah_soal,p.jenis_penilaian AS jp');
+        $this->db->from('tb_report-paket rp');
+        $this->db->join('`tb_mm-tryoutpaket` mtp ',' mtp.id = rp.`id_mm-tryout-paket`');
+        $this->db->join('`tb_paket` p ',' p.id_paket = mtp.id_paket');
         $this->db->where('id_mm-tryout-paket',$id);
         $query = $this->db->get();
         return $query->result_array()[0];

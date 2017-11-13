@@ -95,4 +95,13 @@ public function up_file($data) {
   $this->db->update('tb_line_materi');
 }
 
+public function get_onefile_materi($UUID)
+    {
+      $this->db->select('url_file');
+      $this->db->from('tb_line_materi');
+      $this->db->where('UUID',$UUID);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
 } ?>

@@ -273,10 +273,17 @@
             <h5><b>Score  </b></h5>
           </div>
           <div class="col-md-1">
+            <?php if ($score['jp'] == 'SBMPTN') {
+              $scoreakhir = (($score['jmlh_benar'] * 4) + ($score['jmlh_salah'] *(-1)) + ($score['jmlh_kosong'] * 0)) / ( $score['jumlah_soal']*4) * 100;
+            }
+              else{
+                $scoreakhir = $score['jmlh_benar']/ $score['jumlah_soal'] * 100;
+              }
+            ?>
             <h5><b><?=$score['jmlh_benar']?></b></h5>
             <h5><b><?=$score['jmlh_salah']?></b></h5>
             <h5><b><?=$score['jmlh_kosong']?></b></h5>
-            <h5><b><?=$score['jmlh_benar']?></b></h5>
+            <h5><b><?=(int)$scoreakhir?></b></h5>
           </div>
           <div class="col-md-12" style="">
             <hr> 

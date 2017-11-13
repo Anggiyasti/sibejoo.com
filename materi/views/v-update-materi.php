@@ -110,11 +110,13 @@
         							<h6><span id="filename" ><?=$singleMateri['url_file'];?></span></h6> 
     							</div> 
     							<br>
-        						<a href="<?= base_url('assets/file_materi/'.$singleMateri['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
+        						
                                 <input style="display:none;" type="file" id="fileSoal" name="gambarSoal" value="<?=$singleMateri['url_file']?>" />
-
-
     						</div>
+                            <div class="col-sm-8 " style="margin-left: 18%;">   
+                                <a href="<?= base_url('assets/file_materi/'.$singleMateri['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
+                              
+                            </div>
 						</div>
 
 						

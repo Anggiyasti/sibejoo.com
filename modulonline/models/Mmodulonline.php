@@ -448,6 +448,16 @@ function getRows($params = array()){
            return ($query->num_rows() > 0)?$query->result_array():FALSE;
          }
 
+         // get thumbnail
+    public function get_onefile($UUID)
+    {
+      $this->db->select('url_file');
+      $this->db->from('tb_modul');
+      $this->db->where('UUID',$UUID);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+
 
        }
 

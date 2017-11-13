@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <h3 class="text-center">Silahkan cek type extension gambar! </h3>
-                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".ppt", ".pptx", ".pdf"</h5>
+                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".pdf"</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -111,10 +111,11 @@ if ($banksoal['url_file'] == null) { ?>
      <div class="col-md-5 left"> 
         <h6><span id="filenameSoal1"><?=$banksoal['url_file'];?></span></h6> 
     </div> 
-    <div class="col-md-4 left"> 
+    <div class="col-sm-8 ">   
         <a href="<?= base_url('assets/modul/'.$banksoal['url_file'])?>" class="btn btn-sm btn-default" target="_blank" >Download</a>
-
-    </div> 
+                              
+    </div>
+    
 </div>
 </div>
 
@@ -197,7 +198,7 @@ var viewerSoal = {
 <!-- End script untuk priview gambar soal -->
 <!-- start script js validation extension -->
 <script type="text/javascript">
- var _validFileExtensions = [".doc", ".docx", ".ppt", ".pptx", ".pdf"];    
+ var _validFileExtensions = [".doc", ".docx", ".pdf"];    
  function ValidateSingleInput(oInput) {
     if (oInput.type == "file") {
         var sFileName = oInput.value;
@@ -336,7 +337,9 @@ function loadTingkat() {
             publish : $('input[name=publish]:checked').val(),
         }
         var elementId = "fileSoal";
-
+        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "") {
+            swal('Tidak boleh kosong');
+        }else{
             // do_upload
             $.ajaxFileUpload({
                 url:url,
@@ -367,6 +370,7 @@ function loadTingkat() {
                     
                 }
             });
+        }
     }
 
     //buat load bab

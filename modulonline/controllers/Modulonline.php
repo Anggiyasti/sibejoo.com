@@ -544,6 +544,7 @@ public function update_modul() {
 
     $post=$this->input->post();
     $UUID = $post['UUID'];
+    $onefile = $this->Mmodulonline->get_onefile($UUID)[0]['url_file'];
 
         $config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
@@ -559,6 +560,9 @@ public function update_modul() {
 
 
         $this->upload->do_upload($foto);
+        if ($onefile!='' && $onefile!=' ') {
+                   unlink(FCPATH . "./assets/modul/" . $onefile);
+          }
         $file_data = $this->upload->data();
         $file_name = $file_data['file_name'];
         //data yang akan di update

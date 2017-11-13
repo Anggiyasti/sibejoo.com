@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body">
                 <h3 class="text-center">Silahkan cek type extension file! </h3>
-                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".ppt", ".pptx", ".pdf"</h5>
+                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".pdf"</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -54,7 +54,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2">Judul Modul</label>
         <div class="col-sm-10">
-            <input type="text" name="judul" class="form-control" value="<?php echo set_value('judul'); ?>" required="true">
+            <input type="text" name="judul" class="form-control" value="<?php echo set_value('judul'); ?>">
         </div>
 
 
@@ -139,7 +139,7 @@
 <script type="text/javascript">
 // validasi upload gambar 
 function ValidateSingleInput(oInput) {
-  var _validFileExtensions = [".doc", ".docx", ".ppt", ".pptx", ".pdf"]; 
+  var _validFileExtensions = [".doc", ".docx", ".pdf"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
     if (sFileName.length > 0) {
@@ -188,6 +188,9 @@ function ValidateSingleInput(oInput) {
         }
         var elementId = "fileSoal";
 
+        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "") {
+            swal('Tidak boleh kosong');
+        }else{
         console.log(datas);
             // do_upload
             $.ajaxFileUpload({
@@ -219,6 +222,7 @@ function ValidateSingleInput(oInput) {
                     
                 }
             });
+        }
 
     }
 

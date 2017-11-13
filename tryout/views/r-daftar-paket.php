@@ -120,7 +120,7 @@
             </table>
               </div>
 
-       
+       <?php endif; ?>
         <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
         <h3>Paket TO yang Sudah Dikerjakan</h3>
         <?php if($paket_dikerjakan==array()): ?>
@@ -166,8 +166,9 @@
                     <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
                       title="Lihat pembahasan" onclick="pembahasanto(<?=$paketitem['id_paket']?>)" data-todo='<?=json_encode($paketitem)?>'>
                       <i class="glyphicon glyphicon-book"></i>
-                    <?php endif; ?>
                     </a>
+                    <?php else: ?>
+                    <?php endif; ?>
                   </td>
                 </tr>
               <?php 
@@ -190,7 +191,7 @@
        
         
       </div>
-    <?php endif; ?>
+    
   </div>
 </div>
 </section>

@@ -254,6 +254,7 @@ public function updateMateri()
 	$post=$this->input->post();
 	$UUID = $post['UUID'];
 	$opupload =$post['opupload'];
+	$onefile_materi = $this->Mmateri->get_onefile_materi($UUID)[0]['url_file'];
 
 		$config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
@@ -282,6 +283,9 @@ public function updateMateri()
 		}
 		else{
 			$this->upload->do_upload($foto);
+			if ($onefile_materi!='' && $onefile_materi!=' ') {
+                   unlink(FCPATH . "./assets/file_materi/" . $onefile_materi);
+          }
 			$file_data = $this->upload->data();
 			$file_name = $file_data['file_name'];
 			$data['judulMateri']=$post['judul'];
