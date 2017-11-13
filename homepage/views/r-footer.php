@@ -1,5 +1,5 @@
 <!-- Footer -->
-  <footer class="footer divider layer-overlay overlay-dark-9" data-bg-img="http://placehold.it/1920x1280">
+  <footer class="footer divider layer-overlay overlay-dark-9 text-white" data-bg-img="http://archxpressions.com/archxpressions_wp/wp-content/themes/sheyes/images/footerbackground.jpg">
     <div class="container">
       <div class="row border-bottom">
         <div class="col-sm-6 col-md-4">
@@ -7,11 +7,11 @@
             <img class="mt-5 mb-20" alt="" src="http://sibejoo.com/img/logo-sibejoo.png">
             <p>PT VORTEX BUANA EDUMEDIA</p>
             <ul class="list-inline mt-5">
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">022-0662395</a> </li><br>
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">contact@sibejoo.com</a> </li> <br>
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="https://sibejoo.com/">https://sibejoo.com/</a> </li>
-              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Line: @wuf2783p (Sibejoo)</a></li>
-              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#" >Komplek Taman Mutiara Blok C1 No 11 Cibabat, Cimahi.</a></li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-white" href="#">022-0662395</a> </li><br>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-white" href="#">contact@sibejoo.com</a> </li> <br>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-white" href="https://sibejoo.com/">https://sibejoo.com/</a> </li>
+              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-white" href="#" >Line: @wuf2783p (Sibejoo)</a></li>
+              <li class="m-0 pl-10 pr-10"><i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-white" href="#" >Komplek Taman Mutiara Blok C1 No 11 Cibabat, Cimahi.</a></li>
             </ul>
           </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="col-md-2">
           <div class="widget dark">
             <h5 class="widget-title mb-10">Hubungi kami</h5>
-            <div class="text-gray">
+            <div>
              022-0662395 <br>
             </div>
           </div>

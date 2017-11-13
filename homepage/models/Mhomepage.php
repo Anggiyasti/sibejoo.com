@@ -22,7 +22,6 @@ class Mhomepage extends CI_Model {
         $this->db->where("testi.publish", 1);
 
 
-
         $query = $this->db->get();
         return $query->result_array();
     }

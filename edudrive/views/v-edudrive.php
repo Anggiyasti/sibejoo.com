@@ -169,7 +169,7 @@ div.pagination span.disabled {
                 <div class="col-sm-6 col-md-4">
                   <div class="service-block bg-white">
                       
-                    <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/acrobat.png') ?>" width="170px">
+                    <div class="thumb text-center"> <img alt="" src="<?=base_url('assets/image/acrobat.png') ?>" width="170px">
                     </div>
                     <div class="content text-left flip p-25 pt-0" style="height: 250px;">
                       <h4 class="border-bottom-theme-color-2-2px mb-10 text-center"><?= $post['judul']?></h4>

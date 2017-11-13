@@ -69,38 +69,40 @@
               <a class="home" href="<?=base_url()?>">Home</a>
             </li>
             <li><a href="javascript:void(0)">Layanan</a>
-                <div class="megamenu" style="right: 0px; display: none;">
-                  <div class="megamenu-row">
-                    <div class="col3">
-                      <ul class="list-unstyled list-dashed">
-                        <li><a href="shortcode-accordion.html"><i class="fa fa-list-ul"></i> Accordion</a></li>
-                      </ul>
-                    </div>
-                    <div class="col3">
-                      <ul class="list-unstyled list-dashed">
-                        <li><a href="shortcode-datetime-datetimepicker.html"><i class="fa fa-calendar"></i> Bootstrap Date-Time Picker</a></li>
-                      </ul>
-                    </div>
-                    <div class="col3">
-                      <ul class="list-unstyled list-dashed">
-                        <li><a href="shortcode-listgroup-panels.html"><i class="fa fa-th-list"></i> Listgroup Panels</a></li>
-                        <li><a href="shortcode-lists.html"><i class="fa fa-list"></i> Lists</a></li>
-                      </ul>
-                    </div>
-                    <div class="col3">
-                      <ul class="list-unstyled list-dashed">
-                        <li><a href="shortcode-styled-icons.html"><i class="fa fa-facebook-square"></i> Styled Icons</a></li>
-                      </ul>
-                    </div>
+              <div class="megamenu none" style="right: 0px; display: block;">
+                <div class="megamenu-row">
+                  <div class="col3">
+                    <ul class="list-unstyled list-dashed">
+                      <li><a href="<?=base_url("/layanan/tryout") ?>" target="_blank"><img src="<?=base_url('assets/image/menu/tryout.png') ?>"></a></li>
+                      <li class="text-center"><b>Latihan UN, Lathian SBMPTN atau TryOut yang lain secara online.</b></li>
+                    </ul>
+                  </div>
+                  <div class="col3">
+                    <ul class="list-unstyled list-dashed">
+                      <li><a href="<?=base_url("/layanan/learningline") ?>" target="_blank"><img src="<?=base_url('assets/image/menu/learningline.png') ?>"></a></li>
+                      <li class="text-center"><b>Memahami materi pelajaran jadi lebih mudah dengan mengikuti misi belajar bersama Master Teacher.</b></li>
+                    </ul>
+                  </div>
+                  <div class="col3">
+                    <ul class="list-unstyled list-dashed">
+                      <li><a href="<?=base_url("/layanan/edudrive") ?>" target="_blank"><img src="<?=base_url('assets/image/menu/edudrive.png') ?>"></a></li>
+                      <li class="text-center"><b>Kumpulan modul-modul yang mampu nemenin belajar, biar lebih paham!.</b></li>
+                    </ul>
+                  </div>
+                  <div class="col3">
+                    <ul class="list-unstyled list-dashed">
+                      <li><a href="<?=base_url("/layanan/video") ?>" target="_blank"><img src="<?=base_url('assets/image/menu/video.png') ?>"></a></li>
+                      <li class="text-center"><b>Video Belajar yang lengkap, asyik dan mudah dipahami.</b></li>
+                    </ul>
                   </div>
                 </div>
-              </li>
-              <li>
+              </div>
+            </li>
+
+            <li>
               <a class="team" href="#team">Team</a>
             </li>
-<!--             <li class="">
-              <a class="service" href="#service">Layanan</a>
-            </li> -->
+
             <li>
               <a class="testimonials" href="#testimonials">Testimonials</a>
             </li>
