@@ -29,20 +29,15 @@ class Homepage extends MX_Controller {
         $datas['jumlahSiswa'] = $this->msiswa->get_siswa_numbers();
         $datas['jumlahVideo'] = $this->mvideos->get_numbers_all_video();
 
-
-
-
         $data = array(
             'judul_halaman' => 'Neon Homepage',
             'jumlah_guru' => $datas['jumlahGuru'],
             'jumlah_siswa' => $datas['jumlahSiswa'],
             'jumlah_mapel' => $datas['jumlahMapel'],
             'jumlah_video'=> $datas['jumlahVideo']
-
-
             );
+
         $data['file'] = 'r-container.php';
-        // $data['teachers'] = $this->mguru->get_guru_random();
         $data['teams'] = $this->mteamback->data_all_team();
         $data['donaturs'] = $this->donaturback_model->get_all_donatur();
         
@@ -52,7 +47,6 @@ class Homepage extends MX_Controller {
         $data['report_heroo'] = $this->Mhomepage->get_report_heroo();
 
         $this->parser->parse('r-index-homepage', $data);
-        // echo "string";
     }
     
     function allArtikel(){

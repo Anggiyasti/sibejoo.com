@@ -166,11 +166,11 @@
                             $pos = strpos($myfile, $find);
                             ?>
                             <?php if ($pos!==false): ?>
-                               <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/acrobat.png') ?>" alt="pdf" width="170px">
+                               <div class="thumb text-center"> <img alt="" src="<?=base_url('assets/image/acrobat.png') ?>" alt="pdf" width="170px">
                               </div>
                               
                             <?php else: ?>
-                              <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/word.png') ?>" alt="word" width="170px">
+                              <div class="thumb text-center"> <img alt="" src="<?=base_url('assets/image/word.png') ?>" alt="word" width="170px">
                               </div>
                              
                               

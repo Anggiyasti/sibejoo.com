@@ -169,22 +169,26 @@ div.pagination span.disabled {
                 <div class="col-sm-6 col-md-4">
                   <div class="service-block bg-white">
 
+
                       <?php $file = $post['url_file'];
                             $myfile = $file;
                             $find = '.pdf';
                             $pos = strpos($myfile, $find);
                             ?>
                             <?php if ($pos!==false): ?>
-                               <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/acrobat.png') ?>" alt="pdf" width="170px">
+                               <div class="thumb text-center"> <img alt="" src="<?=base_url('assets/image/acrobat.png') ?>" alt="pdf" width="170px">
                               </div>
                               
                             <?php else: ?>
-                              <div class="thumb text-center"> <img alt="featured project" src="<?=base_url('assets/image/word.png') ?>" alt="word" width="170px">
+                              <div class="thumb text-center"> <img alt="" src="<?=base_url('assets/image/word.png') ?>" alt="word" width="170px">
                               </div>
                              
                               
                             <?php endif ?>
                    
+        
+                
+
                     <div class="content text-left flip p-25 pt-0" style="height: 250px;">
                       <h4 class="border-bottom-theme-color-2-2px mb-10 text-center"><?= $post['judul']?></h4>
                       <p ><?= $post['deskripsi']?></p> 

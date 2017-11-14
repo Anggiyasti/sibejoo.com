@@ -75,7 +75,7 @@
         function kerjakan(){
           var kelas = ".modal-on";
           var data_to = $(kelas).data('todo');
-          url = base_url+"index.php/tryout/buatto";
+          url = base_url+"index.php/tryit_tryout/buatto";
 
           var datas = {
             id_paket:data_to.id_paket,
@@ -90,7 +90,7 @@
             dataType: "TEXT",
             success: function(data)
             {
-             window.location.href = base_url + "index.php/tryout/mulaitest";
+             window.location.href = base_url + "index.php/tryit_tryout/mulaitest";
            },
            error: function (jqXHR, textStatus, errorThrown) {
            }

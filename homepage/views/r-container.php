@@ -410,6 +410,65 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </div>
 </section>
 
+<section class="" id="about">
+  <div class="container">
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">About Us</h6>
+          <h2 class="font-weight-600 mt-0 font-28 line-bottom">Kenapa <span class="text-theme-color-2">Harus Sibejoo?</span></h2>
+          <h4 class="text-theme-colored">Dibawah ini adalah kenggulan dari Sibejoo. Yuk cek dulu</h4>
+          <div id="accordion1" class="panel-group accordion">
+            <div class="panel">
+              <div class="panel-title"> <a class="collapsed" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="false"> <span class="open-sub"></span>Video Pembelajaran Lengkap, Asyik dan Mudah dimengerti</a> </div>
+              <div id="accordion11" class="panel-collapse collapse" role="tablist" aria-expanded="false" style="height: 0px;">
+                <div class="panel-content">
+                  <p>Puluhan ribu video bisa kalian akses. Ada 2 jenis video, video screen recording untuk kebutuhan akses low bandwith dan file kecil dan video teacher recording untuk akses dengan bandwith besar dan ukuran file yang besar, jenis ini kalian bisa lihat guru yang mengajar.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="collapsed" aria-expanded="false"> <span class="open-sub"></span>Terdapat puluhan ribu latihan soal yang bisa di akses kapanpun</a> </div>
+              <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="false" style="height: 0px;">
+                <div class="panel-content">
+                  <p>Soal-soal tahun terlama dan terbaru, dari soal latihan, UN sampai dengan SBMPTN terbaru Sibejoo hadirkan untuk kalian. Kalian bisa latihan sesuka dan sepuasnya.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="collapsed" aria-expanded="false"> <span class="open-sub"></span>Bisa Konsultasi 24 jam</a> </div>
+              <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="false" style="height: 0px;">
+                <div class="panel-content">
+                  <p>Sibejoo menyediakan guru-guru piket yang khusus akan menjawab pertanyaan dan curhatan kalian dalam proses belajar. Rasanya kalian seperti punya mentor pribadi bersama Sibejoo. Bisa kalian akses lewat website atau smartphone.</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion14" class="active" aria-expanded="true"> <span class="open-sub"></span>Belajar Toefl Full Free</a> </div>
+              <div id="accordion14" class="panel-collapse collapse in" role="tablist" aria-expanded="true" style="">
+                <div class="panel-content">
+                  <p>Kapan lagi bisa belajar online dan dapat gratis belajar TOEFL, ya Cuma di Sibejoo... Temen-temen bisa merasakan belajar TOEFL secara asyik dan mudah disini.</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="accordion1" class="panel-group accordion">
+            <div class="panel">
+              <div class="fluid-width-video-wrapper" style="padding-top: 80.8152%;"><iframe src="https://www.youtube.com/embed/zqju4Baw-Fs" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe></div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+
+
+
 <!-- Section: About -->
 <section>
   <div class="container">
@@ -457,6 +516,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
       </div>
     </div>
   </div>
+
 </section>
 <!-- Section: About -->
 
@@ -480,21 +540,30 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
       </div>
 
     </div>
+      <div class="separator separator-small-line separator-rouned">
+        <i class="fa fa-cog fa-spin"></i>
+      </div>
   </div>
+
 </section>
+
 <!-- Section: Tryout Online -->
 
 <!-- Section: video -->
-<section data-bg-img="<?=base_url("assets/image/background/green-girl.png") ?>" style="background-image: url(<?=base_url("assets/image/background/green-girl.png") ?>);background-position: right;background-position: bottom;background-repeat: no-repeat;">
+<section data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url('https://i.pinimg.com/originals/ff/cf/2d/ffcf2d6de9f227b9a3e05b75d589da5f.png');">
   <div class="container pb-0">
     <div class="row">
-      <div class="col-md-5">
-        <h2 class="text-theme-colored mt-10 mt-10"><br><br><br><br>Edu Drive</h2>
-        <p class="font-weight-600">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar.</p>
-        <p class="mt-20">Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3">
+        <img class="wow fadeIn" data-wow-duration="1.5s" data-wow-offset="10" src="<?=base_url("assets/image/menu/mockup_iphone.png") ?>">
+
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-5">
+        <h2 class="text-theme-colored mt-10 mt-10">Edu Drive</h2>
+        <p class="font-weight-600">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar.</p>
+        <p class="mt-20">Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
       </div>
     </div>
   </div>
@@ -695,7 +764,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 
 <!-- Divider: Fun Facts -->
-<section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1920x1280" data-parallax-ratio="0.7">
+<section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="https://i.pinimg.com/originals/22/c6/59/22c659d26e320a5efbd4295d0de48044.jpg" data-parallax-ratio="0.7">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
@@ -743,13 +812,13 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
     <div class="section-content">
       <div class="row multi-row-clearfix">
         <div class="owl-carousel-4col" data-dots="true" >
-          <!-- <?php foreach ($teams as $team): ?>
+          <?php foreach ($teams as $team): ?>
             <?php $link =base_url('/assets/image/team/'.strtolower($team['foto'])); ?>
             <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=$link ?>" alt=""></div>
+              <div class="thumb"><img class="img-fullwidth" width="300px" src="<?=$link ?>" alt=""></div>
               <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
                 <h4 class="name mt-0 text-theme-color-2"><?=$team['nama']?> - <small><?=$team['posisi']?></small></h4>
-                <p class="mb-20"><?=$team['keterangan']?>.</p>
+                <p class="mb-20"><?=$team['keterangan']?></p>
               </div>
               <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
                 <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
@@ -758,121 +827,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 </ul>
               </div>
             </div>
-          <?php endforeach ?> -->
-
-          <!-- ini buat dilokal aja, request by andri roll -->
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_5.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Andri Nurul Akbar - <small>Mobile Developer</small></h4>
-                <p class="mb-20">Katakanlah sekarang
-                  Bahwa kau tak bahagia
-                  Aku punya ragamu
-                  Tapi tidak hatimu..
-
-                  Kau tak perlu berbohong
-                  Kau masih menginginkannya
-                  Ku rela kau dengannya
-                  Asalkan kau bahagia.</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_2.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Anggiyasti Yaktining Putri - <small>Web Developer</small></h4>
-                <p class="mb-20">maklumi teman hadapi perbedaan
-                  persahabatan bagai kepompong
-                  na na na na na...</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_4.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Aziz Firmansyah - <small>Web Developer</small></h4>
-                <p class="mb-20">Terserah kali ini
-                Sungguh aku tak ‘kan perduli
-                Ku tak sanggup lagi
-                Jalani cinta denganmu
-                Biarkan ku sendiri
-                Tanpa bayang-bayangmu lagi.</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_6.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Bagus Aditia - <small>Web Developer</small></h4>
-                <p class="mb-20">Jujurlah padaku bila kau tak lagi cinta
-                  Tinggalkan aku
-                  Bila tak mungkin bersama
-                  Jauhi diriku lupakanlah aku
-                  O... Ho... O... Ho....</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_3.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Nur Sofia Malikhah - <small>Web Developer</small></h4>
-                <p class="mb-20">Sampai kapan kau gantung
-                Cerita cintaku memberi harapan
-                Hingga mungkin ku tak sanggup lagi
-                Dan meninggalkan dirimu.</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="team maxwidth400">
-              <div class="thumb"><img class="img-fullwidth" src="<?=base_url()?>assets/manusia_kuat/Manusia-manusia Kuat_1.jpg" alt=""></div>
-              <div class="content border-1px p-15 bg-light clearfix" style="height: 220px;">
-                <h4 class="name mt-0 text-theme-color-2">Opik Sutisna Putra - <small>Web Developer</small></h4>
-                <p class="mb-20">aku jarang dicocol
-                  aku jarang dicocol
-                  katanya abang sayang, owow
-
-                  katanya abang cinta
-
-                  kini abang t’lah pergi
-                  tinggalkanku sendiri
-                  aku tak dicocol lagi
-                  aku tak dijamah lagi
-
-                  (cocol ah, cocol ah, cocol keperawananku).</p>
-              </div>
-              <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                  <li><a href=""><i class="fa fa-instagram"></i></a></li>
-                  <li><a href="mailto:"><i class="fa fa-comment"></i></a></li>
-                </ul>
-              </div>
-            </div>
-          <!-- akhir team lokal -->
+          <?php endforeach ?>
 
         </div>
       </div>
@@ -881,7 +836,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 </section>
 
 <!-- Divider: testimonials -->
-<section id="testimonials" class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="0.5" data-bg-img="http://placehold.it/1920x1280">
+<section id="testimonials" class="divider parallax layer-overlay overlay-dark-8" data-background-ratio="1" data-bg-img="https://i.pinimg.com/originals/22/c6/59/22c659d26e320a5efbd4295d0de48044.jpg">
   <div class="container pb-50">
     <div class="section-title">
       <div class="row">
@@ -891,14 +846,15 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-12 mb-10">
-        <div class="owl-carousel-2col boxed" data-dots="true">
+        <div class="owl-carousel-1col boxed" data-dots="true">
           <?php foreach ($testimoni as $key) : ?>
             <div class="item">
               <div class="testimonial pt-10">
                 <div class="thumb pull-left mb-0 mr-0 pr-20">
-                  <img width="75" class="img-circle" alt="" src="http://placehold.it/100x100">
+                  <img class="img-circle test" src="<?=$key['photo'] ?>" style="width:100px">
                 </div>
                 <div class="ml-100 ">
                   <h4 class="text-white mt-0"><?= $key['testimoni']?></h4>
