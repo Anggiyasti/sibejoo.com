@@ -125,30 +125,6 @@ label:hover{ /* HIDE RADIO */
      </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
  </div>
-
-
-
- <div class="modal fade" id="hasil_to">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-          <div class="ico-clock mb15 mt15" style="font-size:36px;"></div>
-          <h3 class="semibold modal-title text-primary"></h3>
-          <p class="text-danger">
-            Hasil Dari TO
-          </p>
-        </div>
-        <div class="modal-body">
-        
-       </div>
-       <div class="modal-footer">
-         <!-- <a onclick="kirim_hasil_habis()" class="btn btn-default">Kirim Jawaban</a> -->
-       </div>
-     </div><!-- /.modal-content -->
-   </div><!-- /.modal-dialog -->
- </div>
-
-
  <!--/ END modal-lg -->
 </div>
 

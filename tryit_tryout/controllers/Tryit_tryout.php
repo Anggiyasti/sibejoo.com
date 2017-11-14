@@ -199,7 +199,7 @@ class Tryit_tryout extends MX_Controller {
             $data['pil'] = $query['pil']; 
 
             $this->load->view('vHalamanTo-bu.php', $data); 
-            $this->load->view('tryit_tryout/t-footerto', $data); 
+            $this->load->view('t-footerto', $data); 
         } else { 
             $this->errorTest(); 
         } 
@@ -348,7 +348,7 @@ public function laporanQuiz($datArr)
 
   );
 
- 
+
 
       // END step line data
 
