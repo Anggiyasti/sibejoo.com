@@ -13,13 +13,7 @@ class Tryit_tryout extends MX_Controller {
         $this->load->model('tesonline/Mtesonline');
         $this->load->model( 'ortuback/Ortuback_model' );
         parent::__construct();
-        // $this->load->library('sessionchecker');
-        // $this->sessionchecker->checkloggedin();
-        // if ($this->session->userdata('HAKAKSES')=='ortu') {
-        //     # langusung masuk
-        // }else{
-        // $this->sessionchecker->cek_token();
-        // }
+        
 
     }
 
@@ -60,7 +54,6 @@ class Tryit_tryout extends MX_Controller {
     public function daftarpaket() {
         $id_to = $this->session->userdata('id_tryout');
         $datas['id_tryout'] = $id_to;
-        // $datas['id_pengguna'] = $this->session->userdata('id');
         
 
         $data['nama_to'] = $this->Mtryit_tryout->get_tryout_by_id($id_to)[0]['nm_tryout'];
@@ -108,13 +101,9 @@ class Tryit_tryout extends MX_Controller {
                 APPPATH . 'modules/testimoni/views/r-footer.php',
                 );
             // DAFTAR PAKET
-            // $data['paket_dikerjakan'] = $this->Mtryit_tryout->get_paket_reported($datas);
             $data['paket'] = $this->Mtryit_tryout->get_paket_undo($datas);
             $data['status_to'] = $status_to;
-             // ini buat pesan ortu
-            // $id_pengguna= $this->session->userdata['id'];
-            // $data['datLapor'] = $this->Ortuback_model->get_daftar_pesan($id_pengguna);
-            // $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
+             
 
 
             $this->parser->parse('templating/r-index', $data);
@@ -140,12 +129,6 @@ class Tryit_tryout extends MX_Controller {
         $this->session->set_userdata('id_tryout', $data['id_tryout']);
         $this->session->set_userdata('id_mm-tryoutpaket', $data['id_mm-tryoutpaket']);
 
-        // insert ke log tryout
-        // $insert = array("siswa_id" => $this->msiswa->get_siswaid(),
-        //     "mm_tryout_paket_id" => $this->session->userdata('id_mm-tryoutpaket'),
-        //     );
-
-        // $this->Mtryout->insert_log_tryout($insert);
     }
 
     function buatpembahasan() {
@@ -247,9 +230,7 @@ class Tryit_tryout extends MX_Controller {
 
         $this->load->view('v-pembahasanto.php', $data);
         $this->load->view('footerpembahasan', $data);
-    // } else {
-    //     $this->errorTest();
-    // }
+    
     }
 
 
@@ -303,8 +284,7 @@ class Tryit_tryout extends MX_Controller {
 
             $json_rekap_hasil_koreksi = json_encode($rekap_hasil_koreksi);       
 
-            // $hasil['id_pengguna'] = $this->session->userdata['id'];
-            // $hasil['siswaID'] = $this->msiswa->get_siswaid();
+            
             $hasil['id_mm-tryout-paket'] = $this->session->userdata['id_mm-tryoutpaket'];
             ;
             $hasil['jmlh_kosong'] = $kosong;
@@ -315,56 +295,15 @@ class Tryit_tryout extends MX_Controller {
             $hasil['status_pengerjaan'] = 1;
             $hasil['rekap_hasil_koreksi'] = $json_rekap_hasil_koreksi;
 
-            // $result = $this->load->Mtryit_tryout->inputreport($hasil);
             $this->session->unset_userdata('id_mm-tryoutpaket');
-
-            // update tb log tryout
-            // $waktu = new DateTime("now");
-            // $data['update'] = ['waktu_selesai'=>date($waktu->format("Y-m-d H:i:s")),
-            // 'status_pengerjaan'=>1];
-            // $data['where'] = ['siswa_id'=>$hasil['siswaID'],
-            // 'mm_tryout_paket_id'=>$hasil['id_mm-tryout-paket']];
-            // $this->Mtryit_tryout->update_log_tryout($data);
-            // update tb log tryout
-            
-            // redirect(base_url('index.php/tryit_tryout'));
+            // mengirim data             
             echo json_encode($hasil);
         }else{
             var_dump($hasil);
-            // $this->laporanQuiz($hasil);
-            // redirect(base_url('index.php/tryit_tryout'));
+            
         }
     }
 
-        //menampilkan laporan hasil quiz
-public function laporanQuiz($datArr)
-{
-  $data = array(
-
-    'judul_halaman' => 'Sibejoo - Hasil Latihan',
-
-    'judul_header' => 'Step Quiz',
-    'judul_header2' =>'Step Quiz'
-
-  );
-
-
-
-      // END step line data
-
-$data['files'] = array(
-
-  APPPATH . 'modules/homepage/views/r-header-login.php',
-
-  APPPATH . 'modules/tryit_tryout/views/r-hasil-to.php',
-
-            // APPPATH . 'modules/homepage/views/v-footer.php',
-
-);
-
-
-$this->parser->parse('templating/r-index', $data);
-}
 
 
     //end fungsi ilham
@@ -409,14 +348,7 @@ $this->parser->parse('templating/r-index', $data);
     {
         $id_to = $this->session->userdata('id_tryout');
         $datas['id_tryout'] = $id_to;
-        // $datas['id_pengguna'] = $this->session->userdata('id');
-        // if ($this->session->userdata('HAKAKSES')=='ortu') {
-        //     //untuk mengambil id siswa jika ortu yang login 
-        //     $datas['id_siswa'] = $this->Mtryout->get_id_siswa_by_ortu();
-
-        // }else{
-        //     $datas['id_siswa'] = $this->msiswa->get_siswaid();
-        // }
+      
 
         $datas['id_paket'] = $this->session->userdata('id_paket');
 
