@@ -158,7 +158,8 @@ class Mlogin extends CI_Model {
         $this->db->select('siswa.id, t.status, t.masaAktif, t.tanggal_diaktifkan');
         $this->db->from('(SELECT id FROM tb_pengguna WHERE id='.$id_pengguna.') as siswa');
         $this->db->join('tb_siswa s ',' s.penggunaID = siswa.id');
-        $this->db->join('tb_token t ',' t.siswaID = s.id');
+        $this->db->join('tb_donasi d','d.penggunaID=s.penggunaID');
+        $this->db->join('tb_token t ',' t.id_donasi = d.id');
 
         $query = $this->db->get();
 

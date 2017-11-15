@@ -27,8 +27,8 @@ class Donasiback_model extends CI_model{
 		$this->db->select( 's.id AS id_siswa, d.`donasi`')->from('tb_siswa s');
 		$this->db->join('tb_pengguna p ','s.penggunaID = p.id');
 		$this->db->join('tb_donasi d ','d.penggunaID = p.id');
-
 		$this->db->where('p.id = (SELECT penggunaID FROM tb_donasi WHERE id ='.$id_donasi.')');
+		$this->db->order_by("d.id","DESC");
 		$query = $this->db->get(); 
 		return $query->result(); 
 	}
@@ -42,7 +42,7 @@ class Donasiback_model extends CI_model{
 			# ANGLE
 			$this->db->where('masaAktif=1095');
 		}
-		$this->db->where('siswaID is null');
+		$this->db->where('id_donasi is null');
 		$query = $this->db->get(); 
 		return $query->result(); 
 	}
@@ -56,7 +56,7 @@ class Donasiback_model extends CI_model{
 
 		$date = date("Y-m-d H:i:s"); 
 		$this->db->where('id',$data['id_token']);
-		$this->db->set('siswaID', $data['id_siswa']);
+		$this->db->set('id_donasi', $data['id_donasi']);
 		$this->db->set('status', 0);
 		$this->db->update('tb_token');
 	}
@@ -70,7 +70,7 @@ class Donasiback_model extends CI_model{
 		$this->db->join('tb_pengguna p','p.id = donasi.penggunaID');
 		$this->db->join('tb_siswa s','s.penggunaID = p.id');
 		$this->db->join('tb_orang_tua o','o.siswaID = s.id');
-		$this->db->join('tb_token t','t.siswaID = s.id');
+		$this->db->join('tb_token t','t.id_donasi = donasi.id');
 
 		$query = $this->db->get(); 
 		return $query->result(); 

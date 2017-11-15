@@ -83,9 +83,9 @@ public function tambah_donasi()
         );
     $this->m_donasi->insert_donasi($data);
 
-    $id = $this->m_donasi->get_id_donasi()[0]['id'];
+    $id = $this->m_donasi->get_id_donasi()['id'];
     $this->session->set_userdata('id_donasi', $id);
-    echo json_encode($id);
+    echo json_encode($data);
 }
 
 
@@ -225,6 +225,18 @@ public function getdonasi() {
     ->set_output( json_encode( $this->m_donasi->scdonasi() ) ) ;
 }
 
+// cek konfirmasi donasi
+public function get_stat_kon_donasi()
+{
+    $id_donasi=$this->input->post("id_donasi");
+    $count_row=$this->m_donasi->cek_kon_donasi($id_donasi);
+    if ($count_row==1) {
+       echo json_encode(false);
+    } else {
+       echo json_encode(true);
+    }
+    
+}
 
 
 ########################################################## INI MODUL KONFIRMASI ##########################################################
@@ -253,7 +265,11 @@ public function insert_konfirmasi(){
     // TAMPILKAN PESAN
     echo json_encode( $data['message']);
 }
-
+    function remove_donasi(){
+        $id_donasi=$this->input->post("id_donasi");
+        $this->m_donasi->del_donasi($id_donasi);
+        echo json_encode("berhasil".$id_donasi);
+    }
 
 }
 ?>

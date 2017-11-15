@@ -9,7 +9,7 @@ class Login extends MX_Controller {
         $this->load->helper('url');
         $this->load->model('Mlogin');
         $this->load->model('siswa/msiswa');
-
+        $this->load->model('token/token_model');
         $this->load->library('session');
         if ($this->session->userdata('loggedin')==true) {
             if ($this->session->userdata('HAKAKSES')=='siswa'){
@@ -86,38 +86,60 @@ public function validasiLogin() {
             $namaSiswa = $tampSiswa['namaDepan'] . ' '  . $tampSiswa['namaBelakang']  ;
             //set session nama Siswa
             $this->session->set_userdata('NAMASISWA', $namaSiswa);
-            $token = $this->Mlogin->get_token();
-
-            // kalo punya token.
-            if ($token) {
-                // kalo tokenya aktif,cek keaktivanya
-                if ($token['status']==1) {
-                    $date1 = new DateTime($token['tanggal_diaktifkan']);
-                    $date_diaktifkan = $date1->format('d-M-Y');
-                    $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
-                    $date1 = new DateTime(date("d-M-Y"));
-                    $date2 = new DateTime($date_kadaluarsa);
-                    $sisa_aktif = $date2->diff($date1)->days; 
-                    // ini ada sisa masa aktif
-                    if($sisa_aktif>0){
-                        $this->session->set_userdata('member', 1);
-                        $this->session->set_userdata('token','Aktif');
-                        $this->session->set_userdata('sisa_token',$sisa_aktif);
-                    // ini ada habis    s masa aktif
-                    }else{
-                        $this->session->set_userdata('member', 0);
-                        $this->session->set_userdata('token','Habis');              
-                    }
+              $id_pengguna = $this->session->userdata('id');
+            $saldo = $this->token_model->info_saldo($id_pengguna);
+           $token=$this->Mlogin->get_token();
+            //pengecekan 
+            if ($saldo != null) {
+              $sisa_aktif=$saldo->sisa_aktif;
+                if ($sisa_aktif>=0) {
+                  $this->session->set_userdata('member', 1);
+                  $this->session->set_userdata('token','Aktif');
+                  $this->session->set_userdata('sisa_token',$sisa_aktif);
                 }else{
-                    $this->session->set_userdata('token','non-aktif');
-                    $this->session->set_userdata('member', 0);
-                    $this->session->set_userdata('sisa_token','-');
+                  $this->session->set_userdata('member', 0);
+                  $this->session->set_userdata('token','Habis');  
                 }
+                 
+            }else if($token) {
+                $this->session->set_userdata('token','non-aktif');
+                 $this->session->set_userdata('member', 0);
+                $this->session->set_userdata('sisa_token','-');
             }else{
-                $this->session->set_userdata('member', 0);
+               $this->session->set_userdata('member', 0);
                 $this->session->set_userdata('token','non-token'); 
                 $this->session->set_userdata('sisa_token','-');
             }
+            // // // kalo punya token.
+            // if ($token) {
+            //     // kalo tokenya aktif,cek keaktivanya
+            //     if ($token['status']==1) {
+            //         $date1 = new DateTime($token['tanggal_diaktifkan']);
+            //         $date_diaktifkan = $date1->format('d-M-Y');
+            //         $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
+            //         $date1 = new DateTime(date("d-M-Y"));
+            //         $date2 = new DateTime($date_kadaluarsa);
+            //         $sisa_aktif = $date2->diff($date1)->days; 
+            //         // ini ada sisa masa aktif
+            //         if($sisa_aktif>0){
+            //             $this->session->set_userdata('member', 1);
+            //             $this->session->set_userdata('token','Aktif');
+            //             $this->session->set_userdata('sisa_token',$sisa_aktif);
+            //         // ini ada habis    s masa aktif
+            //         }else{
+            //             $this->session->set_userdata('member', 0);
+            //             $this->session->set_userdata('token','Habis');              
+            //         }
+            //     }else{
+            //         $this->session->set_userdata('token','non-aktif');
+            //         $this->session->set_userdata('member', 0);
+            //         $this->session->set_userdata('sisa_token','-');
+            //     }
+            // }else{
+            //     $this->session->set_userdata('member', 0);
+            //     $this->session->set_userdata('token','non-token'); 
+            //     $this->session->set_userdata('sisa_token','-');
+            // }
             redirect(site_url('welcome'));
 
         } elseif ($hakAkses == 'ortu') {

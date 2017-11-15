@@ -85,16 +85,19 @@ class Token extends MX_Controller {
 
 		}
 	}
-	
+	//rawan error
 	function isi_token(){
 		if ($this->input->post()) {
 			$post =$this->input->post();
+			$penggunaID = $this->session->userdata['id'];
 			$data = array("kode_token" => $post['kode_token'],
-				"id_siswa"=>$this->msiswa-> get_siswaid());
-
+				"penggunaID"=>$penggunaID);
 			$hasil_token = $this->token_model->get_token_to_set($data);
+
 			if($hasil_token){
 				//kalo tokenya ada.
+				$data['id_donasi']=$hasil_token[0]->id_donasi;
+
 				$this->token_model->set_token_single($data);
 				$report_ajax = 1;
 				$this->session->set_userdata('token','Aktif');
@@ -125,17 +128,14 @@ class Token extends MX_Controller {
 
 	function settoken(){
 		$token = $this->session->userdata('token');
-		$info_item = $this->token_model->info_token();
-		// pengecekan jika hasil return null
-		if ($info_item != null) {
-		// foreach ($info as $info_item) {
-			$date1 = new DateTime($info_item->tanggal_diaktifkan);
-			$date_diaktifkan = $date1->format('d-M-Y');
-			$date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$info_item->masaAktif));
-		// }
-		}
-		if ($token=='Aktif') {
-			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$this->session->userdata('sisa_token')." Hari.<br> 
+		 $id_pengguna = $this->session->userdata('id');
+		$info_item = $this->token_model->info_saldo($id_pengguna);
+
+		if ($token=='Aktif' && $info_item != null) {
+			$date1 = new DateTime($info_item[0]->tgl_kadaluarsa);
+			// $date_diaktifkan = $date1->format('d-M-Y'); date_format($date, 'Y-m-d H:i:s');
+			$date_kadaluarsa = date_format($date1,'d-M-Y H:i:s');
+			$pesan = "<span>Anda masih memiliki token,</span><br> sisa token ".$info_item[0]->sisa_aktif." Hari.<br> 
 						<span>Aktif hingga tanggal ".$date_kadaluarsa.".</span><br> Tambah token ?";
 		}else{
 			if ($token=='non-aktif') {

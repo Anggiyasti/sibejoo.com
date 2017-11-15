@@ -24,6 +24,7 @@ class M_donasi extends CI_Model
         $this->db->select('*');
         $this->db->from('tb_donasi');
         $this->db->where('penggunaID',$id_pengguna);
+         $this->db->where('status !=',4);
         $this->db->order_by("id","DESC");
         $query = $this->db->get();
         // var_dump($query);
@@ -231,11 +232,28 @@ public function scartikel()
 
 public function scdonasi()
 {
-    $this->db->select('*');
-    $this->db->from('tb_jenis_donasi');
-                // $this->db->where('status',1);
-    $query = $this->db->get();
-    return $query->result_array();
+  $this->db->select('*');
+  $this->db->from('tb_jenis_donasi');
+  // $this->db->where('status',1);
+  $query = $this->db->get();
+  return $query->result_array();
+}
+
+public function del_donasi($id_donasi)
+{
+   $this->db->where('id',$id_donasi);
+   $this->db->delete("tb_donasi");
+}
+
+// cek konfirmasi donasi
+public function cek_kon_donasi($id_donasi)
+{
+  $this->db->select('id_konfirm');
+  $this->db->from('tb_konfirmasi_donasi');
+  $this->db->where('id_donasi',$id_donasi);
+  $query=$this->db->get();
+  return $query->num_rows();
+
 }
 
 }

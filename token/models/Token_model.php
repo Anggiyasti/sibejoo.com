@@ -76,8 +76,9 @@ class Token_model extends CI_Model{
 
 		// get token untuk diset ke mahasiswa
 	function get_token_to_set($data){
-		$this->db->select('*')->from( 'tb_token' );
-		$this->db->where('siswaID',$data['id_siswa']);
+		$this->db->select('donasi.id as id_donasi')->from( 'tb_token token' );
+		$this->db->join('tb_donasi donasi','token.id_donasi = donasi.id');
+		$this->db->where('penggunaID',$data['penggunaID']);
 		$this->db->where('nomorToken',$data['kode_token']);
 		$query = $this->db->get(); 
 		return $query->result();  	
@@ -86,10 +87,9 @@ class Token_model extends CI_Model{
 		//update token untuk siswa
 	function set_token_single($data){
 		$this->db->where('nomorToken', $data['kode_token']);
-		$this->db->where('siswaID', $data['id_siswa']);
+		$this->db->where('id_donasi', $data['id_donasi']);
 		$this->db->set('tanggal_diaktifkan', date('Y-m-d h:m:s'));
 		$this->db->set('status', 1);
-
 
 		$this->db->update('tb_token');
 	}
@@ -221,8 +221,9 @@ class Token_model extends CI_Model{
 		$id_pengguna = $this->session->userdata('id');
 		$this->db->select('token.*');
 		$this->db->from('tb_token token');
-		$this->db->join('tb_siswa siswa', 'token.siswaID=siswa.id');
-		$this->db->where('siswa.penggunaID', $id_pengguna);
+		// $this->db->join('tb_siswa siswa', 'token.siswaID=siswa.id');
+		$this->db->join('tb_donasi donasi','token.id_donasi=donasi.id');
+		$this->db->where('donasi.penggunaID', $id_pengguna);
 		$query = $this->db->get(); 
 		if($query->num_rows() > 0){
    		return $query->result()[0];
@@ -230,8 +231,24 @@ class Token_model extends CI_Model{
 		   return null;
 		}
 
-	
 	}
+
+	public function info_saldo($id_pengguna)
+	{
+		$this->db->select("*");
+		$this->db->from("view_saldo");
+		$this->db->where("penggunaID", $id_pengguna);
+		$query=$this->db->get();
+		if ($query->num_rows() > 0) {
+			return $query->result();
+		}else{
+			return null;
+		}
+		
+	}
+
+
+
 
 
 }

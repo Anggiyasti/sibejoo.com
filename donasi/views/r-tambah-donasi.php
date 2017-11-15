@@ -22,7 +22,7 @@
           </div>
           <hr>
           <h3 class="text-theme-colored mt-0 pt-5">Daftar Donasi</h3>
-          <form id="donasi_form" name="donasi_form"  action="action="<?=base_url('konsultasi/do_upload') ?>"" enctype="multipart/form-data" disabled>
+          <form id="donasi_form" name="donasi_form"  action="action="<?=base_url('konsultasi/do_upload') ?> enctype="multipart/form-data" disabled>
            <div class="row">
             <div class="form-group col-md-12">
               <label >Jenis Donasi</label>
@@ -34,9 +34,10 @@
 
           <div class="form-group">
             <a class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpandonasi" onclick="simpan()" >Daftar Donasi</a>
+           
           </div>
         </form>
-
+      <a class="btn btn-block btn-danger btn-sm mt-20 pt-10 pb-10" onclick="con_remove_donasi()" id="btn_remove">Batal Donasi</a>
       </div>
     </div>
 
@@ -51,8 +52,8 @@
             <div class="col-sm-12">
               <div class="form-group mb-10">
                 <label for="form_name">Nama Pengirim</label>
-                <input name="namapengirim" class="form-control required" type="text" required="" placeholder="Nama Pengirim" aria-required="true">
-                <input name="id_donasi"  type="hidden">
+                <input name="namapengirim" class="form-control required" type="text" required>
+                <input name="id_donasi" type="hide" >
               </div>
             </div>
             <div class="col-sm-12">
@@ -84,9 +85,6 @@
           <div class="form-group button-konfirmasi">
             <!-- <input name="form_botcheck" class="form-control" type="hidden" value=""/> -->
 
-
-
-
           </div>
         </form>
 
@@ -100,7 +98,12 @@
 
 <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 <script type="text/javascript">
-
+  $(document).ready(function(){
+       var stat_donasi;
+    loadDonasi();
+     load_status_donasi();
+     
+  });
   function peringatan_belum_daftar(){
     swal("Oops!", "Mohon untuk melakukan pemilihan donasi terlebih dahulu", "warning")
   }
@@ -113,9 +116,6 @@
   function loadDonasi() {
     jQuery(document).ready(function () {
       // disable form kalo sudah pernah daftar.
-
-
-
       var donasi_id = {"donasi_id": $('#donasi').val()};
       var iddonasi;
 
@@ -139,7 +139,6 @@
     kategori_id = {"donasi_ids": $('#donasi').val()};
   });
 
-  loadDonasi();
 
 
   function simpan() {
@@ -158,8 +157,9 @@
         url:url,
         type:"POST",
         success:function(data){
-          console.log(data);
           swal('Donasi berhasil ditambahkan');
+          $(".simpandonasi").addClass("hide");
+            $("#btn_remove").removeClass("hide");
           // location.reload();
           load_status_donasi();
         },
@@ -199,30 +199,55 @@
         datas = data_insert;
         url=base_url+"donaturback/ubah_donatur_co";
       }
-
-      $.ajaxFileUpload({
-        url:url,
-        data:datas,
-        dataType:"JSON",
-        type:"POST",
-        fileElementId :elementId,
-        success:function(Data){
-          $('.simpan_konfirmasi').html('Simpan');
-          swal("Info",Data,"success");
-          $('#konfirmasi_form')[0].reset();
-        },
-        error:function(data){
-          console.log(data);
-        }
-      });
+   
+        $.ajaxFileUpload({
+          url:url,
+          data:datas,
+          dataType:"JSON",
+          type:"POST",
+          fileElementId :elementId,
+          success:function(Data){
+            $('.simpan_konfirmasi').html('Simpan');
+            swal("Info",Data,"success");
+            $('#konfirmasi_form')[0].reset();
+          },
+          error:function(data){
+          }
+        });
+    
     }
 
+    function cek_stat_kon_donasi(){
+     
+      var id_donasi = $("input[name=id_donasi]").val();
+      if (id_donasi != '' && id_donasi != ' ') {
+         $.ajax({
+          url:base_url+"donasi/get_stat_kon_donasi",
+          data:{id_donasi:id_donasi},  
+          dataType:"JSON",
+          type:"POST",
+          success:function(data_return){
+            if (data_return) {
+             form_aksi_konfirmasi();
+           } else {
+             swal('Opss!','Mohon tunggu konfirmasi dari adminn!',"error")
+           }
+           
+         }
+
+       });
+      } else {
+         swal('Opss!','Mohon tunggu konfirmasi dari adminn!',"error")
+      }
+   
+      
+    }
     function load_status_donasi(){
       $(".simpandonasi").off('click');
       $.post(base_url+"donasi/get_info_donasi", function(data, textStatus) {
         if (data.status==1) {
-          console.log(data.id_donasi);
-          konten_button = '<a onclick="form_aksi_konfirmasi()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpan_konfirmasi" data-loading-text="Please wait...">Simpan</a> ';
+         $(".simpandonasi").addClass("hide");
+          konten_button = '<a onclick="cek_stat_kon_donasi()" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 simpan_konfirmasi" data-loading-text="Please wait...">Simpan</a> ';
           $('.info-status-donasi').fadeIn("slow").html(data.message);
          
           $('input[name=id_donasi]').val(data.id_donasi);
@@ -233,11 +258,37 @@
             $(".simpandonasi").off('click');
           }
         }else{
+           $("#btn_remove").addClass("hide");
           konten_button = '<span class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 " data-loading-text="Please wait..." onclick="peringatan_belum_daftar()">Konfirmasi Donasi</span>';
         }
         $(".button-konfirmasi").fadeIn('slow').html(konten_button);
       }, "json");
     }
 
-    load_status_donasi();
+    function con_remove_donasi() {
+      var id_donasi = $("input[name=id_donasi]").val();
+      var url_post = base_url+"donasi/remove_donasi";
+      $.ajax({
+        url:url_post,
+        data:{id_donasi:id_donasi},
+        type:"post",
+        dataType:"text",
+        success:function(data_return){
+           $('.info-status-donasi').empty();
+           $("input[name=id_donasi]").val(null);
+            $("#donasi_form").prop('onclick',null).off('click');
+            $("#donasi_form a, #donasi_form select").attr('readonly',false);
+            konten_button = '<span class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10 " data-loading-text="Please wait..." onclick="peringatan_belum_daftar()">Konfirmasi Donasi</span>';
+             $(".button-konfirmasi").fadeIn('slow').html(konten_button);
+             $(".simpandonasi").removeClass("hide");
+             $("#btn_remove").addClass("hide");
+        },
+        error:function(){
+
+        }
+      });
+
+    }
+
+   
   </script>

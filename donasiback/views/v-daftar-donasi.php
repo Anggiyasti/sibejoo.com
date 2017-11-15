@@ -96,10 +96,10 @@ $(document).ready(function () {
     }, "json");
   }
 
-  function set_token(data){
-    id_donasi = data;
+  function set_token(id_donasi,donasi){
 
-    $.post(base_url+"donasiback/set_siswa_donasi", {id:id_donasi}, function(data, textStatus) {
+    $.post(base_url+"donasiback/set_siswa_donasi", {id:id_donasi,jenis_donasi:donasi}, function(data, textStatus) {
+      
       if (data.status==1) {
         swal('Token berhasil di set',data.message,'success');
         tabel.ajax.reload(null,false);;
