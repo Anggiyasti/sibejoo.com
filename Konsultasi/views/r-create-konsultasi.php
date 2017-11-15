@@ -44,6 +44,8 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h2 class="modal-title text-center text-danger">Daftar Gambar</h2>
+					<textarea id="temp" style="display: inline; border: none; height: 0px; background-color: white;"></textarea>
+					<!-- <input type="text" name="" id="temp" > -->
 				</div>
 				<div class="modal-body">
 					<table class="table_img" style="font-size: 13px;width: 100%;">
@@ -61,7 +63,7 @@
 
 						</tbody>
 					</table>
-					<textarea id="temp" style="display: inline; border: none;"></textarea>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -103,6 +105,7 @@
 			<!-- Start Editor Soal -->
 			<div class="col-sm-12">
 				<div class="col-sm-8">
+					<h4>Kategori :</h4>
 					<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;">
                       <option value="0">-Pilih Matapelajaran-</option>
                     </select>
@@ -374,8 +377,9 @@
       t.innerHTML = text;
       t.select();
       try {
-        var successful = document.execCommand('copy')
-        var msg = successful ? 'successfully' : 'unsuccessfully'
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successfully' : 'unsuccessfully';
+        swal("Copied to clipboard");
       } catch (err) {
       }
       t.innerHTML = ''
