@@ -34,7 +34,7 @@
 						<h4><b>Filter Pertanyaan</b></h4>
 						<div class="row">
 		                    <div class="form-group col-md-4">
-		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_konsul_all()">
+		                     	<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_filter_mapel()">
 									
 								</select>
 		                    </div>
@@ -63,7 +63,7 @@
 				                <div class="search-form">
 				                  <form>
 				                    <div class="input-group">
-				                      <input type="text" placeholder="Cari pertanyaan" class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
+				                      <input type="text" placeholder="Cari pertanyaanmu disini ..." class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
 				                      <span class="input-group-btn">
 				                      <a onclick="ajax_konsul_all()" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
 				                      </span>
@@ -222,5 +222,32 @@
       }
 
     });
+  }
+  function ajax_filter_mapel(page_num) {
+    page_num = page_num?page_num:0;
+    keyword = $('#search1').val();
+    datas =[];
+    id_bab = 0;
+    id_tingpel = $('#mapelSelect').find(":selected").val();
+      datas = { 
+        id_tingpel:id_tingpel, 
+        id_bab:'all',
+        keyword: keyword,
+        page: page_num,
+        link:'ajax_konsul_all'};
+
+      $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/ajaxPaginationAll/'+page_num,
+          data: datas,
+          beforeSend: function () {
+              $('.loading').show();
+          },
+          success: function (html) {
+              $('#konsulList').html(html);
+              $('.loading').hide();
+          }
+      });
+
   }
  </script>

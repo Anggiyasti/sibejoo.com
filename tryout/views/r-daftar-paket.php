@@ -94,7 +94,7 @@
                       <td><?=$paketitem['jenis_penilaian'] ?></td>
                       <td>
                         <?php if ($status_to=='doing'): ?>
-                        <a href="<?=base_url()?>tryout/tamp_paket/<?=$paketitem['id_paket']?>" class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
+                        <a onclick="info_pengerjaan(<?=$paketitem['id_paket']?>)" class="btn btn-dark btn-theme-colored btn-sm modal-on<?=$paketitem['id_paket']?>" 
                           title="Kerjakan">
                           <i class="glyphicon glyphicon-pencil"></i>
                         </a>
@@ -198,52 +198,6 @@
 <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
 <script src="<?=base_url("assets/plugins/plugins/Chart.js-master/samples/utils.js") ?>"></script>
 <script src="<?=base_url("assets/plugins/plugins/Chart.js-master/samples/chart_bundles.js") ?>"></script>
-<script>
-  // // CHART DONNUT
-  // var ctx = document.getElementById("myChart").getContext('2d');
-  // var myDoughnutChart = new Chart(ctx, {
-  //    type: 'doughnut',
-  //       data: {
-  //           datasets: [{
-  //               data: [
-  //                   randomScalingFactor(),
-  //                   randomScalingFactor(),
-  //                   randomScalingFactor(),
-  //               ],
-  //               backgroundColor: [
-  //                   window.chartColors.red,
-  //                   window.chartColors.orange,
-  //                   window.chartColors.yellow,
-  //               ],
-  //               label: 'Dataset 1'
-  //           }],
-  //           labels: [
-  //               "Benar",
-  //               "Salah",
-  //               "Kosong",
-  //           ]
-  //       },
-  //       options: {
-  //           responsive: true,
-  //           legend: {
-  //               position: 'top',
-  //           },
-  //           title: {
-  //               display: true,
-  //               text: 'Chart.js Doughnut Chart'
-  //           },
-  //           animation: {
-  //               animateScale: true,
-  //               animateRotate: true
-  //           }
-  //       }
-
-  // });
-  // CHART DONNUT
-</script>
-
-
-
 
 <script type="text/javascript"> 
 
@@ -262,35 +216,10 @@
     $('.daftarpaket').find("thead th").removeClass("sorting_asc");
   });
 
-
-  // jQuery(document).ready(function () {
-  //   var ctx = document.getElementById("myChart").getContext('2d');
-  // });
-
-  // function kerjakan(id_to){
-  //   var kelas = ".modal-on"+id_to;
-  //   var data_to = $(kelas).data('todo');
-  //   url = base_url+"index.php/tryout/buatto";
-
-  //   var datas = {
-  //     id_paket:data_to.id_paket,
-  //     id_tryout:data_to.id_tryout,
-  //     id_mm_tryoutpaket:data_to.mmid
-  //   }
-
-  //   $.ajax({
-  //     url : url,
-  //     type: "POST",
-  //     data: datas,
-  //     dataType: "TEXT",
-  //     success: function(data)
-  //     {
-  //      window.location.href = base_url + "index.php/tryout/mulaitest";
-  //    },
-  //    error: function (jqXHR, textStatus, errorThrown) {
-  //    }
-  //  });
-  // }
+  // redirect ke info pengerjaan
+  function info_pengerjaan(id_paket) {
+    window.location.href = base_url + "tryout/tamp_paket/"+id_paket;
+  }
 
   function pembahasanto(id_to){
     var kelas = ".modal-on"+id_to;
@@ -381,6 +310,74 @@
   }
 
 });
+  
+}
+
+function lihat_grafik(id){
+  var kelas = ".modal-on"+id;
+  var data = $(kelas).data('todo');
+
+  $('.modal-title').text('Grafik Latihan ');
+  $('#myModal').modal('show');
+
+  load_grafik(data);
+}
+
+function show_report(){
+  $('#myModal2').modal('show');
+  $('#myModal2 modal-title').text('Report Latihan');
+}
+
+function forbiden(){
+  swal('Maaf, to belum bisa di kerjakan!');
+}
+
+function habis(){
+  swal('Waktu pengerjaan to sudah habis!, anda tidak dapat mengerjakan to.');
+}
+
+  // // CHART DONNUT
+  // var ctx = document.getElementById("myChart").getContext('2d');
+  // var myDoughnutChart = new Chart(ctx, {
+  //    type: 'doughnut',
+  //       data: {
+  //           datasets: [{
+  //               data: [
+  //                   randomScalingFactor(),
+  //                   randomScalingFactor(),
+  //                   randomScalingFactor(),
+  //               ],
+  //               backgroundColor: [
+  //                   window.chartColors.red,
+  //                   window.chartColors.orange,
+  //                   window.chartColors.yellow,
+  //               ],
+  //               label: 'Dataset 1'
+  //           }],
+  //           labels: [
+  //               "Benar",
+  //               "Salah",
+  //               "Kosong",
+  //           ]
+  //       },
+  //       options: {
+  //           responsive: true,
+  //           legend: {
+  //               position: 'top',
+  //           },
+  //           title: {
+  //               display: true,
+  //               text: 'Chart.js Doughnut Chart'
+  //           },
+  //           animation: {
+  //               animateScale: true,
+  //               animateRotate: true
+  //           }
+  //       }
+
+  // });
+  // CHART DONNUT
+
   // CHART DONNUT
 /*
   var chart = new CanvasJS.Chart("chartContainer", {
@@ -419,30 +416,35 @@
     ]
   });
   chart.render();*/
-}
 
-function lihat_grafik(id){
-  var kelas = ".modal-on"+id;
-  var data = $(kelas).data('todo');
+  // jQuery(document).ready(function () {
+  //   var ctx = document.getElementById("myChart").getContext('2d');
+  // });
 
-  $('.modal-title').text('Grafik Latihan ');
-  $('#myModal').modal('show');
+  // function kerjakan(id_to){
+  //   var kelas = ".modal-on"+id_to;
+  //   var data_to = $(kelas).data('todo');
+  //   url = base_url+"index.php/tryout/buatto";
 
-  load_grafik(data);
-}
+  //   var datas = {
+  //     id_paket:data_to.id_paket,
+  //     id_tryout:data_to.id_tryout,
+  //     id_mm_tryoutpaket:data_to.mmid
+  //   }
 
-function show_report(){
-  $('#myModal2').modal('show');
-  $('#myModal2 modal-title').text('Report Latihan');
-}
-
-function forbiden(){
-  swal('Maaf, to belum bisa di kerjakan!');
-}
-
-function habis(){
-  swal('Waktu pengerjaan to sudah habis!, anda tidak dapat mengerjakan to.');
-}
+  //   $.ajax({
+  //     url : url,
+  //     type: "POST",
+  //     data: datas,
+  //     dataType: "TEXT",
+  //     success: function(data)
+  //     {
+  //      window.location.href = base_url + "index.php/tryout/mulaitest";
+  //    },
+  //    error: function (jqXHR, textStatus, errorThrown) {
+  //    }
+  //  });
+  // }
 </script>
 
 <script src="<?= base_url('assets/back/plugins/canvasjs.min.js') ?>"></script>

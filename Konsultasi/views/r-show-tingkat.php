@@ -75,6 +75,11 @@
     load_bab_mapelid(mapel_id);
   });
 
+  $('#babSelect').change(function () {
+    load_mentor();
+    get_mentor_siswa();
+  });
+
 
 
 // fungsi untuk ngeload matapelajaran
@@ -89,6 +94,8 @@ function load_matapelajaran(tingkatID){
       $.each(data, function (i, data) {
         $('#mapelSelect').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
       });
+      $('#babSelect').find('option').remove();
+     $('#babSelect').append('<option value=0>Bab Pelajaran</option>');
     }
   });
 }
@@ -108,22 +115,18 @@ function load_matapelajaran(tingkatID){
       success: function (data) {
        $.each(data, function (i, data) {
         $('#babSelect').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
-      });
+       });
+       load_mentor();   
+       get_mentor_siswa();   
      }
-   });
+    });
    }
 
 
 
    function mulai() {
-    var mapel= $('#mapelSelect').val();
-    var bab= $('#babSelect').val();
-    if (mapel == 0 || bab == 0) {
-      sweetAlert("Oops...", "Silahkan Pilih Pelajaran Dan Bab Terlebih Dahulu", "error");
-    }else{
      $('.buat-btn').text('proses...');
-     window.location = "<?php echo base_url() ?>konsultasi/bertanya/" + bab;
-   }
+     window.location = base_url+"konsultasi/bertanya";
  }
 
 function load_bab_mapelid(mapel_id){
@@ -147,4 +150,44 @@ function load_bab_mapelid(mapel_id){
  $('.buat-btn').click(function () {
    mulai();
  });
+
+ //fungsi untuk ngeload mentor berdasarkan bab id
+    function load_mentor() {
+      babID=$('#babSelect').find(":selected").val();
+      $('#mentorSelect').find('option').remove();
+      $('#mentorSelect').append('<option value=NULL>- Pilih Mentor -</option>');
+       $.ajax({
+        type: "POST",
+        url: "<?php echo base_url() ?>index.php/konsultasi/get_mentor_by_bab/" + babID,
+        success: function (data) {
+         $.each(data, function (i, data) {
+          $('#mentorSelect').append("<option value='" + data.guruID + "'>" + data.namaDepan + " " + data.namaBelakang  + "</option>");
+         });
+       }
+      });
+   }
+
+   // get mentor siswa ini belum selesai
+  function get_mentor_siswa() {
+    babID=$('#babSelect').find(":selected").val();
+    $.ajax({
+      type: "POST",
+      url: "<?php echo base_url() ?>index.php/konsultasi/get_mentor_for_siswa/" + babID,
+      success: function (data) {
+        hasil = JSON.parse(data);
+        // cek dulu typenya boolean atau bukan?
+        if (typeof hasil === 'boolean') {
+          // kalo ada mentornya
+          if (hasil==true) {
+            $('.mentor').hide();
+          // kalo gaada mentornya
+          } else {
+            $('.mentor').show();
+          }
+        } 
+      }
+    });
+  }
+
+
 </script>

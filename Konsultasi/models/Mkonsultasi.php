@@ -784,8 +784,8 @@ class Mkonsultasi extends CI_Model
 				$this->db->join('`tb_mata-pelajaran` mapel', 'mapel.`id` = `tingpel`.`mataPelajaranID`');
 				$this->db->join('`tb_mm-gurumapel` gurmap', '`gurmap`.`mapelID` = mapel.`id`');
 				$this->db->join('`tb_guru` g ', 'g.`id` = gurmap.`guruID`');
-				$this->db->join('`tb_mm_mentor_siswa` mentor' , 'mentor.`guruID` = g.id');
-				$this->db->where("mentor.siswaID = ".$data['id_siswa']);
+				// $this->db->join('`tb_mm_mentor_siswa` mentor' , 'mentor.`guruID` = g.id');
+				// $this->db->where("mentor.siswaID = ".$data['id_siswa']);
 				$this->db->group_by('guruID');
 				
 				$query = $this->db->get();
@@ -793,7 +793,7 @@ class Mkonsultasi extends CI_Model
 				if(empty($query->result())){
 					return false;
 				}else{
-					return $query->result_array()[0];					
+					return $query->result_array();					
 				}
 
 			}
@@ -1099,6 +1099,53 @@ class Mkonsultasi extends CI_Model
 				return $query->result_array()[0];
 			}
 
+			#get edit pertanyaan#
+			function get_edit_pertanyaan($data){
+				$this->db->select('*');
+				$this->db->from('tb_k_pertanyaan');
+				$this->db->where('id',$data['id_pertanyaan']);
+				$query = $this->db->get();
+
+				if ($query->result_array()) {
+					return $query->result_array();
+				}else{
+					return false;
+				}
+			}
+			#get edit pertanyaan#
+
+			// edit pertanyaan
+			function edit_pertanyaan($data){
+				$this->db->where('id', $data['id']);
+        		$this->db->update('tb_k_pertanyaan', $data);
+			}
+
+			function get_mentor_by_siswa($data){
+				$this->db->select("g.`namaDepan`, g.`namaBelakang`, g.`id` AS guruID");
+				$this->db->from("(SELECT * FROM tb_bab b
+					WHERE b.id = ".$data['bab'].") AS bab");
+				$this->db->join('`tb_tingkat-pelajaran` tingpel', 'tingpel.`id` = bab.tingkatPelajaranID');
+				$this->db->join('`tb_mata-pelajaran` mapel', 'mapel.`id` = `tingpel`.`mataPelajaranID`');
+				$this->db->join('`tb_mm-gurumapel` gurmap', '`gurmap`.`mapelID` = mapel.`id`');
+				$this->db->join('`tb_guru` g ', 'g.`id` = gurmap.`guruID`');
+				$this->db->join('`tb_mm_mentor_siswa` mentor' , 'mentor.`guruID` = g.id');
+				$this->db->where("mentor.siswaID = ".$data['id_siswa']);
+				$this->db->group_by('guruID');
+				
+				$query = $this->db->get();
+
+				if(empty($query->result())){
+					return false;
+				}else{
+					return $query->result_array()[0];					
+				}
+
+			}
+
+			public function insert_mentor_siswa( $data ) {
+				$this->db->insert( 'tb_mm_mentor_siswa', $data );
+
+			}
 		}
 
 		?>

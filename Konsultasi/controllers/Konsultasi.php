@@ -11,7 +11,7 @@ class Konsultasi extends MX_Controller{
     $this->load->model('guru/mguru');
 
     $this->load->library('Ajax_pagination');
-    $this->perPage = 1;
+    $this->perPage = 5;
 
     $this->load->model('tryout/mtryout');
     $this->load->model('tingkat/mtingkat');
@@ -151,7 +151,7 @@ public function pertanyaan_all() {
 
   $data = array(
     'judul_halaman' => 'Sibejoo - Konsultasi',
-    'judul_header'=> 'Daftar Semua Pertanyaan'
+    'judul_header'=> 'BANYAK YANG SUDAH BERTANYA <br> KAMU KAPAN?'
     );
 
   $data['files'] = array(
@@ -234,7 +234,6 @@ function ajax_add_konsultasi(){
   $bab = $this->input->post( 'bab' );
   $mentor = $this->input->post( 'mentorID' );
   $uid = uniqid();
-  // $uid = '590c34e70696c';
 
   if($mentor=="NULL"){
    $data = array(
@@ -253,6 +252,14 @@ function ajax_add_konsultasi(){
     'mentorID'=>$mentor,
     'UUID'=>$uid
     );
+
+   $data_mentor_siswa = array(
+    'siswaID' =>$this->get_id_siswa(),
+    'guruID'=>$mentor,
+    );
+
+   // insert ke tb_mm_mentor_siswa
+   $this->mkonsultasi->insert_mentor_siswa($data_mentor_siswa);
  }
     // kalo ada mentornya
  $this->mkonsultasi->insert_konstulasi( $data );
@@ -265,7 +272,7 @@ function ajax_add_konsultasi(){
 
 function list_image_uploaded(){
   $list = $this->mkonsultasi->show_image();
-
+  $hello = "Hello Anggi";
   $data = array();
   $n=1;
   $baseurl = base_url();
@@ -278,10 +285,9 @@ function list_image_uploaded(){
     $link = base_url("assets/image/konsultasi/").$item['nama_file'];
     $row[] = "<img src=".$link." width='100px'>";
     $row[] = $link;
-
-    $row[] = "<a class='' >copy</a>";
-
-
+    $row[] = '
+      <a title="Copy" onclick="copy('."'".$link."'".')">
+      Copy Link</a>';
 
     $data[] = $row;
     $n++;
@@ -297,28 +303,29 @@ function list_image_uploaded(){
 }
 
 //bertanya berdasarkan idsub
-public function bertanya($bab){
+public function bertanya(){
 
   $data = array(
     'judul_halaman' => 'Sibejoo - Konsultasi',
-    'judul_header'=> 'Buat Pertanyaan',
-    'bab' => $bab
+    'judul_header'=> 'Ajukan Pertanyaan',
+    // 'bab' => $bab
     );
 
-  $param = ['bab'=>$bab,'id_siswa'=>$this->get_id_siswa()];
-  $data['mentornya'] = $this->mkonsultasi->get_mentor($param);
+  // $param = ['bab'=>$bab,'id_siswa'=>$this->get_id_siswa()];
+  // $data['mentornya'] = $this->mkonsultasi->get_mentor($param);
   
   $data['files'] = array(
     APPPATH.'modules/homepage/views/r-header-login.php',
     APPPATH.'modules/konsultasi/views/r-create-konsultasi.php',
+    APPPATH.'modules/konsultasi/views/r-show-tingkat.php',
     APPPATH.'modules/templating/views/r-footer.php'
     );
   $this->parser->parse( 'templating/r-index', $data );
 }
 
-public function editpost($id){
+public function editpost(){
   // get jawabanya dulu.
-  $datas['param'] = ['id_jawaban'=>$id,'id_pengguna'=>$this->session->userdata('id')];
+  $datas['param'] = ['id_jawaban'=>$this->session->userdata('id_jawaban'),'id_pengguna'=>$this->session->userdata('id')];
   $data_edit = $this->mkonsultasi->get_edit_jawaban($datas['param']);
 
   // cek apakah data yang editnya benar yang dia buat?
@@ -563,7 +570,7 @@ public function do_upload(){
     // get
     $this->load->library('upload', $config);
   // echo "<a data-nama='".$new_name."' class='insert' onclick='insert()'>Sisipkan</a>";
-    echo "<a data-nama='".$new_name."' class='insert' onclick='insert()' style='border: 2px solid #18bb7c; padding: 2px;display: inline' title='Sisipkan' disabled><i class='fa fa-cloud-upload'></i></a>";
+    echo "<a data-nama='".$new_name."' class='insert' onclick='insert()' style='border: 2px solid #18bb7c; padding: 2px;display: inline' title='Sisipkan' disabled>Sisipkan<i class='fa fa-cloud-upload'></i></a>";
 
 
 
@@ -1684,7 +1691,68 @@ function get_last_jawaban(){
 
    }
 
+  //fungsi untuk mengambil mentor berdasarkan bab id
+  public function get_mentor_by_bab( $bab_id ) {
+    $param = ['bab'=>$bab_id,'id_siswa'=>$this->get_id_siswa()];
+    $data = $this->output
+    ->set_content_type( "application/json" )
+    ->set_output( json_encode( $this->mkonsultasi->get_mentor( $param ) ) ) ;
+  }
 
+  //fungsi untuk mengambil mentor berdasarkan untuk siswa
+  public function get_mentor_for_siswa( $bab_id ) {
+    $param = ['bab'=>$bab_id,'id_siswa'=>$this->get_id_siswa()];
+    $data=$this->mkonsultasi->get_mentor_by_siswa( $param );
+    if ($data==false) {
+      echo json_encode(false);
+    } else {
+      echo json_encode(true);
+    }
+  }
+
+  public function editpertanyaan(){
+    // get jawabanya dulu.
+    $datas['param'] = ['id_pertanyaan'=>$this->session->userdata('id_pertanyaan'),'id_pengguna'=>$this->session->userdata('id')];
+    $data_edit = $this->mkonsultasi->get_edit_pertanyaan($datas['param']);
+
+    // cek apakah data yang editnya benar yang dia buat?
+    if ($data_edit) {
+      $data = array(
+        'judul_halaman' => 'Sibejoo - Edit Pertanyaan',
+        'judul_header'=> 'Edit Pertanyaan',
+        );
+
+      $data['files'] = array(
+        APPPATH.'modules/homepage/views/r-header-login.php',
+        APPPATH.'modules/konsultasi/views/r-edit-pertanyaan.php',
+        APPPATH.'modules/templating/views/r-footer.php'
+        );
+      $data['edit'] = $data_edit['0'];
+
+      $this->parser->parse( 'templating/r-index', $data );
+    }else{
+      echo "Gagal!";
+    }
+  }
+
+  public function edit_tanya($id_pertanyaan) {
+        $this->session->set_userdata('id_pertanyaan', $id_pertanyaan);
+        redirect("konsultasi/editpertanyaan");
+  }
   
+  function ajax_update_pertanyaan(){
+    $data['isiPertanyaan']=htmlspecialchars_decode($this->input->post('isi'));
+    $data['judulPertanyaan']=$this->input->post('judul_pertanyaan');
+    $data['id']=$this->input->post( 'pertanyaanID' );
+
+    $this->mkonsultasi->edit_pertanyaan($data);
+
+    echo json_encode($data);
+  }
+
+  public function tamp_jawab($id_jawaban) {
+        $this->session->set_userdata('id_jawaban', $id_jawaban);
+        redirect("konsultasi/editpost");
+  }
 }
 ?>

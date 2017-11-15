@@ -188,11 +188,11 @@ a, button {
 							</div>
 							<br>
 							<div>
-								| <span rel="tag"><i class="fa fa-tags"></i> {bab}</span> |
+								<span rel="tag"><i class="fa fa-tags"></i> {bab}</span> |
 								<a onclick="quote('single')" rel="tag"><i class="fa fa-quote-right"></i> Quote</a> |
 								<a onclick="quote(0)" rel="tag"><i class="fa fa-comment-o"></i> Balas</a> |
 								<?php if ($username==$this->session->userdata('USERNAME')): ?>
-									<a onclick="edit()"><i class="fa fa-pencil"></i> Edit</a> |
+									<a onclick="edit(<?=$id_pertanyaan;?>)"><i class="fa fa-pencil"></i> Edit</a> |
 								<?php endif ?>
 							</div>
 
@@ -250,7 +250,7 @@ a, button {
 														</i> Quote	
 													</a> |
 
-													<a href="<?=base_url('konsultasi/editpost/'.$item_postingan['jawabID']) ?>">
+													<a onclick="edit_jawaban(<?=$item_postingan['jawabID']?>)">
 														<i class="fa fa-pencil smaller">
 														</i> Edit	
 													</a>
@@ -301,13 +301,13 @@ a, button {
 								<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
 									<span>Upload gambar :</span> 
 									<input type="file" class="cws-button bt-color-3 alt smaller post" name="file" style="display: inline">
-									<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload"><i class="fa fa-cloud-download"></i></a> 
+									<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload">Upload <i class="fa fa-cloud-download"></i></a> 
 									<div id="output" style="display: inline">
-										<a style="border: 2px solid grey; padding: 2px;display: inline" title="Sisipkan" disabled><i class="fa fa-cloud-upload"></i></a> 
+										<a style="border: 2px solid grey; padding: 2px;display: none" title="Sisipkan" disabled>Sisipkan <i class="fa fa-cloud-upload"></i></a> 
 									</div>
 									<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">
 								</form>
-								<a onclick="simpan_jawaban()" class="btn btn-default btn-theme-colored post" id="post_btn">Post</a>
+								<a onclick="simpan_jawaban()" class="btn btn-default btn-theme-colored post" id="post_btn">Jawab</a>
 							</div>
 						</div>
 
@@ -374,6 +374,7 @@ a, button {
 			function sukses(){ 
 				jQuery('#form-upload').resetForm();
 				jQuery('#submit-button').removeAttr('disabled');
+				swal({ html:true, title:'Upload Berhasil', text:'<b>Selanjutnya klik tombol sisipkan!</b>', type:'info'});
 			}
 
 			var ckeditor;
@@ -444,7 +445,7 @@ a, button {
 						// add ke konten yang di insert
 					}
 					$.getJSON( base_url+"konsultasi/get_last_jawaban/", function( datas ) {
-						swal('Yeah','Posting berhasil...','success');
+						swal('Yeah','Jawaban berhasil diposting...','success');
 						CKEDITOR.instances.isi.setData('');
 						$('#post_btn').show();
 						jQuery(".loading_posting").html('');
@@ -570,5 +571,13 @@ a, button {
 			}
 
 		});
+	}
+
+	function edit(id_pertanyaan) {
+		window.location.href = base_url + "konsultasi/edit_tanya/"+id_pertanyaan;
+	}
+
+	function edit_jawaban(id_jawaban) {
+		window.location.href = base_url + "konsultasi/tamp_jawab/"+id_jawaban;
 	}
 </script>

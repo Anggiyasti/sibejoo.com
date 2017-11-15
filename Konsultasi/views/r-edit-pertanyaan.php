@@ -1,3 +1,12 @@
+<style type="text/css">
+    a[disabled="disabled"] {
+        pointer-events: none;
+    }
+
+    a, button {
+      cursor: pointer;
+  }
+</style>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/adapters/jquery.js') ?>"></script>
 
@@ -27,7 +36,7 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	<!-- modal preview -->
+<!-- modal preview -->
 
 <!-- modal preview -->
 	<div class="modal fade" id="show_gambar" tabindex="-1" role="dialog">
@@ -37,7 +46,7 @@
 					<h2 class="modal-title text-center text-danger">Daftar Gambar</h2>
 				</div>
 				<div class="modal-body">
-					<table class="table_img" style="font-size: 13px;width="100%"">
+					<table class="table_img" style="font-size: 13px;width: 100%;">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -45,13 +54,14 @@
 								<th>Tanggal</th>
 								<th>Image</th>
 								<th>Link/URL</th>
-								<th width="30%">Aksi</th>
+								<th width="10%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 
 						</tbody>
 					</table>
+					<textarea id="temp" style="display: inline; border: none;"></textarea>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -81,42 +91,65 @@
   <div class="container">
     <div class="section-content">
       <div class="row">
+      	<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-        	<!-- Start Editor Soal -->
-			<div id="editor-soal">
+      		<div class="col-sm-12">		
+				<div class="alert alert-dismissable alert-danger" id="info" hidden="true" >
+					<button type="button" class="close" onclick="hideme()" >×</button>
+					<strong>Terjadi Kesalahan</strong> <br>Isi nama pertanyaan dan pertanyaan di editor yang sudah disediakan.
+				</div>
+			</div>
+
+			<!-- Start Editor Soal -->
+			<div class="col-sm-12">
+				<div class="col-sm-8">
+					
+					Judul Pertanyaan <br>
+					<input name="judul_pertanyaan" type="text" size="50" aria-required="true" class="form-control search-input col-sm-10" style="height: 35px;" value="<?=(htmlspecialchars($edit['judulPertanyaan'])) ?>"> 
+				</div>
+				<div class="col-sm-4">
+					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 15px; height: 40px;">Lihat Gambar</a>
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="col-sm-12">
+				<br>
 				Isi Pertanyaan :
 				<textarea  name="editor1" class="form-control" id="isi"></textarea>
 				<br>
 				<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
 					Upload Gambar : 
-					<input type="file" class="cws-button bt-color-3 alt smaller post" name="file" style="display: inline">
+					<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline" onchange="cek_fileFoto(this,z='');">
 					<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload">Upload <i class="fa fa-cloud-download"></i></a> 
 					<div id="output" style="display: inline">
-						<a style="border: 2px solid grey; padding: 2px;display: none" title="Sisipkan" disabled>Sisipkan <i class="fa fa-cloud-upload"></i></a> 
+						<a style="border: 2px solid grey; padding: 2px;display: none;" title="Sisipkan" disabled="disabled">Sisipkan <i class="fa fa-cloud-upload"></i></a> 
 					</div>
-					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">
+					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload" >				
+					</a>
 				</form>
-				<a onclick="save()" class="btn btn-default btn-theme-colored post">Post</a>
+				<br>
+				<a onclick="edit_pertanyaan()" class="btn btn-default btn-theme-colored edit_pertanyaan">Post</a>
 				<br>
 				<br>
 				<hr>
+				</div>
 			</div>
-        </div>
+			<!-- END Start Editor Soal -->
+      	</div>
       </div>
     </div>
   </div>
 </section>
-<!-- UPLOAD -->
-<input type="text" value="<?=(htmlspecialchars($edit['isiJawaban'])) ?>" name="isi_jawaban" hidden="true">
+<input type="text" value="<?=(htmlspecialchars($edit['isiPertanyaan'])) ?>" name="isi_pertanyaan" hidden="true">
 
 <script type="text/javascript"> 
 	var ckeditor;
 	$(document).ready(function(){
 		ckeditor = CKEDITOR.replace( 'editor1' );
-		isiJawaban = $('input[name=isi_jawaban]').val();
+		isiPertanyaan = $('input[name=isi_pertanyaan]').val();
 
-		CKEDITOR.instances.isi.setData(isiJawaban);
+		CKEDITOR.instances.isi.setData(isiPertanyaan);
 	});
 
 	function submit_upload(){
@@ -137,7 +170,11 @@
 	function sukses()  { 
 		jQuery('#form-upload').resetForm();
 		jQuery('#submit-button').removeAttr('disabled');
-		swal({ html:true, title:'Upload Berhasil', text:'<b>Selanjutnya klik tombol sisipkan!</b>', type:'info'});
+		swal({ 
+			html:true, 
+			title:'Upload Berhasil', 
+			text:'<b>Selanjutnya klik tombol sisipkan!</b>', 
+			type:'info'});
 	} 
 
 	function insert(){
@@ -202,18 +239,19 @@
 		}
 	}
 
-	function save(){
+	// edit pertanyaan
+	function edit_pertanyaan(){
 		var desc = ckeditor.getData();
 		var data = {
 			isi : desc+"<br>",
-			id:"<?=$edit['id'] ?>",
-			pertanyaanID: <?=$edit['pertanyaanID'] ?>
+			judul_pertanyaan : $('input[name=judul_pertanyaan]').val(),
+			pertanyaanID: <?=$edit['id'] ?>
 		}
 
 		if (data.isi == "") {
 			$('#info').show();
 		}else{
-			url = base_url+"konsultasi/ajax_update_jawaban/";
+			url = base_url+"konsultasi/ajax_update_pertanyaan/";
 			$.ajax({
 				url : url,
 				type: "POST",
@@ -222,23 +260,23 @@
 				success: function(data)
 				{
                 $('.post').text('Posting..'); //change 
-                $('.post').attr('disabled',false); //set 
+                $('.post').attr('disabled',false); //set
                 setTimeout(function() {
 	                swal({
 	                    title: "Wow!",
-	                    text: "Jawaban berhasil diubah...",
+	                    text: "Pertanyaan berhasil diubah",
 	                    type: "success"
 	                }, function() {
 	                    window.location = base_url+"konsultasi/singlekonsultasi";
 	                });
 	            }, 1000); 
                 // window.location = base_url+"konsultasi/singlekonsultasi";
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-            	swal('Error adding / update data');
-            }
-        });
+	            },
+	            error: function (jqXHR, textStatus, errorThrown)
+	            {
+	            	swal('Error adding / update data');
+	            }
+	        });
 		}
 	}
 

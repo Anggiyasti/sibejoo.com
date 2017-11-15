@@ -1,3 +1,12 @@
+<style type="text/css">
+    a[disabled="disabled"] {
+        pointer-events: none;
+    }
+
+    a, button {
+      cursor: pointer;
+  }
+</style>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/adapters/jquery.js') ?>"></script>
 
@@ -37,7 +46,7 @@
 					<h2 class="modal-title text-center text-danger">Daftar Gambar</h2>
 				</div>
 				<div class="modal-body">
-					<table class="table_img" style="font-size: 13px;width="100%"">
+					<table class="table_img" style="font-size: 13px;width: 100%;">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -45,13 +54,14 @@
 								<th>Tanggal</th>
 								<th>Image</th>
 								<th>Link/URL</th>
-								<th width="30%">Aksi</th>
+								<th width="10%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 
 						</tbody>
 					</table>
+					<textarea id="temp" style="display: inline; border: none;"></textarea>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -82,7 +92,6 @@
     <div class="section-content">
       <div class="row">
       	<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-      		<input type="hidden" name="babid" value="{bab}">
 
       		<div class="col-sm-12">		
 				<div class="alert alert-dismissable alert-danger" id="info" hidden="true" >
@@ -93,24 +102,34 @@
 
 			<!-- Start Editor Soal -->
 			<div class="col-sm-12">
-				<div class="col-sm-8">	
-					<label >Kepada Mentor ? :
-						<?php if (empty($mentornya)): ?> <span class="text-danger">Anda belum memiliki mentor</span><?php endif ?>
+				<div class="col-sm-8">
+					<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;">
+                      <option value="0">-Pilih Matapelajaran-</option>
+                    </select>
+                    <br>
+                    <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;">
+                    	<option value=0>-Pilih Bab-</option>
+                   	</select>
+					<br>	
+					<label>Kepada Mentor ? :
+						<!-- <?php if (empty($mentornya)): ?>  -->
+							<span class="text-danger mentor" hidden="true">Anda Belum Memiliki Mentor.</span>
+						<!-- <?php endif ?> -->
 					</label><br>
 				
-					<select class="form-control" name="mentor" style="height: 35px;">
-						<option value="NULL">- Tidak -</option>
-						<?php if (!empty($mentornya)): ?>
+					<select class="form-control" name="mentor" id="mentorSelect" style="height: 35px;">
+						<option value="NULL">- Pilih Mentor -</option>
+						<!-- <?php if (!empty($mentornya)): ?>
 						<option value="<?=$mentornya['guruID'] ?>"><?=$mentornya['namaDepan']." ".$mentornya['namaBelakang'] ?></option>
-						<?php endif ?>
+						<?php endif ?> -->
 					</select>
 					<br>
 					Judul Pertanyaan <br>
 					<input name="namaPertanyaan" type="text" value="" size="50" aria-required="true" class="form-control search-input col-sm-10" style="height: 35px;"> 
 					<input type="hidden" name="idsub" value="{idsub}">
 				</div>
-				<div class="col-sm-4"><br><br><br><br>
-					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 16px; height: 40px;">Lihat Gambar</a>
+				<div class="col-sm-4"><br><br><br><br><br><br><br><br><br>
+					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 15px; height: 40px;">Lihat Gambar</a>
 				</div>
 			</div>
 
@@ -122,13 +141,12 @@
 				<br>
 				<form action="<?=base_url('konsultasi/do_upload') ?>" method="post" enctype="multipart/form-data" id="form-gambar">
 					Upload Gambar : 
-					<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline">
-
-					<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload"><i class="fa fa-cloud-download"></i></a> 
+					<input type="file" class="cws-button bt-color-3 alt smalls post" name="file" style="display: inline" onchange="cek_fileFoto(this,z='');">
+					<a onclick="submit_upload()" style="border: 2px solid #18bb7c; padding: 2px;display: inline" title="Upload">Upload <i class="fa fa-cloud-download"></i></a> 
 					<div id="output" style="display: inline">
-						<a style="border: 2px solid grey; padding: 2px;display: inline" title="Sisipkan" disabled><i class="fa fa-cloud-upload"></i></a> 
+						<a style="border: 2px solid grey; padding: 2px;display: none;" title="Sisipkan" disabled="disabled">Sisipkan <i class="fa fa-cloud-upload"></i></a> 
 					</div>
-					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload">				
+					<input type="submit" class="fa fa-cloud-upload submit-upload" style="margin-top: 3px;display: none" value="Upload" >				
 					</a>
 				</form>
 				<br>
@@ -162,11 +180,51 @@
 				success:  sukses 
 			});
 		});
+
 	}); 
+
+//cek dulu type filenya
+  function cek_fileFoto(oInput,z='') {
+    var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
+    if (oInput.type == "file") {
+        var sFileName = oInput.value;
+        if (sFileName.length > 0) {
+            var blnValid = false;
+            for (var j = 0; j < _validFileExtensions.length; j++) {
+                var sCurExtension = _validFileExtensions[j];
+                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                    blnValid = true;
+                    break;
+                }
+            }
+
+            if (!blnValid) {
+                swal('Silahkan cek type extension gambar! ', 'Type yang bisa di upload hanya ".jpg", ".jpeg", ".bmp", ".gif", ".png', 'warning');
+                return false;
+        }else{
+            cek_ukuranFoto(oInput,z='');
+        }
+      }
+    }
+          return true;
+  }
+
+    // show preview foto
+  function cek_ukuranFoto(oInput,z='') {
+      var file = oInput.files[0];
+      var reader = new FileReader();
+      var size=Math.round(file.size/1024);
+      // start pengecekan ukuran file
+      if (size>=500) {
+        swal('Silahkan cek file size Gambar!','File size foto maksimal 500kb','warning');
+      }else{
+      }
+  }
 
 	function sukses()  { 
 		jQuery('#form-upload').resetForm();
 		jQuery('#submit-button').removeAttr('disabled');
+		swal({ html:true, title:'Upload Berhasil', text:'<b>Selanjutnya klik tombol sisipkan!</b>', type:'info'});
 
 	} 
 
@@ -241,8 +299,8 @@
 		var datas = {
 			namapertanyaan : $('input[name=namaPertanyaan]').val(),
 			isi : desc+"<br>",
-			bab : $('input[name=babid]').val(),
-			mentorID:$('select[name=mentor]').val()
+			bab : $('#babSelect').find(":selected").val(),
+			mentorID:$('#mentorSelect').find(":selected").val()
 		}
 
 		if (datas.namapertanyaan == "" || datas.namapertanyaan == "") {
@@ -267,8 +325,16 @@
                 }
                 );
                 // throw value to server
-                swal('Posting berhasil...');
-                window.location = base_url+"konsultasi/pertanyaan_all";
+                
+                setTimeout(function() {
+	                swal({
+	                    title: "Wow!",
+	                    text: "Posting berhasil...",
+	                    type: "success"
+	                }, function() {
+	                    window.location = base_url+"konsultasi/pertanyaan_all";
+	                });
+	            }, 1000); 
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -300,4 +366,19 @@
 	function upload_gambar_konsultasi(){
 
 	}
+
+	
+
+	function copy(text) {
+      var t = document.getElementById('temp');
+      t.innerHTML = text;
+      t.select();
+      try {
+        var successful = document.execCommand('copy')
+        var msg = successful ? 'successfully' : 'unsuccessfully'
+      } catch (err) {
+      }
+      t.innerHTML = ''
+    }
+
 </script>

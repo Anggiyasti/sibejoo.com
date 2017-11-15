@@ -56,17 +56,18 @@ div.pagination span.disabled {
       	<div class="author-details media-post">
 				           <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="<?=$question['photo'] ?>" data-at2x="<?=$question['photo'] ?>" style="width: 100px;height: 100px;"></a>
 				           <div class="post-right">
-				             <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5>
-				             <div class="comment-date">(<?=$question['date_created'] ?>)</div>
-
+                    <ul class="list-inline font-12 mb-5">
+                      <li class="pr-0"><h5 class="post-title mt-0 mb-0"><a href="#" class="font-18"><?=$question['namaDepan']." ".$question['namaBelakang'] ?></a></h5></li>
+                      <li class="pl-30 pull-right"><a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)" class="btn btn-default" style="color: #53cf92;"><b>JAWAB</b></a></li>
+                    </ul>
+                    <div class="comment-date">(<?=$question['date_created'] ?>)</div>
 				             <div class="col-md-10">
 				              <a onclick="single_konsul(<?=$question['pertanyaanID'] ?>)">
 					             <blockquote class="gray pt-20 pb-20">
 						           <p><i class="fa fa-quote-left"></i> <?=$question['judulPertanyaan'] ?> <i class="fa fa-quote-right" aria-hidden="true"></i></p>
 						           <footer><?=$question['isiPertanyaan'] ?></footer>
-
-						         </blockquote>
-						       </a>
+						            </blockquote>
+						          </a>
 					             <div class="tagline p-0 pt-20 mt-5">
 						           <div class="row">
 						             <div class="col-md-4">
@@ -82,7 +83,7 @@ div.pagination span.disabled {
                                 <input type="text" name="tamp_bab" value="<?=$question['babID']?>" hidden="true"></a> |
     								            <span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
     								            <?php if (!empty($question['namaGuru'])): ?>
-    									           <a ><span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span></a>
+    									           <span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span>
     								            <?php else: ?>
     									           <span>Tanpa Mentor</span>
     								            <?php endif ?>
@@ -99,7 +100,7 @@ div.pagination span.disabled {
       </div>
      <?php endforeach ?>
     <?php else: ?>
-		<h3>Tidak Ada Pertanyaan</h3>
+		<h3 class="text-center">Tidak Ada Pertanyaan</h3>
     <?php endif; ?>
     <div class="clear"></div>
-<?php echo $this->ajax_pagination->create_links(); ?>
+  <?php echo $this->ajax_pagination->create_links(); ?>
