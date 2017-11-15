@@ -153,6 +153,12 @@
                                 <span class="mls">Subab:  <?=$key['subBab'];?> </span>
                             </div>
                         </li>
+                           <li>
+                            <div class="section">
+                                <i class="ico-file"></i>
+                                <span class="mls">Dibuat oleh:  <?=$key['namaPengguna'];?> </span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <!--/ panel-footer -->

@@ -102,7 +102,8 @@ class Banksoal extends MX_Controller {
 
     //tampung list semua soal u/ ke view
     public function tampSoal($list)
-    {
+    {   
+        
          $data['judul_halaman'] = 'Bank Soal' ;
         $data['files'] = array(
             APPPATH . 'modules/banksoal/views/v-soal-all2.php',
@@ -111,6 +112,7 @@ class Banksoal extends MX_Controller {
         // ekstrak data db ke new arrat
           $data['datSoal']=array();
           foreach ( $list as $list_soal ) {
+            $namaPengguna = $list_soal['namaPengguna']; 
             $id_soal=$list_soal['id_soal'];
             $jawaban=$list_soal['jawaban'];
             $tingkat_kesulitan=$list_soal['kesulitan'];
@@ -202,7 +204,8 @@ class Banksoal extends MX_Controller {
                 'jawaban'=>$jawaban,
                 'isiJawaban'=>$isiJawaban,
                 'imgJawaban'=>$imgJawaban,
-                'create_by'=>$create_by
+                'create_by'=>$create_by,
+                'namaPengguna' => $namaPengguna
                 );
 
           }
