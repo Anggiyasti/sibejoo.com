@@ -1,13 +1,13 @@
 <section id="main">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-teal">
+			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<h3 class="panel-title">Export Data Excel Guru</h3>
 					<!-- dropdown cabang -->
 					<div class="panel-toolbar text-right">
 						<div class="btn-group">
-							<a  class="btn btn-sm btn-default" href="<?=base_url()?>assets/excel/template/template_guru.xlsx" rel="nofollow">Template Excel Guru</a>
+							<a  class="btn btn-sm btn-teal" href="<?=base_url()?>assets/excel/template/template_guru.xlsx" rel="nofollow">Template Excel Guru</a>
 						</div>
 					</div>
 					<!-- / dropdown cabang -->
@@ -48,10 +48,10 @@
 								<thead>
 									<tr>
 										<th>No</th>
-										<th>Nama Depan</th>
-										<th>Nama Belakang</th>
+										<th>No Karyawan</th>
+										<th>Nama</th>
 										<th>Alamat</th>
-										<th>Tanggal Lahr</th>
+										<th>Tanggal Lahir</th>
 										<th>Email</th>
 										<th>No Kontak</th>
 										
@@ -63,10 +63,10 @@
 							<tfoot>
 								<tr>
 										<th>No</th>
-										<th>Nama Depan</th>
-										<th>Nama Belakang</th>
+										<th>No Karyawan</th>
+										<th>Nama</th>
 										<th>Alamat</th>
-										<th>Tanggal Lahr</th>
+										<th>Tanggal Lahir</th>
 										<th>Email</th>
 										<th>No Kontak</th>
 									</tr>
@@ -96,7 +96,6 @@ $(document).ready(function(){
 	$("#btn-import").click(function(){
 			post_import_user();
 	});
-	set_op_cabang();
 });
 
 // set cabang option
@@ -171,6 +170,7 @@ function upload_data_xlsx(){
 
 
 	function preview_import(datArr){
+		console.log(datArr);
 		datImport=datArr;
 			var records_tb = [];
 			var no=1;
@@ -180,7 +180,7 @@ function upload_data_xlsx(){
 			} else {
 				show_tb_preview();
 				 $.each(datImport, function (key, val) {
-        records_tb [i] = [no,val.namaDepan,val.namaBelakang,val.alamat,val.tgl_lahir,val.eMail,val.noKontak];
+        records_tb [i] = [no,val.no_karyawan,val.nama,val.alamat,val.tgl_lahir,val.eMail,val.noKontak];
         no++;
          i++;
     		});

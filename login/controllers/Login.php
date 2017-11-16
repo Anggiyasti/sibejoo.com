@@ -91,7 +91,7 @@ public function validasiLogin() {
            $token=$this->Mlogin->get_token();
             //pengecekan 
             if ($saldo != null) {
-              $sisa_aktif=$saldo->sisa_aktif;
+              $sisa_aktif=$saldo[0]->sisa_aktif;
                 if ($sisa_aktif>=0) {
                   $this->session->set_userdata('member', 1);
                   $this->session->set_userdata('token','Aktif');

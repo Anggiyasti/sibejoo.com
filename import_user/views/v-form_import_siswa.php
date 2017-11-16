@@ -48,16 +48,12 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>No Induk neutron</th>
-									<th>Nama Depan</th>
-									<th>Nama Belakang</th>
+									<th>NISN</th>
+									<th>Nama</th>
 									<th>Alamat</th>
-									<th>Tanggal Lahr</th>
+									<th>Tanggal Lahir</th>
 									<th>Email</th>
 									<th>No Kontak</th>
-									<th>Nama Sekolah</th>
-									<th>Alamat Sekolah</th>
-									<th>No Kontak Sekolah</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -66,16 +62,12 @@
 							<tfoot>
 								<tr>
 									<th>No</th>
-									<th>No Induk neutron</th>
-									<th>Nama Depan</th>
-									<th>Nama Belakang</th>
+									<th>NISN</th>
+									<th>Nama</th>
 									<th>Alamat</th>
-									<th>Tanggal Lahr</th>
+									<th>Tanggal Lahir</th>
 									<th>Email</th>
 									<th>No Kontak</th>
-									<th>Nama Sekolah</th>
-									<th>Alamat Sekolah</th>
-									<th>No Kontak Sekolah</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -177,7 +169,7 @@ function upload_data_xlsx(){
 			} else {
 				show_tb_preview();
 				 $.each(datImport, function (key, val) {
-        records_tb [i] = [no,val.nisn,val.namaDepan,val.namaBelakang,val.alamat,val.tgl_lahir,val.eMail,val.noKontak,val.namaSekolah,val.alamatSekolah,val.noKontakSekolah];
+        records_tb [i] = [no,val.nisn,val.nama,val.alamat,val.tgl_lahir,val.eMail,val.noKontak];
         no++;
          i++;
     		});

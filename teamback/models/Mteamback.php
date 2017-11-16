@@ -46,7 +46,19 @@ class Mteamback extends CI_Model{
     public function edit_upload_team($data,$id) {
         $this->db->where('id', $id);
         $this->db->update('tb_team', $data);
-        
+    }
+    // get data team by id
+    public function get_team_by_id($id){
+    	$this->db->select('*');
+    	$this->db->from('tb_team');
+    	$this->db->where('id',$id);
+    	$query = $this->db->get();
+    	if ($query->num_rows() > 0) {
+    		return $query->result();
+    	}else{
+    		return false;
+    	}
+
     }
 }
 ?>
