@@ -184,8 +184,7 @@ class Mkonsultasi extends CI_Model
 		if ($bab=='all') {
 			$this->db->where("tp.id",$id_tingpel);
 		}else{
-			// $this->db->where("tp.id",$id_tingpel);
-			$this->db->where("tp.id='$id_tingpel' AND judulPertanyaan LIKE '%$key%'");
+			$this->db->where("tp.id",$id_tingpel);
 			$this->db->where("bab.id",$bab);
 		}
 

@@ -1409,9 +1409,17 @@ function get_last_jawaban(){
         $key = $key;
       }
     ## kalo  ada yang di cari
-    ## kalo ada yang di cari
-    $id_tingpel = $this->input->post('id_tingpel');
-    $id_bab = $this->input->post('id_bab');
+    
+    // kalo diklik filter by tag
+    $filter = $this->input->post('filter_tag');
+    if ($filter=="yes") {
+      $id_tingpel=$this->session->userdata('filter_tingpel');
+      // $id_tingpel=51;
+      $id_bab = $this->session->userdata('filter_bab');
+    } else {
+      $id_tingpel = $this->input->post('id_tingpel');
+      $id_bab = $this->input->post('id_bab');
+    }
 
     // jika ada yag difilter
     if ($id_tingpel!=0) {
@@ -1451,6 +1459,7 @@ function get_last_jawaban(){
     // get data pertanyaan saya.
       $data['my_questions']=$this->mkonsultasi->get_all_questions($config["per_page"], $page,$key);
     }    
+
     //load the view
     $this->load->view('r-ajax-data', $data, false);
   }
@@ -1464,8 +1473,16 @@ function get_last_jawaban(){
       }
     ## kalo ada yang di cari
 
-    $id_tingpel = $this->input->post('id_tingpel');
-    $id_bab = $this->input->post('id_bab');
+    // kalo diklik filter by tag
+    $filter = $this->input->post('filter_tag');
+    if ($filter=="yes") {
+      $id_tingpel=$this->session->userdata('filter_tingpel');
+      // $id_tingpel=51;
+      $id_bab = $this->session->userdata('filter_bab');
+    } else {
+      $id_tingpel = $this->input->post('id_tingpel');
+      $id_bab = $this->input->post('id_bab');
+    }
 
     // jika ada yang difilter
     if ($id_tingpel!=0) {
@@ -1527,8 +1544,16 @@ function get_last_jawaban(){
       }
     ## kalo ada yang di cari
 
-    $id_tingpel = $this->input->post('id_tingpel');
-    $id_bab = $this->input->post('id_bab');
+    // kalo diklik filter by tag
+    $filter = $this->input->post('filter_tag');
+    if ($filter=="yes") {
+      $id_tingpel=$this->session->userdata('filter_tingpel');
+      // $id_tingpel=51;
+      $id_bab = $this->session->userdata('filter_bab');
+    } else {
+      $id_tingpel = $this->input->post('id_tingpel');
+      $id_bab = $this->input->post('id_bab');
+    }
 
     // jika ada yang difilter
     if ($id_tingpel!=0) {
@@ -1589,8 +1614,16 @@ function get_last_jawaban(){
       }
     ## kalo ada yang di cari
 
-    $id_tingpel = $this->input->post('id_tingpel');
-    $id_bab = $this->input->post('id_bab');
+    // kalo diklik filter by tag
+    $filter = $this->input->post('filter_tag');
+    if ($filter=="yes") {
+      $id_tingpel=$this->session->userdata('filter_tingpel');
+      // $id_tingpel=51;
+      $id_bab = $this->session->userdata('filter_bab');
+    } else {
+      $id_tingpel = $this->input->post('id_tingpel');
+      $id_bab = $this->input->post('id_bab');
+    }
 
     // jika ada yang difilter
     if ($id_tingpel!=0) {
@@ -1753,6 +1786,20 @@ function get_last_jawaban(){
   public function tamp_jawab($id_jawaban) {
         $this->session->set_userdata('id_jawaban', $id_jawaban);
         redirect("konsultasi/editpost");
+  }
+
+  public function tamp_filter_tag()
+  {
+    $id_tingpel=$this->input->post('id_tingpel');
+    $id_bab=$this->input->post('id_bab');
+    $this->session->set_userdata('filter_tingpel',$id_tingpel);
+    $this->session->set_userdata('filter_bab',$id_bab);
+    echo json_encode($id_tingpel);
+  }
+
+  public function tes()
+  {
+    var_dump($this->session->userdata('filter_tingpel'));
   }
 }
 ?>

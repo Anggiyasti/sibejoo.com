@@ -32,7 +32,7 @@
                 <?php if ($this->session->userdata('HAKAKSES')=='siswa'): ?>
               <!-- MENU UNTUK SISWA -->
                     <form class="form-group" action="javascript:void(0)">
-                      <h4><b>Filter Pertanyaan</b></h4>
+                      <h4><b>Kategori Pertanyaan</b></h4>
                       <div class="row">
                         <div class="form-group col-md-4">
                           <select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;" onchange="ajax_filter_mapel()">
@@ -41,9 +41,6 @@
                         </div>
                         <div class="form-group col-md-4">
                           <select class="form-control" name="tingkat" id="babSelect" style="height: 35px;" onchange="ajax_konsul_all()"><option value=0>-Pilih Bab-</option></select>
-                        </div>
-                        <div class="form-group col-md-4">
-                          <a href="#" class="btn btn-default buat-btn"><i class="fa fa-plus"></i> Buat Pertanyaan</a>
                         </div>
                       </div>
                     </form>
@@ -61,23 +58,35 @@
                         </div>
                         <div class="form-group col-md-4">
                           <div class="widget">
-                        <div class="search-form">
-                          <form>
-                            <div class="input-group">
-                              <input type="text" placeholder="Cari pertanyaanmu disini ..." class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
-                              <span class="input-group-btn">
-                              <a onclick="ajax_konsul_all()" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
-                              </span>
+                            <div class="search-form">
+                              <form>
+                                <div class="input-group">
+                                  <input type="text" placeholder="Cari pertanyaanmu disini ..." class="form-control search-input" style="height: 35px;" name="cari" id="search1" onkeyup="ajax_konsul_all()">
+                                  <span class="input-group-btn">
+                                  <a onclick="ajax_konsul_all()" class="btn search-button" style="height: 35px;"><i class="fa fa-search"></i></a>
+                                  </span>
+                                </div>
+                              </form>
                             </div>
-                          </form>
-                        </div>
-                      </div>
+                          </div>
                         </div>
                         <div class="form-group col-md-4">
                           <a href="<?=base_url('konsultasi/pertanyaan_all') ?>" class="btn btn-default"><i class="fa fa-times"></i> Reset</a>
                         </div>
                       </div>
                     </form>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="form-group col-md-12">
+                          <h2><b>Masih Ada Pertanyaan?  </b>
+                            <a href="#" class="btn btn-gray buat-btn" style="background-color: #57b2f8; font-size: 16px;"><b>YUK TANYAKAN SEKARANG</b></a>
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+
+
           <!-- END MENU UNTUK SISWA -->
 
         <?php else: ?>
@@ -179,31 +188,39 @@
               $('.loading').hide();
           }
       });
+  }
 
+  // fungsi untuk tampung id tingpel dan id bab
+  function tamp_filter(id_tingpel,id_bab) {
+    page_num=0;
+    if (id_bab=='all') {
+      datas = {id_tingpel:id_tingpel, id_bab:"all"};
+    } else {
+      datas = {id_tingpel:id_tingpel, id_bab:id_bab};
+    }
+    $.ajax({
+          type: 'POST',
+          url: base_url + 'konsultasi/tamp_filter_tag',
+          data: datas,
+          success: function (data) {
+            filter_by_tag(page_num);
+            // window.location.href=base_url+'konsultasi/tes';
+          }
+      });
   }
 
   // fungsi untuk filter ditagline
-  function filter(page_num) {
+  function filter_by_tag(page_num) {
     page_num = page_num?page_num:0;
     keyword = $('#search1').val();
-    datas =[];
-    id_tingpel = $('input[name=tamp_tingpel]').val();
-    id_bab = $('input[name=tamp_bab]').val();
-    if (id_bab == 0) {
-      datas = { 
-        id_tingpel:id_tingpel, 
-        id_bab:'all',
-        keyword: keyword,
-        page: page_num,
-        link:'filter'};
-    } else {  
-      datas = { 
-        id_tingpel:id_tingpel, 
-        id_bab:id_bab,
-        keyword: keyword,
-        page: page_num,
-        link:'filter'};
-    }
+    datas = { 
+      filter_tag:"yes",
+      id_bab:'all',
+      keyword: keyword,
+      page: page_num,
+      link:'filter_by_tag'
+    };
+  
     pencarian=$('#pencarian').find(":selected").val();
     // cek berdasarkan filter pertanyaan yang diklik
     if (pencarian=="pertanyaan_all") {
@@ -215,6 +232,7 @@
     } else {
       func="ajaxPaginationMentor";
     }
+
       $.ajax({
           type: 'POST',
           url: base_url + 'konsultasi/'+func+'/'+page_num,
