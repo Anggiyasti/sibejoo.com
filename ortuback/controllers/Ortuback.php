@@ -232,6 +232,7 @@ class Ortuback extends MX_Controller {
 			$row[] = $n;
 			$row[] = $item ['jenis'];
 			$row[] = $item ['isi'];
+			$row[] = $item ['tgl'];
 
 			$data[] = $row;
 			$n++;

@@ -61,7 +61,7 @@ class Ortuback_model extends CI_Model{
 
 	/*Mengambil semua report*/
 	function get_report_all($data,$id){
-		$this->db->select('o.namaOrangTua, l.jenis, l.isi');
+		$this->db->select('o.namaOrangTua, l.jenis, l.isi,l.date_created as tgl');
 		$this->db->from('tb_orang_tua o');
 		$this->db->join('tb_siswa s ',' o.siswaID = s.id');
 		$this->db->join('tb_laporan_ortu l', 'o.id=l.id_ortu');

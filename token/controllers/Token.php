@@ -100,6 +100,14 @@ class Token extends MX_Controller {
 
 				$this->token_model->set_token_single($data);
 				$report_ajax = 1;
+				$tamp_saldo=$this->token_model->info_saldo($penggunaID);
+				// cek tamp_saldo jika null
+				if ($tamp_saldo != null) {
+					// jika tidak null ambil data sisa_aktif token
+					$sisa_aktif=$tamp_saldo[0]->sisa_aktif;
+					$this->session->set_userdata('sisa_token',$sisa_aktif);
+				}
+				 
 				$this->session->set_userdata('token','Aktif');
 				echo json_encode($report_ajax);
 			}else{

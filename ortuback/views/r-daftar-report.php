@@ -34,6 +34,7 @@
 				        <th>No</th>
 				        <th>Jenis</th>
 				        <th>Pesan</th>
+                <th>Tanggal</th>
 				      </tr>
 				    </thead>
 				    <tbody>
