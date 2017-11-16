@@ -1,10 +1,4 @@
 <?php 
-
-
-
-/**
- * 
- */
  class artikel extends MX_Controller
  {
     private $upload_path = "./assets/image/artikel";
@@ -168,10 +162,12 @@
     //ajax add Artikel
     function ajax_add_artikel(){
         $post=$this->input->post();
+        var_dump($post);
+
         //konfigurasi upload
         $config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 100;
+        $config['max_size'] = 1000;
         $config['max_width'] = 1024;
         $config['max_height'] = 768;
         
@@ -209,7 +205,7 @@
         //konfigurasi upload
         $config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 100;
+        $config['max_size'] = 1000;
         $config['max_width'] = 1024;
         $config['max_height'] = 768;
         

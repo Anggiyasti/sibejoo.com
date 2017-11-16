@@ -27,74 +27,68 @@
     </section>
 
 
-  <section>
-    <div class="container pt-100 pb-100">
-      <div class="row">
-                <div class="section-title mb-0">
-          <div class="row">
-            <div class="col-md-12">
-              <h2 class="text-center font-28 font-weight-600 mt-0 mb-20 line-height-1">Yuk, pahami matapelajaran yang belum kamu pahami !</h2>
-              <h5 class="text-center font-22 mt-0 mb-80 line-height-1">Misinya berupa materi yang asyik, video yang interaktif dan quiz yang dapat menguji kemampuan kamu</h5>
+    <section>
+      <div class="container pt-100 pb-100">
+        <div class="row">
+          <div class="section-title mb-0">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="text-center font-28 font-weight-600 mt-0 mb-20 line-height-1">Yuk, pahami matapelajaran yang belum kamu pahami !</h2>
+                <h5 class="text-center font-22 mt-0 mb-80 line-height-1">Misinya berupa materi yang asyik, video yang interaktif dan quiz yang dapat menguji kemampuan kamu</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="vertical-masonry-timeline-wrapper">
+              <ul class="vertical-masonry-timeline" style="position: relative; height: 1917.64px;">
+
+               <li class="each-masonry-item wow fadeInUp item-left" data-wow-duration="1.5s" data-wow-offset="10" style="position: absolute; left: 0px; top: 0px; visibility: visible; animation-duration: 1.5s;">
+                <div class="timeline-block">
+                  <span class="timeline-post-format"><i class="fa fa-play"></i></span>
+                  <article class="post clearfix">
+                    <div class="entry-header">
+                      <div class="post-thumb"> <div style="position:relative;height:0;padding-bottom:74.93%"><iframe src="https://www.youtube.com/embed/6TDSr9U0FWc?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="480" height="360" frameborder="0" gesture="media" allowfullscreen></iframe></div> </div>
+                      <h3 class="entry-title text-center mt-5"><a href="#">Video : Gerund and To-Invinitive </a></h3>
+                      <ul class="list-inline font-12 mb-20 mt-10">
+                      </ul>
+                    </div>
+                    <div class="entry-content">
+                      <p class="mb-30">Gerunds and infinitives are sometimes referred to as verb complements. They may function as subjects or objects in a sentence.</p>
+                    </div>
+                  </article>
+                </div>
+              </li>
+
+
+              <li class="each-masonry-item wow fadeInUp item-left" data-wow-duration="1.5s" data-wow-offset="10" style="position: absolute; left: 0px; top: 0px; visibility: visible; animation-duration: 1.5s;">
+                <div class="timeline-block">
+                  <span class="timeline-post-format"><i class="fa fa-file"></i></span>
+                  <article class="post clearfix">
+                    <div class="entry-header">
+                      <div class="post-thumb"> <iframe src="http://docs.google.com/gview?url=http://sibejooclass.com/heroo/beta/assets/modul/GM_Gerund_and_To-Invinitive.pdf&embedded=true" 
+                        style="width:500px; height:500px;" frameborder="0"></iframe> </div>
+                        <h3 class="entry-title text-center mt-5"><a href="#">Materi : Gerund</a></h3>
+                        <ul class="list-inline font-12 mb-20 mt-10">
+                        </ul>
+                      </div>
+                      <div class="entry-content">
+                        <p class="mb-30">
+                          Gerund adalah sebuah kata yang terbentung dari kata kerja (verb) yang ditambahkan akhiran -ing.
+                          Walaupun gerund terbentuk dari sebuah kata kerja, namun fungsi gerund dalam suatu kalimat
+                          adalah sebagai kata benda (noun).
+                        </p>
+                      </div>
+                    </article>
+                  </div>
+                </li>
+
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col-md-12">
-          <div class="vertical-masonry-timeline-wrapper">
-            <ul class="vertical-masonry-timeline" style="position: relative; height: 1917.64px;">
-             <li class="each-masonry-item wow fadeInUp item-left" data-wow-duration="1.5s" data-wow-offset="10" style="position: absolute; left: 0px; top: 0px; visibility: visible; animation-duration: 1.5s;">
-              <div class="timeline-block">
-                <span class="timeline-post-format"><i class="fa fa-user"></i></span>
-                <article class="post clearfix">
-                  <div class="entry-header">
-                    <div class="post-thumb"> <img alt="" src="https://placehold.it/900x500" class="img-fullwidth img-responsive"> </div>
-                    <h5 class="entry-title"><a href="#">Single Image Post</a></h5>
-                    <ul class="list-inline font-12 mb-20 mt-10">
-                      <li>posted by <a href="#" class="text-theme-colored">Admin |</a></li>
-                      <li><span class="text-theme-colored">SEP 12,15</span></li>
-                    </ul>
-                  </div>
-                  <div class="entry-content">
-                    <p class="mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sit nobis magni incidunt eos quasi et excepturi, animi omnis velit, deserunt ratione eum dolorem ducimus ab quidem saepe, natus earum facilis voluptate molestias quos nisi. Beatae in saepe velit nisi sapiente ullam nihil. Laboriosam repellat deleniti voluptate maiores consectetur debitis <a href="#">[...]</a></p>
-                    <ul class="list-inline like-comment pull-left font-12">
-                      <li><i class="pe-7s-comment"></i>36</li>
-                      <li><i class="pe-7s-like2"></i>125</li>
-                    </ul>
-                    <a class="pull-right text-gray font-13" href="#"><i class="fa fa-angle-double-right text-theme-colored"></i> Read more</a>
-                  </div>
-                </article>
-              </div>
-            </li>
-            <li class="each-masonry-item wow fadeInUp item-right" data-wow-duration="1.5s" data-wow-offset="10" style="position: absolute; left: 570px; top: 0px; visibility: visible; animation-duration: 1.5s;">
-              <div class="timeline-block">
-                <span class="timeline-post-format"><i class="fa fa-user"></i></span>
-                <article class="post clearfix">
-                  <div class="entry-header">
-                    <div class="post-thumb"> <img alt="" src="https://placehold.it/900x500" class="img-fullwidth img-responsive"> </div>
-                    <h5 class="entry-title"><a href="#">Single Image Post</a></h5>
-                    <ul class="list-inline font-12 mb-20 mt-10">
-                      <li>posted by <a href="#" class="text-theme-colored">Admin |</a></li>
-                      <li><span class="text-theme-colored">SEP 12,15</span></li>
-                    </ul>
-                  </div>
-                  <div class="entry-content">
-                    <p class="mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sit nobis magni incidunt eos quasi et excepturi, animi omnis velit, deserunt ratione eum dolorem ducimus ab quidem saepe, natus earum facilis voluptate molestias quos nisi. Beatae in saepe velit nisi sapiente ullam nihil. Laboriosam repellat deleniti voluptate maiores consectetur debitis <a href="#">[...]</a></p>
-                    <ul class="list-inline like-comment pull-left font-12">
-                      <li><i class="pe-7s-comment"></i>36</li>
-                      <li><i class="pe-7s-like2"></i>125</li>
-                    </ul>
-                    <a class="pull-right text-gray font-13" href="#"><i class="fa fa-angle-double-right text-theme-colored"></i> Read more</a>
-                  </div>
-                </article>
-              </div>
-            </li>
-
-          </ul>
-        </div>
       </div>
-    </div>
-  </div>
 
-</section>
+    </section>
 
 
 
@@ -103,30 +97,26 @@
     <section>
       <div class="container pb-0">
         <div class="section-content">
-         <div class="row"><!-- 
-          <div class="col-xs-12 col-sm-6 col-md-3 hvr-float-shadow mb-sm-30">
-          </div> -->
-
-          <div class="col-xs-12 col-sm-12 col-md-7 hvr-float-shadow mb-sm-30">
-            <div class="pricing-table maxwidth400">
+         <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 hvr-float-shadow mb-sm-30">
+            <div class="pricing-table">
               <div class=" bg-white border-1px p-60 pt-30 pb-30">
-                <h3 class="font-weight-700">Latihan & Kuis</h3>
-                <div class="p-0 pt-0 pb-70">
-                  <img style="width: 170px;" src="<?=base_url('assets/image/kuis.png') ?>">
-                  <img style="width: 170px;" src="<?=base_url('assets/image/kuis.png') ?>">
-                  <img style="width: 170px;" src="<?=base_url('assets/image/kuis.png') ?>">
+                <h3 class="font-weight-700 text-center">Latihan & Kuis</h3>
+                <blockquote class="text-center">
+                  <p>Setelah lakukan misi materi dan video, kita akan sediakan quiz untuk jadi bos kamu! jadi kalo kamu dapat menaklukan bos di stage ini, kamu bisa lanjut ke stage selanjutnya!</p>
+                </blockquote>
+                <center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIRlsRxEt6IdL5rrEAcvwb8zaUEaYekRG_PP2m5rtkyI8gposCRQ" width="12%" class="mb-10"><br>
+                  <a class="btn btn-border btn-transparent btn-theme-colored btn-flat btn-lg" href="<?=base_url('register') ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i> Try it, here !</a>
                 </div>
-                <h4>Yakin udah ngerti? Yuk, uji pemahamanmu lewat Kuis dan Latihan.</h4>
               </div>
             </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
+            <div class="col-xs-12 col-sm-6 col-md-2 hvr-float-shadow mb-sm-30">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
 
-</div>
+  </div>

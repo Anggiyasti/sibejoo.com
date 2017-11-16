@@ -30,7 +30,7 @@ class Mmatapelajaran extends CI_Model {
     }
     public function daftarMapelSD() {
         $this->db->distinct();
-        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
+        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran,icon_file');
         $this->db->from('tb_mata-pelajaran mp');
         $this->db->from('tb_tingkat-pelajaran tp');
 
@@ -49,7 +49,7 @@ class Mmatapelajaran extends CI_Model {
 
     public function daftarMapelSMP() {
         $this->db->distinct();
-        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
+        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran,icon_file');
         $this->db->from('tb_mata-pelajaran mp');
         $this->db->from('tb_tingkat-pelajaran tp');
         $this->db->join('tb_bab bab', 'bab.tingkatPelajaranID=tp.id');
@@ -71,7 +71,7 @@ class Mmatapelajaran extends CI_Model {
 
     public function daftarMapelSMA() {
         $this->db->distinct();
-        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran');
+        $this->db->select('tp.id, tp.tingkatID, tp.matapelajaranID, tp.keterangan,mp.namaMataPelajaran,mp.aliasMataPelajaran, icon_file');
         $this->db->from('tb_mata-pelajaran mp');
         $this->db->from('tb_tingkat-pelajaran tp');
 

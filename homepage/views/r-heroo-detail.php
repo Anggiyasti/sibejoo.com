@@ -25,7 +25,7 @@
                 <div class="latest-posts">
                   <?php foreach ($listheroo as $key): ?>
                     <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt=""></a>
+                      <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt=""></a>
                       <div class="post-right">
                         <h5 class="post-title mt-0"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><b><?=$key['judul_art_katagori'] ?></b></a></h5>
                       </div>
@@ -46,7 +46,7 @@
                 <article class="post clearfix mb-0">
                   <div class="entry-header">
                     <?php if (!$key['gambar']==""): ?>
-                      <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 600px; width: 450px;" alt="" class="img-responsive img-fullwidth"> </div>
+                      <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive img-fullwidth"> </div>
                     <?php endif ?>
 
                   </div>
@@ -85,11 +85,11 @@
     <!-- end main-content -->
 
     <script type="text/javascript">
-      function detailArtikel(id_artikel) {
-        url_ajax = base_url+"homepage/ambilid";
+      function detailArtikel(id_report) {
+        url_ajax = base_url+"homepage/create_id_report_session";
 
         var global_properties = {
-          id_artikel: id_artikel
+          id_report: id_report
         };
 
         $.ajax({
@@ -98,7 +98,7 @@
           url: url_ajax,
           data: global_properties,
           success: function(data){
-            window.location.href = base_url + "homepage/detail_artikel";  
+            window.location.href = base_url + "homepage/detail_report";  
           },error:function(data){
             sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
           }

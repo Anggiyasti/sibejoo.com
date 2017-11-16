@@ -135,54 +135,53 @@ public function learningLine(){
     $stepID = $rows['stepID'];
     $urutan = $rows ['urutan'];
     // pengecekan jenis step line
-   if ($tampJenis == '1') {
+    if ($tampJenis == '1') {
                 // jika step line video
-        $jenis='Video';
+      $jenis='Video';
                 // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                    $icon='ico-play3';
-                    $link = $UUID;;
-                    $status ="enable";
-                } else {
-                    $icon='ico-play4';
-                    $link = 'javascript:void(0)';
-                    $status ="disable";
-                }
-
-      }else if ($tampJenis == '2') {
-        // jika step line Materi atau modul
-        $jenis='Materi';
-        // pengecekan disable atau enable step
-          if ($step == true || $urutan == '1' ) {
-              $icon ='ico-folder';
-              $link = $UUID;
-              $status ="enable";
-          } else {
-             $icon='ico-folder5';
-             $link = 'javascript:void(0)';
-             $status ="disable";
-          }
-      }else{
-                // jika step line latihan atau quiz
-        $jenis='Latihan';
-                // pengecekan disable atau enable step
-                if ($step == true || $urutan == '1' ) {
-                   $icon ='ico-edit';
-                  $latihanID = $rows['latihanID'];
-                  if ($latihanID != null) {
-                    $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-                  }
-                  else{
-                    $link = base_url('index.php/linetopik/errorTest/');
-                  }
-                   
-                   $status ="enable";
-                } else {
-                  $icon='ico-edit';
-                 $link = 'javascript:void(0)';
-                 $status ="disable";
-                }
+      if ($step == true || $urutan == '1' ) {
+        $icon='ico-play3';
+        $link = $UUID;;
+        $status ="enable";
+      } else {
+        $icon='ico-play4';
+        $link = 'javascript:void(0)';
+        $status ="disable";
       }
+
+    }else if ($tampJenis == '2') {
+        // jika step line Materi atau modul
+      $jenis='Materi';
+        // pengecekan disable atau enable step
+      if ($step == true || $urutan == '1' ) {
+        $icon ='ico-folder';
+        $link = $UUID;
+        $status ="enable";
+      } else {
+       $icon='ico-folder5';
+       $link = 'javascript:void(0)';
+       $status ="disable";
+     }
+   }else{
+                // jika step line latihan atau quiz
+    $jenis='Latihan';
+                // pengecekan disable atau enable step
+    if ($step == true || $urutan == '1' ) {
+     $icon ='ico-edit';
+     $latihanID = $rows['latihanID'];
+     if ($latihanID != null) {
+      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+    }
+    else{
+      $link = base_url('index.php/linetopik/errorTest/');
+    }
+    $status ="enable";
+  } else {
+    $icon='ico-edit';
+    $link = 'javascript:void(0)';
+    $status ="disable";
+  }
+}
 $data['datline'][]=array(
   'namaTopik'=>$rows['namaTopik'],
   'deskripsi'=>$rows['deskripsi'],
@@ -282,14 +281,14 @@ public function step_video()
   if ($step == true || $urutan == '1' ) {
    $icon ='ico-edit';
    $latihanID = $rows['latihanID'];
-    if ($latihanID != null) {
-      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-    }
-    else{
-       $link = base_url('index.php/linetopik/errorTest/');
-    }
-   $status ="enable";
- } else {
+   if ($latihanID != null) {
+    $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+  }
+  else{
+   $link = base_url('index.php/linetopik/errorTest/');
+ }
+ $status ="enable";
+} else {
   $icon ='ico-edit';
   $link = 'javascript:void(0)';
   $status ="disable";
@@ -415,14 +414,14 @@ public function step_materi()
       if ($step == true || $urutan == '1' ) {
        $icon ='ico-edit';
        $latihanID = $rows['latihanID'];
-        if ($latihanID != null) {
-          $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-        }
-        else{
-          $link = base_url('index.php/linetopik/errorTest/');
-        }
-       $status ="enable";
-     } else {
+       if ($latihanID != null) {
+        $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+      }
+      else{
+        $link = base_url('index.php/linetopik/errorTest/');
+      }
+      $status ="enable";
+    } else {
       $icon ='ico-edit';
       $link = 'javascript:void(0)';
       $status ="disable";
@@ -599,14 +598,14 @@ public function timeLine($UUID)
       if ($step == true || $urutan == '1' ) {
        $icon ='ico-pencil';
        $latihanID = $rows['latihanID'];
-        if ($latihanID != null) {
-          $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-        }
-        else{
-          $link = base_url('index.php/linetopik/errorTest/');
-        }
-       $status ="enable";
-     } else {
+       if ($latihanID != null) {
+        $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+      }
+      else{
+        $link = base_url('index.php/linetopik/errorTest/');
+      }
+      $status ="enable";
+    } else {
       $icon ='ico-pencil';
       $link = 'javascript:void(0)';
       $status ="disable";
@@ -701,14 +700,14 @@ public function laporanQuiz($datArr)
     if ($step == true || $urutan == '1' ) {
      $icon ='ico-pencil';
      $latihanID = $rows['latihanID'];
-      if ($latihanID != null) {
-        $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-      }
-      else{
-        $link = base_url('index.php/linetopik/errorTest/');
-      }
-     $status ="enable";
-   } else {
+     if ($latihanID != null) {
+      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+    }
+    else{
+      $link = base_url('index.php/linetopik/errorTest/');
+    }
+    $status ="enable";
+  } else {
     $icon='ico-pencil';
     $link = 'javascript:void(0)';
     $status ="disable";
@@ -804,14 +803,14 @@ public function cariTopik()
     if ($step == true || $urutan == '1' ) {
      $icon ='ico-pencil';
      $latihanID = $rows['latihanID'];
-      if ($latihanID != null) {
-        $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
-      }
-      else{
-        $link = base_url('index.php/linetopik/errorTest/');
-      }
-     $status ="enable";
-   } else {
+     if ($latihanID != null) {
+      $link = base_url('index.php/linetopik/create_session_id_latihan/').$latihanID;
+    }
+    else{
+      $link = base_url('index.php/linetopik/errorTest/');
+    }
+    $status ="enable";
+  } else {
     $icon='ico-pencil';
     $link = 'javascript:void(0)';
     $status ="disable";
@@ -869,9 +868,9 @@ public function autocompleteTopik()
 
 
 public function errorTest() {
-        $this->load->view('templating/t-headersoal');
-        $this->load->view('r-error-test.php');
-    }
+  $this->load->view('templating/t-headersoal');
+  $this->load->view('r-error-test.php');
+}
 
 
 } ?>
