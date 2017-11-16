@@ -159,6 +159,7 @@
                                             <tr>
                                                 <th class="text-center">No</th>
                                                 <th>Nama Paket Soal</th>
+                                                <th>Pembuat Paket Soal</th>
                                                 <th>Jumlah soal</th>
                                                 <th class="text-center">Durasi</th>
                                                 <th>Random</th>
@@ -171,6 +172,7 @@
                                             <tr>
                                                 <th class="text-center">No</th>
                                                 <th>Nama Paket Soal</th>
+                                                 <th>Pembuat Paket Soal</th>
                                                 <th>Jumlah soal</th>
                                                 <th class="text-center">Durasi</th>
                                                 <th>Random</th>

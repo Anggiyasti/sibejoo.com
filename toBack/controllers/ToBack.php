@@ -316,6 +316,7 @@ class Toback extends MX_Controller{
 			$row = array();
 			$row[] = $no;
 			$row[] = $list_to ['nm_tryout'];
+			$row[] = $list_to['namaPengguna'];
 			$row[] = $list_to['tgl_mulai'];
 			$row[] = $list_to['wkt_mulai'];
 			$row[] = $list_to['tgl_berhenti'];

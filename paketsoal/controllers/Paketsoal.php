@@ -68,6 +68,7 @@ class paketsoal extends MX_Controller
 			$row = array();
 			$row[] = $no;
 			$row[] = $paket_soal['nm_paket'];
+			$row[] = $paket_soal['namaPengguna'];
 			$row[] = $paket_soal['jumlah_soal'];
 			$row[] = $paket_soal['durasi'];
 			//pengecekan status random

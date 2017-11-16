@@ -180,6 +180,7 @@
      <tr>
       <th>NO</th>
       <th>Nama TO</th>
+      <th>Pembuat TO</th>
       <th>Tanggal Mulai</th>
       <th>Waktu Mulai</th>
       <th>Tanggal Berakhir</th>

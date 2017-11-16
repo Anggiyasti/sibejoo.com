@@ -59,8 +59,8 @@ class MPaketsoal extends CI_Model {
 	public function getpaketsoal() { 
 	$this->db->order_by('id_paket','desc');
 	  $this->db->select( '*' )->from( 'tb_paket' ); 
-
-	  $this->db->where( 'status', 1 ); 
+	  $this->db->join('tb_pengguna pengguna', 'pengguna.id = tb_paket.penggunaID');
+	  $this->db->where( 'tb_paket.status', 1 ); 
 
 	  $query = $this->db->get(); 
 
