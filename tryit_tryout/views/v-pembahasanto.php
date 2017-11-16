@@ -83,6 +83,60 @@
    </div>
   </section>
 
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Subscribe</h4>
+      </div>
+      <div class="modal-body">
+        <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
+          <label for="mce-EMAIL"></label>
+          <div class="input-group">
+            <!-- untuk menampilkan pesan kesalahan penginputan email -->
+            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
+            <span class="input-group-btn">
+              <!-- <input type="button" value="Berlangganan" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()">  -->
+              <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
+              <span class="text-danger"><?php echo form_error('email'); ?></span>
+            </span>
+          </div>
+
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <input type="button" value="Berlangganan" class="btn btn-dark btn-flat" data-height="45px" onclick="subscribe()"> 
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade sub" id="sub" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
+          <label for="mce-EMAIL"></label>
+          <div class="input-group">
+            <!-- untuk menampilkan pesan kesalahan penginputan email -->
+            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
+            <span class="input-group-btn">
+              <input type="button" value="Berlangganan" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()"> 
+              <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
+              <span class="text-danger"><?php echo form_error('email'); ?></span>
+            </span>
+          </div>
+
+          <div class="separator">
+            <i class="fa fa-cog fa-spin"></i>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
   <!--/ END page header -->
 
   <!-- START Register Content -->
@@ -273,21 +327,15 @@
             <h5><b>Score  </b></h5>
           </div>
           <div class="col-md-1">
-            <?php if ($score['jp'] == 'SBMPTN') {
-              $scoreakhir = (($score['jmlh_benar'] * 4) + ($score['jmlh_salah'] *(-1)) + ($score['jmlh_kosong'] * 0)) / ( $score['jumlah_soal']*4) * 100;
-            }
-              else{
-                $scoreakhir = $score['jmlh_benar']/ $score['jumlah_soal'] * 100;
-              }
-            ?>
-            <h5><b><?=$score['jmlh_benar']?></b></h5>
-            <h5><b><?=$score['jmlh_salah']?></b></h5>
-            <h5><b><?=$score['jmlh_kosong']?></b></h5>
-            <h5><b><?=(int)$scoreakhir?></b></h5>
+            
+            <h5><b><?=$jmlh_benar?></b></h5>
+            <h5><b><?=$jmlh_salah?></b></h5>
+            <h5><b><?=$jmlh_kosong?></b></h5>
+            <h5><b><?=(int)$score?></b></h5>
           </div>
           <div class="col-md-12" style="">
             <hr> 
-            <a href="<?=base_url('tryout/daftarpaket')?>" class="btn btn-info btn-block" >Kembali</a>
+            <a data-toggle="modal" data-target="#myModal" class="btn btn-info btn-block" >Kembali</a>
            </div>
         </div>
       </div>
@@ -352,9 +400,12 @@
          <!--/ panel body with collapse capabale--> 
         </div>
         <!--/ END panel--> 
+
        </div>
+      
       </div>
      </form>
+
     </div>
    </div>
 
@@ -371,3 +422,39 @@
 
 </section>
     <!--/ END Template Main -->
+<script type="text/javascript"></script>
+    <script type="text/javascript">
+      var base_url = "<?= base_url();?>";
+              
+
+              function subscribe(){
+            email = $('#emailsubs').val();
+            url = base_url+"homepage/addsubs";
+            $.ajax({
+              url: url,
+              type: "POST",
+              data: {email:email},
+              dataType: "json",
+              success: function(data) {
+                $('#myModal').modal('hide');
+                swal({
+                  type: "success",
+                  title: "Berhasil",
+                  text: "Terima kasih!",
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "Ya",
+                },
+                function(isConfirm){
+                        if (isConfirm) {
+                          window.location.href = base_url+"homepage/";
+                        }else{
+                          window.location.href = base_url+"homepage/";
+                        }
+                      }); 
+              },
+              error: function(data) {
+                swal('Gagal, Coba cek Lagi');
+              }
+            });
+          }
+    </script>

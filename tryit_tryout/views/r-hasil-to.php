@@ -18,17 +18,13 @@
           
        
 
-      <div class="col-md-9 blog-pull-right">
+
             
-              <article class="post clearfix mb-0">
+              <article class="post clearfix mb-0" >
               
                 <div class="entry-content" >
                   <div class="entry-meta media no-bg no-border mt-15 pb-20">
-                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                      <ul>
-                        <li class="font-12 text-white font-weight-600" >Logo Quiz</li>
-                      </ul>
-                    </div>
+                  
                     <div class="media-body pl-15">
                       <div class="event-content pull-left flip ">
                         <h5 class="entry-title text-uppercase pt-0 mt-0 ">Hasil Quiz</h5>
@@ -36,30 +32,27 @@
                     </div>
                     
                   </div>
-                 <table  class="table table-striped">
+                  
+                 <table  class="table">
                             <tbody>
-                                <tr class="">
-                                    <th>Syarat Lulus</th>
-                                    <!-- <td>Benar <?=$data['syarat'];?> dari <?=$data['jumlahsoal'];?> soal</td> -->
-                                </tr>
 
                                 <tr class="cart-subtotal">
                                     <th>Jumlah Benar  </th>
-                                     <!-- <td><span class="amount"> <?=$benar;?></span></td> -->
+                                     <td><span class="amount"> <?=$benar;?></span></td>
                                 </tr>
                                 <tr class="shipping">
                                     <th>Jumlah Salah </th>
-                                   <!--  <td>    
-                                        <?=$data['jumlahSalah'];?>      
-                                    </td> -->
+                                    <td> <span class="amount">   
+                                        <?=$salah;?>  </span>    
+                                    </td> 
                                 </tr>
                                 <tr class="order-total">
                                     <th>Jumlah Kosong </th>
-                                   <td><span class="amount"><?=$hasil['jmlh_kosong'];?></span></td>
+                                    <td><span class="amount"> <?=$kosong;?></span></td>
                                 </tr> 
                                 <tr class="order-total">
                                     <th>Hasil </th>
-                                    <!-- <td><span class="amount"> <?=$data['hasil'];?></span></td> -->
+                                    <td><span class="amount"><?=(int)$score;?></span></td>
                                 </tr>           
                             </tbody>
                         </table>  
@@ -78,7 +71,7 @@
 
               </article>
 
-              <a href="<?=base_url('linetopik/learningline')?>" class="btn btn-block bg-theme-colored text-white" >Kembali</a>
+              <a href="<?=base_url('tryit_tryout/mulaipembahasan')?>" class="btn btn-block bg-theme-colored text-white" >Lihat Pembahasan</a>
               <hr>
                     
                 
