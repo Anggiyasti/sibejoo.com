@@ -111,6 +111,7 @@ function load_matapelajaran(tingkatID){
      var babID;
      $.ajax({
       type: "POST",
+      dataType: "JSON",
       url: "<?php echo base_url() ?>index.php/matapelajaran/get_bab_by_tingpel_id/" + tingPelId,
       success: function (data) {
        $.each(data, function (i, data) {
@@ -158,6 +159,7 @@ function load_bab_mapelid(mapel_id){
       $('#mentorSelect').append('<option value=NULL>- Pilih Mentor -</option>');
        $.ajax({
         type: "POST",
+        dataType:"JSON",
         url: "<?php echo base_url() ?>index.php/konsultasi/get_mentor_by_bab/" + babID,
         success: function (data) {
          $.each(data, function (i, data) {

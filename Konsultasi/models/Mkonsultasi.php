@@ -415,7 +415,7 @@ class Mkonsultasi extends CI_Model
 	function get_question_m($id_siswa,$perpage,$page,$key=""){
 		$this->db->select("p.id AS pertanyaanID, photo, 
 			namaDepan, namaBelakang, judulPertanyaan, 
-			isiPertanyaan, p.date_created, 
+			isiPertanyaan, p.date_created, `tp.id` AS tingpel, `bab`.`id` AS babID,tp.keterangan,
 			bab.judulBab,(SELECT COUNT(id) FROM tb_k_jawab  WHERE pertanyaanID = p.id) AS jumlah,
 			p.mentorID,(SELECT CONCAT(namaDepan,' ',namaBelakang) from tb_guru where id = p.mentorID) as namaGuru,mp.namaMataPelajaran
 			");
@@ -470,7 +470,7 @@ class Mkonsultasi extends CI_Model
 	function get_question_m_filter($id_siswa,$perpage,$page,$bab,$id_tingpel,$key){
 		$this->db->select("p.id AS pertanyaanID, photo, 
 			namaDepan, namaBelakang, judulPertanyaan, 
-			isiPertanyaan, p.date_created, 
+			isiPertanyaan, p.date_created, `tp.id` AS tingpel, `bab`.`id` AS babID,tp.keterangan,
 			bab.judulBab,(SELECT COUNT(id) FROM tb_k_jawab  WHERE pertanyaanID = p.id) AS jumlah,
 			p.mentorID,(SELECT CONCAT(namaDepan,' ',namaBelakang) from tb_guru where id = p.mentorID) as namaGuru,mp.namaMataPelajaran
 			");

@@ -9,7 +9,7 @@
 
 
 <!-- TITLE -->
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.adtaxi.com/wp-content/uploads/2016/10/shutterstock_365048603.jpg" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.adtaxi.com/wp-content/uploads/2016/10/shutterstock_365048603.jpg" style="background-image: url(&quot;http://www.adtaxi.com/wp-content/uploads/2016/10/shutterstock_365048603.jpg&quot;); background-position: 50% 99px;">
   <div class="container pt-70 pb-20">
     <!-- Section Content -->
     <div class="section-content">
