@@ -22,9 +22,9 @@
       			<h3>Daftar Pesan</h3>
 	      		<select class="form-control" name="jenis">
 	              <option value="all">Semua Jenis</option>
-	              <option value="info">Info</option>
-	              <option value="promo">Promo</option>
-	              <option value="token">Token</option>
+	              <option value="INFO">Info</option>
+	              <option value="PROMO">Promo</option>
+	              <option value="TOKEN">Token</option>
 	            </select>
 	        </div>
 	        <div class="col-md-12">
@@ -51,7 +51,6 @@
 <script type="text/javascript">
 var dataTableReport;
 $(document).ready(function(){
-  var mySelect = $('select[name=cabang]').val();
   dataTableReport = $('.daftarreport').DataTable({
     "ajax": {
       "url": base_url+"ortuback/report_ajax",
@@ -72,6 +71,7 @@ $(document).ready(function(){
 $('select[name=jenis]').change(function(){
 
   jenis = $('select[name=jenis]').val();
+  console.log(jenis);
 
   url = base_url+"ortuback/report_ajax/"+jenis;
 

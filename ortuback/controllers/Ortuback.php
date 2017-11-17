@@ -151,61 +151,6 @@ class Ortuback extends MX_Controller {
 			APPPATH . 'modules/ortuback/views/r-daftar-report.php'		
 		);
 		
-		// get report berdasarkan nilai
-		$report_nilai = $this->Ortuback_model->get_report_nilai($id_pengguna);
-
-		// get report berdasarkan absen
-		$report_absen = $this->Ortuback_model->get_report_absen($id_pengguna);
-
-		// get report berdasarkan umum
-		$report_umum = $this->Ortuback_model->get_report_umum($id_pengguna);
-
-		if (!empty($report_nilai)) {
-			$data['namaortu'] = $report_nilai[0]['namaOrangTua'];
-		}
-		
-
-		$n=1;
-
-		// untuk nampung report nilai
-		if ($report_nilai != '') {
-			$data['nilai']=array(); 
-			foreach ( $report_nilai as $item ) {
-			
-				$data['nilai'][]=array(
-	                'namaortu'=>$item['namaOrangTua'],
-	                'jenis'=>$item['jenis'],
-	                'isi'=>$item['isi'],
-	               );
-			}
-		}
-
-		// untuk nampung report absen
-		if ($report_absen != '') {
-			$data['absen']=array(); 
-			foreach ( $report_absen as $item ) {
-			
-				$data['absen'][]=array(
-	                'namaortu'=>$item['namaOrangTua'],
-	                'jenis'=>$item['jenis'],
-	                'isi'=>$item['isi'],
-	               );
-			}
-		}
-
-		// untuk nampung report umum
-		if ($report_umum != '') {
-			$data['umum']=array(); 
-			foreach ( $report_umum as $item ) {
-			
-				$data['umum'][]=array(
-	                'namaortu'=>$item['namaOrangTua'],
-	                'jenis'=>$item['jenis'],
-	                'isi'=>$item['isi'],
-	               );
-			}
-		}
-
 		$data['datLapor'] = $this->Ortuback_model->get_daftar_pesan($id);
 		$data['count_pesan'] = $this->Ortuback_model->get_count($id);
 
