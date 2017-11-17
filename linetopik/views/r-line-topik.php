@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>"/>
-<section class="inner-header divider parallax layer-overlay overlay-dark-5">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.ludodigitalstories.it/wp-content/uploads/2016/01/timeline.png">
   <div class="container pt-60 pb-60">
     <!-- Section Content -->
     <div class="section-content">

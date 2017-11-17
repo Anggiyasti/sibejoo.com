@@ -4,7 +4,7 @@
   }
 </style>
 
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.ludodigitalstories.it/wp-content/uploads/2016/01/timeline.png">
   <div class="container pt-60 pb-60">
     <!-- Section Content -->
     <div class="section-content">
