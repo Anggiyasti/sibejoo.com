@@ -14,10 +14,10 @@
 <!-- TITLE -->
 
 <style type="text/css">
-    .col-md-2{
-        margin: 20px;
-        padding: 0;
-    }
+.col-md-2{
+  margin: 20px;
+  padding: 0;
+}
 </style>
 
 
@@ -25,166 +25,107 @@
 
 
 <section>
-      <div class="container">
-        <div class="row">
-          
-          <div class="col-sm-12 col-md-5">
-            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-              <div class="widget">
-                <h4 class="widget-title line-bottom">Sekolah Dasar</h4>
-                <div class="services-list">
-                  <?php foreach ($pelajaran_sd as $pelajaran_items): ?>
-                    <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info""><i class="fa fa-fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; font-size: 16px;"><?= $pelajaran_items->namaMataPelajaran ?></i></a>
-                    
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="sidebar sidebar-left mt-sm-30 ml-40">
+          <div class="widget">
+            <h4 class="widget-title line-bottom">Sekolah Dasar</h4>
+            <div class="services-list">
+              <?php foreach ($pelajaran_sd as $pelajaran_items): ?>
+                <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="btn btn-colored btn-gray hvr-buzz-out"><i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 2px; font-size: 16px;"></i>
+                  <span class="mr-5"><?= $pelajaran_items->namaMataPelajaran ?></span></a> 
                 <?php endforeach ?>
                 <?php if ($pelajaran_sd == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
+                  <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
                 <?php endif ?>
-                </div>
-              </div>
-              
-            </div>
-
-            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-              <div class="widget">
-                <h4 class="widget-title line-bottom">SMP</h4>
-                <div class="services-list">
-                  <?php foreach ($pelajaran_smp as $pelajaran_items): ?>
-                   <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info""><i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; font-size: 16px;"><?= $pelajaran_items->namaMataPelajaran ?></i></a>
-                    
-                <?php endforeach ?>
-                <?php if ($pelajaran_smp == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-                <?php endif ?>
-                </div>
-              </div>
-              
-            </div>
-
-            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-              <div class="widget">
-                <h4 class="widget-title line-bottom">SMA</h4>
-                <div class="services-list">
-                  <?php foreach ($pelajaran_sma as $pelajaran_items): ?>
-                    <a style="margin-right: 10px; font-size: 16px;" href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info""><i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; font-size: 16px;"><?= $pelajaran_items->namaMataPelajaran ?></i></a>
-                    
-                <?php endforeach ?>
-                <?php if ($pelajaran_sma == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-                <?php endif ?>
-                </div>
               </div>
             </div>
-
-            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-              <div class="widget">
-                <h4 class="widget-title line-bottom">SMA IPA</h4>
-                <div class="services-list">
-                  <?php foreach ($pelajaran_sma_ipa as $pelajaran_items): ?>
-                    <a style="margin-right: 10px; font-size: 16px;" href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="text-info""><i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 10px; font-size: 16px;"><?= $pelajaran_items->namaMataPelajaran ?></i></a>
-                    
-                <?php endforeach ?>
-                <?php if ($pelajaran_sma_ipa == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-                <?php endif ?>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-              <div class="widget">
-                <h4 class="widget-title line-bottom">SMA IPS</h4>
-                <div class="services-list">
-                  <?php foreach ($pelajaran_sma_ips as $pelajaran_items): ?>
-                    <a style="margin-right: 10px; font-size: 16px;" href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info""><i class="fa fa-bars" aria-hidden="true" style="margin-right: 10px; font-size: 16px;"><?= $pelajaran_items->namaMataPelajaran ?></i></a>
-                    
-                <?php endforeach ?>
-                <?php if ($pelajaran_sma_ips == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-                <?php endif ?>
-                </div>
-              </div>
+            <div class="separator left">
+              <i class="fa fa-pencil"></i>
             </div>
 
           </div>
-        </div>
-      </div>
-    </section>
 
-<!-- <div class="page-content grid-row">
-
-    <main>
-
-        <div class="grid-col-row clear-fix" style="list-style: none;" >
-            <div class="grid-col col-md-2">
-                <div class="hover-effect"></div>
-                <h5><strong>Sekolah Dasar<hr></strong></h5>
-                
-                <?php foreach ($pelajaran_sd as $pelajaran_items): ?>
-                    <li ><a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info""><?= $pelajaran_items->namaMataPelajaran ?></a></li>
-                <?php endforeach ?>
-                <?php if ($pelajaran_sd == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-                <?php endif ?>
-
-            </div>
-
-
-            <div class="grid-col col-md-2">
-                <div class="hover-effect"></div>
-                <h5><strong>SMP<hr></strong></h5>
-
+          <div class="sidebar sidebar-left mt-sm-30 ml-40">
+            <div class="widget">
+              <h4 class="widget-title line-bottom">Sekolah Menengah Pertama</h4>
+              <div class="services-list">
                 <?php foreach ($pelajaran_smp as $pelajaran_items): ?>
-                    <li ><a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info"><?= $pelajaran_items->namaMataPelajaran ?></a></li>
+                 <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="btn btn-colored btn-gray hvr-buzz-out"><i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 2px; font-size: 16px;"></i>
+                  <span class="mr-5"><?= $pelajaran_items->namaMataPelajaran ?></span></a> 
+
                 <?php endforeach ?>
                 <?php if ($pelajaran_smp == array()): ?>
-                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
+                  <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
                 <?php endif ?>
+              </div>
+            </div>
+            <div class="separator left">
+              <i class="fa fa-pencil"></i>
+            </div>
+
+          </div>
+
+          <div class="sidebar sidebar-left mt-sm-30 ml-40">
+            <div class="widget">
+              <h4 class="widget-title line-bottom">Sekolah Menengah Atas</h4>
+              <div class="services-list">
+                <?php foreach ($pelajaran_sma as $pelajaran_items): ?>
+                  <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="btn btn-colored btn-gray hvr-buzz-out"><i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 2px; font-size: 16px;"></i>
+                    <span class="mr-5"><?= $pelajaran_items->namaMataPelajaran ?></span></a> 
+
+                  <?php endforeach ?>
+                  <?php if ($pelajaran_sma == array()): ?>
+                    <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
+                  <?php endif ?>
+                </div>
+              </div>
+              <div class="separator left">
+                <i class="fa fa-pencil"></i>
+              </div>
 
             </div>
 
-            <div class="grid-col col-md-2">
-                <div class="hover-effect"></div>
-                <h5><strong>SMA<hr></strong></h5>
+            <div class="sidebar sidebar-left mt-sm-30 ml-40">
+              <div class="widget">
+                <h4 class="widget-title line-bottom">Sekolah Menengah Atas -  IPA</h4>
+                <div class="services-list">
+                  <?php foreach ($pelajaran_sma_ipa as $pelajaran_items): ?>
+                    <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="btn btn-colored btn-gray hvr-buzz-out"><i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 2px; font-size: 16px;"></i>
+                      <span class="mr-5"><?= $pelajaran_items->namaMataPelajaran ?></span></a> 
 
-                <?php foreach ($pelajaran_sma as $pelajaran_items): ?>
-                 <li ><a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info"><?= $pelajaran_items->namaMataPelajaran ?></a></li>
-             <?php endforeach ?>
-
-             <?php if ($pelajaran_sma == array()): ?>
-                <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-            <?php endif ?>
-
-        </div>
-
-        <div class="grid-col col-md-2">
-            <div class="hover-effect"></div>
-            <h5><strong>SMA IPA<hr></strong></h5>
-
-            <?php foreach ($pelajaran_sma_ipa as $pelajaran_items): ?>
-             <li> <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info"><?= $pelajaran_items->namaMataPelajaran ?></a></li>
-         <?php endforeach ?>
-         <?php if ($pelajaran_sma_ipa == array()): ?>
-            <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-        <?php endif ?>
-    </div>
+                    <?php endforeach ?>
+                    <?php if ($pelajaran_sma_ipa == array()): ?>
+                      <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
+                    <?php endif ?>
+                  </div>
+                </div>
+                <div class="separator left">
+                  <i class="fa fa-pencil"></i>
+                </div>
 
 
-    <div class="grid-col col-md-2">
-        <div class="hover-effect"></div>
-        <h5><strong>SMA IPS<hr></strong></h5>
-        <?php foreach ($pelajaran_sma_ips as $pelajaran_items): ?>
-         <li> <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>"  class="text-info"><?= $pelajaran_items->namaMataPelajaran ?></a></li>
-     <?php endforeach ?>
-     <?php if ($pelajaran_sma_ips == array()): ?>
-        <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
-    <?php endif ?>
+              </div>
 
-</div>
+              <div class="sidebar sidebar-left mt-sm-30 ml-40">
+                <div class="widget">
+                  <h4 class="widget-title line-bottom">Sekolah Menengah Atas -  IPS</h4>
+                  <div class="services-list">
+                    <?php foreach ($pelajaran_sma_ips as $pelajaran_items): ?>
+                      <a href="<?=base_url('video/daftarallvideo/') ?><?=$pelajaran_items->id ?>" class="btn btn-colored btn-gray hvr-buzz-out"><i class="fa fa-file-text-o" aria-hidden="true" style="margin-right: 2px; font-size: 16px;"></i>
+                        <span class="mr-5"><?= $pelajaran_items->namaMataPelajaran ?></span></a> 
+                      <?php endforeach ?>
+                      <?php if ($pelajaran_sma_ips == array()): ?>
+                        <h6 style="color:orange;">Belum Tersedia Video Pembelajaran !</h6>
+                      <?php endif ?>
+                    </div>
+                  </div>
+                </div>
 
-</div>
-</div>
-</main>
-</div> -->
-
-<hr class="divider-color">
+              </div>
+            </div>
+          </div>
+        </section>
+        <hr class="divider-color">

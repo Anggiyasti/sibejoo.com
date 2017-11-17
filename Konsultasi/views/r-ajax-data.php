@@ -48,6 +48,7 @@ div.pagination span.disabled {
 }
 </style>
 <!-- semua -->
+  <h4><b>Daftar Pertanyaan</b></h4>
     <?php if ($my_questions): ?>
      <?php foreach ($my_questions as $question): ?>
       <div class="blog-post">
@@ -75,12 +76,11 @@ div.pagination span.disabled {
 						             <div class="col-md-8">
 						               <div class="share text-right">
 						                 <p>
-						                  <a onclick="filter()" ><i class="fa fa-tags text-theme-color-2"></i> <?=$question['keterangan'] ?>
-                                <input type="text" name="tamp_tingpel" value="<?=$question['tingpel']?>" hidden="true">
+						                  <a onclick="tamp_filter(<?=$question['tingpel']?>,'all')" ><i class="fa fa-tags text-theme-color-2"></i> <?=$question['keterangan'] ?>
                               </a> | 
-						                  <a onclick="filter()">
+						                  <a onclick="tamp_filter(<?=$question['tingpel']?>,<?=$question['babID']?>)">
     								            <i class="fa fa-puzzle-piece text-theme-color-2"></i> <?=$question['judulBab'] ?>
-                                <input type="text" name="tamp_bab" value="<?=$question['babID']?>" hidden="true"></a> |
+                                </a> |
     								            <span><i class="fa fa-pencil text-theme-color-2"></i> <?=$question['jumlah'] ?></span> |
     								            <?php if (!empty($question['namaGuru'])): ?>
     									           <span><i class="fa fa-search"></i> <?=$question['namaGuru'] ?></span>

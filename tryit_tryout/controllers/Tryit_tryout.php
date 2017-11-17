@@ -27,22 +27,25 @@ class Tryit_tryout extends MX_Controller {
     //# fungsi indeks, mampilin to yang dikasih hak akses.
     public function index() {
         // $this->session->unset_userdata('id_tryout');
+        $id_to = $this->session->userdata('id_tryout');
+        $datas['id_tryout'] = $id_to;
+      
+
+        $datas['id_paket'] = $this->session->userdata('id_paket');
+
         $data = array(
-            'judul_halaman' => 'Sibejoo - Try Out',
-            'judul_header' => 'DAFTAR TRY OUT',
-            'judul_tingkat' => '',
+            'judul_halaman' => 'Sibejoo - Info Pengerjaan',
+            'judul_header' => 'Info Pengerjaan Try Out',
             );
 
-        $konten = 'modules/tryit_tryout/views/r-daftar-totryit.php';
+        $konten = 'modules/tryit_tryout/views/r-info-pengerjaan.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header-login.php',
+            APPPATH . 'modules/homepage/views/r-header.php',
             APPPATH . $konten,
-            APPPATH . 'modules/testimoni/views/r-footer.php',
-            
+            APPPATH . 'modules/templating/views/r-footer.php',
             );
-  
-        $data['tryout'] = $this->Mtryit_tryout->get_tryout_akses();
+        $data['paket'] = $this->Mtryit_tryout->get_paket_for_info();
         $this->parser->parse('templating/r-index', $data);
     }
 
@@ -188,37 +191,41 @@ class Tryit_tryout extends MX_Controller {
         } 
     }
     public function mulaipembahasan() {
-        if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
-            $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
-            $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];
-            $data['rekap_jawaban'] = json_decode($this->Mtryit_tryout->get_report_paket_by_mmid($data)->rekap_hasil_koreksi);
-            $data['topaket'] = $this->Mtryit_tryout->datatopaket($id);
+        // if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
+        //     $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
+            // $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];
+            $data['rekap_jawaban'] =  $this->session->userdata['koreksi'];
+            $data['topaket'] = $this->Mtryit_tryout->datatopaket();
             $jumlah_soal = count($data['rekap_jawaban']);
 
-            $id_paket = $this->Mtryit_tryout->datapaket($id)[0]->id_paket;
+            // $id_paket = $this->Mtryit_tryout->datapaket($id)[0]->id_paket;
 
             $this->load->view('templating/t-headerto');
-            $query = $this->load->Mtryit_tryout->get_pembahasan($id_paket);
+            $query = $this->load->Mtryit_tryout->get_pembahasan();
             $data['soal'] = $query['soal'];
             $data['pil'] = $query['pil'];
-                
-            $data['score'] = $this->Mtryit_tryout->get_info_score($id);
+            $benar =$this->session->userdata['jmlh_benar'];
+            $data['jmlh_benar'] = $benar;
+            $data['jmlh_salah'] = $this->session->userdata['jmlh_salah'];
+            $data['jmlh_kosong'] = $this->session->userdata['jmlh_kosong'];
+            $data['score'] = $benar/ $jumlah_soal * 100;
 
             for ($i=0; $i <$jumlah_soal ; $i++) { 
-                $rekap_id = $data['rekap_jawaban'][$i]->id_soal;
+                $rekap_id = $data['rekap_jawaban'][$i]['id_soal'];
+                
                 $soal_id = $data['soal'][$i]['soalid'];
 
                 if ($rekap_id == $soal_id) {
-                    $data['soal'][$i]['status_koreksi'] = $data['rekap_jawaban'][$i]->status_koreksi;
+                    $data['soal'][$i]['status_koreksi'] = $data['rekap_jawaban'][$i]['status_koreksi'];
                 }
             }
 
 
             $this->load->view('v-pembahasanto.php', $data);
             $this->load->view('footerpembahasan', $data);
-        } else {
-            $this->errorTest();
-        }
+        // } else {
+        //     $this->errorTest();
+        // }
     }
 
     public function pembahasan(){
@@ -295,16 +302,18 @@ class Tryit_tryout extends MX_Controller {
             $hasil['status_pengerjaan'] = 1;
             $hasil['rekap_hasil_koreksi'] = $json_rekap_hasil_koreksi;
 
+            $this->session->set_userdata('jmlh_benar',$benar);
+            $this->session->set_userdata('jmlh_salah',$salah);
+            $this->session->set_userdata('jmlh_kosong',$kosong);
+            $this->session->set_userdata('koreksi',$rekap_hasil_koreksi);
             $this->session->unset_userdata('id_mm-tryoutpaket');
+            
             // mengirim data             
-            echo json_encode($hasil);
         }else{
             var_dump($hasil);
             
         }
     }
-
-
 
     //end fungsi ilham
 
@@ -364,7 +373,7 @@ class Tryit_tryout extends MX_Controller {
             APPPATH . $konten,
             APPPATH . 'modules/templating/views/r-footer.php',
             );
-        $data['paket'] = $this->Mtryit_tryout->get_paket_for_info($datas);
+        $data['paket'] = $this->Mtryit_tryout->get_paket_for_info();
         $this->parser->parse('templating/r-index', $data);
     }
 }

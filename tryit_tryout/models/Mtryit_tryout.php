@@ -168,11 +168,11 @@ class Mtryit_tryout extends MX_Controller {
             );
     }
 
-    public function get_pembahasan($id_paket) {
+    public function get_pembahasan() {
         $this->db->select('id_paket as idpak, soal as soal, soal.id_soal as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban as jaw, soal.pembahasan, soal.gambar_pembahasan, soal.video_pembahasan, soal.status_pembahasan, soal.link');
         $this->db->from('tb_mm-paketbank as paban');
         $this->db->join('tb_banksoal as soal', 'paban.id_soal = soal.id_soal');
-        $this->db->where('paban.id_paket', $id_paket);
+        $this->db->where('paban.id_paket', 69);
         $query = $this->db->get();
         $soal = $query->result_array();
 
@@ -180,7 +180,7 @@ class Mtryit_tryout extends MX_Controller {
         $this->db->from('tb_mm-paketbank as paban');
         $this->db->join('tb_banksoal as soal', 'paban.id_soal = soal.id_soal');
         $this->db->join('tb_piljawaban as pil', 'soal.id_soal = pil.id_soal');
-        $this->db->where('paban.id_paket', $id_paket);
+        $this->db->where('paban.id_paket', 69);
         $query = $this->db->get();
         $pil = $query->result_array();
 
@@ -222,12 +222,12 @@ class Mtryit_tryout extends MX_Controller {
         $this->db->insert('tb_report-paket', $data);
     }
 
-    public function datatopaket($id) {
+    public function datatopaket() {
         $this->db->select('jenis_penilaian, try.nm_tryout as namato, p.nm_paket as namapa');
         $this->db->from('tb_mm-tryoutpaket as tp');
         $this->db->join('tb_tryout as try','tp.id_tryout = try.id_tryout');
         $this->db->join('tb_paket as p','tp.id_paket = p.id_paket');
-        $this->db->where('tp.id', $id);
+        $this->db->where('p.id_paket', 69);
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -401,7 +401,7 @@ public function get_laporan_to(){
 
     function get_report_paket_by_mmid($data){
         $this->db->select('*');
-        $this->db->from('tb_report-paket p');
+        $this->db->from('b_report-paket p');
         $this->db->where('p.id_mm-tryout-paket',$data['id_mm']);
         $this->db->where('p.id_pengguna',$data['id_pengguna']);
         $query = $this->db->get(); 
@@ -409,15 +409,14 @@ public function get_laporan_to(){
     }
 
     #get paket yang belum untuk info pengerjaan.
-    public function get_paket_for_info($datas) {
-        $id = $datas['id_tryout'];
-        $id_paket = $datas['id_paket'];
+    public function get_paket_for_info() {
+       
 //        backup query
         $query = "SELECT p.`id_paket`, p.`nm_paket`, p.`jumlah_soal`, p.`durasi`, mm.`id_tryout`, mm.id AS mmid 
                     FROM tb_paket p 
                     JOIN `tb_mm-tryoutpaket` mm ON mm.`id_paket` = p.`id_paket` 
                     JOIN `tb_tryout` t ON t.`id_tryout` = mm.`id_tryout` 
-                    WHERE  mm.`id_tryout`=$id AND  mm.id_paket= $id_paket
+                    WHERE  mm.`id_tryout`=179 AND  mm.id_paket= 69
                     ";
         $result = $this->db->query($query);
         return $result->result_array()[0];

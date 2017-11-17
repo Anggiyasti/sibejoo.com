@@ -7,7 +7,7 @@
       cursor: pointer;
   }
 </style>
-<script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/plugins/ckeditor/adapters/jquery.js') ?>"></script>
 
 <!-- modal preview -->
@@ -105,7 +105,7 @@
 			<!-- Start Editor Soal -->
 			<div class="col-sm-12">
 				<div class="col-sm-8">
-					<h4>Kategori :</h4>
+					<label>Kategori :</label> <br>
 					<select class="form-control" name="mapel" id="mapelSelect" style="height: 35px;">
                       <option value="0">-Pilih Matapelajaran-</option>
                     </select>
@@ -131,8 +131,8 @@
 					<input name="namaPertanyaan" type="text" value="" size="50" aria-required="true" class="form-control search-input col-sm-10" style="height: 35px;"> 
 					<input type="hidden" name="idsub" value="{idsub}">
 				</div>
-				<div class="col-sm-4"><br><br><br><br><br><br><br><br><br>
-					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 15px; height: 40px;">Lihat Gambar</a>
+				<div class="col-sm-4"><br><br><br><br><br><br><br><br><br><br>
+					<a onclick="show_image()" class="btn btn-default btn-theme-colored" style="margin-top: 20px; height: 40px;">Lihat Gambar</a>
 				</div>
 			</div>
 
@@ -306,46 +306,55 @@
 			mentorID:$('#mentorSelect').find(":selected").val()
 		}
 
-		if (datas.namapertanyaan == "" || datas.namapertanyaan == "") {
-			$('#info').show();
-		}else{
-			url = base_url+"konsultasi/ajax_add_konsultasi/";
-			$.ajax({
-				url : url,
-				type: "POST",
-				data: datas,
-				dataType: "TEXT",
-				success: function(data)
-				{
-                $('.post').text('Posting..'); //change button text
-                $('.post').attr('disabled',false); //set button enable
-                // Try to connect io
-                var socket = io.connect( 'http://'+window.location.hostname+':3000' );
+		mapel = $('#mapelSelect').find(":selected").val();
+		// console.log(mapel);
+		if (mapel==0) {
+			swal("Oops...", "Silahkan Pilih Pelajaran Terlebih Dahulu", "error");
+		} else {
+			if (datas.bab==0) {
+				swal("Oops...", "Silahkan Pilih Bab Terlebih Dahulu", "error");
+			} else {
+				if (datas.namapertanyaan == "" || datas.namapertanyaan == " ") {
+					// $('#info').show();
+					swal("Terjadi Kesalahan","Isi nama pertanyaan dan pertanyaan di editor yang sudah disediakan.","error");
+				}else{
+					url = base_url+"konsultasi/ajax_add_konsultasi/";
+					$.ajax({
+						url : url,
+						type: "POST",
+						data: datas,
+						dataType: "TEXT",
+						success: function(data)
+						{
+			                $('.post').text('Posting..'); //change button text
+			                $('.post').attr('disabled',false); //set button enable
+			                // Try to connect io
+			                var socket = io.connect( 'http://'+window.location.hostname+':3000' );
 
-                // throw value to server
-                socket.emit('create_pertanyaan', {
-                	data
-                }
-                );
-                // throw value to server
-                
-                setTimeout(function() {
-	                swal({
-	                    title: "Wow!",
-	                    text: "Posting berhasil...",
-	                    type: "success"
-	                }, function() {
-	                    window.location = base_url+"konsultasi/pertanyaan_all";
-	                });
-	            }, 1000); 
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-            	swal('Error adding / update data');
-            }
-        });
-
-			
+			                // throw value to server
+			                socket.emit('create_pertanyaan', {
+			                	data
+			                }
+			                );
+			                // throw value to server
+			                
+			                setTimeout(function() {
+				                swal({
+				                    title: "Wow!",
+				                    text: "Posting berhasil...",
+				                    type: "success"
+				                }, function() {
+				                    window.location = base_url+"konsultasi/pertanyaan_all";
+				                });
+				            }, 1000); 
+			            },
+			            error: function (jqXHR, textStatus, errorThrown)
+			            {
+			            	swal('Error adding / update data');
+			            }
+		        	});
+				}
+			}
 		}
 	}
 

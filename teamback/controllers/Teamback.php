@@ -207,7 +207,24 @@ class Teamback extends MX_Controller {
 	function drop_team(){
 		if ($this->input->post()) {
 			$post = $this->input->post();
+			$id_team= $post['id'];
+			$this->del_img_team($id_team);
 			$this->Mteamback->drop_team($post);
+		}
+	}
+
+	public function del_img_team($id_team)
+	{
+		// get data team by id
+		$tam_team=$this->Mteamback->get_team_by_id($id_team);
+		//cek  jika hasil null
+		if ($tam_team != false) {
+			//cek name file img team
+			$img_team=$tam_team[0]->foto;
+			if ($img_team != '' && $img_team != ' ') {
+				// jika file tidak null atau kosong maka hapus file
+				 unlink(FCPATH . "./assets/image/team/" . $img_team);
+			}
 		}
 	}
 

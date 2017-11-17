@@ -117,13 +117,12 @@
  				'uuid_user'=>$uuid,
  				'keterangan'=>"excel_".$uuid_excel);
  			$dat_siswa_excel[]=array(
- 				'namaDepan'=>$key['namaDepan'],
- 				'namaBelakang'=>$key['namaBelakang'],
+ 				'namaDepan'=>$key['nama'],
  				'tgl_lahir' => $tgl_lahir,
  				'alamat'=>$key['alamat'],
- 				'namaSekolah'=>$key['namaSekolah'],
- 				'alamatSekolah'=>$key['alamatSekolah'],
- 				'noKontakSekolah'=>$key['noKontakSekolah'],
+ 				// 'namaSekolah'=>$key['namaSekolah'],
+ 				// 'alamatSekolah'=>$key['alamatSekolah'],
+ 				// 'noKontakSekolah'=>$key['noKontakSekolah'],
 				'nisn'=>$key['nisn'],
 				'tingkatID' => $key["tingkatID"],
  				);
@@ -170,12 +169,10 @@
  				'keterangan'=>"excel_".$uuid_excel);
 
  			$dat_guru_excel[]=array(
- 				'namaDepan'=>$key['namaDepan'],
- 				'namaBelakang'=>$key['namaBelakang'],
+ 				'namaDepan'=>$key['nama'],
  				'alamat' => $key['alamat'],
  				'tgl_lahir' => $tgl_lahir,
  				'noKontak' => $key['noKontak'],
- 				'biografi' => $key['biografi'],
  				
  				);
  			$uuid_arr[]=array(

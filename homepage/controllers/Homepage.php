@@ -11,16 +11,12 @@ class Homepage extends MX_Controller {
         $this->load->model('teamback/mteamback');
         $this->load->model('donaturback/donaturback_model');
 
-
         $this->load->model('siswa/msiswa');
         $this->load->model('matapelajaran/mmatapelajaran');
         $this->load->model('video/mvideos');
         $this->load->model('Mhomepage');
         $this->load->library("pagination");
-
         $this->load->library('generateavatar');
-        
-        
     }
 
     public function index() {
@@ -35,7 +31,7 @@ class Homepage extends MX_Controller {
             'jumlah_siswa' => $datas['jumlahSiswa'],
             'jumlah_mapel' => $datas['jumlahMapel'],
             'jumlah_video'=> $datas['jumlahVideo']
-            );
+        );
 
         $data['file'] = 'r-container.php';
         $data['teams'] = $this->mteamback->data_all_team();
@@ -52,8 +48,8 @@ class Homepage extends MX_Controller {
     function allArtikel(){
         $data = array(
             'judul_halaman' => 'Sibejoo - Artikel',
-            'judul_header2' =>'All Artikel'
-            );
+            'judul_header2' =>'Semua Artikel'
+        );
         $config = array();
         $config["base_url"] = base_url() . "homepage/allArtikel/";
         $config["uri_segment"] = 3;
@@ -61,13 +57,12 @@ class Homepage extends MX_Controller {
         $config["total_rows"] = $this->Mhomepage->get_artikel_number();
         $config["per_page"] = 2;
 
-            # konfig link
+        # konfig link
         $config['cur_tag_open'] = "<a style='background:#800000;color:white'>";
         $config['cur_tag_close'] = '</a>';
         $config['first_link'] = "<span title='Page Awal'> << </span>"; 
         $config['last_link'] = "<span title='Page Akhir'> >> </span>";
-
-                # konfig link
+        # konfig link
 
         $this->pagination->initialize($config);
         ##KONFIGURASI UNTUUK PAGINATION
@@ -79,17 +74,15 @@ class Homepage extends MX_Controller {
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . 'modules/homepage/views/r-all-artikel.php',
-            // APPPATH . 'modules/homepage/views/v-footer.php',
-            );
+        );
         $this->parser->parse('templating/r-index-login', $data);
-
     }
 
     function allrReportHeroo(){
         $data = array(
             'judul_halaman' => 'Sibejoo - Heroo',
             'judul_header2' =>'All Report Heroo'
-            );
+        );
 
         $config = array();
         $config["base_url"] = base_url() . "homepage/allrReportHeroo/";
@@ -115,10 +108,12 @@ class Homepage extends MX_Controller {
         $data['allreportheroo'] = $this->Mhomepage->get_report_heroo_peg($config["per_page"], $page);
         $data['listheroo'] = $this->Mhomepage->list_heroo();
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            // APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
+
             APPPATH . 'modules/homepage/views/r-all-heroo.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
-            );
+        );
         $this->parser->parse('templating/r-index-login', $data);
 
     }
@@ -141,69 +136,82 @@ class Homepage extends MX_Controller {
             echo json_encode(['message'=>"Berhasil berlangganan!",'status'=>$status_email]);
         }else{
             echo json_encode(['message'=>"Email sudah berlangganan",'status'=>$status_email]);            
-       }
-   }
-
-    // tampung id 
-   public function ambilid()
-   {   
-    $id = $this->input->post('id_artikel');
-    $this->session->set_userdata('id_artikel', $id);
-    echo json_encode($id);
-
-}
-
-     // tampung id 
-public function ambilidheroo()
-{   
-    $id = $this->input->post('id_report');
-    $this->session->set_userdata('id_report', $id);
-    echo json_encode($id);
-
-}
-    // menampilkan detail artikel
-public function detail_artikel()
-{
-    if (isset($this->session->userdata['id_artikel'])) {
-        $id_artikel = $this->session->userdata['id_artikel'];
-    }else{
-        redirect('homepage');
+        }
     }
 
-    $data = array(
-        'judul_halaman' => 'Sibejoo - Artikel',
-        'judul_header2' =>'Detail Artikel'
+    // tampung id 
+    public function ambilid()
+    {   
+        $id = $this->input->post('id_artikel');
+        $this->session->set_userdata('id_artikel', $id);
+        echo json_encode($id);
+
+    }
+
+        public function create_id_report_session()
+    {   
+        $id = $this->input->post('id_report');
+        $this->session->set_userdata('id_report', $id);
+        echo json_encode($id);
+
+    }
+
+     // tampung id 
+    public function ambilidheroo()
+    {   
+        $id = $this->input->post('id_report');
+        $this->session->set_userdata('id_report', $id);
+        echo json_encode($id);
+
+    }
+    // menampilkan detail artikel
+    public function detail_artikel()
+    {
+        if (isset($this->session->userdata['id_artikel'])) {
+            $id_artikel = $this->session->userdata['id_artikel'];
+        }else{
+            redirect('homepage');
+        }
+
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+            'judul_header2' =>'Detail Artikel'
         );
 
-    $data['detartikel'] = $this->Mhomepage->get_artikel_detail($id_artikel);
-    $data['listart'] = $this->Mhomepage->list_artikel();
-    $data['files'] = array(
-        APPPATH . 'modules/homepage/views/r-header-detail.php',
-        APPPATH . 'modules/homepage/views/r-detail-artikel.php',
+        $data['detartikel'] = $this->Mhomepage->get_artikel_detail($id_artikel);
+        $data['listart'] = $this->Mhomepage->list_artikel();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
+            APPPATH . 'modules/homepage/views/r-detail-artikel.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-    $this->parser->parse('templating/r-index', $data);
-}
+        $this->parser->parse('templating/r-index', $data);
+    }
 
     // menampilkan detail artikel
-public function detail_report()
-{
-    $id_report = $this->session->userdata['id_report']; 
-    $data = array(
-        'judul_halaman' => 'Sibejoo - Artikel',
-        'judul_header2' =>'Detail Rpeort Heroo'
+    public function detail_report()
+    {
+        if (isset($this->session->userdata['id_report'])) {
+            $id_report = $this->session->userdata['id_report'];             
+        }else{
+            redirect('homepage');
+        }
+
+        $data = array(
+            'judul_halaman' => 'Sibejoo - Artikel',
+            'judul_header2' =>'Detail Report Heroo'
         );
 
 
-    $data['detheroo'] = $this->Mhomepage->get_heroo_detail($id_report);
-    $data['listheroo'] = $this->Mhomepage->list_heroo();
-    $data['files'] = array(
-        APPPATH . 'modules/homepage/views/r-header-detail.php',
-        APPPATH . 'modules/homepage/views/r-heroo-detail.php',
+        $data['detheroo'] = $this->Mhomepage->get_heroo_detail($id_report);
+        $data['listheroo'] = $this->Mhomepage->list_heroo();
+        $data['files'] = array(
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
+            APPPATH . 'modules/homepage/views/r-heroo-detail.php',
             // APPPATH . 'modules/homepage/views/v-footer.php',
         );
-    $this->parser->parse('templating/r-index', $data);
-}
+        $this->parser->parse('templating/r-index', $data);
+    }
 
 
 

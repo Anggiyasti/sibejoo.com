@@ -102,6 +102,16 @@
  <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 
 <script type="text/javascript">
+function htmlspecialchars(str) {
+    var map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;" // ' -> &apos; for XML only
+    };
+    return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
 
  CKEDITOR.replace( 'editor1' );
 
@@ -110,7 +120,7 @@
    function save(){
         var datas = {
             jdlartikel : $('input[name=jdlartikel]').val(),
-            editor1 : CKEDITOR.instances.editor1.getData(),
+            editor1 : htmlspecialchars(CKEDITOR.instances.editor1.getData()),
             foto: $('[name=foto]').val(),
         }
         //id fileinput
@@ -128,6 +138,7 @@
                 type:"POST",
                 fileElementId :elementId,
                 success:function(Data){
+                  console.log(Data);
                     swal({
                     title: "Artikel Berhasil Ditambahkan!",
                     type: "warning",

@@ -55,7 +55,7 @@
                         </div>
                         <div class="entry-content border-1px p-20 pr-10">
                           <?php if (!$key['gambar']==""): ?>
-                            <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" style="height: 600px; width: 450px;" alt="" class="img-responsive img-fullwidth"> </div>
+                            <div class="post-thumb thumb">  <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>"  alt="" class="img-responsive text-center"> </div>
                           <?php endif ?>
                           <br>
                           <div class="entry-meta media mt-0 no-bg no-border">

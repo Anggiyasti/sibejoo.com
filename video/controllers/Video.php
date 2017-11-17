@@ -8,7 +8,7 @@ class Video extends MX_Controller {
     public function index(){
         $data = array(
             'judul_halaman' => 'Sibejoo - Video',
-            'judul_header' =>'Video',
+            'judul_header' =>'Daftar Mata Pelajaran',
             'judul_header2' =>'Video Belajar'
             );
         

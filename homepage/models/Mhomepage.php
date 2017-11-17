@@ -1,8 +1,4 @@
 <?php
-
-/**
- * 
- */
 class Mhomepage extends CI_Model {
     # Start Function untuk form soal#	
 
@@ -28,7 +24,7 @@ class Mhomepage extends CI_Model {
 
       public function get_artikel(){
         $this->db->select('*');
-        $this->db->limit(5);
+        $this->db->limit(3);
         $this->db->order_by("date_created", "desc");
         $tampil = $this->db->get('tb_artikel');
 
@@ -70,7 +66,7 @@ class Mhomepage extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_report_heroo her');
         $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
-        // $this->db->limit(5);
+        $this->db->limit(3);
         $this->db->order_by("date_created", "desc");
         $tampil = $this->db->get();
         return $tampil->result_array();

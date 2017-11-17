@@ -90,7 +90,7 @@ function load_matapelajaran(tingkatID){
     data: tingkatID.tingkat_id,
     url: "<?php echo base_url() ?>index.php/videoback/getPelajaran/" + tingkatID,
     success: function (data) {
-      $('#mapelSelect').html('<option value="">Semua Mata Pelajaran</option>');
+      $('#mapelSelect').html('<option value="0">Semua Mata Pelajaran</option>');
       $.each(data, function (i, data) {
         $('#mapelSelect').append("<option value='" + data.id + "'>" + data.keterangan + "</option>");
       });
@@ -111,6 +111,7 @@ function load_matapelajaran(tingkatID){
      var babID;
      $.ajax({
       type: "POST",
+      dataType: "JSON",
       url: "<?php echo base_url() ?>index.php/matapelajaran/get_bab_by_tingpel_id/" + tingPelId,
       success: function (data) {
        $.each(data, function (i, data) {
@@ -158,6 +159,7 @@ function load_bab_mapelid(mapel_id){
       $('#mentorSelect').append('<option value=NULL>- Pilih Mentor -</option>');
        $.ajax({
         type: "POST",
+        dataType:"JSON",
         url: "<?php echo base_url() ?>index.php/konsultasi/get_mentor_by_bab/" + babID,
         success: function (data) {
          $.each(data, function (i, data) {

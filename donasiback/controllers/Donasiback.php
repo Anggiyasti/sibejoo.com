@@ -109,7 +109,7 @@ class Donasiback extends CI_Controller{
 			$row[] = $item->namaPengguna;
 			$row[] = $donasi[$item->donasi];
 			$row[] = $item->tgl_create;
-			$row[] = $index = $item->status_donasi." ".$status[$index];
+			$row[] = $index = $status[$index];
 			if ($item->status_donasi==1){
 				$button = '<button type="button" class="btn btn-default mb5" disabled="true"><i class="ico-cart-remove2"></i> Belum Transfer</button>';
 			}elseif($item->status_donasi==2){

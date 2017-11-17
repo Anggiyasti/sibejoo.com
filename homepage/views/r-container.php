@@ -461,136 +461,265 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
               <div class="fluid-width-video-wrapper" style="padding-top: 80.8152%;"><iframe src="https://www.youtube.com/embed/zqju4Baw-Fs" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe></div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
-</div></section>
+  </div></section>
 
 
 
 
-<!-- Section: About -->
-<section>
-  <div class="container">
-    <div class="section-content">
+  <!-- Section: Tryout Online -->
+  <section class="divider parallax" data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url(<?=base_url("assets/back/img/pattern/1.png") ?>);">
+    <div class="container pb-0">
       <div class="row">
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/1.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Soalnya Terus Up To Date!</a></h4>
-            <p class="text-left">Kumpulan soal-soal terlama hingga terbaru akan terus diupdate di sibejoo..banyak soal UN, SBMPTN, SIMAK
-              Saringan PTN dan masih banyak soal-soal yang lainya..
-            </p>
-          </div>
+        <div class="col-md-5">
+          <img class="wow fadeIn mt-100 mt-100 mt-100 mt-100" data-wow-duration="1.5s" src="<?=base_url("assets/image/menu/tryout.png") ?>">
+          <p class="font-weight-600">Temen-temen bisa menikmati tryout dan latihan semester, tryout UN, tryout SBMPTN atau Try Out yang lain secara online.</p>
+          <p class="mt-20"> Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan dan pemahaman temen-temen..</p>
+          <a href="<?=base_url('layanan/tryout') ?>" class="btn btn-border btn-theme-colored">Selengkapnya..</a>
         </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/desktop.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Video Pembelajaran</a></h4>
-            <p class="text-left">Video pembelajaran bakalan asyik, mudah dipahami dan gak <i>ngebosenin</i>.</p>
-          </div>
+
+        <div class="col-md-7">
+          <img src="<?=base_url("assets/back/img/illustrasi/to.png") ?>">
         </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/5.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Edu Drive</a></h4>
-            <p class="text-left">Akan banyak modul-modul belajar, kumpulan soal yang bisa temen-temen download secara bebas. yay!</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="text-center">
-            <a href="#" class="">
-              <img src="<?=base_url('assets/image/flaticon-png/small/lecture.png') ?>" width="90" alt="">
-            </a>
-            <h4 class="icon-box-title text-uppercase"><a class="" href="#">Konsultasi Langsung</a></h4>
-            <p class="text-left">Untuk temen-temen yang kebingungan dengan materi yang disampaikan atau ada tugas sekolah yang tidak paham?
-            boleh dikonsultasikan dengan mentor-mentor sibejoo..Para mentor dengan senang hati akan membantu temen-temen. jadi, gak usah khawatir lagi!</p>
-          </div>
-        </div>
+
       </div>
-    </div>
-  </div>
-
-</section>
-<!-- Section: About -->
-
-
-
-
-
-
-<!-- Section: Tryout Online -->
-<section data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url(<?=base_url("assets/back/img/pattern/1.png") ?>);">
-  <div class="container pb-0">
-    <div class="row">
-      <div class="col-md-5">
-        <h2 class="text-theme-colored mt-10 mt-10"><br><br><br><br>Tryout Dan Latihan Online</h2>
-        <p class="font-weight-600">Temen-temen bisa menikmati tryout dan lamtihan semester, tryout UN, tryout SBMPTN atau Try Out yang lain secara online.</p>
-        <p class="mt-20"> Soal-soal yang disediakan variatif, asyik dan tentunya sangat bagus untuk meningkatkan kemampuan dan pemahaman temen-temen..</p>
-      </div>
-
-      <div class="col-md-7">
-        <img src="<?=base_url("assets/back/img/illustrasi/to.png") ?>">
-      </div>
-
-    </div>
       <div class="separator separator-small-line separator-rouned">
         <i class="fa fa-cog fa-spin"></i>
       </div>
-  </div>
-
-</section>
-
-<!-- Section: Tryout Online -->
-
-<!-- Section: video -->
-<section data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url('https://i.pinimg.com/originals/ff/cf/2d/ffcf2d6de9f227b9a3e05b75d589da5f.png');">
-  <div class="container pb-0">
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-3">
-        <img class="wow fadeIn" data-wow-duration="1.5s" data-wow-offset="10" src="<?=base_url("assets/image/menu/mockup_iphone.png") ?>">
-
-      </div>
-
-      <div class="col-md-5">
-        <h2 class="text-theme-colored mt-10 mt-10">Edu Drive</h2>
-        <p class="font-weight-600">Edu drive ini semacam gudang file, yang isinya macam2 jenis file yang bisa digunakan untuk belajar.</p>
-        <p class="mt-20">Misalnya di edudrive ada soal-soal UN terbaru, Soal SMBPTN terbaru, Prediksi soal UAS dll. Kalian bisa mengakses atau mendownloadnya sesuka kalian.</p>
-      </div>
     </div>
-  </div>
-</section>
-<!-- Section: video -->
 
-<!-- Section: SERVICE -->
-<section id="blog" class="bg-white">
-  <div class="container">
-    <div class="section-title mb-10">
-      <div class="row">
-        <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Artikel <span class="text-theme-color-2 font-weight-400">Terbaru</span></h2>
+  </section>
+
+  <!-- Section: Tryout Online -->
+  <!-- Section: About -->
+  <section>
+    <div class="container">
+      <div class="section-content">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="text-center">
+              <a href="#" class="">
+                <img src="<?=base_url('assets/image/flaticon-png/small/1.png') ?>" width="90" alt="">
+              </a>
+              <h4 class="icon-box-title text-uppercase"><a class="" href="#">Soalnya Terus Up To Date!</a></h4>
+              <p class="text-left">Kumpulan soal-soal terlama hingga terbaru akan terus diupdate di sibejoo..banyak soal UN, SBMPTN, SIMAK
+                Saringan PTN dan masih banyak soal-soal yang lainya..
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <a href="#" class="">
+                <img src="<?=base_url('assets/image/flaticon-png/small/desktop.png') ?>" width="90" alt="">
+              </a>
+              <h4 class="icon-box-title text-uppercase"><a class="" href="#">Video Pembelajaran</a></h4>
+              <p class="text-left">Video pembelajaran bakalan asyik, mudah dipahami dan gak <i>ngebosenin</i>.</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <a href="#" class="">
+                <img src="<?=base_url('assets/image/flaticon-png/small/5.png') ?>" width="90" alt="">
+              </a>
+              <h4 class="icon-box-title text-uppercase"><a class="" href="#">Edu Drive</a></h4>
+              <p class="text-left">Akan banyak modul-modul belajar, kumpulan soal yang bisa temen-temen download secara bebas. yay!</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center">
+              <a href="#" class="">
+                <img src="<?=base_url('assets/image/flaticon-png/small/lecture.png') ?>" width="90" alt="">
+              </a>
+              <h4 class="icon-box-title text-uppercase"><a class="" href="#">Konsultasi Langsung</a></h4>
+              <p class="text-left">Untuk temen-temen yang kebingungan dengan materi yang disampaikan atau ada tugas sekolah yang tidak paham?
+              boleh dikonsultasikan dengan mentor-mentor sibejoo..Para mentor dengan senang hati akan membantu temen-temen. jadi, gak usah khawatir lagi!</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="section-content">
+
+  </section>
+  <!-- Section: About -->
+
+  
+
+
+  <!-- Section: video -->
+  <section class="divider parallax" data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url('https://i.pinimg.com/originals/ff/cf/2d/ffcf2d6de9f227b9a3e05b75d589da5f.png');">
+    <div class="container pb-0">
       <div class="row">
-        <?php foreach ($artikel as $key): ?>
-          <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
-            <article class="post clearfix mb-sm-30">
-              <div class="entry-header">
-                <div class="post-thumb thumb"> 
-                  <?php if ($key['gambar']==''): ?>
-                    <img src="<?= base_url('./assets/image/artikel/no-thumbnail.png') ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
-                  <?php else: ?>
-                    <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
+        <div class="col-md-5">
+          <h2 class="text-theme-colored"><img src="<?=base_url('assets/image/menu/video.png') ?>"></h2>
+          <p class="font-weight-600">Sibejoo menyediakan Video Pembelajaran yang lengkap, asyik dan mudah dipahami.</p>
+          <p class="mt-20">Tidak hanya itu Sibejoo juga memberikan dua jenis video yang bisa kalian sesuaikan dengan kecepatan akses internet kalian.</p>
+          <a href="<?=base_url('layanan/video') ?>" class="btn btn-border btn-theme-colored">Selengkapnya..</a>
+          
+
+        </div>
+
+        <div class="col-md-6 mb-100">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLbqPkavOOLFu8kovxjH9KPcMifwOo-uvI&hl=en_US" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Divider: Fun Facts -->
+  <section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="https://i.pinimg.com/originals/22/c6/59/22c659d26e320a5efbd4295d0de48044.jpg" data-parallax-ratio="0.7">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+          <div class="funfact text-center">
+            <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+            <h2 data-animation-duration="2000" data-value="{jumlah_siswa}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+            <h5 class="text-white text-uppercase mb-0">Siswa</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+          <div class="funfact text-center">
+            <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+            <h2 data-animation-duration="2000" data-value="{jumlah_mapel}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+            <h5 class="text-white text-uppercase mb-0">Pelajaran</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+          <div class="funfact text-center">
+            <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+            <h2 data-animation-duration="2000" data-value="{jumlah_guru}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+            <h5 class="text-white text-uppercase mb-0">Pengajar</h5>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+          <div class="funfact text-center">
+            <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
+            <h2 data-animation-duration="2000" data-value="{jumlah_video}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+            <h5 class="text-white text-uppercase mb-0">Video</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section: edu drive -->
+  <section class="divider parallax" data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url('https://i.pinimg.com/originals/ff/cf/2d/ffcf2d6de9f227b9a3e05b75d589da5f.png');">
+    <div class="container pb-0">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="text-theme-colored"><img src="<?=base_url('assets/image/menu/edudrive.png') ?>"></h2>
+
+          <p class="font-weight-600">Edu drive adalah perpustakaan digital milik sibejoo yang memilki banyak ebook yang dapat di download oleh para siswa!..</p>
+          <p class="mt-20">Terdapat modul pembelajaran, rangkuman, prediksi soal , soal-soal sepuluh tahun kebelakang dan masih banyak lagi...</p>
+          <a href="<?=base_url('layanan/edudrive') ?>" class="btn btn-border btn-theme-colored">Selengkapnya..</a>
+
+        </div>
+
+        <div class="col-md-5">
+          <img class="wow fadeIn" data-wow-duration="1.5s" src="<?=base_url("assets/image/menu/mockup_tab_2.png") ?>">
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: edu drive -->
+
+  <section>
+
+    <div class="container">
+      <div class="col-md-12">
+        <!-- Works Filter -->
+        <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Video <span class="text-theme-color-2 font-weight-400">Terbaru</span></h2>
+        <!-- End Works Filter -->
+        <!-- Portfolio Gallery Grid -->
+        <div id="grid" class="gallery-isotope grid-4 gutter clearfix" style="position: relative; height: 780px;">
+          <?php foreach ($last_video as $video): ?>
+            <!-- Portfolio Item Start -->
+            <div class="gallery-item photography" style="position: absolute; left: 0px; top: 0px;">
+              <div class="thumb">
+                <?php if (strpos($video['link'], 'http') !==true) { ?>
+                <iframe src="<?=$video['link'] ?>" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe>
+                <?php }else{ ?>
+                <?php  $nama_file = base_url().'assets/video/'.$video['namaFile'] ?>
+                <video src="<?=$nama_file ?>" controlsList="nodownload" controls></video> 
+                <?php } ?>
+                <div class="overlay-shade"></div>
+                <div class="icons-holder">
+                  <div class="icons-holder-inner">
+                    <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                      <a data-lightbox="video" href="<?=$video['link'] ?>" target="_blank"><i class="fa fa-play"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <a class="hover-link" data-lightbox="image" href="<?=$video['link'] ?>">View more</a>
+              </div>
+              <div class="portfolio-description">
+                <h5 class="title"><a href="#"><?=$video['judulVideo'] ?></a></h5>
+                <span class="category"><span><?=$video['deskripsi'] ?></span></span>
+              </div>
+            </div>
+            <!-- Portfolio Item End -->
+          <?php endforeach ?>
+
+
+        </div>
+        <!-- End Portfolio Gallery Grid -->
+      </div>
+    </div>
+  </section>
+  <!-- Section: video -->
+
+
+  <!-- Section: learningline -->
+  <section class="divider parallax" data-bg-img="<?=base_url("assets/back/img/pattern/1.png") ?>" style="background-image: url('https://i.pinimg.com/originals/ff/cf/2d/ffcf2d6de9f227b9a3e05b75d589da5f.png');">
+    <div class="container pb-0">
+      <div class="row">
+        <div class="col-md-5">
+          <img class="wow fadeIn" data-wow-duration="1.5s" src="<?=base_url("assets/image/menu/confuse_boy.png") ?>">
+        </div>
+
+        <div class="col-md-6">
+          <h2 class="text-theme-colored mt-10 mt-100"><img src="<?=base_url('assets/image/menu/learningline.png') ?>"></h2>
+          <p class="font-weight-600">Belajar Jadi Lebih Mudah!</p>
+          <p class="mt-20">Kebingungan memilih materi apa dulu yang harus dipelajari ? yuk kita ikuti misi-misi dari master teacher yang dibuat menjadi learningline!</p>
+          <a href="<?=base_url('layanan/learningline') ?>" class="btn btn-border btn-theme-colored">Selengkapnya..</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: learningline -->
+
+
+
+
+  <!-- Section: SERVICE -->
+  <section id="blog" class="bg-white">
+    <div class="container">
+      <div class="section-title mb-10">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Artikel <span class="text-theme-color-2 font-weight-400">Terbaru</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="row">
+          <?php foreach ($artikel as $key): ?>
+            <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
+              <article class="post clearfix mb-sm-30">
+                <div class="entry-header">
+                  <div class="post-thumb thumb"> 
+                    <?php if ($key['gambar']==''): ?>
+                     <div style="width: 320px;height: 225px;
+                     background: url(<?= base_url('./assets/image/artikel/no-thumbnail.png') ?>) center;"></div>
+                   <?php else: ?>
+                    <div style="width: 320px;height: 225px;
+                    background: url(<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>) center;"></div>
                   <?php endif ?>
                 </div>
               </div>
@@ -604,200 +733,167 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                   </div>
                   <div class="media-body pl-15">
                     <div class="event-content pull-left flip">
-                      <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#"><?=$key['judul_artikel'] ?></a></h4>
+                      <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a class="text-black"><?=substr($key['judul_artikel'], 0, 49) ?></span></h4>
+                      </div>
                     </div>
                   </div>
+                  <p class="mt-10"><?php $c = strip_tags($key['isi_artikel']); echo substr($c, 0, 300) ?> <a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" class="btn-read-more"><b>Selengkapnya</b></a></p>
+                  
+                  <div class="clearfix"></div>
                 </div>
-                <p class="mt-10"><?php $c = $key['isi_artikel']; echo substr($c, 0, 300) ?></p>
-                <a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)" class="btn-read-more">Selengkapnya</a>
-                <div class="clearfix"></div>
-              </div>
-            </article>
-          </div>
-        <?php endforeach ?>
+              </article>
+            </div>
+          <?php endforeach ?>
 
-      </div>
-      <br>
-      <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
-        Semua Artikel
-      </a>
+        </div>
+        <br>
+        <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+          Semua Artikel
+        </a>
 
-      <div class="separator separator-small-line separator-rouned">
-        <i class="fa fa-cog fa-spin"></i>
+        <div class="separator separator-small-line separator-rouned">
+          <i class="fa fa-cog fa-spin"></i>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Section: SERVICE -->
-<section id="blog" class="bg-lighter">
-  <div class="container">
-    <div class="section-title mb-10">
+  <!-- Section: SERVICE -->
+  <section id="blog" class="bg-lighter">
+    <div class="container">
+      <div class="section-title mb-10">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Report <span class="text-theme-color-2 font-weight-400">Heroo</span></h2>
+          </div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="row">
+          <?php foreach ($report_heroo as $key): ?>
+            <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
+              <article class="post clearfix mb-sm-30">
+                <div class="entry-header">
+                  <div class="post-thumb thumb"> 
+                    <?php if ($key['gambar']==''): ?>
+                      <div style="width: 320px;height: 225px;
+                      background: url(<?= base_url('./assets/image/reportheroo/no-thumbnail.png') ?>) center;"></div>
+                    <?php else: ?>
+                      <div style="width: 320px;height: 225px;
+                      background: url(<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>) center;"></div>
+                    <?php endif ?>
+                  </div>
+                </div>
+                <div class="entry-content p-20 pr-10 bg-white">
+                  <div class="entry-meta media mt-0 no-bg no-border">
+                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                      <ul>
+                        <li class="font-16 text-white font-weight-600 border-bottom"><?=date('d', strtotime($key['date_created'])) ?></li>
+                        <li class="font-12 text-white text-uppercase"><?=date('M', strtotime($key['date_created'])) ?></li>
+                      </ul>
+                    </div>
+                    <div class="media-body pl-15">
+                      <div class="event-content pull-left flip">
+                        <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#"><?=$key['judul_art_katagori'] ?></a></h4>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-10"><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
+                  <a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" class="btn-read-more">Selengkapnya</a>
+                  <div class="clearfix"></div>
+                </div>
+              </article>
+            </div>
+          <?php endforeach ?>
+
+        </div>
+        <br>
+        <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+          Semua Report
+        </a>
+
+        <div class="separator separator-small-line separator-rouned">
+          <i class="fa fa-cog fa-spin"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section: Pricing Table -->
+  <section class="bg-white" id="pricing">
+    <div class="container">
+     <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Report <span class="text-theme-color-2 font-weight-400">Heroo</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Price <span class="text-theme-color-2 font-weight-400">List</span></h2>
         </div>
       </div>
     </div>
     <div class="section-content">
       <div class="row">
-        <?php foreach ($report_heroo as $key): ?>
-          <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
-            <article class="post clearfix mb-sm-30">
-              <div class="entry-header">
-                <div class="post-thumb thumb"> 
-                  <?php if ($key['gambar']==''): ?>
-                    <img src="<?= base_url('./assets/image/artikel/no-thumbnail.png') ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
-                  <?php else: ?>
-                    <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>" alt="" width="330" class="img-responsive img-fullwidth"> 
-                  <?php endif ?>
-                </div>
-              </div>
-              <div class="entry-content p-20 pr-10 bg-white">
-                <div class="entry-meta media mt-0 no-bg no-border">
-                  <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
-                    <ul>
-                      <li class="font-16 text-white font-weight-600 border-bottom"><?=date('d', strtotime($key['date_created'])) ?></li>
-                      <li class="font-12 text-white text-uppercase"><?=date('M', strtotime($key['date_created'])) ?></li>
-                    </ul>
-                  </div>
-                  <div class="media-body pl-15">
-                    <div class="event-content pull-left flip">
-                      <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="#"><?=$key['judul_art_katagori'] ?></a></h4>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-10"><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 300) ?></p>
-                <a href="javascript:void(0);" onclick="detailReportHer(<?=$key['id_art'] ?>)" class="btn-read-more">Selengkapnya</a>
-                <div class="clearfix"></div>
-              </div>
-            </article>
+        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+          <div class="pricing-table maxwidth400">
+            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
+            </div>
+            <div class=" bg-white border-1px p-30 pt-20 pb-20">
+              <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
+              <ul class="table-list list-icon theme-colored pb-0">
+                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
+                <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
+              </ul>
+            </div>
+            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
           </div>
-        <?php endforeach ?>
-
-      </div>
-      <br>
-      <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
-        Semua Report
-      </a>
-
-      <div class="separator separator-small-line separator-rouned">
-        <i class="fa fa-cog fa-spin"></i>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Section: Pricing Table -->
-<section class="bg-white" id="pricing">
-  <div class="container">
-   <div class="section-title mb-10">
-    <div class="row">
-      <div class="col-md-8">
-        <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Price <span class="text-theme-color-2 font-weight-400">List</span></h2>
-      </div>
-    </div>
-  </div>
-  <div class="section-content">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10">Free <span class="font-15 pull-right mt-15 text-white"></span>
-          </div>
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Regular Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Latihan <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Try Out <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Konsultasi <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Edu Drive <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Learning Line <span style="color: red">(Limited)</span></li>
-              <li style="padding-top: 0;"><i class="fa fa-times"></i>Diskon Produk Sibejoo : -</li>
-            </ul>
-          </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join</a>
         </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
+        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+          <div class="pricing-table maxwidth400">
+            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
+            </div>
+            <div class=" bg-white border-1px p-30 pt-20 pb-20">
+              <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
+              <ul class="table-list list-icon theme-colored pb-0">
+                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
+              </ul>
+            </div>
+            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
           </div>
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 10%</li>
-            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
+          <div class="pricing-table maxwidth400">
+            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
+            </div>
+            <div class=" bg-white border-1px p-30 pt-20 pb-20">
+              <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
+              <ul class="table-list list-icon theme-colored pb-0">
+                <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
+                <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
+              </ul>
+            </div>
+            <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
           </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
-        <div class="pricing-table maxwidth400">
-          <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
-          </div>
-          <div class=" bg-white border-1px p-30 pt-20 pb-20">
-            <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
-            <ul class="table-list list-icon theme-colored pb-0">
-              <li style="padding-bottom: 0;"><i class="fa fa-check"></i>Video Belajar</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Latihan</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Try Out</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Konsultasi</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Edu Drive</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Learning Line</li>
-              <li style="padding-top: 0;"><i class="fa fa-check"></i>Diskon Produk Sibejoo : 20%</li>
-            </ul>
-          </div>
-          <a href="<?=base_url('index.php/register')?>" class="btn btn-lg btn-theme-colored text-uppercase btn-block pt-20 pb-20 btn-flat">Join & Donate</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- Divider: Fun Facts -->
-<section class="divider parallax layer-overlay overlay-dark-8" data-bg-img="https://i.pinimg.com/originals/22/c6/59/22c659d26e320a5efbd4295d0de48044.jpg" data-parallax-ratio="0.7">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_siswa}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Siswa</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_mapel}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Pelajaran</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
-        <div class="funfact text-center">
-          <i class="pe-7s-users mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_guru}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Pengajar</h5>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
-        <div class="funfact text-center">
-          <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
-          <h2 data-animation-duration="2000" data-value="{jumlah_video}" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
-          <h5 class="text-white text-uppercase mb-0">Video</h5>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- Section: team -->
 <section id="team">
@@ -840,36 +936,31 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
   <div class="container pb-50">
     <div class="section-title">
       <div class="row">
-        <div class="col-md-6">
-          <h5 class="font-weight-300 m-0 text-gray-lightgray">Pengguna yang senang!</h5>
-          <h2 class="mt-0 mb-0 line-bottom text-white font-28">Testimonials<span class="font-30 text-theme-color-2">.</span></h2>
-        </div>
+        <h2 class="line-bottom-center text-gray-lightgray text-center mt-0 mb-30">Apa kata siswa-siswa sibejoo ?</h2>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-0">
       <div class="col-md-12 mb-10">
         <div class="owl-carousel-1col boxed" data-dots="true">
           <?php foreach ($testimoni as $key) : ?>
-            <div class="item">
-              <div class="testimonial pt-10">
-                <div class="thumb pull-left mb-0 mr-0 pr-20">
-                  <img class="img-circle test" src="<?=$key['photo'] ?>" style="width:100px">
-                </div>
-                <div class="ml-100 ">
-                  <h4 class="text-white mt-0"><?= $key['testimoni']?></h4>
-                  <p class="author mt-20">- <span class="text-theme-color-2"><?= $key['namaDepan']." ".$key['namaBelakang']?>,</span> <small><em class="text-gray-lightgray"><?=$key['namaSekolah']?></em></small></p>
-                </div>
-              </div>
+           <div class="testimonial-wrapper text-center">
+            <div class="thumb"><img class="img-circle" alt="" src="<?=$key['photo'] ?>"></div>
+            <div class="content pt-10">
+              <p class="font-15 text-white"><em><?= $key['testimoni']?></em></p>
+              <i class="fa fa-quote-right font-36 mt-10 text-gray-lightgray"></i>
+              <h4 class="author text-theme-color-2 mb-0"><?= $key['namaDepan']." ".$key['namaBelakang']?></h4>
+              <h6 class="title text-white mt-0 mb-15"><?=$key['namaSekolah']?></h6>
             </div>
-          <?php endforeach ?> 
-        </div> 
-      </div>
+          </div>
+        <?php endforeach ?> 
+      </div> 
     </div>
   </div>
-  <div class="separator">
-    <i class="fa fa-cog fa-spin"></i>
-  </div>
+</div>
+<div class="separator">
+  <i class="fa fa-cog fa-spin"></i>
+</div>
 </section>
 
 <!-- Divider: Clients -->
