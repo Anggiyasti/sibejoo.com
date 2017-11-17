@@ -5,7 +5,6 @@ class Toback extends MX_Controller{
 	public function __construct() {
 		$this->load->library( 'parser' );
 		$this->load->model('Mtoback');
-		$this->load->model('cabang/mcabang');
 		$this->load->model('komenback/mkomen');
 		$this->load->model( 'paketsoal/mpaketsoal' );
 		$this->load->model('siswa/msiswa');
@@ -65,14 +64,7 @@ class Toback extends MX_Controller{
 				} else {
 					$this->parser->parse('admin/v-index-admin', $data);
 				}
-			} else if( $hakAkses=='admin_cabang'){
-				if ($babID == null) {
-					redirect(site_url('admincabang'));
-				} else {
-					$this->parser->parse('admincabang/v-index-admincabang', $data);
-				}
-         		 
-			} else if($hakAkses=='guru'){
+			}  else if($hakAkses=='guru'){
 				if ($babID == null) {
 					redirect(site_url('guru/dashboard/'));
 				} else {
@@ -117,13 +109,7 @@ class Toback extends MX_Controller{
 				APPPATH . 'modules/toback/views/v-bundlepaket-admin_backup.php',
 				);
 			$this->parser->parse('admin/v-index-admin', $data);
-		} else if( $hakAkses=='admin_cabang'){
-		$data['files'] = array(
-				APPPATH . 'modules/toback/views/v-bundlepaket.php',
-				);
-				$this->parser->parse('admincabang/v-index-admincabang', $data);
-			
-		} elseif($hakAkses=='guru'){
+		}  elseif($hakAkses=='guru'){
    // jika guru
 
    // notification
@@ -171,21 +157,6 @@ class Toback extends MX_Controller{
 		$this->Mtoback->insert_addSiswa($dat_siswa);
 	}
 
-	// add hak akses to pengawas 
-	public function addpengawasToTO(){
-		$id_pengawas=$this->input->post('idpengawas');
-		$id_tryout=$this->input->post('id_to');
-		//menampung array id siswa
-		$dat_pengawas=array();
-		foreach ($id_pengawas as $key) {
-			$dat_pengawas[] = array(
-				'id_tryout'=>$id_tryout,
-				'id_pengawas'=>$key);
-		}
-		//add pengawas ke paket 
-		$this->Mtoback->insert_addPengawas($dat_pengawas);
-	}
-
 
 	//menampikan paket yg sudah di add
 	function ajax_listpaket_by_To($idTO) {
@@ -224,7 +195,6 @@ class Toback extends MX_Controller{
 			$row[] = $no;
 			$row[] = $list_siswa ['namaPengguna'];
 			$row[] = $list_siswa ['namaDepan'].' '.$list_siswa ['namaBelakang'];
-			$row[] = $list_siswa ['namaCabang'];
 			$row[] = $list_siswa['aliasTingkat'];
 			$row[] = '<a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa('."'".$list_siswa['idKey']."'".')"><i class="ico-remove"></i></a>';
 
@@ -239,28 +209,6 @@ class Toback extends MX_Controller{
 		echo json_encode( $output );
 	}
 
-	//list pengawas yg diberi akses TO
-	function ajax_listpengawas_by_To($idTO) {
-		$list = $this->load->Mtoback->pengawas_by_totID($idTO);
-		$data = array();
-
-		$baseurl = base_url();
-		$no=1;
-		foreach ( $list as $list_pengawas ) {
-			// $no++;
-			$row = array();
-			$row[] = $no;
-			$row[] = $list_pengawas ['nama'];
-			$row[] = $list_pengawas['alamat'];
-			$row[] = '<a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropPengawas('."'".$list_pengawas['hakaksesID']."'".')"><i class="ico-remove"></i></a>';
-
-			$data[] = $row;
-			$no++;
-		}
-
-		$output = array("data"=>$data);
-		echo json_encode( $output );
-	}
 	#END Function add pakket to Try Out#
 
 
@@ -286,10 +234,7 @@ class Toback extends MX_Controller{
 			$data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
 
 			$this->load->view('templating/index-b-guru', $data);  
-		} elseif($hakAkses=='admin_cabang'){
-   // jika guru
-			$this->load->view('admincabang/v-index-admincabang', $data);  
-		}else{
+		} else{
    // jika siswa redirect ke welcome
 			redirect(site_url('welcome'));
 		}
@@ -359,11 +304,7 @@ class Toback extends MX_Controller{
 		public function dropSiswaTo($idKey){
 			$this->Mtoback->drop_siswa_toTO($idKey);
 		}
-	//drop pengawas
 
-		public function dropPengawasTo($idKey){
-			$this->Mtoback->drop_Pengawas_toTO($idKey);
-		}
 
 		public function editTryout(){
 			$data['id_tryout']=htmlspecialchars($this->input->post('id_tryout'));
@@ -444,29 +385,6 @@ class Toback extends MX_Controller{
 		}
 	###menampilkan paket yang belum ada di TO.
 
-	## menampilkan pengawas yg belum di beri hak akses to
-		function ajax_list_all_pengawas($id_to){
-			$list = $this->Mtoback->get_pengawas_blm_to($id_to);
-			$data = array();
-			$baseurl = base_url();
-			$no = 1;
-			foreach ( $list as $list_pengawas ) {
-				$row = array();
-				$row[] = "<input type='checkbox' value=".$list_pengawas['id']." >";
-				$row[] =$no;
-				$row[] = $list_pengawas['nama'];
-				$row[] = $list_pengawas['alamat'];
-				$data[] = $row;
-				$no++;
-			}
-			$output = array(
-				"data"=>$data,
-				);
-			echo json_encode( $output );
-		}
-
-	## end pengawas
-
 	##menampilkan siswa yang belum ikutan TO.
 		function ajax_list_siswa_belum_to($id){
 			$list = $this->msiswa->get_siswa_blm_ikutan_to($id);
@@ -480,11 +398,7 @@ class Toback extends MX_Controller{
 				$row[] = $no;
 				$row[] = $list_siswa ['namaPengguna'];
 				$row[] = $list_siswa ['namaDepan']." ".$list_siswa['namaBelakang'];
-				if($list_siswa['namaCabang']!=null){
-					$row[] = $list_siswa['namaCabang'];
-				}else{
-					$row[] = "Non-neutron";
-				}
+
 				$row[] = $list_siswa['aliasTingkat'];
 			// $row[] = '
 			// <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropSiswa('."'".$list_siswa['id']."'".')"><i class="ico-remove"></i></a>';
@@ -522,12 +436,6 @@ class Toback extends MX_Controller{
 				);
 			$data['judul_halaman'] = "Report Siswa Perpaket";
 			$this->load->view('templating/index-b-guru', $data);
-		}
-
-		function get_cabang_all_cabang(){
-			$data = $this->output
-			->set_content_type( "application/json" )
-			->set_output( json_encode( $this->mcabang->get_all_cabang() ) );
 		}
 
 		public function detailpaketsiswa(){
@@ -601,17 +509,11 @@ class Toback extends MX_Controller{
 			if(!empty($list)){
 
 				foreach ( $list as $list_siswa ) {
-					if($list_siswa['namaCabang']!=null){
-						$cabang = $list_siswa['namaCabang'];
-					}else{
-						$cabang = "Non-neutron";
-					}
 					$tb_siswa .= '<tr>
 					<td>'."<input type='checkbox' value=".$list_siswa['id']." >".'</td>
 					<td>'.$no.'</td>
 					<td>'.$list_siswa ['namaPengguna'].'</td>
 					<td>'.$list_siswa ['namaDepan']." ".$list_siswa['namaBelakang'].'</td>
-					<td>'.$cabang.'</td>
 					<td>'.$list_siswa ['aliasTingkat'].'</td>
 				</tr>';
 
@@ -664,6 +566,338 @@ echo json_encode($pagination);
 
 }
 ## fungsi paginatioin
+#############################################################################
+// ============DIBAWAH FUNGSI-FUNGSI===LAPORAN HASIL TRYOUT==================
+#############################################################################
+public function laporanto($tryout="all",$paket="all",$records_per_page=10,$page=0){
+		//data post
+		$records_per_page=$this->input->post('records_per_page');
+		$page=$this->input->post('page');
+		$tryout=$this->input->post('tryout');
+		$paket=$this->input->post('paket');
+		$keySearch=$this->input->post('keySearch');
+		//data post
+
+		# get to
+		$data['to'] = $this->Mtoback->get_To();
+
+
+		if ($keySearch != '' && $keySearch !=' ' ) {
+			$datas = ['tryout'=>$tryout,'paket'=>$paket];
+			$all_report = $this->Mtoback->cari_report_paket($datas,$records_per_page,$page,$keySearch);
+		} else {
+			$datas = ['tryout'=>$tryout,'paket'=>$paket];
+			$all_report = $this->Mtoback->get_report_paket_view($datas,$records_per_page,$page);
+		}
+		
+
+		$data = array();
+		$tb_paket=null;
+		$no=$page+1;
+		foreach ( $all_report as $item ) {
+			$sumBenar=$item ['jmlh_benar'];
+			$sumSalah=$item ['jmlh_salah'];
+			$sumKosong=$item ['jmlh_kosong'];
+			//hitung jumlah soal
+			$jumlahSoal=$sumBenar+$sumSalah+$sumKosong;
+			$nama=$item ['namaDepan']." ".$item ['namaBelakang'];
+			$nilai=0;
+			// cek jika pembagi 0
+			if ($jumlahSoal != 0) {
+				//hitung nilai
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
+			}
+			$tb_paket.=	'<tr>
+							<td>'.$no.'</td>	
+							<td>'.$item ['namaPengguna'].'</td>
+							<td>'.$item ['nm_paket'].'</td>
+							<td>'.$item ['jenis_penilaian'].'</td>
+							<td>'.$nama.'</td>
+							<td>'.$jumlahSoal.'</td>							
+							<td>'.$sumBenar.'</td>
+							<td>'.$sumSalah.'</td>
+							<td>'.$sumKosong.'</td>
+							<td>'.number_format($nilai,2).'</td>
+							<td>'.$item['tgl_pengerjaan'].'</td>
+						</tr>';
+
+						$no++;
+		}
+
+	
+		echo json_encode( $tb_paket );
+	}
+	public function pagination_daftar_paket($tryout="all",$paket="all",$records_per_page=100,$page=0,$keySearch='')
+	{
+		//data post
+		// $records_per_page=$this->input->post('records_per_page');
+		// $page=$this->input->post('page');
+		//data post
+		
+		# get to
+		$data['to'] = $this->Mtoback->get_To();
+		$tryout=$this->input->post('tryout');
+		$paket=$this->input->post('paket');
+		$keySearch=$this->input->post('keySearch');
+		$datas = ['tryout'=>$tryout,'paket'=>$paket];
+		if ($keySearch != '' && $keySearch !=' ' ) {
+			$datas = ['tryout'=>$tryout,'paket'=>$paket];
+			$jumlah_data = $this->Mtoback->jumlah_cari_report_paket($datas,$keySearch);
+		} else {
+			$datas = ['tryout'=>$tryout,'paket'=>$paket];
+			$jumlah_data = $this->Mtoback->jumlah_report_paket($datas);
+		}
+		
+
+		$pagination='<li class="hide" id="page-prev"><a href="javascript:void(0)" onclick="prevPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a></li>';
+
+    	 $pagePagination=1;
+
+    	 $sumPagination=($jumlah_data/$records_per_page);
+
+    	 for ($i=0; $i < $sumPagination; $i++) { 
+    	 	if ($pagePagination<=7) {
+    	 		    	 	$pagination.='<li ><a href="javascript:void(0)" onclick="selectPagePaket('.$i.')" id="page-'.$pagePagination.'">'.$pagePagination.'</a></li>';
+    	 	}else{
+    	 		    	 	$pagination.='<li class="hide" id="page-'.$pagePagination.'"><a href="javascript:void(0)" onclick="selectPagePaket('.$i.')" >'.$pagePagination.'</a></li>';
+    	 	}
+
+    	 	$pagePagination++;
+    	 }
+
+    	if ($pagePagination>7) {
+    	 	  $pagination.='<li class="" id="page-next">
+		      								<a href="javascript:void(0)" onclick="nextPage()" aria-label="Next">
+		        								<span aria-hidden="true">&raquo;</span>
+		      								</a>
+		    								</li>';
+    	 }
+
+    	 if ($pagePagination<3) {
+    	 		$pagination='';
+    	 }
+    	 
+
+		echo json_encode($pagination);
+	}
+// laporan TRYOUT 
+	public function laporanpaket(){
+		// kalo ada yang di post dari modal filter.
+		if ($this->input->post()) {
+			$data['post'] = $this->input->post();
+		} 
+
+		$data['judul_halaman'] = "Laporan Paket TO";
+		$data['files'] = array(
+			APPPATH . 'modules/toback/views/v-daftar-paket.php',
+			);
+		# get to
+		$data['to'] = $this->Mtoback->get_To();
+		$hakAkses = $this->session->userdata['HAKAKSES'];
+		if ($hakAkses == 'admin') {
+			
+			$data['files'] = array(
+				APPPATH . 'modules/toback/views/v-daftar-paket-admin.php',
+				);
+			$this->parser->parse('admin/v-index-admin', $data);
+		} elseif ($hakAkses == 'guru') {
+			redirect(site_url('guru/dashboard/'));
+		} elseif ($hakAkses == 'siswa') {
+			redirect(site_url('welcome'));
+		} else {
+			redirect(site_url('login'));
+		}
+	}
+
+// LAPORAN PDF TRYOUT PER-PKAET
+		public function laporanPDF($tryout="all",$paket="all")
+	{
+		$this->load->library('Pdf');
+		$datas = ['tryout'=>$tryout,'paket'=>$paket];
+		$all_report = $this->Mtoback->get_report_paket_pdf($datas);		
+		$data['all_report'] = array();
+		$no=0;
+		$sumNilai=0;
+		$maxNilai=0;
+		$minNilai=100;
+		foreach ( $all_report as $item ) {
+			$no++;
+			$sumBenar=$item ['jmlh_benar'];
+			$sumSalah=$item ['jmlh_salah'];
+			$sumKosong=$item ['jmlh_kosong'];
+			//hitung jumlah soal
+			$jumlahSoal=$sumBenar+$sumSalah+$sumKosong;
+						// cek jika pembagi 0
+			if ($jumlahSoal != 0) {
+				//hitung nilai
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
+			}
+			
+			$paket=$item ['nm_paket'];
+			$data['all_report'][]=array(
+				'no'=>$no,
+				'jumlah_soal'=>$jumlahSoal,
+				'nama'=>$item ['namaDepan']." ".$item ['namaBelakang'],
+				'jmlh_benar'=>$item ['jmlh_benar'],
+				'jmlh_salah'=>$item ['jmlh_salah'],
+				'jmlh_kosong'=>$item ['jmlh_kosong'],
+				'jumlah_soal'=>$jumlahSoal,
+				'nilai'=>number_format($nilai,2),
+				'tgl_pengerjaan'=>$item ['tgl_pengerjaan']
+				);
+			//sum Nilai
+			$sumNilai += $nilai;
+
+			//set Max nilai
+			if ($maxNilai<$nilai) {
+				$maxNilai=$nilai;
+			}
+			//set Min nilai
+			if($minNilai>$nilai){
+				$minNilai=$nilai;
+			}
+
+		}
+		//hitung rata2 nilai
+		$avg=$sumNilai/$no;
+		//format rata2 max 2 digit di belakang koma
+		$formattedAvg = number_format($avg,2);
+		$data['avg']=$formattedAvg;
+		$data['jumlahSiswa']=$no;
+		$data['maxNilai']=number_format($maxNilai,2);
+		$data['minNilai']=number_format($minNilai,2);
+		$data['paket'] = $paket;
+		if ( $tryout !="all" && $paket !="all") {
+			$this->parser->parse('v-laporanPDF-paket.php',$data);
+		}else{
+			redirect(site_url('toback/laporanpaket'));
+		}
+		
+	}
+	// laporan pdf per to
+public function laporan_to_PDF($tryout="all")
+{
+	$this->load->library('Pdf');
+	$datas = ['tryout'=>$tryout,'paket'=>"all"];
+	$all_report = $this->Mtoback->get_report_to_pdf($datas);	
+
+	$data['dat_paket'] = $this->Mtoback->get_count_paket($datas);
+$count_paket=count($data['dat_paket']);
+	// set_index paket
+	for ($i=0; $i <$count_paket ; $i++) { 
+		$data['dat_paket'][$i]["index_paket"]=$i+1;
+	}
+	$data['all_report'] = array();
+	$no=0;
+	$index=-1;
+	//
+	
+	$tamp_noIndukNeutron='tamp';
+	$max_avg=0;
+	$sum_nilai_to=0;
+	foreach ( $all_report as $item ) {
+		$sumBenar=$item ['jmlh_benar'];
+		$sumSalah=$item ['jmlh_salah'];
+		$sumKosong=$item ['jmlh_kosong'];
+		$nama=$item ['namaDepan']." ".$item ['namaBelakang'];
+		$nama_paket=$item['nm_paket'];
+		$noIndukNeutron=$item['nisn'];
+		$nm_tryout=$item ['nm_tryout'];
+			//hitung jumlah soal
+		$jumlahSoal=$sumBenar+$sumSalah+$sumKosong;
+		// cek jika pembagi 0
+		if ($jumlahSoal != 0) {
+				//hitung nilai
+			$nilai=$sumBenar/$jumlahSoal*100;
+		}
+		if ($tamp_noIndukNeutron != $noIndukNeutron) {
+			// data siswa
+			//jumlah nilai siswa
+			$sum_nilai=0;
+			// $index_tamp=1;
+			$index++;
+			$no++;
+			$ini=0;
+
+			$tamp_noIndukNeutron = $noIndukNeutron;
+		}
+		if($tamp_noIndukNeutron == $noIndukNeutron){
+			$ini++;
+				// pengulangan untuk nilai paket
+				// data nilai paket siswa
+				$data['all_report'][$index]['no']=$ini;
+				$data['all_report'][$index]['no_cbt']=$noIndukNeutron;
+				$data['all_report'][$index]['nama']=$nama;
+				// $data['all_report'][$index]['nm_paket']="sssss";
+				
+				$id_paket=$item["id_paket"];
+				for ($i=0; $i < $count_paket ; $i++) { 
+					$tamp_paket=$data['dat_paket'][$i]["id_paket"];
+					if ($tamp_paket==$id_paket) {
+						// $index_tamp=$data['dat_paket'][$i]["index_paket"];
+						$index_tamp=$i+1;
+						$nilai_paket="nilai_".$index_tamp;
+					}
+				}
+			
+				$data['all_report'][$index][$nilai_paket]=number_format($nilai,2);
+				//jumlah nilai siswa
+				$sum_nilai+=number_format($nilai,2);
+				//jumlah nilai keseluruhan siswa
+				$sum_nilai_to+=number_format($nilai,2);
+				$avg=number_format(($sum_nilai/$count_paket),2);
+				$data['all_report'][$index]['avg']=$avg;
+				// filter siswa nilai rata tertinggi
+				if ($max_avg <= $avg) {
+					$max_avg=$avg;
+					$data["no_cbt_max"]=$noIndukNeutron;
+					$data["nama_max"]=$nama;
+					$data["avg_max"]=$avg;
+
+				}
+				$index_tamp++;
+		}
+		
+	}
+	$data['sum_siswa']=$no;
+	$avg_to=$sum_nilai_to/($count_paket*$no);
+	$data['avg_to']=number_format($avg_to,2);
+	$data['nm_tryout']=$nm_tryout;
+
+	if ($tryout !="all") {
+		$this->parser->parse('v-laporan_to.php',$data);
+	}else{
+			redirect(site_url('toback/laporanpaket'));
+	}
+
+}
+
+	function drop_report(){
+		if ($this->input->post()) {
+			$data = $this->input->post();
+			$this->Mtoback->delete_report($data);
+		}
+	}
+
+	    // function get paket UNTUK FILTER REPORT PAKET
+	public function get_paket( $to_id ) {
+		$data = $this->output
+		->set_content_type( "application/json" )
+		->set_output( json_encode( $this->Mtoback->get_paket( $to_id ) ) );
+	}
+// =================================================================
 
 }
 ?>
