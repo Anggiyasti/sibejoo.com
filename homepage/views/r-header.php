@@ -68,6 +68,18 @@
             <li class="">
               <a class="home" href="<?=base_url()?>">Home</a>
             </li>
+            <li>
+              <a href="#about">About Us</a>              
+            </li>
+
+
+            <li>
+              <a class="team" href="#team">Team</a>
+            </li>
+
+            <li>
+              <a class="testimonials" href="#testimonials">Testimonials</a>
+            </li>
             <li><a href="javascript:void(0)">Layanan</a>
               <div class="megamenu none" style="right: 0px; display: block;">
                 <div class="megamenu-row">
@@ -98,19 +110,9 @@
                 </div>
               </div>
             </li>
-
-            <li>
-              <a class="team" href="#team">Team</a>
-            </li>
-
-            <li>
-              <a class="testimonials" href="#testimonials">Testimonials</a>
-            </li>
+            
             <li>
               <a href="<?=base_url('index.php/register')?>">Daftar</a>
-            </li>
-            <li>
-              <a href="#">About Us</a>
             </li>
           </ul>
           <ul class="pull-right flip hidden-sm hidden-xs">

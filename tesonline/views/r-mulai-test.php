@@ -63,7 +63,7 @@
 </div>
 
 <!-- TITLE -->
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://studentlabs.montana.edu/_ldp/.private_ldp/a3443/production/master/2d3347e2-f048-4df2-9ae3-f02cf10a49ca.jpg">
   <div class="container pt-70 pb-20">
     <!-- Section Content -->
     <div class="section-content">
