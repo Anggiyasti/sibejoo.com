@@ -94,6 +94,7 @@ class Ortuback_model extends CI_Model{
 				JOIN `tb_pengguna` peng ON peng.id = sis.penggunaID 
 				WHERE `peng`.`namaPengguna`= '$id'";
         $result = $this->db->query($query);
+        
         return $result->result_array();
     }
 
