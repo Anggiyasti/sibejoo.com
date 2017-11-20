@@ -91,8 +91,8 @@
           </div>
         </div>
       </div>
-
     </div>
+    
   </div>
 </div>
 </section>
@@ -116,7 +116,7 @@
           <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">
             <iframe width="563" height="300" src="https://www.youtube.com/embed/eQlveAt9e88" frameborder="0" allowfullscreen></iframe>
             <br>
-              <center><a class="btn btn-border btn-transparent btn-theme-colored btn-flat btn-lg" href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i> Try it, here !</a>
+              <center><a class="btn btn-border btn-transparent btn-theme-colored btn-flat btn-lg" href="<?=base_url('tryit_tryout') ?>">Try it, here !</a>
               </center>
           </a>
         </div> 

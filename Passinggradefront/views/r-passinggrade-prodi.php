@@ -1,5 +1,5 @@
  <!-- TITLE -->
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280" style="background-image: url(&quot;http://placehold.it/1920x1280&quot;); background-position: 50% 99px;">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="https://www.gla.ac.uk/media/media_328640_en.jpg">
   <div class="container pt-70 pb-20">
     <!-- Section Content -->
     <div class="section-content">

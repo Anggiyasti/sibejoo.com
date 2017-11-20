@@ -1667,10 +1667,14 @@ function get_last_jawaban(){
     if ($id_tingpel!=0) {
       // get data pertanyaan mentor.
       $data['my_questions']=$this->mkonsultasi->get_question_m_filter($this->get_id_siswa(),$config["per_page"], $page, $id_bab, $id_tingpel,$key);
+      var_dump('if',$data['my_questions']);
     } else {
     // get data pertanyaan mentor.
       $data['my_questions']=$this->mkonsultasi->get_question_m($this->get_id_siswa(),$config["per_page"], $page,$key);
+      var_dump('else',$data['my_questions']);
     }   
+
+    
 
     //load the view
     $this->load->view('r-ajax-data', $data, false);
@@ -1797,9 +1801,5 @@ function get_last_jawaban(){
     echo json_encode($id_tingpel);
   }
 
-  public function tes()
-  {
-    var_dump($this->session->userdata('filter_tingpel'));
-  }
 }
 ?>

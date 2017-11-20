@@ -35,21 +35,14 @@ class Mtoback extends CI_Model {
 		$this->db->insert_batch('tb_hakakses-to',$dat_siswa);
 	}
 
-	//add pengawas
-	public function insert_addPengawas($dat_pengawas)
-	{
-		$this->db->insert_batch('tb_hakakses-pengawas',$dat_pengawas);
-	}
-
 	
 	public function siswa_by_totID ($id_to)
 	{
-		$this->db->select('ht.id as idKey,siswa.id as siswaID,namaDepan,namaBelakang,aliasTingkat,c.namaCabang,pengguna.namaPengguna');
+		$this->db->select('ht.id as idKey,siswa.id as siswaID,namaDepan,namaBelakang,aliasTingkat,pengguna.namaPengguna');
 		$this->db->from('tb_tingkat tkt');
 		$this->db->join('tb_siswa siswa','siswa.tingkatID=tkt.id');
 		$this->db->join('tb_pengguna pengguna','pengguna.id = siswa.penggunaID');
 		$this->db->join('tb_hakakses-to ht','ht.id_siswa=siswa.id');
-		$this->db->join('tb_cabang c','c.id=siswa.cabangID');
 		$this->db->where('ht.id_tryout',$id_to);
 		$query = $this->db->get();
         return $query->result_array();
@@ -92,12 +85,7 @@ class Mtoback extends CI_Model {
 		$this->db->where('id',$idKey);
 		$this->db->delete('tb_hakakses-to');
 	}
-		//drop relasi Pengawas to
-	public function drop_Pengawas_toTO($idKey)
-	{
-		$this->db->where('id',$idKey);
-		$this->db->delete('tb_hakakses-pengawas');
-	}
+
 
 	//drop  to
 	public function drop_TO($id_tryout)
@@ -202,40 +190,127 @@ class Mtoback extends CI_Model {
         return $query->result_array();
 	}
 
-	// get pengawas yg belum diberi akses to
-	public function get_pengawas_blm_to($id) {
-        $query = "SELECT p.`id`, p.`nama`, p.`alamat` FROM tb_pengawas p
-        WHERE p.id NOT IN
-        (
-        SELECT pp.`id` FROM tb_pengawas pp
-        JOIN `tb_hakakses-pengawas` hp ON
-        hp.`id_pengawas` = pp.`id`
-        WHERE hp.`id_tryout` = $id) AND p.`status`=1
-        ";
-        $result = $this->db->query($query);
-        return $result->result_array();
-    }
 
-	public function pengawas_by_totID ($id_to)
+#####################################################
+// ---------MODEL UNTUK LAPORAN HASIL TRYOUT--------
+#####################################################
+
+function get_report_paket_pdf($data){
+		$this->db->order_by('namaDepan','asc');
+	
+
+
+		if ($data['tryout']!="all") {
+			$this->db->where('id_tryout', $data['tryout']);
+		}
+		if ($data['paket']!="all") {
+			$this->db->where('id_paket', $data['paket']);
+		}
+
+		// $this->db->where('pk.`tgl_pengerjaan >=','2017-04-20');
+		$query = $this->db->get('view_laporan_paket_TO');
+		return $query->result_array();
+	}
+
+	function get_report_to_pdf($data){
+		// order by jangan di ubah jika ada perubahan akan mempengaruhi pengelompokan array
+		// di fungsi laporan_to_PDF dan akan menyebabkan kesalhan
+		$this->db->order_by('nisn','asc');
+
+
+		if ($data['tryout']!="all") {
+			$this->db->where('id_tryout', $data['tryout']);
+		}
+		if ($data['paket']!="all") {
+			$this->db->where('id_paket', $data['paket']);
+		}
+
+		// $this->db->where('pk.`tgl_pengerjaan >=','2017-04-20');
+		$query = $this->db->get('view_laporan_paket_TO');
+
+		return $query->result_array();
+	}
+	// hitung jumlah
+	public function get_count_paket($data)
 	{
-		$this->db->select('p.id,p.nama,p.alamat,hp.id as hakaksesID');
-		$this->db->from('tb_pengawas p');
-		$this->db->join('tb_hakakses-pengawas hp','hp.id_pengawas=p.id');
-		$this->db->where('hp.id_tryout',$id_to);
-		$this->db->where('p.status',1);
-		$query = $this->db->get();
-        return $query->result_array();
-	}
 
-	# function get report paket soal to berdasarkan 
-	public function get_report_paket_by_pengguna(){
+		if ($data['tryout']!="all") {
+		$this->db->where('id_tryout', $data['tryout']);
+		}
+		$this->db->distinct("id_paket");
+		$this->db->select("id_paket,nm_paket");
+		$query = $this->db->get('view_laporan_paket_TO');
 
+		return $query->result_array();
+		// return $query->num_rows();
 	}
-	# function get report paket soal to berdasarkan 
+		//cari report all
+	function cari_report_paket($data,$records_per_page='',$page='',$keySearch=''){
+		$this->db->order_by('tgl_pengerjaan','asc');
 
-	public function get_report_latihan_by_pengguna(){
-		
+		$this->db->like('namaPengguna',$keySearch);
+		$this->db->or_like('nm_paket',$keySearch);
+		$this->db->or_like('namaDepan',$keySearch);
+		$this->db->or_like('namaPengguna',$keySearch);
+		$this->db->or_like('namaBelakang',$keySearch);
+		$this->db->or_like('nama_lengkap',$keySearch);
+		$this->db->or_like('tgl_pengerjaan',$keySearch);
+
+
+		if ($data['tryout']!="all") {
+			$this->db->where('id_tryout', $data['tryout']);
+		}
+		if ($data['paket']!="all") {
+			$this->db->where('id_paket', $data['paket']);
+		}
+			
+		// $this->db->where('pk.`tgl_pengerjaan >=','2017-04-20');
+		$query = $this->db->get('view_laporan_paket_TO',$records_per_page,$page);
+		return $query->result_array();
 	}
+		//get report all
+	function get_report_paket_view($data,$records_per_page='',$page=''){
+		$this->db->order_by('tgl_pengerjaan','desc');
+	
+
+		if ($data['tryout']!="all") {
+			$this->db->where('id_tryout', $data['tryout']);
+		}
+		if ($data['paket']!="all") {
+			$this->db->where('id_paket', $data['paket']);
+		}
+
+		// $this->db->where('pk.`tgl_pengerjaan >=','2017-04-20');
+		$query = $this->db->get('view_laporan_paket_TO',$records_per_page,$page);
+		return $query->result_array();
+	}
+		//get paket berdasarkan id to
+	function get_paket($id_to){
+		$query = " SELECT nm_paket, p.id_paket FROM
+		(
+		SELECT id_paket FROM `tb_mm-tryoutpaket`
+		WHERE id_tryout = $id_to
+		) mmp JOIN `tb_paket` p ON p.`id_paket` = mmp.id_paket";
+
+		$result = $this->db->query($query);
+		return $result->result_array();
+	}
+		//jumlah report all
+	function jumlah_report_paket($data){
+	
+
+		if ($data['tryout']!="all") {
+			$this->db->where('id_tryout', $data['tryout']);
+		}
+		if ($data['paket']!="all") {
+			$this->db->where('id_paket', $data['paket']);
+		}
+
+		// $this->db->where('pk.`tgl_pengerjaan >=','2017-04-20');
+		$query = $this->db->get('view_laporan_paket_TO');
+		return $query->num_rows();
+	}
+#####################################################
 
 }
 ?>

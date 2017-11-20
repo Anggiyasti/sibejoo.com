@@ -19,7 +19,7 @@ class Layanan extends MX_Controller {
         $konten = 'modules/layanan/views/r-layanan-to.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . $konten,
             APPPATH . 'modules/homepage/views/r-footer.php',
         );
@@ -38,7 +38,7 @@ class Layanan extends MX_Controller {
         $konten = 'modules/layanan/views/r-layanan-video.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . $konten,
             APPPATH . 'modules/homepage/views/r-footer.php',
         );
@@ -57,7 +57,7 @@ class Layanan extends MX_Controller {
         $konten = 'modules/layanan/views/r-layanan-edudrive.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . $konten,
             APPPATH . 'modules/homepage/views/r-footer.php',
         );
@@ -77,7 +77,7 @@ class Layanan extends MX_Controller {
         $konten = 'modules/layanan/views/r-layanan-learning.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . $konten,
             APPPATH . 'modules/homepage/views/r-footer.php',
         );

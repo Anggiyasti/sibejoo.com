@@ -638,6 +638,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         <!-- Portfolio Gallery Grid -->
         <div id="grid" class="gallery-isotope grid-4 gutter clearfix" style="position: relative; height: 780px;">
           <?php foreach ($last_video as $video): ?>
+<<<<<<< HEAD
             <!-- Portfolio Item Start -->
             <div class="gallery-item photography" style="position: absolute; left: 0px; top: 0px;">
               <div class="thumb">
@@ -646,12 +647,27 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <?php }else{ ?>
                 <?php  $nama_file = base_url().'assets/video/'.$video['namaFile'] ?>
                 <video src="<?=$nama_file ?>" controlsList="nodownload" controls></video> 
+=======
+                <?php  $nama_file = base_url().'assets/video/'.$video['namaFile'] ?>
+
+            <!-- Portfolio Item Start -->
+            <div class="gallery-item photography" style="position: absolute; left: 0px; top: 0px;">
+              <div class="thumb">
+                <?php if ($video['link'] != '') { ?>
+                 <iframe src="<?=$video['link'] ?>" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe> 
+                <?php }else{ ?>
+                <video src="<?=$nama_file ?>" controlsList="nodownload" controls height="143px"></video> 
+>>>>>>> 2efa255bc55c77bb6869433662608bb21f27ce9f
                 <?php } ?>
                 <div class="overlay-shade"></div>
                 <div class="icons-holder">
                   <div class="icons-holder-inner">
                     <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+<<<<<<< HEAD
                       <a data-lightbox="video" href="<?=$video['link'] ?>" target="_blank"><i class="fa fa-play"></i></a>
+=======
+                      <a data-lightbox="video" href="<?=$nama_file ?>" target="_blank"><i class="fa fa-play"></i></a>
+>>>>>>> 2efa255bc55c77bb6869433662608bb21f27ce9f
                     </div>
                   </div>
                 </div>
@@ -662,7 +678,12 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <span class="category"><span><?=$video['deskripsi'] ?></span></span>
               </div>
             </div>
+<<<<<<< HEAD
             <!-- Portfolio Item End -->
+=======
+            
+            <!-- Portfolio Item End 
+>>>>>>> 2efa255bc55c77bb6869433662608bb21f27ce9f
           <?php endforeach ?>
 
 
