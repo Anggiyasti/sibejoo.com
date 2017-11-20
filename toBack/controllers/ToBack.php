@@ -322,7 +322,13 @@ class Toback extends MX_Controller{
 			$tglMulai=htmlspecialchars($this->input->post('tgl_mulai'));
 			$tglAkhir=htmlspecialchars($this->input->post('tgl_berhenti'));
 			$publish=htmlspecialchars($this->input->post('publish'));
-			$status=htmlspecialchars($this->input->post('free'));
+			$free=htmlspecialchars($this->input->post('free_edit'));
+			if ($free==1) {
+				$status=0;
+			} else {
+				$status=1;
+			}
+			
 
 			$wktMulai=htmlspecialchars($this->input->post('wkt_mulai'));
 			$wktAkhir=htmlspecialchars($this->input->post('wkt_akhir'));

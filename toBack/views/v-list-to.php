@@ -162,7 +162,7 @@
             <label class="col-sm-3 control-label">Free?</label>
           <div class="col-sm-8">
             <div class="checkbox custom-checkbox">  
-              <input type="checkbox" name="Free" id="free" value="1">  
+              <input type="checkbox" name="free_edit" id="free" value="1">  
               <label for="free">&nbsp;&nbsp;</label>   
             </div>
           </div>
@@ -298,9 +298,9 @@ function edit_TO(id_tryout)
                     }
 
                     if (data.status==1) {
-                      $('#free').attr('checked',true)
+                      $('#free').attr('checked',false);
                     } else {
-                      $('#free').attr('checked',false)
+                      $('#free').attr('checked',true);
                     }
                     $('#modal_editTO').modal('show');  // show bootstrap modal when complete loaded
                     // $('.modal-title').text('Edit Paket Soal'); // Set title to Bootstrap modal title
@@ -321,13 +321,16 @@ function edit_TO(id_tryout)
             var tgl_akhir  =   $('[name="tgl_berhenti"]').val();
             var wkt_mulai  =   $('[name="wkt_mulai"]').val();
             var wkt_akhir  =   $('[name="wkt_akhir"]').val();
+          
             // /
             // pengecekan inputan pembuatan to
             // cek inputan kosong
             if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wkt_akhir != "" ) {
                 // validasi tanggal mulai dan tanggal akhir
+
                 if (tgl_mulai<tgl_akhir) {
                   var datas = $('#formeditTO').serialize();
+                  console.log(datas);
                   // JIKA BERHASIL
                   url = base_url+"index.php/toback/editTryout/";
                   // ajax adding data to database
@@ -437,9 +440,9 @@ function crtTo() {
    publish = 0;
  }
    if ($('#to_free:checked')==true) {
-   free = 1;
- } else{
    free = 0;
+ } else{
+   free = 1;
  }
  console.log(free);
 // pengecekan inputan pembuatan to
@@ -458,7 +461,8 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
        tglakhir:tgl_akhir,
        wktmulai:wkt_mulai,
        wktakhir:wkt_akhir,
-       publish :publish 
+       publish :publish,
+       free : free 
 
      },
        // cache: false,
