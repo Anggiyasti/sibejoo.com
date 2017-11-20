@@ -645,14 +645,16 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
               <div class="thumb">
                 <?php if ($video['link'] != '') { ?>
                  <iframe src="<?=$video['link'] ?>" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe> 
+                <?php $temp = $video['link'] ?>
                 <?php }else{ ?>
-                <video src="<?=$nama_file ?>" controlsList="nodownload" controls height="143px"></video> 
+                <?php $temp = $nama_file ?>
+                <video src="<?=$nama_file ?>" controlsList="nodownload" controls height="143px"></video>
                 <?php } ?>
                 <div class="overlay-shade"></div>
                 <div class="icons-holder">
                   <div class="icons-holder-inner">
                     <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                      <a data-lightbox="video" href="<?=$nama_file ?>" target="_blank"><i class="fa fa-play"></i></a>
+                      <a data-lightbox="video" href="<?=$temp ?>" target="_blank"><i class="fa fa-play"></i></a>
                     </div>
                   </div>
                 </div>
