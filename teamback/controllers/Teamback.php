@@ -158,6 +158,7 @@ class Teamback extends MX_Controller {
 	function ajax_update_team(){
 		$post=$this->input->post();
 		$id = $post['id'];
+		$onephoto = $this->Mteamback->get_onephoto($id)[0]['foto'];
  		//konfigurasi upload
 		$config['upload_path'] = $this->upload_path;
 		$config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
@@ -185,6 +186,10 @@ class Teamback extends MX_Controller {
 	 			$this->Mteamback->edit_upload_team($data,$id);
 	 			$info="Data Team Berhasil diubah";
 		   }else {
+		   		if ($onephoto != '' && $onephoto!=' ') {
+		   			unlink(FCPATH . "./assets/image/team/" . $onephoto);
+		   			# code...
+		   		}
 			   	$file_data = $this->upload->data();
 		   		//get nama file yg di upload
 	      		$file_name = $file_data['file_name'];

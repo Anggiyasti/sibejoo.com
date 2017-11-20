@@ -316,6 +316,23 @@ class Learning_model extends CI_Model{
 
 	}
 
+	public function get_soal_tambah($stepID){
+		$query = "SELECT * FROM `tb_line_step` ls
+					JOIN `tb_latihan` l ON l.id_latihan = ls.latihanID
+					JOIN `tb_mm_sol_lat` mms ON mms.id_latihan = l.id_latihan
+					JOIN `tb_banksoal` s ON mms.id_soal = s.id_soal
+					WHERE ls.id = $stepID 
+		";
+
+		$result = $this->db->query($query);
+		if ($result->result_array()==array()) {
+			return $result->result_array();
+		} else {
+			return $result->result_array();
+		}
+
+
+	}
 	
 
 	

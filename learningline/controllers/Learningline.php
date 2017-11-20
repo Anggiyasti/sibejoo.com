@@ -735,6 +735,90 @@ $output = array(
 echo json_encode( $output );
 }
 
+
+function ajax_get_soal_byid( $bab ) {
+
+	$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
+	$data = array();
+
+
+		//mengambil nilai list
+	$baseurl = base_url();
+	foreach ( $list as $list_soal ) {
+		$n='1';
+		$row = array();
+
+		$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
+		<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
+		<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
+	</span>";
+	$row[] = $list_soal['judul_soal'];
+	$row[] = $list_soal['sumber'];
+
+	$row[] = $list_soal['soal'];
+
+	if ($list_soal['kesulitan']=='0') {
+		$row[] = "Mudah";
+	} else if($list_soal['kesulitan']=='1'){
+		$row[] = "Sedang";
+	}else{
+		$row[] = "Sulit";
+	}
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_soal'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_soal'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$data[] = $row;
+	$n++;
+
+}
+
+$output = array(
+	"data"=>$data,
+	);
+echo json_encode( $output );
+
+}
+
+
+
+function ajax_get_soal_tambah( $id_step ) {
+
+	$list = $soal=$this->learning_model->get_soal_tambah( $id_step );
+	$data = array();
+
+	$no = 1;
+		//mengambil nilai list
+	$baseurl = base_url();
+	foreach ( $list as $list_soal ) {
+
+		$n='1';
+		$row = array();
+
+	$row[] = $no++;
+	$row[] = $list_soal['judul_soal'];
+	$row[] = $list_soal['sumber'];
+
+	$row[] = $list_soal['soal'];
+
+	if ($list_soal['kesulitan']=='0') {
+		$row[] = "Mudah";
+	} else if($list_soal['kesulitan']=='1'){
+		$row[] = "Sedang";
+	}else{
+		$row[] = "Sulit";
+	}
+	$row[]='<a class="btn btn-success soal-'.$list_soal['id_soal'].'" title="lihat soal" onclick=detail_soal('.$list_soal['id_soal'].') data-todo='."'".json_encode($list_soal)."'".'> <i class="ico ico-eye"></i></a>';
+	$data[] = $row;
+	$n++;
+
+}
+
+$output = array(
+	"data"=>$data,
+	);
+echo json_encode( $output );
+
+}
+
+
 # detail video pada saat di klik
 function ajax_detail_video($id_video){
 	$list = $this->mvideos->get_single_video($id_video)[0];

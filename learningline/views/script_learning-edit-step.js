@@ -333,6 +333,33 @@ function load_soal(){
 		'</div>'+
 		'</div>'+
 
+		'</div>'+
+
+
+		'<div class="panel panel-teal">'+
+   		'<div class="panel-heading">'+
+    	'<h3 class="panel-title">Daftar Soal yang Telah di Tambahkan</h3>'+
+  		'</div>'+
+  		'<div class="panel-body soaltambah">'+
+    	'<form action="" id="">'+
+     	'<table class="table table-striped display responsive nowrap" id="tblist" style="font-size: 13px" width=100%>'+
+      	'<thead>'+
+       	'<tr>'+
+        '<th>ID</th>'+
+       	' <th>Judul Soal</th>'+
+        '<th>Sumber</th>'+
+        '<th>SOAL</th>'+
+        '<th>Level</th>'+
+      	'<th>Kesulitan</th>'+
+      	'</tr>'+
+   		'</thead>'+
+    	'<tbody>'+
+
+    	'</tbody>'+
+  		'</table>'+
+		'</form>'+
+		'</div>'+
+		'</div>'+
 		'</div>'
 		
 
@@ -343,6 +370,20 @@ function load_soal(){
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+relasi;
 	tabel = $('.daftarsoal').DataTable({
+		"ajax": {
+			"url": url,
+			"type": "POST"
+		},
+		"emptyTable": "Tidak Ada Data Pesan",
+		"info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+		"pageLength": 5,
+	});
+
+
+	//get soal yang telah ditambahkan 
+	id_step = $('input[name=id]').val();	
+	var url = base_url+"learningline/ajax_get_soal_tambah/"+id_step;
+	tabel = $('#tblist').DataTable({
 		"ajax": {
 			"url": url,
 			"type": "POST"

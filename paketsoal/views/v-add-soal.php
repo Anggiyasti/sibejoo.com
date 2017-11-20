@@ -141,6 +141,7 @@
 
 <!-- Strat -->
 
+
 <div class="col-sm-11">
   <div class="panel panel-teal">
    <div class="panel-heading">

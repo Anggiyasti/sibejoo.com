@@ -60,5 +60,14 @@ class Mteamback extends CI_Model{
     	}
 
     }
+
+    public function get_onephoto($id)
+    {
+      $this->db->select('foto');
+      $this->db->from('tb_team');
+      $this->db->where('id',$id);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
 }
 ?>
