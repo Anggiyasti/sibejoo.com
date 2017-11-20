@@ -16,9 +16,9 @@ class Mtoback extends CI_Model {
 
 	public function get_To()
 	{
-		$this->db->select('*');
-		$this->db->from('tb_tryout')->order_by('id_tryout','DESC');
-		$this->db->join('tb_pengguna p', 'p.id = tb_tryout.penggunaID');
+		$this->db->select('tryo.id_tryout,tryo.nm_tryout,tryo.tgl_mulai,tryo.wkt_mulai,tryo.tgl_berhenti,tryo.wkt_berakhir,tryo.publish,tryo.status,p.namaPengguna,p.id as penggunaID,tryo.UUID');
+		$this->db->from('tb_tryout tryo')->order_by('id_tryout','DESC');
+		$this->db->join('tb_pengguna p', 'p.id = tryo.penggunaID');
 		$query = $this->db->get();
         return $query->result_array();
 	}

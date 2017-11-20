@@ -23,6 +23,7 @@ class Toback extends MX_Controller{
 		$tglMulai=htmlspecialchars($this->input->post('tglmulai'));
 		$tglAkhir=htmlspecialchars($this->input->post('tglakhir'));
 		$publish=htmlspecialchars($this->input->post('publish'));
+			$status=htmlspecialchars($this->input->post('free'));
 		$UUID = uniqid();
 		$wktMulai=htmlspecialchars($this->input->post('wktmulai'));
 		$wktAkhir=htmlspecialchars($this->input->post('wktakhir'));
@@ -35,7 +36,8 @@ class Toback extends MX_Controller{
 			'wkt_berakhir'=>$wktAkhir,	
 			'publish'=>$publish,
 			'penggunaID'=>$penggunaID,
-			'UUID' =>$UUID
+			'UUID' =>$UUID,
+			'status'=>$status
 			);
 
 		$this->Mtoback->insert_to($dat_To);
@@ -217,25 +219,25 @@ class Toback extends MX_Controller{
 	public function listTO(){
 		$data['files'] = array(
 			APPPATH . 'modules/toback/views/v-list-to.php',
-			);
+		);
 		$data['judul_halaman'] = "List Try Out";
 		$hakAkses=$this->session->userdata['HAKAKSES'];
 		if ($hakAkses=='admin') {
-  // jika admin
+ 		 	// jika admin
 			$this->parser->parse('admin/v-index-admin', $data);
 		} elseif($hakAkses=='guru'){
 			
-    $data['konsultasi'] = $this->mkonsultasi->get_pertanyaan_blm_direspon();
-  // jika guru
-  // notification
+			$data['konsultasi'] = $this->mkonsultasi->get_pertanyaan_blm_direspon();
+ 		 	// jika guru
+  		// notification
 			$data['datKomen']=$this->datKomen();
 			$id_guru = $this->session->userdata['id_guru'];
-  // get jumlah komen yg belum di baca
+  		// get jumlah komen yg belum di baca
 			$data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
 
 			$this->load->view('templating/index-b-guru', $data);  
 		} else{
-   // jika siswa redirect ke welcome
+   		// jika siswa redirect ke welcome
 			redirect(site_url('welcome'));
 		}
 	}
@@ -251,10 +253,17 @@ class Toback extends MX_Controller{
 		$no=0;
 		foreach ( $list as $list_to ) {
 			$no++;
-			if ($list_to['publish']=='1') {
+			$sts_publish=$list_to['publish'];
+			$sts_to=$list_to['status'];
+			if ($sts_publish=='1') {
 				$publish='Publish';
 			} else {
 				$publish='Tidak Publish';
+			}
+			if ($sts_to=='1') {
+				$status='Member';
+			} else {
+				$status='Free';
 			}
 			$penggunaID = $list_to ['penggunaID'];
 			
@@ -267,6 +276,7 @@ class Toback extends MX_Controller{
 			$row[] = $list_to['tgl_berhenti'];
 			$row[] = $list_to['wkt_berakhir'];
 			$row[] = $publish;
+			$row[] = $status;
 			if ($penggunaID==$sesPenggunaID || $hakAkses=='admin' ) {
 				$row[] = '
 				<a class="btn btn-sm btn-primary"  title="Ubah" onclick="edit_TO('."'".$list_to['id_tryout']."'".')">
@@ -312,6 +322,13 @@ class Toback extends MX_Controller{
 			$tglMulai=htmlspecialchars($this->input->post('tgl_mulai'));
 			$tglAkhir=htmlspecialchars($this->input->post('tgl_berhenti'));
 			$publish=htmlspecialchars($this->input->post('publish'));
+			$free=htmlspecialchars($this->input->post('free_edit'));
+			if ($free==1) {
+				$status=0;
+			} else {
+				$status=1;
+			}
+			
 
 			$wktMulai=htmlspecialchars($this->input->post('wkt_mulai'));
 			$wktAkhir=htmlspecialchars($this->input->post('wkt_akhir'));
@@ -323,6 +340,7 @@ class Toback extends MX_Controller{
 				'wkt_mulai'=>$wktMulai,
 				'wkt_berakhir'=>$wktAkhir,
 				'publish'=>$publish,
+				'status'=>$status
 				);
 
 			$this->Mtoback->ch_To($data);
