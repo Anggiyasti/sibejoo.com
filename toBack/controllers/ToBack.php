@@ -334,6 +334,7 @@ class Toback extends MX_Controller{
 				'wkt_mulai'=>$wktMulai,
 				'wkt_berakhir'=>$wktAkhir,
 				'publish'=>$publish,
+				'status'=>$status
 				);
 
 			$this->Mtoback->ch_To($data);

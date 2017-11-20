@@ -298,9 +298,9 @@ function edit_TO(id_tryout)
                     }
 
                     if (data.status==1) {
-                      $('#free').attr('checked',false);
+                      $('#free').attr('checked',true)
                     } else {
-                      $('#free').attr('checked',true);
+                      $('#free').attr('checked',false)
                     }
                     $('#modal_editTO').modal('show');  // show bootstrap modal when complete loaded
                     // $('.modal-title').text('Edit Paket Soal'); // Set title to Bootstrap modal title
