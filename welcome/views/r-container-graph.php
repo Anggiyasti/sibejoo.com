@@ -142,6 +142,40 @@
 </div>      
 </section>
 <!-- TITLE -->
+<section>
+ <div class="container">
+  <div class="section-content">
+   <div class="row">
+    <h2 class="font-20 text-theme-colored text-uppercase">
+      <span class="text-theme-color-1"> Info Dasar Siswa
+<div class="separator left mt-0 mb-0">
+        <i class="fa fa-user"></i>
+      </div>
+      </span></h2>
+
+
+
+      <div class="col-xs-3">
+        1
+      </div>
+
+      <div class="col-xs-3">
+        2
+      </div>
+
+      <div class="col-xs-3">
+        3
+      </div>
+
+      <div class="col-xs-3">
+        4
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
 
 <section>
  <div class="container">
@@ -149,12 +183,12 @@
    <div class="row">
     <!-- PESAN -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-      
-       <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
 
-        <span class="text-theme-color-1"> Pesan</span></h2>
-        <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
-        <div class="row">
+     <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
+
+      <span class="text-theme-color-1"> Pesan</span></h2>
+      <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
+      <div class="row">
         <?php foreach ($pesan as $key ) : ?>
           <div class="col-md-4">
             <blockquote>
@@ -171,9 +205,9 @@
     </div>
     <!-- PESAN -->
 
-      <div class="separator separator-rouned">
-          <i class="fa fa-cog fa-spin"></i>
-      </div>
+    <div class="separator separator-rouned">
+      <i class="fa fa-cog fa-spin"></i>
+    </div>
 
     <!-- TOPIK -->
     <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
@@ -225,8 +259,8 @@
 <!-- TOPIK -->
 
 <div class="separator separator-rouned">
-          <i class="fa fa-cog fa-spin"></i>
-      </div>
+  <i class="fa fa-cog fa-spin"></i>
+</div>
 
 <!-- LATIHAN -->
 <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
@@ -256,17 +290,17 @@
        <div class="progress-title">
          <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
          <h6><?=(int)$persentasi ?>% Benar</h6>
-         </div>
        </div>
      </div>
-     <?php $no++; ?>
-   <?php endforeach ?>
- </div>
- <a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a><br><br><br>
+   </div>
+   <?php $no++; ?>
+ <?php endforeach ?>
+</div>
+<a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a><br><br><br>
 </div>
 
 <div class="separator separator-rouned">
-      <i class="fa fa-cog fa-spin"></i>
+  <i class="fa fa-cog fa-spin"></i>
 </div>
 <!-- LATIHAn -->
 </div>
@@ -313,7 +347,7 @@
 <!-- PERKEMBANGAN TO -->
 
 <div class="separator separator-rouned">
-      <i class="fa fa-cog fa-spin"></i>
+  <i class="fa fa-cog fa-spin"></i>
 </div>
 <!-- video random -->
 <section class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10" style="padding-bottom: : 0;">
@@ -341,20 +375,20 @@
           <?php if ($item['link']=='' || $item['link']==' '): ?>
             <!-- <img src="<?=$url_thumbnail?>"> -->
             <video width="250" height="170" controls controlsList="nodownload">
-                <source src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>" type="video/mp4" >
-            </video> 
-          <?php endif ?>
-          <?php if ($item['namaFile']=='' || $item['namaFile']==' '): ?>
+              <source src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>" type="video/mp4" >
+              </video> 
+            <?php endif ?>
+            <?php if ($item['namaFile']=='' || $item['namaFile']==' '): ?>
              <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
-          <?php endif ?>
-        </center>
+           <?php endif ?>
+         </center>
 
-      </div>
-      <a href="<?=$url ?>" class="cws-right"><h3><?=$item['judulVideo'] ?></h3></a>
-      <p><?=$item['deskripsi'] ?></p>
-    </div>
-  </div>
-<?php endforeach ?>
+       </div>
+       <a href="<?=$url ?>" class="cws-right"><h3><?=$item['judulVideo'] ?></h3></a>
+       <p><?=$item['deskripsi'] ?></p>
+     </div>
+   </div>
+ <?php endforeach ?>
 
 
 </div>
@@ -431,72 +465,72 @@ dataTableReportPaket = $('.rpaket').DataTable({
     // Create the chart
     Highcharts.chart('chartContainer', {
       chart: {
-          type: 'column'
+        type: 'column'
       },
       title: {
-          text: 'Grafik Try Out'
+        text: 'Grafik Try Out'
       },
       subtitle: {
-          text: 'Source: Raport Online Sibejoo'
+        text: 'Source: Raport Online Sibejoo'
       },
       xAxis: {
-          type: 'category'
+        type: 'category'
       },
       yAxis: {
-          title: {
-              text: 'Total percent try out'
-          }
+        title: {
+          text: 'Total percent try out'
+        }
 
       },
       legend: {
-          enabled: false
+        enabled: false
       },
       plotOptions: {
-          series: {
-              borderWidth: 0,
-              dataLabels: {
-                  enabled: true,
-                  format: '{point.y:.1f}%'
-              }
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}%'
           }
+        }
       },
 
       tooltip: {
-          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
       },
 
       series: [{
-          name: 'Brands',
-          colorByPoint: true,
-          colorByPoint: true,
-          data: [
-                  data[0],
-                  data[1],
-                  data[2],
-                  data[3],
-                  data[4],
-                  data[5],
-              ]
+        name: 'Brands',
+        colorByPoint: true,
+        colorByPoint: true,
+        data: [
+        data[0],
+        data[1],
+        data[2],
+        data[3],
+        data[4],
+        data[5],
+        ]
       }],
       drilldown: {
-          series: [{
-              name: 'Raport',
-              id: 'Microsoft Internet Explorer',
-              data: [
-                  data[0],
-                  data[1],
-                  data[2],
-                  data[3],
-                  data[4],
-                  data[5],
-              ]
-          }, {
-              
-          }]
+        series: [{
+          name: 'Raport',
+          id: 'Microsoft Internet Explorer',
+          data: [
+          data[0],
+          data[1],
+          data[2],
+          data[3],
+          data[4],
+          data[5],
+          ]
+        }, {
+
+        }]
       }
-  });
- }
+    });
+  }
 </script>
 <!-- FILTER PENCARIAN TO -->
 <script type="text/javascript">
