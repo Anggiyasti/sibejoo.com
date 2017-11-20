@@ -1,7 +1,7 @@
 <!-- Start main-content -->
 <div class="main-content">
   <!-- Section: inner-header -->
-  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.adtaxi.com/wp-content/uploads/2016/10/shutterstock_365048603.jpg" style="background-image: url('http://essentialappmarketing.com/wp-content/uploads/2016/09/PR-MEDIA-OUTREACH.jpg');background-position: bottom; width: 100%;">
     <div class="container pt-60 pb-60">
       <!-- Section Content -->
       <div class="section-content">
@@ -21,16 +21,15 @@
         <div class="col-sm-12 col-md-3">
           <div class="sidebar sidebar-left mt-sm-30">
             <div class="widget">
-              <h5 class="widget-title line-bottom">Artikel Lain</h5>
+              <h5 class="widget-title line-bottom">Report Heroo Lain</h5>
               <div class="latest-posts">
                 <?php foreach ($listheroo as $key): ?>
                   <article class="post media-post clearfix pb-0 mb-10">
-                    <a class="post-thumb" href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)">
-                      <!-- <img src="http://placehold.it/75x75" style="height: 75px; width: 75px;" alt=""> -->
+                    <a class="post-thumb" href="javascript:void(0);" onclick="detailReport(<?=$key['id_art'] ?>)">
                       <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" style="height: 75px; width: 75px;" alt="">
                     </a>
                     <div class="post-right">
-                      <h5 class="post-title mt-0"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_art'] ?>)"><b><?=$key['judul_art_katagori'] ?></b></a></h5>
+                      <h5 class="post-title mt-0"><a href="javascript:void(0);" onclick="detailReport(<?=$key['id_art'] ?>)"><b><?=$key['judul_art_katagori'] ?></b></a></h5>
                       <p><?php $c = $key['isi_art_kategori']; echo substr($c, 0, 20) ?>...</p>
                     </div>
                   </article>
@@ -51,7 +50,7 @@
               <div class="portfolio-filter font-alt align-center">
                 <div class="btn-group" data-toggle="buttons" > 
 <label class="btn cws-button btn btn-default small" onclick="semua()"> 
-                  <input type="radio" name="options"  autocomplete="off" checked="true" title="Tampilkan Semua Jenis Video"> Semua
+                  <input type="radio" name="options"  autocomplete="off" checked="true" title="Tampilkan Semua Jenis Video"> All
                 </label>
 
                  <label class="btn cws-button btn btn-default small" onclick="pass()"> 
@@ -71,6 +70,11 @@
             <div class="blog-posts">
               <div class="col-md-12">
                 <div class="row list-dashed">
+                  <!-- get page pagination -->
+                  <?php $page=$this->uri->segment('3');  ?>
+                  <!--Pengulangan list soal  -->
+                  <?php 
+                  $no = $this->uri->segment('3') + 1; ?>
                   <?php foreach ($allreportheroo as $key): ?>
                     <?php if ($key['id_kategori'] == 1): ?>
                       <article class="post clearfix mb-30 pb-30 pass" >
@@ -91,7 +95,7 @@
                             </div>
                             <div class="media-body pl-5">
                               <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="blog-single-right-sidebar.html"><?=$key['judul_art_katagori'] ?></a></h4>
+                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="javascript:void(0);" onclick="detailReport(<?=$key['id_art'] ?>)"><?=$key['judul_art_katagori'] ?></a></h4>
                                 <b></b><span class="mb-10  mr-10 font-13"><?=$key['nama_kategori'] ?>  </span></b>
 
                               </div>
@@ -122,7 +126,7 @@
                             </div>
                             <div class="media-body pl-5">
                               <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="blog-single-right-sidebar.html"><?=$key['judul_art_katagori'] ?></a></h4>
+                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="javascript:void(0);" onclick="detailReport(<?=$key['id_art'] ?>)"><?=$key['judul_art_katagori'] ?></a></h4>
                                 <b></b><span class="mb-10  mr-10 font-13"><?=$key['nama_kategori'] ?>  </span></b>
 
                               </div>
@@ -153,7 +157,7 @@
                             </div>
                             <div class="media-body pl-5">
                               <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="blog-single-right-sidebar.html"><?=$key['judul_art_katagori'] ?></a></h4>
+                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="javascript:void(0);" onclick="detailReport(<?=$key['id_art'] ?>)"><?=$key['judul_art_katagori'] ?></a></h4>
                                 <b></b><span class="mb-10  mr-10 font-13"><?=$key['nama_kategori'] ?>  </span></b>
 
                               </div>
@@ -172,17 +176,9 @@
                   <nav>
                     <center>
                       <ul class="pagination">
-                        <li>
-                          <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li><?php echo $links; ?></li>
-                        <li>
-                          <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
+                        <?php 
+                        echo $links;
+                        ?>
                       </ul>
                     </center>
                   </nav>
@@ -197,11 +193,11 @@
   <!-- end main-content -->
 
   <script type="text/javascript">
-    function detailArtikel(id_artikel) {
-      url_ajax = base_url+"homepage/ambilid";
+    function detailReport(id_report) {
+      url_ajax = base_url+"homepage/create_id_report_session";
 
       var global_properties = {
-        id_artikel: id_artikel
+        id_report: id_report
       };
 
       $.ajax({
@@ -210,7 +206,8 @@
         url: url_ajax,
         data: global_properties,
         success: function(data){
-          window.location.href = base_url + "homepage/detail_artikel";  
+          console.log(data);
+          window.location.href = base_url + "homepage/detail_report";  
         },error:function(data){
           sweetAlert("Oops...", "wah, gagal menghubungkan!", "error");
         }

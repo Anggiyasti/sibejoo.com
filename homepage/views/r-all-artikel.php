@@ -1,8 +1,8 @@
 <!-- Start main-content -->
 <div class="main-content" id="artikel">
   <!-- Section: inner-header -->
-  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-    <div class="container pt-60 pb-60">
+  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="">
+    <div class="container pt-60 pb-60" style="background-image: url('http://essentialappmarketing.com/wp-content/uploads/2016/09/PR-MEDIA-OUTREACH.jpg');background-position: bottom; width: 100%;">
       <!-- Section Content -->
       <div class="section-content">
         <div class="row">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="media-body pl-15">
                               <div class="event-content pull-left flip">
-                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="blog-single-right-sidebar.html"><?=$key['judul_artikel'] ?></a></h4>
+                                <h4 class="entry-title text-white text-uppercase m-0 mt-5"><a href="javascript:void(0);" onclick="detailArtikel(<?=$key['id_artikel'] ?>)"><?=$key['judul_artikel'] ?></a></h4>
                                 <span class="mb-10 text-gray-darkgray mr-10 font-13"></span>      
 
                               </div>
@@ -83,17 +83,7 @@
                     <nav>
                       <center>
                         <ul class="pagination">
-                          <li>
-                            <a href="#" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li><?php echo $links; ?></li>
-                          <li>
-                            <a href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
+                          <?php echo $links; ?>
                         </ul>
                       </center>
                     </nav>
