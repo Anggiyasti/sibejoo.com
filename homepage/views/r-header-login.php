@@ -77,7 +77,7 @@
         <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
         <li><a href="<?=base_url('konsultasi/pertanyaan_all') ?>">Konsultasi<span class="indicator"></a></li>
         <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
-        <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
+        <li><a href="<?=base_url('pesan/messages') ?>">Pesan<span class="indicator"></a></li>
         <li><a href="<?=base_url('edudrive/allmodul') ?>">Edu Drive<span class="indicator"></a></li>
 
         <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
@@ -111,7 +111,7 @@
   <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
   <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
   <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
-  <li><a href="<?=base_url('ortuback/pesan') ?>">Pesan<span class="indicator"></a></li>
+  <li><a href="<?=base_url('pesan/messages') ?>">Pesan<span class="indicator"></a></li>
   <li><a href="javascript:void(0);" onclick="pilihwilayah(1)">Passing Grade<span class="indicator"></a></li>
   <li><a href="<?=base_url('welcome') ?>">Halo, <?=$this->session->userdata('USERNAME') ?>! 
     <?php if ($this->session->userdata('member')==1): ?>

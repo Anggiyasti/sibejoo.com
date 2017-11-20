@@ -22,6 +22,7 @@ class Konsultasi extends MX_Controller{
 
     parent::__construct();
     $this->load->library('sessionchecker');
+    $this->sessionchecker->checkloggedin();
 
     if ($this->session->userdata('HAKAKSES')=='guru') {
       // $this->session[]

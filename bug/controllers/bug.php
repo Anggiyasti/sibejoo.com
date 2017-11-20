@@ -35,10 +35,8 @@ class Bug extends MX_Controller {
 
 	function ajax_data_bugs(){
 		$list = $this->mbug->get_all_bugs();
-            // var_dump($list);
 
-
-	// 	$data = array();
+		$data = array();
 
 		foreach ( $list as $bug_item ) {
 			$row = array();
