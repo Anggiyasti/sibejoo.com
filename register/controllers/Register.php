@@ -146,13 +146,7 @@ class Register extends MX_Controller {
       $namaBelakang = htmlspecialchars($this->input->post('namabelakang'));
       $alamat = htmlspecialchars($this->input->post('alamat'));
       $noKontak = htmlspecialchars($this->input->post('nokontak'));
-      $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
-      $cabangID = htmlspecialchars($this->input->post('cabang'));
       //penegecekan cabang
-      if ($cabangID=="") {
-       $noIndukNeutron = NULL;
-       $cabangID = NULL;
-      } 
       $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
       $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
       $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
@@ -184,9 +178,7 @@ class Register extends MX_Controller {
         'namaSekolah' => $namaSekolah,
         'alamatSekolah' => $alamatSekolah,
         'penggunaID' => $penggunaID,
-        'tingkatID' => $tingkatID,
-        'noIndukNeutron'=>$noIndukNeutron,
-        'cabangID'=>$cabangID
+        'tingkatID' => $tingkatID
       );
 
       //data unutk session siswa
@@ -219,13 +211,13 @@ class Register extends MX_Controller {
         "penggunaID"=>$penggunaID_ortu,
       );
         $this->mregister->insert_orangtua($data_ortu);
-      // redirect(site_url('register/verifikasi'));
+      redirect(site_url('register/verifikasi'));
    }
   }
 
     //function untuk menyimpan data pendaftaran user siswa ke database
 
-   public function savesiswaadmin() {
+public function savesiswaadmin() {
 
 //load library n helper
 
@@ -808,25 +800,25 @@ class Register extends MX_Controller {
     }
 
 
-    public function test_email()
-    {
-      // echo "string";
-      // $this->load->library('email'); // load email library
-      //   $verifikasiCode = "ini verifikasi";
-      //   $address = "aziz@mail.unpas.ac.id";
-      //   $this->email->from('noreply@sibejooclass.com', 'Neon');
-      //   $this->email->to($address);
-      //   $this->email->subject('Verifikasi Email');
-      //   $message = '<html><meta/><head/><body>';
-      //   $message .='<p> Dear testing</p>';
-      //   $message .='<p>Terimakasih telah mendaftar di Neon. Untuk dapat menggunakan semua fitur silahkan <strong><a href="' . base_url() . 'index.php/register/verifikasi_email/' . $address . '/' . $verifikasiCode . '">klik disini</a></strong> untuk aktifasi akun mu.</p>';
-      //   $message .= '<p>Terimakasih</p>';
-      //   $message .= '<p>Neon</p>';
-      //   $message .= '</body></html>';
-      //   $this->email->message($message);
-      //   $this->email->send();
+    // public function test_email()
+    // {
+    //   // echo "string";
+    //   // $this->load->library('email'); // load email library
+    //   //   $verifikasiCode = "ini verifikasi";
+    //   //   $address = "aziz@mail.unpas.ac.id";
+    //   //   $this->email->from('noreply@sibejooclass.com', 'Neon');
+    //   //   $this->email->to($address);
+    //   //   $this->email->subject('Verifikasi Email');
+    //   //   $message = '<html><meta/><head/><body>';
+    //   //   $message .='<p> Dear testing</p>';
+    //   //   $message .='<p>Terimakasih telah mendaftar di Neon. Untuk dapat menggunakan semua fitur silahkan <strong><a href="' . base_url() . 'index.php/register/verifikasi_email/' . $address . '/' . $verifikasiCode . '">klik disini</a></strong> untuk aktifasi akun mu.</p>';
+    //   //   $message .= '<p>Terimakasih</p>';
+    //   //   $message .= '<p>Neon</p>';
+    //   //   $message .= '</body></html>';
+    //   //   $this->email->message($message);
+    //   //   $this->email->send();
 
-    }
+    // }
 public function test()
     {
 
@@ -881,7 +873,22 @@ public function test()
     }
 
 
-    
+     public function test_email() {
+    $this->load->library('email'); // load email library
+    $verifikasiCode = "asdasd";
+    $address = "aziz@mail.unpas.ac.id";
+    $this->email->from('noreply@sibejooclass.com', 'Neon');
+    $this->email->to($address);
+    $this->email->subject('Verifikasi Email');
+    $message = '<html><meta/><head/><body>';
+    $message .='<p> Dear' . ' ' ."Test email axix" . ',</p>';
+    $message .='<p>Terimakasih telah mendaftar di Neon. Untuk dapat menggunakan semua fitur silahkan <strong><a href="' . base_url() . 'index.php/register/verifikasi_email/' . $address . '/' . $verifikasiCode . '">klik disini</a></strong> untuk aktifasi akun mu.</p>';
+    $message .= '<p>Terimakasih</p>';
+    $message .= '<p>Neon</p>';
+    $message .= '</body></html>';
+    $this->email->message($message);
+    $this->email->send();
+  }
 
     
 
