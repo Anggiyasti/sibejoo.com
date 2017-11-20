@@ -1,7 +1,7 @@
   <!-- Start main-content -->
   <div class="main-content" >
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+ <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.ludodigitalstories.it/wp-content/uploads/2016/01/timeline.png">
       <div class="container pt-60 pb-60">
         <!-- Section Content -->
         <div class="section-content">
@@ -36,7 +36,12 @@
                 </div>
               </div>
               <div class="widget">
-                <h5 class="widget-title line-bottom"><a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"><?= $datMateri['namaTopik']; ?></a></h5>
+                <h5 class="widget-title line-bottom">
+                  <!-- <a href="<?=base_url('index.php/linetopik/timeLine/').$topikUUID?>"> -->
+                    <?= $datMateri['namaTopik']; ?>
+                      
+                    <!-- </a> -->
+                  </h5>
 
                 <link rel="stylesheet" href="<?= base_url('assets/css/custom-time-line.css') ?>">
                 <ul class="media-list media-list-feed  grid-col-3" >

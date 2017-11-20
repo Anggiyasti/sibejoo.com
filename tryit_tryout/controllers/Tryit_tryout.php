@@ -41,7 +41,7 @@ class Tryit_tryout extends MX_Controller {
         $konten = 'modules/tryit_tryout/views/r-info-pengerjaan.php';
 
         $data['files'] = array(
-            APPPATH . 'modules/homepage/views/r-header.php',
+            APPPATH . 'modules/homepage/views/r-header-detail.php',
             APPPATH . $konten,
             APPPATH . 'modules/templating/views/r-footer.php',
             );

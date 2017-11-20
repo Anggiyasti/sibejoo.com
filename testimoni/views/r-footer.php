@@ -82,35 +82,55 @@
               </div>
               <div class="col-md-5 col-md-offset-2">
                 <div class="widget dark">
-                  <h5 class="widget-title mb-10">Berlangganan</h5>
+                  <h5 class="widget-title mb-10">Berlangganans</h5>
                   <!-- Mailchimp Subscription Form Starts Here -->
-                  <form id="mailchimp-subscription-form-footer" class="newsletter-form" id="formsubs">
+                  <form id="mailchimp-subscription-form-footer2" class="newsletter-form" id="formsubs" method="post" action="javascript:void(0)">
                     <div class="input-group">
-                      <input type="email" placeholder="Email Anda" class="form-control input-lg font-16" data-height="45px" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" required>
+                      <input type="email" name="email" id="emailsubs3" placeholder="Email Anda" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer" value="<?php echo set_value('email'); ?>" required>
                       <span class="input-group-btn">
-                        <button data-height="45px" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" type="submit" onclick="subscribe()">Berlangganan</button>
+                        <input type="button" value="Berlangganan" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" data-height="45px" onclick="subscriber()"> 
                       </span>
                     </div>
                   </form>
                   <!-- Mailchimp Subscription Form Validation-->
                   <script type="text/javascript">
-                    $('#mailchimp-subscription-form-footer').ajaxChimp({
-                        callback: mailChimpCallBack,
-                        url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
-                    });
-
-                    function mailChimpCallBack(resp) {
-                        // Hide any previous response text
-                        var $mailchimpform = $('#mailchimp-subscription-form-footer'),
-                            $response = '';
-                        $mailchimpform.children(".alert").remove();
-                        if (resp.result === 'success') {
-                            $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                        } else if (resp.result === 'error') {
-                            $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                        }
-                        $mailchimpform.prepend($response);
+                    function subscriber(){
+                      email = $('#emailsubs3').val();
+                      // Hide any previous response text
+                      $mailchimpform = $('#mailchimp-subscription-form-footer2'),
+                      $mailchimpform.children(".alert").remove();
+                      if (email=="" || email==" ") {
+                        $mailchimpform.prepend('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Email Tidak Boleh Kosong!</div>');
+                      } else {
+                        $.ajax({
+                          url: base_url+'homepage/addsubs',
+                          type: "POST",
+                          data: {email:email},
+                          dataType: "json",
+                          success: function(data) {
+                            respon_action(data);
+                          },
+                          error: function(data) {
+                            respon_action(data);
+                          }
+                        });
+                      }
                     }
+
+
+
+                function respon_action(resp) {
+                  // Hide any previous response text
+                  var $mailchimpform = $('#mailchimp-subscription-form-footer2'),
+                  $response = '';
+                  $mailchimpform.children(".alert").remove();
+                  if (resp.status === true) {
+                    $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.message + '</div>';
+                  } else if (resp.status === false) {
+                    $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.message + '</div>';
+                  }
+                  $mailchimpform.prepend($response);
+                }
                   </script>
                   <!-- Mailchimp Subscription Form Ends Here -->
                 </div>

@@ -34,7 +34,7 @@ class Siswa extends MX_Controller {
     public function profilesetting() {
         if ($this->get_status_login()) {
             $data = array(
-                'judul_halaman' => 'Neon - Pengaturan Akun',
+                'judul_halaman' => 'Sibejoo - Pengaturan Akun',
                 'judul_header'  => 'Pengaturan Akun',
                 'judul_header2' => 'Pengaturan Akun'
                 );

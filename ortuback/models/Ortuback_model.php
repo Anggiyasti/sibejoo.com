@@ -48,7 +48,7 @@ class Ortuback_model extends CI_Model{
 		$this->db->join('tb_laporan_ortu l', 'o.id=l.id_ortu');
 		$this->db->join('tb_pengguna peng ',' peng.id = s.penggunaID');
 		$this->db->where("peng.namaPengguna", $id_ortu);
-		$this->db->where("l.jenis = 'umum'");
+		$this->db->where("l.jenis = 'TOKEN DONASI'");
 		$this->db->order_by("l.id", 'desc');
 
 		$query = $this->db->get();
@@ -70,7 +70,8 @@ class Ortuback_model extends CI_Model{
 		$this->db->order_by("l.id", 'desc');
 
 		if ($data['jenis']!="all") {
-			$this->db->where('l.jenis', $data['jenis']);
+			$jenis = $data['jenis'];
+			$this->db->where("l.jenis LIKE '%$jenis%'");
 		}
 
 		$query = $this->db->get();

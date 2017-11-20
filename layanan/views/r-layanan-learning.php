@@ -33,8 +33,54 @@
           <div class="section-title mb-0">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="text-center font-28 font-weight-600 mt-0 mb-20 line-height-1">Yuk, pahami matapelajaran yang belum kamu pahami !</h2>
+                <h2 class="text-center font-28 font-weight-600 mt-0 mb-20 line-height-1">Yuk, pahami mata pelajaran yang belum kamu pahami !</h2>
                 <h5 class="text-center font-22 mt-0 mb-80 line-height-1">Misinya berupa materi yang asyik, video yang interaktif dan quiz yang dapat menguji kemampuan kamu</h5>
+              </div>
+            </div>
+          </div>
+          <div class="section-content">
+             <div class="row">
+              <div class="col-sm-6 col-md-4">
+                <div class="service-block bg-white">
+                  <div class="service-block bg-white">
+                    <center>
+                      <img alt="" src="<?=base_url('assets/images/flat-color-icons-svg/document.svg') ?>" class="text-center" width="30%">
+                    </center>
+                  </div>
+                  <div class="text-left flip p-25 pt-40">
+                    <span class="timeline-post-format" style="margin-left: 130px;"><i class="fa fa-play"></i></span>
+                    <h4 class="text-center mb-10 font-18 font-weight-800">Video</h4>
+                    <p class="text-center">Pada misi video, kalian ditantang untuk menonton video belajar.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="service-block bg-white">
+                  <div class="service-block bg-white">
+                    <center>
+                      <img alt="" src="<?=base_url('assets/images/flat-color-icons-svg/survey.svg') ?>" class="text-center" width="30%">
+                    </center>
+                  </div>
+                  <div class="text-left flip p-25 pt-40">
+                    <span class="timeline-post-format" style="margin-left: 130px;"><i class="fa fa-file"></i></span>
+                    <h4 class="text-center mb-10 font-18 font-weight-800">Materi</h4>
+                    <p class="text-center">Pada misi materi, kalian ditantang untuk membaca materi untuk meningkatkan pemahaman terhadap topik yang dikerjakan.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="service-block bg-white">
+                  <div class="service-block bg-white">
+                    <center>
+                      <img alt="" src="<?=base_url('assets/images/flat-color-icons-svg/numerical_sorting_21.svg') ?>" class="text-center" width="30%">
+                    </center>
+                  </div>
+                  <div class="text-left flip p-25 pt-40">
+                    <span class="timeline-post-format" style="margin-left: 130px;"><i class="fa fa-edit"></i></span>
+                    <h4 class="text-center mb-10 font-18 font-weight-800">Latihan & Kuis</h4>
+                    <p class="text-center">Pada misi latihan & kuis, kalian ditantang untuk mengerjakan soal-soal untuk menguji pemahaman kalian pada topik yang dikerjakan.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -106,7 +152,7 @@
                   <p>Setelah lakukan misi materi dan video, kita akan sediakan quiz untuk jadi bos kamu! jadi kalo kamu dapat menaklukan bos di stage ini, kamu bisa lanjut ke stage selanjutnya!</p>
                 </blockquote>
                 <center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIRlsRxEt6IdL5rrEAcvwb8zaUEaYekRG_PP2m5rtkyI8gposCRQ" width="12%" class="mb-10"><br>
-                  <a class="btn btn-border btn-transparent btn-theme-colored btn-flat btn-lg" href="<?=base_url('register') ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i> Try it, here !</a>
+                  <a class="btn btn-border btn-transparent btn-theme-colored btn-flat btn-lg" href="<?=base_url('register') ?>"><i class="fa fa-check-square-o" aria-hidden="true"></i> Join Us !</a>
                 </div>
               </div>
             </div>

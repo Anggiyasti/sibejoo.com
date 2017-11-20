@@ -69,7 +69,7 @@
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li class="">
-                <a class="service" href="<?=base_url() ?>#detail_artikel">Kembali</a>
+                <a class="service" href="<?=base_url() ?>">Kembali</a>
               </li>
 
             </ul>
