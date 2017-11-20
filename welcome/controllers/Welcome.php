@@ -15,32 +15,34 @@ class Welcome extends MX_Controller {
         $this->load->model( 'ortu/mOrtu' );
         $this->load->model( 'ortuback/Ortuback_model' );
         $this->load->library('sessionchecker');
+        $this->load->library('generateavatar');
+
         $this->sessionchecker->checkloggedin();
         $this->load->library( 'parser' );
         if ($this->session->userdata('loggedin')==true) {
             if ($this->session->userdata('HAKAKSES')=='siswa'){
                // redirect('welcome');
             }else if($this->session->userdata('HAKAKSES')=='guru'){
-               redirect('guru/dashboard');
-           }else{
-           }
+             redirect('guru/dashboard');
+         }else{
+         }
 
-       }
+     }
 
-   }
+ }
 
 
 
-   public function index() {    
+ public function index() {    
     $data = array(
         'judul_halaman' => 'Sibejoo - Welcome',
         'judul_header' =>'Video',
         'judul_header2' =>'Video Belajar'
-        );
+    );
     $data['files'] = array( 
         APPPATH.'modules/homepage/views/r-header-login.php',
         APPPATH.'modules/welcome/views/r-container-graph.php',
-        );
+    );
 
     if ($this->session->userdata('HAKAKSES')=='ortu') {
         $id_pengguna= $this->session->userdata['id'];
@@ -51,15 +53,14 @@ class Welcome extends MX_Controller {
         $data['datLapor'] = $this->Ortuback_model->get_daftar_pesan($id_pengguna);
         // var_dump($data['datLapor']);
         $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
-
     }
 
-
-    $data['video'] = $this->mvideos->get_video_limit();
-    $data['topik'] = $this->msiswa->persentasi_limit(3);
+    $data['photo'] = $this->msiswa->get_datsiswa()[0]['photo'];
+    // $data['video'] = $this->mvideos->get_video_limit();
+    $data['video'] = $this->mvideos->get_last_video();
+    $data['topik'] = $this->msiswa->persentasi_limit(4);
     $data['latihan'] = $this->msiswa->get_limit_persentase_latihan(3);
     $data['pesan'] = $this->msiswa->get_pesan();
-
     $this->parser->parse( 'templating/r-index', $data );
 
 
@@ -67,18 +68,18 @@ class Welcome extends MX_Controller {
 
 
 public function faq(){
- $data = array(
+   $data = array(
     'judul_halaman' => 'Sibejoo - FAQ',
     'judul_header' =>'FAQ HASIL DETECTION',
     'judul_header2' =>'Video Belajar'
-    );
+);
 
- $data['files'] = array( 
+   $data['files'] = array( 
     APPPATH.'modules/homepage/views/v-header-login.php',
     APPPATH.'modules/welcome/views/v-faq.php',
     APPPATH.'modules/testimoni/views/v-footer.php',
-    );
- $this->parser->parse( 'templating/index', $data );
+);
+   $this->parser->parse( 'templating/index', $data );
 }
 
 ## get data latihan persentase buat di datatable.
@@ -98,12 +99,12 @@ public function get_data_latihan(){
         $row[] = $item['total_salah'];
         $row[] = $item['total_kosong'];
         $row[] = (int)$item['total_benar'] / (int)$item['total_soal'] * 100;
-       
+        
         $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100; 
         $row[] = '<div class="progress-item"><div class="progress">
-         <div class="progress-bar appeared" data-percent="'.$persentasi.'" style="width: '.$persentasi.'%;">
-          <span class="percent">'.$persentasi.'%</span>
-         </div>
+        <div class="progress-bar appeared" data-percent="'.$persentasi.'" style="width: '.$persentasi.'%;">
+        <span class="percent">'.$persentasi.'%</span>
+        </div>
         </div></div>';
 
         $data[] = $row;
@@ -113,7 +114,7 @@ public function get_data_latihan(){
 
     $output = array(
         "data"=>$data,
-        );
+    );
     echo json_encode( $output );
 
 }
@@ -136,10 +137,10 @@ public function get_data_learning_line(){
         $title = (int)$persentasi."%"; 
         // $row[] = "<span class='skill-bar' title=".$title."> <span class='bar'><span class='bg-color-4 skill-bar-progress' processed='true' style='width: ".(intdiv(dividend, divisor))$persentasi."%;'></span></span></span>";
 
-                $row[] = '<div class="progress-item"><div class="progress">
-         <div class="progress-bar appeared" data-percent="'.(int)$persentasi.'" style="width: '.$persentasi.'%;">
-          <span class="percent">'.(int)$persentasi.'%</span>
-         </div>
+        $row[] = '<div class="progress-item"><div class="progress">
+        <div class="progress-bar appeared" data-percent="'.(int)$persentasi.'" style="width: '.$persentasi.'%;">
+        <span class="percent">'.(int)$persentasi.'%</span>
+        </div>
         </div></div>';
 
 
@@ -150,7 +151,7 @@ public function get_data_learning_line(){
 
     $output = array(
         "data"=>$data,
-        );
+    );
     echo json_encode( $output );
 
 

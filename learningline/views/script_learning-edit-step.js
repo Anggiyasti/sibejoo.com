@@ -275,7 +275,7 @@ function reset(){
 }
 function load_soal(){
 	var tabel;
-	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Soal</h4>");
+	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Soal Belum Ditambahkan</h4>");
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Minimal Jumlah Benar</label>'+
 		'<div class="col-sm-8">'+
@@ -298,9 +298,46 @@ function load_soal(){
 		'</div>'+
 		'</div>');
 
-	$('.jenis').append('<div class="panel panel-default">'+
+	$('.jenis').append('<div class="panel panel-default container">'+
 		'<div class="panel-heading">'+
-		'<h3 class="panel-title"><center>Tabel Soal</center></</h3> '+
+		'<h3 class="panel-title"><center>Soal Belum Ditambahkan</center></</h3> '+
+		'<div class="panel-toolbar text-right">'+
+		'</div>'+
+
+		'</div>'+
+		'<div class="panel-body">'+
+		'<table class="daftarsoal_belum table table-striped display responsive nowrap" style="font-size: 13px" width=100%>'+
+		'<thead>'+
+		'<tr>'+
+		'<th></th>'+
+		'<th>Judul Soal</th>'+
+		'<th>Sumber</th>'+
+		'<th width="10%">Soal</th>'+
+		'<th width="10%">Kesulitan</th>'+
+		'<th width="5%">Aksi</th>'+
+
+		'</tr>'+
+		'</thead>'+
+
+		'<tbody>'+
+
+		'</tbody>'+
+		'</table>'+
+		'<div class="panel-footer">'+
+		'<div class="form-group no-border">'+
+		'<label class="col-sm-1 control-label"></label>'+
+		'<div class="col-sm-9">'+
+		'<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'
+		);
+
+	$('.jenis').append('<div class="panel panel-default container">'+
+		'<div class="panel-heading">'+
+		'<h3 class="panel-title"><center>Soal Sudah Ditambahkan</center></</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
@@ -332,11 +369,7 @@ function load_soal(){
 		'</div>'+
 		'</div>'+
 		'</div>'+
-
 		'</div>'
-		
-
-
 		);
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";

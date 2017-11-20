@@ -316,6 +316,21 @@ class Learning_model extends CI_Model{
 
 	}
 
+	public function get_id_soal_on_latihan($data){
+		$id_latihan = $data;
+		$query = "SELECT 
+		* FROM `tb_banksoal`
+		WHERE id_soal IN (
+		SELECT id_soal FROM `tb_mm_sol_lat`
+		WHERE id_latihan = ".$id_latihan.") 
+		";
+		$result = $this->db->query($query);
+		if ($result->result_array()==array()) {
+			return $result->result_array();
+		} else {
+			return $result->result_array();
+		}
+	}
 	
 
 	

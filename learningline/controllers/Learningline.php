@@ -157,7 +157,6 @@ class Learningline extends MX_Controller {
 		if ($metatopik==false) {
 			echo "Forbiden acces";
 		} else {
-			// var_dump($metatopik);
 			$data = array(
 				'judul_halaman' => 'Dashboard '.ucfirst($this->hakakses)." - Update Learning Line Topik Berjudul ".$metatopik['namaTopik'],
 				'judul'=>$metatopik['namaTopik'],
@@ -196,6 +195,7 @@ class Learningline extends MX_Controller {
 			$id = $metadata['materiID'];
 		}else{
 			$id = $metadata['latihanID'];
+			$soal_id = $this->learning_model->get_id_soal_on_latihan($id);
 		}
 		
 		$data = array(

@@ -9,6 +9,15 @@
 .pagination li:before{
  color:white;
 }
+.headerDivider {
+ border-right:2px dotted rgba(32, 44, 69,.3); 
+ /*height: 200px;*/
+ /*border-right:3px solid #16222c; */
+ /*height:80px;*/
+ /*position:absolute;*/
+ /*right:249px;*/
+ /*top:10px; */
+}
 </style>
 <!-- MODAL LATIHAN PERSENTASE-->
 <div class="modal fade" tabindex="-1" role="dialog" id="latihan_persentase">
@@ -20,7 +29,7 @@
   </div>
   <div class="modal-body">
 
-    <table class="table rpersentase" width=100% style="font-size: 13px">
+    <table class="table rpersentase table-striped table-schedule" width=100% style="font-size: 13px">
      <thead>
       <tr>
        <th>No</th>
@@ -125,7 +134,7 @@
 
 
 <!-- TITLE -->
-<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://www.zingerbug.com/Backgrounds/background_images/dark_blue_opal_pattern.jpg">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://iyengineers.org/assets/img/artikel2.jpg">
  <div class="container pt-70 pb-20">
   <!-- Section Content -->
   <div class="section-content">
@@ -142,29 +151,32 @@
 </div>      
 </section>
 <!-- TITLE -->
+<!-- 
+
 <section>
  <div class="container">
   <div class="section-content">
    <div class="row">
     <h2 class="font-20 text-theme-colored text-uppercase">
       <span class="text-theme-color-1"> Info Dasar Siswa
-<div class="separator left mt-0 mb-0">
-        <i class="fa fa-user"></i>
-      </div>
+        <div class="separator left mt-0 mb-0">
+          <i class="fa fa-user"></i>
+        </div>
       </span></h2>
 
 
 
       <div class="col-xs-3">
-        1
+        <img class="photo" src="<?=$photo  ?>" alt="<?=$this->session->userdata('USERNAME') ?>" width="200px">
+      </div>
+
+      <div class="col-xs-3 headerDivider">
+        <span>Nama : </span> <BR>
+        <span class="mt-100"><h2><?=str_replace(' ', '<br>', $this->session->userdata('NAMASISWA'));?></h2></span>
       </div>
 
       <div class="col-xs-3">
-        2
-      </div>
 
-      <div class="col-xs-3">
-        3
       </div>
 
       <div class="col-xs-3">
@@ -175,131 +187,83 @@
   </div>
 </div>
 </section>
+-->
 
 
 <section>
  <div class="container">
   <div class="section-content">
    <div class="row">
-    <!-- PESAN -->
-    <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-
-     <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
-
-      <span class="text-theme-color-1"> Pesan</span></h2>
-      <p class="lead font-18">hi, <?=$this->session->userdata['USERNAME']?> dibawah ini adalah pesan yang masuk.</p>
-      <div class="row">
-        <?php foreach ($pesan as $key ) : ?>
-          <div class="col-md-4">
-            <blockquote>
-              <p><?php $c = $key['isi']; echo substr($c, 0, 30) ?></p>
-              <footer><i class="fa fa-date"></i> <?=$key['date_created'] ?></footer>
-            </blockquote>
-          </div>
-        <?php endforeach ?>
-        <br><br><br>
-
-
-      </div>
-      <a class="btn btn-colored btn-theme-colored btn-sm" href="<?=base_url('ortuback/pesan') ?>">Selengkapnya</a><br><br><br>
-    </div>
-    <!-- PESAN -->
-
-    <div class="separator separator-rouned">
-      <i class="fa fa-cog fa-spin"></i>
-    </div>
-
-    <!-- TOPIK -->
-    <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
-      <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-        <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
-         <span class="text-theme-color-1"> Topik yang baru saja dipelajari <?=$siswa?>..</span></h2>
-         Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah progress learning line dari <?=$siswa?>! 
-       <?php else: ?>
-        <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
-         <span class="text-theme-color-1"> Topik yang baru saja dipelajari..</span></h2>
-         <p class="lead font-18">Dibawah ini adalah progress learning line kamu, silahkan lanjutkan untuk bisa menyelesaikan topik-topik yang disediakan. Tetap semangat!</p> 
-       <?php endif ?>
-
-       <div class="row">
-         <?php foreach ($topik  as $item): ?>
-           <?php $persentasi = (int)$item['stepDone'] / (int)$item['jumlah_step'] * 100; ?>
-           <div class="col-md-4" title="<?=(int)$persentasi ?>%">
-            <div class="portfolio-item">
-             <div class="picture">
-              <div class="course-item">
-               <div class="course-date bg-color-3 clear-fix skill-bar">
-                <h5 class="font-16 title"><a href="#"><a onclick="getlearning(<?=$item['babID'] ?>)"><?=$item['namaTopik'] ?></a></a></h5>
-                
-                <div class="progress-item">
-                  <div class="progress">
-                   <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
-                     <span class="percent"><?=ceil($persentasi) ?>%</span>
-                   </div>
-                 </div>
-               </div>
-
-               <div class="day"><?=$item['stepDone'] ?> / <?=$item['jumlah_step'] ?> Step Line Dikerjakan</div>
-               <div class="bar">
-                 <span class="bg-color-4 skill-bar-progress" processed="true" style="width: <?=$persentasi ?>%;"></span>
-               </div>
+    <h2 class="font-20 text-theme-colored text-uppercase">
+      <span class="text-theme-color-1"> Daftar Topik
+        <div class="separator left mt-0 mb-0">
+          <i class="fa fa-user"></i>
+        </div>
+      </span></h2>
+      <?php foreach ($topik  as $item): ?>
+        <div class="col-xs-3 headerDivider">
+          <?php $ava = $this->generateavatar->generate_first_letter_avtar_url($item['namaTopik'],250); ?>
+          <img class="photo" src="<?=$ava ?>" alt="<?=$this->session->userdata('USERNAME') ?>" width="250px">
+          <a onclick="getlearning(<?=$item['babID'] ?>)"><h5 class="font-16 title"><?= ucwords(strtolower($item['namaTopik'])) ?></h5></a>
+          <?php $persentasi = (int)$item['stepDone'] / (int)$item['jumlah_step'] * 100; ?>
+          <div class="progress-item">
+            <div class="progress">
+             <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
              </div>
            </div>
          </div>
-       </div>
-     </div>
-   <?php endforeach ?>
+         <h4><?=ceil($persentasi) ?>% Done! <a title="lanjutkan" onclick="getlearning(<?=$item['babID'] ?>)" style="cursor: hand"><i class="fa fa-caret-square-o-right"></i></a></h4>
+         <div class="day"><?=$item['stepDone'] ?> / <?=$item['jumlah_step'] ?> Step Line Dikerjakan</div>
+       </div>        
+     <?php endforeach ?>
+   </div>
  </div>
- <br>
- <a onclick="show_modal_learning()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a>
- <br>
- <br><br>
-
 </div>
-<!-- TOPIK -->
+</section>
 
-<div class="separator separator-rouned">
-  <i class="fa fa-cog fa-spin"></i>
-</div>
-
-<!-- LATIHAN -->
-<div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
- <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-   <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
-    <span class="text-theme-color-1"> Latihan yang telah dikerjakan <?=$siswa?>..</span></h2>
-    <p class="lead font-18">Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan anda</p>    
-  <?php else: ?>
-   <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
-    <span class="text-theme-color-1"> Latihan yang telah dikerjakan <?=$this->session->userdata('USERNAME')?>..</span></h2>     
-    <p class="lead font-18">Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan anda</p>
-  <?php endif ?>
+<section>
+ <div class="container">
+  <div class="section-content">
+   <div class="row">
 
 
-  <div class="container">
-    <?php $no = 1; ?>
-    <?php foreach ($latihan  as $item): ?>
-      <?php $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100; ?>
-      <div class="col-md-4">
-       <div class="progress-item">
-        <div class="progress">
-         <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
-           <span class="percent"><?=ceil($persentasi) ?>%</span>
+    <!-- LATIHAN -->
+    <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+     <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
+       <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
+        <span class="text-theme-color-1"> Latihan yang telah dikerjakan <?=$siswa?>..</span></h2>
+        <p class="lead font-18">Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan anda</p>
+      <?php else: ?>
+       <h2 class="line-bottom font-20 text-theme-colored text-uppercase mb-10 mt-0">
+        <span class="text-theme-color-1"> Latihan yang telah dikerjakan <?=$this->session->userdata('USERNAME')?>..</span></h2>     
+        <p class="lead font-18">Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan anda</p>
+      <?php endif ?>
+
+      <div class="container">
+        <?php $no = 1; ?>
+        <?php foreach ($latihan  as $item): ?>
+          <?php $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100; ?>
+          <div class="col-md-4">
+           <div class="progress-item">
+            <div class="progress">
+             <div class="progress-bar appeared" data-percent="<?=$persentasi ?>" style="width: <?=$persentasi ?>%;">
+               <span class="percent"><?=ceil($persentasi) ?>%</span>
+             </div>
+           </div>
+
+           <div class="progress-title">
+             <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
+             <h6><?=(int)$persentasi ?>% Benar</h6>
+           </div>
          </div>
        </div>
-
-       <div class="progress-title">
-         <h6><?=$no ?>. <?=$item['judulBab'] ?></h6>
-         <h6><?=(int)$persentasi ?>% Benar</h6>
-       </div>
-     </div>
+       <?php $no++; ?>
+     <?php endforeach ?>
    </div>
-   <?php $no++; ?>
- <?php endforeach ?>
-</div>
-<a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a><br><br><br>
-</div>
+   <a onclick="show_modal_latihan()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a><br><br><br>
+ </div>
 
-<div class="separator separator-rouned">
+ <div class="separator separator-rouned">
   <i class="fa fa-cog fa-spin"></i>
 </div>
 <!-- LATIHAn -->
@@ -330,7 +294,6 @@
    <?php endif ?>
 
    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-     <a onclick="show_modal_tryout()" class="cws-button bt-color-3 alt small">Selengkapnya</a> 
    <?php else: ?>
    <?php endif ?>
    <div class="panel-body" >
@@ -342,6 +305,7 @@
     <br>
     <br>    
   </div>
+  <a onclick="show_modal_tryout()" class="btn btn-colored btn-theme-colored btn-sm">Selengkapnya</a> 
 </div> 
 </div>
 <!-- PERKEMBANGAN TO -->
@@ -357,44 +321,49 @@
     <span class="text-theme-color-1">Recent Video</span></h2>
     <p class="lead font-18">Nah, dibawah ini terdapat video terbaru loh, yuk coba tonton..
     </p>    
+      <div class="col-md-12">
+        <!-- Works Filter -->
+        <!-- End Works Filter -->
+        <!-- Portfolio Gallery Grid -->
+        <div id="grid" class="gallery-isotope grid-4 gutter clearfix" style="position: relative; height: 780px;">
+          <?php foreach ($video as $video): ?>
+                <?php  $nama_file = base_url().'assets/video/'.$video['namaFile'] ?>
+            <!-- Portfolio Item Start -->
+            <div class="gallery-item photography" style="position: absolute; left: 0px; top: 0px;">
+              <div class="thumb">
+                <?php if ($video['link'] != '') { ?>
+                 <iframe src="<?=$video['link'] ?>" frameborder="0" gesture="media" allowfullscreen="" id="fitvid0"></iframe> 
+                <?php $temp = $video['link'] ?>
+                <?php }else{ ?>
+                <?php $temp = $nama_file ?>
+                <video src="<?=$nama_file ?>" controlsList="nodownload" controls height="143px"></video>
+                <?php } ?>
+                <div class="overlay-shade"></div>
+                <div class="icons-holder">
+                  <div class="icons-holder-inner">
+                    <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                      <a data-lightbox="video" href="<?=$temp ?>" target="_blank"><i class="fa fa-play"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <a class="hover-link" data-lightbox="image" href="<?=$video['link'] ?>">View more</a>
+              </div>
+              <div class="portfolio-description">
+                <h5 class="title"><a href="#"><?=$video['judulVideo'] ?></a></h5>
+                <span class="category"><span><?=$video['deskripsi'] ?></span></span>
+              </div>
+            </div>
+            
+            <!-- Portfolio Item End 
+          <?php endforeach ?>
 
-    
-    <hr>  
-    <div class="grid-col-row clear-fix">
-     <?php foreach ($video as $item): ?>
-       <div class="col-md-3">
-        <div class=" portfolio-item">
-         <div class="picture">
-          <div class="hover-effect"></div>
-          <div class="link-cont">
-           <span></span>
-           <?php $url =  base_url()."video/seevideo/".$item['videoid']?>
-           <?php $url_thumbnail =  base_url()."assets/image/thumbnail/".$item['thumbnail']?>
-         </div>
-         <center>
-          <?php if ($item['link']=='' || $item['link']==' '): ?>
-            <!-- <img src="<?=$url_thumbnail?>"> -->
-            <video width="250" height="170" controls controlsList="nodownload">
-              <source src="<?=base_url();?>assets/video/<?=$item['namaFile'];?>" type="video/mp4" >
-              </video> 
-            <?php endif ?>
-            <?php if ($item['namaFile']=='' || $item['namaFile']==' '): ?>
-             <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
-           <?php endif ?>
-         </center>
 
-       </div>
-       <a href="<?=$url ?>" class="cws-right"><h3><?=$item['judulVideo'] ?></h3></a>
-       <p><?=$item['deskripsi'] ?></p>
-     </div>
-   </div>
- <?php endforeach ?>
+        </div>
+        <!-- End Portfolio Gallery Grid -->
+      </div>
+    <hr class="divider-color">  
 
-
-</div>
-<hr class="divider-color">  
-
-</div>
+  </div>
 </div>
 </section>
 <!-- video random -->
