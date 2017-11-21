@@ -97,8 +97,6 @@
             <!-- untuk menampilkan pesan kesalahan penginputan email -->
             <input type="email" data-height="45px" class="form-control input-lg" placeholder="Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
             <span class="input-group-btn">
-              <!-- <input type="button" value="Berlangganan" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()">  -->
-              <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
               <span class="text-danger"><?php echo form_error('email'); ?></span>
             </span>
           </div>
@@ -107,32 +105,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <input type="button" value="Berlangganan" class="btn btn-dark btn-flat" data-height="45px" onclick="subscribe()"> 
+        <input type="button" value="Berlangganan" class="btn btn-info" data-height="45px" onclick="subscribe()"> 
         
       </div>
-    </div>
-  </div>
-</div>
-
-  <div class="modal fade sub" id="sub" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <form id="mailchimp-subscription-form1" class="newsletter-form mt-40 subscribe login-form" id="formsubs" method="post">
-          <label for="mce-EMAIL"></label>
-          <div class="input-group">
-            <!-- untuk menampilkan pesan kesalahan penginputan email -->
-            <input type="email" data-height="45px" class="form-control input-lg" placeholder="Email" name="email" id="emailsubs" value="<?php echo set_value('email'); ?>" value="" placeholder="xxx@mail.com" required>   
-            <span class="input-group-btn">
-              <input type="button" value="Berlangganan" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px" onclick="subscribe()"> 
-              <!-- <button type="submit" class="btn btn-colored btn-dark btn-lg m-0" data-height="45px">Subscribe</button> -->
-              <span class="text-danger"><?php echo form_error('email'); ?></span>
-            </span>
-          </div>
-
-          <div class="separator">
-            <i class="fa fa-cog fa-spin"></i>
-          </div>
-        </form>
     </div>
   </div>
 </div>
@@ -335,7 +310,7 @@
           </div>
           <div class="col-md-12" style="">
             <hr> 
-            <a data-toggle="modal" data-target="#myModal" class="btn btn-info btn-block" >Kembali</a>
+            <a data-toggle="modal" data-target="#myModal" class="btn btn-info btn-block" >Selesai</a>
            </div>
         </div>
       </div>

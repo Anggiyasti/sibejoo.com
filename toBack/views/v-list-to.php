@@ -60,13 +60,29 @@
   </div>
 
   <div class="form-group">
-   <label class="col-sm-3 control-label">Publish</label>
-   <div class="col-sm-8">
-    <div class="checkbox custom-checkbox">  
-     <input type="checkbox" name="publish" id="to_publish" value="1">  
-     <label for="to_publish" >&nbsp;&nbsp;</label>   
-   </div>
- </div>
+    <!-- status free -->
+    <div class="col-sm-6">
+      <label class="col-sm-3 control-label">Free</label>
+      <div class="col-sm-8">
+        <div class="checkbox custom-checkbox">  
+          <input type="checkbox" name="free" id="to_free" value="1">  
+          <label for="to_free" >&nbsp;&nbsp;</label>   
+        </div>
+      </div>
+    </div>
+    <!-- status free -->
+    <!-- status publish -->
+    <div class="col-sm-6">
+      <label class="col-sm-3 control-label">Publish</label>
+      <div class="col-sm-8">
+        <div class="checkbox custom-checkbox">  
+          <input type="checkbox" name="publish" id="to_publish" value="1">  
+          <label for="to_publish" >&nbsp;&nbsp;</label>   
+        </div>
+      </div>
+    </div>
+    <!-- status publish -->
+
 </div> 
 </div>
 <!-- END Modal Body -->
@@ -141,7 +157,20 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label">Publish?</label>
+                    <!-- status free -->
+          <div class="col-sm-6">
+            <label class="col-sm-3 control-label">Free?</label>
+          <div class="col-sm-8">
+            <div class="checkbox custom-checkbox">  
+              <input type="checkbox" name="free_edit" id="free" value="1">  
+              <label for="free">&nbsp;&nbsp;</label>   
+            </div>
+          </div>
+        </div> 
+         <!-- status free -->
+          <!-- Status publish -->
+          <div class="col-sm-6">
+            <label class="col-sm-3 control-label">Publish?</label>
           <div class="col-sm-8">
             <div class="checkbox custom-checkbox">  
               <input type="checkbox" name="publish" id="publish" value="1">  
@@ -149,6 +178,9 @@
             </div>
           </div>
         </div> 
+          </div>
+          <!-- /Status publish -->
+          </div>
       </div>
       <div class="panel-footer">
         <button type="submit" class="btn btn-primary" name="proses" onclick="saveedit()" >Proses</button>
@@ -186,6 +218,7 @@
       <th>Tanggal Berakhir</th>
       <th>Waktu Berakhir</th>
       <th>Status Publish</th>
+      <th>Status Tryout</th>
       <th>Aksi</th>
     </tr>
   </thead>
@@ -259,9 +292,15 @@ function edit_TO(id_tryout)
                 $('[name="wkt_akhir"]').val(data.wkt_berakhir);
                      // $('[name="publish"]').val(data.publish);
                      if (data.publish==1) {
-                      $('#publish').attr('checked',true)
+                      $('#publish').attr('checked',true);
                     } else {
-                      $('#publish').attr('unchecked',true)
+                      $('#publish').attr('checked',false);
+                    }
+
+                    if (data.status==1) {
+                      $('#free').attr('checked',false);
+                    } else {
+                      $('#free').attr('checked',true);
                     }
                     $('#modal_editTO').modal('show');  // show bootstrap modal when complete loaded
                     // $('.modal-title').text('Edit Paket Soal'); // Set title to Bootstrap modal title
@@ -276,21 +315,22 @@ function edit_TO(id_tryout)
           function saveedit(){
 
             var url;
-            
-
             // VAR U/ PENGECEKAN INPUT
             var nm_paket   =   $('[name="nama_tryout"]').val();
             var tgl_mulai  =   $('[name="tgl_mulai"]').val();
             var tgl_akhir  =   $('[name="tgl_berhenti"]').val();
             var wkt_mulai  =   $('[name="wkt_mulai"]').val();
             var wkt_akhir  =   $('[name="wkt_akhir"]').val();
+          
             // /
             // pengecekan inputan pembuatan to
             // cek inputan kosong
             if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wkt_akhir != "" ) {
                 // validasi tanggal mulai dan tanggal akhir
+
                 if (tgl_mulai<tgl_akhir) {
                   var datas = $('#formeditTO').serialize();
+                  console.log(datas);
                   // JIKA BERHASIL
                   url = base_url+"index.php/toback/editTryout/";
                   // ajax adding data to database
@@ -392,11 +432,19 @@ function crtTo() {
   var wkt_mulai  =   $('#to_wktmulai').val();
   var wkt_akhir  =   $('#to_wktakhir').val();
   var publish;
+  var free;
+
   if ($('#to_publish:checked')==true) {
    publish = 1;
  } else{
    publish = 0;
  }
+   if ($('#to_free:checked')==true) {
+   free = 0;
+ } else{
+   free = 1;
+ }
+ console.log(free);
 // pengecekan inputan pembuatan to
 // cek inputan kosong
 if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wkt_akhir != "" ) {
@@ -413,7 +461,8 @@ if (nm_paket != "" && tgl_mulai != "" && tgl_akhir!= "" && wkt_mulai != "" && wk
        tglakhir:tgl_akhir,
        wktmulai:wkt_mulai,
        wktakhir:wkt_akhir,
-       publish :publish 
+       publish :publish,
+       free : free 
 
      },
        // cache: false,

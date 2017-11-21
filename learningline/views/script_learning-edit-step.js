@@ -5,18 +5,17 @@ var value;
 
 
 $(document).ready(function(){
-
-
+	stepID = "<?=$this->uri->segment(3);?>";
 	relasi = $('input[name=relasi]').val();
 	value = $('input[name=jenis_step]').val();
 	topikID = $('input[name=topikID]').val();
 
 	if (value==1) {
-	$('select[name=select_jenis]').html("<option value='1'>Video</option>"+"<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>");
+		$('select[name=select_jenis]').html("<option value='1'>Video</option>"+"<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>");
 	}else if(value==2){
-	$('select[name=select_jenis]').html("<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>"+"<option value='1'>Video</option>");
+		$('select[name=select_jenis]').html("<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>"+"<option value='1'>Video</option>");
 	}else{
-	$('select[name=select_jenis]').html("<option value='3'>Latihan</option>"+"<option value='2'>Materi</option>"+"<option value='1'>Video</option>");
+		$('select[name=select_jenis]').html("<option value='3'>Latihan</option>"+"<option value='2'>Materi</option>"+"<option value='1'>Video</option>");
 
 	}
 	if (value==1) {
@@ -248,7 +247,7 @@ function load_materi(){
 }
 // load video pada saat dipilih jenis video
 $(".video_checkbox").change(function(){
-		alert(',asdu');
+	alert(',asdu');
 });
 
 // the selector will match all input controls of type :checkbox
@@ -275,7 +274,9 @@ function reset(){
 }
 function load_soal(){
 	var tabel;
-	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Soal Belum Ditambahkan</h4>");
+	var tabel2;
+
+	$('.jenis').html("<h4 class='text-center animation animating pulse'>Keterangan Soal</h4>");
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Minimal Jumlah Benar</label>'+
 		'<div class="col-sm-8">'+
@@ -364,7 +365,7 @@ function load_soal(){
 		'<div class="form-group no-border">'+
 		'<label class="col-sm-1 control-label"></label>'+
 		'<div class="col-sm-9">'+
-		'<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
+		'<a onclick="drop_soal()" class="btn btn-danger hapus_soal">Hapus</a>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -374,7 +375,21 @@ function load_soal(){
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
-	var url = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+relasi;
+	var url = base_url+"learningline/get_soal_on_latihan/"+stepID;
+	var url2 = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+stepID;
+	console.log(url2);
+	console.log(url);
+
+	tabel2 = $('.daftarsoal_belum').DataTable({
+		"ajax": {
+			"url": url2,
+			"type": "POST"
+		},
+		"emptyTable": "Tidak Ada Data Pesan",
+		"info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
+		"pageLength": 5,
+	}); 
+
 	tabel = $('.daftarsoal').DataTable({
 		"ajax": {
 			"url": url,
@@ -390,38 +405,82 @@ function tambahkan_soal(){
 	latSession = "";
 	var idsoal = [];
 
-	$(':checkbox:checked').each(function(i){
+	$('.daftarsoal_belum  :checkbox:checked').each(function(i){
 		idsoal[i] = $(this).val();
 	}); 
 	var idsoal = [];
 	babID = $('input[name=babID]').val();
-	$(':checkbox:checked').each(function(i){
+	$('.daftarsoal_belum  :checkbox:checked').each(function(i){
 		idsoal[i] = $(this).val();
 	}); 
 	
 	data = {
-		bab:babID,id_soal:idsoal
+		bab:babID,id_soal:idsoal,
+		step:stepID
 	};
+
 	if (idsoal.length > 0) {
-		var url = base_url+"index.php/latihan/tambah_latihan_ajax_bab_step";
+		var url = base_url+"index.php/latihan/edit_soal_at_latihan";
 		$.ajax({
 			url : url,
 			type: "POST",
-			dataType:'TEXT',
+			dataType:'JSON',
 			data: data,
-			success: function()
+			success: function(data)
 			{   
+				console.log(data);
 				swal('Berhasil menambahkan soal');
 
 			},
-			error: function ()
+			error: function (data)
 			{
+				console.log(data);
 				swal('Error adding / update data');
 			}
 		});
 	} else {
 		swal('Silahkan Pilih Soal!');
 	}
+}
+
+function drop_soal(){
+	latSession = "";
+	var idsoal = [];
+
+	$('.daftarsoal  :checkbox:checked').each(function(i){
+		idsoal[i] = $(this).val();
+	}); 
+	var idsoal = [];
+	babID = $('input[name=babID]').val();
+	$('.daftarsoal  :checkbox:checked').each(function(i){
+		idsoal[i] = $(this).val();
+	}); 
+	
+	data = {
+		bab:babID,id_soal:idsoal
+	};
+	console.log(data);
+
+	// if (idsoal.length > 0) {
+	// 	var url = base_url+"index.php/latihan/tambah_latihan_ajax_bab_step";
+	// 	$.ajax({
+	// 		url : url,
+	// 		type: "POST",
+	// 		dataType:'TEXT',
+	// 		data: data,
+	// 		success: function()
+	// 		{   
+	// 			swal('Berhasil menambahkan soal');
+
+	// 		},
+	// 		error: function ()
+	// 		{
+	// 			swal('Error adding / update data');
+	// 		}
+	// 	});
+	// } else {
+	// 	swal('Silahkan Pilih Soal!');
+	// }
 }
 
 </script>

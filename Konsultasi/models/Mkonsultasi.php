@@ -430,9 +430,7 @@ class Mkonsultasi extends CI_Model
 
 
 		if ($key==!"") {
-			$this->db->where("judulPertanyaan LIKE '%$key%' OR
-				bab.judulBab LIKE '%$key%'
-				");
+			$this->db->where("judulPertanyaan LIKE '%$key%' ");
 		}
 
 		$query = $this->db->get('`tb_k_pertanyaan` `p`',$perpage,$page);
@@ -448,9 +446,7 @@ class Mkonsultasi extends CI_Model
 			p.mentorID,(SELECT CONCAT(namaDepan,' ',namaBelakang) from tb_guru where id = p.mentorID) as namaGuru
 			");
 		if ($key==!"") {
-			$this->db->where("judulPertanyaan LIKE '%$key%' OR
-				bab.judulBab LIKE '%$key%'
-				")->order_by('`p.date_created`','asc');
+			$this->db->where("judulPertanyaan LIKE '%$key%'")->order_by('`p.date_created`','asc');
 		}
 		$this->db->join('`tb_bab` `bab`','`p`.`babID` = `bab`.`id`');
 		$this->db->join('`tb_siswa` s',' s.`id` = p.`siswaID`');

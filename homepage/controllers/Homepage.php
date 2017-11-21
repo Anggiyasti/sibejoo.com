@@ -57,12 +57,39 @@ class Homepage extends MX_Controller {
         $config["total_rows"] = $this->Mhomepage->get_artikel_number();
         $config["per_page"] = 2;
 
-        # konfig link
-        $config['cur_tag_open'] = "<a style='background:#800000;color:white'>";
-        $config['cur_tag_close'] = '</a>';
-        $config['first_link'] = "<span title='Page Awal'> << </span>"; 
-        $config['last_link'] = "<span title='Page Akhir'> >> </span>";
-        # konfig link
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
+
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
 
         $this->pagination->initialize($config);
         ##KONFIGURASI UNTUUK PAGINATION
@@ -80,24 +107,50 @@ class Homepage extends MX_Controller {
 
     function allrReportHeroo(){
         $data = array(
-            'judul_halaman' => 'Sibejoo - Heroo',
+            'judul_halaman' => 'Sibejoo - Report Heroo',
             'judul_header2' =>'All Report Heroo'
         );
 
         $config = array();
         $config["base_url"] = base_url() . "homepage/allrReportHeroo/";
-        $config["uri_segment"] = 3;
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        // $config["uri_segment"] = 3;
+        $page = $this->uri->segment(3);
         $config["total_rows"] = $this->Mhomepage->get_report_heroo_number();
         $config["per_page"] = 5;
 
-            # konfig link
-        $config['cur_tag_open'] = "<a style='background:#800000;color:white'>";
-        $config['cur_tag_close'] = '</a>';
-        $config['first_link'] = "<span title='Page Awal'> << </span>"; 
-        $config['last_link'] = "<span title='Page Akhir'> >> </span>";
+        // Start Customizing the “Digit” Link
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        // end  Customizing the “Digit” Link
+        
+        // Start Customizing the “Current Page” Link
+        $config['cur_tag_open'] = '<li><a><b>';
+        $config['cur_tag_close'] = '</b></a></li>';
+        // END Customizing the “Current Page” Link
 
-                # konfig link
+        // Start Customizing the “Previous” Link
+        $config['prev_link'] = '<span aria-hidden="true">&laquo;</span>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+         // END Customizing the “Previous” Link
+
+        // Start Customizing the “Next” Link
+        $config['next_link'] = '<span aria-hidden="true">&raquo;</span>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+         // END Customizing the “Next” Link
+
+        // Start Customizing the first_link Link
+        $config['first_link'] = '<span aria-hidden="true">&larr; First</span>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+         // END Customizing the first_link Link
+
+        // Start Customizing the last_link Link
+        $config['last_link'] = '<span aria-hidden="true">Last &rarr;</span>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+         // END Customizing the last_link Link
 
         $this->pagination->initialize($config);
                 ##KONFIGURASI UNTUUK PAGINATION
@@ -174,7 +227,7 @@ class Homepage extends MX_Controller {
         }
 
         $data = array(
-            'judul_halaman' => 'Sibejoo - Artikel',
+            'judul_halaman' => 'Sibejoo - Detail Artikel',
             'judul_header2' =>'Detail Artikel'
         );
 
@@ -198,7 +251,7 @@ class Homepage extends MX_Controller {
         }
 
         $data = array(
-            'judul_halaman' => 'Sibejoo - Artikel',
+            'judul_halaman' => 'Sibejoo - Report Detail',
             'judul_header2' =>'Detail Report Heroo'
         );
 

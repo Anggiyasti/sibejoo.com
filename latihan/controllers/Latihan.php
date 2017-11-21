@@ -57,10 +57,6 @@ class Latihan extends MX_Controller {
             "kesulitan" => $kesulitan
             );
 
-        // insert ke soal
-        $this->mlatihan->insert($data['post']);
-        $id_latihan = $this->mlatihan->get_latihan_by_uuid($uuid_latihan)[0]['id_latihan'];
-        $this->session->set_userdata('id_latihan', $id_latihan);
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan($param);
         
@@ -72,6 +68,11 @@ class Latihan extends MX_Controller {
             echo json_decode("0");
         } else {
             // kalo ada soalnya baru diinsert
+            // insert ke latihan
+            $this->mlatihan->insert($data['post']);
+            $id_latihan = $this->mlatihan->get_latihan_by_uuid($uuid_latihan)[0]['id_latihan'];
+            $this->session->set_userdata('id_latihan', $id_latihan);
+            // insert ke mm sollat
             //ngecacah terus dimasukin ke relasi
             foreach ($data['soal_random'] as $row) {
                 $data['mm_sol'] = array(
@@ -109,10 +110,6 @@ class Latihan extends MX_Controller {
             "kesulitan" => $kesulitan
             );
 
-        // insert ke soal
-        $this->mlatihan->insert($data['post']);
-        $id_latihan = $this->mlatihan->get_latihan_by_uuid($uuid_latihan)[0]['id_latihan'];
-        $this->session->set_userdata('id_latihan', $id_latihan);
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan_bab($param);
         // hitug jumlah soal random
@@ -123,6 +120,11 @@ class Latihan extends MX_Controller {
             echo json_decode("0");
         } else {
             // kalo ada soalnya baru diinsert
+            // insert ke latihan
+            $this->mlatihan->insert($data['post']);
+            $id_latihan = $this->mlatihan->get_latihan_by_uuid($uuid_latihan)[0]['id_latihan'];
+            $this->session->set_userdata('id_latihan', $id_latihan);
+            // insert ke mm sollat
             //ngecacah terus dimasukin ke relasi
             foreach ($data['soal_random'] as $row) {
                 $data['mm_sol'] = array(
@@ -178,6 +180,15 @@ class Latihan extends MX_Controller {
 
     }
 
+    function edit_soal_at_latihan(){
+        $post = $this->input->post();
+        // select dulu latihan idnya
+
+        // kallo ada, insert ke mm
+
+        //kalo engga, bikin latihan update ke step id_latihan
+        echo json_encode($post);
+    }
 
     public function formlatihan() {
         $data = array(

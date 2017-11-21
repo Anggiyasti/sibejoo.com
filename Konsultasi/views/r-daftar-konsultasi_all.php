@@ -175,7 +175,6 @@
     } else {
       func="ajaxPaginationMentor";
     }
-    console.log(keyword,func);
       $.ajax({
           type: 'POST',
           url: base_url + 'konsultasi/'+func+'/'+page_num,

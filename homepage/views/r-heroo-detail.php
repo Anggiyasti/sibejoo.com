@@ -1,8 +1,8 @@
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-60 pb-60">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="">
+      <div class="container pt-60 pb-60" style="background-image: url('http://essentialappmarketing.com/wp-content/uploads/2016/09/PR-MEDIA-OUTREACH.jpg');background-position: bottom; width: 100%;">
         <!-- Section Content -->
         <div class="section-content">
           <div class="row">

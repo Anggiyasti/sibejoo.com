@@ -313,9 +313,26 @@ public function del_materi()
 {
 	if ($this->input->post()) {
 		$post = $this->input->post();
+		$UUID = $post['UUID'];
+		$this->del_file_materi($UUID);
 		$this->Mmateri->drop_materi($post);
 	}
 }
+
+public function del_file_materi($UUID)
+	{
+		// get data team by id
+		$onefile_materi = $this->Mmateri->get_onefile_materi($UUID);
+		//cek  jika hasil null
+		if ($onefile_materi != false) {
+			//cek name file img team
+			$file_materi=$onefile_materi[0]['url_file'];
+			if ($file_materi != '' && $file_materi != ' ') {
+				// jika file tidak null atau kosong maka hapus file
+				 unlink(FCPATH . "./assets/file_materi/" . $file_materi);
+			}
+		}
+	}
 
 
 }

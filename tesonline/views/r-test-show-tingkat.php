@@ -270,8 +270,6 @@
         bab:babid
       };
 
-      console.log(data);
-
       if (data.kesulitan == "all" || data.jumlahsoal == 0) {
         $('#info').show();
       }else{
@@ -302,12 +300,11 @@
                   $('.mulai-btn').attr('disabled', false); //set button disabled 
                   $('#formlatihan')[0].reset(); // reset form on modals
                   if (test == 'mulai') {
-                    // window.location.href = base_url + "index.php/tesonline/mulaitest";
+                    window.location.href = base_url + "index.php/tesonline/mulaitest";
                   } else {
                     window.location.href = base_url + "index.php/tesonline/daftarlatihan";
                   }
                 }
-                $('#formlatihan')[0].reset(); // reset form on modals
                   },
                   error: function (respone, jqXHR, textStatus, errorThrown,data)
                   {
