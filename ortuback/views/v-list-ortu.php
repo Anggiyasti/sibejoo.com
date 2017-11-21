@@ -43,7 +43,6 @@
 								<th>Nama Pengguna</th>
 								<th>Nama Siswa</th>
 								<th>Email</th>
-								<th>Cabang Neutron</th>
 							</tr>
 						</thead>
 
@@ -136,7 +135,7 @@
 	var meridian_siswa = 4;
 	var prev_siswa=1;
 	var next_siswa=2;
-	var records_per_page_siswa=10;
+	var records_per_page_siswa=2;
 	var page_siswa=0;
 	var pageVal_siswa;
 	var keySearch_siswa='';
@@ -458,7 +457,6 @@ function add_ortu(){
 		sweetAlert("Oops","Silahkan pilih siswa","error");
 	} else if(jumlah_siswa>0) {
 		var url = base_url+"ortuback/set_ortu";
-		console.log(id_siswa);
 			$.ajax({
 			url:url,
 			data:{id_siswa:id_siswa},

@@ -1,65 +1,31 @@
 <div class="modal fade " tabindex="-1" role="dialog" id="myModal">
-
   <div class="modal-dialog" role="document">
-
     <div class="modal-content">
-
       <div class="modal-header">
-
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
-
       </div>
-
       <div class="modal-body">
-
         <div id="chartContainer" style="height: 400px; width: 100%;">
-
         </div>
-
         <div class="modal-footer bg-color-3">
-
-
-
         </div>
-
       </form>
-
-
-
     </div>
-
   </div><!-- /.modal-content -->
-
 </div><!-- /.modal-dialog -->
-
 </div>
 
 <div class="modal fade " tabindex="-1" role="dialog" id="myModal2">
-
   <div class="modal-dialog" role="document">
-
     <div class="modal-content">
-
       <div class="modal-header">
-
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
         <h4 class="modal-title">Modal title</h4>
-
       </div>
-
       <div class="modal-body">
-
-
-
-
-
       </div>
-
     </div><!-- /.modal-content -->
-
   </div><!-- /.modal-dialog -->
-
 </div>
 
 <!-- TITLE -->
@@ -83,6 +49,7 @@
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12 pb-sm-20 mb10">
+          <!-- JIKA HAK AKSES ORTU -->
           <?php if ($this->session->userdata['HAKAKSES']=='ortu'): ?>
             <h3>Daftar Report</h3>
             <?php if ($report == array()): ?>
@@ -94,8 +61,12 @@
                     <th>No</th>
                     <th>Nama Latihan</th>
                     <th>Level</th>
+                    <th>Benar</th>
+                    <th>Salah</th>
+                    <th>Kosong</th>
+                    <th>Score</th>
                     <th>Tanggal Dibuat</th>
-                    <th width="2%">Aksi</th>
+                    <th width="2%">Pembahasan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,25 +74,23 @@
                   $no=1;
                   foreach ($report as $reportitem): ?>
                     <tr>
-                      <td><?= $no; ?></td>
+                      <td><?=$no;?></td>
                       <td><?= $reportitem['nm_latihan'] ?></td>
-                      <?php $level = $latihanitem['tingkatKesulitan']; ?>
-                      <?php if ($level=="0") : ?>
-                        <td>Mudah</td>
-                      <?php elseif ($level=="1") : ?>
-                        <td>Sedang</td>
-                      <?php else : ?>
-                        <td>Sulit</td>
-                      <?php endif ?>
+                      <?php $level = $reportitem['tingkatKesulitan']; ?>
+                        <?php if ($level=="0") : ?>
+                          <td>Mudah</td>
+                        <?php elseif ($level=="1") : ?>
+                          <td>Sedang</td>
+                        <?php else : ?>
+                          <td>Sulit</td>
+                        <?php endif ?>
+                      <td><?= $reportitem['jmlh_benar'] ?></td>
+                      <td><?= $reportitem['jmlh_salah'] ?></td>
+                      <td><?= $reportitem['jmlh_kosong'] ?></td>
+                      <td><?= $reportitem['jmlh_benar'] ?></td>
                       <td><?= $reportitem['tgl_pengerjaan'] ?></td>
                       <td>
-                        <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
-                          title="Lihat score" 
-                          onclick="lihat_grafik(<?= $reportitem['id_latihan'] ?>)" 
-                          data-todo='<?= json_encode($reportitem) ?>'>
-                          <i class="glyphicon glyphicon-list-alt"></i>
-                        </a>
-                        <a class="btn btn-primary modal-on<?= $reportitem['id_latihan'] ?>" 
+                        <a class="btn btn-dark btn-theme-colored btn-sm modal-on<?= $reportitem['id_latihan'] ?>" 
                           title="Lihat pembahasan" 
                           onclick="mulai_pembahasan(<?= $reportitem['id_latihan'] ?>)">
                           <i class="glyphicon glyphicon-book"></i>

@@ -141,7 +141,7 @@ function rubahMP() {
     $id = $this->input->post('idMP');
     $data = array(
     'namaMataPelajaran' => $this->input->post('namaMP1'),
-    'aliasMataPelajaran' => $this->input->post('aliasMP1'),
+    'aliasMataPelajaran' => $this->input->post('aliasMP1')
     );
     $this->mmatapelajaran->rubahMP($id, $data);
     echo json_encode(array('status' => TRUE));

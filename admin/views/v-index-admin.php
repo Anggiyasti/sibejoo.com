@@ -641,13 +641,33 @@
             </a>
           </li>
           <li>
+            <a href="javascript:void(0);" data-target="#ps" data-toggle="submenu" data-parent=".topmenu">
+            <span class="figure"><i class="ico-users3"></i></span>
+            <span class="text">Passing Grade</span>
+            <span class="arrow"></span>
+            </a>
+            <ul id="ps" class="submenu collapse ">
+              <li class="submenu-header ellipsis">Passing Grade</li>
+              <li>
+                <a href="<?=base_url('passinggrade/t_pass') ?>">
+                <span class="text">Tambah Passing Grade</span>
+                </a>
+              </li>
+              <li>
+                <a href="<?=base_url('passinggrade/daftar_pass') ?>">
+                <span class="text">Daftar Passing Grade</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
             <a href="<?=base_url('bug') ?>" data-target="" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-bug"></i></span>
             <span class="text">Pelaporan Bug</span>
             <span class="arrow"></span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="javascript:void(0);" data-target="#mpengawas" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-clipboard"></i></span>
             <span class="text">Pengawas</span>
@@ -671,7 +691,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li>
             <a href="javascript:void(0);" data-target="#pesan" data-toggle="submenu" data-parent=".topmenu">
             <span class="figure"><i class="ico-bubble"></i></span>
@@ -723,27 +743,6 @@
               <li>
                 <a href="<?=base_url('siswa/listSiswa') ?>">
                 <span class="text">Daftar Siswa</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="javascript:void(0);" data-target="#ps" data-toggle="submenu" data-parent=".topmenu">
-            <span class="figure"><i class="ico-users3"></i></span>
-            <span class="text">Passing Grade</span>
-            <span class="arrow"></span>
-            </a>
-            <ul id="ps" class="submenu collapse ">
-              <li class="submenu-header ellipsis">Passing Grade</li>
-              <li>
-                <a href="<?=base_url('passinggrade/t_pass') ?>">
-                <span class="text">Tambah Passing Grade</span>
-                </a>
-              </li>
-              <li>
-                <a href="<?=base_url('passinggrade/daftar_pass') ?>">
-                <span class="text">Daftar Passing Grade</span>
                 </a>
               </li>
             </ul>
