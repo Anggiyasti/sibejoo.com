@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables/css/jquery.datatables.min.css'); ?>">
     <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/steps/css/jquery-steps.min.css');?>">
     <script>var base_url = '<?php echo base_url() ?>'</script>
     <!--/ END META SECTION -->
     <!-- START STYLESHEETS -->
@@ -920,6 +921,7 @@
     <!--<script type="text/javascript" src="<?= base_url('assets/plugins/datatables/tabletools/js/zeroclipboard.js') ?>"></script>-->
     <script type="text/javascript" src="<?= base_url('assets/plugins/datatables/js/jquery.datatables-custom.min.js') ?>"></script>
     <script type="text/javascript" src="<?= base_url('assets/javascript/tables/datatable.js') ?>"></script>
+     
     <script type="text/javascript">
       //panggil modal
       function add_soal() {
@@ -1197,6 +1199,13 @@
     <!-- Cometchat -->
     <link type="text/css" href="/cometchat/cometchatcss.php" rel="stylesheet" charset="utf-8">
     <script type="text/javascript" src="/cometchat/cometchatjs.php" charset="utf-8"></script>
+    <!-- vaidation form -->
+     <script type="text/javascript" src="<?= base_url('assets/plugins/parsley/js/parsley.min.js') ?>"></script>
+    <!-- untuk step dan wizard -->
+    <script type="text/javascript" src="<?= base_url('assets/plugins/steps/js/jquery.steps.min.js') ?>"></script>
+ <script type="text/javascript" src="<?= base_url('assets/javascript/forms/wizard.js') ?>"></script>
+    <!-- untuk step dan wizard -->
+
     <!--/ App and page level script -->
     <!--/ END JAVASCRIPT SECTION -->
   </body>
