@@ -963,6 +963,36 @@ class Banksoal extends MX_Controller {
         #END Cek USer#
     }
 
+        public function formsoal_inverse() {
+
+        $data['judul_halaman'] = "Bank Soal";
+        $data['files'] = array(
+            APPPATH . 'modules/banksoal/views/v-wizard_soal.php',
+            );
+         #START cek hakakses#
+        $hakAkses=$this->session->userdata['HAKAKSES'];
+        if ($hakAkses=='admin') {
+            // jika admin
+            $this->parser->parse('admin/v-index-admin', $data);
+            } elseif( $hakAkses=='admin_cabang' ){
+          $this->parser->parse('admincabang/v-index-admincabang', $data);
+            
+        } elseif($hakAkses=='guru'){
+          // jika guru
+          // notification
+          $data['datKomen']=$this->datKomen();
+          $id_guru = $this->session->userdata['id_guru'];
+          // get jumlah komen yg belum di baca
+          $data['count_komen']=$this->mkomen->get_count_komen_guru($id_guru);
+          //
+          $this->parser->parse('templating/index-b-guru', $data);   
+        }else{
+          // jika siswa redirect ke welcome
+          redirect(site_url('welcome'));
+        }
+        #END Cek USer#
+    }
+
     public function uploadsoal() {
         //load library n helper
         $this->load->helper(array('form', 'url'));

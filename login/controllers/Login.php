@@ -110,36 +110,7 @@ public function validasiLogin() {
                 $this->session->set_userdata('token','non-token'); 
                 $this->session->set_userdata('sisa_token','-');
             }
-            // // // kalo punya token.
-            // if ($token) {
-            //     // kalo tokenya aktif,cek keaktivanya
-            //     if ($token['status']==1) {
-            //         $date1 = new DateTime($token['tanggal_diaktifkan']);
-            //         $date_diaktifkan = $date1->format('d-M-Y');
-            //         $date_kadaluarsa =  date("d-M-Y", strtotime($date_diaktifkan)+ (24*3600*$token['masaAktif']));
-            //         $date1 = new DateTime(date("d-M-Y"));
-            //         $date2 = new DateTime($date_kadaluarsa);
-            //         $sisa_aktif = $date2->diff($date1)->days; 
-            //         // ini ada sisa masa aktif
-            //         if($sisa_aktif>0){
-            //             $this->session->set_userdata('member', 1);
-            //             $this->session->set_userdata('token','Aktif');
-            //             $this->session->set_userdata('sisa_token',$sisa_aktif);
-            //         // ini ada habis    s masa aktif
-            //         }else{
-            //             $this->session->set_userdata('member', 0);
-            //             $this->session->set_userdata('token','Habis');              
-            //         }
-            //     }else{
-            //         $this->session->set_userdata('token','non-aktif');
-            //         $this->session->set_userdata('member', 0);
-            //         $this->session->set_userdata('sisa_token','-');
-            //     }
-            // }else{
-            //     $this->session->set_userdata('member', 0);
-            //     $this->session->set_userdata('token','non-token'); 
-            //     $this->session->set_userdata('sisa_token','-');
-            // }
+        
             redirect(site_url('welcome'));
 
         } elseif ($hakAkses == 'ortu') {
