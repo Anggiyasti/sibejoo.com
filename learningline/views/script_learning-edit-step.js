@@ -9,6 +9,8 @@ $(document).ready(function(){
 	relasi = $('input[name=relasi]').val();
 	value = $('input[name=jenis_step]').val();
 	topikID = $('input[name=topikID]').val();
+	var tabel;
+	var tabel2;
 
 	if (value==1) {
 		$('select[name=select_jenis]').html("<option value='1'>Video</option>"+"<option value='2'>Materi</option>"+"<option value='3'>Latihan</option>");
@@ -188,7 +190,6 @@ function load_video(){
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_video_edit/"+babID+"/"+value+"/"+relasi;
-	// console.log(relasi);	
 
 	tabel = $('.daftarvideo').DataTable({
 		"ajax": {
@@ -234,7 +235,6 @@ function load_materi(){
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_materi_edit/"+babID+"/"+relasi;
-	// console.log(relasi);
 
 	tabel = $('.daftarvideo').DataTable({
 		"ajax": {
@@ -273,8 +273,7 @@ function reset(){
 	$('input[name=urutan]').val("");
 }
 function load_soal(){
-	var tabel;
-	var tabel2;
+
 
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Keterangan Soal</h4>");
 	$('.jenis').append('<div  class="form-group">'+
@@ -377,8 +376,6 @@ function load_soal(){
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/get_soal_on_latihan/"+stepID;
 	var url2 = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+stepID;
-	console.log(url2);
-	console.log(url);
 
 	tabel2 = $('.daftarsoal_belum').DataTable({
 		"ajax": {
@@ -428,59 +425,54 @@ function tambahkan_soal(){
 			data: data,
 			success: function(data)
 			{   
-				console.log(data);
-				swal('Berhasil menambahkan soal');
-
+				swal('Yeah','Berhasil menambahkan soal','success');
+				tabel.ajax.reload();
+				tabel2.ajax.reload();
 			},
 			error: function (data)
 			{
-				console.log(data);
-				swal('Error adding / update data');
+				swal('Oops','Error adding / update data','error');
 			}
 		});
 	} else {
-		swal('Silahkan Pilih Soal!');
+		swal('Oops','Berhasil menambahkan soal','error');
+
 	}
 }
 
 function drop_soal(){
 	latSession = "";
-	var idsoal = [];
+	var id_mm_sol_lat = [];
 
 	$('.daftarsoal  :checkbox:checked').each(function(i){
-		idsoal[i] = $(this).val();
+		id_mm_sol_lat[i] = $(this).val();
 	}); 
-	var idsoal = [];
-	babID = $('input[name=babID]').val();
+	var id_mm_sol_lat = [];
 	$('.daftarsoal  :checkbox:checked').each(function(i){
-		idsoal[i] = $(this).val();
+		id_mm_sol_lat[i] = $(this).val();
 	}); 
-	
-	data = {
-		bab:babID,id_soal:idsoal
-	};
-	console.log(data);
-
-	// if (idsoal.length > 0) {
-	// 	var url = base_url+"index.php/latihan/tambah_latihan_ajax_bab_step";
-	// 	$.ajax({
-	// 		url : url,
-	// 		type: "POST",
-	// 		dataType:'TEXT',
-	// 		data: data,
-	// 		success: function()
-	// 		{   
-	// 			swal('Berhasil menambahkan soal');
-
-	// 		},
-	// 		error: function ()
-	// 		{
-	// 			swal('Error adding / update data');
-	// 		}
-	// 	});
-	// } else {
-	// 	swal('Silahkan Pilih Soal!');
-	// }
+	datas = {id_mm_sol_lat:id_mm_sol_lat};
+	if (id_mm_sol_lat.length > 0) {
+		var url = base_url+"index.php/latihan/drop_soal_from_latihan";
+		$.ajax({
+			url : url,
+			type: "POST",
+			dataType:'text',
+			data: datas,
+			success: function(data)
+			{
+				swal('Yeah','Berhasil menghapus soal','success');
+				tabel.ajax.reload();
+				tabel2.ajax.reload();
+			},
+			error: function (data)
+			{
+				swal('Oops','Error adding / update data','error');
+			}
+		});
+	} else {
+		swal('Oops','Silahkan Pilih Soal Yang Akan Dihapus','error');
+	}
 }
 
 </script>

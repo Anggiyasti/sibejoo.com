@@ -569,28 +569,28 @@ class Learningline extends MX_Controller {
 				'UUID'=>$uuid
 			);
 		}
-	// 1. Cek dulu yang diinsert ada yang sama atau tidak?
+		// 1. Cek dulu yang diinsert ada yang sama atau tidak?
 		$step_urutan_sama = $this->learning_model->get_step_sama_urutan($data['topikID'], $data['urutan']);
 		if ($step_urutan_sama) {
-		// kalo ada yang sama
+			// kalo ada yang sama
 			$list_step = $this->learning_model->get_step_urutan_idtopik($data['topikID'], $data['urutan']);
 			$data_urutan_update = array();
 			if ($list_step) {
-		//ambil urutan yang lebih sama dengan urutan		
+				//ambil urutan yang lebih sama dengan urutan		
 				$urutanngaco  = $this->learning_model->get_step_urutan($data['topikID'], $data['urutan']);
-		//cacah di buat array baru, urutan valuenya +1
+				//cacah di buat array baru, urutan valuenya +1
 				foreach ($urutanngaco as $value) {
 					$a = array('urutan'=>$value['urutan']+1);
 					$b = array('id'=>$value['id']);
 					$result = array_merge($a, $b);
-			//update batch
+					//update batch
 					$this->learning_model->update_step_urutan($result);
 				}
 			} 
 			$this->learning_model->insert_line_step($data);
 		} else {
 		//kalo gak ada yang sama
-			$this->learning_model->insert_line_step($data);
+		$this->learning_model->insert_line_step($data);
 		}
 	}
 
@@ -667,9 +667,11 @@ class Learningline extends MX_Controller {
 			$n='1';
 			$row = array();
 
+			// $row[] = "<input class='switchery' type='checkbox' value=".$list_soal['id_mm']."><label>&nbsp;&nbsp;</label>";
+
 			$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
-			<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
-			<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
+			<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_mm']." value=".$list_soal['id_mm'].">
+			<label for="."soal".$list_soal['id_mm'].">&nbsp;&nbsp;</label>
 			</span>";
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
@@ -779,7 +781,7 @@ class Learningline extends MX_Controller {
 
 	function ajax_get_soal_byid( $bab ) {
 
-		$list = $soal=$this->mlatihan->get_soal_bybab( $bab );
+		$list = $soal=$this->mlatihan->get_soal_bybabid( $bab );
 		$data = array();
 
 

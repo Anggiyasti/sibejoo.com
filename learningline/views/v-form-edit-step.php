@@ -67,7 +67,7 @@
   <div  class="form-group">
     <label class="col-sm-3 control-label">Jenis Steppppp</label>
     <div class="col-sm-8">
-      <select class="form-control" name="select_jenis">
+      <select class="form-control" name="select_jenis" disabled="true">
         <option value="0">-- Pilih Jenis Step --</option>
         <option value="1">Video</option>
         <option value="2">Materi</option>

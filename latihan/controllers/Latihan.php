@@ -36,7 +36,7 @@ class Latihan extends MX_Controller {
             'judul_halaman' => 'Latihan - Neon',
             'judul_header' => 'Latihan'
 
-            );
+        );
 
         //get nama mata pelajaran untuk nama paket
         $nama_matapelajaran = $this->mvideos->get_pelajaran_for_paket($idsub)[0]->aliasMataPelajaran;
@@ -49,13 +49,13 @@ class Latihan extends MX_Controller {
             "nm_latihan" => $nama_matapelajaran . "-" . $nama_subab,
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
-            );
+        );
 
         $param = array(
             "id_subab" => $idsub,
             "jumlah_soal" => $jumlah_soal,
             "kesulitan" => $kesulitan
-            );
+        );
 
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan($param);
@@ -78,7 +78,7 @@ class Latihan extends MX_Controller {
                 $data['mm_sol'] = array(
                     "id_latihan" => $id_latihan,
                     "id_soal" => $row['id_soal']
-                    );
+                );
                 $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
             };
             echo json_encode($data['soal_random']);
@@ -102,13 +102,13 @@ class Latihan extends MX_Controller {
             "nm_latihan" => "Latihan - ".$nama_matapelajaran,
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
-            );
+        );
 
         $param = array(
             "id_bab" => $bab,
             "jumlah_soal" => $jumlah_soal,
             "kesulitan" => $kesulitan
-            );
+        );
 
         // get soal randoom
         $data['soal_random'] = $this->mlatihan->get_random_for_latihan_bab($param);
@@ -130,7 +130,7 @@ class Latihan extends MX_Controller {
                 $data['mm_sol'] = array(
                     "id_latihan" => $id_latihan,
                     "id_soal" => $row['id_soal']
-                    );
+                );
                 $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
             };
             echo json_encode($data['soal_random']);
@@ -157,7 +157,7 @@ class Latihan extends MX_Controller {
             "create_by" => $this->session->userdata['USERNAME'],
             "uuid_latihan" => $uuid_latihan,
             // "id_subbab" => $idsub
-            );
+        );
 
 
         // insert ke soal
@@ -172,7 +172,7 @@ class Latihan extends MX_Controller {
             $data['mm_sol'] = array(
                 "id_latihan" => $id_latihan,
                 "id_soal" => $row
-                );
+            );
             // var_dump($data['mm_sol']);
 
             $this->mlatihan->insert_tb_mm_sol_lat($data['mm_sol']);
@@ -181,26 +181,48 @@ class Latihan extends MX_Controller {
     }
 
     function edit_soal_at_latihan(){
-        $post = $this->input->post();
+        if ($this->input->post()) {
+            $post = $this->input->post();
+        // $post = ['id_soal'=>['560'],'step'=>695];
         // select dulu latihan idnya
-
-        // kallo ada, insert ke mm
-
-        //kalo engga, bikin latihan update ke step id_latihan
-        echo json_encode($post);
+            $latihanID =$this->mlatihan->get_id_latihan_by_step($post['step']);
+            if ($latihanID) {
+            // ada
+                $arr_batch_data = [];
+                foreach ($post['id_soal'] as $value) {
+                    $arr_batch_data[] = ['id_soal'=>$value,'id_latihan'=>$latihanID[0]['latihanID']];
+                }
+                $this->mlatihan->insert_batch_soal_to_latihan($arr_batch_data);
+                echo json_encode(['message'=>"Berhasil Menambahkan"]);
+            }else{
+            // tidak ada
+            //kalo engga, bikin latihan update ke step id_latihan
+            }
+        }else{
+            echo "Forbiden Area";
+        }
     }
-
+    function drop_soal_from_latihan(){
+        if ($this->input->post()) {
+            $id_mm_solat = $this->input->post('id_mm_sol_lat');
+            //delete batch
+            $this->mlatihan->batch_remove_soal_from_latihan($id_mm_solat);
+            echo json_encode(['message'=>"Berhasil Menghapus"]);
+            echo "Forbiden Area";
+        }else{
+        }
+    }
     public function formlatihan() {
         $data = array(
             'judul_halaman' => 'Netjoo - Welcome',
             'judul_header' => 'Welcome'
-            );
+        );
 
         $data['files'] = array(
             APPPATH . 'modules/homepage/views/v-header-login.php',
             APPPATH . 'modules/templating/views/t-f-pagetitle.php',
             APPPATH . 'modules/homepage/views/v-footer.php',
-            );
+        );
 
         $this->parser->parse('templating/index', $data);
     }

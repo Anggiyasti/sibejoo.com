@@ -336,6 +336,7 @@ function load_soal(){
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_soal_byid/"+babID;
+	console.log(url);
 	tabel = $('.daftarsoal').DataTable({
 		"ajax": {
 			"url": url,
@@ -349,6 +350,7 @@ function load_soal(){
 	//get soal yang telah ditambahkan 
 	id_step = $('input[name=id]').val();	
 	var url = base_url+"learningline/ajax_get_soal_tambah/"+id_step;
+	console.log(url);
 	tabel = $('#tblist').DataTable({
 		"ajax": {
 			"url": url,
