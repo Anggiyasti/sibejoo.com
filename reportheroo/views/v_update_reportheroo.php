@@ -1,4 +1,3 @@
-
 <script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
      
@@ -143,7 +142,6 @@ function updateReport(){
             foto: $('[name=foto]').val()
         }
         //id fileinput
-        console.log(datas);
         var elementId = "filefoto";
         if (datas.jdlartikel == "" || datas.editor1 == "" || datas.kategori == "") {
             swal('Tidak boleh kosong');
@@ -158,7 +156,7 @@ function updateReport(){
                 fileElementId :elementId,
                 success:function(Data){
                     swal({
-                    title: "Artikel Berhasil di Ubah!",
+                    title: "Report Heroo Berhasil di Ubah!",
                     type: "warning",
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "Selesai",
@@ -181,82 +179,16 @@ function updateReport(){
         }
     }
 
-function ValidateSingleInput(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-        console.log(sFileName);
-         if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-             
-            if (!blnValid) {
-             $('#notif').show();
-           
-                return false;
-            }
+  // Set option Jawaban ###########
+  var tampjawaban =  $('#tampjawaban').val();
+  if (tampjawaban != '') {
+    var tamid ='#opjawaban option[value='+tampjawaban+']';
+    $(tamid).attr('selected','selected');
+  }else{
+  }
 
-            file = oInput.files[0];
-            if (file.size > 2100000 ) {
-               $('#size').show();
-               return false;
-            } 
-            
-        }
-    }
-    return true;
-}
-
-
-function ValidateSingleInput1(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-        console.log(sFileName);
-         if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-             
-            if (!blnValid) {
-             $('#notifa').show();
-    
-                return false;
-            }
-
-            file = oInput.files[0];
-            if (file.size > 2100000 ) {
-               $('#sizea').show();
-               return false;
-            } 
-            
-        }
-    }
-    return true;
-}
-
-
-
- // Set option Jawaban ###########
-          var tampjawaban =  $('#tampjawaban').val();
-          if (tampjawaban != '') {
-              var tamid ='#opjawaban option[value='+tampjawaban+']';
-             $(tamid).attr('selected','selected');
-          }else{
-          }
-
-
-          //buat load tingkat
-    function loadSekolah() {
+    //buat load kategori
+    function loadLKategori() {
       jQuery(document).ready(function () {
         var oldtkt = $('#oldtkt').val();
         var kategori_id = {"kategori_id": $('#kategori').val()};
@@ -269,9 +201,6 @@ function ValidateSingleInput1(oInput) {
           url: "<?= base_url() ?>index.php/artikel/getkategori",
 
           success: function (data) {
-
-            console.log("Data" + data);
-
             $('#kategori').html('<option value="">-- Pilih kategori  --</option>');
 
             $.each(data, function (i, data) {
@@ -298,10 +227,10 @@ function ValidateSingleInput1(oInput) {
       })
     }
     ;
-    loadSekolah();
+    loadLKategori();
 
 
-        // show preview foto
+  // show preview foto
   function preview_fileFoto(oInput,z='') {
     var viewer = {
           load : function(e){
@@ -356,18 +285,4 @@ function ValidateSingleInput1(oInput) {
           return true;
   }
 
-
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-

@@ -263,11 +263,6 @@ class Ortuback extends MX_Controller {
 		$no=$pageSelek+1;
 		foreach ($datArr as $value) {
 			$nama=$value->namaDepan." ".$value->namaBelakang;
-			if ($value->namaCabang=="") {
-				$namaCabang="non-neutron";
-			} else {
-				$namaCabang=$value->namaCabang;
-			}
 			 $tb_siswa.='<tr>
 			 	 <td><span class="checkbox custom-checkbox custom-checkbox-inverse">
 								<input type="checkbox" name='.'token'.$n.' id='.'soal'.$value->idSiswa.' value='.$value->idSiswa.'>
@@ -277,7 +272,6 @@ class Ortuback extends MX_Controller {
 						<td>'.$value->namaPengguna.'</td>
 						<td>'.$nama.'</td>
 						<td>'.$value->email.'</td>
-						<td>'.$namaCabang.'</td>
 			 </tr>
 			 ';
 			$n++;
@@ -323,8 +317,9 @@ class Ortuback extends MX_Controller {
 
 	public function pagination_siswa_not_ortu($records_per_page='10',$pageSelek='0',$keySearch='')
 	{
-     	$keySearch=$this->input->post("keySearch_siswa");
-     	$jumlah_data = $this->Ortuback_model->jumlah_siswa_not_ortu($keySearch);
+     	$records_per_page=$this->input->post("records_per_page_siswa");
+		$keySearch=$this->input->post("keySearch_siswa");
+		$jumlah_data = $this->Ortuback_model->jumlah_siswa_not_ortu($keySearch);
 	
     	$pagination='<li class="hide" id="page-prev-siswa"><a href="javascript:void(0)" onclick="prevPageSiswa()" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
@@ -354,7 +349,8 @@ class Ortuback extends MX_Controller {
     	 		$pagination='';
     	 		# code...
     	 }
-    	 echo json_encode ($pagination);
+    	 echo json_encode ($pagination);	
+
 	}
 
 

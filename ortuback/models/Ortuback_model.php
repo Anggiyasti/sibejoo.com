@@ -205,16 +205,19 @@ class Ortuback_model extends CI_Model{
 		return $query->num_rows();
 	}
 
-	public function jumlah_siswa_not_ortu($value='')
+	public function jumlah_siswa_not_ortu($keySearch='')
 	{
+		$this->db->where("tua.id is null");
+		$this->db->where("p.status",1);
 		$this->db->join("tb_pengguna p","p.id=s.penggunaID");
 		$this->db->join("tb_orang_tua tua","tua.siswaID=s.id",'left outer');
+
 		if ($keySearch!='' && $keySearch!=' ') {
 			$this->db->like("p.namaPengguna",$keySearch);
 			$this->db->or_like("s.namaDepan",$keySearch);
 			$this->db->or_like("s.namaBelakang",$keySearch);
-
-		} 
+			// $this->db->where("tua.id is null");
+		}
 		$query=$this->db->get("tb_siswa s");
 		return $query->num_rows();
 	}

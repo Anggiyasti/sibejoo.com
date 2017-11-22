@@ -107,7 +107,7 @@
    </ul>
  <?php else: ?>
   <!--  KALO ORANG TUA MURID, KELUARIN MENU YANG INI. -->
-  <li><a href="<?=base_url('welcome') ?>">Welcome<span class="indicator"></a></li>
+  <li><a href="<?=base_url('welcome') ?>">Home<span class="indicator"></a></li>
   <li><a href="<?=base_url('video') ?>">Video<span class="indicator"></a></li>
   <li><a href="<?=base_url('tryout') ?>">Try Out<span class="indicator"></a></li>
   <li><a href="<?=base_url('tesonline/daftarlatihan') ?>">Latihan<span class="indicator"></a></li>
