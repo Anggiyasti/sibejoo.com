@@ -1,7 +1,7 @@
 <script>
 var topikID = <?=$this->uri->segment(3);?>;
 var url = base_url+"learningline/ajax_list_get_step/"+topikID;
-console.log(url);
+
 $(document).ready(function(){
 	dataTableLearning = $('.daftarstep ').DataTable({
 		"ajax": {

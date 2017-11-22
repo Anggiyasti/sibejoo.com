@@ -136,9 +136,9 @@ public function learningLine(){
     $urutan = $rows ['urutan'];
     // pengecekan jenis step line
     if ($tampJenis == '1') {
-                // jika step line video
+      // jika step line video
       $jenis='Video';
-                // pengecekan disable atau enable step
+      // pengecekan disable atau enable step
       if ($step == true || $urutan == '1' ) {
         $icon='ico-play3';
         $link = $UUID;;

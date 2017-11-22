@@ -41,7 +41,9 @@ $('.simpan_step').click(function(){
 	};
 	var url = base_url+"learningline/ajax_insert_line_step/";
 	var data;
+	var status_inputsoal = 'true';
 	if (value==1) {
+
 		data = {
 			videoID:$('input[name=video]:checked').val(),
 			urutan:form.urutan,
@@ -52,6 +54,7 @@ $('.simpan_step').click(function(){
 
 		};
 	}else if(value==2){
+
 		data = {
 			materiID:$('input[name=materi]:checked').val(),
 			urutan:form.urutan,
@@ -62,6 +65,8 @@ $('.simpan_step').click(function(){
 
 		};
 	}else if(value==3){
+		status_inputsoal = tambahkan_soal();
+		
 		data = {
 			latihanID:"ada",
 			urutan:form.urutan,
@@ -75,55 +80,60 @@ $('.simpan_step').click(function(){
 			status_depedensi:form.status_depedensi
 
 		};
-		console.log(data);
 	}else{
 	}
 
 	if (data.urutan=="" || data.namastep=="" || data.select_jenis=="") {
 		swal('Silahkan lengkapi data');
 	}else{
-		$.ajax({
-			data:data,
-			datatType:"text",
-			url:url,
-			type:"POST",
-			success:function(){
-				swal('Step berhasil ditambahkan');
-				$('.form-line')[0].reset();
-				swal({
-					title: "Step berhasil ditambahkan!",
-					text: "Tambahkan baru, atau selesai?",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "Selesai",
-					cancelButtonText: "Tambah",
-					closeOnConfirm: false,
-					closeOnCancel: false
-				},
-				function(isConfirm){
-					if (isConfirm) {
+		if (status_inputsoal=='true') {
+			$.ajax({
+				data:data,
+				datatType:"text",
+				url:url,
+				type:"POST",
+				success:function(){
+					swal('Step berhasil ditambahkan');
+					$('.form-line')[0].reset();
+					swal({
+						title: "Step berhasil ditambahkan!",
+						text: "Tambahkan baru, atau selesai?",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "Selesai",
+						cancelButtonText: "Tambah",
+						closeOnConfirm: false,
+						closeOnCancel: false
+					},
+					function(isConfirm){
+						if (isConfirm) {
 						// swal("selesai", "Anda akan dialihkan ke daftar step", "success");
 						window.location.href = base_url+"learningline/step/"+data.topikID;
 					} else {
 						swal("Tambah Data", "silahkan ambahkan data");
 						$('.jenis').html("<h4 class='text-center animation animating pulse'>Pilih Jenis Terlebih Dahulu</h4>");	
-						console.log(data);
 					}
 				});
 
-			},
-			error:function(){
-				sweetAlert('Data gagal disimpan','error');
-			}
-		});
+				},
+				error:function(){
+					sweetAlert('Data gagal disimpan','error');
+				}
+			});
+		}else{;
+			swal('Oops','silahkan pilih soal terlebih dahulu','error');
+		}
+
 	}
 });
+
 //biar inputin number aja
 $('.nomor').keyup(function () {
-	if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
-		this.value = this.value.replace(/[^0-9\.]/g, '');
-	}
+	var increased = parseInt(this.value);
+    if(isNaN(increased) || increased <= 0) {
+    		this.value = this.value.replace(/[^1-9\.]/g, '');
+    }
 });
 
 //# ketika tombol di klik
@@ -135,18 +145,18 @@ function detail(id){
 
 	$('h3.semibold').html(data.judulMateri);
 		// links = '<?=base_url();?>assets/video/' + data.namaFile;
-	if (data.isiMateri == null || data.isiMateri == '') {
-		$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
+		if (data.isiMateri == null || data.isiMateri == '') {
+			$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
 	//jika data url file
-	}else{
-		$('#isicontent').html(data.isiMateri); 
-		 
-		}
-		
-		$('.detail_materi').modal('show');
+}else{
+	$('#isicontent').html(data.isiMateri); 
+
+}
+
+$('.detail_materi').modal('show');
 
 
-	}
+}
 //##
 
 // load video pada saat dipilih jenis video
@@ -293,40 +303,12 @@ function load_soal(){
 		'<div class="form-group no-border">'+
 		'<label class="col-sm-1 control-label"></label>'+
 		'<div class="col-sm-9">'+
-		'<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
+		// '<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
 
-		'</div>'+
-
-
-		
-  		'<div class="panel panel-teal">'+
-   		'<div class="panel-heading">'+
-    	'<h3 class="panel-title">Daftar Soal yang Telah di Tambahkan</h3>'+
-  		'</div>'+
-  		'<div class="panel-body soaltambah">'+
-    	'<form action="" id="">'+
-     	'<table class="table table-striped display responsive nowrap" id="tblist" style="font-size: 13px" width=100%>'+
-      	'<thead>'+
-       	'<tr>'+
-        '<th>ID</th>'+
-       	' <th>Judul Soal</th>'+
-        '<th>Sumber</th>'+
-        '<th>SOAL</th>'+
-        '<th>Level</th>'+
-      	'<th>Kesulitan</th>'+
-      	'</tr>'+
-   		'</thead>'+
-    	'<tbody>'+
-
-    	'</tbody>'+
-  		'</table>'+
-		'</form>'+
-		'</div>'+
-		'</div>'+
 		'</div>'
 		
 
@@ -336,7 +318,6 @@ function load_soal(){
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_soal_byid/"+babID;
-	console.log(url);
 	tabel = $('.daftarsoal').DataTable({
 		"ajax": {
 			"url": url,
@@ -350,7 +331,7 @@ function load_soal(){
 	//get soal yang telah ditambahkan 
 	id_step = $('input[name=id]').val();	
 	var url = base_url+"learningline/ajax_get_soal_tambah/"+id_step;
-	console.log(url);
+
 	tabel = $('#tblist').DataTable({
 		"ajax": {
 			"url": url,
@@ -379,6 +360,7 @@ function tambahkan_soal(){
 		bab:babID,id_soal:idsoal
 	};
 	if (idsoal.length > 0) {
+		status = true;
 		var url = base_url+"index.php/latihan/tambah_latihan_ajax_bab_step";
 		$.ajax({
 			url : url,
@@ -387,18 +369,22 @@ function tambahkan_soal(){
 			data: data,
 			success: function()
 			{   
-				swal('Berhasil menambahkan soal');
-				tabel.ajax.reload();
+				status = true;
+				// swal('Berhasil menambahkan soal');
+				// tabel.ajax.reload();
 
 			},
 			error: function ()
 			{
-				swal('Error adding / update data');
+				// swal('Error adding / update data');
 			}
 		});
 	} else {
-		swal('Silahkan Pilih Soal!');
+		// swal('Silahkan Pilih Soal!');
+		status = false;
 	}
+
+	return status;
 }
 // load video pada saat dipilih jenis video
 
@@ -411,7 +397,6 @@ function play(data){
 	$('.detail_video').modal('show');
 	judul = " <h4 class='modal-title' style='display: inline'>Preview Video "+meta.judulVideo;
 	if (meta.namaFile==null) {
-		console.log(meta.link);
 		video = '<iframe width="100%" height="400"'+
 		'src="'+meta.link+'">'+
 		'</iframe>';
@@ -436,7 +421,6 @@ $('.detail_video').on('hide.bs.modal', function(e) {
 });
 
 function detail_soal(data){
-	console.log(data);
 	kelas = '.soal-'+data;
 	meta = $(kelas).data('todo');
 	$('.mdetailsoal').modal('show');
