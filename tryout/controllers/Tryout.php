@@ -16,10 +16,11 @@ class Tryout extends MX_Controller {
         $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
         if ($this->session->userdata('HAKAKSES')=='ortu') {
-            # langusung masuk
-        }else{
-        $this->sessionchecker->cek_token();
         }
+            # langusung masuk
+        // }else{
+        // $this->sessionchecker->cek_token();
+        // }
 
     }
 
@@ -33,11 +34,20 @@ class Tryout extends MX_Controller {
     //# fungsi indeks, mampilin to yang dikasih hak akses.
     public function index() {
         $this->session->unset_userdata('id_tryout');
-        $data = array(
+        if($this->session->userdata('token') != 'Aktif'){
+            $data = array(
+            'judul_halaman' => 'Sibejoo - Try Out ',
+            'judul_header' => 'Daftar Try Out Gratis',
+            'judul_tingkat' => '',
+            );
+        }else{
+            $data = array(
             'judul_halaman' => 'Sibejoo - Try Out',
             'judul_header' => 'Daftar Try Out',
             'judul_tingkat' => '',
             );
+        }
+        
 
         $konten = 'modules/tryout/views/r-daftar-to.php';
 
@@ -56,8 +66,12 @@ class Tryout extends MX_Controller {
             $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
         }else{
         $datas['id_siswa'] = $this->Mtryout->get_id_siswa();
-    }
+    }   
+    if($this->session->userdata('token') != 'Aktif'){
+         $data['tryout'] = $this->Mtryout->get_tryout_akses_free($datas);
+    }else{
         $data['tryout'] = $this->Mtryout->get_tryout_akses($datas);
+    }
         $this->parser->parse('templating/r-index', $data);
     }
 
@@ -124,7 +138,13 @@ class Tryout extends MX_Controller {
                 );
             // DAFTAR PAKET
             $data['paket_dikerjakan'] = $this->Mtryout->get_paket_reported($datas);
-            $data['paket'] = $this->Mtryout->get_paket_undo($datas);
+            // Daftar paket yang belum jika token free
+            if($this->session->userdata('token') != 'Aktif'){
+                $data['paket'] = $this->Mtryout->get_paket_undo_free($datas);
+                // print_r($data['paket']);
+            }else{
+                 $data['paket'] = $this->Mtryout->get_paket_undo($datas);
+            }
             $data['status_to'] = $status_to;
              // ini buat pesan ortu
             $id_pengguna= $this->session->userdata['id'];
@@ -413,7 +433,14 @@ class Tryout extends MX_Controller {
             APPPATH . $konten,
             APPPATH . 'modules/templating/views/r-footer.php',
             );
-        $data['paket'] = $this->Mtryout->get_paket_for_info($datas);
+        // print_r($datas['id_paket']);
+        // jika token free
+        if($this->session->userdata('token') != 'Aktif'){
+            $data['paket'] = $this->Mtryout->get_paket_for_info_free($datas);
+        }else{
+            $data['paket'] = $this->Mtryout->get_paket_for_info($datas);
+        }
+        // print_r($data['paket']);
         $this->parser->parse('templating/r-index', $data);
     }
 }

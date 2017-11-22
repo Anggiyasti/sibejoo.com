@@ -14,6 +14,7 @@ class Token extends MX_Controller {
 		$this->load->library('pagination');
 		$this->sessionchecker->checkloggedin();
 		$this->load->helper('string');
+		$this->load->model('tryout/Mtryout');
 		// $this->hakakses = $this->gethakakse1s();
 	}
 
@@ -169,6 +170,7 @@ class Token extends MX_Controller {
 			APPPATH.'modules/homepage/views/r-header-login.php',
 			APPPATH.'modules/token/views/v-set-token.php',
 			);
+		
 
 		$this->parser->parse( 'templating/r-index', $data );
 	}

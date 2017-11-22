@@ -84,7 +84,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php 
+                  <?php      $free = array('free' => 0);   $this->session->set_userdata($free);
                   $no=1;
                   foreach ($paket as $paketitem): ?>
                     <tr>
