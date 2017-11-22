@@ -20,7 +20,7 @@
 
  	function index($index_artikel)
  	{    //untuk daftar artikel
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Artikel";
         if ($index_artikel == 1) {
 
             $data['files'] = array(
@@ -47,7 +47,7 @@
 
     // fungsi view artikel masuk ke update
     public function update_artikel($id){
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Artikel";
         $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_update_artikel.php',
             );
@@ -92,7 +92,7 @@
     // FUNGSI VIEW FORM ARTIKEL
     function tambahartikel()
     {
-    $data['judul_halaman'] = "Dashboard Admin";
+    $data['judul_halaman'] = "Artikel";
     $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_tambah_artikel.php',
             );

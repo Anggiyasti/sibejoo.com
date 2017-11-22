@@ -1,5 +1,14 @@
+<!-- Start Script Matjax -->
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ showProcessingMessages: false,
+ tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+});
+</script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
+
 <!-- Start Modal Detail Video dari server -->
-	<div class="modal fade" id="mdetailvideo">
+	<div class="modal fade" id="mdetailmateri">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -12,7 +21,7 @@
 					<p id="isicontent">
 						
 					</p>
-					<!-- <embed src="<?= base_url('assets/file_materi/1509332842-LAPISAN_ATMOSFER.pdf')?>" type="application/pdf"   height="300px" width="100%"> -->
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -21,7 +30,7 @@
 		</div>
 	</div>
 	<!-- End Modal Detail Video -->
-<section class="id="main" role="main"">
+<section class="" id="main" role="main"">
 	<div class="container-fluid">
 		<!-- Start row -->
 		<div class="row">
@@ -67,6 +76,7 @@
 		</div>
 	</div>
 </section>
+ 
 <script type="text/javascript">
 	var  $list_materi;
 	$(document).ready(function() {
@@ -91,6 +101,7 @@
 
 //# ketika tombol di klik detail
 function detail(id){
+	Preview.Init();
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
@@ -102,13 +113,10 @@ function detail(id){
 		$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
 	//jika data url file
 	}else{
-		$('#isicontent').html(data.isiMateri); 
-
-		 
+		$('#isicontent').html(data.isiMateri); 		 
 	}
 
-
-		$('#mdetailvideo').modal('show');
+	$('#mdetailmateri').modal('show');
 	
 	
 }
