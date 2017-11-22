@@ -41,6 +41,30 @@ class Mtryout extends MX_Controller {
 
         $result = $this->db->query($query);
         return $result->result_array();
+    }   public function get_paket_undo_free($datas) {
+              $id = $datas['id_tryout'];
+        $id_siswa = $datas['id_siswa'];
+//        backup query
+        $query = "SELECT *, mm.id as mmid FROM tb_paket p
+        JOIN `tb_mm-tryoutpaket` mm ON mm.`id_paket` = p.`id_paket` 
+        JOIN `tb_hakakses-to` ha ON ha.`id_tryout` = mm.`id_tryout`
+        JOIN `tb_tryout` t ON t.`id_tryout` = ha.`id_tryout`
+        WHERE  mm.`id_tryout`=$id
+        AND p.`id_paket` NOT IN 
+        (SELECT p.id_paket
+        FROM `tb_hakakses-to` ha JOIN tb_siswa s 
+        ON s.`id` = ha.`id_siswa` 
+        JOIN tb_tryout t ON t.`id_tryout` = ha.`id_tryout` 
+        JOIN `tb_mm-tryoutpaket` mmt ON mmt.`id_tryout` = t.`id_tryout` 
+        JOIN `tb_paket` p ON p.`id_paket` = mmt.`id_paket` 
+        LEFT JOIN `tb_report-paket` rp ON rp.`id_mm-tryout-paket` = mmt.`id` 
+        WHERE id_siswa =$id_siswa 
+        AND t.`id_tryout`= $id AND rp.siswaID = $id_siswa)
+
+        ";
+
+        $result = $this->db->query($query);
+        return $result->result_array();
     }
     //##
 
@@ -111,13 +135,30 @@ class Mtryout extends MX_Controller {
 
     //# fungsi get data tryout yang hakaksesnya true
     public function get_tryout_akses($data) {
-        $id_siswa = $data['id_siswa'];
+        // $id_siswa = $data['id_siswa'];
         $this->db->select('*');
         $this->db->from('tb_tryout to');
-        $this->db->join('tb_hakakses-to hakAkses', 'to.id_tryout = hakAkses.id_tryout');
+        // $this->db->join('tb_hakakses-to hakAkses', 'to.id_tryout = hakAkses.id_tryout');
         //hakakses
-        $this->db->where('hakAkses.id_siswa', $data['id_siswa']);
+        // $this->db->where('hakAkses.id_siswa', $data['id_siswa']);
         //published
+        $this->db->where('to.publish', 1);
+        $this->db->order_by('to.id_tryout','desc');
+        //rentang waktu
+        // $this->db->where("BETWEEN to.tgl_mulai AND to.stgl_berhenti");
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+     public function get_tryout_akses_free($status) {
+        // $id_siswa = $status['id_siswa'];
+        $this->db->select('*');
+        $this->db->from('tb_tryout to');
+        // $this->db->join('tb_hakakses-to hakAkses', 'to.id_tryout = hakAkses.id_tryout');
+        //hakakses
+        // $this->db->where('hakAkses.id_siswa', $data['id_siswa']);
+        //published
+        $this->db->where('status', 0);
         $this->db->where('to.publish', 1);
         $this->db->order_by('to.id_tryout','desc');
         //rentang waktu
@@ -450,7 +491,32 @@ public function get_laporan_to(){
         return $result->result_array()[0];
     }
     //##
+    function get_paket_for_info_free($datas){
+        $id = $datas['id_tryout'];
+        $id_siswa = $datas['id_siswa'];
+        $id_paket = $datas['id_paket'];
+//        backup query
+        $query = "SELECT p.`id_paket`, p.`nm_paket`, p.`jumlah_soal`, p.`durasi`, mm.`id_tryout`, mm.id AS mmid FROM tb_paket p
+        JOIN `tb_mm-tryoutpaket` mm ON mm.`id_paket` = p.`id_paket` 
+        JOIN `tb_hakakses-to` ha ON ha.`id_tryout` = mm.`id_tryout`
+        JOIN `tb_tryout` t ON t.`id_tryout` = ha.`id_tryout`
+        WHERE mm.`id_tryout`=$id
+        AND p.`id_paket` NOT IN 
+        (SELECT p.id_paket
+        FROM `tb_hakakses-to` ha JOIN tb_siswa s 
+        ON s.`id` = ha.`id_siswa` 
+        JOIN tb_tryout t ON t.`id_tryout` = ha.`id_tryout` 
+        JOIN `tb_mm-tryoutpaket` mmt ON mmt.`id_tryout` = t.`id_tryout` 
+        JOIN `tb_paket` p ON p.`id_paket` = mmt.`id_paket` 
+        LEFT JOIN `tb_report-paket` rp ON rp.`id_mm-tryout-paket` = mmt.`id` 
+        WHERE id_siswa =$id_siswa 
+        AND t.`id_tryout`= $id AND rp.siswaID = $id_siswa)
+        AND mm.id_paket= $id_paket
+        ";
 
+        $result = $this->db->query($query);
+        return $result->result_array()[0];
+    }
 
      public function get_info_score($id)
     {

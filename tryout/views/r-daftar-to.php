@@ -32,8 +32,20 @@
           ?>
           <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
             <div class="pricing-table maxwidth400">
-              <div class="font-16 pl-10 bg-theme-color-2 text-white text-left pr-20 p-10"> <p align="center"><?=$tryout_item['nm_tryout'] ?></p>
+              <?php
+                if($tryout_item['status'] == 1){
+                  ?>
+                  <div class="font-16 pl-10 bg-theme-color-2 text-white text-left pr-20 p-10"> <p align="center"><?=$tryout_item['nm_tryout'] ?> | Member</p>
               </div>
+              <?php
+                }else{
+                  ?>
+                  <div class="font-16 pl-10 bg-theme-color-2 text-white text-left pr-20 p-10"> <p align="center"><?=$tryout_item['nm_tryout'] ?> | Free</p>
+              </div>
+                  <?php
+                }
+              ?>
+              
                 <div class=" bg-white border-1px p-30 pt-20 pb-20">
                   <h3 class="package-type font-14 m-0 text-black"><?=$tryout_item['nm_tryout'] ?></h3>
                   <ul class="table-list list-icon theme-colored pb-0">
