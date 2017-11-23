@@ -9,6 +9,11 @@
     <meta name="author" content="pampersdry.info">
     <meta name="description" content="Adminre is a clean and flat backend and frontend theme build with twitter bootstrap 3.1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link href="<?=base_url('assets/css/bootstrap.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/css/font-awesome.css');?>" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="<?=base_url('assets/css/custom.css');?>" rel="stylesheet" />
+  
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?= base_url('assets/image/touch/apple-touch-icon-144x144-precomposed.png') ?>">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= base_url('assets/image/touch/apple-touch-icon-114x114-precomposed.png') ?>">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= base_url('assets/image/touch/apple-touch-icon-72x72-precomposed.png') ?>">
