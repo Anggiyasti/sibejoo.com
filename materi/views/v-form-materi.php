@@ -1,4 +1,104 @@
-<section class="id="main" role="main"">
+<!-- Start Script Matjax -->
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ showProcessingMessages: false,
+ tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+});
+</script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
+<script>
+  var Preview = {
+  delay: 150,        // delay after keystroke before updating
+
+  preview: null,     // filled in by Init below
+  buffer: null,      // filled in by Init below
+
+  timeout: null,     // store setTimout id
+  mjRunning: false,  // true when MathJax is processing
+  mjPending: false,  // true when a typeset has been queued
+  oldText: null,     // used to check if an update is needed
+
+  //
+  //  Get the preview and buffer DIV's
+  //
+  Init: function () {
+    this.preview = document.getElementById("MathPreview");
+    this.buffer = document.getElementById("MathBuffer");
+  },
+
+  //
+  //  Switch the buffer and preview, and display the right one.
+  //  (We use visibility:hidden rather than display:none since
+  //  the results of running MathJax are more accurate that way.)
+  //
+  SwapBuffers: function () {
+    var buffer = this.preview, preview = this.buffer;
+    this.buffer = buffer; this.preview = preview;
+    buffer.style.visibility = "hidden"; buffer.style.position = "absolute";
+    preview.style.position = ""; preview.style.visibility = "";
+  },
+
+  //
+  //  This gets called when a key is pressed in the textarea.
+  //  We check if there is already a pending update and clear it if so.
+  //  Then set up an update to occur after a small delay (so if more keys
+  //    are pressed, the update won't occur until after there has been 
+  //    a pause in the typing).
+  //  The callback function is set up below, after the Preview object is set up.
+  //
+  Update: function () {
+    if (this.timeout) {clearTimeout(this.timeout)}
+      this.timeout = setTimeout(this.callback,this.delay);
+  },
+
+  //
+  //  Creates the preview and runs MathJax on it.
+  //  If MathJax is already trying to render the code, return
+  //  If the text hasn't changed, return
+  //  Otherwise, indicate that MathJax is running, and start the
+  //    typesetting.  After it is done, call PreviewDone.
+  //  
+  CreatePreview: function () {
+    Preview.timeout = null;
+    if (this.mjPending) return;
+    var text = document.getElementById("MathInput").value;
+    if (text === this.oldtext) return;
+    if (this.mjRunning) {
+      this.mjPending = true;
+      MathJax.Hub.Queue(["CreatePreview",this]);
+    } else {
+      this.buffer.innerHTML = this.oldtext = text;
+      this.mjRunning = true;
+      MathJax.Hub.Queue(
+       ["Typeset",MathJax.Hub,this.buffer],
+       ["PreviewDone",this]
+       );
+    }
+  },
+
+  //
+  //  Indicate that MathJax is no longer running,
+  //  and swap the buffers to show the results.
+  //
+  PreviewDone: function () {
+    this.mjRunning = this.mjPending = false;
+    this.SwapBuffers();
+  }
+
+};
+
+//
+//  Cache a callback to the CreatePreview action
+//
+Preview.callback = MathJax.Callback(["CreatePreview",Preview]);
+Preview.callback.autoReset = true;  // make sure it can run more than once
+
+</script>
+<!-- END Script Matjax -->
+<!-- START Template Main -->
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
+<section class="" id="main" role="main"">
 	<div class="container-fluid">
 		<!-- Start row -->
 		<div class="row">
@@ -119,11 +219,7 @@
 							<div id="editor-materi">
 								<label class="control-label col-sm-2">Materi</label>
 								<div class="col-sm-10">
-									<textarea  name="editor1" class="form-control" id="">
-
-
-
-									</textarea>
+									<textarea  name="editor1" class="form-control" id=""></textarea>
 								</div>
 							</div>
 							<!-- End Editor Soal -->
@@ -131,8 +227,7 @@
 							<div id="editor-rumus" hidden="true">
 								<label class="control-label col-sm-2">Buat rumus</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" >
-									</textarea>
+									<textarea class="form-control" id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" ></textarea>
 								</div>
 								<label class="control-label col-sm-2"></label>
 								<div class="col-sm-10">
@@ -253,6 +348,8 @@
 
 
     function upload(){
+
+        console.log('masuk');
     	url = base_url+"materi/uploadMateri";
     	
         var datas = {
@@ -264,8 +361,9 @@
             filemateri: $('[name=filemateri]').val(),
         }
         var elementId = "filemateri";
-
-        // console.log(datas);
+        if (datas.judul=="" || datas.judul==" ") {
+            swal("Oops!", "Form harus diisi semua!", "info");
+        } else {
             // do_upload
             $.ajaxFileUpload({
                 url:url,
@@ -274,7 +372,6 @@
                 type:"POST",
                 fileElementId :elementId,
                 success:function(data){
-                	// console.log(data);
                     swal({
                     title: "Materi Berhasil Ditambahkan!",
                     type: "success",
@@ -296,6 +393,7 @@
                     
                 }
             });
+        }
 
     }
     //buat load tingkat
@@ -309,7 +407,6 @@
     			data: tingkat_id,
     			url: "<?= base_url() ?>index.php/videoback/getTingkat",
     			success: function (data) {
-    				console.log("Data" + data);
     				$('#tingkat').html('<option value="">-- Pilih Tingkat  --</option>');
     				$.each(data, function (i, data) {
     					$('#tingkat').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
@@ -366,7 +463,6 @@
     		url: "<?php echo base_url() ?>index.php/videoback/getBab/" + mapelID,
     		success: function (data) {
     			$('#bab').html('<option value="">-- Pilih Bab Pelajaran  --</option>');
-                //console.log(data);
                 $.each(data, function (i, data) {
                 	$('#bab').append("<option value='" + data.id + "'>" + data.judulBab + "</option>");
                 });
@@ -469,7 +565,6 @@ function ValidateSingleInput(oInput) {
 
             $('#filePembahasan').on('change',function () {
 
-              console.log('pembahasan');
               var file = this.files[0];
 
               var reader = new FileReader();

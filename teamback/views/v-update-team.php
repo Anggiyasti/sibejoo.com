@@ -1,10 +1,12 @@
+<script src="<?= base_url('assets/plugins/croppie/croppie.js') ?>""></script>
+<link rel="stylesheet" href="<?= base_url('assets/plugins/croppie/croppie.css') ?>">
 <!-- START Template Main  -->
 <section id="main" role="main">
     <!-- START Template Container -->
     <div class="container-fluid">
         <!-- START row -->
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <?php if ($this->session->flashdata('notif') != '') {
                     ?>
                     <div class="alert alert-warning fade in">
@@ -79,8 +81,8 @@
                     </div>
 
                     <div class="panel-footer">
-                        <div class="col-md-2 pull-right">
-                            <a onclick="update()" class="btn btn-primary">Simpan</a>
+                        <div class="col-md-4 pull-right">
+                            <a href="javascript:void(0)" class="btn btn-primary upload-update">Simpan Perubahan</a>
                         </div>
                     </div>
 
@@ -88,12 +90,13 @@
                 <!--/ Form horizontal layout bordered -->
             </div>
                     <!-- preview foto -->
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                         <div class="panel panel-danger">
                         <div class="panel-heading">
                             <h3 class="panel-title">Preview Foto Team</h3>
                         </div>  
                         <div class="panel-body pb0 pt0 pl0 pr0">
+                            <div id="upload-crop" style="width:500px" hidden="true"></div>
                             <?php if ($team['foto'] != '' ) : ?>
                                 <?php $filefoto=base_url().'assets/image/team/'.$team['foto']; ?>
                                 <!-- START Statistic Widget -->
@@ -105,7 +108,7 @@
                                 <!--/ END Statistic Widget -->
                             <?php else : ?>
                                 <!-- START Statistic Widget -->
-                                <div class="table-layout animation delay animating fadeInDown  prv_logo mb0">
+                                <div class="table-layout animation delay animating fadeInDown  prv_foto mb0">
                                     <div class="col-xs-4 panel bgcolor-danger text-center">
                                         <img id="prevfile" class="img-tumbnail logo" src="<?=base_url()?>assets\image\avatar\default.png" width="50%"  >
                                     </div>
@@ -114,17 +117,7 @@
                             <?php endif ?>
                         </div>
                         <div class="panel-footer pb0 pt0 pl0 pr0">
-                            <!-- <div class="row" style="margin:1%;">  -->
-                                <div class="col-md-5 left"> 
-                                    <h6>Name: <span id="namefile"></span></h6> 
-                                </div> 
-                                <div class="col-md-4 left"> 
-                                    <h6>Size: <span id="sizefile"></span>Kb</h6> 
-                                </div> 
-                                <div class="col-md-3 bottom"> 
-                                    <h6>Type: <span id="typefile"></span></h6> 
-                                </div>
-                            <!-- </div> -->
+                            
                         </div>
                         </div>                      
                     </div>
@@ -140,7 +133,14 @@
  <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
 
  <script type="text/javascript">
-    function update(){
+    function update(img){
+        // dicek dulu fotonya diupdate atau tidak
+        // jika tidak
+        if (img=="data:,") {
+            img="kosong";
+        } else {
+            img=img;
+        }
         var datas = {
             id : $('input[name=id]').val(),
             nama : $('input[name=nama]').val(),
@@ -148,43 +148,44 @@
             keterangan:$('input[name=keterangan]').val(),
             email:$('input[name=email]').val(),
             instagram:$('input[name=instagram]').val(),
-
             foto: $('[name=foto]').val(),
+            img:img
         }
+
         //id fileinput
         var elementId = "filefoto";
         if (datas.nama == "" || datas.posisi == "") {
-            swal('Tidak boleh kosong');
+            swal('Nama dan posisi harus diisi');
         }else{
-            url = base_url+"teamback/ajax_update_team";
-            // do_upload
-            $.ajaxFileUpload({
-                url:url,
-                data:datas,
-                dataType:"TEXT",
-                type:"POST",
-                fileElementId :elementId,
-                success:function(Data){
-                    swal({
-                    title: "Team berhasil diubah",
-                    type: "warning",
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Selesai",
-                    closeOnConfirm: false,
+            // cek dulu inputan emailnya
+            // jika bukan email masuk kesini
+            if (!datas.email.match(/\S+@\S+\.\S+/)) {
+                swal("Oops", "Email tidak sesuai!", "info");
+            } else {
+                url = base_url+"teamback/ajax_update_team";
+                // do_upload
+                $.ajaxFileUpload({
+                    url:url,
+                    data:datas,
+                    dataType:"TEXT",
+                    type:"POST",
+                    fileElementId :elementId,
+                    success:function(){
+                        setTimeout(function() {
+                            swal({
+                                title: "Good job!",
+                                text: "Team berhasil diubah",
+                                type: "success"
+                            }, function() {
+                                window.location = base_url+"teamback";
+                            });
+                        }, 1000); 
                     },
-                    function(isConfirm){
-                        if (isConfirm) {
-                            window.location.href = base_url+"teamback";
-                        } 
-                        else {
-                            swal("Ubah Data dibatalkan");
-                        }
-                     });
-                },
-                error:function(){
-                    
-                }
-        });
+                    error:function(){
+                        
+                    }
+                });
+            }
 
         }
     }
@@ -206,8 +207,8 @@
       var reader = new FileReader();
       var size=Math.round(file.size/1024);
       // start pengecekan ukuran file
-      if (size>=100) {
-        swal('Silahkan cek file size Foto!','File size foto maksimal 100kb','warning');
+      if (size>=500) {
+        swal('Silahkan cek file size Foto!','File size foto maksimal 500kb','warning');
       }else{
         $(".prv_foto"+z).show();
         reader.onload = viewer.load;
@@ -242,4 +243,41 @@
           return true;
   }
 
+  // FUNGSI CROP IMAGE
+// setting canvas upload cropnya
+$uploadCrop = $('#upload-crop').croppie({
+    enableExif: true,
+    viewport: {
+        width: 350,
+        height: 350,
+    },
+    boundary: {
+        width: 450,
+        height: 450
+    }
+});
+
+$('#filefoto').on('change', function () { 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $uploadCrop.croppie('bind', {
+            url: e.target.result
+        }).then(function(){
+        });
+        
+    }
+    reader.readAsDataURL(this.files[0]);
+    $('.prv_foto').hide();
+    $('#upload-crop').show();
+});
+
+$('.upload-update').on('click', function (ev) {
+    $uploadCrop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+    }).then(function (resp) {
+    // update team
+    update(resp);
+    });
+});
  </script>

@@ -5,15 +5,6 @@
         <div class="row">
 
             <div class="col-md-11">
-
-                <div class="text-center" style="margin-bottom:20px;">
-
-                    <img src="<?=base_url('assets/back/img/logo-tara.png') ?>" > 
-
-                    <br><h5 class="semibold text-muted mt-5"><br>Membuat Akun Guru</h5>
-
-                </div>
-
                 <!-- Register form -->
                 <form class="panel nm" name="form-register" action="javascript:void(0)" id="form-guru" method="post">
 

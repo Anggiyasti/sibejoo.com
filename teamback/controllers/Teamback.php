@@ -93,7 +93,6 @@ class Teamback extends MX_Controller {
     	$data['judul_halaman'] = "Pengelolaan Data Team";
         $data['files'] = array(
             APPPATH . 'modules/teamback/views/v-form-team.php',
-            // APPPATH . 'modules/teamback/views/v-backup.php',
             );
 
         $this->parser->parse('admin/v-index-admin', $data);
@@ -102,44 +101,23 @@ class Teamback extends MX_Controller {
     //ajax add team
 	function ajax_add_team(){
 	 	$post=$this->input->post();
- 		//konfigurasi upload
-		$config['upload_path'] = $this->upload_path;
-		$config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-		$config['max_size'] = 100;
-		$config['max_width'] = 1024;
-		$config['max_height'] = 1024;
-	    
-	    //random name
-		$configLogo['encrypt_name'] = TRUE;
-		$new_name = time()."-".$_FILES["foto"]['name'];
-		$config['file_name'] = $new_name;
-		$this->load->library('upload', $config);
-		$foto = 'foto';
-		$this->upload->initialize($config);
-		$file_foto=$post['foto'];
-			if (!$this->upload->do_upload($foto)) {
-		   		//jika tidak uplop file atau gagal upload file foto
-		   		$data['nama']=$post['nama'];
-		   		$data['posisi']=$post['posisi'];
-		   		$data['keterangan']=$post['keterangan'];
-		   		$data['email']=$post['email'];
-	 			$data['instagram']=$post['instagram'];
-	 			$this->Mteamback->in_upload_team($data);
-	 			$info="Data Team Berhasil disimpan";
-		   }else {
-			   	$file_data = $this->upload->data();
-		   		//get nama file yg di upload
-	      		$file_name = $file_data['file_name'];
-	 			$data['nama']=$post['nama'];
-	 			$data['posisi']=$post['posisi'];
-	 			$data['email']=$post['email'];
-	 			$data['instagram']=$post['instagram'];
 
-	 			$data['keterangan']=$post['keterangan'];
-	 			$data['foto']=$file_name;
-	 			$this->Mteamback->in_upload_team($data);
-	 			$info="Data Team Berhasil disimpan dan foto berhasil di-upload ";
-		   }
+	 	$crop=$post['crop'];
+	 	list($type, $crop) = explode(';', $crop);
+		list(, $crop)      = explode(',', $crop);
+		$crop = base64_decode($crop);
+		$imageName = time().'.png';
+ 		file_put_contents('./assets/image/team/'.$imageName, $crop);
+		//get nama file yg di upload
+	 	$data['nama']=$post['nama'];
+	 	$data['posisi']=$post['posisi'];
+	 	$data['email']=$post['email'];
+	 	$data['instagram']=$post['instagram'];
+
+	 	$data['keterangan']=$post['keterangan'];
+	 	$data['foto']=$imageName;
+	 	$this->Mteamback->in_upload_team($data);
+	 	$info="Data Team Berhasil disimpan dan foto berhasil di-upload ";
  		echo json_encode($info);	 
 	}
 
@@ -158,54 +136,33 @@ class Teamback extends MX_Controller {
 	function ajax_update_team(){
 		$post=$this->input->post();
 		$id = $post['id'];
-		$onephoto = $this->Mteamback->get_onephoto($id)[0]['foto'];
- 		//konfigurasi upload
-		$config['upload_path'] = $this->upload_path;
-		$config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-		$config['max_size'] = 100;
-		$config['max_width'] = 1024;
-		$config['max_height'] = 1024;
-	    
-	    //random name
-		$configLogo['encrypt_name'] = TRUE;
-		$new_name = time()."-".$_FILES["foto"]['name'];
-		$config['file_name'] = $new_name;
-		$this->load->library('upload', $config);
-		$foto = 'foto';
-		$this->upload->initialize($config);
-		$file_foto=$post['foto'];
-			if (!$this->upload->do_upload($foto)) {
-		   		//jika tidak uplop file atau gagal upload file foto
-		   		$data['nama']=$post['nama'];
-		   		$data['posisi']=$post['posisi'];
-		   		$data['keterangan']=$post['keterangan'];
-	 			$data['email']=$post['email'];
+		$data['nama']=$post['nama'];
+	 	$data['posisi']=$post['posisi'];
+	 	$data['keterangan']=$post['keterangan'];
+	 	$data['email']=$post['email'];
+	 	$data['instagram']=$post['instagram'];
+ 		
+	    $img=$post['img'];
+	    // dicek dulu update sama gambarnya atau gak?
+	    if ($img== 'kosong') {
+	    	$this->Mteamback->edit_upload_team($data,$id);
+	    } else {
+	    	$onephoto = $this->Mteamback->get_onephoto($id)[0]['foto'];
+			if ($onephoto != '' && $onephoto!=' ') {
+			 	unlink(FCPATH . "./assets/image/team/" . $onephoto);
+			}
+	    	//konfigurasi upload
+	    	list($type, $img) = explode(';', $img);
+			list(, $img)      = explode(',', $img);
+			$img = base64_decode($img);
+			//get nama file yg di upload
+			$imageName = time().'.png';
+	 		file_put_contents('./assets/image/team/'.$imageName, $img);
+	    	$data['foto']=$imageName;
+	    	$this->Mteamback->edit_upload_team($data,$id);
+	    }
 
-	 			$data['instagram']=$post['instagram'];
-		   		
-	 			$this->Mteamback->edit_upload_team($data,$id);
-	 			$info="Data Team Berhasil diubah";
-		   }else {
-		   		if ($onephoto != '' && $onephoto!=' ') {
-		   			unlink(FCPATH . "./assets/image/team/" . $onephoto);
-		   			# code...
-		   		}
-			   	$file_data = $this->upload->data();
-		   		//get nama file yg di upload
-	      		$file_name = $file_data['file_name'];
-	 			$data['nama']=$post['nama'];
-	 			$data['posisi']=$post['posisi'];
-	 			$data['keterangan']=$post['keterangan'];
-	 			$data['email']=$post['email'];
-
-	 			$data['instagram']=$post['instagram'];
-	 			
-	 			$data['foto']=$file_name;
-	 			$this->Mteamback->edit_upload_team($data,$id);
-	 			$info="Data Team Berhasil diubah dan foto berhasil di-upload ";
-		   }
-	 		//
- 		echo json_encode($info);
+ 		// echo json_encode($info);
 	}
 
 	// ajax drop team
@@ -295,6 +252,20 @@ class Teamback extends MX_Controller {
 	  } else {
 	  	echo "file kosong";
 	  }
+	}
+
+	public function crop()
+	{
+		$data = $_POST['image'];
+
+		list($type, $data) = explode(';', $data);
+		list(, $data)      = explode(',', $data);
+
+		$data = base64_decode($data);
+		$imageName = time().'.png';
+		file_put_contents('./assets/image/team/'.$imageName, $data);
+
+		echo 'done';
 	}
 
 }
