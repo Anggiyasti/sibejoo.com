@@ -1,7 +1,7 @@
-<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script><script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
-
-
-        <!--/ END Template Sidebar (Left) -->
+<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
+<script src="<?= base_url('assets/plugins/croppie/croppie.js') ?>""></script>
+<link rel="stylesheet" href="<?= base_url('assets/plugins/croppie/croppie.css') ?>">
 
         <!-- START Template Main -->
         <section id="main" role="main">
@@ -22,8 +22,7 @@
                             <!-- panel body -->
                            
            <?php echo $this->session->flashdata('msg'); ?> 
-            <!-- <form name="form-account" action="<?=base_url()?>index.php/artikel/insertartikel/1"  method="post" accept-charset="utf-8" enctype="multipart/form-data"> -->
-      
+     
              <div class="panel-body">
                         <br>
                         <div class="">
@@ -58,37 +57,22 @@
                             </div>
                         </div>
 
-
-
-                        <div class="col-sm-10">
-
-                
-                <div class="panel-body pb0 pt0 pl0 pr0">
-                    <!-- START Statistic Widget -->
-                    <div class="table-layout animation delay animating fadeInDown  prv_foto mb0" align="center">
-                       <img id="prevfile" class="img-tumbnail logo" src="" alt=""  width="50%"  >
-                    </div>
-                    <!--/ END Statistic Widget -->
-                </div>
-                  <div class="col-sm-12" align="center">
-                    <div class="col-md-5 left"> 
-                      <h6>Name: <span id="namefile"></span></h6> 
-                    </div> 
-                    <div class="col-md-4 left"> 
-                      <h6>Size: <span id="sizefile"></span>Kb</h6> 
-                    </div> 
-                    <div class="col-md-3 bottom"> 
-                      <h6>Type: <span id="typefile"></span></h6> 
-                    </div>
-                </div>
-                </div>
+                      <div class="col-sm-10">
+                        <div class="panel-body pb0 pt0 pl0 pr0">
+                            <!-- START Statistic Widget -->
+                            <div id="crop-artikel" style="width:900px"></div>
+                            <!--/ END Statistic Widget -->
+                        </div>
+                        <div class="col-sm-12" align="center">
+                        </div>
+                      </div>
 
 
             </div>
                     
                   <div class="panel-footer">
                     <div class="col-md-2">
-                      <a onclick="save()" class="btn btn-primary">Simpan</a>
+                      <a href="javascript:void(0)" class="btn btn-primary upload-artikel">Simpan</a>
                     </div>
                   </div>
 
@@ -115,16 +99,55 @@ function htmlspecialchars(str) {
 
  CKEDITOR.replace( 'editor1' );
 
- var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
+ var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
 
-   function save(){
+ // FUNGSI CROP IMAGE
+// setting canvas upload cropnya
+$uploadCrop = $('#crop-artikel').croppie({
+    enableExif: true,
+    viewport: {
+        width: 600,
+        height: 450,
+        type: 'square'
+    },
+    boundary: {
+        width: 800,
+        height: 600
+    },
+    enableZoom:true,
+    mouseWheelZoom:true,
+});
+
+$('#filefoto').on('change', function () { 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $uploadCrop.croppie('bind', {
+            url: e.target.result
+        }).then(function(){
+        });
+        
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+
+$('.upload-artikel').on('click', function (ev) {
+    $uploadCrop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+    }).then(function (resp) {
+    // simpan team
+    save(resp);
+    });
+});   
+
+   function save(img){
         var datas = {
             jdlartikel : $('input[name=jdlartikel]').val(),
             editor1 : htmlspecialchars(CKEDITOR.instances.editor1.getData()),
             foto: $('[name=foto]').val(),
+            img:img
         }
         //id fileinput
-        // console.log(datas);
         var elementId = "filefoto";
         if (datas.jdlartikel == "" || datas.editor1 == "" || datas.foto == "") {
             swal('Tidak boleh kosong');
@@ -138,29 +161,20 @@ function htmlspecialchars(str) {
                 type:"POST",
                 fileElementId :elementId,
                 success:function(Data){
-                  console.log(Data);
-                    swal({
-                    title: "Artikel Berhasil Ditambahkan!",
-                    type: "warning",
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Selesai",
-                    closeOnConfirm: false,
-                },
-            function(isConfirm){
-                    if (isConfirm) {
-                        window.location.href = base_url+"artikel/index/1";
-                    } 
-                    else {
-                        swal("Tambah Data dibatalkan");
-                    }
-                });
+                    setTimeout(function() {
+                            swal({
+                                title: "Good job!",
+                                text: "Artikel berhasil ditambahkan",
+                                type: "success"
+                            }, function() {
+                                window.location = base_url+"artikel";
+                            });
+                        }, 1000); 
                 },
                 error:function(){
                     
                 }
             });
-
-            
         }
     }
 
@@ -191,69 +205,6 @@ function htmlspecialchars(str) {
         viewer.setProperties(file);
       }
   }
-function ValidateSingleInput(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-        console.log(sFileName);
-         if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-             
-            if (!blnValid) {
-             $('#notif').show();
-
-                return false;
-            }
-
-            file = oInput.files[0];
-            if (file.size > 2100000 ) {
-               $('#size').show();
-               return false;
-            } 
-            
-        }
-    }
-    return true;
-}
-
-
-function ValidateSingleInput1(oInput) {
-    if (oInput.type == "file") {
-        var sFileName = oInput.value;
-        console.log(sFileName);
-         if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                    blnValid = true;
-                    break;
-                }
-            }
-             
-            if (!blnValid) {
-             $('#notifa').show();
-
-                return false;
-            }
-
-            file = oInput.files[0];
-            if (file.size > 2100000 ) {
-               $('#sizea').show();
-               return false;
-            } 
-            
-        }
-    }
-    return true;
-}
-
 
  //cek dulu type filenya
   function cek_fileFoto(oInput,z='') {
@@ -281,15 +232,3 @@ function ValidateSingleInput1(oInput) {
           return true;
   }
  </script>
-
-
-
-
-
-
-
-
-
-
-
-

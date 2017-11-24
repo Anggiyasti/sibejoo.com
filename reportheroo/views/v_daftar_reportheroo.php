@@ -1,20 +1,16 @@
-        <!-- START Template Main -->
-        <section id="main" role="main">
-            
-
-            <div class="row">
+<!-- START Template Main -->
+<section id="main" role="main">            
+  <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Daftar Report Heroo 
                 </h3>
                 <div class="panel-toolbar text-right">
-                      <a href="<?=base_url('index.php/Reportheroo/tambahHeroo') ?>" class="btn btn-inverse btn-outline add-team" title="Tambah Report Heroo"><i class="ico-plus"></i></a>
+                  <a href="<?=base_url('index.php/Reportheroo/tambah_heroo') ?>" class="btn btn-inverse btn-outline add-team" title="Tambah Report Heroo"><i class="ico-plus"></i></a>
                 </div>
             </div>
-
             <div class="panel-body">
-              
                <div class="col-md-12">
                 <table class="daftarartikel table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
                   <thead>
@@ -31,34 +27,19 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- /div tabel daftar token -->
-
-                <!-- div pagination daftar token -->
-                <div class="col-md-12">
-                  <ul class="pagination pagination-token">
-
-                  </ul>
-                </div>
-                <!-- div pagination daftar token -->
             </div>
-
         </div>
     </div>
 </div>
-
-        </section>
-        <!--/ END Template Main -->
-
-        <!-- START Template Sidebar (right) -->
+</section>
+<!--/ END Template Main -->
        
-
-    <script type="text/javascript">
-  var dataTableArtikel;
+<script type="text/javascript">
+  var dataTableReportHeroo;
     $(document).ready(function() {
-
-        dataTableArtikel = $('.daftarartikel').DataTable({
+        dataTableReportHeroo = $('.daftarartikel').DataTable({
               "ajax": {
-                "url": base_url+"Reportheroo/ajaxListReportH",
+                "url": base_url+"Reportheroo/ajax_list_heroo",
                 "type": "POST"
               },
               "emptyTable": "Tidak Ada Data Pesan",
@@ -73,13 +54,13 @@ $('.add-team').click(function(){
 });
 
 function edit_reportH(id) {
-    window.location.href = base_url + "Reportheroo/update_reportH/"+id;
+    window.location.href = base_url + "Reportheroo/update_report_heroo/"+id;
 }
 
 function drop_reportH(id){
-  url = base_url+"Reportheroo/drop_reportH";
+  url = base_url+"Reportheroo/drop_report_heroo";
   swal({
-    title: "Yakin akan hapus Artikel?",
+    title: "Yakin akan hapus report heroo?",
     text: "Anda tidak dapat membatalkan ini.",
     type: "warning",
     showCancelButton: true,
@@ -95,19 +76,18 @@ function drop_reportH(id){
       type:"POST",
       url:url,
       success:function(){
-        swal("Terhapus!", "Artikel berhasil dihapus.", "success");
+        swal("Terhapus!", "Report heroo berhasil dihapus.", "success");
         reload();
       },
       error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");
       }
-
     });
   });
 }
 
 function reload() {
-    dataTableArtikel.ajax.reload(null,false);
+    dataTableReportHeroo.ajax.reload(null,false);
 }
     
 </script>

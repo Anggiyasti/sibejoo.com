@@ -120,6 +120,7 @@
  <script type="text/javascript">
     // simpan team
     function save(img){
+
         var datas = {
             nama : $('input[name=nama]').val(),
             posisi : $('input[name=posisi]').val(),

@@ -134,13 +134,6 @@
 
  <script type="text/javascript">
     function update(img){
-        // dicek dulu fotonya diupdate atau tidak
-        // jika tidak
-        if (img=="data:,") {
-            img="kosong";
-        } else {
-            img=img;
-        }
         var datas = {
             id : $('input[name=id]').val(),
             nama : $('input[name=nama]').val(),
@@ -170,7 +163,7 @@
                     dataType:"TEXT",
                     type:"POST",
                     fileElementId :elementId,
-                    success:function(){
+                    success:function(data){
                         setTimeout(function() {
                             swal({
                                 title: "Good job!",

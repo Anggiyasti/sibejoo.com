@@ -16,6 +16,22 @@ class Reportheroo extends MX_Controller
         $this->load->library('parser');
     }
 
+    //GET HAK AKSES
+    function gethakakses(){
+        return $this->session->userdata('HAKAKSES');
+    }
+    //GET HAK AKSES
+
+    // LOAD PARSER SESUAI HAK AKSES
+    public function loadparser($data){
+        $this->hakakses = $this->gethakakses();
+        if ($this->hakakses=='admin') {
+            $this->parser->parse('admin/v-index-admin', $data);
+        }else{
+            echo "forbidden access";            
+        }
+    }
+
     function index()
  	{    //untuk daftar report heroo
         $data['judul_halaman'] = "Dashboard Admin";
@@ -23,46 +39,36 @@ class Reportheroo extends MX_Controller
         $data['files'] = array(
             APPPATH . 'modules/Reportheroo/views/v_daftar_reportheroo.php',
         );
-        $slidefront = $this->Mreportheroo->getDaftarreport_heroo();
-        $data['data']= $slidefront;  
-        $this->parser->parse('admin/v-index-admin', $data);
-
+        $report = $this->Mreportheroo->get_report_heroo();
+        $data['data']= $report;  
+        $this->loadparser($data);
     }
 
-
-
-
     // fungsi view report heroo masuk ke update
-    public function update_reportH($id){
+    public function update_report_heroo($id){
         $data['judul_halaman'] = "Dashboard Admin";
         $data['files'] = array(
             APPPATH . 'modules/Reportheroo/views/v_update_reportheroo.php',
         );
-        $data['RH'] = $this->Mreportheroo->get_reportH($id)[0];
-        $this->parser->parse('admin/v-index-admin', $data);
-        
-        
+        $data['RH'] = $this->Mreportheroo->get_reportH($id);
+        $this->loadparser($data);
     }  
 
-    function tambahHeroo()
+    function tambah_heroo()
     {
-        $data['judul_halaman'] = "Dashboard Admin";
-        
+        $data['judul_halaman'] = "Report Heroo";
         $data['files'] = array(
             APPPATH . 'modules/Reportheroo/views/v_tambah_reportheroo.php',
         );
-
-        $this->parser->parse('admin/v-index-admin', $data);
+        $this->loadparser($data);
         
     }
 
-
-
     // ajax list report heroo
-    public function ajaxListReportH() {
+    public function ajax_list_heroo() {
         $data=array();
         // code u/pagination
-        $list = $this->Mreportheroo->getDaftarreport_heroo();
+        $list = $this->Mreportheroo->get_report_heroo();
 
         $no=1;
         //cacah data 
@@ -95,10 +101,8 @@ class Reportheroo extends MX_Controller
             $row[] = '
             <a class="btn btn-sm btn-primary"  title="Edit" onclick="edit_reportH('."'".$item['id_art']."'".')">
             <i class="ico-pencil"></i></a>
-            
             <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_reportH('."'".$item['id_art']."'".')">
             <i class="ico-remove"></i></a>';
-            
             
             $data[] = $row;
             $no++;
@@ -191,17 +195,31 @@ class Reportheroo extends MX_Controller
     }
 
     // ajax drop report heroo
-    function drop_reportH(){
+    function drop_report_heroo(){
         if ($this->input->post()) {
             $post = $this->input->post();
-            $this->Mreportheroo->delete_reportH($post);
+            $id=$post['id'];
+            $this->del_img_heroo($id);
+            $this->Mreportheroo->delete_report_heroo($id);
+        }
+    }
+
+    // delete image
+    public function del_img_heroo($id)
+    {
+        // get image report heroo
+        $gambar=$this->Mreportheroo->get_onephoto($id);
+        //cek  jika tidak hasil null
+        if ($gambar != '' && $gambar!=' ') {
+            unlink(FCPATH . "./assets/image/reportheroo/" . $gambar);
         }
     }
 
     public function getkategori() {
         $data = $this->output
         ->set_content_type( "application/json" )
-        ->set_output( json_encode( $this->Mreportheroo->scartikel() ) ) ;
+        ->set_output( json_encode( $this->Mreportheroo->get_kategori() ) ) ;
     }
+
 }
 ?>

@@ -11,40 +11,24 @@ class Mreportheroo extends CI_Model
 		parent::__construct();
 	}
 
-    // get daftar artikel
-	public function getDaftarslide(){
-    	$this->db->distinct();
-		$this->db->select('*');
-        $this->db->from('tb_artikel');
-		$tampil=$this->db->get();
-		return $tampil->result_array();
-    }
-
-    // get daftar artikel
-    public function getDaftarreport_heroo(){
+    // get daftar report heroo
+    public function get_report_heroo(){
         $this->db->distinct();
         $this->db->select('*');
-        $this->db->from('tb_report_heroo art');
+        $this->db->from('tb_report_heroo');
         $tampil=$this->db->get();
         return $tampil->result_array();
     }
 
     // get gambar artikel
     public function get_reportH($id)
-
 	{
-
 		$this->db->select('*');
-
 		$this->db->from('tb_report_heroo rh');
         $this->db->join('tb_kategori kat', '`kat`.`id_kategori` = `rh`.`kategori`');
-
 		$this->db->where('id_art',$id); 
-
 		$query = $this->db->get();
-
-		return $query->result_array();
-
+		return $query->result_array()[0];
 	}
 
     // get gambar artikel
@@ -178,15 +162,9 @@ class Mreportheroo extends CI_Model
         
     }
 
-      // DELETE MATA PELAJARAN
-    public function delete_reportH($id_report) {
-        $this->db->where('id_art', $id_report['id']);
-        $this->db->delete('tb_report_heroo');
-    }
-
-      // DELETE MATA PELAJARAN
-    public function delete_report_heroo($id_artikel) {
-        $this->db->where('id_art', $id_artikel);
+      // DELETE REPORT HEROO
+    public function delete_report_heroo($id_report) {
+        $this->db->where('id_art', $id_report);
         $this->db->delete('tb_report_heroo');
     }
 
@@ -201,13 +179,21 @@ class Mreportheroo extends CI_Model
         return $this->db->get('tb_artikel')->num_rows();
     }
 
-  public function scartikel()
+  public function get_kategori()
     {
         $this->db->select('id_kategori,nama_kategori');
-                $this->db->from('tb_kategori');
-                // $this->db->where('status',1);
+        $this->db->from('tb_kategori');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    public function get_onephoto($id)
+    {
+      $this->db->select('gambar');
+      $this->db->from('tb_report_heroo');
+      $this->db->where('id_art',$id);
+      $query = $this->db->get();
+      return $query->result_array()[0]['gambar'];
     }
 
 }
