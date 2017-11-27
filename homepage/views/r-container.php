@@ -504,7 +504,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <img src="<?=base_url('assets/image/flaticon-png/small/1.png') ?>" width="90" alt="">
               </a>
               <h4 class="icon-box-title text-uppercase"><a class="" href="#">Soalnya Terus Up To Date!</a></h4>
-              <p class="text-left">Kumpulan soal-soal terlama hingga terbaru akan terus diupdate di sibejoo..banyak soal UN, SBMPTN, SIMAK
+              <p class="text-justify">Kumpulan soal-soal terlama hingga terbaru akan terus diupdate di sibejoo..banyak soal UN, SBMPTN, SIMAK
                 Saringan PTN dan masih banyak soal-soal yang lainya..
               </p>
             </div>
@@ -515,7 +515,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <img src="<?=base_url('assets/image/flaticon-png/small/desktop.png') ?>" width="90" alt="">
               </a>
               <h4 class="icon-box-title text-uppercase"><a class="" href="#">Video Pembelajaran</a></h4>
-              <p class="text-left">Video pembelajaran bakalan asyik, mudah dipahami dan gak <i>ngebosenin</i>.</p>
+              <p class="text-justify">Video pembelajaran bakalan asyik, mudah dipahami dan gak <i>ngebosenin</i>.</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -524,7 +524,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <img src="<?=base_url('assets/image/flaticon-png/small/5.png') ?>" width="90" alt="">
               </a>
               <h4 class="icon-box-title text-uppercase"><a class="" href="#">Edu Drive</a></h4>
-              <p class="text-left">Akan banyak modul-modul belajar, kumpulan soal yang bisa temen-temen download secara bebas. yay!</p>
+              <p class="text-justify">Akan banyak modul-modul belajar, kumpulan soal yang bisa temen-temen download secara bebas. yay!</p>
             </div>
           </div>
           <div class="col-md-3">
@@ -533,7 +533,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
                 <img src="<?=base_url('assets/image/flaticon-png/small/lecture.png') ?>" width="90" alt="">
               </a>
               <h4 class="icon-box-title text-uppercase"><a class="" href="#">Konsultasi Langsung</a></h4>
-              <p class="text-left">Untuk temen-temen yang kebingungan dengan materi yang disampaikan atau ada tugas sekolah yang tidak paham?
+              <p class="text-justify">Untuk temen-temen yang kebingungan dengan materi yang disampaikan atau ada tugas sekolah yang tidak paham?
               boleh dikonsultasikan dengan mentor-mentor sibejoo..Para mentor dengan senang hati akan membantu temen-temen. jadi, gak usah khawatir lagi!</p>
             </div>
           </div>
@@ -751,7 +751,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 
         </div>
         <br>
-        <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+        <a href="<?=base_url('homepage/allArtikel') ?>" class="btn btn-border btn-theme-colored ">
           Semua Artikel
         </a>
 
@@ -778,19 +778,19 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
             <div class="col-xs-12 col-sm-6 col-md-4 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s;">
               <article class="post clearfix mb-sm-30">
                 <div class="entry-header">
-                  <div class="post-thumb thumb"> 
+                  <div class="post-thumb thumb" > 
                     <?php if ($key['gambar']==''): ?>
-                      <div style="width: 320px;height: 225px;
-                      background: url(<?= base_url('./assets/image/reportheroo/no-thumbnail.png') ?>) center;"></div>
+                      <div style="width: 100%; height: 225px;
+                      background: url(<?= base_url('./assets/image/reportheroo/no-thumbnail.png') ?>) center; "></div>
                     <?php else: ?>
-                      <div style="width: 320px;height: 225px;
+                      <div style="width: 100%;height: 225px;
                       background: url(<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>) center;"></div>
                     <?php endif ?>
                   </div>
                 </div>
-                <div class="entry-content p-20 pr-10 bg-white">
-                  <div class="entry-meta media mt-0 no-bg no-border">
-                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                <div class="entry-content p-20 pr-10 bg-white" style="height: 400px;" >
+                  <div class="entry-meta media mt-0 no-bg no-border" >
+                    <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15" >
                       <ul>
                         <li class="font-16 text-white font-weight-600 border-bottom"><?=date('d', strtotime($key['date_created'])) ?></li>
                         <li class="font-12 text-white text-uppercase"><?=date('M', strtotime($key['date_created'])) ?></li>
@@ -812,7 +812,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
 
         </div>
         <br>
-        <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-colored btn-rounded btn-theme-colored pl-30 pr-30 ">
+        <a href="<?=base_url('homepage/allrReportHeroo') ?>" class="btn btn-border btn-theme-colored">
           Semua Report
         </a>
 
@@ -830,7 +830,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
      <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Price <span class="text-theme-color-2 font-weight-400">List</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Paket <span class="text-theme-color-2 font-weight-400">Berlangganan</span></h2>
         </div>
       </div>
     </div>
@@ -857,7 +857,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
           <div class="pricing-table maxwidth400">
-            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Year</span>
+            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>234.000 <span class="font-15 pull-right mt-15 text-white">Per/Tahun</span>
             </div>
             <div class=" bg-white border-1px p-30 pt-20 pb-20">
               <h3 class="package-type font-28 m-0 text-black">Heroo Member</h3>
@@ -876,7 +876,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 hvr-float-shadow mb-sm-30">
           <div class="pricing-table maxwidth400">
-            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Year</span>
+            <div class="font-36 pl-20 bg-theme-colored text-white text-left pr-20 p-10"><sup>Rp.</sup>478.000 <span class="font-15 pull-right mt-15 text-white">Per/3 Tahun</span>
             </div>
             <div class=" bg-white border-1px p-30 pt-20 pb-20">
               <h3 class="package-type font-28 m-0 text-black">Angel Member</h3>
@@ -905,7 +905,7 @@ style="z-index: 5; white-space: nowrap; letter-spacing:1px;"><a class="btn btn-c
     <div class="section-title mb-10">
       <div class="row">
         <div class="col-md-8">
-          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Team <span class="text-theme-color-2 font-weight-400">Sibejoo</span></h2>
+          <h2 class="mt-0 font-28 line-bottom line-height-1 font-weight-600">Tim <span class="text-theme-color-2 font-weight-400">Sibejoo</span></h2>
         </div>
       </div>
     </div>

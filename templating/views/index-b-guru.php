@@ -27,6 +27,7 @@
  
  <script>var base_url = '<?php echo base_url() ?>'</script>
  <!--/ END META SECTION -->
+ 
 
  
 
@@ -742,6 +743,8 @@
 <script type="text/javascript" src="<?=base_url('assets/plugins/steps/js/jquery.steps.min.js')?>"></script>
 
 <script type="text/javascript" src="<?=base_url('assets/plugins/inputmask/js/inputmask.min.js')?>"></script>
+
+
 
 <script type="text/javascript">
   var keahlian = JSON.parse('<?=$keahlian_detail ?>');

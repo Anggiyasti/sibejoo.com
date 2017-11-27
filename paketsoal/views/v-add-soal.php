@@ -186,7 +186,14 @@
 
 
 
-
+<script type="text/x-mathjax-config"> 
+                            MathJax.Hub.Config({ 
+                            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+                        }); 
+                    </script> 
+                    <script type="text/javascript" async 
+                    src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>">
+                </script> 
 
 <script>
   //declare global variable
@@ -221,12 +228,16 @@
     });
         // get list soal by id paket
         tblist_soal = $('#tblist').DataTable({ 
+
          "processing": true,
          "ajax": {
           "url": base_url+"index.php/paketsoal/ajax_listsoal/"+id_paket,
           "type": "POST"
+
         },
+
       });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
       });
 
 
@@ -369,13 +380,20 @@ function addsoal(subBabId){
   var url = base_url+"index.php/paketsoal/ajax_unregistered_soal/"+paket+"/"+subBabId;
   console.log(url);
   list_soal = $('#oplistsoal').DataTable({ 
+    "drawCallback": function( settings ) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
+    },
    "ajax": {
     "url": url,
     "type": "POST"
+
   },
   destroy: true,
   searching: false
+
 });
+
+
 }
 // ##
 

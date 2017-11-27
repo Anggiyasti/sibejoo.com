@@ -20,266 +20,6 @@ class Modulonline extends MX_Controller {
     public function index(){
         $this->allmodul();
     }
-    
-    function ajaxPaginationData(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRows($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationData';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRows($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
-
-    function ajaxPaginationDataSD(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRowssd($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationDataSD';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRowssd($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
-
-
-    function ajaxPaginationDataSMP(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRowssmp($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationDataSMP';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRowssmp($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
-
-    function ajaxPaginationDataSMA(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRowssma($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationDataSMA';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRowssma($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
-
-    function ajaxPaginationDataSMAIPA(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRowssmaipa($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationDataSMAIPA';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRowssmaipa($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
-
-
-    function ajaxPaginationDataSMAIPS(){
-        $conditions = array();
-        
-        //calc offset number
-        $page = $this->input->post('page');
-        if(!$page){
-            $offset = 0;
-        }else{
-            $offset = $page;
-        }
-        
-        //set conditions for search
-        $keywords = $this->input->post('keywords');
-        $sortBy = $this->input->post('sortBy');
-        if(!empty($keywords)){
-            $conditions['search']['keywords'] = $keywords;
-        }
-        if(!empty($sortBy)){
-            $conditions['search']['sortBy'] = $sortBy;
-        }
-        
-        //total rows count
-        $totalRec = count($this->Mmodulonline->getRowssmaips($conditions));
-        
-        //pagination configuration
-        $config['target']      = '#postList';
-        $config['base_url']    = base_url().'index.php/modulonline/ajaxPaginationDataSMAIPS';
-        $config['total_rows']  = $totalRec;
-        $config['per_page']    = $this->perPage;
-        $config['link_func']   = 'searchFilter';
-        $this->ajax_pagination->initialize($config);
-        
-        //set start and limit
-        $conditions['start'] = $offset;
-        $conditions['limit'] = $this->perPage;
-        
-        //get posts data
-        $data['posts'] = $this->Mmodulonline->getRowssmaips($conditions);
-        
-        //load the view
-        $this->load->view('modulonline/ajax-pagination-data', $data, false);
-    }
 
 
 
@@ -581,9 +321,30 @@ public function update_modul() {
 }
 
 public function delete_modul() {
-    $post= $this->input->post();
-    $this->Mmodulonline->del_banksoal($post);
+    // $post= $this->input->post();
+    // $this->Mmodulonline->del_banksoal($post);
+    if ($this->input->post()) {
+        $post = $this->input->post();
+        $id = $post['id'];
+        $this->del_file_modul($id);
+        $this->Mmodulonline->del_modul($post);
+    }
 }
+
+public function del_file_modul($id)
+    {
+        // get data team by id
+        $onefile_modul = $this->Mmodulonline->get_onefile_modul($id);
+        //cek  jika hasil null
+        if ($onefile_modul != false) {
+            //cek name file img team
+            $file_modul=$onefile_modul[0]['url_file'];
+            if ($file_modul != '' && $file_modul != ' ') {
+                // jika file tidak null atau kosong maka hapus file
+                 unlink(FCPATH . "./assets/modul/" . $file_modul);
+            }
+        }
+    }
     // fungsi untuk memfilter video yang akan di tampilkan
 public function filtermodul()
 {

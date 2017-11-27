@@ -73,11 +73,20 @@ public function get_oldgambar_soal($UUID)
 }
 
 
-public function del_banksoal($data) {
+public function del_modul($data) {
   $this->db->where('id', $data['id']);
   $this->db->set('status', '0');
   $this->db->update('tb_modul');
 }
+
+public function get_onefile_modul($id)
+    {
+      $this->db->select('url_file');
+      $this->db->from('tb_modul');
+      $this->db->where('id',$id);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
 
     # END Function untuk form delete bank soal#
 

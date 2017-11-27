@@ -45,7 +45,8 @@ class Tryit_tryout extends MX_Controller {
             APPPATH . $konten,
             APPPATH . 'modules/templating/views/r-footer.php',
             );
-        $data['paket'] = $this->Mtryit_tryout->get_paket_for_info();
+        $idpaket = $this->Mtryit_tryout->Get_Paket_For_Tryit()['idpaket'];
+        $data['paket'] = $this->Mtryit_tryout->get_paket_for_info($idpaket);
         $this->parser->parse('templating/r-index', $data);
     }
 
@@ -99,17 +100,17 @@ class Tryit_tryout extends MX_Controller {
         if (!empty($this->session->userdata['id_mm-tryoutpaket'])) { 
             $id = $this->session->userdata['id_mm-tryoutpaket']; 
             $data['topaket'] = $this->Mtryit_tryout->datatopaket($id); 
+            $idpaket = $this->Mtryit_tryout->Get_Paket_For_Tryit()['idpaket'];
+            // $id_paket = $this->Mtryit_tryout->datapaket($id)[0]->id_paket; 
+            $random = $this->Mtryit_tryout->dataPaketRandom($idpaket)[0]->random; 
 
-            $id_paket = $this->Mtryit_tryout->datapaket($id)[0]->id_paket; 
-            $random = $this->Mtryit_tryout->dataPaketRandom($id_paket)[0]->random; 
-
-            $data['paket'] = $this->Mtryit_tryout->durasipaket($id_paket); 
+            $data['paket'] = $this->Mtryit_tryout->durasipaket($idpaket); 
 
             $this->load->view('templating/t-headerto'); 
             if ($random == 0) { 
-                $query = $this->load->Mtryit_tryout->get_soalnorandom($id_paket); 
+                $query = $this->load->Mtryit_tryout->get_soalnorandom($idpaket); 
             }else{ 
-                $query = $this->load->Mtryit_tryout->get_soal($id_paket); 
+                $query = $this->load->Mtryit_tryout->get_soal($idpaket); 
             } 
             $data['soal'] = $query['soal']; 
             $data['pil'] = $query['pil']; 
@@ -127,7 +128,8 @@ class Tryit_tryout extends MX_Controller {
             $jumlah_soal = count($data['rekap_jawaban']);
 
             $this->load->view('templating/t-headerto');
-            $query = $this->load->Mtryit_tryout->get_pembahasan();
+            $idpaket = $this->Mtryit_tryout->Get_Paket_For_Tryit()['idpaket'];
+            $query = $this->load->Mtryit_tryout->get_pembahasan($idpaket);
             $data['soal'] = $query['soal'];
             $data['pil'] = $query['pil'];
             $benar =$this->session->userdata['jmlh_benar'];

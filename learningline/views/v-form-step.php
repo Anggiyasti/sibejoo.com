@@ -1,3 +1,11 @@
+ <script type="text/x-mathjax-config"> 
+                            MathJax.Hub.Config({ 
+                            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} 
+                        }); 
+                    </script> 
+                    <script type="text/javascript" async 
+                    src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>">
+                </script> 
     <div class="modal fad mdetailsoal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -27,14 +35,16 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+           
           </div>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
       </div>
     </div>
@@ -184,3 +194,4 @@
 </div>
 </div>
 <!-- TABEL KONTEN 1 . FORM LEARNINGNLINE -->
+

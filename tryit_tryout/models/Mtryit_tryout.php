@@ -25,7 +25,6 @@ class Mtryit_tryout extends MX_Controller {
                 JOIN tb_tryout t ON mmtp.id_tryout = t.id_tryout
                 JOIN `tb_paket` p ON mmtp.id_paket = p.id_paket
                 WHERE mmtp.id_tryout = $id
-
         ";
 
         $result = $this->db->query($query);
@@ -168,11 +167,11 @@ class Mtryit_tryout extends MX_Controller {
             );
     }
 
-    public function get_pembahasan() {
+    public function get_pembahasan($idpaket) {
         $this->db->select('id_paket as idpak, soal as soal, soal.id_soal as soalid, soal.judul_soal as judul, soal.gambar_soal as gambar, soal.jawaban as jaw, soal.pembahasan, soal.gambar_pembahasan, soal.video_pembahasan, soal.status_pembahasan, soal.link');
         $this->db->from('tb_mm-paketbank as paban');
         $this->db->join('tb_banksoal as soal', 'paban.id_soal = soal.id_soal');
-        $this->db->where('paban.id_paket', 69);
+        $this->db->where('paban.id_paket', $idpaket);
         $query = $this->db->get();
         $soal = $query->result_array();
 
@@ -180,7 +179,7 @@ class Mtryit_tryout extends MX_Controller {
         $this->db->from('tb_mm-paketbank as paban');
         $this->db->join('tb_banksoal as soal', 'paban.id_soal = soal.id_soal');
         $this->db->join('tb_piljawaban as pil', 'soal.id_soal = pil.id_soal');
-        $this->db->where('paban.id_paket', 69);
+        $this->db->where('paban.id_paket', $idpaket);
         $query = $this->db->get();
         $pil = $query->result_array();
 
@@ -409,19 +408,30 @@ public function get_laporan_to(){
     }
 
     #get paket yang belum untuk info pengerjaan.
-    public function get_paket_for_info() {
+    public function get_paket_for_info($idpaket) {
        
 //        backup query
         $query = "SELECT p.`id_paket`, p.`nm_paket`, p.`jumlah_soal`, p.`durasi`, mm.`id_tryout`, mm.id AS mmid 
                     FROM tb_paket p 
                     JOIN `tb_mm-tryoutpaket` mm ON mm.`id_paket` = p.`id_paket` 
                     JOIN `tb_tryout` t ON t.`id_tryout` = mm.`id_tryout` 
-                    WHERE  mm.`id_tryout`=179 AND  mm.id_paket= 69
+                    WHERE  mm.`id_tryout`=179 AND  mm.id_paket= $idpaket
                     ";
         $result = $this->db->query($query);
         return $result->result_array()[0];
     }
     //##
+
+    public function Get_Paket_For_Tryit(){
+        $this->db->select('p.`id_paket` as idpaket');
+        $this->db->from('`tb_tryout` t');
+        $this->db->join('`tb_mm-tryoutpaket` mmtp ',' mmtp.`id_tryout` = t.`id_tryout`');
+        $this->db->join('`tb_paket` p ',' p.`id_paket` = mmtp.`id_paket`');
+        $this->db->where('t.`id_tryout`',179);
+        $query = $this->db->get();
+        return $query->result_array()[0];
+
+    }
 
 
      public function get_info_score($id)

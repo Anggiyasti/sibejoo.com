@@ -707,6 +707,7 @@ class Learningline extends MX_Controller {
 		//mengambil nilai list
 		$baseurl = base_url();
 		foreach ( $list as $list_soal ) {
+			$soal=$list_soal['soal'];
 			$n='1';
 			$row = array();
 
@@ -717,7 +718,7 @@ class Learningline extends MX_Controller {
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
 
-			$row[] = $list_soal['soal'];
+			$row[] = $soal;
 
 			if ($list_soal['kesulitan']=='0') {
 				$row[] = "Mudah";

@@ -1,4 +1,6 @@
-<script>
+<script >
+
+
 $('.lihat_step').click(function(){
 	$('.daftar_step').modal('show');
 	var url = base_url+"learningline/ajax_list_get_step/"+<?=$this->uri->segment(3)?>;
@@ -315,10 +317,15 @@ function load_soal(){
 
 		);
 
+
+
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
 	babID = $('input[name=babID]').val();	
 	var url = base_url+"learningline/ajax_get_soal_byid/"+babID;
 	tabel = $('.daftarsoal').DataTable({
+		"drawCallback": function( settings ) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
+    },
 		"ajax": {
 			"url": url,
 			"type": "POST"
@@ -342,6 +349,7 @@ function load_soal(){
 		"pageLength": 5,
 	});
 }
+
 
 function tambahkan_soal(){
 	latSession = "";
@@ -428,6 +436,7 @@ function detail_soal(data){
 
 	$('.mdetailsoal p#dsoal').html(meta.soal);
 	$('.mdetailsoal p#djawaban').html(meta.jawaban);
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mdetailsoal"]); 
 }
 
 function reset(){

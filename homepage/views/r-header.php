@@ -66,19 +66,19 @@
         <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
           <ul class="menuzord-menu">
             <li class="">
-              <a class="home" href="<?=base_url()?>">Home</a>
+              <a class="home" href="<?=base_url()?>">Beranda</a>
             </li>
             <li>
-              <a href="#about">About Us</a>              
+              <a href="#about">Tentang Kami</a>              
             </li>
 
 
             <li>
-              <a class="team" href="#team">Team</a>
+              <a class="team" href="#team">Tim</a>
             </li>
 
             <li>
-              <a class="testimonials" href="#testimonials">Testimonials</a>
+              <a class="testimonials" href="#testimonials">Testimoni</a>
             </li>
             <li><a href="javascript:void(0)">Layanan</a>
               <div class="megamenu none" style="right: 0px; display: block;">

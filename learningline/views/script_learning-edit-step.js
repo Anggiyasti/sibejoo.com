@@ -146,14 +146,22 @@ function detail(id){
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
+	var url = base_url+"assets/file_materi/"+data.url_file;
 
 	$('h3.semibold').html(data.judulMateri);
 		// links = '<?=base_url();?>assets/video/' + data.namaFile;
-		$('#isicontent').html(data.isiMateri); 
-		$('.detail_materi').modal('show');
+		if (data.isiMateri == null || data.isiMateri == '') {
+			$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
+	//jika data url file
+}else{
+	$('#isicontent').html(data.isiMateri); 
+
+}
+
+$('.detail_materi').modal('show');
 
 
-	}
+}
 //##
 
 // load video pada saat dipilih jenis video
@@ -378,6 +386,9 @@ function load_soal(){
 	var url2 = base_url+"learningline/ajax_get_soal_edit/"+babID+"/"+stepID;
 
 	tabel2 = $('.daftarsoal_belum').DataTable({
+		"drawCallback": function( settings ) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
+    },
 		"ajax": {
 			"url": url2,
 			"type": "POST"
@@ -388,6 +399,9 @@ function load_soal(){
 	}); 
 
 	tabel = $('.daftarsoal').DataTable({
+		"drawCallback": function( settings ) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]); 
+    },
 		"ajax": {
 			"url": url,
 			"type": "POST"
@@ -396,6 +410,50 @@ function load_soal(){
 		"info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
 		"pageLength": 5,
 	});
+
+
+}
+
+// FUNGSI MELIHAT VIDEO
+function play(data){
+	kelas = '.video-'+data;
+	meta = $(kelas).data('todo');
+	$('.detail_video').modal('show');
+	judul = " <h4 class='modal-title' style='display: inline'>Preview Video "+meta.judulVideo;
+	if (meta.namaFile==null) {
+		video = '<iframe width="100%" height="400"'+
+		'src="'+meta.link+'">'+
+		'</iframe>';
+		$('.detail_video .modal-body').html(video);
+	}else{
+		file = base_url+"assets/video/"+meta.namaFile;
+		video = '<video width="100%" height="400" controls>'+
+		'<source src="'+file+'" type="video/mp4">'+
+		'<source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.'+
+		'</video>';
+		$('.detail_video .modal-body').html(video);
+	}
+	$('.detail_video .modal-header').html(judul);
+}
+
+// dESTROY KETIKA MODAL DICLOSE
+$('.detail_video').on('hide.bs.modal', function(e) {    
+	var $if = $(e.delegateTarget).find('iframe');
+	var src = $if.attr("src");
+	$if.attr("src", '/empty.html');
+	$if.attr("src", src);
+});
+
+function detail_soal(data){
+	// console.log(data);
+	kelas = '.soal-'+data;
+	meta = $(kelas).data('todo');
+	$('.mdetailsoal').modal('show');
+	$('.mdetailsoal h3.semibold').html(meta.judul_soal);
+
+	$('.mdetailsoal p#dsoal').html(meta.soal);
+	$('.mdetailsoal p#djawaban').html(meta.jawaban);
+	 MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mdetailsoal"]); 
 }
 
 function tambahkan_soal(){
@@ -473,6 +531,9 @@ function drop_soal(){
 	} else {
 		swal('Oops','Silahkan Pilih Soal Yang Akan Dihapus','error');
 	}
+
+
 }
 
 </script>
+
