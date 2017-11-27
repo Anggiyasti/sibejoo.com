@@ -1,5 +1,7 @@
-<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script><script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
-<!--/ END Template Sidebar (Left) -->
+<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/library/jquery/js/preview.js') ?>"></script>
+<script src="<?= base_url('assets/plugins/croppie/croppie.js') ?>""></script>
+<link rel="stylesheet" href="<?= base_url('assets/plugins/croppie/croppie.css') ?>">
 <!-- START Template Main -->
 <section id="main" role="main">
   <!-- START Template Container -->
@@ -15,9 +17,8 @@
             <h3 class="panel-title">Form Report Heroo</h3>
           </div>
           <!--/ panel heading/header -->
-          <!-- panel body -->
-
           <?php echo $this->session->flashdata('msg'); ?> 
+          <!-- panel body -->
           <div class="panel-body">
             <br>
             <div class="">
@@ -63,76 +64,103 @@
               </div>
             </div>
 
-
-
             <div class="col-sm-10">
-
-
               <div class="panel-body pb0 pt0 pl0 pr0">
                 <!-- START Statistic Widget -->
                 <div class="table-layout animation delay animating fadeInDown  prv_foto mb0" align="center">
-                 <img id="prevfile" class="img-tumbnail logo" src="" alt=""  width="50%"  >
-               </div>
-               <!--/ END Statistic Widget -->
-             </div>
-             <div class="col-sm-12" align="center">
-              <div class="col-md-5 left"> 
-                <h6>Name: <span id="namefile"></span></h6> 
-              </div> 
-              <div class="col-md-4 left"> 
-                <h6>Size: <span id="sizefile"></span>Kb</h6> 
-              </div> 
-              <div class="col-md-3 bottom"> 
-                <h6>Type: <span id="typefile"></span></h6> 
+                  <div id="crop-heroo" style="width:900px"></div>
+                </div>
+                <!--/ END Statistic Widget -->
+              </div>
+              <div class="col-sm-12" align="center">
               </div>
             </div>
           </div>
-
-
-        </div>
-
-        <div class="panel-footer">
-          <div class="col-md-2">
-            <a onclick="savereport()" class="btn btn-primary">Simpan</a>
+          <div class="panel-footer">
+            <div class="col-md-2">
+              <a href="javascript:void(0)" class="btn btn-primary upload-heroo">Simpan</a>
+            </div>
           </div>
         </div>
-        
+      </div>
+    </div>
+  </div>
 
 
-      </section>
-      <!--/ END Template Main -->
+</section>
+<!--/ END Template Main -->
 
-
-      <script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
-      <script type="text/javascript">
-        function htmlspecialchars(str) {
-          var map = {
+<script type="text/javascript" src="<?= base_url('assets/js/ajaxfileupload.js') ?>"></script>
+<script type="text/javascript">
+function htmlspecialchars(str) {
+  var map = {
             "&": "&amp;",
             "<": "&lt;",
             ">": "&gt;",
             "\"": "&quot;",
         "'": "&#39;" // ' -> &apos; for XML only
       };
-      return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+  return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+CKEDITOR.replace( 'editor1' );
+
+var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];  
+
+
+ // FUNGSI CROP IMAGE
+// setting canvas upload cropnya
+$uploadCrop = $('#crop-heroo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 700,
+        height: 350,
+        type: 'square'
+    },
+    boundary: {
+        width: 950,
+        height: 500
+    },
+    enableZoom:true,
+    mouseWheelZoom:true,
+});
+
+$('#filefoto').on('change', function () { 
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $uploadCrop.croppie('bind', {
+            url: e.target.result
+        }).then(function(){
+        });
+        
     }
-    CKEDITOR.replace( 'editor1' );
+    reader.readAsDataURL(this.files[0]);
+});
 
-    var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];  
+$('.upload-heroo').on('click', function (ev) {
+    $uploadCrop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+    }).then(function (resp) {
+    // simpan team
+    savereport(resp);
+    });
+});   
 
-    function savereport(){
+function savereport(img){
       var datas = {
         jdlreport : $('input[name=jdlreport]').val(),
         editor1 : htmlspecialchars(CKEDITOR.instances.editor1.getData()),
         kategori : $('select[name=kategori]').val(),
         foto: $('[name=foto]').val(),
+        img:img
       }
         //id fileinput
-        console.log(datas);
         var elementId = "filefoto";
-        if (datas.jdlreport == "" || datas.editor1 == "" || datas.foto == "" || datas.kategori == "") {
-          swal('Tidak boleh kosong');
+        if (datas.jdlreport == "" || datas.editor1 == "" || datas.kategori == "") {
+          swal('Form harus diisi semua!');
         }else{
-          url = base_url+"Reportheroo/ajax_add_ReportH";
+          url = base_url+"Reportheroo/ajax_add_report";
             // do_upload
             $.ajaxFileUpload({
               url:url,
@@ -141,21 +169,15 @@
               type:"POST",
               fileElementId :elementId,
               success:function(Data){
-                swal({
-                  title: "Report Heroo Berhasil Ditambahkan!",
-                  type: "warning",
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Selesai",
-                  closeOnConfirm: false,
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = base_url+"Reportheroo";
-                  } 
-                  else {
-                    swal("Tambah Data dibatalkan");
-                  }
-                });
+                setTimeout(function() {
+                            swal({
+                                title: "Good job!",
+                                text: "Report Heroo berhasil ditambahkan",
+                                type: "success"
+                            }, function() {
+                                window.location = base_url+"reportheroo";
+                            });
+                        }, 1000); 
               },
               error:function(){
 
@@ -164,70 +186,7 @@
 
             
           }
-        }  
-
-        function ValidateSingleInput(oInput) {
-          if (oInput.type == "file") {
-            var sFileName = oInput.value;
-            console.log(sFileName);
-            if (sFileName.length > 0) {
-              var blnValid = false;
-              for (var j = 0; j < _validFileExtensions.length; j++) {
-                var sCurExtension = _validFileExtensions[j];
-                if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                  blnValid = true;
-                  break;
-                }
-              }
-
-              if (!blnValid) {
-               $('#notif').show();
-
-               return false;
-             }
-
-             file = oInput.files[0];
-             if (file.size > 2100000 ) {
-               $('#size').show();
-               return false;
-             } 
-
-           }
-         }
-         return true;
-       }
-
-
-       function ValidateSingleInput1(oInput) {
-        if (oInput.type == "file") {
-          var sFileName = oInput.value;
-          console.log(sFileName);
-          if (sFileName.length > 0) {
-            var blnValid = false;
-            for (var j = 0; j < _validFileExtensions.length; j++) {
-              var sCurExtension = _validFileExtensions[j];
-              if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-                blnValid = true;
-                break;
-              }
-            }
-
-            if (!blnValid) {
-             $('#notifa').show();
-
-             return false;
-           }
-
-           file = oInput.files[0];
-           if (file.size > 2100000 ) {
-             $('#sizea').show();
-             return false;
-           } 
-
-         }
-       }
-       return true;
-     }
+}  
 
 //buat load tingkat
 function loadkategori() {
@@ -242,19 +201,11 @@ function loadkategori() {
       url: "<?= base_url() ?>index.php/reportheroo/getkategori",
 
       success: function (data) {
-
-        console.log("Data" + data);
-
         $('#kategori').html('<option value="">-- Pilih Kategori  --</option>');
-
         $.each(data, function (i, data) {
-
           $('#kategori').append("<option value='" + data.id_kategori + "'>" + data.nama_kategori + "</option>");
-
           return idKategori = data.id_kategori;
-
         });
-
       }
 
     });
@@ -264,37 +215,36 @@ function loadkategori() {
 loadkategori();
 
 
-        // show preview foto
-        function preview_fileFoto(oInput,z='') {
-          var viewer = {
-            load : function(e){
-              $('#prevfile'+z).attr('src', e.target.result);
-            },
-            setProperties : function(file){
-              $('#namefile'+z).text(file.name);
-              $('#typefile'+z).text(file.type);
-              $('#sizefile'+z).text(Math.round(file.size/1024));
-            },
-          }
+// show preview foto
+function preview_fileFoto(oInput,z='') {
+  var viewer = {
+    load : function(e){
+      $('#prevfile'+z).attr('src', e.target.result);
+    },
+    setProperties : function(file){
+      $('#namefile'+z).text(file.name);
+      $('#typefile'+z).text(file.type);
+      $('#sizefile'+z).text(Math.round(file.size/1024));
+    },
+  }
 
-          var file = oInput.files[0];
-          var reader = new FileReader();
-          var size=Math.round(file.size/1024);
-      // start pengecekan ukuran file
-      if (size>=2100000) {
-        swal('Silahkan cek file size Foto!','File size foto maksimal 2MB','warning');
+  var file = oInput.files[0];
+  var reader = new FileReader();
+  var size=Math.round(file.size/1024);
+  // start pengecekan ukuran file
+  if (size>=2100000) {
+    swal('Silahkan cek file size Foto!','File size foto maksimal 2MB','warning');
         // $('#e_size_video').modal('show');
-      }else{
-        $(".prv_foto"+z).show();
-        reader.onload = viewer.load;
-        reader.readAsDataURL(file);
-        viewer.setProperties(file);
-      }
-    }
+  }else{
+    $(".prv_foto"+z).show();
+    reader.onload = viewer.load;
+    reader.readAsDataURL(file);
+    viewer.setProperties(file);
+  }
+}
 
-
- //cek dulu type filenya
- function cek_fileFoto(oInput,z='') {
+//cek dulu type filenya
+function cek_fileFoto(oInput,z='') {
   var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
@@ -319,17 +269,4 @@ loadkategori();
   return true;
 }
 
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-

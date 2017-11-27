@@ -1,3 +1,46 @@
+<!-- Start Script Matjax -->
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ showProcessingMessages: false,
+ tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+});
+</script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
+<style type="text/css">
+  body .modal-heroo .modal-dialog {
+    /* new custom width */
+    width: 60%; /* desired relative width */
+    /* place center */
+    margin-left:auto;
+    margin-right:auto;
+  }
+</style>
+<!-- Start Modal Detail Artikel-->
+  <div class="modal fade modal-heroo" id="mdetailheroo">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="semibold mt0 text-accent text-center"></h3>
+        </div>
+        <div class="modal-body">
+          <p id="isi-heroo">
+            
+          </p>
+          <div id="gambar">
+            
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End Modal Detail Artikel -->
 <!-- START Template Main -->
 <section id="main" role="main">            
   <div class="row">
@@ -38,6 +81,9 @@
   var dataTableReportHeroo;
     $(document).ready(function() {
         dataTableReportHeroo = $('.daftarartikel').DataTable({
+              "drawCallback": function (settings) {
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+              },
               "ajax": {
                 "url": base_url+"Reportheroo/ajax_list_heroo",
                 "type": "POST"
@@ -90,4 +136,20 @@ function reload() {
     dataTableReportHeroo.ajax.reload(null,false);
 }
     
+//# ketika tombol di klik detail
+function detail(id){
+  var kelas ='.detail-'+id;
+  var data = $(kelas).data('id');
+  var gambar = base_url+'assets/image/reportheroo/'+data.gambar;
+
+  $('h3.semibold').html(data.judul_art_katagori);
+  $('#isi-heroo').html(data.isi_art_kategori);     
+  if (gambar!="") {
+    $('#gambar').html('<img src="' + gambar + '">');  
+  }
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mdetailheroo"]);
+  $('#mdetailheroo').modal('show');
+  
+}
+//##
 </script>

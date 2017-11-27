@@ -81,6 +81,9 @@
           </div>
         </div>
         <!-- panel body -->
+      </div>
+    </div>
+  </div>
 </section>
 <!--/ END Template Main -->
 
@@ -96,13 +99,13 @@
 $uploadCrop = $('#crop-artikel').croppie({
     enableExif: true,
     viewport: {
-        width: 600,
-        height: 450,
+        width: 700,
+        height: 350,
         type: 'square'
     },
     boundary: {
-        width: 800,
-        height: 600
+        width: 950,
+        height: 500
     },
     enableZoom:true,
     mouseWheelZoom:true,

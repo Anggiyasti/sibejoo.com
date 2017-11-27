@@ -10,32 +10,6 @@
   			</div>
 
   			<div class="panel-body">
-  				<!-- div seting record dan pencarian   -->
-			    <!-- <div class="col-md-12" > -->
-			      <!-- div setting record -->
-			      <!-- <div class="col-md-2 mb2 mt10 pl0">
-			        <div  class="form-group">
-			          <select  class="form-control" name="records_per_page">
-			            <option value="10">10</option>
-			            <option value="25">25</option>
-			            <option value="50">50</option>
-			            <option value="100">100</option>
-			          </select>
-			        </div>
-			      </div> -->
-			      <!-- /div setting record -->
-			      <!-- div pencarian  -->
-			      <!-- <div class="col-md-10 mb10 mt10 pr0">
-			        <div class="input-group">
-			         <span class="input-group-addon btn" id="cariToken"><i class="ico-search"></i></span>
-			         <input class="form-control" type="text" name="cariToken" placeholder="Cari Data">
-			       </div>
-			     </div> -->
-			     <!-- div pencarian -->
-			   	<!-- </div> -->
-			   <!-- div seting record dan pencarian -->
-
-			   <!-- div tabel daftar token -->
 			   <div class="col-md-12">
 			    <table class="daftarteam table table-striped display responsive nowrap" style="font-size: 13px" width=100%>
 			      <thead>
@@ -52,15 +26,6 @@
 			        </tbody>
 			      </table>
 			    </div>
-			    <!-- /div tabel daftar token -->
-
-			    <!-- div pagination daftar token -->
-			    <div class="col-md-12">
-			      <ul class="pagination pagination-token">
-
-			      </ul>
-			    </div>
-			    <!-- div pagination daftar token -->
   			</div>
 
   		</div>

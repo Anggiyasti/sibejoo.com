@@ -30,7 +30,8 @@
         if ($this->hakakses=='admin') {
             $this->parser->parse('admin/v-index-admin', $data);
         }else{
-            echo "forbidden access";            
+            // $this->load->view('errors/error-back');      
+            redirect('login');        
         }
     }
 
@@ -90,6 +91,11 @@
             $row[] = substr($isiart, 0, 50);
             $row[] = '<div class="media-object"><img src="'.$filefoto.'" alt="" class="img"></div>';
             $row[] = '
+            <a class="btn btn-sm btn-primary btn-outline detail-'.$item['id_artikel'].'"  title="Lihat"
+            data-id='."'".json_encode($item)."'".'
+            onclick="detail('."'".$item['id_artikel']."'".')"
+            >
+            <i class=" ico-eye "></i> </a>
             <a class="btn btn-sm btn-primary"  title="Edit" onclick="edit_artikel('."'".$item['id_artikel']."'".')">
             <i class="ico-pencil"></i></a>
             

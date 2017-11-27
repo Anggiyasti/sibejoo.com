@@ -34,7 +34,7 @@ class Reportheroo extends MX_Controller
 
     function index()
  	{    //untuk daftar report heroo
-        $data['judul_halaman'] = "Dashboard Admin";
+        $data['judul_halaman'] = "Report Heroo";
         
         $data['files'] = array(
             APPPATH . 'modules/Reportheroo/views/v_daftar_reportheroo.php',
@@ -44,25 +44,26 @@ class Reportheroo extends MX_Controller
         $this->loadparser($data);
     }
 
-    // fungsi view report heroo masuk ke update
-    public function update_report_heroo($id){
-        $data['judul_halaman'] = "Dashboard Admin";
-        $data['files'] = array(
-            APPPATH . 'modules/Reportheroo/views/v_update_reportheroo.php',
-        );
-        $data['RH'] = $this->Mreportheroo->get_reportH($id);
-        $this->loadparser($data);
-    }  
-
+    // view tambah report heroo
     function tambah_heroo()
     {
-        $data['judul_halaman'] = "Report Heroo";
+        $data['judul_halaman'] = "Tambah Report Heroo";
         $data['files'] = array(
             APPPATH . 'modules/Reportheroo/views/v_tambah_reportheroo.php',
         );
         $this->loadparser($data);
         
     }
+
+    // fungsi view report heroo masuk ke update
+    public function update_report_heroo($id){
+        $data['judul_halaman'] = "Update Report Heroo";
+        $data['files'] = array(
+            APPPATH . 'modules/Reportheroo/views/v_update_reportheroo.php',
+        );
+        $data['RH'] = $this->Mreportheroo->get_report_by_id($id);
+        $this->loadparser($data);
+    }  
 
     // ajax list report heroo
     public function ajax_list_heroo() {
@@ -99,6 +100,9 @@ class Reportheroo extends MX_Controller
             $row[] = substr($isiart, 0, 50);
             $row[] = '<div class="media-object"><img src="'.$filefoto.'" alt="" class="img"></div>';
             $row[] = '
+            <a class="btn btn-sm btn-primary btn-outline detail-'.$item['id_art'].'"  title="Lihat" 
+            data-id='."'".json_encode($item)."'".' onclick="detail('."'".$item['id_art']."'".')">
+            <i class="ico-eye"></i></a>
             <a class="btn btn-sm btn-primary"  title="Edit" onclick="edit_reportH('."'".$item['id_art']."'".')">
             <i class="ico-pencil"></i></a>
             <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_reportH('."'".$item['id_art']."'".')">
@@ -115,79 +119,61 @@ class Reportheroo extends MX_Controller
     }
 
     //ajax add Report Heroo
-    function ajax_add_ReportH(){
+    function ajax_add_report(){
         $post=$this->input->post();
         //konfigurasi upload
-        $config['upload_path'] = $this->upload_path;
-        $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 1000;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
-        
-        //random name
-        $configLogo['encrypt_name'] = TRUE;
-        $new_name = time()."-".$_FILES["foto"]['name'];
-        $config['file_name'] = $new_name;
-        $this->load->library('upload', $config);
-        $foto = 'foto';
-        $this->upload->initialize($config);
-        $file_foto=$post['foto'];
-        if (!$this->upload->do_upload($foto)) {
-                //jika tidak uplop file atau gagal upload file foto
-            $data['judul_art_katagori']=$post['jdlreport'];
-            $data['isi_art_kategori']=$post['editor1'];
-            $data['kategori']=$post['kategori'];
-            $this->Mreportheroo->in_upload_reportH($data);
+        $data['judul_art_katagori']=$post['jdlreport'];
+        $data['isi_art_kategori']=$post['editor1'];
+        $data['kategori']=$post['kategori'];
+        $img = $post['img'];
+        $foto = $post['foto'];
+
+        if ($foto=="") {
+            $this->Mreportheroo->in_upload_report($data);
             $info="Data Report Heroo disimpan";
         }else {
-            $file_data = $this->upload->data();
-                //get nama file yg di upload
-            $file_name = $file_data['file_name'];
-            $data['judul_art_katagori']=$post['jdlreport'];
-            $data['isi_art_kategori']=$post['editor1'];
-            $data['kategori']=$post['kategori'];
-            $data['gambar']=$file_name;
-            $this->Mreportheroo->in_upload_reportH($data);
+            list($type, $img) = explode(';', $img);
+            list(, $img)      = explode(',', $img);
+            $img = base64_decode($img);
+            $imageName = time().'.png';
+        
+            file_put_contents('./assets/image/reportheroo/'.$imageName, $img);
+            $data['gambar']=$imageName;
+            $this->Mreportheroo->in_upload_report($data);
             $info="Data Report Heroo Berhasil disimpan dan foto berhasil di-upload ";
         }
         echo json_encode($info);     
     }
 
     //ajax update report heroo
-    function ajax_update_reportH(){
+    function ajax_update_report(){
         $post=$this->input->post();
-        $id = $post['id'];
         //konfigurasi upload
-        $config['upload_path'] = $this->upload_path;
-        $config['allowed_types'] = 'jpeg|gif|jpg|png|bmp';
-        $config['max_size'] = 1000;
-        $config['max_width'] = 1024;
-        $config['max_height'] = 768;
-        
-        //random name
-        $configLogo['encrypt_name'] = TRUE;
-        $new_name = time()."-".$_FILES["foto"]['name'];
-        $config['file_name'] = $new_name;
-        $this->load->library('upload', $config);
-        $foto = 'foto';
-        $this->upload->initialize($config);
-        $file_foto=$post['foto'];
-        if (!$this->upload->do_upload($foto)) {
-                //jika tidak uplop file atau gagal upload file foto
-            $data['judul_art_katagori']=$post['jdlreport'];
-            $data['isi_art_kategori']=$post['editor1'];
-            $data['kategori']=$post['kategori'];
-            $this->Mreportheroo->edit_upload_reportH($data,$id);
+        $id = $post['id'];
+        $data['judul_art_katagori']=$post['jdlreport'];
+        $data['isi_art_kategori']=$post['editor1'];
+        $data['kategori']=$post['kategori'];
+        $img = $post['img'];
+        $foto = $post['foto'];
+
+        if ($foto=="") {
+            $this->Mreportheroo->edit_upload_report($data,$id);
             $info="Data Report Heroo Berhasil diubah";
         }else {
-            $file_data = $this->upload->data();
-                //get nama file yg di upload
-            $file_name = $file_data['file_name'];
-            $data['judul_art_katagori']=$post['jdlreport'];
-            $data['isi_art_kategori']=$post['editor1'];
-            $data['kategori']=$post['kategori'];
-            $data['gambar']=$file_name;
-            $this->Mreportheroo->edit_upload_reportH($data,$id);
+            $onephoto = $this->Mreportheroo->get_onephoto($id);
+            if ($onephoto != '' && $onephoto!=' ') {
+                unlink(FCPATH . "./assets/image/reportheroo/" . $onephoto);
+                $imageName=$onephoto;
+            } else {
+                $imageName = time().'.png';
+            }
+            //konfigurasi upload
+            list($type, $img) = explode(';', $img);
+            list(, $img)      = explode(',', $img);
+            $img = base64_decode($img);
+            file_put_contents('./assets/image/reportheroo/'.$imageName, $img);
+            $data['gambar']=$imageName;
+            $this->Mreportheroo->edit_upload_report($data,$id);
             $info="Data Report Heroo Berhasil diubah dan foto berhasil di-upload ";
         }
             //
@@ -215,6 +201,7 @@ class Reportheroo extends MX_Controller
         }
     }
 
+    // get kategori report heroo
     public function getkategori() {
         $data = $this->output
         ->set_content_type( "application/json" )
