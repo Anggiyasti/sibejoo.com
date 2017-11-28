@@ -1,3 +1,11 @@
+<!-- Start Script Matjax -->
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ showProcessingMessages: false,
+ tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+});
+</script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
@@ -46,7 +54,7 @@
                 <article class="post clearfix mb-0">
                   <div class="entry-header">
                     <?php if (!$key['gambar']==""): ?>
-                      <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive img-fullwidth"> </div>
+                      <div class="post-thumb thumb"> <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive img-fullwidth" style="margin: 0 auto;"> </div>
                     <?php endif ?>
 
                   </div>

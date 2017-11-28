@@ -1,3 +1,11 @@
+<!-- Start Script Matjax -->
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ showProcessingMessages: false,
+ tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+});
+</script>
+<script type="text/javascript" src="<?= base_url('assets/plugins/MathJax-master/MathJax.js?config=TeX-MML-AM_HTMLorMML') ?>"></script>
 <!-- Start main-content -->
 <div class="main-content" id="artikel">
   <!-- Section: inner-header -->
@@ -55,7 +63,7 @@
                         </div>
                         <div class="entry-content border-1px p-20 pr-10">
                           <?php if (!$key['gambar']==""): ?>
-                            <div class="post-thumb thumb">  <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>"  alt="" class="img-responsive text-center"> </div>
+                            <div class="post-thumb thumb">  <img src="<?= base_url('./assets/image/artikel/'. $key['gambar']) ?>"  alt="" class="img-responsive" style="margin: 0 auto"> </div>
                           <?php endif ?>
                           <br>
                           <div class="entry-meta media mt-0 no-bg no-border">

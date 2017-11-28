@@ -1849,7 +1849,7 @@ class Banksoal extends MX_Controller {
     public function listsoalSub($subbab='')
     {
         // code u/pagination
-       $this->load->database();
+        $this->load->database();
         $jumlah_data = $this->Mbanksoal->jumlah_soal_sub($subbab);
 
         
@@ -1902,7 +1902,7 @@ class Banksoal extends MX_Controller {
     public function listsoalBab($bab="")
     {
         // code u/pagination
-       $this->load->database();
+        $this->load->database();
         $jumlah_data = $this->Mbanksoal->jumlah_soal_bab($bab);
 
         
@@ -1954,7 +1954,7 @@ class Banksoal extends MX_Controller {
     public function listsoalMp($mpID='')
     {
         // code u/pagination
-       $this->load->database();
+        $this->load->database();
         $jumlah_data = $this->Mbanksoal->jumlah_soal_mp($mpID);
         
         $config['base_url'] = base_url().'index.php/banksoal/listsoalMp/'.$mpID.'/';
@@ -2006,7 +2006,7 @@ class Banksoal extends MX_Controller {
      public function listsoalTingkat($tingkatID="")
     {
         // code u/pagination
-       $this->load->database();
+        $this->load->database();
         $jumlah_data = $this->Mbanksoal->jumlah_soal_tingkat($tingkatID);
         
         $config['base_url'] = base_url().'index.php/banksoal/listsoalTingkat/'.$tingkatID.'/';
@@ -2108,7 +2108,8 @@ class Banksoal extends MX_Controller {
     //search autocomplete soal berdasarkan judul soal
     public function autocomplete()
     {
-     $keyword = $_GET['term'];
+     $key= $_GET['term'];
+     $keyword=urldecode($key);
         // cari di database
      $data = $this->Mbanksoal->get_cari($keyword);  
 
@@ -2125,19 +2126,16 @@ class Banksoal extends MX_Controller {
     echo json_encode($arr);
   }
 
-  // cari soal berdasarkan nama
-  public function cari($keyget='')
-  {
-      // code u/pagination
-       $this->load->database();
-           $keyword = $this->input->post('keyword');
-           if ($keyget!='') {
-               $keyword=urldecode($keyget);
-           }
-        $datCari = $this->Mbanksoal->get_cari2($keyword);
+    // cari soal berdasarkan judul soal
+    public function cari($keyget='')
+    {
+    
+        // code u/pagination
+        $this->load->database();
+        $keyword=urldecode($keyget);
         $jumlah_data = $this->Mbanksoal->jumlah_soalCari($keyword);
        
-        $config['base_url'] = base_url().'index.php/banksoal/cari/';
+        $config['base_url'] = base_url().'index.php/banksoal/cari/'.$keyword.'/';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 10;
 
@@ -2175,11 +2173,10 @@ class Banksoal extends MX_Controller {
         $config['last_tag_close'] = '</li>';
          // END Customizing the last_link Link
         
-        $from = $this->uri->segment(3);
+        $from = $this->uri->segment(4);
         $this->pagination->initialize($config);     
         $list = $this->Mbanksoal->data_soalCari($keyword,$config['per_page'],$from);
 
-        // var_dump($list);
         $this->tampSoal($list);
 
   }
