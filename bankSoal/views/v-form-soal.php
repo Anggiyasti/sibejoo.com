@@ -950,8 +950,7 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
 <!-- END button show hide pembahasan -->
 
 <!-- Start Form Pembahsan -->
-<div class="form-group pembahasan" hidden="
-true">
+<div class="form-group pembahasan" hidden="true">
 <!-- Start Penel Pembahasan -->
 <div class="panel panel-teal">
   <div class="panel-heading">
@@ -1578,7 +1577,7 @@ true">
     </script>
     <!-- End script untuk preview gambar soal -->
     <!-- start script js validation extension -->
-    <script type="text/javascript">
+<script type="text/javascript">
 // validasi upload gambar 
 function ValidateSingleInput(oInput) {
   var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
