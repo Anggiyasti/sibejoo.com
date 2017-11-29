@@ -26,13 +26,10 @@
           <h3 class="semibold mt0 text-accent text-center"></h3>
         </div>
         <div class="modal-body">
-          <p id="isi-heroo">
-            
-          </p>
           <div id="gambar">
-            
           </div>
-
+          <p id="isi-heroo">
+          </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -60,8 +57,8 @@
                     <tr>
                       <th>No</th>
                       <th>Judul Report Heroo</th>
-                      <th>Isi Report Heroo</th>
                       <th>Kategori</th>
+                      <th>Isi Report Heroo</th>
                       <th>Gambar</th>
                       <th width="15%">Aksi</th>
                     </tr>
@@ -144,8 +141,9 @@ function detail(id){
 
   $('h3.semibold').html(data.judul_art_katagori);
   $('#isi-heroo').html(data.isi_art_kategori);     
-  if (gambar!="") {
-    $('#gambar').html('<img src="' + gambar + '">');  
+  if (data.gambar==''|| data.gambar==' ' || data.gambar==null) {
+  } else {
+    $('#gambar').html('<img src="' +gambar+ '">');  
   }
   MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mdetailheroo"]);
   $('#mdetailheroo').modal('show');

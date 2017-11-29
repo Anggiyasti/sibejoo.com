@@ -58,6 +58,7 @@ class Mreportheroo extends CI_Model
         return $query->result_array();
     }
 
+    // get gambar by id
     public function get_onephoto($id)
     {
       $this->db->select('gambar');
@@ -67,6 +68,11 @@ class Mreportheroo extends CI_Model
       return $query->result_array()[0]['gambar'];
     }
 
-}
+    // update report heroo
+    public function update_foto_heroo($data,$id) {
+        $this->db->where('id_art', $id);
+        $this->db->update('tb_report_heroo', $data);
+    }
 
- ?>
+}
+?>

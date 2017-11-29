@@ -49,7 +49,7 @@
             <div class="col-md-9">
               <div class="portfolio-filter font-alt align-center">
                 <div class="btn-group" data-toggle="buttons" > 
-<label class="btn cws-button btn btn-default small" onclick="semua()"> 
+                <label class="btn cws-button btn btn-default small" onclick="semua()"> 
                   <input type="radio" name="options"  autocomplete="off" checked="true" title="Tampilkan Semua Jenis Video"> All
                 </label>
 
@@ -115,7 +115,7 @@
                           </div>
                         </div>
                         <div class="entry-content border-1px p-20 pr-10">
-                          <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive"> <br>
+                          <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive" style="margin: 0 auto"> <br>
                           <div class="entry-meta media mt-0 no-bg no-border">
                             <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                               <ul title="Dibuat Pada : <?=date('M - d - Y', strtotime($key['date_created'])) ?>">
@@ -146,7 +146,7 @@
                           </div>
                         </div>
                         <div class="entry-content border-1px p-20 pr-10">
-                          <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive img-fullwidth"> <br>
+                          <img src="<?= base_url('./assets/image/reportheroo/'. $key['gambar']) ?>" alt="" class="img-responsive img-fullwidth" style="margin: 0 auto"> <br>
                           <div class="entry-meta media mt-0 no-bg no-border">
                             <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
                               <ul title="Dibuat Pada : <?=date('M - d - Y', strtotime($key['date_created'])) ?>">

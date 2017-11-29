@@ -79,7 +79,7 @@ class Reportheroo extends MX_Controller
             if ($foto!=' ') {
                 $filefoto=base_url().'assets/image/reportheroo/'.$foto;
             } else {
-                $filefoto=$this->generateavatar->generate_first_letter_avtar_url($judul_artikel);;
+                $filefoto=$this->generateavatar->generate_first_letter_avtar_url($nama);;
             }
             $kat= $item ['kategori'];
             if ($kat ==1) {
@@ -91,7 +91,7 @@ class Reportheroo extends MX_Controller
             elseif ($kat ==3) {
                 $isikat = 'Soon Project';    
             }
-
+            
             $isiart = $item ['isi_art_kategori'];
             $row = array();
             $row[] = $no;
@@ -206,6 +206,19 @@ class Reportheroo extends MX_Controller
         $data = $this->output
         ->set_content_type( "application/json" )
         ->set_output( json_encode( $this->Mreportheroo->get_kategori() ) ) ;
+    }
+
+    // hapus gambar report heroo
+    public function hapus_foto()
+    {
+        if ($this->input->post()) {
+            $post = $this->input->post();
+            $id=$post['id'];
+            $data['gambar']="";
+            $this->del_img_heroo($id);
+            $this->Mreportheroo->update_foto_heroo($data,$id);
+            echo json_encode("Berhasil");
+        }
     }
 
 }

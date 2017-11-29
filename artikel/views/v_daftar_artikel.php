@@ -26,13 +26,10 @@
           <h3 class="semibold mt0 text-accent text-center"></h3>
         </div>
         <div class="modal-body">
-          <p id="isi-artikel">
-            
-          </p>
           <div id="gambar">
-            
           </div>
-
+          <p id="isi-artikel">
+          </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -143,7 +140,8 @@ function detail(id){
 
   $('h3.semibold').html(data.judul_artikel);
   $('#isi-artikel').html(data.isi_artikel);     
-  if (gambar!="") {
+  if (data.gambar==""||data.gambar==null) {
+  } else {
     $('#gambar').html('<img src="' + gambar + '">');  
   }
   MathJax.Hub.Queue(["Typeset",MathJax.Hub,"mdetailartikel"]);
