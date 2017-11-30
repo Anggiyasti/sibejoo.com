@@ -33,7 +33,7 @@ class Mhomepage extends CI_Model {
 
     public function get_artikel_pag($perpage,$page){
         $this->db->select('*');
-        $this->db->order_by("date_created", "desc");
+        // $this->db->from('tb_artikel');
         $tampil = $this->db->get('tb_artikel',$perpage,$page);
         return $tampil->result_array();
     }
@@ -74,8 +74,8 @@ class Mhomepage extends CI_Model {
 
     public function get_report_heroo_peg($perpage,$page){
         $this->db->select('*');
+        // $this->db->from('tb_report_heroo her');
         $this->db->join('tb_kategori kat','her.kategori = kat.id_kategori');
-        $this->db->order_by("date_created", "desc");
         $tampil = $this->db->get('tb_report_heroo her',$perpage,$page);
         return $tampil->result_array();
     }

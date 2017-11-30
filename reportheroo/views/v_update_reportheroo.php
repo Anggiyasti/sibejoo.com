@@ -15,6 +15,7 @@
           <!-- panel heading/header -->
           <div class="panel-heading">
             <input type="text" name="id" value="<?= $RH['id_art'] ?>" hidden>
+            <input type="text" name="tamp_gambar" value="<?= $RH['gambar'] ?>" hidden>
             <h3 class="panel-title">Form Report Heroo</h3>
           </div>
           <!--/ panel heading/header -->                           
@@ -53,11 +54,13 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-2">FOTO</label>
+              <label class="col-sm-2">GAMBAR</label>
               <div class="col-sm-10">
                 <label for="filefoto" class="btn btn-sm btn-default filefoto">
                   Pilih Gambar
                 </label>
+                <a href="javascript:void(0)" onclick="reset_image()" class="btn btn-sm btn-default reset" style="display: none;">Reset</a>
+                <a href="javascript:void(0)" onclick="delete_image()" class="btn btn-sm btn-default hapus">Hapus Gambar</a>
                 <input style="display:none;" type="file" id="filefoto" name="foto" onchange="cek_fileFoto(this,z='');"  data-parsley-required required/>
                 <br><br><br>
                 <span id="pesan"></span>
@@ -77,7 +80,7 @@
                 <?php else : ?>
                   <!-- START Statistic Widget -->
                   <div class="table-layout animation delay animating fadeInDown  prv_foto mb0" align="center">
-                    <img id="prevfile" class="img-tumbnail logo" src="<?=base_url()?>assets\image\avatar\default.png" width="50%"  >
+                    <img id="prevfile" class="img-tumbnail logo" src="" width="50%"  >
                   </div>
                   <!--/ END Statistic Widget -->
                 <?php endif ?>
@@ -115,13 +118,13 @@ var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
 $uploadCrop = $('#crop-heroo').croppie({
     enableExif: true,
     viewport: {
-        width: 700,
-        height: 350,
+        width: 750,
+        height: 500,
         type: 'square'
     },
     boundary: {
         width: 950,
-        height: 500
+        height: 600
     },
     enableZoom:true,
     mouseWheelZoom:true,
@@ -139,6 +142,8 @@ $('#filefoto').on('change', function () {
     reader.readAsDataURL(this.files[0]);
     $('.prv_foto').hide();
     $('#crop-heroo').show();
+    $('.reset').show();
+    $('.hapus').hide();
 });
 
 $('.upload-heroo').on('click', function (ev) {
@@ -298,4 +303,51 @@ function updateReport(img){
           return true;
   }
 
+  // reset image
+function reset_image() {
+  foto=$('[name=foto]').val("");
+  $('.upload-heroo').removeClass('ready');
+    $('#crop-heroo').val(''); // this will clear the input val.
+    $uploadCrop.croppie('bind', {
+        url : ''
+    }).then(function () {
+        // console.log('reset complete');
+    });
+}
+
+function delete_image() {
+  id = $('input[name=id]').val();
+  url = base_url+'reportheroo/hapus_foto';
+  swal({
+    title: "Yakin akan hapus gambar?",
+    text: "Anda tidak dapat membatalkan ini.",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Ya,Tetap hapus!",
+    closeOnConfirm: false
+  },
+    function(){
+    $.ajax({
+      url:url,
+      data:{id:id},
+      dataType:"TEXT",
+      type:"POST",
+      success:function(Data){
+        swal("Terhapus!", "Foto berhasil dihapus.", "success");
+        $('.prv_foto').hide();
+        $('.hapus').hide();
+      },
+        error:function(){         
+      }
+    });
+  }); 
+}
+
+$( document ).ready(function() {
+  gambar = $('input[name=tamp_gambar]').val();
+  if (gambar==''||gambar==null) {
+    $('.hapus').hide();
+  } 
+});
 </script>

@@ -58,6 +58,7 @@
                 <label for="filefoto" class="btn btn-sm btn-default filefoto">
                   Pilih Gambar
                 </label>
+                <a href="javascript:void(0)" onclick="reset_image()" class="btn btn-sm btn-default">Reset</a>
                 <input style="display:none;" type="file" id="filefoto" name="foto" onchange="cek_fileFoto(this,z='');" />
                 <br><br><br>
                 <span id="pesan"></span>
@@ -113,13 +114,13 @@ var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
 $uploadCrop = $('#crop-heroo').croppie({
     enableExif: true,
     viewport: {
-        width: 700,
-        height: 350,
+        width: 750,
+        height: 500,
         type: 'square'
     },
     boundary: {
         width: 950,
-        height: 500
+        height: 600
     },
     enableZoom:true,
     mouseWheelZoom:true,
@@ -155,6 +156,7 @@ function savereport(img){
         foto: $('[name=foto]').val(),
         img:img
       }
+      console.log(datas);
         //id fileinput
         var elementId = "filefoto";
         if (datas.jdlreport == "" || datas.editor1 == "" || datas.kategori == "") {
@@ -267,6 +269,18 @@ function cek_fileFoto(oInput,z='') {
     }
   }
   return true;
+}
+
+// reset image
+function reset_image() {
+  foto=$('[name=foto]').val("");
+  $('.upload-heroo').removeClass('ready');
+    $('#crop-heroo').val(''); // this will clear the input val.
+    $uploadCrop.croppie('bind', {
+        url : ''
+    }).then(function () {
+        // console.log('reset complete');
+    });
 }
 
 </script>

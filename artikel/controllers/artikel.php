@@ -49,7 +49,7 @@
 
     // fungsi view artikel masuk ke update
     public function update_artikel($id){
-        $data['judul_halaman'] = "Artikel";
+        $data['judul_halaman'] = "Update Artikel";
         $data['files'] = array(
             APPPATH . 'modules/artikel/views/v_update_artikel.php',
             );
@@ -194,5 +194,17 @@
         }
     }
 
+    // hapus gambar artikel
+    public function hapus_gambar()
+    {
+        if ($this->input->post()) {
+            $post = $this->input->post();
+            $id=$post['id'];
+            $data['gambar']="";
+            $this->del_img_artikel($id);
+            $this->m_artikel->edit_upload_artikel($data,$id);
+            echo json_encode("Berhasil");
+        }
+    }
  }
  ?>
