@@ -1548,31 +1548,32 @@ Preview2.callback.autoReset = true;  // make sure it can run more than once
           });
        // cek size file video
 
-       $('#file').on('change',function () {
-        var file = this.files[0];
-        var reader = new FileReader();
-        var size=Math.round(file.size/1024);
-        // start pengecekan ukuran file
-        if (size>=90000) {
-          $('#e_size_video').modal('show');
-          $('.prv_video').hide();
-        }else{
-          reader.onload = viewer.load;
-          reader.readAsDataURL(file);
-          viewer.setProperties(file);
-        }
+      //  $('#file').on('change',function () {
         
-      });
-       var viewer = {
-        load : function(e){
-          $('#preview').attr('src', e.target.result);
-        },
-        setProperties : function(file){
-          $('#filename').text(file.name);
-          $('#filetype').text(file.type);
-          $('#filesize').text(Math.round(file.size/1024));
-        },
-      }
+      //   var file = this.files[0];
+      //   var reader = new FileReader();
+      //   var size=Math.round(file.size/1024);
+      //   // start pengecekan ukuran file
+      //   if (size>=90000) {
+      //     $('#e_size_video').modal('show');
+      //     $('.prv_video').hide();
+      //   }else{
+      //     reader.onload = viewer.load;
+      //     reader.readAsDataURL(file);
+      //     viewer.setProperties(file);
+      //   }
+        
+      // });
+      //  var viewer = {
+      //   load : function(e){
+      //     $('#preview').attr('src', e.target.result);
+      //   },
+      //   setProperties : function(file){
+      //     $('#filename').text(file.name);
+      //     $('#filetype').text(file.type);
+      //     $('#filesize').text(Math.round(file.size/1024));
+      //   },
+      // }
 
     </script>
     <!-- End script untuk preview gambar soal -->

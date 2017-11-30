@@ -23,8 +23,8 @@
               <p class="text-danger nm">*Untuk penulisan <b>kode soal</b> silahkan ditentukan sendiri tetapi harus <b>unik</b> dan <b>memiliki arti tersendiri</b> agar mempermudah pengelompokan data dan pencarian soal!</p>
             </div>
           </div>
-          <div  class="form-group">
-            <label class="col-sm-2 control-label">Tingkat</label>
+          <div  class="form-group pl10">
+            <label class="col-sm-1 control-label">Tingkat</label>
             <div class="col-sm-4">
               <select class="form-control" name="tingkat" id="tingkat" data-parsley-group="order" data-parsley-required>
                 <option value="">--Tingkat--</option>
@@ -38,7 +38,7 @@
            </div>
          </div>
 
-         <div class="form-group">
+         <div class="form-group pl10">
           <label class="col-sm-1 control-label">Bab</label>
           <div class="col-sm-4">
             <select class="form-control" name="bab" id="bab" >
@@ -55,15 +55,15 @@
         </div>
         <!-- END Drop Down depeden -->
 
-        <div class="form-group">
-          <label class="control-label col-sm-1 pl0 ml0" >Kode Soal</label>
+        <div class="form-group pl10">
+          <label class="control-label col-sm-1 pl0" >Kode Soal</label>
           <div class="col-sm-10">
             <input type="text" name="judul" class="form-control" value="<?php echo set_value('judul'); ?>" >
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2 ">Kesulitan</label>
-          <div class="col-sm-8">
+        <div class="form-group pl10">
+          <label class="control-label col-sm-1 pl0">Kesulitan</label>
+          <div class="col-sm-10">
             <select name="kesulitan" class="form-control">
               <option value="0">Mudah</option>
               <option value="1">Sedang</option>
@@ -71,9 +71,9 @@
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2">Sumber</label>
-          <div class="col-sm-8">
+        <div class="form-group pl10">
+          <label class="control-label col-sm-1 pl0">Sumber</label>
+          <div class="col-sm-10">
             <input type="text" name="sumber" class="form-control" id="sumberp" >
           </div>
         </div>
@@ -95,23 +95,16 @@
         <!-- upload audio -->
         <div class="form-group">
           <label class="control-label col-sm-2">Audio</label>
-          <div class="col-sm-8">
-            <div class="col-sm-12 hidden-audio " hidden="true"> 
-              <div class="col-md-5 left"> 
-                <h6>Name: <span id="filenameAudio"></span></h6> 
-              </div> 
-              <div class="col-md-4 left"> 
-                <h6>Size: <span id="filesizeAudio"></span>Kb</h6> 
-              </div> 
-              <div class="col-md-3 bottom"> 
-                <h6>Type: <span id="filetypeAudio"></span></h6> 
-              </div>
-            </div>
-            <div class="col-sm-12 hidden-audio" hidden="true">
-              <audio class="col-sm-12" id="previewAudio" src="" type="audio/mpeg" controls >
+          <div class="col-sm-8 pl0">
+            <div class="col-sm-12 hidden-audio mb10 pl0" hidden="true">
+              <audio class="col-sm-12" id="preview-1udio" src="" type="audio/mpeg" controls >
               </audio>
             </div>
-            <div class="col-sm-6 mt10">
+            <div class="col-sm-12 hidden-audio mb10" hidden="true"> 
+               <p class="text-primary nm">Name: <span id="filenameAudio">-</span> |
+               Size: <span id="filesizeAudio">-</span>Kb | Type: <span id="filetypeAudio">-</span></p> 
+            </div>
+            <div class="col-sm-6">
               <label for="fileAudio" class="btn btn-sm btn-default">
                 Pilih Audio
               </label>
@@ -124,22 +117,15 @@
         <!-- upload img soal  -->
         <div class="form-group">
           <label class="control-label col-sm-2">Gambar Soal</label>
-          <div class="col-sm-8 " >
-            <div class="col-sm-12">
-              <img id="previewSoal" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" />
+          <div class="col-sm-8 pl0">
+            <div class="col-sm-12 preview-soal" hidden="true">
+              <img style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" />
             </div>    
-            <div class="col-sm-12">
-              <div class="col-md-5 left"> 
-                <h6>Name: <span id="filenameSoal"></span></h6> 
-              </div> 
-              <div class="col-md-4 left"> 
-                <h6>Size: <span id="filesizeSoal"></span>Kb</h6> 
-              </div> 
-              <div class="col-md-3 bottom"> 
-                <h6>Type: <span id="filetypeSoal"></span></h6> 
-              </div>
+            <div class="col-sm-12 preview-soal mt5 mb5" hidden="true">
+               <p class="text-primary nm">Name: <span id="filenameSoal">-</span> |
+               Size: <span id="filesizeSoal">-</span>Kb | Type: <span id="filetypeSoal">-</span></p> 
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" >
               <label for="fileSoal" class="btn btn-sm btn-default">
                 Pilih Gambar
               </label>
@@ -210,16 +196,16 @@
         </label>
         <div class="col-md-10 pl0"  >
           <!-- input gambar pilihan A -->
-          <div class="col-sm-12 pt0 mb10 pilgambar" >
+          <div class="col-sm-12 pt0 mb10 pilgambar" hidden="true">
             <!-- preview gambar soal pilihan A -->
             <div class="col-sm-12 pl0 mb10 info-img-1" hidden="true">
-              <img id="previewA" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
+              <img id="preview-1" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
             </div>
             <!-- /preview gambar soal pilihan A -->                                     
             <!-- info file gambar soal pilihan A {nama file,ukuran, dan type file} -->
             <div class="col-sm-12 pl0 mb5 info-img-1" hidden="true">
-                <p class="text-primary nm">Name: <span id="filenameA">-</span> |
-               Size: <span id="filesizeA">-</span>Kb | Type: <span id="filetypeA">-</span></p> 
+                <p class="text-primary nm">Name: <span id="filename-1">-</span> |
+               Size: <span id="filesizeA">-</span>Kb | Type: <span id="filetype-1">-</span></p> 
             </div>
             <!-- /info file gambar soal pilihan A-->
             <!-- button upload file gambar soal pilihan A  -->
@@ -230,7 +216,7 @@
               <input style="display:none;" type="file" id="fileA" name="gambar1" onchange="ValidateSingleInput(this);"/>
             </div>
             <!-- /button upload file gambar soal pilihan A  -->
-              <!-- button upload file gambar soal pilihan A  -->
+            <!-- button upload file gambar soal pilihan A  -->
             <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-re-1" hidden="true">
              <span class="btn btn-danger" onclick="remove_img(1);">Remove Gambar</span>
             </div>
@@ -247,170 +233,170 @@
       <!-- END input jawaban A -->
       <!-- Start input jawaban B -->
       <div class="form-group">
-        <label class="control-label col-sm-2">
-          Pilihan B
+        <label class="control-label col-md-2" >
+         Pilihan B
         </label>
-        <!-- Start input text B -->
-        <div class="col-sm-8 piltext">
-          <textarea name="b" class="form-control" id="editor-2"></textarea>
-        </div>
-        <!-- END input text B -->
-        <!-- input gambar pilihan B -->
-        <div class="col-sm-8 pilgambar" hidden="true">
-          <!-- preview gambar soal pilihan B -->
-          <div class="col-sm-12">
-            <img id="previewB" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" width="" />
-          </div>
-           <!-- /preview gambar soal pilihan B -->                                     
-          <!-- info file gambar soal pilihan B {nama file,ukuran, dan type file} -->
-          <div class="col-sm-12">
-            <div class="col-md-5 left"> 
-              <h6>Name: <span id="filenameB"></span></h6> 
-            </div> 
-            <div class="col-md-4 left"> 
-              <h6>Size: <span id="filesizeB"></span>Kb</h6> 
-            </div> 
-            <div class="col-md-3 bottom"> 
-              <h6>Type: <span id="filetypeB"></span></h6> 
+        <div class="col-md-10 pl0"  >
+          <!-- input gambar pilihan B -->
+          <div class="col-sm-12 pt0 mb10 pilgambar" hidden="true">
+            <!-- preview gambar soal pilihan B -->
+            <div class="col-sm-12 pl0 mb10 info-img-2" hidden="true">
+              <img id="preview-2" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
             </div>
+            <!-- /preview gambar soal pilihan B -->                                     
+            <!-- info file gambar soal pilihan B {nama file,ukuran, dan type file} -->
+            <div class="col-sm-12 pl0 mb5 info-img-2" hidden="true">
+                <p class="text-primary nm">Name: <span id="filename-2">-</span> |
+               Size: <span id="filesize-2">-</span>Kb | Type: <span id="filetype-2">-</span></p> 
+            </div>
+            <!-- /info file gambar soal pilihan B-->
+            <!-- button upload file gambar soal pilihan B  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-up-2">
+              <label for="fileB" class="btn btn-sm btn-default">
+                Pilih Gambar
+              </label>
+              <input style="display:none;" type="file" id="fileB" name="gambar2" onchange="ValidateSingleInput(this);"/>
+            </div>
+            <!-- /button upload file gambar soal pilihan B  -->
+            <!-- button upload file gambar soal pilihan B  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-re-2" hidden="true">
+             <span class="btn btn-danger" onclick="remove_img(2);">Remove Gambar</span>
+            </div>
+            <!-- /button upload file gambar soal pilihan B  -->
           </div>
-           <!-- /info file gambar soal pilihan B-->
-           <!-- button upload file gambar soal pilihan B  -->
-          <div class="col-sm-12">
-            <label for="fileB" class="btn btn-sm btn-default">
-              Pilih Gambar
-            </label>
-            <input style="display:none;" type="file" id="fileB" name="gambar2" onchange="ValidateSingleInput(this);"/>
+          <!-- /input gambar pilihan B -->
+          <!-- Start input text B -->
+          <div class="col-sm-12 piltext mt0">
+            <textarea name="b" class="form-control" id="editor-2"></textarea>
           </div>
-           <!-- /button upload file gambar soal pilihan B  -->
+          <!-- END input text B --> 
         </div>
-        <!-- /input gambar pilihan B -->
       </div>
       <!-- END input jawaban B -->
       <!-- Start input jawaban C -->
       <div class="form-group">
-        <label class="control-label col-sm-2">
-          Pilihan C
+        <label class="control-label col-md-2" >
+         Pilihan C
         </label>
-        <!-- Start input text C -->
-        <div class="col-sm-8 piltext">
-          <textarea name="c" class="form-control" id="editor-3"></textarea>
-        </div>
-        <!-- END input text C -->
-        <!-- input gambar pilihan C -->
-        <div class="col-sm-8 pilgambar" hidden="true">
-          <!-- preview gambar soal pilihan C -->
-          <div class="col-sm-12">
-            <img id="previewC" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" width="" />
-          </div>
-          <!-- /preview gambar soal pilihan C -->                                     
-          <!-- info file gambar soal pilihan C {nama file,ukuran, dan type file} -->
-          <div class="col-sm-12">
-            <div class="col-md-5 left"> 
-              <h6>Name: <span id="filenameC"></span></h6> 
-            </div> 
-            <div class="col-md-4 left"> 
-              <h6>Size: <span id="filesizeC"></span>Kb</h6> 
-            </div> 
-            <div class="col-md-3 bottom"> 
-              <h6>Type: <span id="filetypeC"></span></h6> 
+        <div class="col-md-10 pl0"  >
+          <!-- input gambar pilihan C -->
+          <div class="col-sm-12 pt0 mb10 pilgambar" hidden="true">
+            <!-- preview gambar soal pilihan C -->
+            <div class="col-sm-12 pl0 mb10 info-img-3" hidden="true">
+              <img id="preview-3" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
             </div>
+            <!-- /preview gambar soal pilihan C -->                                     
+            <!-- info file gambar soal pilihan C {nama file,ukuran, dan type file} -->
+            <div class="col-sm-12 pl0 mb5 info-img-3" hidden="true">
+                <p class="text-primary nm">Name: <span id="filename-3">-</span> |
+               Size: <span id="filesize-3">-</span>Kb | Type: <span id="filetype-3">-</span></p> 
+            </div>
+            <!-- /info file gambar soal pilihan C-->
+            <!-- button upload file gambar soal pilihan C  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-up-3">
+              <label for="fileC" class="btn btn-sm btn-default">
+                Pilih Gambar
+              </label>
+              <input style="display:none;" type="file" id="fileC" name="gambar3" onchange="ValidateSingleInput(this);"/>
+            </div>
+            <!-- /button upload file gambar soal pilihan C  -->
+            <!-- button upload file gambar soal pilihan C  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-re-3" hidden="true">
+             <span class="btn btn-danger" onclick="remove_img(3);">Remove Gambar</span>
+            </div>
+            <!-- /button upload file gambar soal pilihan C  -->
           </div>
-          <!-- /info file gambar soal pilihan C-->
-          <!-- button upload file gambar soal pilihan C  -->
-          <div class="col-sm-12">
-            <label for="fileC" class="btn btn-sm btn-default">
-              Pilih Gambar
-            </label>
-            <input style="display:none;" type="file" id="fileC" name="gambar3" onchange="ValidateSingleInput(this);"/>
+          <!-- /input gambar pilihan C -->
+          <!-- Start input text C -->
+          <div class="col-sm-12 piltext mt0">
+            <textarea name="c" class="form-control" id="editor-3"></textarea>
           </div>
-          <!-- /button upload file gambar soal pilihan C  -->
+          <!-- END input text C --> 
         </div>
-        <!-- /input gambar pilihan C -->
       </div>
       <!-- END input jawaban C -->     
       <!-- Start input jawaban D -->
-      <div class="form-group">
-        <label class="control-label col-sm-2">
-          Pilihan D
+            <div class="form-group">
+        <label class="control-label col-md-2" >
+         Pilihan D
         </label>
-        <!-- Start input text D -->
-        <div class="col-sm-8 piltext">
-          <textarea name="d" class="form-control" id="editor-4"></textarea>
-        </div>
-        <!-- END input text D -->
-        <!-- input gambar pilihan D -->
-        <div class="col-sm-8 pilgambar" hidden="true">
-          <!-- preview gambar soal pilihan D -->
-          <div class="col-sm-12">
-            <img id="previewD" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" width="" />
-          </div>
-          <!-- /preview gambar soal pilihan D -->                                     
-          <!-- info file gambar soal pilihan D {nama file,ukuran, dan type file} -->
-          <div class="col-sm-12">
-            <div class="col-md-5 left"> 
-              <h6>Name: <span id="filenameD"></span></h6> 
-            </div> 
-            <div class="col-md-4 left"> 
-              <h6>Size: <span id="filesizeD"></span>Kb</h6> 
-            </div> 
-            <div class="col-md-3 bottom"> 
-              <h6>Type: <span id="filetypeD"></span></h6> 
+        <div class="col-md-10 pl0"  >
+          <!-- input gambar pilihan D -->
+          <div class="col-sm-12 pt0 mb10 pilgambar" hidden="true">
+            <!-- preview gambar soal pilihan D -->
+            <div class="col-sm-12 pl0 mb10 info-img-4" hidden="true">
+              <img id="preview-4" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
             </div>
+            <!-- /preview gambar soal pilihan D -->                                     
+            <!-- info file gambar soal pilihan D {nama file,ukuran, dan type file} -->
+            <div class="col-sm-12 pl0 mb5 info-img-4" hidden="true">
+                <p class="text-primary nm">Name: <span id="filename-4">-</span> |
+               Size: <span id="filesize-4">-</span>Kb | Type: <span id="filetype-4">-</span></p> 
+            </div>
+            <!-- /info file gambar soal pilihan D-->
+            <!-- button upload file gambar soal pilihan D  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-up-4">
+              <label for="fileD" class="btn btn-sm btn-default">
+                Pilih Gambar
+              </label>
+              <input style="display:none;" type="file" id="fileD" name="gambar4" onchange="ValidateSingleInput(this);"/>
+            </div>
+            <!-- /button upload file gambar soal pilihan D  -->
+            <!-- button upload file gambar soal pilihan D  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-re-4" hidden="true">
+             <span class="btn btn-danger" onclick="remove_img(4);">Remove Gambar</span>
+            </div>
+            <!-- /button upload file gambar soal pilihan D  -->
           </div>
-          <!-- /info file gambar soal pilihan D-->
-          <!-- button upload file gambar soal pilihan D  -->
-          <div class="col-sm-12">
-            <label for="fileD" class="btn btn-sm btn-default">
-              Pilih Gambar
-            </label>
-            <input style="display:none;" type="file" id="fileD" name="gambar4" onchange="ValidateSingleInput(this);"/>
+          <!-- /input gambar pilihan D -->
+          <!-- Start input text D -->
+          <div class="col-sm-12 piltext mt0">
+            <textarea name="d" class="form-control" id="editor-4"></textarea>
           </div>
-          <!-- /button upload file gambar soal pilihan D  -->
+          <!-- END input text D --> 
         </div>
-        <!-- /input gambar pilihan D -->
       </div>
       <!-- END input jawaban D -->
        <!-- Start input jawaban E -->
       <div class="form-group" id="pilihan">
-        <label class="control-label col-sm-2">
-          Pilihan E
+        <label class="control-label col-md-2" >
+         Pilihan E
         </label>
-        <!-- Start input text E -->
-        <div class="col-sm-8 piltext">
-          <textarea name="e" class="form-control" id="editor-5"></textarea>
-        </div>
-        <!-- END input text E -->
-        <!-- input gambar pilihan E -->
-        <div class="col-sm-8 pilgambar" hidden="true">
-          <!-- preview gambar soal pilihan E -->
-          <div class="col-sm-12">
-            <img id="previewE" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" width="" />
-          </div>
-          <!-- /preview gambar soal pilihan E -->                                     
-          <!-- info file gambar soal pilihan E {nama file,ukuran, dan type file} -->
-          <div class="col-sm-12">
-            <div class="col-md-5 left"> 
-              <h6>Name: <span id="filenameE"></span></h6> 
-            </div> 
-            <div class="col-md-4 left"> 
-              <h6>Size: <span id="filesizeE"></span>Kb</h6> 
-            </div> 
-            <div class="col-md-3 bottom"> 
-              <h6>Type: <span id="filetypeE"></span></h6> 
+        <div class="col-md-10 pl0"  >
+          <!-- input gambar pilihan E -->
+          <div class="col-sm-12 pt0 mb10 pilgambar" hidden="true">
+            <!-- preview gambar soal pilihan E -->
+            <div class="col-sm-12 pl0 mb10 info-img-5" hidden="true">
+              <img id="preview-5" style="max-width: 497px; max-height: 381px;  " class="rounded" src="" alt="" width="" />
             </div>
+            <!-- /preview gambar soal pilihan E -->                                     
+            <!-- info file gambar soal pilihan E {nama file,ukuran, dan type file} -->
+            <div class="col-sm-12 pl0 mb5 info-img-5" hidden="true">
+                <p class="text-primary nm">Name: <span id="filename-5">-</span> |
+               Size: <span id="filesize-5">-</span>Kb | Type: <span id="filetype-5">-</span></p> 
+            </div>
+            <!-- /info file gambar soal pilihan E-->
+            <!-- button upload file gambar soal pilihan E  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-up-5">
+              <label for="fileE" class="btn btn-sm btn-default">
+                Pilih Gambar
+              </label>
+              <input style="display:none;" type="file" id="fileE" name="gambar5" onchange="ValidateSingleInput(this);"/>
+            </div>
+            <!-- /button upload file gambar soal pilihan E  -->
+            <!-- button upload file gambar soal pilihan E  -->
+            <div class="col-sm-12 ml0 pl0 pt0 mt0" id="btn-re-5" hidden="true">
+             <span class="btn btn-danger" onclick="remove_img(5);">Remove Gambar</span>
+            </div>
+            <!-- /button upload file gambar soal pilihan E  -->
           </div>
-           <!-- /info file gambar soal pilihan E-->
-           <!-- button upload file gambar soal pilihan E  -->
-          <div class="col-sm-12">
-            <label for="fileE" class="btn btn-sm btn-default">
-              Pilih Gambar
-            </label>
-            <input style="display:none;" type="file" id="fileE" name="gambar5" onchange="ValidateSingleInput(this);"/>
+          <!-- /input gambar pilihan E -->
+          <!-- Start input text E -->
+          <div class="col-sm-12 piltext mt0">
+            <textarea name="e" class="form-control" id="editor-5"></textarea>
           </div>
-           <!-- /button upload file gambar soal pilihan E  -->
+          <!-- END input text E --> 
         </div>
-        <!-- /input gambar pilihan E -->
       </div>
       <!-- END input jawaban E -->
       <!-- /pilihan jawaban -->
@@ -473,25 +459,18 @@
         <label class="control-label col-sm-2">Gambar Pembahasan</label>
         <div class="col-sm-8 ">
           <!-- Preview gambar pembahasan -->
-          <div class="col-sm-12">
-            <img id="previewPembahasan" style="max-width: 497px; max-height: 381px;  " class="img" src="" alt="" />
+          <div class="col-sm-12 pl0 mb10 info-img-pembahasan" hidden="true">
+            <img id="previewPembahasan" style="max-width: 497px; max-height: 381px;  " class="img pl0" src="" alt=""  />
           </div>
           <!-- /Preview gambar pembahasan -->
           <!--  Info file gambar pembahasan -->
-          <div class="col-sm-12">
-            <div class="col-md-5 left"> 
-              <h6>Name: <span id="filenamePembahasan"></span></h6> 
-            </div> 
-            <div class="col-md-4 left"> 
-              <h6>Size: <span id="filesizePembahasan"></span>Kb</h6> 
-            </div> 
-            <div class="col-md-3 bottom"> 
-              <h6>Type: <span id="filetypePembahasan"></span></h6> 
-            </div>
+          <div class="col-sm-12 pl0 info-img-pembahasan" hidden="true">
+             <p class="text-primary nm pb5 pl0">Name: <span id="filenamePembahasan">-</span> |
+               Size: <span id="filesizePembahasan">-</span>Kb | Type: <span id="filetypePembahasan">-</span></p> 
           </div>
           <!--  /Info file gambar pembahasan -->
           <!-- Button upload gambar pembahasan -->
-          <div class="col-sm-12">
+          <div class="col-sm-12 pl0">
             <label for="filePembahasan" class="btn btn-sm btn-default">
               Pilih Gambar
             </label>
@@ -506,10 +485,35 @@
       <div  class="form-group text-pembahasan">
           <label class="control-label col-sm-2">Pembahasan</label>
           <div class="col-sm-10">
-            <textarea  name="editor-pembahasan" class="form-control"></textarea>
+            <textarea  name="editor-pembahasan" id="editor-pembahasan" class="form-control"></textarea>
           </div>
       </div>
       <!-- End Editor Pembahasan -->
+      <!-- Start preview video pembahasan -->
+      <!-- End preview video pembahasan -->
+      <div  class="form-group prv_video pb0" style="background-color: #FDFAFA" hidden="true">
+        <div class="row"> 
+          <div class="col-md-6 col-md-offset-3" style="background-color: black;">
+            <p class="text-white text-center nm">Name: <span id="filename-vp">-</span> |
+               Size: <span id="filesize-vp">-</span>Kb | Type: <span id="filetype-vp">-</span></p> 
+          </div>
+          <div class="col-md-6 col-md-offset-3 pb10" style="background-color: #151515;">
+            <video class="img-rounded prev_mp4" src="" style="width:100%; background: #F4F0F0;" controls >
+            </video>
+            <!-- <?=base_url()?>assets/video/swwfff.swf -->
+            <div class="prev_swf-view pl0 pr0 pt0 pb0" hidden="true">
+          <embed class="img-tumbnail image prev_swf" src="" quality="high" pluginspage="http://www.macromedia.com/go/getfashplayer" type="application/x-shockwave-flash" width="100%" height="400" controls>
+          </div>
+          </div>
+          <div class="col-md-6 col-md-offset-3" style="background-color: #444343"></div>
+          <div class="col-md-6 col-md-offset-3 text-center" style="background-color: #989797;">
+            <label for="video-p" class="btn btn-sm btn-default mt5 mb5">
+            Upload Video
+          </label>
+          <input style="display:none;" type="file" id="video-p" name="video" onchange="ValidateInputVideo(this);"/>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /Wizard Container 4 -->
     <!-- Wizard Container 5 -->
@@ -519,6 +523,7 @@
         <div class="col-md-12">
           <h5 class="semibold text-primary nm">Priview Soal.</h5>
           <p class="text-muted nm">Ini adalah priview soal yag akan di tampilkan ke siswa. Untuk urutan pilihan jawaban akan menyesuaikan dengan status rendom atau tidak.</p><p class="text text-danger">*Jika <b>soal belum siap</b> digunakan mohon untuk <b>tidak di publish</b> dengan cara tidak mencentang kotak publish dibawah step ini!</p>
+          <button class="btn btn-sm btn-info" type="button" onclick="syncPreview()">Test Sync</button>
         </div>
       </div>
       <!--  background-image: url("paper.gif") -->
@@ -526,23 +531,53 @@
         <div class="panel-heading" style="background-color: #CACBCB" id="prev-header">
         <!-- here info kode soal & sumber soal -->
         </div>
-        <div class="panel-body" style="background-color: #EDEDED">
+        <!--  button sinc preview soal-->
+        <div class="panel-body" style="background-image: url('<?=base_url()?>assets/image/pattern/1.png'); background-size: 150px 200px;background-color: #0B0101; border-bottom:  2px solid #4DB6AC" hidden="true">
+          <div class="text-center">
+                      <a href="javascript:void(0)" class="ico-search3"  style="font-size: 6em; color: #2980b9;"></a>
+            <h4 class="text-primary" onclick="syncPreview()"><span>Lihat Soal</span></h4>
+          </div>
+
+        </div>
+        <!-- button sinc preview soal -->
+        <div class="panel-body pv-soal" style="background-color: #EDEDED" >
           <div class="text-center" id="prev-soal-img" hidden="true">
             <img src="" class="rounded mx-auto d-block" style="max-width: 300px; max-height: 300px;" id="previewSoal2">
             <hr>
           </div>
           <div id="prev-soal"></div>
           <ol type="A">
-            <li id="prev-pil-a"><p>asdasd</p><img src="<?=base_url('assets/image/soal/test.jpg')?>" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;" hidden="true"></li>
-            <li id="prev-pil-b"><p>asdasd</p><img src="<?=base_url('assets/image/soal/test.jpg')?>" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;" hidden="true"></li>
-            <li id="prev-pil-c"><p>asdasd</p><img src="<?=base_url('assets/image/soal/test.jpg')?>" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;" hidden="true"></li>
-            <li id="prev-pil-d"><p>asdasd</p><img src="<?=base_url('assets/image/soal/test.jpg')?>" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;" hidden="true"></li>
-            <li id="prev-pil-e"><p>asdasd</p><img src="<?=base_url('assets/image/soal/test.jpg')?>" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;" hidden="true"></li>
+            <li id="prev-pil-1" ><p class="piltext"> </p>
+              <div class="pilgambar" hidden="true">
+              <img src="" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;">
+              </div>
+            </li>
+            <li id="prev-pil-2" ><p class="piltext"> </p>
+              <div class="pilgambar" hidden="true">
+              <img src="" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;">
+              </div>
+            </li>
+            <li id="prev-pil-3" ><p class="piltext"> </p>
+              <div class="pilgambar" hidden="true">
+              <img src="" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;">
+              </div>
+            </li>
+            <li id="prev-pil-4" ><p class="piltext"> </p>
+              <div class="pilgambar" hidden="true">
+              <img src="" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;">
+              </div>
+            </li>
+            <li id="prev-pil-5" ><p class="piltext"> </p>
+              <div class="pilgambar" hidden="true">
+              <img src="" class="img-thumbnail mb5" style="max-width: 100px; max-height: 100px;">
+              </div>
+            </li>
           </ol>
           <hr>
-          <p id="prev-jawab">Jawaban yang benar adalah nininini+2*3</p>
+          <p class="text nm">Jawaban benar:</p>
+          <p id="prev-jawab"></p>
         </div>
-        <div class="panel-footer pb0 mb0" style="background-color: #CACBCB; border: 0.1px solid #82CAAB" id="prev-attr">
+        <div class="panel-footer pb0 mb0 pv-soal" style="background-color: #CACBCB; border: 0.1px solid #82CAAB" id="prev-attr">
           <!-- here info atribut soal -->
         </div>
       </div>
@@ -582,27 +617,25 @@
   var soal;
 
   $(document).ready(function () {
-    // set hide btn remove plihan jawaban
-    // $("#btn-re-1").hide();
     event_this_page();
   });
 function load_tingkat(){
-        var tingkat_id = {"tingkat_id": $('#tingkat').val()};
-      var idTingkat;
-      $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: tingkat_id,
-        url: "<?= base_url() ?>index.php/videoback/getTingkat",
-        success: function (data) {
-          $('#tingkat').html('<option value="">-- Pilih Tingkat  --</option>');
-          $.each(data, function (i, data) {
-            $('#tingkat').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
-            return idTingkat = data.id;
-          });
-
-        }
+  var tingkat_id = {"tingkat_id": $('#tingkat').val()};
+  var idTingkat;
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    data: tingkat_id,
+    url: "<?= base_url() ?>index.php/videoback/getTingkat",
+    success: function (data) {
+      $('#tingkat').html('<option value="">-- Pilih Tingkat  --</option>');
+      $.each(data, function (i, data) {
+        $('#tingkat').append("<option value='" + data.id + "'>" + data.aliasTingkat + "</option>");
+        return idTingkat = data.id;
       });
+
+    }
+  });
 }
   // set tingkat
   function event_this_page() {
@@ -614,7 +647,7 @@ function load_tingkat(){
       CKEDITOR.replace('editor-5');
       load_tingkat();
       CKEDITOR.replace( 'editor-soal' );
-      // CKEDITOR.replace( 'editor-pembahasan' );
+      CKEDITOR.replace( 'editor-pembahasan' );
       // CKEDITOR.replace('editor_piljawab');
 
       //jika ada perubahan pada dropdown tingkat maka 
@@ -673,6 +706,8 @@ function load_tingkat(){
           $('#e_size_img').modal('show');
         }else{
           $('#prev-soal-img').removeClass("hide");
+          // preview img soal
+          $(".preview-soal").show(1000);
           reader.onload = viewerSoal.load;
           reader.readAsDataURL(file);
           viewerSoal.setProperties(file);
@@ -681,7 +716,7 @@ function load_tingkat(){
       var viewerSoal = {
         load : function(e){
         //untuk di form soal
-        $('#previewSoal').attr('src', e.target.result);
+        $('.preview-soal img').attr('src', e.target.result);
         //untuk preview soal
         $('#previewSoal2').attr('src', e.target.result);
         },
@@ -692,7 +727,37 @@ function load_tingkat(){
         },
       }
       // /event untuk gambar soal
+      // Start event preview gambar Audio
+         $('#fileAudio').on('change',function () {
+           
+           var file = this.files[0];
+           var reader = new FileReader();
+           var size=Math.round(file.size/1024);
+           if (size>=50000) {
+            $('#e_size_audio').modal('show');
+            $('.hidden-audio').hide();
+          }else{
+            $('.hidden-audio').show(1000);
+            reader.onload = viewerAudio.load;
+            reader.readAsDataURL(file);
+            viewerAudio.setProperties(file);
+          }
+          
+        });
 
+         var viewerAudio = {
+          load : function(e){
+            $('#preview-1udio').attr('src', e.target.result);
+            $('#prevAudio').attr('src', e.target.result);
+          },
+          setProperties : function(file){
+            $('#filenameAudio').text(file.name);
+            $('#filetypeAudio').text(file.type);
+            $('#filesizeAudio').text(Math.round(file.size/1024));
+
+          },
+        }
+      // Start event preview gambar Audio
       // Strat  event untuk jumlah pilihan
       // jika btn empat pilihan di klik maka form pilihan jawaban e akan disembunyikan 
       $("#empatpil").click(function(){   
@@ -731,39 +796,234 @@ function load_tingkat(){
       });
       //END  event untuk pilihan jenis input  
       // Start event preview gambar pilihan A
-            $('#fileA').on('change',function () {
-              var file = this.files[0];
-              var reader = new FileReader();
-              var size=Math.round(file.size/1024);
-                 // start pengecekan ukuran file
-                 if (size>=500) {
-                  $('#e_size_img').modal('show');
-                }else{
-                  $('.info-img-1').show(1000);
-                  $('#btn-re-1').show(500);
-                  $('#btn-up-1').hide(250);
-                  reader.onload = viewerA.load;
-                  reader.readAsDataURL(file);
-                  viewerA.setProperties(file);
-                }
-                
-              });
+      $('#fileA').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+           // start pengecekan ukuran file
+           if (size>=500) {
+            $('#e_size_img').modal('show');
+          }else{
+            $('.info-img-1').show(1000);
+            $('#btn-re-1').show(500);
+            $('#btn-up-1').hide(250);
+            reader.onload = viewerA.load;
+            reader.readAsDataURL(file);
+            viewerA.setProperties(file);
+          }
+      });
+      var viewerA = {
+        load : function(e){
+          //untuk di form soal
+          $('#preview-1').attr('src', e.target.result);
+          //untuk di preview soal
+          $('#prev-pil-1 .pilgambar img').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-1').text(file.name);
+          $('#filetype-1').text(file.type);
+          $('#filesize-1').text(Math.round(file.size/1024));
+        },
+       }
+      // End event preview gambar pilihan A
+                    // Start event preview gambar pilihan B
+      $('#fileB').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+           // start pengecekan ukuran file
+           if (size>=500) {
+            $('#e_size_img').modal('show');
+          }else{
+            $('.info-img-2').show(1000);
+            $('#btn-re-2').show(500);
+            $('#btn-up-2').hide(250);
+            reader.onload = viewerB.load;
+            reader.readAsDataURL(file);
+            viewerB.setProperties(file);
+          }
+        });
 
-            var viewerA = {
-              load : function(e){
-                //untuk di form soal
-                $('#previewA').attr('src', e.target.result);
-                //untuk di preview soal
-                $('#previewA2').attr('src', e.target.result);
-              },
-              setProperties : function(file){
-                $('#filenameA').text(file.name);
-                $('#filetypeA').text(file.type);
-                $('#filesizeA').text(Math.round(file.size/1024));
-              },
-            }
-            // End event preview gambar pilihan A
+      var viewerB = {
+        load : function(e){
+          //untuk di form soal
+          $('#preview-2').attr('src', e.target.result);
+          //untuk di preview soal
+          $('#prev-pil-2 .pilgambar img').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-2').text(file.name);
+          $('#filetype-2').text(file.type);
+          $('#filesize-2').text(Math.round(file.size/1024));
+        },
+       }
+      // End event preview gambar pilihan B
+       // Start event preview gambar pilihan C
+      $('#fileC').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+           // start pengecekan ukuran file
+           if (size>=500) {
+            $('#e_size_img').modal('show');
+          }else{
+            $('.info-img-3').show(1000);
+            $('#btn-re-3').show(500);
+            $('#btn-up-3').hide(250);
+            reader.onload = viewerC.load;
+            reader.readAsDataURL(file);
+            viewerC.setProperties(file);
+          }
+        });
+
+      var viewerC = {
+        load : function(e){
+          //untuk di form soal
+          $('#preview-3').attr('src', e.target.result);
+          //untuk di preview soal
+          $('#prev-pil-3 .pilgambar img').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-3').text(file.name);
+          $('#filetype-3').text(file.type);
+          $('#filesize-3').text(Math.round(file.size/1024));
+        },
+       }
+      // End event preview gambar pilihan C
+                   // Start event preview gambar pilihan D
+      $('#fileD').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+           // start pengecekan ukuran file
+           if (size>=500) {
+            $('#e_size_img').modal('show');
+          }else{
+            $('.info-img-4').show(1000);
+            $('#btn-re-4').show(500);
+            $('#btn-up-4').hide(250);
+            reader.onload = viewerD.load;
+            reader.readAsDataURL(file);
+            viewerD.setProperties(file);
+          }
+        });
+
+      var viewerD = {
+        load : function(e){
+          //untuk di form soal
+          $('#preview-4').attr('src', e.target.result);
+          //untuk di preview soal
+          $('#prev-pil-4 .pilgambar img').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-4').text(file.name);
+          $('#filetype-4').text(file.type);
+          $('#filesize-4').text(Math.round(file.size/1024));
+        },
+       }
+      // End event preview gambar pilihan D
+      // Start event preview gambar pilihan E
+      $('#fileE').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+           // start pengecekan ukuran file
+           if (size>=500) {
+            $('#e_size_img').modal('show');
+          }else{
+            $('.info-img-5').show(1000);
+            $('#btn-re-5').show(500);
+            $('#btn-up-5').hide(250);
+            reader.onload = viewerE.load;
+            reader.readAsDataURL(file);
+            viewerE.setProperties(file);
+          }
+        });
+
+      var viewerE = {
+        load : function(e){
+          //untuk di form soal
+          $('#preview-5').attr('src', e.target.result);
+          //untuk di preview soal
+          $('#prev-pil-5 .pilgambar img').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-5').text(file.name);
+          $('#filetype-5').text(file.type);
+          $('#filesize-5').text(Math.round(file.size/1024));
+        },
+       }
+      // End event preview gambar pilihan E
+      // event untuk media pembahasan
+        $("#m-tex").click(function(){
+         $(".video-pembahasan").hide(1000);
+         $(".text-pembahasan").show(1000);
+         $(".prv_video").hide(1000);
+       });
+        $("#m-vido").click(function(){
+         $(".text-pembahasan").hide(1000);
+         $(".video-pembahasan").show(1000);
+         $(".prv_video").show(1000);
+       });
+      // event untuk media pembahasan
+      // Start event preview gambar Pembahasan
+      $('#filePembahasan').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+         // start pengecekan ukuran file
+         if (size>=500) {
+          $('#e_size_img').modal('show');
+        }else{
+          $(".info-img-pembahasan").show(1000);
+          reader.onload = viewerPembahasan.load;
+          reader.readAsDataURL(file);
+          viewerPembahasan.setProperties(file);
+        }
+        
+      });
+
+      var viewerPembahasan = {
+        load : function(e){
+          $('#previewPembahasan').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filenamePembahasan').text(file.name);
+          $('#filetypePembahasan').text(file.type);
+          $('#filesizePembahasan').text(Math.round(file.size/1024));
+        },
+      }
+      // END event preview gambar Pembahasan
+      // Start preview video pembahasan
+       $('#video-p').on('change',function () {
+        var file = this.files[0];
+        var reader = new FileReader();
+        var size=Math.round(file.size/1024);
+        // start pengecekan ukuran file
+        if (size>=90000) {
+          $('#e_size_video').modal('show');
+          $('.prv_video').hide();
+        }else{
+          reader.onload = viewer.load;
+          reader.readAsDataURL(file);
+          viewer.setProperties(file);
+        }
+        
+      });
+       var viewer = {
+        load : function(e){
+          $('.prev_mp4').attr('src', e.target.result);
+          $('.prev_swf').attr('src', e.target.result);
+        },
+        setProperties : function(file){
+          $('#filename-vp').text(file.name);
+          $('#filetype-vp').text(file.type);
+          $('#filesize-vp').text(Math.round(file.size/1024));
+        },
+      }
+      // END preview video pembahasan
     });
+
   }
 
     //set option pelajaran
@@ -829,18 +1089,81 @@ function load_tingkat(){
     // set sumber dan kode soal
     $("#prev-header").append(header_soal);
   }
-
+   // remove img pilihan jawaban
   function remove_img(dat) {
-     $('.info-img-1').hide(1000);
-    $('#btn-re-1').hide(1000);
-        $('#btn-up-1').show(1000);
-    $("input[name=gambar1]").val(null);
-    $("#previewA").attr('src', '');
-        $('#filenameA').text("-");
-    $('#filetypeA').text("-");
-    $('#filesizeA').text("-");
+    $('.info-img-'+dat).hide(1000);
+    $('#btn-re-'+dat).hide(1000);
+    $('#btn-up-'+dat).show(1000);
+    $("input[name=gambar"+dat+"]").val(null);
+    $("#preview-"+dat).attr('src', '');
+    $("#prev-pil-"+dat+" .pilgambar img").attr('src', '');
+    $('#filename-'+dat).text("-");
+    $('#filetype-'+dat).text("-");
+    $('#filesize-'+dat).text("-");
   }
+      //reset form input audio soal
+    function restAudioSoal(){
+      $("input[name=listening]").val("");
+      $('#previewAudio').attr('src', "");
+      $('#filenameAudio').text("");
+      $('#filetypeAudio').text("");
+      $('#filesizeAudio').text("");
+      $('.hidden-audio').hide(1000);
+    }
+    // reset form input img soal
+    function restImgSoal() {
+      $("input[name=gambarSoal]").val("");  
+      $('#filenameSoal').text("");
+      $('#filetypeSoal').text("");
+      $('#filesizeSoal').text("");
+      $(".preview-soal").hide(1000);
+      $('.preview-soal img').attr('src', "");
+    }
+    // reset form input img pembahasan
+    function restImgPembahasan() {
+      $("input[name=gambarPembahasan]").val("");
+      $('#previewPembahasan').attr('src', "");
+      $('#filenamePembahasan').text("");
+      $('#filetypePembahasan').text("");
+      $('#filesizePembahasan').text("");
+      $(".info-img-pembahasan").hide(1000);
+    }
+    // sync preview soal
+    function syncPreview(){
+      console.log("sinccc");
+       soal=CKEDITOR.instances['editor-soal'].getData();
+       var pilA=CKEDITOR.instances['editor-1'].getData();
+       var pilB=CKEDITOR.instances['editor-2'].getData();
+       var pilC=CKEDITOR.instances['editor-3'].getData();
+       var pilD=CKEDITOR.instances['editor-4'].getData();
+       var pilE=CKEDITOR.instances['editor-5'].getData();
+       $("#prev-soal").html(soal);
+       $("#prev-pil-1 .piltext").html(pilA);
+       $("#prev-pil-2 .piltext").html(pilB);
+       $("#prev-pil-3 .piltext").html(pilC);
+       $("#prev-pil-4 .piltext").html(pilD);
+       $("#prev-pil-5 .piltext").html(pilE);
+       var jawaban_benar = $("select[name=jawaban]").val();
 
+       switch(jawaban_benar) {
+        case "A":
+          $("#prev-jawab").html(pilA);
+          break;
+        case "B":
+          $("#prev-jawab").html(pilB);
+          break;
+        case "C":
+          $("#prev-jawab").html(pilC);
+          break;
+        case "D":
+          $("#prev-jawab").html(pilD);
+          break;
+        case "E":
+          $("#prev-jawab").html(pilE);
+          break;
+       }
+       console.log(jawaban);
+    }
 </script>
 <!-- validasi input -->
 <script type="text/javascript">
@@ -859,9 +1182,32 @@ function ValidateSingleInput(oInput) {
         }
       }
 
-      if (!blnValid) {
-       $('#warningupload').modal('show');
+  if (!blnValid) {
+      swal("error",'Maaf gambar hasrus berupa ".jpg", ".jpeg", ".bmp", ".gif", ".png"!',"error");
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    //validasi upload audio
+function ValidateAudioInput(oInput){
+  var _validFileExtensions = [".mp3"]; 
+  if (oInput.type == "file") {
+    var sFileName = oInput.value;
+    if (sFileName.length > 0) {
+      var blnValid = false;
+      for (var j = 0; j < _validFileExtensions.length; j++) {
+        var sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+          blnValid = true;
+          break;
+        }
+      }
 
+      if (!blnValid) {
+        restAudioSoal();
+        swal("error","Maaf audio hasrus berupa .mp3!","error");
                 // alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
                 // oInput.value = "";
                 return false;
@@ -870,4 +1216,39 @@ function ValidateSingleInput(oInput) {
           }
           return true;
         }
+
+// validation upload video
+  function ValidateInputVideo(oInput) {
+  var _validFileExtensions = [".mp4",".swf"]; 
+  if (oInput.type == "file") {
+    var sFileName = oInput.value;
+    if (sFileName.length > 0) {
+      var blnValid = false;
+      for (var j = 0; j < _validFileExtensions.length; j++) {
+        var sCurExtension = _validFileExtensions[j];
+        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+          blnValid = true;
+          break;
+        }
+      }
+
+      if (!blnValid) {
+        swal("error",'Maaf file video pembahasan hanya bisa berupa ".mp4" atau ".swf"!',"error");
+          return false;
+      }
+      var type = sFileName.split('.').pop();
+      if (type=='swf') {
+        // $('.prev_swf').attr('id', 'preview');
+        console.log("swf swf");
+        $('.prev_swf-view').show(1000);
+        $('.prev_mp4').hide(1000);
+      } else {
+        console.log("mp4 mp4");
+        $('.prev_mp4').show(1000);
+        $('.prev_swf-view').hide(1000);
+      }
+    }
+  }
+  return true;
+}
 </script>
