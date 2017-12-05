@@ -101,7 +101,6 @@
 
 //# ketika tombol di klik detail
 function detail(id){
-	Preview.Init();
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
@@ -115,6 +114,7 @@ function detail(id){
 	}else{
 		$('#isicontent').html(data.isiMateri); 		 
 	}
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"isicontent"]); 
 
 	$('#mdetailmateri').modal('show');
 	

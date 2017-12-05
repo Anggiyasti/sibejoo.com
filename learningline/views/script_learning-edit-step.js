@@ -168,9 +168,13 @@ $('.detail_materi').modal('show');
 function load_video(){
 	var tabel;
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Video</h4>");
-	$('.jenis').append('<div class="panel panel-default">'+
-		'<div class="panel-heading">'+
-		'<h3 class="panel-title">Tabel Topik Line</h3> '+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
+		'<h3 class="panel-title">Tabel Topik Line</</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
@@ -191,6 +195,9 @@ function load_video(){
 
 		'</tbody>'+
 		'</table>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'+
 
 		'</div>');
@@ -215,9 +222,13 @@ function load_video(){
 function load_materi(){
 	var tabel;
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Materi</h4>");
-	$('.jenis').append('<div class="panel panel-default">'+
-		'<div class="panel-heading">'+
-		'<h3 class="panel-title">Tabel Materi</h3> '+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
+		'<h3 class="panel-title">Tabel Materi</</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
@@ -237,6 +248,9 @@ function load_materi(){
 
 		'</tbody>'+
 		'</table>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'+
 
 		'</div>');
@@ -293,35 +307,39 @@ function load_soal(){
 
 	$('.jenis').append('<div  class="form-group">'+
 		'<label class="col-sm-3 control-label">Pemilihan Soal</label>'+
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" value = "{jumlah_soal_mudah}" placeholder="Jumlah Soal Mudah" class="form-control nomor" name="mudah">'+
 		'</div>'+
 
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" value = "{jumlah_soal_sedang}" placeholder="Jumlah Soal Sedang" class="form-control nomor" name="sedang">'+
 		'</div>'+
 
-		'<div class="col-sm-3">'+
+		'<div class="col-sm-2">'+
 		'<input type="number" value = "{jumlah_soal_sulit}"  placeholder="Jumlah Soal Sulit" class="form-control nomor" name="sulit">'+
 		'</div>'+
 		'</div>');
 
-	$('.jenis').append('<div class="panel panel-default container">'+
-		'<div class="panel-heading">'+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
 		'<h3 class="panel-title"><center>Soal Belum Ditambahkan</center></</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
 
 		'</div>'+
-		'<div class="panel-body">'+
+		'<div class="panel-body" >'+
 		'<table class="daftarsoal_belum table table-striped display responsive nowrap" style="font-size: 13px" width=100%>'+
 		'<thead>'+
 		'<tr>'+
 		'<th></th>'+
 		'<th>Judul Soal</th>'+
 		'<th>Sumber</th>'+
-		'<th width="10%">Soal</th>'+
-		'<th width="10%">Kesulitan</th>'+
+		'<th>Soal</th>'+
+		'<th>Kesulitan</th>'+
 		'<th width="5%">Aksi</th>'+
 
 		'</tr>'+
@@ -340,11 +358,18 @@ function load_soal(){
 		'</div>'+
 		'</div>'+
 		'</div>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'
 		);
 
-	$('.jenis').append('<div class="panel panel-default container">'+
-		'<div class="panel-heading">'+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
 		'<h3 class="panel-title"><center>Soal Sudah Ditambahkan</center></</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
@@ -357,8 +382,8 @@ function load_soal(){
 		'<th></th>'+
 		'<th>Judul Soal</th>'+
 		'<th>Sumber</th>'+
-		'<th width="10%">Soal</th>'+
-		'<th width="10%">Kesulitan</th>'+
+		'<th>Soal</th>'+
+		'<th>Kesulitan</th>'+
 		'<th width="5%">Aksi</th>'+
 
 		'</tr>'+
@@ -373,6 +398,9 @@ function load_soal(){
 		'<label class="col-sm-1 control-label"></label>'+
 		'<div class="col-sm-9">'+
 		'<a onclick="drop_soal()" class="btn btn-danger hapus_soal">Hapus</a>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+

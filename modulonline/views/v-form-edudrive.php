@@ -64,7 +64,7 @@
         <label class="control-label col-sm-2">Deskripsi Modul</label>
         <!-- Start input text A -->
         <div class="col-sm-10 piltext">
-         <textarea name="deskripsi"  class="form-control"></textarea>
+         <textarea name="deskripsi" class="form-control"></textarea>
      </div>
  </div>
  <div class="form-group">
@@ -100,7 +100,7 @@
  <label class="control-label col-sm-2">Publish File</label>
  <div class="col-sm-3">
     <div class="checkbox custom-checkbox">  
-        <input type="checkbox" name="publish" id="gift" value="1">  
+        <input type="checkbox" name="publish" id="gift">  
         <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>   
     </div>
 </div>
@@ -108,9 +108,9 @@
 
 <div class="form-group">
  <label class="control-label col-sm-2">Akses File</label>
- <div class="col-sm-3">
+ <div class="col-sm-3" >
         <label class="radio-inline">
-            <input name="statusAksesFile" type="radio" value="0">Free
+            <input name="statusAksesFile" type="radio" value="0" checked>Free
         </label>
         <label  class="radio-inline">
         <input name="statusAksesFile" type="radio" value="1">Member
@@ -176,19 +176,26 @@ function ValidateSingleInput(oInput) {
     function simpan(){
         // edu = $('#edudrive').serialize();
         url = base_url+"modulonline/uploadmodul";
+        if ($('#gift').is(':checked')) {
+            publish = 1;
+        }
+        else{
+            publish = 0;
+        }
 
+        if ($('.statusAksesFile')) {}
         
         var datas = {
             mapel : $('select[name=pelajaran]').val(),
             judul : $('input[name=judul]').val(),
             deskripsi : $('textarea[name=deskripsi]').val(),
             gambarSoal: $('[name=gambarSoal]').val(),
-            publish : $('input[name=publish]:checked').val(),
+            publish : publish,
             statusAksesFile : $('input[name=statusAksesFile]:checked').val(),
         }
         var elementId = "fileSoal";
 
-        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "") {
+        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "" || datas.statusAksesFile ==  ) {
             swal('Tidak boleh kosong');
         }else{
         console.log(datas);

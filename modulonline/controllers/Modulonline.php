@@ -78,19 +78,28 @@ function ajax_listAllSoal() {
         $ckPublish="";
 
             //mnentukan checked publish
-        if ($publish =='1') {
-            $ckPublish="checked";
-        } 
+        
 
         $row = array();
         $row[] = $no;
         $row[] = $modul_list['judul'];
         $row[] = $modul_list['deskripsi'];
-        $row[] ='
+        if ($publish == 1) {
+            $row[] ='
         <span class="checkbox custom-checkbox custom-checkbox-inverse">
-            <input type="checkbox" name="ckRand"'.$ckPublish.' value="1">
-            <label for="ckRand" >&nbsp;&nbsp;</label>
+            <input type="checkbox" name="ckRand" checked>
+            <label for="ckRand"  onclick="updatepublish('.$id.','.$publish.')" >&nbsp;&nbsp;</label>
         </span>';
+        }
+        else{
+            $row[] ='
+        <span class="checkbox custom-checkbox custom-checkbox-inverse">
+            <input type="checkbox" name="ckRand" unchecked>
+            <label for="ckRand"  onclick="updatepublish('.$id.','.$publish.')" >&nbsp;&nbsp;</label>
+        </span>';
+
+        }
+        
         $row[] = '<a href="'.base_url("assets/modul/".$modul_list['url_file']).'" class="btn btn-sm btn-primary" target="_blank">
         <i class="ico-download"></i>
     </a>';
@@ -608,6 +617,14 @@ public function datKomen()
 
   return $listKomen;
 }
+
+function UpdatePublish($data){
+        $this->Mmodulonline->UpdatePublish($data);
+    }
+
+function UpdateNonPublish($data){
+        $this->Mmodulonline->UpdateNonPublish($data);
+    }
 
 }
 

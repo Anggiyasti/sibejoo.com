@@ -527,19 +527,25 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
     function ubahmateri(){
     	url = base_url+"materi/updateMateri";
-    	
+    	if ($('#giftcheckbox').is(':checked')) {
+        stpublish =1;
+      }
+      else{
+        stpublish =0;
+      }
+
         var datas = {
         	UUID : $('input[name=UUID]').val(),
             judul : $('input[name=judul]').val(),
             editor1 : CKEDITOR.instances.editor1.getData(),
             subBabID : $('select[name=subBabID]').val(),
-            stpublish : $('input[name=stpublish]:checked').val(),
+            stpublish : stpublish,
             opupload : $('input[name=opupload]:checked').val(),
             gambarSoal: $('[name=gambarSoal]').val(),
         }
         var elementId = "fileSoal";
 
-        console.log(datas);
+        // console.log(datas);
             // do_upload
             $.ajaxFileUpload({
                 url:url,

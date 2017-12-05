@@ -135,4 +135,8 @@
         $('p#djawaban').html(jawaban);
         $('#mdetail_modul').modal('show');
     }
+
+
+ 
+}
 </script>
