@@ -97,7 +97,7 @@ public function get_onefile_modul($id)
     //
 public function get_all_moduls()
 {
-  $this->db->select('mdl.id as id_modul, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');
+  $this->db->select('mdl.id as id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');
   $this->db->from('tb_modul as mdl');
   $this->db->where('mdl.status','1');
   $this->db->order_by('mdl.id','desc');

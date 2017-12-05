@@ -26,12 +26,34 @@
                     <h3 class="panel-title">Daftar Semua Modul</h3>
                     <!-- Start menu tambah soal -->
                     <div class="panel-toolbar text-right">
+                        <?php $hakAkses=$this->session->userdata['HAKAKSES']; 
+                        if ($hakAkses == 'admin'): ?>
+                        <?php else: ?>
                         <a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/modulonline/formmodul" title="Tambah Data" ><i class="ico-plus"></i></a>
+                        <?php endif ?>
                     </div>
                     <!-- END menu tambah soal -->
                 </div>
                 <table class="table table-striped table-bordered" id="tb_all_moduls" style="font-size: 13px" width="100%">
                     <thead>
+                        <?php $hakAkses=$this->session->userdata['HAKAKSES']; 
+                        if ($hakAkses == 'admin'): ?>
+                         <tr>
+                            <th>ID</th>
+                            <th>Judul Modul</th>
+                            <th>Deksripsi</th>
+                            <!-- <th>Create By</th> -->
+                            <th>Publish</th>
+                            <th>Download</th>
+                            
+                                <!-- <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th> -->
+                            </tr>
+                        <?php else: ?>
+                            
+                        
                         <tr>
                             <th>ID</th>
                             <th>Judul Modul</th>
@@ -46,6 +68,7 @@
                                 <th></th>
                                 <th></th> -->
                             </tr>
+                            <?php endif ?>
                         </thead>
                         <tbody>
 

@@ -60,14 +60,45 @@ class Modulonline extends MX_Controller {
         //pengecekan ketika admin dan guru yang masuk
         if($hakAkses=='admin'){
             $modul = $this->Mmodulonline->get_all_moduls();
+            $data = array();
+            $no = 1;
+            $baseurl = base_url();
+        //cacah data untuk ditampilakan
+        foreach ($modul as $modul_list ) {
+            $id=$modul_list['id'];
+            $judul=$modul_list['judul'];
+            $deskripsi=$modul_list['deskripsi'];
+            $publish=$modul_list['publish'];
+            $ckPublish="";
+
+            //menentukan checked publish
+            if ($publish =='1') {
+                $ckPublish="checked";
+            } 
+
+            $row = array();
+            $row[] = $no;
+            $row[] = $modul_list['judul'];
+            $row[] = $modul_list['deskripsi'];
+            $row[] ='
+            <span class="checkbox custom-checkbox custom-checkbox-inverse">
+                <input type="checkbox" name="ckRand"'.$ckPublish.' value="1">
+                <label for="ckRand" >&nbsp;&nbsp;</label>
+            </span>';
+            $row[] = '<a href="'.base_url("assets/modul/".$modul_list['url_file']).'" class="btn btn-sm btn-primary"    target="_blank">
+            <i class="ico-download"></i>
+            </a>';
+
+           
+        $data[] = $row;
+        $no++;
+
+}
         }
         elseif($hakAkses=='guru'){
             //tampil modul by guru//
             $create_by = $this->session->userdata['id'];
             $modul = $this->Mmodulonline->modul_guruid($create_by);
-        }else{
-            redirect(site_url('welcome'));
-        }
             $data = array();
             $no = 1;
             $baseurl = base_url();
@@ -110,6 +141,10 @@ class Modulonline extends MX_Controller {
         $no++;
 
 }
+        }else{
+            redirect(site_url('welcome'));
+        }
+            
         $output = array(
 
             "data"=>$data,
