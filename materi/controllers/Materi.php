@@ -23,7 +23,7 @@ class Materi extends MX_Controller
 		);
 		$data['judul_halaman'] = "Form Input Materi";
 		$hakAkses=$this->session->userdata['HAKAKSES'];
-                // cek hakakses 
+        // cek hakakses 
 		if ($this->session->userdata('HAKAKSES')=='admin') {
 			$this->parser->parse('admin/v-index-admin', $data);
 		}else if($this->session->userdata('HAKAKSES')=='guru'){
@@ -53,7 +53,7 @@ class Materi extends MX_Controller
 		$UUID = uniqid();
 		$opupload =$post['opupload'];
 
-
+		//cek ketika upload text
 		if ($opupload =="text") {
 			$data['judulMateri']=$post['judul'];
         	$data['isiMateri']=$post['editor1'];
@@ -61,8 +61,10 @@ class Materi extends MX_Controller
             $data['penggunaID']=$penggunaID;
         	$data['publish']=$post['stpublish'];
             $data['UUID']=$UUID;
+            //tambah data kedatabase
 			$this->Mmateri->in_materi($data);
 		}
+		//cek ketika upload file
 		else{
 			$this->upload->do_upload($foto);
 			$file_data = $this->upload->data();
@@ -73,33 +75,14 @@ class Materi extends MX_Controller
         	$data['publish']=$post['stpublish'];
             $data['UUID']=$UUID;
             $data['url_file']=$file_name;
+            //tambah data kedatabase
 			$this->Mmateri->in_materi($data);
-		
 		}
-		
 		$info="Materi Berhasil disimpan";
         echo json_encode($info); 
 	}
 
 
-	    //function upload gambar soal
-	public function up_file_materi($UUID) {
-    $config['upload_path'] = './assets/file_materi/';
-    $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
-    $config['max_size'] = 10000;
-
-    $this->load->library('upload', $config);
-    $gambar = "gambarSoal";
-    $this->upload->do_upload($gambar);
-    $file_data = $this->upload->data();
-    $file_name = $file_data['file_name'];
-    $data['uuid']=$UUID;
-    $data['datamateri']=  array(
-        'url_file' => $file_name);
-
-        // print_r($data);
-    $this->Mmateri->up_file($data);
-	}
 
 	// tampil list materi
 	public function list_all_materi ()
@@ -123,10 +106,10 @@ class Materi extends MX_Controller
 	{
 		$materi= $this->load->Mmateri->get_all_materi();
 		$data = array();
-        //var_dump($list);
         //mengambil nilai list
 		$baseurl = base_url();
 		$no='1';
+		//cacah data untuk menampilkan materi
 		foreach ( $materi as $list_materi ) {
 			$n='1';
 
@@ -151,36 +134,35 @@ class Materi extends MX_Controller
 			<i class=" ico-eye "></i>
 			</a> 
 			<a class="btn btn-sm btn-warning" href="materi/form_update_materi/'.$list_materi['UUID'].'"  title="Ubah Video"
-		)"
-		>
-		<i class="ico-file5"></i>
-		</a> 
-		<a class="btn btn-sm btn-danger"  
-		title="Hapus" onclick="drop_materi('."'".$list_materi['UUID']."'".')">
-		<i class="ico-remove"></i></a> 
-		';
+			)"
+			>
+			<i class="ico-file5"></i>
+			</a> 
+			<a class="btn btn-sm btn-danger"  
+			title="Hapus" onclick="drop_materi('."'".$list_materi['UUID']."'".')">
+			<i class="ico-remove"></i></a> 
+			';
 
-
-
-		$data[] = $row;
-		$n++;
-		$no++;
-
+			$data[] = $row;
+			$n++;
+			$no++;
 	}
 
-	$output = array(
-		"data"=>$data,
-	);
-	echo json_encode( $output );
+		$output = array(
+			"data"=>$data,
+		);
+		echo json_encode( $output );
 }
 
+// get ajax list materi jika login guru
 function get_materi_by_user(){
 	$materi= $this->load->Mmateri->get_materi_by_user();
 	$data = array();
-        //var_dump($list);
-        //mengambil nilai list
+    
+    //mengambil nilai list
 	$baseurl = base_url();
 	$no='1';
+	//cacah data
 	foreach ( $materi as $list_materi ) {
 		$n='1';
 
@@ -255,7 +237,6 @@ public function updateMateri()
 	$UUID = $post['UUID'];
 	$opupload =$post['opupload'];
 	$onefile_materi = $this->Mmateri->get_onefile_materi($UUID)[0]['url_file'];
-
 		$config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'doc|docx|ppt|pptx|pdf';
         $config['max_size'] = 10000;
@@ -270,6 +251,7 @@ public function updateMateri()
 
 		$penggunaID = $this->session->userdata['id'];
 		
+		//cek ketika update text materi
 		if ($opupload =="text") {
 			$data['judulMateri']=$post['judul'];
         	$data['isiMateri']=$post['editor1'];
@@ -281,8 +263,12 @@ public function updateMateri()
             echo json_encode("upload materi"); 
 			$this->Mmateri->ch_materi($data,$UUID);
 		}
+
+		//cek ketika update file
 		else{
 			$this->upload->do_upload($foto);
+
+			//menghapus file yang lama
 			if ($onefile_materi!='' && $onefile_materi!=' ') {
                    unlink(FCPATH . "./assets/file_materi/" . $onefile_materi);
           }
@@ -300,6 +286,7 @@ public function updateMateri()
             }else{
 
             }
+            //simpan data update ke database
 			$this->Mmateri->ch_materi($data,$UUID);
 			 echo json_encode($data); 
 		}
@@ -309,6 +296,7 @@ public function updateMateri()
 
 }
 
+//fungsi untuk hapus data 
 public function del_materi()
 {
 	if ($this->input->post()) {
@@ -318,7 +306,7 @@ public function del_materi()
 		$this->Mmateri->drop_materi($post);
 	}
 }
-
+//fungsi untuk hapus data file
 public function del_file_materi($UUID)
 	{
 		// get data team by id

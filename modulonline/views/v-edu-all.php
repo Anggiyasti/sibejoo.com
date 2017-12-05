@@ -73,7 +73,7 @@
     $(document).ready(function() {
         tb_all_moduls = $('#tb_all_moduls').DataTable({ 
          "ajax": {
-            "url": base_url+"index.php/modulonline/ajax_listAllSoal/",
+            "url": base_url+"index.php/modulonline/ajax_listAllModul/",
             "type": "POST"
         },
         "processing": true,
@@ -136,7 +136,5 @@
         $('#mdetail_modul').modal('show');
     }
 
-
  
-}
 </script>

@@ -14,7 +14,7 @@
             </div>
             <div class="modal-body">
                 <h3 class="text-center">Silahkan cek type extension file! </h3>
-                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".pdf"</h5>
+                <h5 class="text-center">Type yang bisa di upload hanya ".doc", ".docx", ".ppt", ".pptx", ".pdf"</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col-md-12">
         <!-- Form horizontal layout bordered -->
-        <form class="form-horizontal form-bordered panel panel-teal" id="edudrive" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
+        <form class="form-horizontal form-bordered panel panel-teal" action="javascript:void(0)" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
             <div class="panel-heading">
                 <h3 class="panel-title">Form Upload Modul</h3>
                 <!-- untuk menampung bab id -->
@@ -54,7 +54,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2">Judul Modul</label>
         <div class="col-sm-10">
-            <input type="text" name="judul" class="form-control" value="<?php echo set_value('judul'); ?>">
+            <input type="text" name="judul" class="form-control" value="<?php echo set_value('judul'); ?>" required="true">
         </div>
 
 
@@ -64,7 +64,7 @@
         <label class="control-label col-sm-2">Deskripsi Modul</label>
         <!-- Start input text A -->
         <div class="col-sm-10 piltext">
-         <textarea name="deskripsi" class="form-control"></textarea>
+         <textarea name="deskripsi"  class="form-control"> </textarea>
      </div>
  </div>
  <div class="form-group">
@@ -100,7 +100,7 @@
  <label class="control-label col-sm-2">Publish File</label>
  <div class="col-sm-3">
     <div class="checkbox custom-checkbox">  
-        <input type="checkbox" name="publish" id="gift">  
+        <input type="checkbox" name="publish" id="gift" value="1">  
         <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>   
     </div>
 </div>
@@ -108,7 +108,7 @@
 
 <div class="form-group">
  <label class="control-label col-sm-2">Akses File</label>
- <div class="col-sm-3" >
+ <div class="col-sm-3">
         <label class="radio-inline">
             <input name="statusAksesFile" type="radio" value="0" checked>Free
         </label>
@@ -139,7 +139,7 @@
 <script type="text/javascript">
 // validasi upload gambar 
 function ValidateSingleInput(oInput) {
-  var _validFileExtensions = [".doc", ".docx", ".pdf"]; 
+  var _validFileExtensions = [".doc", ".docx", ".ppt", ".pptx", ".pdf"]; 
   if (oInput.type == "file") {
     var sFileName = oInput.value;
     if (sFileName.length > 0) {
@@ -171,7 +171,6 @@ function ValidateSingleInput(oInput) {
 
 <script>
 
-    // Script for getting the dynamic values from database using jQuery and AJAX
 
     function simpan(){
         // edu = $('#edudrive').serialize();
@@ -182,8 +181,6 @@ function ValidateSingleInput(oInput) {
         else{
             publish = 0;
         }
-
-        if ($('.statusAksesFile')) {}
         
         var datas = {
             mapel : $('select[name=pelajaran]').val(),
@@ -195,10 +192,6 @@ function ValidateSingleInput(oInput) {
         }
         var elementId = "fileSoal";
 
-        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "" || datas.statusAksesFile ==  ) {
-            swal('Tidak boleh kosong');
-        }else{
-        console.log(datas);
             // do_upload
             $.ajaxFileUpload({
                 url:url,
@@ -229,9 +222,11 @@ function ValidateSingleInput(oInput) {
                     
                 }
             });
-        }
 
     }
+
+
+    // Script for getting the dynamic values from database using jQuery and AJAX
 
     $(document).ready(function () {
 
