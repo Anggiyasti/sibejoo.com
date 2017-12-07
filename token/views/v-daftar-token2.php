@@ -97,9 +97,8 @@
           <th>id</th>
           <th>Nomor Token</th>
           <th>Masa Aktif</th>
-          <th>Digunakan Oleh</th>
-          <th>Nama Pengguna</th>
           <th>Type</th>
+          <th>Status</th>
           <th width="15%">Aksi</th>
         </tr>
         <tbody id="record_token">

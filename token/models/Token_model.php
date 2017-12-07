@@ -112,40 +112,39 @@ class Token_model extends CI_Model{
 			$this->db->where('masaAktif',$masaAktif);
 		}
 		if ($status==1) {
-			$this->db->where('siswaID is not null');
-			$this->db->join('tb_siswa siswa', 'token.siswaID = siswa.id', 'left outer');
-			$this->db->join('tb_pengguna', 'tb_pengguna.id = siswa.penggunaID');
+				$this->db->where('token.id_donasi is not null');
+			$this->db->join('tb_donasi donasi', 'token.id_donasi = donasi.id', 'left outer');
 		}else{
-			$this->db->where('siswaID is null');
-			$this->db->join('tb_siswa siswa', 'token.siswaID = siswa.id', 'left outer');
-			$this->db->join('tb_pengguna', 'tb_pengguna.id = siswa.penggunaID','left outer');
-
+			$this->db->where('token.id_donasi is null');
 		}
 		return $this->db->get('tb_token token')->num_rows();
 	}
 
-
-
-  // data paginataion all token
+    // data paginataion all token
 	function data_token($number,$offset,$masaAktif,$status){
-		$this->db->select('*,token.siswaID,masaAktif,nomorToken,token.id as tokenid,token.status as tokenStatus,token.tanggal_diaktifkan,siswa.namaDepan,siswa.namaBelakang,CONCAT((`siswa`.`namaDepan`)," ", (`siswa`.`namaBelakang`)) AS nama_lengkap');
+		$this->db->select('*,token.id_donasi,masaAktif,nomorToken,token.id as tokenid,token.status as tokenStatus,token.tanggal_diaktifkan');
+
 		if ($masaAktif!="all") {
 			$this->db->where('masaAktif',$masaAktif);
 		}
 		if ($status==1) {
-			$this->db->where('siswaID is not null');
-			$this->db->join('tb_siswa siswa', 'token.siswaID = siswa.id', 'left outer');
-			$this->db->join('tb_pengguna', 'tb_pengguna.id = siswa.penggunaID');
+			$this->db->where('token.id_donasi is not null');
+			$this->db->join('tb_donasi donasi', 'token.id_donasi = donasi.id', 'left outer');
+			// $this->db->join('tb_pengguna', 'tb_pengguna.id = donasi.penggunaID');
+			// $this->db->join('tb_siswa siswa','siswa.penggunaID=tb_pengguna.id');
 		}else{
-			$this->db->where('siswaID is null');
-			$this->db->join('tb_siswa siswa', 'token.siswaID = siswa.id', 'left outer');
-			$this->db->join('tb_pengguna', 'tb_pengguna.id = siswa.penggunaID','left outer');
+			// echo "string";
+			$this->db->where('token.id_donasi is null');
+			// $this->db->join('tb_donasi donasi', 'token.id_donasi = donasi.id');
+			// $this->db->join('tb_pengguna', 'tb_pengguna.id = donasi.penggunaID');
+			// $this->db->join('tb_siswa siswa','siswa.penggunaID=tb_pengguna.id');
 
 		}
 
 		$this->db->order_by('token.id');
 		return $query = $this->db->get('tb_token token',$number,$offset)->result();       
 	}
+
 	  // data hasil cari paginataion all token
 	function data_cari_pengguna_token($number,$offset,$masaAktif,$status,$keySearch){
 		$this->db->select('*');

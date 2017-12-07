@@ -223,21 +223,28 @@ class Token extends MX_Controller {
 			}
 
 		}else{
+
 			$list = $this->token_model->data_token($jumlah_data_per_page,$page,$masaAktif,$status);
 		}
 
 		$no=$page+1;
       //cacah data 
 		foreach ( $list as $token_item ) {
-			$siswaID=$token_item->siswaID;
-			if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
-				$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
-				$namaPengguna=$token_item->namaPengguna;
-			}else{
-				$nama="belum digunakan";
-				$namaPengguna="-";
+			// $siswaID=$token_item->siswaID;
+			// if ($siswaID!=''&&$siswaID!=' '&&$siswaID!=null) {
+			// 	$nama=$token_item->namaDepan." ".$token_item->namaBelakang;
+			// 	$namaPengguna=$token_item->namaPengguna;
+			// }else{
+			// 	$nama="belum digunakan";
+			// 	$namaPengguna="-";
+			// }
+			$id_donasi=$token_item->id_donasi;
+			if ($id_donasi!='' && $id_donasi!=' ') {
+				$status_token="Sudah Digunakan";
+			} else {
+				$status_token="Belum Digunakan";
 			}
-
+			
       		// tentukan jenis membernya dulu
 			if ($token_item->masaAktif==365) {
 				$type = 'Heroo Member';
@@ -251,9 +258,8 @@ class Token extends MX_Controller {
 				<td>'.$no.'</td>
 				<td>'.$token_item->nomorToken.'</td>
 				<td>'.$token_item->masaAktif.'</td>
-				<td>'.$nama.'</td>
-				<td>'.$namaPengguna.'</td>
 				<td>'.$type.'</td>
+				<td>'.$status_token.'</td>
 				<td><a class="btn btn-sm btn-danger"  title="Delete" onclick="drop_token('."'".$token_item->tokenid."'".')"><i class="ico-remove"></i></a></td>
 			</tr>
 			';

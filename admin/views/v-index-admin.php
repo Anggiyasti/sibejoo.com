@@ -800,11 +800,11 @@
                 <span class="text">Daftar token</span>
                 </a>
               </li>
-              <li>
+<!--               <li>
                 <a href="<?=  base_url('token/kirimToken')?>">
                 <span class="text">Kirim Token</span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li>
