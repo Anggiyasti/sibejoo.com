@@ -19,6 +19,8 @@
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-114x114.png')?>" rel="apple-touch-icon" sizes="114x114">
   <link href="<?=base_url('assets/retemplate/images/apple-touch-icon-144x144.png')?>" rel="apple-touch-icon" sizes="144x144">
 
+<link rel="stylesheet" href="<?=base_url('assets/css/style_login.css');?>" />
+
 
 
   <!-- Stylesheet -->
@@ -50,7 +52,7 @@
 
   <!-- CSS | Theme Color -->
   <link href="<?=base_url('assets/retemplate/css/colors/theme-skin-color-set-1.css')?>" rel="stylesheet" type="text/css">
-
+  <link href = "<?=base_url('assets/font-awesome/css/font-awesome.css');?>" rel = "stylesheet" type = "text/css">
   <!-- external javascripts -->
   <script src="<?=base_url('assets/retemplate/js/jquery-2.2.4.min.js')?>"></script>
   <script src="<?=base_url('assets/retemplate/js/jquery-ui.min.js')?>"></script>
@@ -68,6 +70,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 </head>
 <body class="dark">
   <div id="wrapper" class="clearfix">
@@ -81,7 +84,7 @@
     ?>
 </div>
 <!-- end wrapper -->
-
+    <script src="js/modernizr.custom.63321.js"></script>
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
 <script src="<?=base_url('assets/retemplate/js/custom.js')?>"></script>

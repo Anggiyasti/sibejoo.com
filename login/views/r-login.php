@@ -3,10 +3,10 @@
   <div class="main-content">
 
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-70 pb-20">
+   <!--  <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+      <div class="container pt-70 pb-20"> -->
         <!-- Section Content -->
-        <div class="section-content">
+      <!--   <div class="section-content">
           <div class="row">
             <div class="col-md-12">
               <h2 class="title text-white">Login</h2>
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section>
       <div class="container">

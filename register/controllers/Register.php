@@ -211,6 +211,21 @@ class Register extends MX_Controller {
         "penggunaID"=>$penggunaID_ortu,
       );
         $this->mregister->insert_orangtua($data_ortu);
+        //kirim email 
+        $aliasNP = md5($namapengguna);
+        $to      = $email; // Send email to our user
+        $subject = 'Bergabung | AKTIVASI'; // Give the email a subject 
+        $message = '
+        Hallo $namapengguna 
+
+        Terimakasih telah bergabung di Sibejoo
+
+        Akun kamu sudah dibuat silahkan klik link dibawah ini untuk aktifkan akun kamu
+        <a href = "'.base_url().'register/aktivasi_akun/'.$aliasNP.'">Klik Di sini</a>
+        '; // Our message above including the link
+                     
+$headers = 'From:sibejoo@gmail.com' . "\r\n"; // Set from headers
+mail($to, $subject, $message, $headers); // Send our email
       redirect(site_url('register/verifikasi'));
    }
   }
@@ -874,23 +889,18 @@ public function test()
 
 
      public function test_email() {
-    $this->load->library('email'); // load email library
-    $verifikasiCode = "asdasd";
-    $address = "aziz@mail.unpas.ac.id";
-    $this->email->from('noreply@sibejooclass.com', 'Neon');
-    $this->email->to($address);
-    $this->email->subject('Verifikasi Email');
-    $message = '<html><meta/><head/><body>';
-    $message .='<p> Dear' . ' ' ."Test email axix" . ',</p>';
-    $message .='<p>Terimakasih telah mendaftar di Neon. Untuk dapat menggunakan semua fitur silahkan <strong><a href="' . base_url() . 'index.php/register/verifikasi_email/' . $address . '/' . $verifikasiCode . '">klik disini</a></strong> untuk aktifasi akun mu.</p>';
-    $message .= '<p>Terimakasih</p>';
-    $message .= '<p>Neon</p>';
-    $message .= '</body></html>';
-    $this->email->message($message);
-    $this->email->send();
+$to      = 'braditya12@gmail.com';
+$subject = 'the subject';
+$message = 'hello';
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
   }
 
     
 
 }
+
 ?>
