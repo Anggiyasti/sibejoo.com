@@ -437,7 +437,7 @@
             <ul id="banksoal" class="submenu collapse ">
               <li class="submenu-header ellipsis">Bank Soal</li>
               <li>
-                <a href="<?= base_url(); ?>index.php/banksoal/formsoal" >
+                <a href="<?= base_url(); ?>index.php/banksoal/formsoal_inverse" >
                 <span class="text">Tambahkan Bank Soal</span> 
                 </a>
               </li>
