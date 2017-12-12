@@ -454,7 +454,7 @@
                   <li><a href="<?=base_url('index.php/banksoal/listsoal')?>"><span class="text">Daftar Semua Soal</span>
                     </a>
                   </li>
-                  <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span>
+                  <!-- <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span> -->
                     </a>
                   </li>
                   <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
@@ -800,11 +800,11 @@
                 <span class="text">Daftar token</span>
                 </a>
               </li>
-              <li>
+<!--               <li>
                 <a href="<?=  base_url('token/kirimToken')?>">
                 <span class="text">Kirim Token</span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li>

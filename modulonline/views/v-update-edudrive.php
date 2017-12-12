@@ -68,7 +68,7 @@
         <label class="control-label col-sm-2">Deskripsi Modul</label>
         <!-- Start input text A -->
         <div class="col-sm-8 piltext">
-           <textarea name="deskripsi"  class="form-control"><?=$banksoal['deskripsi'];?> </textarea>
+           <textarea name="deskripsi" class="form-control"><?=$banksoal['deskripsi'];?></textarea>
        </div>
    </div>
 
@@ -76,9 +76,19 @@
        <label class="control-label col-sm-2">Publish File</label>
        <div class="col-sm-3">
         <div class="checkbox custom-checkbox">  
+            <!-- <?php if ($banksoal['publish'] ==0): ?>
+                <input type="text" id="tamppublish" value="<?=$banksoal['publish'];?>" hidden="true">
+                <input type="checkbox" name="publish" id="gift" value="1">  
+                <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>
+         <?php else: ?>
+            <input type="text" id="tamppublish" value="<?=$banksoal['publish'];?>" hidden="true">
+                <input type="checkbox" name="publish" id="gift" value="">  
+                <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>
+            <?php endif ?> -->
             <input type="text" id="tamppublish" value="<?=$banksoal['publish'];?>" hidden="true">
             <input type="checkbox" name="publish" id="gift" value="1">  
-            <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>   
+            <label for="gift"><small>&nbsp;&nbsp;Check = Yes</small></label>
+
         </div>
     </div>
 </div>    
@@ -327,17 +337,25 @@ function loadTingkat() {
     //fungsi untuk update edu drive
     function update(){
         url = base_url+"modulonline/update_modul";
-        
+
+        if ($('#gift').is(':checked')) {
+            publish = 1;
+        }
+        else{
+            publish = 0;
+        }
+
         var datas = {
             UUID : $('input[name=UUID]').val(),
             mapel : $('select[name=pelajaran]').val(),
             judul : $('input[name=judul]').val(),
             deskripsi : $('textarea[name=deskripsi]').val(),
             gambarSoal: $('[name=gambarSoal]').val(),
-            publish : $('input[name=publish]:checked').val(),
+            publish : publish ,
         }
+        // console.log(datas);
         var elementId = "fileSoal";
-        if (datas.gambarSoal == "" || datas.judul == "" || datas.deskripsi == "") {
+        if (datas.judul == "" || datas.deskripsi == "") {
             swal('Tidak boleh kosong');
         }else{
             // do_upload

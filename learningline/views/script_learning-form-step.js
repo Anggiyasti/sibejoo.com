@@ -165,8 +165,12 @@ $('.detail_materi').modal('show');
 function load_video(){
 	var tabel;
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Video</h4>");
-	$('.jenis').append('<div class="panel panel-default">'+
-		'<div class="panel-heading">'+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
 		'<h3 class="panel-title">Tabel Video</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
@@ -189,7 +193,9 @@ function load_video(){
 		'</tbody>'+
 		'</table>'+
 		'</div>'+
-
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>');
 
 	// var url = base_url+"learningline/ajax_get_video/"+<?=$this->uri->segment(3)?>+"";
@@ -211,8 +217,12 @@ function load_video(){
 function load_materi(){
 	var tabel;
 	$('.jenis').html("<h4 class='text-center animation animating pulse'>Daftar Materi</h4>");
-	$('.jenis').append('<div class="panel panel-default">'+
-		'<div class="panel-heading">'+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
 		'<h3 class="panel-title">Tabel Materi</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
@@ -233,6 +243,9 @@ function load_materi(){
 
 		'</tbody>'+
 		'</table>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'+
 
 		'</div>');
@@ -276,8 +289,12 @@ function load_soal(){
 		'</div>'+
 		'</div>');
 
-	$('.jenis').append('<div class="panel panel-default">'+
-		'<div class="panel-heading">'+
+	$('.jenis').append(
+		'<div class="container-fluid">'+
+    	'<div class="row">'+
+        '<div class="col-md-12">'+
+        '<div class="panel panel-default">'+
+        '<div class="panel-heading">'+
 		'<h3 class="panel-title"><center>Tabel Soal</center></</h3> '+
 		'<div class="panel-toolbar text-right">'+
 		'</div>'+
@@ -289,9 +306,9 @@ function load_soal(){
 		'<tr>'+
 		'<th></th>'+
 		'<th>Judul Soal</th>'+
-		'<th>Sumber</th>'+
-		'<th width="10%">Soal</th>'+
-		'<th width="10%">Kesulitan</th>'+
+		'<th width="15%">Sumber</th>'+
+		'<th>Soal</th>'+
+		'<th>Kesulitan</th>'+
 		'<th width="5%">Aksi</th>'+
 
 		'</tr>'+
@@ -306,6 +323,9 @@ function load_soal(){
 		'<label class="col-sm-1 control-label"></label>'+
 		'<div class="col-sm-9">'+
 		// '<a onclick="tambahkan_soal()" class="btn btn-primary tambahkan">Tambahkan</a>'+
+		'</div>'+
+		'</div>'+
+		'</div>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+

@@ -101,7 +101,6 @@
 
 //# ketika tombol di klik detail
 function detail(id){
-	Preview.Init();
 	var kelas ='.detail-'+id;
 	var data = $(kelas).data('id');
 	var links;
@@ -111,10 +110,12 @@ function detail(id){
 	//jika data materi
 	if (data.isiMateri == null || data.isiMateri == '') {
 		$('#isicontent').html("<embed src="+url+" type='application/pdf' height='500px' width='100%''>");
-	//jika data url file
+	//jika data file
 	}else{
 		$('#isicontent').html(data.isiMateri); 		 
 	}
+	//untuk membaca latex
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub,"isicontent"]); 
 
 	$('#mdetailmateri').modal('show');
 	
@@ -152,9 +153,8 @@ function drop_materi(UUID){
 			}
 		});
 	});
-	// }
 }
-// fungsi updt
+
 //fungsi reload table
 function  reload_tblist(){
 	$list_materi.ajax.reload(null,false);

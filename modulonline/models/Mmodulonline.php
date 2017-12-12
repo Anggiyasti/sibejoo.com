@@ -2,15 +2,18 @@
 class Mmodulonline extends CI_Model {
     # Start Function untuk form soal#	
 
+//insert modul
  public function insert_modul($dataSoal) {
   $this->db->insert('tb_modul', $dataSoal);
 }
 
+  //menampilkan semua modul berdasarkan guru
   public function modul_guruid($id){
    $this->db->select('*');
    $this->db->where('create_by', $id);
    $this->db->where('status', 1);
    $this->db->from('tb_modul');
+   $this->db->order_by('id','desc');
   $query = $this->db->get();
   return $query->result_array();
   }
@@ -48,8 +51,9 @@ public function get_soal_tkt($tingkatID) {
   return $query->result_array();
 
 }
-public function ch_edudrive($data,$UUID) {
-  // $this->db->set($data['dataSoal']);
+
+//menyimpan data yang telah diupdate
+public function up_modul($data,$UUID) {
   $this->db->where('uuid', $UUID);
   $this->db->update('tb_modul',$data);
 }
@@ -62,8 +66,8 @@ public function get_onesoal($uuid) {
 }
 
 
-    //get old gambar soal
-
+    
+//get old gambar soal
 public function get_oldgambar_soal($UUID)
 {
   $this->db->where('uuid', $UUID);
@@ -72,7 +76,7 @@ public function get_oldgambar_soal($UUID)
   return $query->result_array();
 }
 
-
+//hapus data berdasarkan id
 public function del_modul($data) {
   $this->db->where('id', $data['id']);
   $this->db->set('status', '0');
@@ -93,7 +97,7 @@ public function get_onefile_modul($id)
     //
 public function get_all_moduls()
 {
-  $this->db->select('mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');
+  $this->db->select('mdl.id as id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');
   $this->db->from('tb_modul as mdl');
   $this->db->where('mdl.status','1');
   $this->db->order_by('mdl.id','desc');
@@ -467,7 +471,24 @@ function getRows($params = array()){
       return $query->result_array();
     }
 
+    // update line topik aktiv
+  function UpdatePublish($data){
+    $this->db->where('id', $data);
+    $this->db->set('publish', 1);
+    $this->db->update('tb_modul');
+  }
+  // update line topik aktiv
 
-       }
+
+  // update line topik passive
+  function UpdateNonPublish($data){
+    $this->db->where('id', $data);
+    $this->db->set('publish', 0);
+    $this->db->update('tb_modul');
+  }
+  // update line topik passive
+
+
+}
 
        ?>

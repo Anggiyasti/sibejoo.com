@@ -81,7 +81,7 @@ public function del_banksoal($data) {
 
     # END Function untuk form delete bank soal#
 
-    //
+// model untuk menampilkan semua modul jika admin
 public function get_all_moduls()
 {
   $this->db->select('mdl.id, mdl.judul, mdl.deskripsi, mdl.url_file, mdl.publish,mdl.uuid,mdl.id_tingkatpelajaran, mdl.statusAksesFile');

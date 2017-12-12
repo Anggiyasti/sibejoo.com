@@ -666,6 +666,7 @@ class Learningline extends MX_Controller {
 		foreach ( $list as $list_soal ) {
 			$n='1';
 			$row = array();
+			$soal = $list_soal['soal'];
 
 			// $row[] = "<input class='switchery' type='checkbox' value=".$list_soal['id_mm']."><label>&nbsp;&nbsp;</label>";
 
@@ -676,7 +677,7 @@ class Learningline extends MX_Controller {
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
 
-			$row[] = $list_soal['soal'];
+			$row[] = substr($soal, 0,250);
 
 			if ($list_soal['kesulitan']=='0') {
 				$row[] = "Mudah";
@@ -715,10 +716,11 @@ class Learningline extends MX_Controller {
 			<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
 			<label for="."soal".$list_soal['id_soal'].">&nbsp;&nbsp;</label>
 			</span>";
+
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
 
-			$row[] = $soal;
+			$row[] = substr($soal, 0,250);
 
 			if ($list_soal['kesulitan']=='0') {
 				$row[] = "Mudah";
@@ -791,6 +793,7 @@ class Learningline extends MX_Controller {
 		foreach ( $list as $list_soal ) {
 			$n='1';
 			$row = array();
+			$soal = $list_soal['soal'];
 
 			$row[] = "<span class='checkbox custom-checkbox custom-checkbox-inverse'>
 			<input type='checkbox' name="."soal".$n." id="."soal".$list_soal['id_soal']." value=".$list_soal['id_soal'].">
@@ -799,7 +802,7 @@ class Learningline extends MX_Controller {
 			$row[] = $list_soal['judul_soal'];
 			$row[] = $list_soal['sumber'];
 
-			$row[] = $list_soal['soal'];
+			$row[] = substr($soal, 0,140);
 
 			if ($list_soal['kesulitan']=='0') {
 				$row[] = "Mudah";

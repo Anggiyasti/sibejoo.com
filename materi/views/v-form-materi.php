@@ -351,12 +351,18 @@ Preview.callback.autoReset = true;  // make sure it can run more than once
 
         console.log('masuk');
     	url = base_url+"materi/uploadMateri";
+      if ($('#giftcheckbox').is(':checked')) {
+        stpublish =1;
+      }
+      else{
+        stpublish =0;
+      }
     	
         var datas = {
             judul : $('input[name=judul]').val(),
             editor1 : CKEDITOR.instances.editor1.getData(),
             subBabID : $('select[name=subBabID]').val(),
-            stpublish : $('input[name=stpublish]:checked').val(),
+            stpublish : stpublish,
             opupload : $('input[name=opupload]:checked').val(),
             filemateri: $('[name=filemateri]').val(),
         }
